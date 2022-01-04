@@ -1,5 +1,8 @@
 # simple_widget_markup
 
+(en)Japanese ver is [here](https://github.com/MasahideMori-SimpleAppli/simple_widget_markup/blob/main/README_JA.md).  
+(ja)この解説の日本語版は[ここ](https://github.com/MasahideMori-SimpleAppli/simple_widget_markup/blob/main/README_JA.md)にあります。
+
 ## Overview
 This package is a practical Flutter (Dart) implementation of the Simple Widget Markup Language (SpWML).  
 SpWML is a markup language that makes it easy to handle widgets (a block of certain elements).  
