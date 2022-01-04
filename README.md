@@ -23,6 +23,7 @@ The basic form is as follows.
 type is required and parameters are optional.  
 
 Currently, the types are as follows.
+
 ・ Container system (Container is a container for elements)
 - block (basic container. Can also be used for temporary placement for replacement)
 - col (The inside is a row container)
@@ -43,6 +44,7 @@ Currently, the types are as follows.
   - line (horizontal delimiter)
 
 Currently, the parameters are:
+
 ・ Valid for all
 - height
 - width
