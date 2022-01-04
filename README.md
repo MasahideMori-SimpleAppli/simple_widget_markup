@@ -106,24 +106,24 @@ Note that if you write directly as text in the code instead of reading the file,
 the backslash itself will be you will need one extra to receive the Dart escape.
 
 ### Sample code
-`` `dart
+```dart
 //in preparation
-`` ```
+```
 
 ### Example of using inline elements
-`` `dart
+```dart
 //in preparation
-`` ```
+```
 
 ### Cooperation with Widget
-`` `dart
+```dart
 //in preparation
-`` ```
+```
 
 ### Customize basic design
-`` `dart
+```dart
 //in preparation
-`` ```
+```
 
 ## Support
 If you need paid support, please contact my company.
