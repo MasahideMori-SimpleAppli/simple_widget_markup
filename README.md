@@ -126,7 +126,7 @@ the backslash itself will be you will need one extra to receive the Dart escape.
 ```
 
 ## Support
-If you need paid support, please contact my company.
+If you need paid support, please contact my company.  
 [SimpleAppli Inc.](https://simpleappli.com/en/index_en.html)
 
 ## Format name
