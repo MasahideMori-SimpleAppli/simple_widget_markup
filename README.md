@@ -13,7 +13,7 @@ The essential requirement for this language is to be able to explain to ordinary
 
 ## Usage
 ### Quick Start
-You can try how it works on the following sites.
+You can try how it works on the following sites.  
 [SpWML Editor](https://simple-widget-markup-editor.web.app/)
 
 ### Description method
