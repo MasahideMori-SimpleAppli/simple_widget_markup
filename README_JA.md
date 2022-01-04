@@ -12,7 +12,8 @@ SpWMLは、Widget（一定の要素のかたまり）を手軽に扱えるよう
 
 ## 利用方法
 ### クイックスタート
-サンプルサイトを準備中です。暫くお待ちください。
+以下のサイトでどのように動作するのか試すことが出来ます。
+[SpWMLエディター](https://simple-widget-markup-editor.web.app/)
 
 ### 記載方法
 基本形は
@@ -111,22 +112,107 @@ Dartのエスケープを受けるため、余分に１つ必要になります�
 
 ### サンプルコード
 ```dart
-//準備中
+import 'package:flutter/material.dart';
+import 'package:simple_widget_markup/spwml_builder.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'SpWML Example',
+      theme: ThemeData(
+        primarySwatch: Colors.green,
+      ),
+      home: const SpWMLSample(title: 'SpWML Example'),
+    );
+  }
+}
+
+class SpWMLSample extends StatefulWidget {
+  const SpWMLSample({Key? key, required this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  State<SpWMLSample> createState() => _SpWMLSampleState();
+}
+
+class _SpWMLSampleState extends State<SpWMLSample> {
+
+  Widget _getSpWMLWidget(BuildContext context){
+    return SpWMLBuilder("(h1)テキストの例").build(context);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+            appBar: AppBar(
+              title: Text(widget.title),
+            ),
+            body: _getSpWMLWidget(context)
+    );
+  }
+}
 ```
 
 ### インライン要素を使う場合の例
+サンプルコードの_getSpWMLWidgetを以下のように書き替えてください。
 ```dart
-//準備中
+  Widget _getSpWMLWidget(BuildContext context){
+    return SpWMLBuilder("(span)\n"
+            "+(h1,fontWeight:bold)テキストの\n"
+            "+(h1,textColor:#FF0000)例").build(context);
+  }
 ```
 
 ### Widgetとの連携
+サンプルコードの_getSpWMLWidgetを以下のように書き替えてください。
 ```dart
-//準備中
+  Widget _getSpWMLWidget(BuildContext context) {
+  SpWMLBuilder builder = SpWMLBuilder("(h1)この下の要素を置き換えます。\n"
+          "(block, id:1)");
+  builder.replaceID(
+          1,
+          OutlinedButton(
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text("ボタンが押されました。"),
+                      duration: Duration(seconds: 3),
+                    ));
+                  },
+                  child: const Text("Flutterボタン")));
+  return builder.build(context);
+}
 ```
 
 ### 基本デザインのカスタマイズ
+サンプルコードの_getSpWMLWidgetを以下のように書き替えてください。
 ```dart
-//準備中
+  Widget _getSpWMLWidget(BuildContext context) {
+  SpWMLFontStyle fontStyle1 = SpWMLFontStyle();
+  SpWMLFontStyle fontStyle2 = SpWMLFontStyleMaterial();
+  SpWMLFontStyle userCustomFontStyle = SpWMLFontStyle(h1Size: 48);
+  return Column(
+    children: [
+      SpWMLBuilder("(h1)テキストの例", spWMLStyle: fontStyle1).build(context),
+      SpWMLBuilder("(h1)テキストの例", spWMLStyle: fontStyle2).build(context),
+      SpWMLBuilder("(h1)テキストの例", spWMLStyle: userCustomFontStyle)
+              .build(context),
+    ],
+  );
+}
+```
+スタイルはJSONファイルとして保存することも出来ます。  
+toDictでMapに出来、それをfromDictで復元することができます。  
+必要な場合は検討してください。  
+```dart
+  SpWMLFontStyle test = SpWMLFontStyle.fromDict(fontStyle1.toDict());
 ```
 
 ## サポート
