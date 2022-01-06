@@ -14,7 +14,8 @@ class SpWML extends StatelessWidget {
   final SpWMLFontStyle style;
 
   SpWML(this.spWML, {SpWMLFontStyle? spWMLStyle, GlobalKey? key})
-      : style = spWMLStyle ?? SpWMLFontStyle(), super(key: key);
+      : style = spWMLStyle ?? SpWMLFontStyle(),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

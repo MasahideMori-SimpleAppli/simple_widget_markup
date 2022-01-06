@@ -157,5 +157,4 @@ class UtilElement {
           EnumSpWMLExceptionType.paramValueException, lineStart, lineEnd);
     }
   }
-
 }
