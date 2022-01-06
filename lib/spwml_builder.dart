@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'element/spwml_font_style.dart';
 import 'element/span_element.dart';
+import 'element/stack_element.dart';
 import 'element/text_element.dart';
 import 'element/block_element.dart';
 import 'element/col_element.dart';
@@ -51,14 +52,22 @@ class SpWMLBuilder {
   /// * [widget] : Replace Widget.
   ///
   /// Throws [SpWMLException] : If target is null, throws nullException.
-  void replaceID(int id, Widget widget) {
+  void replaceID(int id, Widget newWidget) {
+    bool needReturn = false;
+    Widget? removeTarget;
     for (int i = 0; i < parsedWidgets.length; i++) {
       final SpWMLElement elm = parsedWidgets[i];
       if (elm.param.containsKey(EnumSpWMLElementParam.id)) {
         if (elm.param[EnumSpWMLElementParam.id] == id) {
           if (elm is BlockElement) {
-            elm.child.child = widget;
-            return;
+            elm.child.child = newWidget;
+            for (SpWMLElement j in parsedWidgets) {
+              if (elm.serial == j.parentSerial) {
+                removeTarget = j;
+              }
+            }
+            needReturn = true;
+            break;
           } else {
             throw SpWMLException(
                 EnumSpWMLExceptionType.replaceException, -1, -1);
@@ -66,10 +75,32 @@ class SpWMLBuilder {
         }
       }
     }
+    if (removeTarget != null) {
+      parsedWidgets.remove(removeTarget);
+    }
+    if (needReturn) {
+      return;
+    }
     throw SpWMLException(EnumSpWMLExceptionType.nullException, -1, -1);
   }
 
+  void _clearWidgetStructure(BuildContext context) {
+    for (SpWMLElement i in parsedWidgets) {
+      if (i is ColElement) {
+        i.children.children.clear();
+      } else if (i is RowElement) {
+        i.children.children.clear();
+      } else if (i is SpanElement) {
+        i.children.children.clear();
+      } else if (i is StackElement) {
+        i.children.children.clear();
+      }
+      // ID入れ替えがあるため、Block Elementは操作してはならない。
+    }
+  }
+
   List<Widget> _createStructuralWidget(BuildContext context) {
+    _clearWidgetStructure(context);
     List<Widget> r = [];
     for (SpWMLElement i in parsedWidgets) {
       if (i is ColElement) {
@@ -92,6 +123,12 @@ class SpWMLBuilder {
           }
         }
       } else if (i is SpanElement) {
+        for (SpWMLElement j in parsedWidgets) {
+          if (i.serial == j.parentSerial) {
+            i.children.children.add(j);
+          }
+        }
+      } else if (i is StackElement) {
         for (SpWMLElement j in parsedWidgets) {
           if (i.serial == j.parentSerial) {
             i.children.children.add(j);

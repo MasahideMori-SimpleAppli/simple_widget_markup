@@ -46,7 +46,7 @@ enum EnumSpWMLElementParam {
   pRight,
   pBottom,
   weight,
-  id,
+  id
 }
 
 extension EXTEnumSpWMLElementParam on EnumSpWMLElementParam {

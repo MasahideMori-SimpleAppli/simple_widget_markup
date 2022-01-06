@@ -10,6 +10,7 @@ enum EnumSpWMLElementType {
   row,
   block,
   span,
+  stack,
   text,
   h1,
   h2,
@@ -43,6 +44,8 @@ extension EXTEnumSpWMLElementType on EnumSpWMLElementType {
       return EnumSpWMLElementType.block;
     } else if (s == EnumSpWMLElementType.span.toStr()) {
       return EnumSpWMLElementType.span;
+    } else if (s == EnumSpWMLElementType.stack.toStr()) {
+      return EnumSpWMLElementType.stack;
     } else if (s == EnumSpWMLElementType.text.toStr()) {
       return EnumSpWMLElementType.text;
     } else if (s == EnumSpWMLElementType.h1.toStr()) {

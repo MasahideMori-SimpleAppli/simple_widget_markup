@@ -30,6 +30,7 @@ typeは必須で、パラメータは省略可能です。
 - col(内部が行のコンテナ)
 - row(内部が列のコンテナ)
 - span(内部がtextまたはhrefのコンテナ。行内要素にそれぞれ違うパラメータが設定出来る)
+- stack(内部を重ね合わせられるコンテナ)
   ・コンテナ内要素
 - text系
   - h1-h6(ヘッダテキスト。h1-h6の６種類)
@@ -213,6 +214,15 @@ toDictでMapに出来、それをfromDictで復元することができます。
 必要な場合は検討してください。  
 ```dart
   SpWMLFontStyle test = SpWMLFontStyle.fromDict(fontStyle1.toDict());
+```
+
+### 内部要素を変更しない場合
+以下のラッパーウィジェットを使ってより簡単に記述出来ます。
+サンプルコードの_getSpWMLWidgetを以下のように書き替えてください。
+```dart
+  Widget _getSpWMLWidget(BuildContext context) {
+    return SpWML("(h1)テキストの例");
+  }
 ```
 
 ## サポート

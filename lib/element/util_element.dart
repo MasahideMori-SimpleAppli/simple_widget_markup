@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'stack_element.dart';
 import 'element_child.dart';
 import 'spwml_font_style.dart';
 import 'span_element.dart';
@@ -83,6 +84,9 @@ class UtilElement {
     } else if (eType == EnumSpWMLElementType.span) {
       r = SpanElement(serial, param, text, tabCount, lineStart, lineEnd, style,
           StructureElementChildren());
+    } else if (eType == EnumSpWMLElementType.stack) {
+      r = StackElement(serial, param, text, tabCount, lineStart, lineEnd, style,
+          StructureElementChildren());
     } else {
       // 存在しないタイプの場合は通常はfromStr時点で例外が発生している。
       // ここで発生する場合は処理の追加漏れ。
@@ -153,4 +157,5 @@ class UtilElement {
           EnumSpWMLExceptionType.paramValueException, lineStart, lineEnd);
     }
   }
+
 }

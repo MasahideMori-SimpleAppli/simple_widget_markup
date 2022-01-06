@@ -30,6 +30,7 @@ Currently, the types are as follows.
 - col (The inside is a row container)
 - row (container with columns inside)
 - span (Container with text or href inside. Different parameters can be set for each element in the line)
+- stack(Container that can be superposed inside)
 ・ Elements in the container
 - text system
   - h1-h6 (header text. 6 types of h1-h6)
@@ -215,6 +216,15 @@ You can create a Map with toDict and restore it with fromDict.
 Please consider if necessary.  
 ```dart
   SpWMLFontStyle test = SpWMLFontStyle.fromDict(fontStyle1.toDict());
+```
+
+### If you do not change the internal elements
+It can be written more easily using the following wrapper widget.
+Please rewrite _getSpWMLWidget in Sample code as follows.
+```dart
+  Widget _getSpWMLWidget(BuildContext context) {
+    return SpWML("(h1)Example text");
+  }
 ```
 
 ## Support
