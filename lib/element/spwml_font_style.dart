@@ -120,6 +120,7 @@ class SpWMLFontStyle {
       this.overlineSize = 12,
       this.overlineLetterSpacing = 1.5});
 
+  /// return deep copy.
   SpWMLFontStyle deepCopy() {
     return SpWMLFontStyle(
         textFontName: textFontName,
@@ -172,6 +173,7 @@ class SpWMLFontStyle {
         overlineLetterSpacing: overlineLetterSpacing);
   }
 
+  /// convert to map from this class.
   Map<String, dynamic> toDict() {
     Map<String, dynamic> d = {};
     d['class_name'] = className;
@@ -226,6 +228,7 @@ class SpWMLFontStyle {
     return d;
   }
 
+  /// create this class from map.
   static SpWMLFontStyle fromDict(Map<String, dynamic> src) {
     return SpWMLFontStyle(
         textFontName: src['textFontName'],

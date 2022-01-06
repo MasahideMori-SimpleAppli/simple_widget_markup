@@ -174,6 +174,7 @@ class SpWMLFontStyleMaterial extends SpWMLFontStyle {
         overlineLetterSpacing: overlineLetterSpacing);
   }
 
+  /// create this class from map.
   static SpWMLFontStyleMaterial fromDict(Map<String, dynamic> src) {
     return SpWMLFontStyleMaterial(
         textFontName: src['textFontName'],

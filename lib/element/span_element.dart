@@ -86,6 +86,7 @@ class SpanElement extends SpWMLElement {
     return r;
   }
 
+  /// get text strut style from parameters.
   StrutStyle getStrutStyle() {
     return StrutStyle(
         fontSize: param.containsKey(EnumSpWMLElementParam.fontSize)
@@ -96,6 +97,7 @@ class SpanElement extends SpWMLElement {
             : 1.0);
   }
 
+  /// get text style from parameters.
   TextStyle getStyle() {
     return TextStyle(
       color: param.containsKey(EnumSpWMLElementParam.textColor)

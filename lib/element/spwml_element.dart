@@ -64,6 +64,7 @@ class SpWMLElement extends StatelessWidget {
     return mParam;
   }
 
+  /// get text height from param. If null, return style value or 1.0.
   double getTextHeight(BuildContext context) {
     if (type == EnumSpWMLElementType.text ||
         type == EnumSpWMLElementType.body1 ||
@@ -109,6 +110,7 @@ class SpWMLElement extends StatelessWidget {
         : 0.0;
   }
 
+  /// get margin from param.
   EdgeInsets getMargin(BuildContext context) {
     final double left = param.containsKey(EnumSpWMLElementParam.mLeft)
         ? param[EnumSpWMLElementParam.mLeft]
@@ -123,6 +125,7 @@ class SpWMLElement extends StatelessWidget {
     return EdgeInsets.fromLTRB(left, top, right, bottom);
   }
 
+  /// get padding from param.
   EdgeInsets getPadding(BuildContext context) {
     final double left = param.containsKey(EnumSpWMLElementParam.pLeft)
         ? param[EnumSpWMLElementParam.pLeft]
@@ -139,6 +142,7 @@ class SpWMLElement extends StatelessWidget {
     return EdgeInsets.fromLTRB(left, top, right, bottom);
   }
 
+  /// get style font size from param.
   double getDefFontSize() {
     if (type == EnumSpWMLElementType.h1) {
       return style.h1Size;
@@ -171,6 +175,7 @@ class SpWMLElement extends StatelessWidget {
     }
   }
 
+  /// get style font weight from param.
   FontWeight getDefFontWeight() {
     if (type == EnumSpWMLElementType.h1) {
       return EnumSpWMLElementParam.fontWeight
@@ -217,6 +222,7 @@ class SpWMLElement extends StatelessWidget {
     }
   }
 
+  /// get style text letter spacing from param.
   double? getDefFontLetterSpacing() {
     if (type == EnumSpWMLElementType.h1) {
       return style.h1LetterSpacing;
@@ -249,6 +255,7 @@ class SpWMLElement extends StatelessWidget {
     }
   }
 
+  /// get this element widget.
   Widget getWidget(BuildContext context) {
     throw UnimplementedError();
   }

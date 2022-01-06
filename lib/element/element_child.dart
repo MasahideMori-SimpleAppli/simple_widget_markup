@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 ///
 class BlockElementChild {
   Widget? child;
+
+  /// return child or container.
   Widget getChild() {
     return child ?? Container();
   }
@@ -14,6 +16,8 @@ class BlockElementChild {
 
 class StructureElementChildren {
   List<Widget> children = [];
+
+  /// return children or empty list.
   List<Widget> getChildren() {
     return children;
   }

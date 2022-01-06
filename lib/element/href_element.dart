@@ -57,12 +57,14 @@ class HrefElement extends SpWMLElement {
         ));
   }
 
+  /// return alt text or text.
   String getDisplayText() {
     return param.containsKey(EnumSpWMLElementParam.alt)
         ? param[EnumSpWMLElementParam.alt]!
         : text;
   }
 
+  /// launch url.
   void onTapFunc(BuildContext context) async {
     if (await canLaunch(text)) {
       await launch(text);
@@ -74,6 +76,7 @@ class HrefElement extends SpWMLElement {
     }
   }
 
+  /// get text strut style from parameters.
   StrutStyle getStrutStyle() {
     return StrutStyle(
         fontSize: param.containsKey(EnumSpWMLElementParam.fontSize)
@@ -84,6 +87,7 @@ class HrefElement extends SpWMLElement {
             : 1.0);
   }
 
+  /// get text style from parameters.
   TextStyle getStyle(BuildContext context) {
     return TextStyle(
       color: param.containsKey(EnumSpWMLElementParam.textColor)
