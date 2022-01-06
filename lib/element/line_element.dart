@@ -7,7 +7,7 @@ import 'spwml_element.dart';
 ///
 /// Author Masahide Mori
 ///
-/// First edition creation date 2021-01-03 02:14:18
+/// First edition creation date 2022-01-03 02:14:18
 ///
 class LineElement extends SpWMLElement {
   LineElement(int serial, List<String> param, String text, int parentSerial,

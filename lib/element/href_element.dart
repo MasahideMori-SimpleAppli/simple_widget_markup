@@ -10,7 +10,7 @@ import 'package:url_launcher/url_launcher.dart';
 ///
 /// Author Masahide Mori
 ///
-/// First edition creation date 2021-01-04 00:16:17
+/// First edition creation date 2022-01-04 00:16:17
 ///
 class HrefElement extends SpWMLElement {
   HrefElement(int serial, List<String> param, String text, int parentSerial,

@@ -12,7 +12,7 @@ import 'spwml_element.dart';
 ///
 /// Author Masahide Mori
 ///
-/// First edition creation date 2021-01-04 00:15:15
+/// First edition creation date 2022-01-04 00:15:15
 ///
 class SpanElement extends SpWMLElement {
   final StructureElementChildren children;
