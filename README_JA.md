@@ -94,7 +94,7 @@ typeは必須で、パラメータは省略可能です。
 - repeat(noRepeat, repeat, repeatX, repeatY。リピートが有効な場合は元の画像サイズでリピートされます。)
 
 ・line専用
-- chickness(px, 線の太さ)
+- thickness(px, 線の太さ)
 - color(#AARRGGBB)
 - lineStyle(現在は利用できません。今後、複数のスタイルが追加される可能性があります。)
 

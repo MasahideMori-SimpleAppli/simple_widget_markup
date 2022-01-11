@@ -94,7 +94,7 @@ Currently, the parameters are:
 - repeat (noRepeat, repeat, repeatX, repeatY. If repeat is enabled, it will be repeated at the original image size.)
 
 ・ Line only
-- chickness (px, line thickness)
+- thickness (px, line thickness)
 - color (#AARRGGBB)
 - lineStyle (Currently unavailable. Multiple styles may be added in the future.)
 
