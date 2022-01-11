@@ -34,14 +34,6 @@ class BlockElement extends SpWMLElement {
   Widget getWidget(BuildContext context) {
     final bool isExistWidth = param.containsKey(EnumSpWMLElementParam.width);
     final bool isExistHeight = param.containsKey(EnumSpWMLElementParam.height);
-    final bool isExistWeight = param.containsKey(EnumSpWMLElementParam.weight);
-    if (isExistWidth == false &&
-        isExistHeight == false &&
-        isExistWeight == false) {
-      debugPrint(
-          "Block elements are not displayed because they do not have a size."
-          " You need at least height or width or weight, or height and width.");
-    }
     return Container(
       width: isExistWidth ? param[EnumSpWMLElementParam.width]! : null,
       height: isExistHeight ? param[EnumSpWMLElementParam.height]! : null,

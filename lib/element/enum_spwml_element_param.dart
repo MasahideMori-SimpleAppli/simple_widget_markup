@@ -30,7 +30,7 @@ enum EnumSpWMLElementParam {
   textAlign,
   textHeight,
   isSelectable,
-  chickness,
+  thickness,
   color,
   fit,
   repeat,
@@ -117,7 +117,7 @@ extension EXTEnumSpWMLElementParam on EnumSpWMLElementParam {
           this == EnumSpWMLElementParam.pTop ||
           this == EnumSpWMLElementParam.pBottom ||
           this == EnumSpWMLElementParam.weight ||
-          this == EnumSpWMLElementParam.chickness) {
+          this == EnumSpWMLElementParam.thickness) {
         return double.parse(v);
       } else if (this == EnumSpWMLElementParam.fontWeight) {
         if (v == "w100" || v == "thin") {
@@ -248,8 +248,8 @@ extension EXTEnumSpWMLElementParam on EnumSpWMLElementParam {
       return EnumSpWMLElementParam.textHeight;
     } else if (s == EnumSpWMLElementParam.isSelectable.toStr()) {
       return EnumSpWMLElementParam.isSelectable;
-    } else if (s == EnumSpWMLElementParam.chickness.toStr()) {
-      return EnumSpWMLElementParam.chickness;
+    } else if (s == EnumSpWMLElementParam.thickness.toStr()) {
+      return EnumSpWMLElementParam.thickness;
     } else if (s == EnumSpWMLElementParam.color.toStr()) {
       return EnumSpWMLElementParam.color;
     } else if (s == EnumSpWMLElementParam.fit.toStr()) {

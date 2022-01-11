@@ -59,7 +59,11 @@ class SpWMLParser {
         // パラメータの方は全角、及び半角スペースを全て削除。
         List<String> param = UtilParser.split(
             split2[0].replaceAll(" ", "").replaceAll("　", ""), paramSeparate);
-        String type = param.removeAt(0);
+        final String type = param.removeAt(0);
+        // パラメータ中のエスケープ文字を処理
+        for (int j = 0; j < param.length; j++) {
+          param[j] = UtilParser.adjustmentEscape(param[j]);
+        }
         List<String> includes =
             UtilParser.split(split2[1], lower, targetCharacterAdd: true);
         String text = includes.isNotEmpty ? includes.removeAt(0) : "";
@@ -158,11 +162,28 @@ class SpWMLParser {
       return src;
     }
     final int sLen = src.length;
-    final String lastStr = src.substring(sLen - 1, sLen);
-    if (indention.hasMatch(lastStr)) {
-      return src.substring(0, sLen - 1);
+    if (sLen == 1) {
+      final String lastStr = src.substring(sLen - 1, sLen);
+      if (indention.hasMatch(lastStr)) {
+        // Other
+        return src.substring(0, sLen - 1);
+      } else {
+        return src;
+      }
     } else {
-      return src;
+      final String lastStrWin = src.substring(sLen - 2, sLen);
+      if (lastStrWin == "\r\n") {
+        // Windows
+        return src.substring(0, sLen - 2);
+      } else {
+        final String lastStr = src.substring(sLen - 1, sLen);
+        if (indention.hasMatch(lastStr)) {
+          // Other
+          return src.substring(0, sLen - 1);
+        } else {
+          return src;
+        }
+      }
     }
   }
 }

@@ -28,7 +28,9 @@ class LineElement extends SpWMLElement {
           ? param[EnumSpWMLElementParam.bgColor]
           : null,
       child: Divider(
-        thickness: isExistHeight ? param[EnumSpWMLElementParam.chickness]! : 1,
+        thickness: param.containsKey(EnumSpWMLElementParam.thickness)
+            ? param[EnumSpWMLElementParam.thickness]!
+            : 1,
         color: param.containsKey(EnumSpWMLElementParam.color)
             ? param[EnumSpWMLElementParam.color]
             : null,
