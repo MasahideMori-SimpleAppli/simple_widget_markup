@@ -1,6 +1,10 @@
+## 1.0.1
+
+* Fixed a bug where blanks were removed in the HrefElement's alt parameter.
+
 ## 1.0.0
 
-* Fixed parameter typo bug in Line Element, Fixed chickness to thickness.
+* Fixed parameter typo bug in LineElement, Fixed chickness to thickness.
 * Fixed some bugs in the language parser.
 * Fixed a bug that sometimes caused unnecessary warnings in BlockElement.
 

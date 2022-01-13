@@ -53,9 +53,14 @@ class SpWMLElement extends StatelessWidget {
       List<String> p = UtilParser.split(i, ":");
       if (p.length == 2) {
         // 変換される時点（パース時）で値の検査も行う。
-        EnumSpWMLElementParam t =
-            EXTEnumSpWMLElementParam.fromStr(p[0], lineStart, lineEnd);
-        mParam[t] = t.parseValue(type, p[1], lineStart, lineEnd);
+        EnumSpWMLElementParam t = EXTEnumSpWMLElementParam.fromStr(
+            p[0].replaceAll(" ", "").replaceAll("　", ""), lineStart, lineEnd);
+        if (t == EnumSpWMLElementParam.alt) {
+          mParam[t] = p[1];
+        } else {
+          mParam[t] = t.parseValue(type,
+              p[1].replaceAll(" ", "").replaceAll("　", ""), lineStart, lineEnd);
+        }
       } else {
         throw SpWMLException(
             EnumSpWMLExceptionType.paramException, lineStart, lineEnd);

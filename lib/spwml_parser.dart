@@ -57,8 +57,7 @@ class SpWMLParser {
           split2.add("");
         }
         // パラメータの方は全角、及び半角スペースを全て削除。
-        List<String> param = UtilParser.split(
-            split2[0].replaceAll(" ", "").replaceAll("　", ""), paramSeparate);
+        List<String> param = UtilParser.split(split2[0], paramSeparate);
         final String type = param.removeAt(0);
         // パラメータ中のエスケープ文字を処理
         for (int j = 0; j < param.length; j++) {
