@@ -25,13 +25,13 @@ type is required and parameters are optional.
 
 Currently, the types are as follows.
 
-・ Container system (Container is a container for elements)
+* Container system (Container is a container for elements)
 - block (basic container. Can also be used for temporary placement for replacement)
 - col (The inside is a row container)
 - row (container with columns inside)
 - span (Container with text or href inside. Different parameters can be set for each element in the line)
 - stack(Container that can be superposed inside)
-・ Elements in the container
+* Elements in the container
 - text system
   - h1-h6 (header text. 6 types of h1-h6)
   - subtitle1
@@ -47,7 +47,7 @@ Currently, the types are as follows.
 
 Currently, the parameters are:
 
-・ Valid for all
+* Valid for all
 - height
 - width
 - bgColor (#AARRGGBB)
@@ -61,14 +61,20 @@ Currently, the parameters are:
 - pBottom (px)
 - weight (ratio of elements on the screen. Vertical in col, horizontal in row)
 
-・ For block only
+* For Containers only
+- minHeight(px)
+- minWidth(px)
+- maxHeight(px)
+- maxWidth(px)
+
+* For block only
 - id (replacement ID in Flutter widget linkage)
 
-・ For col and row only
+* For col and row only
 - hAlign (left, center, right. Horizontal alignment)
 - vAlign (top, center, bottom. Vertical alignment)
 
-・ For text and href only
+* For text and href only
 - fontName
 - fontSize (px)
 - fontWeight (normal, regular, bold, thin, light, medium, black, w100-w900)
@@ -83,17 +89,17 @@ Currently, the parameters are:
 - textAlign (left, center, right, justify. Text alignment)
 - textHeight (text size magnification, such as 1.0 or 1.3)
 
-・ For text and span only
+* For text and span only
 - isSelectable (true, false. If false, it cannot be selected.)
 
-・ Href only
+* Href only
 - alt (alternative text)
 
-・ For img only
+* For img only
 - fit (none, contain, cover, fitHeight, fitWidth)
 - repeat (noRepeat, repeat, repeatX, repeatY. If repeat is enabled, it will be repeated at the original image size.)
 
-・ Line only
+* Line only
 - thickness (px, line thickness)
 - color (#AARRGGBB)
 - lineStyle (Currently unavailable. Multiple styles may be added in the future.)

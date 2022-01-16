@@ -50,6 +50,9 @@ class SpWMLFontStyle {
   String body2Weight;
   double body2Size;
   double body2LetterSpacing;
+  String buttonWeight;
+  double buttonSize;
+  double buttonLetterSpacing;
   String captionWeight;
   double captionSize;
   double captionLetterSpacing;
@@ -113,6 +116,9 @@ class SpWMLFontStyle {
       this.body2Weight = "regular",
       this.body2Size = 16,
       this.body2LetterSpacing = 0.25,
+      this.buttonWeight = "medium",
+      this.buttonSize = 16,
+      this.buttonLetterSpacing = 1.25,
       this.captionWeight = "regular",
       this.captionSize = 14,
       this.captionLetterSpacing = 0.4,
@@ -165,6 +171,9 @@ class SpWMLFontStyle {
         body2Weight: body2Weight,
         body2Size: body2Size,
         body2LetterSpacing: body2LetterSpacing,
+        buttonWeight: buttonWeight,
+        buttonSize: buttonSize,
+        buttonLetterSpacing: buttonLetterSpacing,
         captionWeight: captionWeight,
         captionSize: captionSize,
         captionLetterSpacing: captionLetterSpacing,
@@ -219,6 +228,9 @@ class SpWMLFontStyle {
     d['body2Weight'] = body2Weight;
     d['body2Size'] = body2Size;
     d['body2LetterSpacing'] = body2LetterSpacing;
+    d['buttonWeight'] = buttonWeight;
+    d['buttonSize'] = buttonSize;
+    d['buttonLetterSpacing'] = buttonLetterSpacing;
     d['captionWeight'] = captionWeight;
     d['captionSize'] = captionSize;
     d['captionLetterSpacing'] = captionLetterSpacing;
@@ -273,6 +285,12 @@ class SpWMLFontStyle {
         body2Weight: src['body2Weight'],
         body2Size: src['body2Size'],
         body2LetterSpacing: src['body2LetterSpacing'],
+        buttonWeight:
+            src.containsKey('buttonWeight') ? src['buttonWeight'] : null,
+        buttonSize: src.containsKey('buttonSize') ? src['buttonSize'] : null,
+        buttonLetterSpacing: src.containsKey('buttonLetterSpacing')
+            ? src['buttonLetterSpacing']
+            : null,
         captionWeight: src['captionWeight'],
         captionSize: src['captionSize'],
         captionLetterSpacing: src['captionLetterSpacing'],

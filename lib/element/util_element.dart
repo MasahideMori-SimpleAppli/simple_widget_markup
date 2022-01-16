@@ -17,6 +17,7 @@ import 'enum_spwml_element_type.dart';
 
 ///
 /// (en)Utility for generating SpWML elements.
+///
 /// (ja)SpWMLエレメントの生成用ユーティリティです。
 ///
 /// Author Masahide Mori
@@ -30,7 +31,7 @@ class UtilElement {
   /// * [type] : Element Type.
   /// * [param] : Element Parameter.
   /// * [text] : The text.
-  /// * [tabCount] : Tab count of this.
+  /// * [parentSerial] : The parent element serial.
   /// * [lineStart] : line info for the Error handling.
   /// * [lineEnd] : line info for the Error handling.
   /// * [style] : Font styles.
@@ -44,7 +45,7 @@ class UtilElement {
       String type,
       List<String> param,
       String text,
-      int tabCount,
+      int parentSerial,
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style) {
@@ -65,28 +66,31 @@ class UtilElement {
         eType == EnumSpWMLElementType.caption ||
         eType == EnumSpWMLElementType.overline) {
       r = TextElement(
-          serial, eType, param, text, tabCount, lineStart, lineEnd, style);
+          serial, eType, param, text, parentSerial, lineStart, lineEnd, style);
     } else if (eType == EnumSpWMLElementType.href) {
-      r = HrefElement(serial, param, text, tabCount, lineStart, lineEnd, style);
+      r = HrefElement(
+          serial, param, text, parentSerial, lineStart, lineEnd, style);
     } else if (eType == EnumSpWMLElementType.line) {
-      r = LineElement(serial, param, text, tabCount, lineStart, lineEnd, style);
+      r = LineElement(
+          serial, param, text, parentSerial, lineStart, lineEnd, style);
     } else if (eType == EnumSpWMLElementType.img) {
-      r = ImgElement(serial, param, text, tabCount, lineStart, lineEnd, style);
+      r = ImgElement(
+          serial, param, text, parentSerial, lineStart, lineEnd, style);
     } else if (eType == EnumSpWMLElementType.col) {
-      r = ColElement(serial, param, text, tabCount, lineStart, lineEnd, style,
-          StructureElementChildren());
+      r = ColElement(serial, param, text, parentSerial, lineStart, lineEnd,
+          style, StructureElementChildren());
     } else if (eType == EnumSpWMLElementType.row) {
-      r = RowElement(serial, param, text, tabCount, lineStart, lineEnd, style,
-          StructureElementChildren());
+      r = RowElement(serial, param, text, parentSerial, lineStart, lineEnd,
+          style, StructureElementChildren());
     } else if (eType == EnumSpWMLElementType.block) {
-      r = BlockElement(serial, param, text, tabCount, lineStart, lineEnd, style,
-          BlockElementChild());
+      r = BlockElement(serial, param, text, parentSerial, lineStart, lineEnd,
+          style, BlockElementChild());
     } else if (eType == EnumSpWMLElementType.span) {
-      r = SpanElement(serial, param, text, tabCount, lineStart, lineEnd, style,
-          StructureElementChildren());
+      r = SpanElement(serial, param, text, parentSerial, lineStart, lineEnd,
+          style, StructureElementChildren());
     } else if (eType == EnumSpWMLElementType.stack) {
-      r = StackElement(serial, param, text, tabCount, lineStart, lineEnd, style,
-          StructureElementChildren());
+      r = StackElement(serial, param, text, parentSerial, lineStart, lineEnd,
+          style, StructureElementChildren());
     } else {
       // 存在しないタイプの場合は通常はfromStr時点で例外が発生している。
       // ここで発生する場合は処理の追加漏れ。

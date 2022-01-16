@@ -61,6 +61,12 @@ typeは必須で、パラメータは省略可能です。
 - pBottom(px)
 - weight(要素の画面上の比率。col内なら縦方向、row内なら横方向)
 
+・ コンテナ系専用（最大の幅などの制約）
+- minHeight(px)
+- minWidth(px)
+- maxHeight(px)
+- maxWidth(px)
+
 ・block専用
 - id(Flutter widget連携での、置き換え用ID)
 

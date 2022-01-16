@@ -32,27 +32,29 @@ class RowElement extends SpWMLElement {
 
   @override
   Widget getWidget(BuildContext context) {
-    return Container(
-      width: param.containsKey(EnumSpWMLElementParam.width)
-          ? param[EnumSpWMLElementParam.width]!
-          : null,
-      height: param.containsKey(EnumSpWMLElementParam.height)
-          ? param[EnumSpWMLElementParam.height]!
-          : null,
-      margin: getMargin(context),
-      padding: getPadding(context),
-      color: param.containsKey(EnumSpWMLElementParam.bgColor)
-          ? param[EnumSpWMLElementParam.bgColor]
-          : null,
-      child: Row(
-        mainAxisAlignment: param.containsKey(EnumSpWMLElementParam.hAlign)
-            ? param[EnumSpWMLElementParam.hAlign]
-            : MainAxisAlignment.start,
-        crossAxisAlignment: param.containsKey(EnumSpWMLElementParam.vAlign)
-            ? param[EnumSpWMLElementParam.vAlign]
-            : CrossAxisAlignment.start,
-        children: children.getChildren(),
-      ),
-    );
+    return ConstrainedBox(
+        constraints: getConstraints(),
+        child: Container(
+          width: param.containsKey(EnumSpWMLElementParam.width)
+              ? param[EnumSpWMLElementParam.width]!
+              : null,
+          height: param.containsKey(EnumSpWMLElementParam.height)
+              ? param[EnumSpWMLElementParam.height]!
+              : null,
+          margin: getMargin(context),
+          padding: getPadding(context),
+          color: param.containsKey(EnumSpWMLElementParam.bgColor)
+              ? param[EnumSpWMLElementParam.bgColor]
+              : null,
+          child: Row(
+            mainAxisAlignment: param.containsKey(EnumSpWMLElementParam.hAlign)
+                ? param[EnumSpWMLElementParam.hAlign]
+                : MainAxisAlignment.start,
+            crossAxisAlignment: param.containsKey(EnumSpWMLElementParam.vAlign)
+                ? param[EnumSpWMLElementParam.vAlign]
+                : CrossAxisAlignment.start,
+            children: children.getChildren(),
+          ),
+        ));
   }
 }

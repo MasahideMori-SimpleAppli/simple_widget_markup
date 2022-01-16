@@ -32,27 +32,29 @@ class ColElement extends SpWMLElement {
 
   @override
   Widget getWidget(BuildContext context) {
-    return Container(
-      width: param.containsKey(EnumSpWMLElementParam.width)
-          ? param[EnumSpWMLElementParam.width]!
-          : null,
-      height: param.containsKey(EnumSpWMLElementParam.height)
-          ? param[EnumSpWMLElementParam.height]!
-          : null,
-      margin: getMargin(context),
-      padding: getPadding(context),
-      color: param.containsKey(EnumSpWMLElementParam.bgColor)
-          ? param[EnumSpWMLElementParam.bgColor]
-          : null,
-      child: Column(
-        mainAxisAlignment: param.containsKey(EnumSpWMLElementParam.vAlign)
-            ? param[EnumSpWMLElementParam.vAlign]
-            : MainAxisAlignment.start,
-        crossAxisAlignment: param.containsKey(EnumSpWMLElementParam.hAlign)
-            ? param[EnumSpWMLElementParam.hAlign]
-            : CrossAxisAlignment.start,
-        children: children.getChildren(),
-      ),
-    );
+    return ConstrainedBox(
+        constraints: getConstraints(),
+        child: Container(
+          width: param.containsKey(EnumSpWMLElementParam.width)
+              ? param[EnumSpWMLElementParam.width]!
+              : null,
+          height: param.containsKey(EnumSpWMLElementParam.height)
+              ? param[EnumSpWMLElementParam.height]!
+              : null,
+          margin: getMargin(context),
+          padding: getPadding(context),
+          color: param.containsKey(EnumSpWMLElementParam.bgColor)
+              ? param[EnumSpWMLElementParam.bgColor]
+              : null,
+          child: Column(
+            mainAxisAlignment: param.containsKey(EnumSpWMLElementParam.vAlign)
+                ? param[EnumSpWMLElementParam.vAlign]
+                : MainAxisAlignment.start,
+            crossAxisAlignment: param.containsKey(EnumSpWMLElementParam.hAlign)
+                ? param[EnumSpWMLElementParam.hAlign]
+                : CrossAxisAlignment.start,
+            children: children.getChildren(),
+          ),
+        ));
   }
 }

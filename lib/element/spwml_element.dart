@@ -260,6 +260,23 @@ class SpWMLElement extends StatelessWidget {
     }
   }
 
+  BoxConstraints getConstraints() {
+    final double minH = param.containsKey(EnumSpWMLElementParam.minHeight)
+        ? param[EnumSpWMLElementParam.minHeight]
+        : 0.0;
+    final double minW = param.containsKey(EnumSpWMLElementParam.minWidth)
+        ? param[EnumSpWMLElementParam.minWidth]
+        : 0.0;
+    final double maxH = param.containsKey(EnumSpWMLElementParam.maxHeight)
+        ? param[EnumSpWMLElementParam.maxHeight]
+        : double.infinity;
+    final double maxW = param.containsKey(EnumSpWMLElementParam.maxWidth)
+        ? param[EnumSpWMLElementParam.maxWidth]
+        : double.infinity;
+    return BoxConstraints(
+        minHeight: minH, minWidth: minW, maxHeight: maxH, maxWidth: maxW);
+  }
+
   /// get this element widget.
   Widget getWidget(BuildContext context) {
     throw UnimplementedError();

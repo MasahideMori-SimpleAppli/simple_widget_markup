@@ -34,15 +34,17 @@ class BlockElement extends SpWMLElement {
   Widget getWidget(BuildContext context) {
     final bool isExistWidth = param.containsKey(EnumSpWMLElementParam.width);
     final bool isExistHeight = param.containsKey(EnumSpWMLElementParam.height);
-    return Container(
-      width: isExistWidth ? param[EnumSpWMLElementParam.width]! : null,
-      height: isExistHeight ? param[EnumSpWMLElementParam.height]! : null,
-      margin: getMargin(context),
-      padding: getPadding(context),
-      color: param.containsKey(EnumSpWMLElementParam.bgColor)
-          ? param[EnumSpWMLElementParam.bgColor]
-          : null,
-      child: child.getChild(),
-    );
+    return ConstrainedBox(
+        constraints: getConstraints(),
+        child: Container(
+          width: isExistWidth ? param[EnumSpWMLElementParam.width]! : null,
+          height: isExistHeight ? param[EnumSpWMLElementParam.height]! : null,
+          margin: getMargin(context),
+          padding: getPadding(context),
+          color: param.containsKey(EnumSpWMLElementParam.bgColor)
+              ? param[EnumSpWMLElementParam.bgColor]
+              : null,
+          child: child.getChild(),
+        ));
   }
 }

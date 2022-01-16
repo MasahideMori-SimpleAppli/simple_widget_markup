@@ -1,3 +1,12 @@
+## 1.1.0
+
+* Improved the conversion speed of the parser.
+* Added getElement, getAllElement, getElementByID, length, resetStructure method to SpWMLBuilder.
+* Changed parsedWidgets var to private in SpWMLBuilder.
+* Added buttonWeight, buttonSize, buttonLetterSpacing optional var to SpWMLFontStyle and 
+  SpWMLFontStyleMaterial.
+* Added maxWidth, minWidth, maxHeight and minHeight Parameter to Containers(e.g. BlockElement).
+
 ## 1.0.1
 
 * Fixed a bug where blanks were removed in the HrefElement's alt parameter.

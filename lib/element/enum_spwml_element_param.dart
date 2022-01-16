@@ -34,6 +34,10 @@ enum EnumSpWMLElementParam {
   color,
   fit,
   repeat,
+  minHeight,
+  minWidth,
+  maxHeight,
+  maxWidth,
   // 以下２つは対象に応じて動的にStrから変更
   hAlign,
   vAlign,
@@ -59,21 +63,39 @@ extension EXTEnumSpWMLElementParam on EnumSpWMLElementParam {
   dynamic parseValue(
       EnumSpWMLElementType type, String v, int lineStart, int lineEnd) {
     try {
+      // Frequently used
+      if (this == EnumSpWMLElementParam.height ||
+          this == EnumSpWMLElementParam.width ||
+          this == EnumSpWMLElementParam.mLeft ||
+          this == EnumSpWMLElementParam.mRight ||
+          this == EnumSpWMLElementParam.mTop ||
+          this == EnumSpWMLElementParam.mBottom ||
+          this == EnumSpWMLElementParam.pLeft ||
+          this == EnumSpWMLElementParam.pRight ||
+          this == EnumSpWMLElementParam.pTop ||
+          this == EnumSpWMLElementParam.pBottom ||
+          this == EnumSpWMLElementParam.weight ||
+          this == EnumSpWMLElementParam.thickness ||
+          this == EnumSpWMLElementParam.minHeight ||
+          this == EnumSpWMLElementParam.minWidth ||
+          this == EnumSpWMLElementParam.maxHeight ||
+          this == EnumSpWMLElementParam.maxWidth) {
+        return double.parse(v);
+      }
+      // col or row only
       if (type == EnumSpWMLElementType.col) {
         if (this == EnumSpWMLElementParam.vAlign) {
           return UtilElement.convertMainAxisAlign(v, lineStart, lineEnd);
         } else if (this == EnumSpWMLElementParam.hAlign) {
           return UtilElement.convertCrossAxisAlign(v, lineStart, lineEnd);
         }
-      }
-      if (type == EnumSpWMLElementType.row) {
+      } else if (type == EnumSpWMLElementType.row) {
         if (this == EnumSpWMLElementParam.vAlign) {
           return UtilElement.convertCrossAxisAlign(v, lineStart, lineEnd);
         } else if (this == EnumSpWMLElementParam.hAlign) {
           return UtilElement.convertMainAxisAlign(v, lineStart, lineEnd);
         }
-      }
-      if (type == EnumSpWMLElementType.img) {
+      } else if (type == EnumSpWMLElementType.img) {
         if (this == EnumSpWMLElementParam.fit) {
           if (v == "none") {
             return BoxFit.none;
@@ -102,22 +124,15 @@ extension EXTEnumSpWMLElementParam on EnumSpWMLElementParam {
           }
         }
       }
-      if (this == EnumSpWMLElementParam.height ||
-          this == EnumSpWMLElementParam.width ||
-          this == EnumSpWMLElementParam.fontSize ||
+      if (this == EnumSpWMLElementParam.bgColor ||
+          this == EnumSpWMLElementParam.color) {
+        return UtilParser.convertColor(v);
+      } else if (this == EnumSpWMLElementParam.id) {
+        return int.parse(v);
+      } else if (this == EnumSpWMLElementParam.fontSize ||
           this == EnumSpWMLElementParam.textHeight ||
           this == EnumSpWMLElementParam.letterSpacing ||
-          this == EnumSpWMLElementParam.wordSpacing ||
-          this == EnumSpWMLElementParam.mLeft ||
-          this == EnumSpWMLElementParam.mRight ||
-          this == EnumSpWMLElementParam.mTop ||
-          this == EnumSpWMLElementParam.mBottom ||
-          this == EnumSpWMLElementParam.pLeft ||
-          this == EnumSpWMLElementParam.pRight ||
-          this == EnumSpWMLElementParam.pTop ||
-          this == EnumSpWMLElementParam.pBottom ||
-          this == EnumSpWMLElementParam.weight ||
-          this == EnumSpWMLElementParam.thickness) {
+          this == EnumSpWMLElementParam.wordSpacing) {
         return double.parse(v);
       } else if (this == EnumSpWMLElementParam.fontWeight) {
         if (v == "w100" || v == "thin") {
@@ -141,10 +156,8 @@ extension EXTEnumSpWMLElementParam on EnumSpWMLElementParam {
         } else {
           throw Exception();
         }
-      } else if (this == EnumSpWMLElementParam.bgColor ||
-          this == EnumSpWMLElementParam.textColor ||
-          this == EnumSpWMLElementParam.textDecoColor ||
-          this == EnumSpWMLElementParam.color) {
+      } else if (this == EnumSpWMLElementParam.textColor ||
+          this == EnumSpWMLElementParam.textDecoColor) {
         return UtilParser.convertColor(v);
       } else if (this == EnumSpWMLElementParam.fontStyle) {
         if (v == "normal") {
@@ -192,8 +205,6 @@ extension EXTEnumSpWMLElementParam on EnumSpWMLElementParam {
         } else {
           throw Exception();
         }
-      } else if (this == EnumSpWMLElementParam.id) {
-        return int.parse(v);
       } else if (this == EnumSpWMLElementParam.isSelectable) {
         if (v == "true") {
           return true;
@@ -280,6 +291,14 @@ extension EXTEnumSpWMLElementParam on EnumSpWMLElementParam {
       return EnumSpWMLElementParam.weight;
     } else if (s == EnumSpWMLElementParam.id.toStr()) {
       return EnumSpWMLElementParam.id;
+    } else if (s == EnumSpWMLElementParam.minHeight.toStr()) {
+      return EnumSpWMLElementParam.minHeight;
+    } else if (s == EnumSpWMLElementParam.minWidth.toStr()) {
+      return EnumSpWMLElementParam.minWidth;
+    } else if (s == EnumSpWMLElementParam.maxHeight.toStr()) {
+      return EnumSpWMLElementParam.maxHeight;
+    } else if (s == EnumSpWMLElementParam.maxWidth.toStr()) {
+      return EnumSpWMLElementParam.maxWidth;
     } else {
       throw SpWMLException(
           EnumSpWMLExceptionType.paramException, lineStart, lineEnd);
