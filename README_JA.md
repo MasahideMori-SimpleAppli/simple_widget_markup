@@ -25,88 +25,88 @@ typeは必須で、パラメータは省略可能です。
 
 現在、typeは以下の通りです。  
 
-・コンテナ系（コンテナは要素の入れ物です）
-- 内部が１要素のみ
-  - block(基本コンテナ。置き換え用の仮配置にも利用できる)
-  - scroll(内部がスクロールできるコンテナ)
-- 内部が複数要素
-  - col(内部が行のコンテナ)
-  - row(内部が列のコンテナ)
-  - span(内部がtextまたはhrefのコンテナ。行内要素にそれぞれ違うパラメータが設定出来る)
-  - stack(内部を重ね合わせられるコンテナ)
+- コンテナ系（コンテナは要素の入れ物です）
+  - 内部が１要素のみ
+    - block(基本コンテナ。置き換え用の仮配置にも利用できる)
+    - scroll(内部がスクロールできるコンテナ)
+  - 内部が複数要素
+    - col(内部が行のコンテナ)
+    - row(内部が列のコンテナ)
+    - span(内部がtextまたはhrefのコンテナ。行内要素にそれぞれ違うパラメータが設定出来る)
+    - stack(内部を重ね合わせられるコンテナ)
 
-・コンテナ内要素
-- text系
-  - h1-h6(ヘッダテキスト。h1-h6の６種類)
-  - subtitle1
-  - subtitle2
-  - body1(textと書いても動く。通常テキスト)
-  - body2
-  - caption
-  - overline(線の上に表示するためのテキスト)
-- text以外
-  - img(画像。テキスト部分にURLまたはbase64画像を記載する)
-  - href(テキスト部分にハイパーリンクを記載する。altパラメータで見た目を変えられる)
-  - line(水平区切り)
-  - vline(垂直区切り)
+- コンテナ内要素
+  - text系
+    - h1-h6(ヘッダテキスト。h1-h6の６種類)
+    - subtitle1
+    - subtitle2
+    - body1(textと書いても動く。通常テキスト)
+    - body2
+    - caption
+    - overline(線の上に表示するためのテキスト)
+  - text以外
+    - img(画像。テキスト部分にURLまたはbase64画像を記載する)
+    - href(テキスト部分にハイパーリンクを記載する。altパラメータで見た目を変えられる)
+    - line(水平区切り)
+    - vline(垂直区切り)
 
 現在、パラメータには以下があります。  
 
-・全てで有効
-- height
-- width
-- bgColor(#AARRGGBB)
-- mLeft(px。マージン)
-- mTop(px)
-- mRight(px)
-- mBottom(px)
-- pLeft(px。パディング)
-- pTop(px)
-- pRight(px)
-- pBottom(px)
-- weight(要素の画面上の比率。col内なら縦方向、row内なら横方向)
+- 全てで有効
+  - height
+  - width
+  - bgColor(#AARRGGBB)
+  - mLeft(px。マージン)
+  - mTop(px)
+  - mRight(px)
+  - mBottom(px)
+  - pLeft(px。パディング)
+  - pTop(px)
+  - pRight(px)
+  - pBottom(px)
+  - weight(要素の画面上の比率。col内なら縦方向、row内なら横方向)
 
-・ コンテナ系専用（最大の幅などの制約）
-- minHeight(px)
-- minWidth(px)
-- maxHeight(px)
-- maxWidth(px)
+- コンテナ系専用（最大の幅などの制約）
+  - minHeight(px)
+  - minWidth(px)
+  - maxHeight(px)
+  - maxWidth(px)
 
-・block, scroll専用
-- id(Flutter widget連携での、置き換え用ID)
+- block, scroll専用
+  - id(Flutter widget連携での、置き換え用ID)
 
-・col, row専用
-- hAlign(left, center, right。水平方向揃え)
-- vAlign(top, center, bottom。垂直方向揃え)
+- col, row専用
+  - hAlign(left, center, right。水平方向揃え)
+  - vAlign(top, center, bottom。垂直方向揃え)
 
-・text系,href専用
-- fontName
-- fontSize(px)
-- fontWeight(normal, regular, bold, thin, light, medium, black, w100-w900)
-- fontStyle(normal, italic)
-- textColor(#AARRGGBB)
-- textDeco(none, underline, overline, lineThrough)
-- textDecoStyle(solid, dotted, dashed, double, wavy)
-- textDecoColor(#AARRGGBB)
-- textDecoThickness(px)
-- letterSpacing(px)
-- wordSpacing(px)
-- textAlign(left, center, right, justify。テキスト揃え)
-- textHeight(テキストサイズの倍率。1.0や1.3など)
+- text系,href専用
+  - fontName
+  - fontSize(px)
+  - fontWeight(normal, regular, bold, thin, light, medium, black, w100-w900)
+  - fontStyle(normal, italic)
+  - textColor(#AARRGGBB)
+  - textDeco(none, underline, overline, lineThrough)
+  - textDecoStyle(solid, dotted, dashed, double, wavy)
+  - textDecoColor(#AARRGGBB)
+  - textDecoThickness(px)
+  - letterSpacing(px)
+  - wordSpacing(px)
+  - textAlign(left, center, right, justify。テキスト揃え)
+  - textHeight(テキストサイズの倍率。1.0や1.3など)
 
-・text系, span専用
-- isSelectable(true,false。falseなら選択不可になる。)
+- text系, span専用
+  - isSelectable(true,false。falseなら選択不可になる。)
 
-・href専用
-- alt(代替テキスト)
+- href専用
+  - alt(代替テキスト)
 
-・img専用
-- fit(none, contain, cover, fitHeight, fitWidth)
-- repeat(noRepeat, repeat, repeatX, repeatY。リピートが有効な場合は元の画像サイズでリピートされます。)
+- img専用
+  - fit(none, contain, cover, fitHeight, fitWidth)
+  - repeat(noRepeat, repeat, repeatX, repeatY。リピートが有効な場合は元の画像サイズでリピートされます。)
 
-・line専用
-- thickness(px, 線の太さ)
-- color(#AARRGGBB)
+- line専用
+  - thickness(px, 線の太さ)
+  - color(#AARRGGBB)
 
 
 ### 改行
