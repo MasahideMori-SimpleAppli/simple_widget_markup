@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:simple_widget_markup/element/scroll_element.dart';
+import 'package:simple_widget_markup/element/vline_element.dart';
+import 'element_param.dart';
 import 'stack_element.dart';
 import 'element_child.dart';
 import 'spwml_font_style.dart';
@@ -17,7 +20,6 @@ import 'enum_spwml_element_type.dart';
 
 ///
 /// (en)Utility for generating SpWML elements.
-///
 /// (ja)SpWMLエレメントの生成用ユーティリティです。
 ///
 /// Author Masahide Mori
@@ -73,6 +75,9 @@ class UtilElement {
     } else if (eType == EnumSpWMLElementType.line) {
       r = LineElement(
           serial, param, text, parentSerial, lineStart, lineEnd, style);
+    } else if (eType == EnumSpWMLElementType.vline) {
+      r = VLineElement(
+          serial, param, text, parentSerial, lineStart, lineEnd, style);
     } else if (eType == EnumSpWMLElementType.img) {
       r = ImgElement(
           serial, param, text, parentSerial, lineStart, lineEnd, style);
@@ -91,6 +96,9 @@ class UtilElement {
     } else if (eType == EnumSpWMLElementType.stack) {
       r = StackElement(serial, param, text, parentSerial, lineStart, lineEnd,
           style, StructureElementChildren());
+    } else if (eType == EnumSpWMLElementType.scroll) {
+      r = ScrollElement(serial, param, text, parentSerial, lineStart, lineEnd,
+          style, BlockElementChild(), ScrollElementParams());
     } else {
       // 存在しないタイプの場合は通常はfromStr時点で例外が発生している。
       // ここで発生する場合は処理の追加漏れ。

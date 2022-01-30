@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'element/scroll_element.dart';
 import 'element/spwml_font_style.dart';
 import 'element/span_element.dart';
 import 'element/stack_element.dart';
@@ -29,6 +30,7 @@ class SpWMLBuilder {
   final EdgeInsets margin;
   final EdgeInsets padding;
   final SpWMLFontStyle style;
+  final GlobalKey? key;
   bool _isStructured = false;
   List<Widget> _r = [];
 
@@ -44,7 +46,8 @@ class SpWMLBuilder {
       this.crossAA = CrossAxisAlignment.start,
       this.margin = const EdgeInsets.all(0),
       this.padding = const EdgeInsets.all(8),
-      SpWMLFontStyle? spWMLStyle})
+      SpWMLFontStyle? spWMLStyle,
+      this.key})
       : _parsedWidgets = SpWMLParser.run(spWML, spWMLStyle ?? SpWMLFontStyle()),
         style = spWMLStyle ?? SpWMLFontStyle();
 
@@ -64,6 +67,15 @@ class SpWMLBuilder {
       if (elm.param.containsKey(EnumSpWMLElementParam.id)) {
         if (elm.param[EnumSpWMLElementParam.id] == id) {
           if (elm is BlockElement) {
+            elm.child.child = newWidget;
+            for (SpWMLElement j in _parsedWidgets) {
+              if (elm.serial == j.parentSerial) {
+                removeTarget = j;
+              }
+            }
+            needReturn = true;
+            break;
+          } else if (elm is ScrollElement) {
             elm.child.child = newWidget;
             for (SpWMLElement j in _parsedWidgets) {
               if (elm.serial == j.parentSerial) {
@@ -144,7 +156,7 @@ class SpWMLBuilder {
       } else if (i is StackElement) {
         i.children.children.clear();
       }
-      // ID入れ替えがあるため、BlockElementは操作してはならない。
+      // ID入れ替えがあるため、BlockElementやScrollElementは操作してはならない。
     }
   }
 
@@ -167,6 +179,13 @@ class SpWMLBuilder {
             }
           }
         } else if (i is BlockElement) {
+          for (SpWMLElement j in _parsedWidgets) {
+            if (i.serial == j.parentSerial) {
+              i.child.child = j;
+              break;
+            }
+          }
+        } else if (i is ScrollElement) {
           for (SpWMLElement j in _parsedWidgets) {
             if (i.serial == j.parentSerial) {
               i.child.child = j;
@@ -221,6 +240,7 @@ class SpWMLBuilder {
   /// Returns Widget.
   Widget build(BuildContext context) {
     return Container(
+        key: key,
         margin: margin,
         padding: padding,
         child: Column(

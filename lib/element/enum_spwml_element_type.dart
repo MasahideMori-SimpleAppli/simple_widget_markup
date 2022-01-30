@@ -11,6 +11,7 @@ enum EnumSpWMLElementType {
   block,
   span,
   stack,
+  scroll,
   text,
   h1,
   h2,
@@ -21,6 +22,7 @@ enum EnumSpWMLElementType {
   img,
   href,
   line,
+  vline,
   subtitle1,
   subtitle2,
   body1,
@@ -46,6 +48,8 @@ extension EXTEnumSpWMLElementType on EnumSpWMLElementType {
       return EnumSpWMLElementType.span;
     } else if (s == EnumSpWMLElementType.stack.toStr()) {
       return EnumSpWMLElementType.stack;
+    } else if (s == EnumSpWMLElementType.scroll.toStr()) {
+      return EnumSpWMLElementType.scroll;
     } else if (s == EnumSpWMLElementType.text.toStr()) {
       return EnumSpWMLElementType.text;
     } else if (s == EnumSpWMLElementType.h1.toStr()) {
@@ -66,6 +70,8 @@ extension EXTEnumSpWMLElementType on EnumSpWMLElementType {
       return EnumSpWMLElementType.href;
     } else if (s == EnumSpWMLElementType.line.toStr()) {
       return EnumSpWMLElementType.line;
+    } else if (s == EnumSpWMLElementType.vline.toStr()) {
+      return EnumSpWMLElementType.vline;
     } else if (s == EnumSpWMLElementType.subtitle1.toStr()) {
       return EnumSpWMLElementType.subtitle1;
     } else if (s == EnumSpWMLElementType.subtitle2.toStr()) {

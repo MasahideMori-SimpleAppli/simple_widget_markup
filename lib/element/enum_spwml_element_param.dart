@@ -50,7 +50,8 @@ enum EnumSpWMLElementParam {
   pRight,
   pBottom,
   weight,
-  id
+  id,
+  axis
 }
 
 extension EXTEnumSpWMLElementParam on EnumSpWMLElementParam {
@@ -129,6 +130,14 @@ extension EXTEnumSpWMLElementParam on EnumSpWMLElementParam {
         return UtilParser.convertColor(v);
       } else if (this == EnumSpWMLElementParam.id) {
         return int.parse(v);
+      } else if (this == EnumSpWMLElementParam.axis) {
+        if (v == "vertical") {
+          return Axis.vertical;
+        } else if (v == "horizontal") {
+          return Axis.horizontal;
+        } else {
+          throw Exception();
+        }
       } else if (this == EnumSpWMLElementParam.fontSize ||
           this == EnumSpWMLElementParam.textHeight ||
           this == EnumSpWMLElementParam.letterSpacing ||
@@ -291,6 +300,8 @@ extension EXTEnumSpWMLElementParam on EnumSpWMLElementParam {
       return EnumSpWMLElementParam.weight;
     } else if (s == EnumSpWMLElementParam.id.toStr()) {
       return EnumSpWMLElementParam.id;
+    } else if (s == EnumSpWMLElementParam.axis.toStr()) {
+      return EnumSpWMLElementParam.axis;
     } else if (s == EnumSpWMLElementParam.minHeight.toStr()) {
       return EnumSpWMLElementParam.minHeight;
     } else if (s == EnumSpWMLElementParam.minWidth.toStr()) {

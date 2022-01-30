@@ -21,13 +21,14 @@ class LineElement extends SpWMLElement {
     final bool isExistHeight = param.containsKey(EnumSpWMLElementParam.height);
     return Container(
       width: isExistWidth ? param[EnumSpWMLElementParam.width]! : null,
-      height: isExistHeight ? param[EnumSpWMLElementParam.height]! : null,
+      height: isExistHeight ? param[EnumSpWMLElementParam.height]! : 16,
       margin: getMargin(context),
       padding: getPadding(context),
       color: param.containsKey(EnumSpWMLElementParam.bgColor)
           ? param[EnumSpWMLElementParam.bgColor]
           : null,
       child: Divider(
+        height: 0,
         thickness: param.containsKey(EnumSpWMLElementParam.thickness)
             ? param[EnumSpWMLElementParam.thickness]!
             : 1,

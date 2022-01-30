@@ -1,3 +1,10 @@
+## 1.2.0
+
+* Added ScrollElement.
+* Added VLineElement.
+* Added constructor parameter of key to SpWMLBuilder.
+* Added some constructor parameters to SpWML widget. 
+
 ## 1.1.0
 
 * Improved the conversion speed of the parser.

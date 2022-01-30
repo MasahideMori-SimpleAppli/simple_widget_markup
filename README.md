@@ -26,11 +26,15 @@ type is required and parameters are optional.
 Currently, the types are as follows.
 
 * Container system (Container is a container for elements)
-- block (basic container. Can also be used for temporary placement for replacement)
-- col (The inside is a row container)
-- row (container with columns inside)
-- span (Container with text or href inside. Different parameters can be set for each element in the line)
-- stack(Container that can be superposed inside)
+- Only one element inside.
+  - block (basic container. Can also be used for temporary placement for replacement)
+  - scroll (A container that can be scrolled inside)
+- Multiple elements inside.
+  - col (The inside is a row container)
+  - row (container with columns inside)
+  - span (Container with text or href inside. Different parameters can be set for each element in the line)
+  - stack(Container that can be superposed inside)
+
 * Elements in the container
 - text system
   - h1-h6 (header text. 6 types of h1-h6)
@@ -43,7 +47,8 @@ Currently, the types are as follows.
 - Other than text
   - img (image. URL is described in the text part)
   - href (Hyperlinks are written in the text part. The appearance can be changed with the alt parameter)
-  - line (horizontal delimiter)
+  - line (horizontal divider)
+  - vline(vertical divider)
 
 Currently, the parameters are:
 
@@ -67,7 +72,7 @@ Currently, the parameters are:
 - maxHeight(px)
 - maxWidth(px)
 
-* For block only
+* For block and scroll
 - id (replacement ID in Flutter widget linkage)
 
 * For col and row only
@@ -102,7 +107,6 @@ Currently, the parameters are:
 * Line only
 - thickness (px, line thickness)
 - color (#AARRGGBB)
-- lineStyle (Currently unavailable. Multiple styles may be added in the future.)
 
 
 ### new line
