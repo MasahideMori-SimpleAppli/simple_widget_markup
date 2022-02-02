@@ -1,3 +1,8 @@
+## 1.3.0
+
+* Supported the color notation similar to the color specification
+  on the Flutter code. (e.g. bgColor: orange)
+
 ## 1.2.0
 
 * Added ScrollElement.

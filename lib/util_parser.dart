@@ -8,14 +8,126 @@ import 'package:flutter/material.dart';
 class UtilParser {
   static const escape = "\\";
 
-  /// ARGB to Color
-  static Color convertColor(String argbStr) {
-    String c = argbStr.toUpperCase().replaceAll('#', '');
-    if (c.length == 6) {
-      c = 'FF' + c;
+  /// ARGB or material parameter to Color
+  static Color convertColor(String color) {
+    if (color.startsWith('#')) {
+      String c = color.toUpperCase().replaceAll('#', '');
+      if (c.length == 6) {
+        c = 'FF' + c;
+      }
+      return Color(
+          int.tryParse(c, radix: 16) ?? int.parse("FFFFFFFF", radix: 16));
+    } else {
+      // primary
+      if (color.startsWith('red')) {
+        return Colors.red[_getShade(color, false)]!;
+      } else if (color.startsWith('pink')) {
+        return Colors.pink[_getShade(color, false)]!;
+      } else if (color.startsWith('purple')) {
+        return Colors.purple[_getShade(color, false)]!;
+      } else if (color.startsWith('deepPurple')) {
+        return Colors.deepPurple[_getShade(color, false)]!;
+      } else if (color.startsWith('indigo')) {
+        return Colors.indigo[_getShade(color, false)]!;
+      } else if (color.startsWith('blue')) {
+        return Colors.blue[_getShade(color, false)]!;
+      } else if (color.startsWith('lightBlue')) {
+        return Colors.lightBlue[_getShade(color, false)]!;
+      } else if (color.startsWith('cyan')) {
+        return Colors.cyan[_getShade(color, false)]!;
+      } else if (color.startsWith('teal')) {
+        return Colors.teal[_getShade(color, false)]!;
+      } else if (color.startsWith('green')) {
+        return Colors.green[_getShade(color, false)]!;
+      } else if (color.startsWith('lightGreen')) {
+        return Colors.lightGreen[_getShade(color, false)]!;
+      } else if (color.startsWith('lime')) {
+        return Colors.lime[_getShade(color, false)]!;
+      } else if (color.startsWith('yellow')) {
+        return Colors.yellow[_getShade(color, false)]!;
+      } else if (color.startsWith('amber')) {
+        return Colors.amber[_getShade(color, false)]!;
+      } else if (color.startsWith('orange')) {
+        return Colors.orange[_getShade(color, false)]!;
+      } else if (color.startsWith('deepOrange')) {
+        return Colors.deepOrange[_getShade(color, false)]!;
+      } else if (color.startsWith('brown')) {
+        return Colors.brown[_getShade(color, false)]!;
+      } else if (color.startsWith('grey')) {
+        return Colors.grey[_getShade(color, false)]!;
+      } else if (color.startsWith('blueGrey')) {
+        return Colors.blueGrey[_getShade(color, false)]!;
+      }
+      // accent
+      else if (color.startsWith('redAccent')) {
+        return Colors.redAccent[_getShade(color, true)]!;
+      } else if (color.startsWith('pinkAccent')) {
+        return Colors.pinkAccent[_getShade(color, true)]!;
+      } else if (color.startsWith('purpleAccent')) {
+        return Colors.purpleAccent[_getShade(color, true)]!;
+      } else if (color.startsWith('deepPurpleAccent')) {
+        return Colors.deepPurpleAccent[_getShade(color, true)]!;
+      } else if (color.startsWith('indigoAccent')) {
+        return Colors.indigoAccent[_getShade(color, true)]!;
+      } else if (color.startsWith('blueAccent')) {
+        return Colors.blueAccent[_getShade(color, true)]!;
+      } else if (color.startsWith('lightBlueAccent')) {
+        return Colors.lightBlueAccent[_getShade(color, true)]!;
+      } else if (color.startsWith('cyanAccent')) {
+        return Colors.cyanAccent[_getShade(color, true)]!;
+      } else if (color.startsWith('tealAccent')) {
+        return Colors.tealAccent[_getShade(color, true)]!;
+      } else if (color.startsWith('greenAccent')) {
+        return Colors.greenAccent[_getShade(color, true)]!;
+      } else if (color.startsWith('lightGreenAccent')) {
+        return Colors.lightGreenAccent[_getShade(color, true)]!;
+      } else if (color.startsWith('limeAccent')) {
+        return Colors.limeAccent[_getShade(color, true)]!;
+      } else if (color.startsWith('yellowAccent')) {
+        return Colors.yellowAccent[_getShade(color, true)]!;
+      } else if (color.startsWith('amberAccent')) {
+        return Colors.amberAccent[_getShade(color, true)]!;
+      } else if (color.startsWith('orangeAccent')) {
+        return Colors.orangeAccent[_getShade(color, true)]!;
+      } else if (color.startsWith('deepOrangeAccent')) {
+        return Colors.deepOrangeAccent[_getShade(color, true)]!;
+      } else {
+        return _getBlackVariation(color);
+      }
     }
-    return Color(
-        int.tryParse(c, radix: 16) ?? int.parse("FFFFFFFF", radix: 16));
+  }
+
+  static Color _getBlackVariation(String color) {
+    if (color == 'black') {
+      return Colors.black;
+    } else if (color == 'black12') {
+      return Colors.black12;
+    } else if (color == 'black26') {
+      return Colors.black26;
+    } else if (color == 'black38') {
+      return Colors.black38;
+    } else if (color == 'black45') {
+      return Colors.black45;
+    } else if (color == 'black54') {
+      return Colors.black54;
+    } else if (color == 'black87') {
+      return Colors.black87;
+    } else {
+      throw Exception();
+    }
+  }
+
+  static int _getShade(String color, bool isAccent) {
+    if (color.contains("[")) {
+      String shade = color.split('[')[1].replaceAll(']', '');
+      return int.parse(shade);
+    } else {
+      if (isAccent) {
+        return 200;
+      } else {
+        return 500;
+      }
+    }
   }
 
   /// Escape-enabled delete.
