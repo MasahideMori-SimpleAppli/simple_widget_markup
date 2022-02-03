@@ -1,3 +1,7 @@
+## 1.3.1
+
+* Added isPrimary parameter to ScrollElement.
+
 ## 1.3.0
 
 * Supported the color notation similar to the color specification

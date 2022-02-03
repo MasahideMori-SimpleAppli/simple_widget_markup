@@ -45,7 +45,7 @@ class ScrollElement extends SpWMLElement {
   ///
   /// (ja)ウィジェットの更新時にスクロール位置を保持したい場合に使用します。
   /// * [ctrl] : ScrollController
-  setScrollController(ScrollController? ctrl) {
+  void setScrollController(ScrollController? ctrl) {
     seParams.ctrl = ctrl;
   }
 
@@ -54,6 +54,7 @@ class ScrollElement extends SpWMLElement {
     final bool isExistWidth = param.containsKey(EnumSpWMLElementParam.width);
     final bool isExistHeight = param.containsKey(EnumSpWMLElementParam.height);
     final bool isExistAxis = param.containsKey(EnumSpWMLElementParam.axis);
+    final bool isPrimary = param.containsKey(EnumSpWMLElementParam.isPrimary);
     return ConstrainedBox(
         constraints: getConstraints(),
         child: Container(
@@ -67,6 +68,8 @@ class ScrollElement extends SpWMLElement {
           child: SingleChildScrollView(
               child: child.getChild(),
               controller: seParams.ctrl,
+              primary:
+                  isPrimary ? param[EnumSpWMLElementParam.isPrimary]! : null,
               scrollDirection: isExistAxis
                   ? param[EnumSpWMLElementParam.axis]!
                   : Axis.vertical),

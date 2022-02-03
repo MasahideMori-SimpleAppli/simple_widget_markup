@@ -107,6 +107,9 @@ Currently, the parameters are:
 - line only
   - thickness (px, line thickness)
   - color (#AARRGGBB)
+  
+- scroll only
+  - isPrimary (true or false, Specifies whether it is the primary scroll view when granting a scroll controller.)
 
 
 ### new line

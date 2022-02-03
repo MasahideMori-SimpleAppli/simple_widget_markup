@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:simple_widget_markup/element/scroll_element.dart';
-import 'package:simple_widget_markup/element/vline_element.dart';
+import 'scroll_element.dart';
+import 'vline_element.dart';
 import 'element_param.dart';
 import 'stack_element.dart';
 import 'element_child.dart';

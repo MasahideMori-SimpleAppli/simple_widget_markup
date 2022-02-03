@@ -51,7 +51,8 @@ enum EnumSpWMLElementParam {
   pBottom,
   weight,
   id,
-  axis
+  axis,
+  isPrimary
 }
 
 extension EXTEnumSpWMLElementParam on EnumSpWMLElementParam {
@@ -214,7 +215,8 @@ extension EXTEnumSpWMLElementParam on EnumSpWMLElementParam {
         } else {
           throw Exception();
         }
-      } else if (this == EnumSpWMLElementParam.isSelectable) {
+      } else if (this == EnumSpWMLElementParam.isSelectable ||
+          this == EnumSpWMLElementParam.isPrimary) {
         if (v == "true") {
           return true;
         } else if (v == "false") {
@@ -302,6 +304,8 @@ extension EXTEnumSpWMLElementParam on EnumSpWMLElementParam {
       return EnumSpWMLElementParam.id;
     } else if (s == EnumSpWMLElementParam.axis.toStr()) {
       return EnumSpWMLElementParam.axis;
+    } else if (s == EnumSpWMLElementParam.isPrimary.toStr()) {
+      return EnumSpWMLElementParam.isPrimary;
     } else if (s == EnumSpWMLElementParam.minHeight.toStr()) {
       return EnumSpWMLElementParam.minHeight;
     } else if (s == EnumSpWMLElementParam.minWidth.toStr()) {
