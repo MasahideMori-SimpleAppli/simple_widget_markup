@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'element_child.dart';
+import '../element_params/element_params.dart';
 import 'enum_spwml_element_param.dart';
 import 'enum_spwml_element_type.dart';
 import 'spwml_font_style.dart';
@@ -13,7 +14,7 @@ import 'spwml_element.dart';
 class ColElement extends SpWMLElement {
   final StructureElementChildren children;
 
-  ColElement(int serial, List<String> param, String text, int parentSerial,
+  ColElement(int serial, List<String> param, ElementParams text, int parentSerial,
       int lineStart, int lineEnd, SpWMLFontStyle style, this.children)
       : super(serial, EnumSpWMLElementType.col, param, text, parentSerial,
             lineStart, lineEnd, style);
@@ -21,7 +22,7 @@ class ColElement extends SpWMLElement {
   const ColElement.convert(
       int serial,
       Map<EnumSpWMLElementParam, dynamic> param,
-      String text,
+      ElementParams text,
       int parentSerial,
       int lineStart,
       int lineEnd,
@@ -41,8 +42,8 @@ class ColElement extends SpWMLElement {
           height: param.containsKey(EnumSpWMLElementParam.height)
               ? param[EnumSpWMLElementParam.height]!
               : null,
-          margin: getMargin(context),
-          padding: getPadding(context),
+          margin: getMargin(),
+          padding: getPadding(),
           color: param.containsKey(EnumSpWMLElementParam.bgColor)
               ? param[EnumSpWMLElementParam.bgColor]
               : null,

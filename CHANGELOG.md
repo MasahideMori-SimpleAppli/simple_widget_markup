@@ -1,3 +1,16 @@
+## 1.4.0
+* Added BtnElement.
+* Added TextFieldElement.
+* Added WrapElement.
+* Added ExpTileElement.
+* Added DropdownBtnElement.
+* Added PopupMenuBtnElement.
+* Added TextElement variation of menu type.
+* Added setText method to Text type Elements.
+* Added replaceUnderStructure method to SpWMLBuilder.
+* Added comment line function. Double slash at the beginning of the line it convert line to comment line.
+* Removed resetStructure method in SpWMLBuilder.
+
 ## 1.3.1
 
 * Added isPrimary parameter to ScrollElement.

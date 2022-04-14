@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../util_parser.dart';
+import '../element_params/element_params.dart';
 import 'enum_spwml_element_param.dart';
 import 'enum_spwml_element_type.dart';
 import 'spwml_font_style.dart';
@@ -15,7 +16,7 @@ class TextElement extends SpWMLElement {
       int serial,
       EnumSpWMLElementType type,
       List<String> param,
-      String text,
+      ElementParams text,
       int parentSerial,
       int lineStart,
       int lineEnd,
@@ -27,7 +28,7 @@ class TextElement extends SpWMLElement {
       int serial,
       EnumSpWMLElementType type,
       Map<EnumSpWMLElementParam, dynamic> param,
-      String text,
+      ElementParams text,
       int parentSerial,
       int lineStart,
       int lineEnd,
@@ -48,11 +49,11 @@ class TextElement extends SpWMLElement {
       height: param.containsKey(EnumSpWMLElementParam.height)
           ? param[EnumSpWMLElementParam.height]!
           : null,
-      margin: getMargin(context),
-      padding: getPadding(context),
+      margin: getMargin(),
+      padding: getPadding(),
       child: isSelectable
           ? SelectableText(
-              text,
+              text.s,
               textScaleFactor: MediaQuery.of(context).textScaleFactor,
               style: getStyle(context),
               strutStyle: getStrutStyle(),
@@ -62,7 +63,7 @@ class TextElement extends SpWMLElement {
               maxLines: null,
             )
           : Text(
-              text,
+              text.s,
               textScaleFactor: MediaQuery.of(context).textScaleFactor,
               style: getStyle(context),
               strutStyle: getStrutStyle(),
@@ -72,6 +73,14 @@ class TextElement extends SpWMLElement {
               maxLines: null,
             ),
     );
+  }
+
+  /// (en)Set new text of this element.
+  ///
+  /// (ja)このエレメントの新しいテキストを設定します。
+  /// * [newText] 新しいテキスト.
+  void setText(String newText){
+    text.s = newText;
   }
 
   /// get text strut style from parameters.
@@ -125,7 +134,7 @@ class TextElement extends SpWMLElement {
       fontFamily: param.containsKey(EnumSpWMLElementParam.fontName)
           ? param[EnumSpWMLElementParam.fontName]
           : null,
-      height: getTextHeight(context),
+      height: getTextHeight(),
     );
   }
 }

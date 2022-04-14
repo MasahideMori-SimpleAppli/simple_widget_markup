@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'element_child.dart';
-import 'element_param.dart';
+import '../element_params/element_params.dart';
 import 'enum_spwml_element_param.dart';
 import 'enum_spwml_element_type.dart';
 import 'spwml_font_style.dart';
@@ -18,7 +18,7 @@ class ScrollElement extends SpWMLElement {
   ScrollElement(
       int serial,
       List<String> param,
-      String text,
+      ElementParams text,
       int parentSerial,
       int lineStart,
       int lineEnd,
@@ -31,7 +31,7 @@ class ScrollElement extends SpWMLElement {
   const ScrollElement.convert(
       int serial,
       Map<EnumSpWMLElementParam, dynamic> param,
-      String text,
+      ElementParams text,
       int parentSerial,
       int lineStart,
       int lineEnd,
@@ -60,8 +60,8 @@ class ScrollElement extends SpWMLElement {
         child: Container(
           width: isExistWidth ? param[EnumSpWMLElementParam.width]! : null,
           height: isExistHeight ? param[EnumSpWMLElementParam.height]! : null,
-          margin: getMargin(context),
-          padding: getPadding(context),
+          margin: getMargin(),
+          padding: getPadding(),
           color: param.containsKey(EnumSpWMLElementParam.bgColor)
               ? param[EnumSpWMLElementParam.bgColor]
               : null,

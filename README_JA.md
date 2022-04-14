@@ -8,7 +8,6 @@ SpWMLは、Widget（一定の要素のかたまり）を手軽に扱えるよう
 このフォーマットで出力されたファイルは拡張子.spwmlを持ちます。  
 この仕様は主にアプリケーション中の新着情報配信時などに、簡単かつ軽量に内容を記述出来ることを目的としています。  
 また、習得の容易さにも重点を置いています。  
-この言語の必須要件は、普通の事務員にA4紙２枚以内で使い方を不足なく説明できることです。
 
 ## 利用方法
 ### クイックスタート
@@ -19,6 +18,10 @@ SpWMLは、Widget（一定の要素のかたまり）を手軽に扱えるよう
 基本形は
 ```
 (type, パラメータ1:値1, パラメータ2:値2,...)テキスト
+```
+コメントは
+```
+// コメントのテキスト
 ```
 という単純な作りになっています。  
 typeは必須で、パラメータは省略可能です。  
@@ -34,6 +37,10 @@ typeは必須で、パラメータは省略可能です。
     - row(内部が列のコンテナ)
     - span(内部がtextまたはhrefのコンテナ。行内要素にそれぞれ違うパラメータが設定出来る)
     - stack(内部を重ね合わせられるコンテナ)
+    - wrap(内部が所謂グリッドビューになるコンテナ)
+    - expTile(内部が所謂アコーディオンメニューになるコンテナ)
+    - dropdownBtn(内部がドロップダウンメニュー要素のコンテナ。コールバックはプログラムコード側からDropdownBtnElement.setCallbackで設定します)
+    - popupMenuBtn(内部がポップアップメニュー要素のコンテナ。コールバックはプログラムコード側からPopupMenuBtnElement.setCallbackで設定します)
 
 - コンテナ内要素
   - text系
@@ -44,6 +51,7 @@ typeは必須で、パラメータは省略可能です。
     - body2
     - caption
     - overline(線の上に表示するためのテキスト)
+    - menu(dropdownBtnおよびpopupMenuBtnのための、マージン等が適用されていないプレーンなテキスト)
   - text以外
     - img(画像。テキスト部分にURLまたはbase64画像を記載する)
     - href(テキスト部分にハイパーリンクを記載する。altパラメータで見た目を変えられる)
@@ -66,7 +74,7 @@ typeは必須で、パラメータは省略可能です。
   - pBottom(px)
   - weight(要素の画面上の比率。col内なら縦方向、row内なら横方向)
 
-- コンテナ系専用（最大の幅などの制約）
+- コンテナ系専用（最大の幅などの制約。これらはweightと一緒には使えず、weightが優先されます。）
   - minHeight(px)
   - minWidth(px)
   - maxHeight(px)
@@ -74,12 +82,15 @@ typeは必須で、パラメータは省略可能です。
 
 - block, scroll専用
   - id(Flutter widget連携での、置き換え用ID)
+  
+- scroll専用
+  - isPrimary(スクロールコントローラーを付与するときに、それがプライマリスクロールビューであるかどうかを指定します。)
 
-- col, row専用
-  - hAlign(left, center, right。水平方向揃え)
-  - vAlign(top, center, bottom。垂直方向揃え)
+- col, row, wrap専用
+  - hAlign(left(start), center, right(end)。水平方向揃え)
+  - vAlign(top(start), center, bottom(end)。垂直方向揃え)
 
-- text系,href専用
+- text系, textField, href, btn専用
   - fontName
   - fontSize(px)
   - fontWeight(normal, regular, bold, thin, light, medium, black, w100-w900)
@@ -107,10 +118,19 @@ typeは必須で、パラメータは省略可能です。
 - line専用
   - thickness(px, 線の太さ)
   - color(#AARRGGBB)
-  
-- scroll専用
-  - isPrimary(スクロールコントローラーを付与するときに、それがプライマリスクロールビューであるかどうかを指定します。)
 
+- btn, dropdownBtn, popupMenuBtn 専用
+  - iconNum(マテリアルアイコン（https://api.flutter.dev/flutter/material/Icons-class.html#constants）に定義されたアイコン番号.)
+  - iconSize(px)
+  - iconColor(#AARRGGBB)
+  
+- btn専用
+  - type(text, outlined, elevated, block。ボタンのタイプ)
+  - splashRadius(px)
+  - outlineColor(#AARRGGBB, 枠線の色, outlinedタイプでのみ有効)
+  - borderWidth(px, 枠線の幅, outlinedタイプでのみ有効)
+  - borderRadius(px, 枠線の丸み。outlined、elevatedタイプでのみ有効)
+  - shape(roundRect, stadium, bevel, circle。ボタンの形状。outlined、elevatedタイプでのみ有効)
 
 ### 改行
 通常の改行コードで改行します。文末の改行は無視されます。

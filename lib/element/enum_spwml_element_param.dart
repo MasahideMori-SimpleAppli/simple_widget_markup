@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'enum_btn_element_type.dart';
 import 'enum_spwml_element_type.dart';
 import 'util_element.dart';
 import '../util_parser.dart';
@@ -52,7 +52,16 @@ enum EnumSpWMLElementParam {
   weight,
   id,
   axis,
-  isPrimary
+  isPrimary,
+  type,
+  iconNum,
+  outlineColor,
+  borderWidth,
+  borderRadius,
+  shape,
+  iconSize,
+  iconColor,
+  splashRadius
 }
 
 extension EXTEnumSpWMLElementParam on EnumSpWMLElementParam {
@@ -81,10 +90,14 @@ extension EXTEnumSpWMLElementParam on EnumSpWMLElementParam {
           this == EnumSpWMLElementParam.minHeight ||
           this == EnumSpWMLElementParam.minWidth ||
           this == EnumSpWMLElementParam.maxHeight ||
-          this == EnumSpWMLElementParam.maxWidth) {
+          this == EnumSpWMLElementParam.maxWidth ||
+          this == EnumSpWMLElementParam.borderWidth ||
+          this == EnumSpWMLElementParam.borderRadius ||
+          this == EnumSpWMLElementParam.iconSize ||
+          this == EnumSpWMLElementParam.splashRadius) {
         return double.parse(v);
       }
-      // col or row only
+      // col, row or wrap only
       if (type == EnumSpWMLElementType.col) {
         if (this == EnumSpWMLElementParam.vAlign) {
           return UtilElement.convertMainAxisAlign(v, lineStart, lineEnd);
@@ -97,6 +110,8 @@ extension EXTEnumSpWMLElementParam on EnumSpWMLElementParam {
         } else if (this == EnumSpWMLElementParam.hAlign) {
           return UtilElement.convertMainAxisAlign(v, lineStart, lineEnd);
         }
+      } else if (type == EnumSpWMLElementType.wrap) {
+        return UtilElement.convertWrapAlign(v, lineStart, lineEnd);
       } else if (type == EnumSpWMLElementType.img) {
         if (this == EnumSpWMLElementParam.fit) {
           if (v == "none") {
@@ -126,8 +141,44 @@ extension EXTEnumSpWMLElementParam on EnumSpWMLElementParam {
           }
         }
       }
+      // btn only
+      if (type == EnumSpWMLElementType.btn) {
+        if (this == EnumSpWMLElementParam.type) {
+          if (v == "text") {
+            return EnumBtnElementType.text;
+          } else if (v == "outlined") {
+            return EnumBtnElementType.outlined;
+          } else if (v == "elevated") {
+            return EnumBtnElementType.elevated;
+          } else if (v == "icon") {
+            return EnumBtnElementType.icon;
+          } else if (v == "block") {
+            return EnumBtnElementType.block;
+          } else {
+            throw Exception();
+          }
+        }
+        // shape
+        else if (this == EnumSpWMLElementParam.shape) {
+          if (v == "roundRect") {
+            return const RoundedRectangleBorder();
+          } else if (v == "stadium") {
+            return const StadiumBorder();
+          } else if (v == "bevel") {
+            return const BeveledRectangleBorder();
+          } else if (v == "circle") {
+            return const CircleBorder();
+          } else {
+            throw Exception();
+          }
+        }
+      }
       if (this == EnumSpWMLElementParam.bgColor ||
-          this == EnumSpWMLElementParam.color) {
+          this == EnumSpWMLElementParam.color ||
+          this == EnumSpWMLElementParam.textColor ||
+          this == EnumSpWMLElementParam.textDecoColor ||
+          this == EnumSpWMLElementParam.outlineColor ||
+          this == EnumSpWMLElementParam.iconColor) {
         return UtilParser.convertColor(v);
       } else if (this == EnumSpWMLElementParam.id) {
         return int.parse(v);
@@ -139,6 +190,12 @@ extension EXTEnumSpWMLElementParam on EnumSpWMLElementParam {
         } else {
           throw Exception();
         }
+      } else if (this == EnumSpWMLElementParam.iconNum) {
+        if (v.startsWith('0x')) {
+          v = v.replaceFirst('0x', '');
+        }
+        return Icon(
+            IconData(int.parse(v, radix: 16), fontFamily: "MaterialIcons"));
       } else if (this == EnumSpWMLElementParam.fontSize ||
           this == EnumSpWMLElementParam.textHeight ||
           this == EnumSpWMLElementParam.letterSpacing ||
@@ -166,9 +223,6 @@ extension EXTEnumSpWMLElementParam on EnumSpWMLElementParam {
         } else {
           throw Exception();
         }
-      } else if (this == EnumSpWMLElementParam.textColor ||
-          this == EnumSpWMLElementParam.textDecoColor) {
-        return UtilParser.convertColor(v);
       } else if (this == EnumSpWMLElementParam.fontStyle) {
         if (v == "normal") {
           return FontStyle.normal;
@@ -264,6 +318,8 @@ extension EXTEnumSpWMLElementParam on EnumSpWMLElementParam {
       return EnumSpWMLElementParam.textDecoStyle;
     } else if (s == EnumSpWMLElementParam.textDecoColor.toStr()) {
       return EnumSpWMLElementParam.textDecoColor;
+    } else if (s == EnumSpWMLElementParam.outlineColor.toStr()) {
+      return EnumSpWMLElementParam.outlineColor;
     } else if (s == EnumSpWMLElementParam.textAlign.toStr()) {
       return EnumSpWMLElementParam.textAlign;
     } else if (s == EnumSpWMLElementParam.textHeight.toStr()) {
@@ -314,6 +370,22 @@ extension EXTEnumSpWMLElementParam on EnumSpWMLElementParam {
       return EnumSpWMLElementParam.maxHeight;
     } else if (s == EnumSpWMLElementParam.maxWidth.toStr()) {
       return EnumSpWMLElementParam.maxWidth;
+    } else if (s == EnumSpWMLElementParam.borderWidth.toStr()) {
+      return EnumSpWMLElementParam.borderWidth;
+    } else if (s == EnumSpWMLElementParam.borderRadius.toStr()) {
+      return EnumSpWMLElementParam.borderRadius;
+    } else if (s == EnumSpWMLElementParam.shape.toStr()) {
+      return EnumSpWMLElementParam.shape;
+    } else if (s == EnumSpWMLElementParam.type.toStr()) {
+      return EnumSpWMLElementParam.type;
+    } else if (s == EnumSpWMLElementParam.iconNum.toStr()) {
+      return EnumSpWMLElementParam.iconNum;
+    } else if (s == EnumSpWMLElementParam.iconSize.toStr()) {
+      return EnumSpWMLElementParam.iconSize;
+    } else if (s == EnumSpWMLElementParam.iconColor.toStr()) {
+      return EnumSpWMLElementParam.iconColor;
+    } else if (s == EnumSpWMLElementParam.splashRadius.toStr()) {
+      return EnumSpWMLElementParam.splashRadius;
     } else {
       throw SpWMLException(
           EnumSpWMLExceptionType.paramException, lineStart, lineEnd);

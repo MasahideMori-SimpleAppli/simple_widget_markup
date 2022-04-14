@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../element_params/element_params.dart';
 import 'enum_spwml_element_param.dart';
 import 'enum_spwml_element_type.dart';
 import '../spwml_exception.dart';
@@ -18,7 +19,7 @@ class SpWMLElement extends StatelessWidget {
   final int serial;
   final EnumSpWMLElementType type;
   final Map<EnumSpWMLElementParam, dynamic> param;
-  final String text;
+  final ElementParams text;
   final int parentSerial;
   final int lineStart;
   final int lineEnd;
@@ -70,7 +71,7 @@ class SpWMLElement extends StatelessWidget {
   }
 
   /// get text height from param. If null, return style value or 1.0.
-  double getTextHeight(BuildContext context) {
+  double getTextHeight() {
     if (type == EnumSpWMLElementType.text ||
         type == EnumSpWMLElementType.body1 ||
         type == EnumSpWMLElementType.body2) {
@@ -92,7 +93,7 @@ class SpWMLElement extends StatelessWidget {
         : 1.0;
   }
 
-  double _getMarginTop(BuildContext context) {
+  double _getMarginTop() {
     if (type == EnumSpWMLElementType.text ||
         type == EnumSpWMLElementType.body1 ||
         type == EnumSpWMLElementType.body2 ||
@@ -116,11 +117,11 @@ class SpWMLElement extends StatelessWidget {
   }
 
   /// get margin from param.
-  EdgeInsets getMargin(BuildContext context) {
+  EdgeInsets getMargin() {
     final double left = param.containsKey(EnumSpWMLElementParam.mLeft)
         ? param[EnumSpWMLElementParam.mLeft]
         : 0.0;
-    final double top = _getMarginTop(context);
+    final double top = _getMarginTop();
     final double right = param.containsKey(EnumSpWMLElementParam.mRight)
         ? param[EnumSpWMLElementParam.mRight]
         : 0.0;
@@ -131,7 +132,7 @@ class SpWMLElement extends StatelessWidget {
   }
 
   /// get padding from param.
-  EdgeInsets getPadding(BuildContext context) {
+  EdgeInsets getPadding() {
     final double left = param.containsKey(EnumSpWMLElementParam.pLeft)
         ? param[EnumSpWMLElementParam.pLeft]
         : 0.0;

@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'package:flutter/cupertino.dart';
+import 'element_params/element_params.dart';
 import 'element/enum_spwml_element_type.dart';
 import 'element/text_element.dart';
 import 'spwml_exception.dart';
@@ -18,6 +20,12 @@ class SpWMLParser {
   static const paramEnd = ")";
   static const separate = ":";
   static const paramSeparate = ",";
+  static const indentionCode = "\n";
+  // エレメントの中でのコメントに対応
+  static final RegExp commentLineStart = RegExp(r'^ *//');
+  // エレメントの外でのコメントに対応
+  static final RegExp commentLineEnd = RegExp(r' *//+ *\+*$');
+  static final RegExp lowerEnd = RegExp(r'\++$');
   static final RegExp indention = RegExp("\r\n|\n|\r");
 
   /// (en)Returns a list of the results of parsing SpWML.
@@ -33,6 +41,7 @@ class SpWMLParser {
   /// Throws [StructuralException] : If the structure is incorrect.
   static List<SpWMLElement> run(String spWML, SpWMLFontStyle spWMLStyle) {
     List<SpWMLElement> r = [];
+    const LineSplitter splitter = LineSplitter();
     try {
       // (と)の対応が正しいかどうかのチェックテスト
       _paramHealthTest(spWML);
@@ -44,9 +53,40 @@ class SpWMLParser {
       int lineEnd = 1;
       // 基底のColのシリアルは-1。
       List<int> nowParentSerial = [-1];
+      // 末尾が//だった場合、次のエレメントが無効化されるので、その判定フラグ。
+      bool isNotEnableNextElement = false;
       for (String i in split1) {
         // 現在の行を更新
-        lineEnd += indention.allMatches(i).length;
+        List<String> lines = splitter.convert(i);
+        // 内部にコメント行があれば、該当部分を削除する。
+        // 先頭（つまりその前は改行コード）がコメント記号なら行ごと無効化。
+        // 前の末尾が//なら、現在のエレメント自体が無効化されている。
+        // 改行コードでスプリットしてから後で調整しながら連結。
+        // 改行コードで分割する分、入れ子構造でおかしくなるので、そこの減算が必要
+        final int lineLength =
+            lowerEnd.hasMatch(lines.last) ? lines.length - 1 : lines.length;
+        lineEnd += lineLength;
+        final isNowLineNotEnable = isNotEnableNextElement;
+        if (commentLineEnd.hasMatch(lines.last)) {
+          isNotEnableNextElement = true;
+        } else {
+          isNotEnableNextElement = false;
+        }
+        if (isNowLineNotEnable) {
+          lineStart = lineEnd;
+          continue;
+        }
+        // エレメントを再構成
+        for (int i = lineLength - 1; i >= 0; i--) {
+          if (lines[i].startsWith(commentLineStart)) {
+            lines.removeAt(i);
+          }
+        }
+        if (lines.isEmpty) {
+          lineStart = lineEnd;
+          continue;
+        }
+        i = lines.join(indentionCode);
         // 型、パラメータ、テキストを分離する
         List<String> split2 = UtilParser.split(i, paramEnd);
         if (split2.isEmpty) {
@@ -97,8 +137,8 @@ class SpWMLParser {
     } catch (e) {
       debugPrint(e.toString());
       r.clear();
-      r.add(TextElement(-1, EnumSpWMLElementType.text, const [], e.toString(),
-          -1, 0, 0, spWMLStyle));
+      r.add(TextElement(-1, EnumSpWMLElementType.text, const [],
+          ElementParams(e.toString()), -1, 0, 0, spWMLStyle));
     }
     return r;
   }

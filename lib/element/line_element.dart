@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../element_params/element_params.dart';
 import 'enum_spwml_element_param.dart';
 import 'enum_spwml_element_type.dart';
 import 'spwml_font_style.dart';
@@ -10,7 +11,7 @@ import 'spwml_element.dart';
 /// First edition creation date 2022-01-03 02:14:18
 ///
 class LineElement extends SpWMLElement {
-  LineElement(int serial, List<String> param, String text, int parentSerial,
+  LineElement(int serial, List<String> param, ElementParams text, int parentSerial,
       int lineStart, int lineEnd, SpWMLFontStyle style)
       : super(serial, EnumSpWMLElementType.line, param, text, parentSerial,
             lineStart, lineEnd, style);
@@ -22,8 +23,8 @@ class LineElement extends SpWMLElement {
     return Container(
       width: isExistWidth ? param[EnumSpWMLElementParam.width]! : null,
       height: isExistHeight ? param[EnumSpWMLElementParam.height]! : 16,
-      margin: getMargin(context),
-      padding: getPadding(context),
+      margin: getMargin(),
+      padding: getPadding(),
       color: param.containsKey(EnumSpWMLElementParam.bgColor)
           ? param[EnumSpWMLElementParam.bgColor]
           : null,

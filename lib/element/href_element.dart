@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../util_parser.dart';
+import '../element_params/element_params.dart';
 import 'enum_spwml_element_param.dart';
 import 'enum_spwml_element_type.dart';
 import 'spwml_font_style.dart';
@@ -13,7 +14,7 @@ import 'package:url_launcher/url_launcher.dart';
 /// First edition creation date 2022-01-04 00:16:17
 ///
 class HrefElement extends SpWMLElement {
-  HrefElement(int serial, List<String> param, String text, int parentSerial,
+  HrefElement(int serial, List<String> param, ElementParams text, int parentSerial,
       int lineStart, int lineEnd, SpWMLFontStyle style)
       : super(serial, EnumSpWMLElementType.href, param, text, parentSerial,
             lineStart, lineEnd, style);
@@ -21,7 +22,7 @@ class HrefElement extends SpWMLElement {
   const HrefElement.convert(
       int serial,
       Map<EnumSpWMLElementParam, dynamic> param,
-      String text,
+      ElementParams text,
       int parentSerial,
       int lineStart,
       int lineEnd,
@@ -38,8 +39,8 @@ class HrefElement extends SpWMLElement {
         height: param.containsKey(EnumSpWMLElementParam.height)
             ? param[EnumSpWMLElementParam.height]!
             : null,
-        margin: getMargin(context),
-        padding: getPadding(context),
+        margin: getMargin(),
+        padding: getPadding(),
         child: InkWell(
           child: Text(
             getDisplayText(),
@@ -61,13 +62,13 @@ class HrefElement extends SpWMLElement {
   String getDisplayText() {
     return param.containsKey(EnumSpWMLElementParam.alt)
         ? param[EnumSpWMLElementParam.alt]!
-        : text;
+        : text.s;
   }
 
   /// launch url.
   void onTapFunc(BuildContext context) async {
-    if (await canLaunch(text)) {
-      await launch(text);
+    if (await canLaunch(text.s)) {
+      await launch(text.s);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text("The specified URL could not be opened."),
@@ -129,7 +130,7 @@ class HrefElement extends SpWMLElement {
       fontFamily: param.containsKey(EnumSpWMLElementParam.fontName)
           ? param[EnumSpWMLElementParam.fontName]
           : null,
-      height: getTextHeight(context),
+      height: getTextHeight(),
     );
   }
 }

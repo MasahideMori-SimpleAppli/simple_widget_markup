@@ -9,17 +9,17 @@ import 'spwml_element.dart';
 ///
 /// Author Masahide Mori
 ///
-/// First edition creation date 2022-01-06 14:53:11
+/// First edition creation date 2022-04-10 16:18:52
 ///
-class StackElement extends SpWMLElement {
+class WrapElement extends SpWMLElement {
   final StructureElementChildren children;
 
-  StackElement(int serial, List<String> param, ElementParams text, int parentSerial,
+  WrapElement(int serial, List<String> param, ElementParams text, int parentSerial,
       int lineStart, int lineEnd, SpWMLFontStyle style, this.children)
-      : super(serial, EnumSpWMLElementType.stack, param, text, parentSerial,
+      : super(serial, EnumSpWMLElementType.wrap, param, text, parentSerial,
             lineStart, lineEnd, style);
 
-  const StackElement.convert(
+  const WrapElement.convert(
       int serial,
       Map<EnumSpWMLElementParam, dynamic> param,
       ElementParams text,
@@ -28,7 +28,7 @@ class StackElement extends SpWMLElement {
       int lineEnd,
       SpWMLFontStyle style,
       this.children)
-      : super.convert(serial, EnumSpWMLElementType.stack, param, text,
+      : super.convert(serial, EnumSpWMLElementType.wrap, param, text,
             parentSerial, lineStart, lineEnd, style);
 
   @override
@@ -47,9 +47,16 @@ class StackElement extends SpWMLElement {
           color: param.containsKey(EnumSpWMLElementParam.bgColor)
               ? param[EnumSpWMLElementParam.bgColor]
               : null,
-          child: Stack(
+          child: Wrap(
+            alignment: param.containsKey(EnumSpWMLElementParam.hAlign)
+                ? param[EnumSpWMLElementParam.hAlign]
+                : WrapAlignment.start,
+            runAlignment: param.containsKey(EnumSpWMLElementParam.vAlign)
+                ? param[EnumSpWMLElementParam.vAlign]
+                : WrapAlignment.start,
             children: children.getChildren(),
           ),
         ));
   }
+
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import '../element_params/element_params.dart';
 import 'href_element.dart';
 import 'text_element.dart';
 import '../spwml_exception.dart';
@@ -17,7 +18,7 @@ import 'spwml_element.dart';
 class SpanElement extends SpWMLElement {
   final StructureElementChildren children;
 
-  SpanElement(int serial, List<String> param, String text, int parentSerial,
+  SpanElement(int serial, List<String> param, ElementParams text, int parentSerial,
       int lineStart, int lineEnd, SpWMLFontStyle style, this.children)
       : super(serial, EnumSpWMLElementType.span, param, text, parentSerial,
             lineStart, lineEnd, style);
@@ -25,7 +26,7 @@ class SpanElement extends SpWMLElement {
   const SpanElement.convert(
       int serial,
       Map<EnumSpWMLElementParam, dynamic> param,
-      String text,
+      ElementParams text,
       int parentSerial,
       int lineStart,
       int lineEnd,
@@ -49,8 +50,8 @@ class SpanElement extends SpWMLElement {
             height: param.containsKey(EnumSpWMLElementParam.height)
                 ? param[EnumSpWMLElementParam.height]!
                 : null,
-            margin: getMargin(context),
-            padding: getPadding(context),
+            margin: getMargin(),
+            padding: getPadding(),
             color: param.containsKey(EnumSpWMLElementParam.bgColor)
                 ? param[EnumSpWMLElementParam.bgColor]
                 : null,
@@ -69,7 +70,7 @@ class SpanElement extends SpWMLElement {
     for (Widget i in children.children) {
       if (i is TextElement) {
         r.add(TextSpan(
-          text: i.text,
+          text: i.text.s,
           style: i.getStyle(context),
         ));
       } else if (i is HrefElement) {

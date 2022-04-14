@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'element_child.dart';
+import '../element_params/element_params.dart';
 import 'enum_spwml_element_param.dart';
 import 'enum_spwml_element_type.dart';
 import 'spwml_font_style.dart';
@@ -13,7 +14,7 @@ import 'spwml_element.dart';
 class BlockElement extends SpWMLElement {
   final BlockElementChild child;
 
-  BlockElement(int serial, List<String> param, String text, int parentSerial,
+  BlockElement(int serial, List<String> param, ElementParams text, int parentSerial,
       int lineStart, int lineEnd, SpWMLFontStyle style, this.child)
       : super(serial, EnumSpWMLElementType.block, param, text, parentSerial,
             lineStart, lineEnd, style);
@@ -21,7 +22,7 @@ class BlockElement extends SpWMLElement {
   const BlockElement.convert(
       int serial,
       Map<EnumSpWMLElementParam, dynamic> param,
-      String text,
+      ElementParams text,
       int parentSerial,
       int lineStart,
       int lineEnd,
@@ -39,8 +40,8 @@ class BlockElement extends SpWMLElement {
         child: Container(
           width: isExistWidth ? param[EnumSpWMLElementParam.width]! : null,
           height: isExistHeight ? param[EnumSpWMLElementParam.height]! : null,
-          margin: getMargin(context),
-          padding: getPadding(context),
+          margin: getMargin(),
+          padding: getPadding(),
           color: param.containsKey(EnumSpWMLElementParam.bgColor)
               ? param[EnumSpWMLElementParam.bgColor]
               : null,

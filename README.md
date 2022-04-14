@@ -9,7 +9,6 @@ SpWML is a markup language that makes it easy to handle widgets (a block of cert
 Files output in this format have the extension .spwml.  
 This specification is mainly intended to be able to describe the contents easily and lightly when new information is delivered in the application.  
 It also focuses on ease of learning.  
-The essential requirement for this language is to be able to explain to ordinary clerks how to use it within two sheets of A4 paper.  
 
 ## Usage
 ### Quick Start
@@ -21,6 +20,12 @@ The basic form is as follows.
 ```
 (type, parameter1:value1, parameter2:value2,...)letter body
 ```
+
+The comment line is as follows.
+```
+// comment text
+```
+
 type is required and parameters are optional.  
 
 Currently, the types are as follows.
@@ -30,10 +35,14 @@ Currently, the types are as follows.
     - block (basic container. Can also be used for temporary placement for replacement)
     - scroll (A container that can be scrolled inside)
   - Multiple elements inside.
-    - col (The inside is a row container)
-    - row (container with columns inside)
-    - span (Container with text or href inside. Different parameters can be set for each element in the line)
-    - stack(Container that can be superposed inside)
+    - col (The Container with rows inside)
+    - row (The Container with columns inside)
+    - span (The Container with text or href inside. Different parameters can be set for each element in the line)
+    - stack(The Container that can be superposed inside)
+    - wrap(The container whose inside is a so-called grid view)
+    - expTile(The container whose inside is a so-called accordion menu)
+    - dropdownBtn(The container whose inside is a so-called dropdown menu. Callback is set by DropdownBtnElement.setCallback from the program code side)
+    - popupMenuBtn(The container whose inside is a so-called popup menu. Callback is set by PopupMenuBtnElement.setCallback from the program code side)
 
 - Elements in the container
   - text system
@@ -43,12 +52,13 @@ Currently, the types are as follows.
     - body1 (It works even if you write "text". Normal text)
     - body2
     - caption
-    - overline (text to display above the line)
+    - overline (Text to display above the line)
+    - menu(Plane text for dropdownBtn and popupMenuBtn)
   - Other than text
-    - img (image. URL is described in the text part)
+    - img (Image. URL is described in the text part)
     - href (Hyperlinks are written in the text part. The appearance can be changed with the alt parameter)
-    - line (horizontal divider)
-    - vline(vertical divider)
+    - line (Horizontal divider)
+    - vline(Vertical divider)
 
 Currently, the parameters are:
 
@@ -66,7 +76,7 @@ Currently, the parameters are:
   - pBottom (px)
   - weight (ratio of elements on the screen. Vertical in col, horizontal in row)
 
-- For Containers only
+- For Containers only(These parameters cannot be used with weight, weight takes precedence.)
   - minHeight(px)
   - minWidth(px)
   - maxHeight(px)
@@ -75,11 +85,14 @@ Currently, the parameters are:
 - For block and scroll
   - id (replacement ID in Flutter widget linkage)
 
-- For col and row only
-  - hAlign (left, center, right. Horizontal alignment)
-  - vAlign (top, center, bottom. Vertical alignment)
+- scroll only
+  - isPrimary (true or false, Specifies whether it is the primary scroll view when granting a scroll controller.)
 
-- For text and href only
+- For col, row and wrap only
+  - hAlign (left(start), center, right(end). Horizontal alignment)
+  - vAlign (top(start), center, bottom(end). Vertical alignment)
+
+- For text, textField, href and btn only
   - fontName
   - fontSize (px)
   - fontWeight (normal, regular, bold, thin, light, medium, black, w100-w900)
@@ -108,9 +121,18 @@ Currently, the parameters are:
   - thickness (px, line thickness)
   - color (#AARRGGBB)
   
-- scroll only
-  - isPrimary (true or false, Specifies whether it is the primary scroll view when granting a scroll controller.)
+- btn, dropdownBtn and popupMenuBtn only
+  - iconNum(The hexadecimal icon number of material icons in https://api.flutter.dev/flutter/material/Icons-class.html#constants)
+  - iconSize(px)
+  - iconColor(#AARRGGBB)
 
+- btn only
+  - type(text, outlined, elevated, block)
+  - splashRadius(px)
+  - outlineColor(#AARRGGBB, The button outlined color, Valid only for outlined types.)
+  - borderWidth(px, Valid only for outlined types.)
+  - borderRadius(px, Valid only for outlined and elevated types.)
+  - shape(roundRect, stadium, bevel, circle, Valid only for outlined and elevated types.)
 
 ### new line
 Start a new line with a normal line feed code.  

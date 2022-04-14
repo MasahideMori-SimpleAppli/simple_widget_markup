@@ -12,6 +12,10 @@ enum EnumSpWMLElementType {
   span,
   stack,
   scroll,
+  wrap,
+  expTile,
+  dropdownBtn,
+  popupMenuBtn,
   text,
   h1,
   h2,
@@ -19,6 +23,8 @@ enum EnumSpWMLElementType {
   h4,
   h5,
   h6,
+  menu,
+  textField,
   img,
   href,
   line,
@@ -28,7 +34,8 @@ enum EnumSpWMLElementType {
   body1,
   body2,
   caption,
-  overline
+  overline,
+  btn
 }
 
 extension EXTEnumSpWMLElementType on EnumSpWMLElementType {
@@ -50,6 +57,14 @@ extension EXTEnumSpWMLElementType on EnumSpWMLElementType {
       return EnumSpWMLElementType.stack;
     } else if (s == EnumSpWMLElementType.scroll.toStr()) {
       return EnumSpWMLElementType.scroll;
+    } else if (s == EnumSpWMLElementType.wrap.toStr()) {
+      return EnumSpWMLElementType.wrap;
+    } else if (s == EnumSpWMLElementType.expTile.toStr()) {
+      return EnumSpWMLElementType.expTile;
+    } else if (s == EnumSpWMLElementType.dropdownBtn.toStr()) {
+      return EnumSpWMLElementType.dropdownBtn;
+    } else if (s == EnumSpWMLElementType.popupMenuBtn.toStr()) {
+      return EnumSpWMLElementType.popupMenuBtn;
     } else if (s == EnumSpWMLElementType.text.toStr()) {
       return EnumSpWMLElementType.text;
     } else if (s == EnumSpWMLElementType.h1.toStr()) {
@@ -64,6 +79,10 @@ extension EXTEnumSpWMLElementType on EnumSpWMLElementType {
       return EnumSpWMLElementType.h5;
     } else if (s == EnumSpWMLElementType.h6.toStr()) {
       return EnumSpWMLElementType.h6;
+    } else if (s == EnumSpWMLElementType.menu.toStr()) {
+      return EnumSpWMLElementType.menu;
+    } else if (s == EnumSpWMLElementType.textField.toStr()) {
+      return EnumSpWMLElementType.textField;
     } else if (s == EnumSpWMLElementType.img.toStr()) {
       return EnumSpWMLElementType.img;
     } else if (s == EnumSpWMLElementType.href.toStr()) {
@@ -84,6 +103,8 @@ extension EXTEnumSpWMLElementType on EnumSpWMLElementType {
       return EnumSpWMLElementType.caption;
     } else if (s == EnumSpWMLElementType.overline.toStr()) {
       return EnumSpWMLElementType.overline;
+    } else if (s == EnumSpWMLElementType.btn.toStr()) {
+      return EnumSpWMLElementType.btn;
     } else {
       throw SpWMLException(
           EnumSpWMLExceptionType.typeException, lineStart, lineEnd);

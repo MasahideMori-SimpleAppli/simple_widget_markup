@@ -1,4 +1,9 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'element/btn_element.dart';
+import 'element/dropdown_btn_element.dart';
+import 'element_params/element_params.dart';
+import 'element/exp_tile_element.dart';
+import 'element/popupmenu_btn_element.dart';
 import 'element/scroll_element.dart';
 import 'element/spwml_font_style.dart';
 import 'element/span_element.dart';
@@ -9,6 +14,7 @@ import 'element/col_element.dart';
 import 'element/enum_spwml_element_param.dart';
 import 'element/enum_spwml_element_type.dart';
 import 'element/row_element.dart';
+import 'element/wrap_element.dart';
 import 'spwml_exception.dart';
 import 'spwml_parser.dart';
 
@@ -31,8 +37,6 @@ class SpWMLBuilder {
   final EdgeInsets padding;
   final SpWMLFontStyle style;
   final GlobalKey? key;
-  bool _isStructured = false;
-  List<Widget> _r = [];
 
   /// Constructor
   /// * [spWML] : SpWML text.
@@ -56,10 +60,11 @@ class SpWMLBuilder {
   /// (ja)指定IDの内容をウィジェットで置き換えます。
   ///
   /// * [id] : Target ID.
-  /// * [widget] : Replace Widget.
+  /// * [newWidget] : Replace Widget.
   ///
   /// Throws [SpWMLException] : If target is null, throws nullException.
   void replaceID(int id, Widget newWidget) {
+    // 空の場合もあるのでフラグ処理が必要。
     bool needReturn = false;
     Widget? removeTarget;
     for (int i = 0; i < _parsedWidgets.length; i++) {
@@ -93,6 +98,100 @@ class SpWMLBuilder {
     }
     if (removeTarget != null) {
       _parsedWidgets.remove(removeTarget);
+    }
+    if (needReturn) {
+      return;
+    }
+    throw SpWMLException(EnumSpWMLExceptionType.nullException, -1, -1);
+  }
+
+  /// (en)Disables any child element of col, row, or wrap with the specified ID and replaces it with a new widget.
+  ///
+  /// (ja)指定されたIDを持つcol, row, wrap, expTileのいずれかの子要素を無効化して、新しいウィジェットに置き換えます。
+  ///
+  /// * [id] : Target ID.
+  /// * [newWidgets] : Replace Widgets.
+  ///
+  /// Throws [SpWMLException] : If target is null, throws nullException.
+  void replaceUnderStructure(int id, List<Widget> newWidgets) {
+    // 空の場合もあるのでフラグ処理が必要。
+    bool needReturn = false;
+    List<Widget> removeTargets = [];
+    for (int i = 0; i < _parsedWidgets.length; i++) {
+      final SpWMLElement elm = _parsedWidgets[i];
+      if (elm.param.containsKey(EnumSpWMLElementParam.id)) {
+        if (elm.param[EnumSpWMLElementParam.id] == id) {
+          if (elm is ColElement) {
+            elm.children.children = newWidgets;
+            for (SpWMLElement j in _parsedWidgets) {
+              if (elm.serial == j.parentSerial) {
+                removeTargets.add(j);
+              }
+            }
+            needReturn = true;
+            break;
+          }
+          else if (elm is RowElement) {
+            elm.children.children = newWidgets;
+            for (SpWMLElement j in _parsedWidgets) {
+              if (elm.serial == j.parentSerial) {
+                removeTargets.add(j);
+              }
+            }
+            needReturn = true;
+            break;
+          }
+          else if (elm is WrapElement) {
+            elm.children.children = newWidgets;
+            for (SpWMLElement j in _parsedWidgets) {
+              if (elm.serial == j.parentSerial) {
+                removeTargets.add(j);
+              }
+            }
+            needReturn = true;
+            break;
+          }
+          else if (elm is DropdownBtnElement) {
+            elm.children.children = newWidgets;
+            for (SpWMLElement j in _parsedWidgets) {
+              if (elm.serial == j.parentSerial) {
+                removeTargets.add(j);
+              }
+            }
+            needReturn = true;
+            break;
+          }
+          else if (elm is PopupMenuBtnElement) {
+            elm.children.children = newWidgets;
+            for (SpWMLElement j in _parsedWidgets) {
+              if (elm.serial == j.parentSerial) {
+                removeTargets.add(j);
+              }
+            }
+            needReturn = true;
+            break;
+          }
+          else if (elm is ExpTileElement) {
+            elm.children.children = newWidgets;
+            for (SpWMLElement j in _parsedWidgets) {
+              if (elm.serial == j.parentSerial) {
+                removeTargets.add(j);
+              }
+            }
+            needReturn = true;
+            break;
+          }
+          else {
+            throw SpWMLException(
+                EnumSpWMLExceptionType.replaceException, -1, -1);
+          }
+        }
+      }
+    }
+    if (removeTargets.isNotEmpty) {
+      for(final i in removeTargets) {
+        _parsedWidgets.remove(i);
+      }
     }
     if (needReturn) {
       return;
@@ -140,95 +239,101 @@ class SpWMLBuilder {
     return null;
   }
 
-  /// (en) Destroy the widget hierarchy.
-  ///
-  /// (ja) ウィジェットの階層構造を破棄します。
-  void resetStructure() {
-    _isStructured = false;
-    for (SpWMLElement i in _parsedWidgets) {
-      // Handle all containers except Block
-      if (i is ColElement) {
-        i.children.children.clear();
-      } else if (i is RowElement) {
-        i.children.children.clear();
-      } else if (i is SpanElement) {
-        i.children.children.clear();
-      } else if (i is StackElement) {
-        i.children.children.clear();
-      }
-      // ID入れ替えがあるため、BlockElementやScrollElementは操作してはならない。
-    }
-  }
-
   List<Widget> _getStructuralWidget(BuildContext context) {
-    if (_isStructured) {
-      return _r;
-    } else {
-      _r = [];
-      for (SpWMLElement i in _parsedWidgets) {
-        if (i is ColElement) {
-          for (SpWMLElement j in _parsedWidgets) {
-            if (i.serial == j.parentSerial) {
-              i.children.children.add(j);
-            }
-          }
-        } else if (i is RowElement) {
-          for (SpWMLElement j in _parsedWidgets) {
-            if (i.serial == j.parentSerial) {
-              i.children.children.add(j);
-            }
-          }
-        } else if (i is BlockElement) {
-          for (SpWMLElement j in _parsedWidgets) {
-            if (i.serial == j.parentSerial) {
-              i.child.child = j;
-              break;
-            }
-          }
-        } else if (i is ScrollElement) {
-          for (SpWMLElement j in _parsedWidgets) {
-            if (i.serial == j.parentSerial) {
-              i.child.child = j;
-              break;
-            }
-          }
-        } else if (i is SpanElement) {
-          for (SpWMLElement j in _parsedWidgets) {
-            if (i.serial == j.parentSerial) {
-              i.children.children.add(j);
-            }
-          }
-        } else if (i is StackElement) {
-          for (SpWMLElement j in _parsedWidgets) {
-            if (i.serial == j.parentSerial) {
-              i.children.children.add(j);
-            }
-          }
-        } else {
-          for (SpWMLElement j in _parsedWidgets) {
-            if (i.serial == j.parentSerial && i.serial != -1) {
-              final String eStr = SpWMLException(
-                      EnumSpWMLExceptionType.levelException,
-                      j.lineStart,
-                      j.lineEnd)
-                  .toString();
-              debugPrint(eStr);
-              _r.clear();
-              return [
-                TextElement(-1, EnumSpWMLElementType.text, const [], eStr, -1,
-                    j.lineStart, j.lineEnd, style)
-              ];
-            }
+    List<Widget> r = [];
+    for (SpWMLElement i in _parsedWidgets) {
+      if (i is ColElement) {
+        for (SpWMLElement j in _parsedWidgets) {
+          if (i.serial == j.parentSerial) {
+            i.children.children.add(j);
           }
         }
-        // 基底直下のエレメントのみ追加。
-        if (i.parentSerial == -1) {
-          _r.add(i);
+      } else if (i is RowElement) {
+        for (SpWMLElement j in _parsedWidgets) {
+          if (i.serial == j.parentSerial) {
+            i.children.children.add(j);
+          }
+        }
+      } else if (i is BlockElement) {
+        for (SpWMLElement j in _parsedWidgets) {
+          if (i.serial == j.parentSerial) {
+            i.child.child = j;
+            break;
+          }
+        }
+      } else if (i is BtnElement) {
+        for (SpWMLElement j in _parsedWidgets) {
+          if (i.serial == j.parentSerial) {
+            i.child.child = j;
+            break;
+          }
+        }
+      } else if (i is ScrollElement) {
+        for (SpWMLElement j in _parsedWidgets) {
+          if (i.serial == j.parentSerial) {
+            i.child.child = j;
+            break;
+          }
+        }
+      } else if (i is SpanElement) {
+        for (SpWMLElement j in _parsedWidgets) {
+          if (i.serial == j.parentSerial) {
+            i.children.children.add(j);
+          }
+        }
+      } else if (i is StackElement) {
+        for (SpWMLElement j in _parsedWidgets) {
+          if (i.serial == j.parentSerial) {
+            i.children.children.add(j);
+          }
+        }
+      } else if (i is WrapElement) {
+        for (SpWMLElement j in _parsedWidgets) {
+          if (i.serial == j.parentSerial) {
+            i.children.children.add(j);
+          }
+        }
+      } else if (i is DropdownBtnElement) {
+        for (SpWMLElement j in _parsedWidgets) {
+          if (i.serial == j.parentSerial) {
+            i.children.children.add(j);
+          }
+        }
+      } else if (i is PopupMenuBtnElement) {
+        for (SpWMLElement j in _parsedWidgets) {
+          if (i.serial == j.parentSerial) {
+            i.children.children.add(j);
+          }
+        }
+      } else if (i is ExpTileElement) {
+        for (SpWMLElement j in _parsedWidgets) {
+          if (i.serial == j.parentSerial) {
+            i.children.children.add(j);
+          }
+        }
+      } else {
+        for (SpWMLElement j in _parsedWidgets) {
+          if (i.serial == j.parentSerial && i.serial != -1) {
+            final String eStr = SpWMLException(
+                    EnumSpWMLExceptionType.levelException,
+                    j.lineStart,
+                    j.lineEnd)
+                .toString();
+            debugPrint(eStr);
+            r.clear();
+            return [
+              TextElement(-1, EnumSpWMLElementType.text, const [],
+                  ElementParams(eStr), -1, j.lineStart, j.lineEnd, style)
+            ];
+          }
         }
       }
-      _isStructured = true;
-      return _r;
+      // 基底直下のエレメントのみ追加。
+      if (i.parentSerial == -1) {
+        r.add(i);
+      }
     }
+    return r;
   }
 
   /// (en)Build widget.
