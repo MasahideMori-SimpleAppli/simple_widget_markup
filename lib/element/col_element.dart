@@ -14,8 +14,15 @@ import 'spwml_element.dart';
 class ColElement extends SpWMLElement {
   final StructureElementChildren children;
 
-  ColElement(int serial, List<String> param, ElementParams text, int parentSerial,
-      int lineStart, int lineEnd, SpWMLFontStyle style, this.children)
+  ColElement(
+      int serial,
+      List<String> param,
+      ElementParams text,
+      int parentSerial,
+      int lineStart,
+      int lineEnd,
+      SpWMLFontStyle style,
+      this.children)
       : super(serial, EnumSpWMLElementType.col, param, text, parentSerial,
             lineStart, lineEnd, style);
 

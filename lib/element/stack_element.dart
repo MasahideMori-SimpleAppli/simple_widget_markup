@@ -14,8 +14,15 @@ import 'spwml_element.dart';
 class StackElement extends SpWMLElement {
   final StructureElementChildren children;
 
-  StackElement(int serial, List<String> param, ElementParams text, int parentSerial,
-      int lineStart, int lineEnd, SpWMLFontStyle style, this.children)
+  StackElement(
+      int serial,
+      List<String> param,
+      ElementParams text,
+      int parentSerial,
+      int lineStart,
+      int lineEnd,
+      SpWMLFontStyle style,
+      this.children)
       : super(serial, EnumSpWMLElementType.stack, param, text, parentSerial,
             lineStart, lineEnd, style);
 

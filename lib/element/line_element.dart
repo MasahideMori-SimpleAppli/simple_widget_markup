@@ -11,8 +11,8 @@ import 'spwml_element.dart';
 /// First edition creation date 2022-01-03 02:14:18
 ///
 class LineElement extends SpWMLElement {
-  LineElement(int serial, List<String> param, ElementParams text, int parentSerial,
-      int lineStart, int lineEnd, SpWMLFontStyle style)
+  LineElement(int serial, List<String> param, ElementParams text,
+      int parentSerial, int lineStart, int lineEnd, SpWMLFontStyle style)
       : super(serial, EnumSpWMLElementType.line, param, text, parentSerial,
             lineStart, lineEnd, style);
 

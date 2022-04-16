@@ -14,8 +14,8 @@ import 'package:url_launcher/url_launcher.dart';
 /// First edition creation date 2022-01-04 00:16:17
 ///
 class HrefElement extends SpWMLElement {
-  HrefElement(int serial, List<String> param, ElementParams text, int parentSerial,
-      int lineStart, int lineEnd, SpWMLFontStyle style)
+  HrefElement(int serial, List<String> param, ElementParams text,
+      int parentSerial, int lineStart, int lineEnd, SpWMLFontStyle style)
       : super(serial, EnumSpWMLElementType.href, param, text, parentSerial,
             lineStart, lineEnd, style);
 

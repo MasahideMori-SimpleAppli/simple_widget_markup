@@ -14,8 +14,15 @@ import 'spwml_element.dart';
 class BlockElement extends SpWMLElement {
   final BlockElementChild child;
 
-  BlockElement(int serial, List<String> param, ElementParams text, int parentSerial,
-      int lineStart, int lineEnd, SpWMLFontStyle style, this.child)
+  BlockElement(
+      int serial,
+      List<String> param,
+      ElementParams text,
+      int parentSerial,
+      int lineStart,
+      int lineEnd,
+      SpWMLFontStyle style,
+      this.child)
       : super(serial, EnumSpWMLElementType.block, param, text, parentSerial,
             lineStart, lineEnd, style);
 

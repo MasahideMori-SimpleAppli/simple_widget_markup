@@ -66,7 +66,8 @@ class PopupMenuBtnElement extends SpWMLElement {
     for (final i in children.children) {
       final int v = count;
       if (cLength > v) {
-        menus.add(PopupMenuItem(child: i, value: v, onTap: menuBtnParam.menuCallbacks[v]));
+        menus.add(PopupMenuItem(
+            child: i, value: v, onTap: menuBtnParam.menuCallbacks[v]));
       } else {
         menus.add(PopupMenuItem(child: i, value: v));
       }
@@ -114,7 +115,6 @@ class _PopupMenuElementWidget extends StatefulWidget {
 }
 
 class _PopupMenuElementWidgetState extends State<_PopupMenuElementWidget> {
-
   @override
   void initState() {
     super.initState();
@@ -125,7 +125,9 @@ class _PopupMenuElementWidgetState extends State<_PopupMenuElementWidget> {
     return PopupMenuButton<int>(
       icon: widget.icon,
       iconSize: widget.iconSize ?? 24.0,
-      itemBuilder: (BuildContext context) { return widget.menus; },
+      itemBuilder: (BuildContext context) {
+        return widget.menus;
+      },
     );
   }
 }

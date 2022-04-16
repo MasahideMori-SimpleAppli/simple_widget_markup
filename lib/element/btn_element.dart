@@ -181,7 +181,7 @@ class BtnElement extends SpWMLElement {
   ///
   /// (ja)このエレメントの新しいテキストを設定します。
   /// * [newText] : 新しいテキスト.
-  void setText(String newText){
+  void setText(String newText) {
     text.s = newText;
   }
 

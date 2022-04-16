@@ -18,8 +18,15 @@ import 'spwml_element.dart';
 class SpanElement extends SpWMLElement {
   final StructureElementChildren children;
 
-  SpanElement(int serial, List<String> param, ElementParams text, int parentSerial,
-      int lineStart, int lineEnd, SpWMLFontStyle style, this.children)
+  SpanElement(
+      int serial,
+      List<String> param,
+      ElementParams text,
+      int parentSerial,
+      int lineStart,
+      int lineEnd,
+      SpWMLFontStyle style,
+      this.children)
       : super(serial, EnumSpWMLElementType.span, param, text, parentSerial,
             lineStart, lineEnd, style);
 

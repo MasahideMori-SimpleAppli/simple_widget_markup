@@ -11,8 +11,8 @@ import 'spwml_element.dart';
 /// First edition creation date 2021-12-30 23:42:11
 ///
 class ImgElement extends SpWMLElement {
-  ImgElement(int serial, List<String> param, ElementParams text, int parentSerial,
-      int lineStart, int lineEnd, SpWMLFontStyle style)
+  ImgElement(int serial, List<String> param, ElementParams text,
+      int parentSerial, int lineStart, int lineEnd, SpWMLFontStyle style)
       : super(serial, EnumSpWMLElementType.img, param, text, parentSerial,
             lineStart, lineEnd, style);
 

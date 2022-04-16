@@ -5,13 +5,7 @@ import '../spwml_exception.dart';
 ///
 /// First edition creation date 2022-02-09 20:27:34
 ///
-enum EnumBtnElementType {
-  text,
-  outlined,
-  elevated,
-  icon,
-  block
-}
+enum EnumBtnElementType { text, outlined, elevated, icon, block }
 
 extension EXTEnumBtnElementType on EnumBtnElementType {
   String toStr() {

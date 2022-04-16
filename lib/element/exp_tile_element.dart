@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../util_parser.dart';
 import 'element_child.dart';
 import '../element_params/element_params.dart';
 import 'enum_spwml_element_param.dart';

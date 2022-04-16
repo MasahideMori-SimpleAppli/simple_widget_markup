@@ -41,7 +41,9 @@ class TextElement extends SpWMLElement {
     final bool isSelectable =
         param.containsKey(EnumSpWMLElementParam.isSelectable)
             ? param[EnumSpWMLElementParam.isSelectable]
-            : true;
+            : type == EnumSpWMLElementType.menu
+                ? false
+                : true;
     return Container(
       width: param.containsKey(EnumSpWMLElementParam.width)
           ? param[EnumSpWMLElementParam.width]!
@@ -79,7 +81,7 @@ class TextElement extends SpWMLElement {
   ///
   /// (ja)このエレメントの新しいテキストを設定します。
   /// * [newText] 新しいテキスト.
-  void setText(String newText){
+  void setText(String newText) {
     text.s = newText;
   }
 

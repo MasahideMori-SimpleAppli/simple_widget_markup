@@ -1,3 +1,7 @@
+## 1.4.1
+
+* Fixed TextElement variation of menu type. Fixed the text selectable attribute to be off by default when used in a menu.
+
 ## 1.4.0
 * Added BtnElement.
 * Added TextFieldElement.

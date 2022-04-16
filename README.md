@@ -63,6 +63,7 @@ Currently, the types are as follows.
 Currently, the parameters are:
 
 - Valid for all
+  - id(Integer value. Parameters for getting elements from Dart code)
   - height
   - width
   - bgColor (#AARRGGBB)
@@ -81,9 +82,6 @@ Currently, the parameters are:
   - minWidth(px)
   - maxHeight(px)
   - maxWidth(px)
-
-- For block and scroll
-  - id (replacement ID in Flutter widget linkage)
 
 - scroll only
   - isPrimary (true or false, Specifies whether it is the primary scroll view when granting a scroll controller.)

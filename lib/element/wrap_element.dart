@@ -14,8 +14,15 @@ import 'spwml_element.dart';
 class WrapElement extends SpWMLElement {
   final StructureElementChildren children;
 
-  WrapElement(int serial, List<String> param, ElementParams text, int parentSerial,
-      int lineStart, int lineEnd, SpWMLFontStyle style, this.children)
+  WrapElement(
+      int serial,
+      List<String> param,
+      ElementParams text,
+      int parentSerial,
+      int lineStart,
+      int lineEnd,
+      SpWMLFontStyle style,
+      this.children)
       : super(serial, EnumSpWMLElementType.wrap, param, text, parentSerial,
             lineStart, lineEnd, style);
 
@@ -58,5 +65,4 @@ class WrapElement extends SpWMLElement {
           ),
         ));
   }
-
 }

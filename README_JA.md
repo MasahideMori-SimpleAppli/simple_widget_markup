@@ -61,6 +61,7 @@ typeは必須で、パラメータは省略可能です。
 現在、パラメータには以下があります。  
 
 - 全てで有効
+  - id(数値。要素をDartコードから取得するためのパラメータ)
   - height
   - width
   - bgColor(#AARRGGBB)
@@ -79,9 +80,6 @@ typeは必須で、パラメータは省略可能です。
   - minWidth(px)
   - maxHeight(px)
   - maxWidth(px)
-
-- block, scroll専用
-  - id(Flutter widget連携での、置き換え用ID)
   
 - scroll専用
   - isPrimary(スクロールコントローラーを付与するときに、それがプライマリスクロールビューであるかどうかを指定します。)
