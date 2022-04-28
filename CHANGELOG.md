@@ -1,8 +1,18 @@
+## 2.0.0
+* Added setInitialIndex method to DropdownBtnElement.
+* Fix textAlign parameter in TextFieldElement.
+* Remove isUseSpWMLParams flag in TextFieldParams class. 
+  TextFieldParams are now always initialized with SpWML parameters.
+  getTextFieldParams now always returns an overridden non copy value. 
+  The isOverrideSpWMLParams argument is gone and is always true.
+
 ## 1.4.1
 
-* Fixed TextElement variation of menu type. Fixed the text selectable attribute to be off by default when used in a menu.
+* Fixed TextElement variation of menu type. 
+  Fixed the text selectable attribute to be off by default when used in a menu.
 
 ## 1.4.0
+
 * Added BtnElement.
 * Added TextFieldElement.
 * Added WrapElement.
@@ -12,7 +22,8 @@
 * Added TextElement variation of menu type.
 * Added setText method to Text type Elements.
 * Added replaceUnderStructure method to SpWMLBuilder.
-* Added comment line function. Double slash at the beginning of the line it convert line to comment line.
+* Added comment line function. 
+  Double slash at the beginning of the line it convert line to comment line.
 * Removed resetStructure method in SpWMLBuilder.
 
 ## 1.3.1

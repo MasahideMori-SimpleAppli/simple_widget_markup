@@ -11,7 +11,6 @@ class TextFieldParamsWrapper {
 }
 
 class TextFieldParams {
-  bool isUseSpWMLParams;
   Key? key;
   TextEditingController? controller;
   FocusNode? focusNode;
@@ -71,7 +70,6 @@ class TextFieldParams {
 
   /// * [isUseSpWMLParams] : If false, Widget only use this class parameters.
   TextFieldParams({
-    this.isUseSpWMLParams = true,
     this.key,
     this.controller,
     this.focusNode,
@@ -189,7 +187,6 @@ class TextFieldParams {
     bool? enableIMEPersonalizedLearning,
   }) {
     return TextFieldParams(
-      isUseSpWMLParams: isUseSpWMLParams ?? this.isUseSpWMLParams,
       key: key ?? this.key,
       controller: controller ?? this.controller,
       focusNode: focusNode ?? this.focusNode,

@@ -80,7 +80,8 @@ class UtilElement {
           serial, eType, param, pText, parentSerial, lineStart, lineEnd, style);
     } else if (eType == EnumSpWMLElementType.textField) {
       r = TextFieldElement(serial, param, pText, parentSerial, lineStart,
-          lineEnd, style, TextFieldParamsWrapper(TextFieldParams()));
+              lineEnd, style, TextFieldParamsWrapper(TextFieldParams()))
+          .initParams();
     } else if (eType == EnumSpWMLElementType.href) {
       r = HrefElement(
           serial, param, pText, parentSerial, lineStart, lineEnd, style);
@@ -124,7 +125,8 @@ class UtilElement {
           lineEnd,
           style,
           StructureElementChildren(),
-          ShowMenuBtnElementParams([]));
+          ShowMenuBtnElementParams([]),
+          DropDownBtnElementParams(0));
     } else if (eType == EnumSpWMLElementType.popupMenuBtn) {
       r = PopupMenuBtnElement(
           serial,

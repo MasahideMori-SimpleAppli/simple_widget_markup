@@ -67,8 +67,9 @@ class HrefElement extends SpWMLElement {
 
   /// launch url.
   void onTapFunc(BuildContext context) async {
-    if (await canLaunch(text.s)) {
-      await launch(text.s);
+    final Uri uri = Uri.parse(text.s);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text("The specified URL could not be opened."),

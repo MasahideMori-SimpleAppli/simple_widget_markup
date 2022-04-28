@@ -39,6 +39,17 @@ class TextFieldElement extends SpWMLElement {
       : super.convert(serial, EnumSpWMLElementType.textField, param, text,
             parentSerial, lineStart, lineEnd, style);
 
+  // initialize parameters
+  TextFieldElement initParams() {
+    tfParams.params.textAlign =
+        param.containsKey(EnumSpWMLElementParam.textAlign)
+            ? param[EnumSpWMLElementParam.textAlign]
+            : TextAlign.left;
+    tfParams.params.style = getStyle();
+    tfParams.params.strutStyle = getStrutStyle();
+    return this;
+  }
+
   @override
   Widget getWidget(BuildContext context) {
     return Container(
@@ -58,12 +69,8 @@ class TextFieldElement extends SpWMLElement {
           keyboardType: tfParams.params.keyboardType,
           textInputAction: tfParams.params.textInputAction,
           textCapitalization: tfParams.params.textCapitalization,
-          style: tfParams.params.isUseSpWMLParams
-              ? getStyle()
-              : tfParams.params.style,
-          strutStyle: tfParams.params.isUseSpWMLParams
-              ? getStrutStyle()
-              : tfParams.params.strutStyle,
+          style: tfParams.params.style,
+          strutStyle: tfParams.params.strutStyle,
           textAlign: tfParams.params.textAlign,
           textAlignVertical: tfParams.params.textAlignVertical,
           textDirection: tfParams.params.textDirection,
@@ -115,17 +122,9 @@ class TextFieldElement extends SpWMLElement {
 
   /// (en)Get shallow copy of this element parameter.
   ///
-  /// (ja)このエレメントに現在設定されているパラメーターのシャローコピーを取得します。
-  /// * [sOverrideSpWMLParams] : If true, StrutStyle and TextStyle are override by SpWML text params.
-  TextFieldParams getTextFieldParams(bool isOverrideSpWMLParams) {
-    if (isOverrideSpWMLParams) {
-      TextFieldParams r = tfParams.params.copyWith();
-      r.style = getStyle();
-      r.strutStyle = getStrutStyle();
-      return r;
-    } else {
-      return tfParams.params.copyWith();
-    }
+  /// (ja)このエレメントに現在設定されているパラメーターを取得します。
+  TextFieldParams getTextFieldParams() {
+    return tfParams.params;
   }
 
   /// (en)Set new parameter of this element.

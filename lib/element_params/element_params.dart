@@ -44,3 +44,9 @@ class BoolCallbackParams {
   /// Must initialize empty function.
   BoolCallbackParams(this.f);
 }
+
+class DropDownBtnElementParams {
+  int index;
+
+  DropDownBtnElementParams(this.index);
+}

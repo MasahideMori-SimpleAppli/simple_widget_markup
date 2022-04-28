@@ -130,8 +130,7 @@ class SpWMLBuilder {
             }
             needReturn = true;
             break;
-          }
-          else if (elm is RowElement) {
+          } else if (elm is RowElement) {
             elm.children.children = newWidgets;
             for (SpWMLElement j in _parsedWidgets) {
               if (elm.serial == j.parentSerial) {
@@ -140,8 +139,7 @@ class SpWMLBuilder {
             }
             needReturn = true;
             break;
-          }
-          else if (elm is WrapElement) {
+          } else if (elm is WrapElement) {
             elm.children.children = newWidgets;
             for (SpWMLElement j in _parsedWidgets) {
               if (elm.serial == j.parentSerial) {
@@ -150,8 +148,7 @@ class SpWMLBuilder {
             }
             needReturn = true;
             break;
-          }
-          else if (elm is DropdownBtnElement) {
+          } else if (elm is DropdownBtnElement) {
             elm.children.children = newWidgets;
             for (SpWMLElement j in _parsedWidgets) {
               if (elm.serial == j.parentSerial) {
@@ -160,8 +157,7 @@ class SpWMLBuilder {
             }
             needReturn = true;
             break;
-          }
-          else if (elm is PopupMenuBtnElement) {
+          } else if (elm is PopupMenuBtnElement) {
             elm.children.children = newWidgets;
             for (SpWMLElement j in _parsedWidgets) {
               if (elm.serial == j.parentSerial) {
@@ -170,8 +166,7 @@ class SpWMLBuilder {
             }
             needReturn = true;
             break;
-          }
-          else if (elm is ExpTileElement) {
+          } else if (elm is ExpTileElement) {
             elm.children.children = newWidgets;
             for (SpWMLElement j in _parsedWidgets) {
               if (elm.serial == j.parentSerial) {
@@ -180,8 +175,7 @@ class SpWMLBuilder {
             }
             needReturn = true;
             break;
-          }
-          else {
+          } else {
             throw SpWMLException(
                 EnumSpWMLExceptionType.replaceException, -1, -1);
           }
@@ -189,7 +183,7 @@ class SpWMLBuilder {
       }
     }
     if (removeTargets.isNotEmpty) {
-      for(final i in removeTargets) {
+      for (final i in removeTargets) {
         _parsedWidgets.remove(i);
       }
     }
