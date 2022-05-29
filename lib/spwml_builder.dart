@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
-import 'element/btn_element.dart';
-import 'element/dropdown_btn_element.dart';
-import 'element_params/element_params.dart';
-import 'element/exp_tile_element.dart';
-import 'element/popupmenu_btn_element.dart';
-import 'element/scroll_element.dart';
+import 'element/sub/button/btn_element.dart';
+import 'element/sub/button/dropdown_btn_element.dart';
+import 'element/sub/structure/card_element.dart';
+import 'element/sub/structure/col_element.dart';
+import 'element/sub/structure/exp_tile_element.dart';
 import 'element/spwml_font_style.dart';
-import 'element/span_element.dart';
-import 'element/stack_element.dart';
-import 'element/text_element.dart';
-import 'element/block_element.dart';
-import 'element/col_element.dart';
-import 'element/enum_spwml_element_param.dart';
-import 'element/enum_spwml_element_type.dart';
-import 'element/row_element.dart';
-import 'element/wrap_element.dart';
+import 'element/sub/button/popupmenu_btn_element.dart';
+import 'element/sub/structure/scroll_element.dart';
+import 'element/sub/structure/span_element.dart';
+import 'element/sub/structure/stack_element.dart';
+import 'element/sub/structure/wrap_element.dart';
+import 'element/sub/text/text_element.dart';
+import 'element/sub/structure/block_element.dart';
+import 'element/super/spwml_element.dart';
+import 'element_params/sub/text/text_params.dart';
+import 'element_params/super/spwml_params.dart';
+import 'enum/enum_spwml_params.dart';
+import 'enum/enum_spwml_element_type.dart';
+import 'element/sub/structure/row_element.dart';
 import 'spwml_exception.dart';
 import 'spwml_parser.dart';
-
-import 'element/spwml_element.dart';
 
 ///
 /// (en)A builder class for converting SpWML to widgets.
@@ -69,8 +70,8 @@ class SpWMLBuilder {
     Widget? removeTarget;
     for (int i = 0; i < _parsedWidgets.length; i++) {
       final SpWMLElement elm = _parsedWidgets[i];
-      if (elm.param.containsKey(EnumSpWMLElementParam.id)) {
-        if (elm.param[EnumSpWMLElementParam.id] == id) {
+      if (elm.params.containsKey(EnumSpWMLParams.id)) {
+        if (elm.params[EnumSpWMLParams.id] == id) {
           if (elm is BlockElement) {
             elm.child.child = newWidget;
             for (SpWMLElement j in _parsedWidgets) {
@@ -81,6 +82,15 @@ class SpWMLBuilder {
             needReturn = true;
             break;
           } else if (elm is ScrollElement) {
+            elm.child.child = newWidget;
+            for (SpWMLElement j in _parsedWidgets) {
+              if (elm.serial == j.parentSerial) {
+                removeTarget = j;
+              }
+            }
+            needReturn = true;
+            break;
+          } else if (elm is CardElement) {
             elm.child.child = newWidget;
             for (SpWMLElement j in _parsedWidgets) {
               if (elm.serial == j.parentSerial) {
@@ -119,8 +129,8 @@ class SpWMLBuilder {
     List<Widget> removeTargets = [];
     for (int i = 0; i < _parsedWidgets.length; i++) {
       final SpWMLElement elm = _parsedWidgets[i];
-      if (elm.param.containsKey(EnumSpWMLElementParam.id)) {
-        if (elm.param[EnumSpWMLElementParam.id] == id) {
+      if (elm.params.containsKey(EnumSpWMLParams.id)) {
+        if (elm.params[EnumSpWMLParams.id] == id) {
           if (elm is ColElement) {
             elm.children.children = newWidgets;
             for (SpWMLElement j in _parsedWidgets) {
@@ -224,8 +234,8 @@ class SpWMLBuilder {
   /// returns: If target is not exist, return null.
   SpWMLElement? getElementByID(int id) {
     for (SpWMLElement i in _parsedWidgets) {
-      if (i.param.containsKey(EnumSpWMLElementParam.id)) {
-        if (i.param[EnumSpWMLElementParam.id] == id) {
+      if (i.params.containsKey(EnumSpWMLParams.id)) {
+        if (i.params[EnumSpWMLParams.id] == id) {
           return i;
         }
       }
@@ -249,6 +259,13 @@ class SpWMLBuilder {
           }
         }
       } else if (i is BlockElement) {
+        for (SpWMLElement j in _parsedWidgets) {
+          if (i.serial == j.parentSerial) {
+            i.child.child = j;
+            break;
+          }
+        }
+      } else if (i is CardElement) {
         for (SpWMLElement j in _parsedWidgets) {
           if (i.serial == j.parentSerial) {
             i.child.child = j;
@@ -316,8 +333,16 @@ class SpWMLBuilder {
             debugPrint(eStr);
             r.clear();
             return [
-              TextElement(-1, EnumSpWMLElementType.text, const [],
-                  ElementParams(eStr), -1, j.lineStart, j.lineEnd, style)
+              TextElement(
+                  -1,
+                  EnumSpWMLElementType.text,
+                  const [],
+                  SpWMLParamsWrapper(SpWMLParams(eStr)),
+                  -1,
+                  j.lineStart,
+                  j.lineEnd,
+                  style,
+                  TextParamsWrapper(TextParams()))
             ];
           }
         }

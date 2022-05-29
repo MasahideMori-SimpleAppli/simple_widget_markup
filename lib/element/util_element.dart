@@ -1,29 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:simple_widget_markup/element/popupmenu_btn_element.dart';
-import 'package:simple_widget_markup/element/text_field_element.dart';
-import 'package:simple_widget_markup/element/wrap_element.dart';
-import '../element_params/textfield_params.dart';
-import 'btn_element.dart';
-import 'dropdown_btn_element.dart';
-import 'exp_tile_element.dart';
-import 'scroll_element.dart';
-import 'vline_element.dart';
-import '../element_params/element_params.dart';
-import 'stack_element.dart';
-import 'element_child.dart';
+import 'package:simple_widget_markup/element/sub/button/btn_element.dart';
+import 'package:simple_widget_markup/element/sub/button/dropdown_btn_element.dart';
+import 'package:simple_widget_markup/element/sub/button/popupmenu_btn_element.dart';
+import 'package:simple_widget_markup/element/sub/button/switch_btn_element.dart';
+import 'package:simple_widget_markup/element/sub/other/icon_element.dart';
+import 'package:simple_widget_markup/element/sub/other/img_element.dart';
+import 'package:simple_widget_markup/element/sub/structure/card_element.dart';
+import 'package:simple_widget_markup/element/sub/structure/col_element.dart';
+import 'package:simple_widget_markup/element/sub/structure/scroll_element.dart';
+import 'package:simple_widget_markup/element/sub/structure/wrap_element.dart';
+import 'package:simple_widget_markup/element/sub/text/text_field_element.dart';
+import 'package:simple_widget_markup/element/super/spwml_element.dart';
+import '../element_params/sub/button/btn_params.dart';
+import '../element_params/sub/button/dropdown_btn_params.dart';
+import '../element_params/sub/button/popupmenu_btn_params.dart';
+import '../element_params/sub/button/switch_btn_params.dart';
+import '../element_params/sub/other/icon_element_params.dart';
+import '../element_params/sub/other/img_element_params.dart';
+import '../element_params/sub/other/line_element_params.dart';
+import '../element_params/sub/other/vline_element_params.dart';
+import '../element_params/sub/structure/card_params.dart';
+import '../element_params/sub/structure/exp_tile_params.dart';
+import '../element_params/sub/structure/row_col_params.dart';
+import '../element_params/sub/structure/scroll_params.dart';
+import '../element_params/sub/structure/span_params.dart';
+import '../element_params/sub/structure/stack_params.dart';
+import '../element_params/sub/structure/wrap_params.dart';
+import '../element_params/sub/text/href_params.dart';
+import '../element_params/sub/text/text_params.dart';
+import '../element_params/super/spwml_params.dart';
+import '../element_params/sub/text/textfield_params.dart';
+import '../enum/enum_spwml_element_type.dart';
+import 'sub/structure/exp_tile_element.dart';
+import 'sub/other/vline_element.dart';
+import 'sub/structure/stack_element.dart';
+import '../element_params/element_child.dart';
 import 'spwml_font_style.dart';
-import 'span_element.dart';
-import 'block_element.dart';
-import 'href_element.dart';
-import 'img_element.dart';
-import 'line_element.dart';
-import 'spwml_element.dart';
-import 'row_element.dart';
-import 'text_element.dart';
+import 'sub/structure/span_element.dart';
+import 'sub/structure/block_element.dart';
+import 'sub/text/href_element.dart';
+import 'sub/other/line_element.dart';
+import 'sub/structure/row_element.dart';
+import 'sub/text/text_element.dart';
 import '../spwml_exception.dart';
-
-import 'col_element.dart';
-import 'enum_spwml_element_type.dart';
 
 ///
 /// (en)Utility for generating SpWML elements.
@@ -61,7 +80,7 @@ class UtilElement {
     EnumSpWMLElementType eType =
         EXTEnumSpWMLElementType.fromStr(type, lineStart, lineEnd);
     late SpWMLElement r;
-    final ElementParams pText = ElementParams(text);
+    final SpWMLParamsWrapper spwmlEP = SpWMLParamsWrapper(SpWMLParams(text));
     if (eType == EnumSpWMLElementType.text ||
         eType == EnumSpWMLElementType.h1 ||
         eType == EnumSpWMLElementType.h2 ||
@@ -76,89 +95,157 @@ class UtilElement {
         eType == EnumSpWMLElementType.caption ||
         eType == EnumSpWMLElementType.overline ||
         eType == EnumSpWMLElementType.menu) {
-      r = TextElement(
-          serial, eType, param, pText, parentSerial, lineStart, lineEnd, style);
-    } else if (eType == EnumSpWMLElementType.textField) {
-      r = TextFieldElement(serial, param, pText, parentSerial, lineStart,
-              lineEnd, style, TextFieldParamsWrapper(TextFieldParams()))
-          .initParams();
+      r = TextElement(serial, eType, param, spwmlEP, parentSerial, lineStart,
+          lineEnd, style, TextParamsWrapper(TextParams()));
+    } else if (eType == EnumSpWMLElementType.textField ||
+        eType == EnumSpWMLElementType.tf) {
+      r = TextFieldElement(
+          serial,
+          param,
+          spwmlEP,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          TextParamsWrapper(TextParams()),
+          TextFieldParamsWrapper(TextFieldParams()));
     } else if (eType == EnumSpWMLElementType.href) {
       r = HrefElement(
-          serial, param, pText, parentSerial, lineStart, lineEnd, style);
+          serial,
+          param,
+          spwmlEP,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          TextParamsWrapper(TextParams()),
+          HrefParamsWrapper(HrefParams()));
     } else if (eType == EnumSpWMLElementType.line) {
-      r = LineElement(
-          serial, param, pText, parentSerial, lineStart, lineEnd, style);
+      r = LineElement(serial, param, spwmlEP, parentSerial, lineStart, lineEnd,
+          style, LineParamsWrapper(LineParams()));
     } else if (eType == EnumSpWMLElementType.vline) {
-      r = VLineElement(
-          serial, param, pText, parentSerial, lineStart, lineEnd, style);
+      r = VLineElement(serial, param, spwmlEP, parentSerial, lineStart, lineEnd,
+          style, VLineParamsWrapper(VLineParams()));
     } else if (eType == EnumSpWMLElementType.img) {
-      r = ImgElement(
-          serial, param, pText, parentSerial, lineStart, lineEnd, style);
+      r = ImgElement(serial, param, spwmlEP, parentSerial, lineStart, lineEnd,
+          style, ImgParamsWrapper(ImgParams()));
     } else if (eType == EnumSpWMLElementType.col) {
-      r = ColElement(serial, param, pText, parentSerial, lineStart, lineEnd,
-          style, StructureElementChildren());
+      r = ColElement(
+          serial,
+          param,
+          spwmlEP,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          StructureElementChildren(),
+          RowColParamsWrapper(RowColParams()));
     } else if (eType == EnumSpWMLElementType.row) {
-      r = RowElement(serial, param, pText, parentSerial, lineStart, lineEnd,
-          style, StructureElementChildren());
+      r = RowElement(
+          serial,
+          param,
+          spwmlEP,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          StructureElementChildren(),
+          RowColParamsWrapper(RowColParams()));
     } else if (eType == EnumSpWMLElementType.block) {
-      r = BlockElement(serial, param, pText, parentSerial, lineStart, lineEnd,
+      r = BlockElement(serial, param, spwmlEP, parentSerial, lineStart, lineEnd,
           style, BlockElementChild());
     } else if (eType == EnumSpWMLElementType.span) {
-      r = SpanElement(serial, param, pText, parentSerial, lineStart, lineEnd,
-          style, StructureElementChildren());
+      r = SpanElement(
+          serial,
+          param,
+          spwmlEP,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          StructureElementChildren(),
+          TextParamsWrapper(TextParams()),
+          SpanParamsWrapper(SpanParams()));
     } else if (eType == EnumSpWMLElementType.btn) {
-      r = BtnElement(serial, param, pText, parentSerial, lineStart, lineEnd,
-          style, BlockElementChild(), BtnElementParams(() {}));
+      r = BtnElement(
+          serial,
+          param,
+          spwmlEP,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          BlockElementChild(),
+          TextParamsWrapper(TextParams()),
+          BtnParamsWrapper(BtnParams()));
     } else if (eType == EnumSpWMLElementType.stack) {
-      r = StackElement(serial, param, pText, parentSerial, lineStart, lineEnd,
-          style, StructureElementChildren());
+      r = StackElement(serial, param, spwmlEP, parentSerial, lineStart, lineEnd,
+          style, StructureElementChildren(), StackParamsWrapper(StackParams()));
     } else if (eType == EnumSpWMLElementType.wrap) {
-      r = WrapElement(serial, param, pText, parentSerial, lineStart, lineEnd,
-          style, StructureElementChildren());
+      r = WrapElement(serial, param, spwmlEP, parentSerial, lineStart, lineEnd,
+          style, StructureElementChildren(), WrapParamsWrapper(WrapParams()));
     } else if (eType == EnumSpWMLElementType.dropdownBtn) {
       r = DropdownBtnElement(
           serial,
           param,
-          pText,
+          spwmlEP,
           parentSerial,
           lineStart,
           lineEnd,
           style,
           StructureElementChildren(),
-          ShowMenuBtnElementParams([]),
-          DropDownBtnElementParams(0));
+          DropdownBtnParamsWrapper(DropdownBtnParams()));
     } else if (eType == EnumSpWMLElementType.popupMenuBtn) {
       r = PopupMenuBtnElement(
           serial,
           param,
-          pText,
+          spwmlEP,
           parentSerial,
           lineStart,
           lineEnd,
           style,
           StructureElementChildren(),
-          ShowMenuBtnElementParams([]));
+          PopupMenuBtnParamsWrapper(PopupMenuBtnParams()));
     } else if (eType == EnumSpWMLElementType.expTile) {
       r = ExpTileElement(
           serial,
           param,
-          pText,
+          spwmlEP,
           parentSerial,
           lineStart,
           lineEnd,
           style,
           StructureElementChildren(),
-          BoolCallbackParams((bool b) {}),
-          WidgetParams(null));
+          TextParamsWrapper(TextParams()),
+          ExpTileParamsWrapper(ExpTileParams()));
     } else if (eType == EnumSpWMLElementType.scroll) {
-      r = ScrollElement(serial, param, pText, parentSerial, lineStart, lineEnd,
-          style, BlockElementChild(), ScrollElementParams());
+      r = ScrollElement(
+          serial,
+          param,
+          spwmlEP,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          BlockElementChild(),
+          ScrollParamsWrapper(ScrollParams()));
+    } else if (eType == EnumSpWMLElementType.switchBtn) {
+      r = SwitchBtnElement(serial, param, spwmlEP, parentSerial, lineStart,
+          lineEnd, style, SwitchBtnParamsWrapper(SwitchBtnParams()));
+    } else if (eType == EnumSpWMLElementType.icon) {
+      r = IconElement(serial, param, spwmlEP, parentSerial, lineStart, lineEnd,
+          style, IconParamsWrapper(IconParams()));
+    } else if (eType == EnumSpWMLElementType.card) {
+      r = CardElement(serial, param, spwmlEP, parentSerial, lineStart, lineEnd,
+          style, BlockElementChild(), CardParamsWrapper(CardParams()));
     } else {
       // 存在しないタイプの場合は通常はfromStr時点で例外が発生している。
       // ここで発生する場合は処理の追加漏れ。
       throw SpWMLException(
           EnumSpWMLExceptionType.typeException, lineStart, lineEnd);
     }
+    // 各エレメント固有のパラメータを変数として初期化・格納する。
+    r.initParams();
     return r;
   }
 

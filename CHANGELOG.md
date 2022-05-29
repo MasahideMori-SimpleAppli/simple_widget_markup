@@ -1,4 +1,13 @@
+## 3.0.0
+
+* The structure has been significantly revised and changed so that many parameters can be accessed from the program code.
+  Element parameters can now be freely changed by calling getID to get the element and converting it to the appropriate class with as.
+  The class name is basically TextElement for text type, and type name + Element for others.
+* SwitchBtn, Icon, Card have been added.
+* Abbreviation notation is enabled for some parameters. Example, w: 360 (width: 360).
+
 ## 2.0.0
+
 * Added setInitialIndex method to DropdownBtnElement.
 * Fix textAlign parameter in TextFieldElement.
 * Remove isUseSpWMLParams flag in TextFieldParams class. 

@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
-import 'element_params/element_params.dart';
-import 'element/enum_spwml_element_type.dart';
-import 'element/text_element.dart';
+import 'element/super/spwml_element.dart';
+import 'element_params/sub/text/text_params.dart';
+import 'element_params/super/spwml_params.dart';
+import 'enum/enum_spwml_element_type.dart';
+import 'element/sub/text/text_element.dart';
 import 'spwml_exception.dart';
-import 'element/spwml_element.dart';
 import 'element/util_element.dart';
 import 'element/spwml_font_style.dart';
 import 'util_parser.dart';
@@ -21,8 +22,10 @@ class SpWMLParser {
   static const separate = ":";
   static const paramSeparate = ",";
   static const indentionCode = "\n";
+
   // エレメントの中でのコメントに対応
   static final RegExp commentLineStart = RegExp(r'^ *//');
+
   // エレメントの外でのコメントに対応
   static final RegExp commentLineEnd = RegExp(r' *//+ *\+*$');
   static final RegExp lowerEnd = RegExp(r'\++$');
@@ -137,8 +140,16 @@ class SpWMLParser {
     } catch (e) {
       debugPrint(e.toString());
       r.clear();
-      r.add(TextElement(-1, EnumSpWMLElementType.text, const [],
-          ElementParams(e.toString()), -1, 0, 0, spWMLStyle));
+      r.add(TextElement(
+          -1,
+          EnumSpWMLElementType.text,
+          const [],
+          SpWMLParamsWrapper(SpWMLParams(e.toString())),
+          -1,
+          0,
+          0,
+          spWMLStyle,
+          TextParamsWrapper(TextParams())));
     }
     return r;
   }

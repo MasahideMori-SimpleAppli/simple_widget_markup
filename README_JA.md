@@ -25,6 +25,7 @@ SpWMLは、Widget（一定の要素のかたまり）を手軽に扱えるよう
 ```
 という単純な作りになっています。  
 typeは必須で、パラメータは省略可能です。  
+パラメータについては、上記クイックスタートのSpWMLエディターのページに詳細な説明があります。  
 
 現在、typeは以下の通りです。  
 
@@ -32,6 +33,7 @@ typeは必須で、パラメータは省略可能です。
   - 内部が１要素のみ
     - block(基本コンテナ。置き換え用の仮配置にも利用できる)
     - scroll(内部がスクロールできるコンテナ)
+    - card
   - 内部が複数要素
     - col(内部が行のコンテナ)
     - row(内部が列のコンテナ)
@@ -57,78 +59,9 @@ typeは必須で、パラメータは省略可能です。
     - href(テキスト部分にハイパーリンクを記載する。altパラメータで見た目を変えられる)
     - line(水平区切り)
     - vline(垂直区切り)
-
-現在、パラメータには以下があります。  
-
-- 全てで有効
-  - id(数値。要素をDartコードから取得するためのパラメータ)
-  - height
-  - width
-  - bgColor(#AARRGGBB)
-  - mLeft(px。マージン)
-  - mTop(px)
-  - mRight(px)
-  - mBottom(px)
-  - pLeft(px。パディング)
-  - pTop(px)
-  - pRight(px)
-  - pBottom(px)
-  - weight(要素の画面上の比率。col内なら縦方向、row内なら横方向)
-
-- コンテナ系専用（最大の幅などの制約。これらはweightと一緒には使えず、weightが優先されます。）
-  - minHeight(px)
-  - minWidth(px)
-  - maxHeight(px)
-  - maxWidth(px)
-  
-- scroll専用
-  - isPrimary(スクロールコントローラーを付与するときに、それがプライマリスクロールビューであるかどうかを指定します。)
-
-- col, row, wrap専用
-  - hAlign(left(start), center, right(end)。水平方向揃え)
-  - vAlign(top(start), center, bottom(end)。垂直方向揃え)
-
-- text系, textField, href, btn専用
-  - fontName
-  - fontSize(px)
-  - fontWeight(normal, regular, bold, thin, light, medium, black, w100-w900)
-  - fontStyle(normal, italic)
-  - textColor(#AARRGGBB)
-  - textDeco(none, underline, overline, lineThrough)
-  - textDecoStyle(solid, dotted, dashed, double, wavy)
-  - textDecoColor(#AARRGGBB)
-  - textDecoThickness(px)
-  - letterSpacing(px)
-  - wordSpacing(px)
-  - textAlign(left, center, right, justify。テキスト揃え)
-  - textHeight(テキストサイズの倍率。1.0や1.3など)
-
-- text系, span専用
-  - isSelectable(true,false。falseなら選択不可になる。)
-
-- href専用
-  - alt(代替テキスト)
-
-- img専用
-  - fit(none, contain, cover, fitHeight, fitWidth)
-  - repeat(noRepeat, repeat, repeatX, repeatY。リピートが有効な場合は元の画像サイズでリピートされます。)
-
-- line専用
-  - thickness(px, 線の太さ)
-  - color(#AARRGGBB)
-
-- btn, dropdownBtn, popupMenuBtn 専用
-  - iconNum(マテリアルアイコン（https://api.flutter.dev/flutter/material/Icons-class.html#constants）に定義されたアイコン番号.)
-  - iconSize(px)
-  - iconColor(#AARRGGBB)
-  
-- btn専用
-  - type(text, outlined, elevated, block。ボタンのタイプ)
-  - splashRadius(px)
-  - outlineColor(#AARRGGBB, 枠線の色, outlinedタイプでのみ有効)
-  - borderWidth(px, 枠線の幅, outlinedタイプでのみ有効)
-  - borderRadius(px, 枠線の丸み。outlined、elevatedタイプでのみ有効)
-  - shape(roundRect, stadium, bevel, circle。ボタンの形状。outlined、elevatedタイプでのみ有効)
+    - btn
+    - icon
+    - switchBtn
 
 ### 改行
 通常の改行コードで改行します。文末の改行は無視されます。

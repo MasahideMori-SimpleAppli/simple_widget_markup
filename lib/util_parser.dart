@@ -91,6 +91,8 @@ class UtilParser {
         return Colors.orangeAccent[_getShade(color, true)]!;
       } else if (color.startsWith('deepOrangeAccent')) {
         return Colors.deepOrangeAccent[_getShade(color, true)]!;
+      } else if (color.startsWith('transparent')) {
+        return Colors.transparent;
       } else {
         return _getBlackVariation(color);
       }

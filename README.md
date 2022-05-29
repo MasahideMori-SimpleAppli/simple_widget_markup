@@ -27,110 +27,43 @@ The comment line is as follows.
 ```
 
 type is required and parameters are optional.  
+The parameters are explained in detail on the SpWML editor page in the quickstart above.  
 
 Currently, the types are as follows.
 
-- Container system (Container is a container for elements)
+- Container system (Container is a container for elements.)
   - Only one element inside.
-    - block (basic container. Can also be used for temporary placement for replacement)
-    - scroll (A container that can be scrolled inside)
+    - block (basic container. Can also be used for temporary placement for replacement.)
+    - scroll (A container that can be scrolled inside.)
+    - card
   - Multiple elements inside.
-    - col (The Container with rows inside)
-    - row (The Container with columns inside)
-    - span (The Container with text or href inside. Different parameters can be set for each element in the line)
-    - stack(The Container that can be superposed inside)
-    - wrap(The container whose inside is a so-called grid view)
-    - expTile(The container whose inside is a so-called accordion menu)
-    - dropdownBtn(The container whose inside is a so-called dropdown menu. Callback is set by DropdownBtnElement.setCallback from the program code side)
-    - popupMenuBtn(The container whose inside is a so-called popup menu. Callback is set by PopupMenuBtnElement.setCallback from the program code side)
+    - col (The Container with rows inside.)
+    - row (The Container with columns inside.)
+    - span (The Container with text or href inside. Different parameters can be set for each element in the line.)
+    - stack(The Container that can be superposed inside.)
+    - wrap(The container whose inside is a so-called grid view.)
+    - expTile(The container whose inside is a so-called accordion menu.)
+    - dropdownBtn(The container whose inside is a so-called dropdown menu. Callback is set by DropdownBtnElement.setCallback from the program code side.)
+    - popupMenuBtn(The container whose inside is a so-called popup menu. Callback is set by PopupMenuBtnElement.setCallback from the program code side.)
 
 - Elements in the container
   - text system
-    - h1-h6 (header text. 6 types of h1-h6)
+    - h1-h6 (header text. 6 types of h1-h6.)
     - subtitle1
     - subtitle2
-    - body1 (It works even if you write "text". Normal text)
+    - body1 (It works even if you write "text". Normal text.)
     - body2
     - caption
-    - overline (Text to display above the line)
-    - menu(Plane text for dropdownBtn and popupMenuBtn)
+    - overline (Text to display above the line.)
+    - menu(Plane text for dropdownBtn and popupMenuBtn.)
   - Other than text
-    - img (Image. URL is described in the text part)
-    - href (Hyperlinks are written in the text part. The appearance can be changed with the alt parameter)
+    - img (Image. URL is described in the text part.)
+    - href (Hyperlinks are written in the text part. The appearance can be changed with the alt parameter.)
     - line (Horizontal divider)
     - vline(Vertical divider)
-
-Currently, the parameters are:
-
-- Valid for all
-  - id(Integer value. Parameters for getting elements from Dart code)
-  - height
-  - width
-  - bgColor (#AARRGGBB)
-  - mLeft (px. Margin)
-  - mTop (px)
-  - mRight (px)
-  - mBottom (px)
-  - pLeft (px. Padding)
-  - pTop (px)
-  - pRight (px)
-  - pBottom (px)
-  - weight (ratio of elements on the screen. Vertical in col, horizontal in row)
-
-- For Containers only(These parameters cannot be used with weight, weight takes precedence.)
-  - minHeight(px)
-  - minWidth(px)
-  - maxHeight(px)
-  - maxWidth(px)
-
-- scroll only
-  - isPrimary (true or false, Specifies whether it is the primary scroll view when granting a scroll controller.)
-
-- For col, row and wrap only
-  - hAlign (left(start), center, right(end). Horizontal alignment)
-  - vAlign (top(start), center, bottom(end). Vertical alignment)
-
-- For text, textField, href and btn only
-  - fontName
-  - fontSize (px)
-  - fontWeight (normal, regular, bold, thin, light, medium, black, w100-w900)
-  - fontStyle (normal, italic)
-  - textColor (#AARRGGBB)
-  - textDeco (none, underline, overline, lineThrough)
-  - textDecoStyle (solid, dotted, dashed, double, wavy)
-  - textDecoColor (#AARRGGBB)
-  - textDecoThickness (px)
-  - letterSpacing (px)
-  - wordSpacing (px)
-  - textAlign (left, center, right, justify. Text alignment)
-  - textHeight (text size magnification, such as 1.0 or 1.3)
-
-- For text and span only
-  - isSelectable (true, false. If false, it cannot be selected.)
-
-- href only
-  - alt (alternative text)
-  
-- img only
-  - fit (none, contain, cover, fitHeight, fitWidth)
-  - repeat (noRepeat, repeat, repeatX, repeatY. If repeat is enabled, it will be repeated at the original image size.)
-
-- line only
-  - thickness (px, line thickness)
-  - color (#AARRGGBB)
-  
-- btn, dropdownBtn and popupMenuBtn only
-  - iconNum(The hexadecimal icon number of material icons in https://api.flutter.dev/flutter/material/Icons-class.html#constants)
-  - iconSize(px)
-  - iconColor(#AARRGGBB)
-
-- btn only
-  - type(text, outlined, elevated, block)
-  - splashRadius(px)
-  - outlineColor(#AARRGGBB, The button outlined color, Valid only for outlined types.)
-  - borderWidth(px, Valid only for outlined types.)
-  - borderRadius(px, Valid only for outlined and elevated types.)
-  - shape(roundRect, stadium, bevel, circle, Valid only for outlined and elevated types.)
+    - btn
+    - icon
+    - switchBtn
 
 ### new line
 Start a new line with a normal line feed code.  
@@ -261,7 +194,8 @@ Please rewrite _getSpWMLWidget in Sample code as follows.
 ```
 
 ## Support
-If you need paid support, please contact my company.  
+If you need paid support for any reason, please contact my company.  
+This package is developed by me personally, but may be supported via the company.  
 [SimpleAppli Inc.](https://simpleappli.com/en/index_en.html)
 
 ## Format name
