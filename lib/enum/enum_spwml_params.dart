@@ -157,7 +157,11 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           return UtilElement.convertMainAxisAlign(v, lineStart, lineEnd);
         }
       } else if (type == EnumSpWMLElementType.wrap) {
-        return UtilElement.convertWrapAlign(v, lineStart, lineEnd);
+        if (this == EnumSpWMLParams.vAlign) {
+          return UtilElement.convertWrapAlign(v, lineStart, lineEnd);
+        } else if (this == EnumSpWMLParams.hAlign) {
+          return UtilElement.convertWrapAlign(v, lineStart, lineEnd);
+        }
       } else if (type == EnumSpWMLElementType.img) {
         if (this == EnumSpWMLParams.fit) {
           if (v == "none") {

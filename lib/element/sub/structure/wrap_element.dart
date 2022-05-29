@@ -37,7 +37,7 @@ class WrapElement extends SpWMLElement {
         : WrapAlignment.start;
     elParams.p.runAlignment = params.containsKey(EnumSpWMLParams.hAlign)
         ? params[EnumSpWMLParams.hAlign]
-        : CrossAxisAlignment.start;
+        : WrapAlignment.start;
     return this;
   }
 

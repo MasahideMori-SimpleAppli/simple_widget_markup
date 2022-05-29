@@ -1,3 +1,6 @@
+## 3.0.1
+* Fix WrapElement parameter bug.
+
 ## 3.0.0
 
 * The structure has been significantly revised and changed so that many parameters can be accessed from the program code.
