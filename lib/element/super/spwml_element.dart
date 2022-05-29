@@ -99,21 +99,6 @@ class SpWMLElement extends StatelessWidget {
     return this;
   }
 
-  /// (en)Get shallow copy of this element parameter.
-  ///
-  /// (ja)このエレメントに現在設定されているパラメーターを取得します。
-  SpWMLParams getSpWMLElementParams() {
-    return spwmlParams.p;
-  }
-
-  /// (en)Set new parameter of this element.
-  ///
-  /// (ja)このエレメントのパラメーターを上書きします。
-  /// * [params] : Parameters.
-  void setSpWMLElementParams(SpWMLParams params) {
-    spwmlParams.p = params;
-  }
-
   /// Get button shape
   OutlinedBorder? getShape() {
     if (params.containsKey(EnumSpWMLParams.shape)) {
