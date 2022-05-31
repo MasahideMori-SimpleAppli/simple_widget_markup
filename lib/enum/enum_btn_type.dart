@@ -8,6 +8,7 @@ import '../spwml_exception.dart';
 enum EnumBtnType { text, outlined, elevated, icon, block }
 
 extension EXTEnumBtnType on EnumBtnType {
+  /// Convert string name.
   String toStr() {
     return toString().split('.').last;
   }

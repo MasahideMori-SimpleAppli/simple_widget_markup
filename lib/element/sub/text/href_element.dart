@@ -44,10 +44,12 @@ class HrefElement extends TextElement {
     return InkWell(
       key: elParams.p.inkWellParams.key,
       child: getText(context),
-      onTap: elParams.p.inkWellParams.onTap ??
-          () {
-            onTapFunc(context);
-          },
+      onTap: () {
+        if (elParams.p.inkWellParams.onTap != null) {
+          elParams.p.inkWellParams.onTap!();
+        }
+        onTapFunc(context);
+      },
       onDoubleTap: elParams.p.inkWellParams.onDoubleTap,
       onLongPress: elParams.p.inkWellParams.onLongPress,
       onTapDown: elParams.p.inkWellParams.onTapDown,

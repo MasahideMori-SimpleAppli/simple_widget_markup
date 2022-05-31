@@ -98,6 +98,7 @@ enum EnumSpWMLParams {
 }
 
 extension EXTEnumSpWMLParams on EnumSpWMLParams {
+  /// Convert string name.
   String toStr() {
     return toString().split('.').last;
   }

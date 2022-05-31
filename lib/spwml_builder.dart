@@ -334,15 +334,16 @@ class SpWMLBuilder {
             r.clear();
             return [
               TextElement(
-                  -1,
-                  EnumSpWMLElementType.text,
-                  const [],
-                  SpWMLParamsWrapper(SpWMLParams(eStr)),
-                  -1,
-                  j.lineStart,
-                  j.lineEnd,
-                  style,
-                  TextParamsWrapper(TextParams()))
+                      -1,
+                      EnumSpWMLElementType.text,
+                      const [],
+                      SpWMLParamsWrapper(SpWMLParams(eStr)),
+                      -1,
+                      j.lineStart,
+                      j.lineEnd,
+                      style,
+                      TextParamsWrapper(TextParams()))
+                  .initParams()
             ];
           }
         }

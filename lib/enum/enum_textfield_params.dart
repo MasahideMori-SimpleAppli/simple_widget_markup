@@ -8,6 +8,7 @@ import '../spwml_exception.dart';
 enum EnumTextFieldType { material, rounded }
 
 extension EXTEnumTextFieldType on EnumTextFieldType {
+  /// Convert string name.
   String toStr() {
     return toString().split('.').last;
   }
@@ -28,6 +29,7 @@ extension EXTEnumTextFieldType on EnumTextFieldType {
 enum EnumTextFieldMode { normal, password, search, manual }
 
 extension EXTEnumTextFieldMode on EnumTextFieldMode {
+  /// Convert string name.
   String toStr() {
     return toString().split('.').last;
   }

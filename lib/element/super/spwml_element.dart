@@ -64,7 +64,7 @@ class SpWMLElement extends StatelessWidget {
     return mParam;
   }
 
-  // initialize parameters
+  /// initialize parameters
   SpWMLElement initParams() {
     spwmlParams.p.weight = params.containsKey(EnumSpWMLParams.weight)
         ? params[EnumSpWMLParams.weight]

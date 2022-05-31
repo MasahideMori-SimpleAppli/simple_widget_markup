@@ -30,7 +30,7 @@ class TextFieldElement extends TextElement {
       : super(serial, EnumSpWMLElementType.textField, param, spwmlEP,
             parentSerial, lineStart, lineEnd, style, textParams);
 
-  // initialize parameters
+  /// initialize parameters
   @override
   TextFieldElement initParams() {
     super.initParams();
@@ -168,11 +168,15 @@ class _TextFieldElementWidgetState extends State<_TextFieldElementWidget> {
           suffixIconColor: widget.tfParams.p.suffixIconColor);
     } else if (widget.tfParams.p.mode == EnumTextFieldMode.password) {
       return widget.tfParams.p.decoration.copyWith(
+          prefixIcon: _getPrefixIcon(),
+          prefixIconColor: widget.tfParams.p.prefixIconColor,
           suffixIcon: _getPassWordIcon(),
           suffixIconColor: widget.tfParams.p.suffixIconColor);
     } else if (widget.tfParams.p.mode == EnumTextFieldMode.search) {
       // search
       return widget.tfParams.p.decoration.copyWith(
+          prefixIcon: _getPrefixIcon(),
+          prefixIconColor: widget.tfParams.p.prefixIconColor,
           suffixIcon: _getSearchIcon(),
           suffixIconColor: widget.tfParams.p.suffixIconColor);
     } else {

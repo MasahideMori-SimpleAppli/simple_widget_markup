@@ -8,6 +8,7 @@ import '../spwml_exception.dart';
 enum EnumImgType { network, asset }
 
 extension EXTEnumImgType on EnumImgType {
+  /// Convert string name.
   String toStr() {
     return toString().split('.').last;
   }

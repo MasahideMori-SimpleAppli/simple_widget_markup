@@ -43,6 +43,7 @@ enum EnumSpWMLElementType {
 }
 
 extension EXTEnumSpWMLElementType on EnumSpWMLElementType {
+  /// Convert string name.
   String toStr() {
     return toString().split('.').last;
   }

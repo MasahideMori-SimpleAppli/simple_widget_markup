@@ -1,5 +1,10 @@
+## 3.0.2
+* Fixed onTap control in hrefElement.
+* Fixed iconNum param of textFieldElement.
+* Fixed a bug where the SpWML parser did not properly handle pre-check errors and just crashed.
+
 ## 3.0.1
-* Fix WrapElement parameter bug.
+* Fixed WrapElement parameter bug.
 
 ## 3.0.0
 

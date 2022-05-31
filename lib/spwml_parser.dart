@@ -141,15 +141,16 @@ class SpWMLParser {
       debugPrint(e.toString());
       r.clear();
       r.add(TextElement(
-          -1,
-          EnumSpWMLElementType.text,
-          const [],
-          SpWMLParamsWrapper(SpWMLParams(e.toString())),
-          -1,
-          0,
-          0,
-          spWMLStyle,
-          TextParamsWrapper(TextParams())));
+              -1,
+              EnumSpWMLElementType.text,
+              const [],
+              SpWMLParamsWrapper(SpWMLParams(e.toString())),
+              -1,
+              0,
+              0,
+              spWMLStyle,
+              TextParamsWrapper(TextParams()))
+          .initParams());
     }
     return r;
   }
