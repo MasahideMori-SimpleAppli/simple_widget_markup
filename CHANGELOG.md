@@ -1,3 +1,10 @@
+## 3.0.4
+* Fixed color parser.
+
+## 3.0.3
+* Fixed white color parser.
+* Added underlineColor and underlineHeight parameter to DropdownBtnElement.
+
 ## 3.0.2
 * Fixed onTap control in hrefElement.
 * Fixed iconNum param of textFieldElement.
