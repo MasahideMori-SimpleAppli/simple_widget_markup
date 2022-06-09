@@ -93,9 +93,35 @@ class UtilParser {
         return Colors.deepOrangeAccent[_getShade(color, true)]!;
       } else if (color.startsWith('transparent')) {
         return Colors.transparent;
+      } else if (color.startsWith('white')) {
+        return _getWhiteVariation(color);
       } else {
         return _getBlackVariation(color);
       }
+    }
+  }
+
+  static Color _getWhiteVariation(String color) {
+    if (color == 'white') {
+      return Colors.white;
+    } else if (color == 'white10') {
+      return Colors.white10;
+    } else if (color == 'white12') {
+      return Colors.white12;
+    } else if (color == 'white24') {
+      return Colors.white24;
+    } else if (color == 'white30') {
+      return Colors.white30;
+    } else if (color == 'white38') {
+      return Colors.white38;
+    } else if (color == 'white54') {
+      return Colors.white54;
+    } else if (color == 'white60') {
+      return Colors.white60;
+    } else if (color == 'white70') {
+      return Colors.white70;
+    } else {
+      throw Exception();
     }
   }
 

@@ -95,6 +95,8 @@ enum EnumSpWMLParams {
   labelText,
   value,
   cardElevation,
+  underlineColor,
+  underlineHeight,
 }
 
 extension EXTEnumSpWMLParams on EnumSpWMLParams {
@@ -138,7 +140,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.fontSize ||
           this == EnumSpWMLParams.textHeight ||
           this == EnumSpWMLParams.letterSpacing ||
-          this == EnumSpWMLParams.wordSpacing) {
+          this == EnumSpWMLParams.wordSpacing ||
+          this == EnumSpWMLParams.underlineHeight) {
         return double.parse(v);
       }
       if (this == EnumSpWMLParams.weight) {
@@ -235,7 +238,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.iconColor ||
           this == EnumSpWMLParams.suffixIconColor ||
           this == EnumSpWMLParams.btnBGColor ||
-          this == EnumSpWMLParams.fillColor) {
+          this == EnumSpWMLParams.fillColor ||
+          this == EnumSpWMLParams.underlineColor) {
         return UtilParser.convertColor(v);
       } else if (this == EnumSpWMLParams.id) {
         return int.parse(v);
@@ -502,6 +506,10 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       return EnumSpWMLParams.labelText;
     } else if (s == EnumSpWMLParams.value.toStr()) {
       return EnumSpWMLParams.value;
+    } else if (s == EnumSpWMLParams.underlineColor.toStr()) {
+      return EnumSpWMLParams.underlineColor;
+    } else if (s == EnumSpWMLParams.underlineHeight.toStr()) {
+      return EnumSpWMLParams.underlineHeight;
     } else {
       throw SpWMLException(
           EnumSpWMLExceptionType.paramException, lineStart, lineEnd);

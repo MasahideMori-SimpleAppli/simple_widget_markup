@@ -45,10 +45,12 @@ enum EnumSpWMLExceptionType {
 }
 
 extension EXTEnumSpWMLExceptionType on EnumSpWMLExceptionType {
+  /// Convert string name.
   String toStr() {
     return toString().split('.').last;
   }
 
+  /// Convert error string.
   String toErrorText() {
     if (this == EnumSpWMLExceptionType.typeException) {
       return "It is an invalid type.";

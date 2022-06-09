@@ -55,6 +55,16 @@ class DropdownBtnElement extends SpWMLElement {
     elParams.p.isExpanded = params.containsKey(EnumSpWMLParams.isExpanded)
         ? params[EnumSpWMLParams.isExpanded]
         : false;
+    if (params.containsKey(EnumSpWMLParams.underlineColor) ||
+        params.containsKey(EnumSpWMLParams.underlineHeight)) {
+      elParams.p.underline = Container(
+          color: params.containsKey(EnumSpWMLParams.underlineColor)
+              ? params[EnumSpWMLParams.underlineColor]
+              : Colors.black87,
+          height: params.containsKey(EnumSpWMLParams.underlineHeight)
+              ? params[EnumSpWMLParams.underlineHeight]
+              : 1.0);
+    }
     return this;
   }
 
