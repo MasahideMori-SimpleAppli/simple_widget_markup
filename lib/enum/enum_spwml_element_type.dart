@@ -39,7 +39,12 @@ enum EnumSpWMLElementType {
   btn,
   switchBtn,
   icon,
-  card
+  card,
+  checkbox,
+  radioBtn,
+  table,
+  tableRow,
+  tr,
 }
 
 extension EXTEnumSpWMLElementType on EnumSpWMLElementType {
@@ -89,7 +94,7 @@ extension EXTEnumSpWMLElementType on EnumSpWMLElementType {
     } else if (s == EnumSpWMLElementType.textField.toStr()) {
       return EnumSpWMLElementType.textField;
     } else if (s == EnumSpWMLElementType.tf.toStr()) {
-      return EnumSpWMLElementType.tf;
+      return EnumSpWMLElementType.textField;
     } else if (s == EnumSpWMLElementType.img.toStr()) {
       return EnumSpWMLElementType.img;
     } else if (s == EnumSpWMLElementType.href.toStr()) {
@@ -118,6 +123,16 @@ extension EXTEnumSpWMLElementType on EnumSpWMLElementType {
       return EnumSpWMLElementType.icon;
     } else if (s == EnumSpWMLElementType.card.toStr()) {
       return EnumSpWMLElementType.card;
+    } else if (s == EnumSpWMLElementType.checkbox.toStr()) {
+      return EnumSpWMLElementType.checkbox;
+    } else if (s == EnumSpWMLElementType.radioBtn.toStr()) {
+      return EnumSpWMLElementType.radioBtn;
+    } else if (s == EnumSpWMLElementType.table.toStr()) {
+      return EnumSpWMLElementType.table;
+    } else if (s == EnumSpWMLElementType.tableRow.toStr()) {
+      return EnumSpWMLElementType.tableRow;
+    } else if (s == EnumSpWMLElementType.tr.toStr()) {
+      return EnumSpWMLElementType.tableRow;
     } else {
       throw SpWMLException(
           EnumSpWMLExceptionType.typeException, lineStart, lineEnd);

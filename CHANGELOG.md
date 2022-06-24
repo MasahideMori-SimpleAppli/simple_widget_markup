@@ -1,3 +1,10 @@
+## 4.0.0
+* The outlineColor parameter has been deprecated and integrated into borderColor.
+* Box decorations are now available. Related parameters have been added.
+* RadioBtnElement has been added.
+* CheckboxElement has been added.
+* TableElement and TableRowElement have been added.
+
 ## 3.0.4
 * Fixed color parser.
 

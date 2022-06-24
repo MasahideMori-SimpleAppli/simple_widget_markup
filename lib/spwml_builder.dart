@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'element/sub/button/btn_element.dart';
+import 'element/sub/button/checkbox_element.dart';
 import 'element/sub/button/dropdown_btn_element.dart';
+import 'element/sub/button/radio_btn_element.dart';
 import 'element/sub/structure/card_element.dart';
 import 'element/sub/structure/col_element.dart';
 import 'element/sub/structure/exp_tile_element.dart';
@@ -9,6 +11,8 @@ import 'element/sub/button/popupmenu_btn_element.dart';
 import 'element/sub/structure/scroll_element.dart';
 import 'element/sub/structure/span_element.dart';
 import 'element/sub/structure/stack_element.dart';
+import 'element/sub/structure/table_element.dart';
+import 'element/sub/structure/table_row_element.dart';
 import 'element/sub/structure/wrap_element.dart';
 import 'element/sub/text/text_element.dart';
 import 'element/sub/structure/block_element.dart';
@@ -185,6 +189,42 @@ class SpWMLBuilder {
             }
             needReturn = true;
             break;
+          } else if (elm is CheckboxElement) {
+            elm.children.children = newWidgets;
+            for (SpWMLElement j in _parsedWidgets) {
+              if (elm.serial == j.parentSerial) {
+                removeTargets.add(j);
+              }
+            }
+            needReturn = true;
+            break;
+          } else if (elm is RadioBtnElement) {
+            elm.children.children = newWidgets;
+            for (SpWMLElement j in _parsedWidgets) {
+              if (elm.serial == j.parentSerial) {
+                removeTargets.add(j);
+              }
+            }
+            needReturn = true;
+            break;
+          } else if (elm is TableElement) {
+            elm.children.children = newWidgets;
+            for (SpWMLElement j in _parsedWidgets) {
+              if (elm.serial == j.parentSerial) {
+                removeTargets.add(j);
+              }
+            }
+            needReturn = true;
+            break;
+          } else if (elm is TableRowElement) {
+            elm.children.children = newWidgets;
+            for (SpWMLElement j in _parsedWidgets) {
+              if (elm.serial == j.parentSerial) {
+                removeTargets.add(j);
+              }
+            }
+            needReturn = true;
+            break;
           } else {
             throw SpWMLException(
                 EnumSpWMLExceptionType.replaceException, -1, -1);
@@ -317,6 +357,30 @@ class SpWMLBuilder {
           }
         }
       } else if (i is ExpTileElement) {
+        for (SpWMLElement j in _parsedWidgets) {
+          if (i.serial == j.parentSerial) {
+            i.children.children.add(j);
+          }
+        }
+      } else if (i is CheckboxElement) {
+        for (SpWMLElement j in _parsedWidgets) {
+          if (i.serial == j.parentSerial) {
+            i.children.children.add(j);
+          }
+        }
+      } else if (i is RadioBtnElement) {
+        for (SpWMLElement j in _parsedWidgets) {
+          if (i.serial == j.parentSerial) {
+            i.children.children.add(j);
+          }
+        }
+      } else if (i is TableElement) {
+        for (SpWMLElement j in _parsedWidgets) {
+          if (i.serial == j.parentSerial) {
+            i.children.children.add(j);
+          }
+        }
+      } else if (i is TableRowElement) {
         for (SpWMLElement j in _parsedWidgets) {
           if (i.serial == j.parentSerial) {
             i.children.children.add(j);

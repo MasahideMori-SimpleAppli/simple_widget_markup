@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:simple_widget_markup/element/sub/button/btn_element.dart';
-import 'package:simple_widget_markup/element/sub/button/dropdown_btn_element.dart';
-import 'package:simple_widget_markup/element/sub/button/popupmenu_btn_element.dart';
-import 'package:simple_widget_markup/element/sub/button/switch_btn_element.dart';
-import 'package:simple_widget_markup/element/sub/other/icon_element.dart';
-import 'package:simple_widget_markup/element/sub/other/img_element.dart';
-import 'package:simple_widget_markup/element/sub/structure/card_element.dart';
-import 'package:simple_widget_markup/element/sub/structure/col_element.dart';
-import 'package:simple_widget_markup/element/sub/structure/scroll_element.dart';
-import 'package:simple_widget_markup/element/sub/structure/wrap_element.dart';
-import 'package:simple_widget_markup/element/sub/text/text_field_element.dart';
-import 'package:simple_widget_markup/element/super/spwml_element.dart';
+import 'package:simple_widget_markup/element/sub/button/checkbox_element.dart';
+import 'package:simple_widget_markup/element/sub/button/radio_btn_element.dart';
+import 'package:simple_widget_markup/element/sub/structure/table_element.dart';
+import '../element/sub/button/btn_element.dart';
+import '../element/sub/button/dropdown_btn_element.dart';
+import '../element/sub/button/popupmenu_btn_element.dart';
+import '../element/sub/button/switch_btn_element.dart';
+import '../element/sub/other/icon_element.dart';
+import '../element/sub/other/img_element.dart';
+import '../element/sub/structure/card_element.dart';
+import '../element/sub/structure/col_element.dart';
+import '../element/sub/structure/scroll_element.dart';
+import '../element/sub/structure/wrap_element.dart';
+import '../element/sub/text/text_field_element.dart';
+import '../element/super/spwml_element.dart';
 import '../element_params/sub/button/btn_params.dart';
+import '../element_params/sub/button/checkbox_params.dart';
 import '../element_params/sub/button/dropdown_btn_params.dart';
 import '../element_params/sub/button/popupmenu_btn_params.dart';
+import '../element_params/sub/button/radio_btn_params.dart';
 import '../element_params/sub/button/switch_btn_params.dart';
 import '../element_params/sub/other/icon_element_params.dart';
 import '../element_params/sub/other/img_element_params.dart';
@@ -25,6 +30,8 @@ import '../element_params/sub/structure/row_col_params.dart';
 import '../element_params/sub/structure/scroll_params.dart';
 import '../element_params/sub/structure/span_params.dart';
 import '../element_params/sub/structure/stack_params.dart';
+import '../element_params/sub/structure/table_params.dart';
+import '../element_params/sub/structure/table_row_params.dart';
 import '../element_params/sub/structure/wrap_params.dart';
 import '../element_params/sub/text/href_params.dart';
 import '../element_params/sub/text/text_params.dart';
@@ -38,6 +45,7 @@ import '../element_params/element_child.dart';
 import 'spwml_font_style.dart';
 import 'sub/structure/span_element.dart';
 import 'sub/structure/block_element.dart';
+import 'sub/structure/table_row_element.dart';
 import 'sub/text/href_element.dart';
 import 'sub/other/line_element.dart';
 import 'sub/structure/row_element.dart';
@@ -97,8 +105,7 @@ class UtilElement {
         eType == EnumSpWMLElementType.menu) {
       r = TextElement(serial, eType, param, spwmlEP, parentSerial, lineStart,
           lineEnd, style, TextParamsWrapper(TextParams()));
-    } else if (eType == EnumSpWMLElementType.textField ||
-        eType == EnumSpWMLElementType.tf) {
+    } else if (eType == EnumSpWMLElementType.textField) {
       r = TextFieldElement(
           serial,
           param,
@@ -218,6 +225,28 @@ class UtilElement {
           StructureElementChildren(),
           TextParamsWrapper(TextParams()),
           ExpTileParamsWrapper(ExpTileParams()));
+    } else if (eType == EnumSpWMLElementType.checkbox) {
+      r = CheckboxElement(
+          serial,
+          param,
+          spwmlEP,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          StructureElementChildren(),
+          CheckboxParamsWrapper(CheckboxParams()));
+    } else if (eType == EnumSpWMLElementType.radioBtn) {
+      r = RadioBtnElement(
+          serial,
+          param,
+          spwmlEP,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          StructureElementChildren(),
+          RadioBtnParamsWrapper(RadioBtnParams()));
     } else if (eType == EnumSpWMLElementType.scroll) {
       r = ScrollElement(
           serial,
@@ -238,6 +267,20 @@ class UtilElement {
     } else if (eType == EnumSpWMLElementType.card) {
       r = CardElement(serial, param, spwmlEP, parentSerial, lineStart, lineEnd,
           style, BlockElementChild(), CardParamsWrapper(CardParams()));
+    } else if (eType == EnumSpWMLElementType.table) {
+      r = TableElement(serial, param, spwmlEP, parentSerial, lineStart, lineEnd,
+          style, StructureElementChildren(), TableParamsWrapper(TableParams()));
+    } else if (eType == EnumSpWMLElementType.tableRow) {
+      r = TableRowElement(
+          serial,
+          param,
+          spwmlEP,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          StructureElementChildren(),
+          TableRowParamsWrapper(TableRowParams()));
     } else {
       // 存在しないタイプの場合は通常はfromStr時点で例外が発生している。
       // ここで発生する場合は処理の追加漏れ。

@@ -121,8 +121,12 @@ class DropdownBtnElement extends SpWMLElement {
   }
 
   /// (en)Set initial index of dropdown items.
+  /// To keep the value of the radio button when the screen is refreshed,
+  /// hold the value in the upper widget etc. and call this.
   ///
   /// (ja)ドロップダウンアイテムの初期インデックスを設定します。
+  /// 画面の更新時にラジオボタンの値を保持するには、
+  /// 上位のウィジェット等で値を保持し、これを呼び出します。
   /// * [index] : The index. The first child element is counted as 0.
   void setInitialIndex(int? index) {
     elParams.p.selectedIndex = index;
@@ -148,11 +152,6 @@ class _DropDownElementWidget extends StatefulWidget {
 }
 
 class _DropDownElementWidgetState extends State<_DropDownElementWidget> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return DropdownButton(

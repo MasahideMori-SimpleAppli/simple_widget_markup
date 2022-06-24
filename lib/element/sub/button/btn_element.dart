@@ -282,13 +282,12 @@ class BtnElement extends TextElement {
   /// Get button borderSide
   BorderSide? _getBorderSide() {
     final bool isUseWidth = params.containsKey(EnumSpWMLParams.borderWidth);
-    final bool isUseColor = params.containsKey(EnumSpWMLParams.outlineColor);
+    final bool isUseColor = params.containsKey(EnumSpWMLParams.borderColor);
     return isUseWidth || isUseColor
         ? BorderSide(
             width: isUseWidth ? params[EnumSpWMLParams.borderWidth]! : 1.0,
-            color: isUseColor
-                ? params[EnumSpWMLParams.outlineColor]
-                : Colors.black,
+            color:
+                isUseColor ? params[EnumSpWMLParams.borderColor] : Colors.black,
             style: BorderStyle.solid)
         : null;
   }

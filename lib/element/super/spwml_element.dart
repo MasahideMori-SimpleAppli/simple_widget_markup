@@ -76,8 +76,8 @@ class SpWMLElement extends StatelessWidget {
         ? params[EnumSpWMLParams.shiftY]
         : null;
     if (params.containsKey(EnumSpWMLParams.elevation)) {
-      spwmlParams.p.material ??= MaterialParams();
-      spwmlParams.p.material!.elevation =
+      spwmlParams.p.materialParams ??= MaterialParams();
+      spwmlParams.p.materialParams!.elevation =
           params.containsKey(EnumSpWMLParams.elevation)
               ? params[EnumSpWMLParams.elevation]
               : 0.0;
@@ -85,37 +85,99 @@ class SpWMLElement extends StatelessWidget {
     if (_isEnableConstrains()) {
       spwmlParams.p.constrains = _getConstraints();
     }
-    spwmlParams.p.margin = _getMargin();
-    spwmlParams.p.padding = _getPadding();
-    spwmlParams.p.width = params.containsKey(EnumSpWMLParams.width)
-        ? params[EnumSpWMLParams.width]!
-        : null;
-    spwmlParams.p.height = params.containsKey(EnumSpWMLParams.height)
-        ? params[EnumSpWMLParams.height]!
-        : null;
-    spwmlParams.p.bgColor = params.containsKey(EnumSpWMLParams.bgColor)
-        ? params[EnumSpWMLParams.bgColor]!
-        : null;
+    spwmlParams.p.containerParams ??= ContainerParams();
+    spwmlParams.p.containerParams!.margin = _getMargin();
+    spwmlParams.p.containerParams!.padding = _getPadding();
+    spwmlParams.p.containerParams!.width =
+        params.containsKey(EnumSpWMLParams.width)
+            ? params[EnumSpWMLParams.width]!
+            : null;
+    spwmlParams.p.containerParams!.height =
+        params.containsKey(EnumSpWMLParams.height)
+            ? params[EnumSpWMLParams.height]!
+            : null;
+    spwmlParams.p.containerParams!.color =
+        params.containsKey(EnumSpWMLParams.bgColor)
+            ? params[EnumSpWMLParams.bgColor]!
+            : null;
+    // Decoration
+    spwmlParams.p.containerParams!.decoration = _getDecoration();
     return this;
   }
 
-  /// Get button shape
+  /// Get element decoration. It disabled in btn or card and return null.
+  BoxDecoration? _getDecoration() {
+    if (type != EnumSpWMLElementType.btn && type != EnumSpWMLElementType.card) {
+      return BoxDecoration(
+          color: spwmlParams.p.containerParams!.color,
+          border: Border.all(
+            color: params.containsKey(EnumSpWMLParams.borderColor)
+                ? params[EnumSpWMLParams.borderColor]
+                : Colors.transparent,
+            width: params.containsKey(EnumSpWMLParams.borderWidth)
+                ? params[EnumSpWMLParams.borderWidth]
+                : 0.0,
+            // solid only
+            style: BorderStyle.solid,
+          ),
+          borderRadius: _getBorderRadius(),
+          shape: params.containsKey(EnumSpWMLParams.borderShape)
+              ? params[EnumSpWMLParams.borderShape]
+              : BoxShape.rectangle);
+    } else {
+      return null;
+    }
+  }
+
+  BorderRadius? _getBorderRadius() {
+    if (params.containsKey(EnumSpWMLParams.borderRadius)) {
+      return BorderRadius.circular(params[EnumSpWMLParams.borderRadius]);
+    } else if (params.containsKey(EnumSpWMLParams.rTL) ||
+        params.containsKey(EnumSpWMLParams.rTR) ||
+        params.containsKey(EnumSpWMLParams.rBL) ||
+        params.containsKey(EnumSpWMLParams.rBL)) {
+      return BorderRadius.only(
+          topLeft: params.containsKey(EnumSpWMLParams.rTL)
+              ? Radius.circular(params[EnumSpWMLParams.rTL])
+              : Radius.zero,
+          topRight: params.containsKey(EnumSpWMLParams.rTR)
+              ? Radius.circular(params[EnumSpWMLParams.rTR])
+              : Radius.zero,
+          bottomLeft: params.containsKey(EnumSpWMLParams.rBL)
+              ? Radius.circular(params[EnumSpWMLParams.rBL])
+              : Radius.zero,
+          bottomRight: params.containsKey(EnumSpWMLParams.rBL)
+              ? Radius.circular(params[EnumSpWMLParams.rBL])
+              : Radius.zero);
+    } else if (params.containsKey(EnumSpWMLParams.ellipticalX) &&
+        params.containsKey(EnumSpWMLParams.ellipticalY)) {
+      return BorderRadius.only(
+          topLeft: params.containsKey(EnumSpWMLParams.rTL)
+              ? Radius.circular(params[EnumSpWMLParams.rTL])
+              : Radius.zero,
+          topRight: params.containsKey(EnumSpWMLParams.rTR)
+              ? Radius.circular(params[EnumSpWMLParams.rTR])
+              : Radius.zero,
+          bottomLeft: params.containsKey(EnumSpWMLParams.rBL)
+              ? Radius.circular(params[EnumSpWMLParams.rBL])
+              : Radius.zero,
+          bottomRight: params.containsKey(EnumSpWMLParams.rBL)
+              ? Radius.circular(params[EnumSpWMLParams.rBL])
+              : Radius.zero);
+    } else {
+      return null;
+    }
+  }
+
+  /// Get element shape. It works differently for btn or card.
   OutlinedBorder? getShape() {
     if (params.containsKey(EnumSpWMLParams.shape)) {
-      if (params.containsKey(EnumSpWMLParams.borderRadius)) {
-        if (params[EnumSpWMLParams.shape] is RoundedRectangleBorder) {
-          return (params[EnumSpWMLParams.shape] as RoundedRectangleBorder)
-              .copyWith(
-                  borderRadius: BorderRadius.circular(
-                      params[EnumSpWMLParams.borderRadius]));
-        } else if (params[EnumSpWMLParams.shape] is BeveledRectangleBorder) {
-          return (params[EnumSpWMLParams.shape] as BeveledRectangleBorder)
-              .copyWith(
-                  borderRadius: BorderRadius.circular(
-                      params[EnumSpWMLParams.borderRadius]));
-        } else {
-          return params[EnumSpWMLParams.shape];
-        }
+      if (params[EnumSpWMLParams.shape] is RoundedRectangleBorder) {
+        return (params[EnumSpWMLParams.shape] as RoundedRectangleBorder)
+            .copyWith(borderRadius: _getBorderRadius());
+      } else if (params[EnumSpWMLParams.shape] is BeveledRectangleBorder) {
+        return (params[EnumSpWMLParams.shape] as BeveledRectangleBorder)
+            .copyWith(borderRadius: _getBorderRadius());
       } else {
         return params[EnumSpWMLParams.shape];
       }
@@ -214,12 +276,23 @@ class SpWMLElement extends StatelessWidget {
   /// * [child] : The child widget.
   Widget _container(Widget child) {
     return Container(
-        width: spwmlParams.p.width,
-        height: spwmlParams.p.height,
-        margin: spwmlParams.p.margin,
-        padding: spwmlParams.p.padding,
-        color: spwmlParams.p.bgColor,
-        child: child);
+      key: spwmlParams.p.containerParams!.key,
+      alignment: spwmlParams.p.containerParams!.alignment,
+      padding: spwmlParams.p.containerParams!.padding,
+      color: spwmlParams.p.containerParams!.decoration == null
+          ? spwmlParams.p.containerParams!.color
+          : null,
+      decoration: spwmlParams.p.containerParams!.decoration,
+      foregroundDecoration: spwmlParams.p.containerParams!.foregroundDecoration,
+      width: spwmlParams.p.containerParams!.width,
+      height: spwmlParams.p.containerParams!.height,
+      constraints: spwmlParams.p.containerParams!.constraints,
+      margin: spwmlParams.p.containerParams!.margin,
+      transform: spwmlParams.p.containerParams!.transform,
+      transformAlignment: spwmlParams.p.containerParams!.transformAlignment,
+      child: child,
+      clipBehavior: spwmlParams.p.containerParams!.clipBehavior,
+    );
   }
 
   /// If true, this widget need transform.
@@ -257,20 +330,20 @@ class SpWMLElement extends StatelessWidget {
   /// Wrap if necessary.
   /// * [child] : The child widget.
   Widget _material(Widget child) {
-    if (spwmlParams.p.material != null) {
+    if (spwmlParams.p.materialParams != null) {
       return Material(
-          key: spwmlParams.p.material!.key,
-          type: spwmlParams.p.material!.type,
-          elevation: spwmlParams.p.material!.elevation,
-          color: spwmlParams.p.material!.color,
-          shadowColor: spwmlParams.p.material!.shadowColor,
-          surfaceTintColor: spwmlParams.p.material!.surfaceTintColor,
-          textStyle: spwmlParams.p.material!.textStyle,
-          borderRadius: spwmlParams.p.material!.borderRadius,
-          shape: spwmlParams.p.material!.shape,
-          borderOnForeground: spwmlParams.p.material!.borderOnForeground,
-          clipBehavior: spwmlParams.p.material!.clipBehavior,
-          animationDuration: spwmlParams.p.material!.animationDuration,
+          key: spwmlParams.p.materialParams!.key,
+          type: spwmlParams.p.materialParams!.type,
+          elevation: spwmlParams.p.materialParams!.elevation,
+          color: spwmlParams.p.materialParams!.color,
+          shadowColor: spwmlParams.p.materialParams!.shadowColor,
+          surfaceTintColor: spwmlParams.p.materialParams!.surfaceTintColor,
+          textStyle: spwmlParams.p.materialParams!.textStyle,
+          borderRadius: spwmlParams.p.materialParams!.borderRadius,
+          shape: spwmlParams.p.materialParams!.shape,
+          borderOnForeground: spwmlParams.p.materialParams!.borderOnForeground,
+          clipBehavior: spwmlParams.p.materialParams!.clipBehavior,
+          animationDuration: spwmlParams.p.materialParams!.animationDuration,
           child: child);
     } else {
       return child;

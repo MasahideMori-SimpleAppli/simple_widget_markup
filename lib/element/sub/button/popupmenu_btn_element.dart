@@ -125,11 +125,6 @@ class _PopupMenuElementWidget extends StatefulWidget {
 
 class _PopupMenuElementWidgetState extends State<_PopupMenuElementWidget> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return PopupMenuButton<int>(
       key: widget.elParam.p.key,

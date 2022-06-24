@@ -73,9 +73,10 @@ enum EnumSpWMLParams {
   type,
   iconNum,
   suffixIconNum,
-  outlineColor,
   borderWidth,
   borderRadius,
+  borderColor,
+  borderShape,
   shape,
   iconSize,
   iconColor,
@@ -97,6 +98,15 @@ enum EnumSpWMLParams {
   cardElevation,
   underlineColor,
   underlineHeight,
+  // tableの水平方向の要素数
+  hNum,
+  // 単一指定系のボーダー角の指定
+  rTL,
+  rTR,
+  rBL,
+  rBR,
+  ellipticalX,
+  ellipticalY,
 }
 
 extension EXTEnumSpWMLParams on EnumSpWMLParams {
@@ -141,10 +151,16 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.textHeight ||
           this == EnumSpWMLParams.letterSpacing ||
           this == EnumSpWMLParams.wordSpacing ||
-          this == EnumSpWMLParams.underlineHeight) {
+          this == EnumSpWMLParams.underlineHeight ||
+          this == EnumSpWMLParams.rTL ||
+          this == EnumSpWMLParams.rTR ||
+          this == EnumSpWMLParams.rBL ||
+          this == EnumSpWMLParams.rBR ||
+          this == EnumSpWMLParams.ellipticalX ||
+          this == EnumSpWMLParams.ellipticalY) {
         return double.parse(v);
       }
-      if (this == EnumSpWMLParams.weight) {
+      if (this == EnumSpWMLParams.weight || this == EnumSpWMLParams.hNum) {
         return int.parse(v);
       }
       // col, row or wrap only
@@ -234,12 +250,12 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.textColor ||
           this == EnumSpWMLParams.textBGColor ||
           this == EnumSpWMLParams.textDecoColor ||
-          this == EnumSpWMLParams.outlineColor ||
           this == EnumSpWMLParams.iconColor ||
           this == EnumSpWMLParams.suffixIconColor ||
           this == EnumSpWMLParams.btnBGColor ||
           this == EnumSpWMLParams.fillColor ||
-          this == EnumSpWMLParams.underlineColor) {
+          this == EnumSpWMLParams.underlineColor ||
+          this == EnumSpWMLParams.borderColor) {
         return UtilParser.convertColor(v);
       } else if (this == EnumSpWMLParams.id) {
         return int.parse(v);
@@ -336,6 +352,14 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
         } else {
           throw Exception();
         }
+      } else if (this == EnumSpWMLParams.borderShape) {
+        if (v == "rectangle") {
+          return BoxShape.rectangle;
+        } else if (v == "circle") {
+          return BoxShape.circle;
+        } else {
+          throw Exception();
+        }
       } else {
         // 変換不要ならそのまま返す。
         return v;
@@ -382,8 +406,6 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       return EnumSpWMLParams.textDecoStyle;
     } else if (s == EnumSpWMLParams.textDecoColor.toStr()) {
       return EnumSpWMLParams.textDecoColor;
-    } else if (s == EnumSpWMLParams.outlineColor.toStr()) {
-      return EnumSpWMLParams.outlineColor;
     } else if (s == EnumSpWMLParams.textAlign.toStr()) {
       return EnumSpWMLParams.textAlign;
     } else if (s == EnumSpWMLParams.textHeight.toStr()) {
@@ -462,6 +484,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       return EnumSpWMLParams.borderWidth;
     } else if (s == EnumSpWMLParams.borderRadius.toStr()) {
       return EnumSpWMLParams.borderRadius;
+    } else if (s == EnumSpWMLParams.borderColor.toStr()) {
+      return EnumSpWMLParams.borderColor;
     } else if (s == EnumSpWMLParams.shape.toStr()) {
       return EnumSpWMLParams.shape;
     } else if (s == EnumSpWMLParams.type.toStr()) {
@@ -510,6 +534,22 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       return EnumSpWMLParams.underlineColor;
     } else if (s == EnumSpWMLParams.underlineHeight.toStr()) {
       return EnumSpWMLParams.underlineHeight;
+    } else if (s == EnumSpWMLParams.hNum.toStr()) {
+      return EnumSpWMLParams.hNum;
+    } else if (s == EnumSpWMLParams.rTL.toStr()) {
+      return EnumSpWMLParams.rTL;
+    } else if (s == EnumSpWMLParams.rTR.toStr()) {
+      return EnumSpWMLParams.rTR;
+    } else if (s == EnumSpWMLParams.rBL.toStr()) {
+      return EnumSpWMLParams.rBL;
+    } else if (s == EnumSpWMLParams.rBR.toStr()) {
+      return EnumSpWMLParams.rBR;
+    } else if (s == EnumSpWMLParams.ellipticalX.toStr()) {
+      return EnumSpWMLParams.ellipticalX;
+    } else if (s == EnumSpWMLParams.ellipticalY.toStr()) {
+      return EnumSpWMLParams.ellipticalY;
+    } else if (s == EnumSpWMLParams.borderShape.toStr()) {
+      return EnumSpWMLParams.borderShape;
     } else {
       throw SpWMLException(
           EnumSpWMLExceptionType.paramException, lineStart, lineEnd);

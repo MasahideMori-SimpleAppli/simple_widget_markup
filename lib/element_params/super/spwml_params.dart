@@ -23,11 +23,28 @@ class MaterialParams {
   Widget? child;
 }
 
+class ContainerParams {
+  Key? key;
+  AlignmentGeometry? alignment;
+  EdgeInsetsGeometry? padding;
+  Color? color;
+  Decoration? decoration;
+  Decoration? foregroundDecoration;
+  double? width;
+  double? height;
+  BoxConstraints? constraints;
+  EdgeInsetsGeometry? margin;
+  Matrix4? transform;
+  AlignmentGeometry? transformAlignment;
+  Widget? child;
+  Clip clipBehavior = Clip.none;
+}
+
 class SpWMLParams {
   String text;
 
   // Material
-  MaterialParams? material;
+  MaterialParams? materialParams;
 
   // Expanded
   int? weight;
@@ -40,22 +57,14 @@ class SpWMLParams {
   BoxConstraints? constrains;
 
   // Container
-  double? height;
-  double? width;
-  EdgeInsets? margin;
-  EdgeInsets? padding;
-  Color? bgColor;
+  ContainerParams? containerParams;
 
   /// The SpWMLElement Parameters.
   SpWMLParams(this.text,
-      {this.material,
+      {this.materialParams,
+      this.containerParams,
       this.weight,
       this.shiftX,
       this.shiftY,
-      this.constrains,
-      this.height,
-      this.width,
-      this.margin,
-      this.padding,
-      this.bgColor});
+      this.constrains});
 }

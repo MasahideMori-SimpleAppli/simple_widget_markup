@@ -42,15 +42,14 @@ enum EnumSpWMLExceptionType {
   paramHealthException,
   syntaxException,
   elementException,
+  tableParamException,
 }
 
 extension EXTEnumSpWMLExceptionType on EnumSpWMLExceptionType {
-  /// Convert string name.
   String toStr() {
     return toString().split('.').last;
   }
 
-  /// Convert error string.
   String toErrorText() {
     if (this == EnumSpWMLExceptionType.typeException) {
       return "It is an invalid type.";
@@ -70,6 +69,8 @@ extension EXTEnumSpWMLExceptionType on EnumSpWMLExceptionType {
       return 'Syntax Error.';
     } else if (this == EnumSpWMLExceptionType.elementException) {
       return 'The specified position contains an element that cannot be placed.';
+    } else if (this == EnumSpWMLExceptionType.tableParamException) {
+      return 'Please set hNum parameter.';
     } else {
       return "An unknown exception.";
     }
