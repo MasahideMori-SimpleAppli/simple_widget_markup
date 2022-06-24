@@ -45,6 +45,10 @@ Currently, the types are as follows.
     - expTile(The container whose inside is a so-called accordion menu.)
     - dropdownBtn(The container whose inside is a so-called dropdown menu. Callback is set by DropdownBtnElement.setCallback from the program code side.)
     - popupMenuBtn(The container whose inside is a so-called popup menu. Callback is set by PopupMenuBtnElement.setCallback from the program code side.)
+    - radioBtn(Single choice)
+    - checkbox(Multiple selection)
+    - table
+    - tableRow(tr, Internal elements of the table)
 
 - Elements in the container
   - text system
@@ -56,12 +60,13 @@ Currently, the types are as follows.
     - caption
     - overline (Text to display above the line.)
     - menu(Plane text for dropdownBtn and popupMenuBtn.)
+    - textField(tf, The text input field)
   - Other than text
     - img (Image. URL is described in the text part.)
     - href (Hyperlinks are written in the text part. The appearance can be changed with the alt parameter.)
     - line (Horizontal divider)
     - vline(Vertical divider)
-    - btn
+    - btn(Button)
     - icon
     - switchBtn
 

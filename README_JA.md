@@ -43,6 +43,10 @@ typeは必須で、パラメータは省略可能です。
     - expTile(内部が所謂アコーディオンメニューになるコンテナ)
     - dropdownBtn(内部がドロップダウンメニュー要素のコンテナ。コールバックはプログラムコード側からDropdownBtnElement.setCallbackで設定します)
     - popupMenuBtn(内部がポップアップメニュー要素のコンテナ。コールバックはプログラムコード側からPopupMenuBtnElement.setCallbackで設定します)
+    - radioBtn(単一選択)
+    - checkbox(複数選択)
+    - table(表)
+    - tableRow(tr, 表の内部要素)
 
 - コンテナ内要素
   - text系
@@ -54,12 +58,13 @@ typeは必須で、パラメータは省略可能です。
     - caption
     - overline(線の上に表示するためのテキスト)
     - menu(dropdownBtnおよびpopupMenuBtnのための、マージン等が適用されていないプレーンなテキスト)
+    - textField(tf, テキスト入力)
   - text以外
     - img(画像。テキスト部分にURLまたはbase64画像を記載する)
     - href(テキスト部分にハイパーリンクを記載する。altパラメータで見た目を変えられる)
     - line(水平区切り)
     - vline(垂直区切り)
-    - btn
+    - btn(ボタン要素)
     - icon
     - switchBtn
 
