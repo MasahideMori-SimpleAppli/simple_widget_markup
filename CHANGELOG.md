@@ -1,3 +1,7 @@
+## 4.0.1
+* Fixed readme files.
+* Fixed bug related to borderRadius variations.
+
 ## 4.0.0
 * The outlineColor parameter has been deprecated and integrated into borderColor.
 * Box decorations are now available. Related parameters have been added.

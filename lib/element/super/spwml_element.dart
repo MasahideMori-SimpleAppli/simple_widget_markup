@@ -135,7 +135,7 @@ class SpWMLElement extends StatelessWidget {
     } else if (params.containsKey(EnumSpWMLParams.rTL) ||
         params.containsKey(EnumSpWMLParams.rTR) ||
         params.containsKey(EnumSpWMLParams.rBL) ||
-        params.containsKey(EnumSpWMLParams.rBL)) {
+        params.containsKey(EnumSpWMLParams.rBR)) {
       return BorderRadius.only(
           topLeft: params.containsKey(EnumSpWMLParams.rTL)
               ? Radius.circular(params[EnumSpWMLParams.rTL])
@@ -146,24 +146,14 @@ class SpWMLElement extends StatelessWidget {
           bottomLeft: params.containsKey(EnumSpWMLParams.rBL)
               ? Radius.circular(params[EnumSpWMLParams.rBL])
               : Radius.zero,
-          bottomRight: params.containsKey(EnumSpWMLParams.rBL)
-              ? Radius.circular(params[EnumSpWMLParams.rBL])
+          bottomRight: params.containsKey(EnumSpWMLParams.rBR)
+              ? Radius.circular(params[EnumSpWMLParams.rBR])
               : Radius.zero);
     } else if (params.containsKey(EnumSpWMLParams.ellipticalX) &&
         params.containsKey(EnumSpWMLParams.ellipticalY)) {
-      return BorderRadius.only(
-          topLeft: params.containsKey(EnumSpWMLParams.rTL)
-              ? Radius.circular(params[EnumSpWMLParams.rTL])
-              : Radius.zero,
-          topRight: params.containsKey(EnumSpWMLParams.rTR)
-              ? Radius.circular(params[EnumSpWMLParams.rTR])
-              : Radius.zero,
-          bottomLeft: params.containsKey(EnumSpWMLParams.rBL)
-              ? Radius.circular(params[EnumSpWMLParams.rBL])
-              : Radius.zero,
-          bottomRight: params.containsKey(EnumSpWMLParams.rBL)
-              ? Radius.circular(params[EnumSpWMLParams.rBL])
-              : Radius.zero);
+      return BorderRadius.all(Radius.elliptical(
+          params[EnumSpWMLParams.ellipticalX],
+          params[EnumSpWMLParams.ellipticalY]));
     } else {
       return null;
     }
