@@ -59,6 +59,8 @@ class SpWMLParser {
       // 末尾が//だった場合、次のエレメントが無効化されるので、その判定フラグ。
       bool isNotEnableNextElement = false;
       for (String i in split1) {
+        // 最後に改行コードがあるかどうか。
+        bool isIndentionLast = _checkLastIndention(i);
         // 現在の行を更新
         List<String> lines = splitter.convert(i);
         // 内部にコメント行があれば、該当部分を削除する。
@@ -71,7 +73,12 @@ class SpWMLParser {
         lineEnd += lineLength;
         final isNowLineNotEnable = isNotEnableNextElement;
         if (commentLineEnd.hasMatch(lines.last)) {
-          isNotEnableNextElement = true;
+          // 最後が改行コードの場合、コメント行がエレメントの前にある。
+          if (isIndentionLast) {
+            isNotEnableNextElement = false;
+          } else {
+            isNotEnableNextElement = true;
+          }
         } else {
           isNotEnableNextElement = false;
         }
@@ -164,6 +171,7 @@ class SpWMLParser {
       throw SpWMLException(EnumSpWMLExceptionType.paramHealthException,
           indentCount, indentCount + 1);
     }
+    bool preIndent = false;
     for (String i in src.split("")) {
       // エスケープ文字
       if (i == UtilParser.escape) {
@@ -179,8 +187,14 @@ class SpWMLParser {
           isInEscape = false;
         } else {
           // エスケープでは無い場合
-          if (indention.hasMatch(i)) {
+          if (i == '\r') {
+            preIndent = true;
             indentCount += 1;
+          } else if (i == '\n') {
+            if (!preIndent) {
+              indentCount += 1;
+            }
+            preIndent = false;
           }
           if (i == paramStart) {
             if (isInParamStart) {
@@ -208,6 +222,31 @@ class SpWMLParser {
     }
   }
 
+  /// check last indention.
+  ///
+  /// Returns: If The src last is indention, return True, otherwise False.
+  static bool _checkLastIndention(String src) {
+    if (src.isEmpty) {
+      return false;
+    }
+    final int sLen = src.length;
+    final String lastStr = src.substring(sLen - 1, sLen);
+    if (sLen == 1) {
+      if (lastStr == '\n' || lastStr == '\r') {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      if (lastStr == '\n' || lastStr == '\r') {
+        return true;
+      } else {
+        return src.substring(sLen - 2, sLen) == "\r\n";
+      }
+    }
+  }
+
+  /// delete last indention.
   static String _delLastIndention(String src) {
     if (src.isEmpty) {
       return src;
@@ -215,7 +254,7 @@ class SpWMLParser {
     final int sLen = src.length;
     if (sLen == 1) {
       final String lastStr = src.substring(sLen - 1, sLen);
-      if (indention.hasMatch(lastStr)) {
+      if (lastStr == '\n' || lastStr == '\r') {
         // Other
         return src.substring(0, sLen - 1);
       } else {
@@ -228,7 +267,7 @@ class SpWMLParser {
         return src.substring(0, sLen - 2);
       } else {
         final String lastStr = src.substring(sLen - 1, sLen);
-        if (indention.hasMatch(lastStr)) {
+        if (lastStr == '\n' || lastStr == '\r') {
           // Other
           return src.substring(0, sLen - 1);
         } else {

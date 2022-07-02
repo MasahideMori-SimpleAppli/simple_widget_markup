@@ -1,3 +1,7 @@
+## 4.0.2
+* Fixed a bug that comment lines are not converted properly depending on the condition.
+* Improved parser.
+
 ## 4.0.1
 * Fixed readme files.
 * Fixed bug related to borderRadius variations.
