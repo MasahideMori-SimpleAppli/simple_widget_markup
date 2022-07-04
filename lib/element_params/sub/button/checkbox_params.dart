@@ -33,5 +33,5 @@ class CheckboxParams {
   SelectableIconBtnParams? enableParams;
   SelectableIconBtnParams? disableParams;
   List<bool>? checkValues;
-  List<void Function(bool isEnabled)?>? callbacks;
+  void Function(List<bool>? checkValues)? callback;
 }

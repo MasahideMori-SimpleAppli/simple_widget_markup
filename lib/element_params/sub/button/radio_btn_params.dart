@@ -11,5 +11,5 @@ class RadioBtnParams {
   SelectableIconBtnParams? enableParams;
   SelectableIconBtnParams? disableParams;
   int? selectedIndex;
-  List<void Function(int? selectedIndex)?>? callbacks;
+  void Function(int? selectedIndex)? callback = (int? i) {};
 }

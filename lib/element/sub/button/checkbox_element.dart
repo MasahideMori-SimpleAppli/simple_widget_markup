@@ -68,12 +68,6 @@ class CheckboxElement extends SpWMLElement {
         elParams.p.checkValues!.add(false);
       }
     }
-    if (elParams.p.callbacks == null) {
-      elParams.p.callbacks = [];
-      for (int i = 0; i < children.children.length; i++) {
-        elParams.p.callbacks!.add((bool isEnabled) {});
-      }
-    }
     return _CheckboxElementWidget(children, elParams);
   }
 
@@ -93,8 +87,8 @@ class CheckboxElement extends SpWMLElement {
   ///
   /// (ja)チェックボックスのコールバックを設定します。
   /// * [callback] : The Checkboxes callback.
-  void setCallbacks(List<void Function(bool isEnabled)?> callbacks) {
-    elParams.p.callbacks = callbacks;
+  void setCallbacks(void Function(List<bool>? checkValues)? callback) {
+    elParams.p.callback = callback;
   }
 }
 
@@ -137,8 +131,10 @@ class _CheckboxElementWidgetState extends State<_CheckboxElementWidget> {
                       setState(() {
                         widget.elParams.p.checkValues![i] =
                             !widget.elParams.p.checkValues![i];
-                        widget.elParams.p
-                            .callbacks![i]!(widget.elParams.p.checkValues![i]);
+                        if (widget.elParams.p.callback != null) {
+                          widget.elParams.p
+                              .callback!(widget.elParams.p.checkValues!);
+                        }
                       });
                     },
                     mouseCursor: widget.elParams.p.enableParams!.mouseCursor,
@@ -170,8 +166,10 @@ class _CheckboxElementWidgetState extends State<_CheckboxElementWidget> {
                       setState(() {
                         widget.elParams.p.checkValues![i] =
                             !widget.elParams.p.checkValues![i];
-                        widget.elParams.p
-                            .callbacks![i]!(widget.elParams.p.checkValues![i]);
+                        if (widget.elParams.p.callback != null) {
+                          widget.elParams.p
+                              .callback!(widget.elParams.p.checkValues!);
+                        }
                       });
                     },
                     mouseCursor: widget.elParams.p.disableParams!.mouseCursor,

@@ -1,3 +1,7 @@
+## 5.0.0
+* Fixed an issue with radio button callback specifications.
+* Checkbox callback specifications have been improved.
+
 ## 4.0.2
 * Fixed a bug that comment lines are not converted properly depending on the condition.
 * Improved parser.

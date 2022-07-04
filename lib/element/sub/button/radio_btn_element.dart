@@ -63,12 +63,6 @@ class RadioBtnElement extends SpWMLElement {
 
   @override
   Widget getWidget(BuildContext context) {
-    if (elParams.p.callbacks == null) {
-      elParams.p.callbacks = [];
-      for (int i = 0; i < children.children.length; i++) {
-        elParams.p.callbacks!.add((int? selectedIndex) {});
-      }
-    }
     return _RadioBtnElementWidget(children, elParams);
   }
 
@@ -87,9 +81,9 @@ class RadioBtnElement extends SpWMLElement {
   /// (en)Set radio button callback.
   ///
   /// (ja)ラジオボタンのコールバックを設定します。
-  /// * [callback] : The Checkboxes callback.
-  void setCallbacks(List<void Function(int? selectedIndex)?> callbacks) {
-    elParams.p.callbacks = callbacks;
+  /// * [callback] : The radio button callback.
+  void setCallbacks(void Function(int? selectedIndex)? callback) {
+    elParams.p.callback = callback;
   }
 }
 
@@ -131,7 +125,9 @@ class _RadioBtnElementWidgetState extends State<_RadioBtnElementWidget> {
                     onPressed: () {
                       setState(() {
                         widget.elParams.p.selectedIndex = i;
-                        widget.elParams.p.callbacks![i]!(i);
+                        if (widget.elParams.p.callback != null) {
+                          widget.elParams.p.callback!(i);
+                        }
                       });
                     },
                     mouseCursor: widget.elParams.p.enableParams!.mouseCursor,
@@ -162,7 +158,9 @@ class _RadioBtnElementWidgetState extends State<_RadioBtnElementWidget> {
                     onPressed: () {
                       setState(() {
                         widget.elParams.p.selectedIndex = i;
-                        widget.elParams.p.callbacks![i]!(i);
+                        if (widget.elParams.p.callback != null) {
+                          widget.elParams.p.callback!(i);
+                        }
                       });
                     },
                     mouseCursor: widget.elParams.p.disableParams!.mouseCursor,
