@@ -82,7 +82,7 @@ class RadioBtnElement extends SpWMLElement {
   ///
   /// (ja)ラジオボタンのコールバックを設定します。
   /// * [callback] : The radio button callback.
-  void setCallbacks(void Function(int? selectedIndex)? callback) {
+  void setCallback(void Function(int? selectedIndex)? callback) {
     elParams.p.callback = callback;
   }
 }

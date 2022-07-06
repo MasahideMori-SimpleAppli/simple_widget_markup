@@ -87,7 +87,7 @@ class CheckboxElement extends SpWMLElement {
   ///
   /// (ja)チェックボックスのコールバックを設定します。
   /// * [callback] : The checkboxes callback.
-  void setCallbacks(void Function(List<bool>? checkValues)? callback) {
+  void setCallback(void Function(List<bool>? checkValues)? callback) {
     elParams.p.callback = callback;
   }
 }

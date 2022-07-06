@@ -1,3 +1,6 @@
+## 5.0.1
+* Fixed function name for RadioBtnElement and CheckboxElement.
+
 ## 5.0.0
 * Fixed an issue with radio button callback specifications.
 * Checkbox callback specifications have been improved.
