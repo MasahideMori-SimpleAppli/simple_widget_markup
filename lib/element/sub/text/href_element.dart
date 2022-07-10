@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../element/sub/text/text_element.dart';
+import 'package:simple_widget_markup/element/sub/text/text_element.dart';
 import '../../../element_params/sub/text/href_params.dart';
 import '../../../element_params/sub/text/text_params.dart';
 import '../../../element_params/super/spwml_params.dart';
@@ -73,6 +73,27 @@ class HrefElement extends TextElement {
       canRequestFocus: elParams.p.inkWellParams.canRequestFocus,
       onFocusChange: elParams.p.inkWellParams.onFocusChange,
       autofocus: elParams.p.inkWellParams.autofocus,
+    );
+  }
+
+  /// Get text widget
+  @override
+  Widget getText(BuildContext context) {
+    return Text(
+      getDisplayText(),
+      key: textParams.p.key,
+      style: getStyle(),
+      strutStyle: getStrutStyle(),
+      textAlign: getTextAlign(),
+      textDirection: textParams.p.textDirection,
+      locale: textParams.p.locale,
+      softWrap: textParams.p.softWrap,
+      textScaleFactor: textParams.p.textScaleFactor ??
+          MediaQuery.of(context).textScaleFactor,
+      maxLines: textParams.p.maxLines,
+      semanticsLabel: textParams.p.semanticsLabel,
+      textWidthBasis: textParams.p.textWidthBasis,
+      textHeightBehavior: textParams.p.textHeightBehavior,
     );
   }
 

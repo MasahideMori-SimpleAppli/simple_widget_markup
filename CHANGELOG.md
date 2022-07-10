@@ -1,3 +1,6 @@
+## 6.0.1
+* Fixed bug that alt parameter is disabled in hrefElement.
+
 ## 6.0.0
 * The language parser has been changed to a new one. Along with this, some bugs have been fixed.
 * Escapes are no longer required for parentheses in the text. However, it is still required within the parameters.
