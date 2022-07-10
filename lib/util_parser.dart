@@ -228,10 +228,10 @@ class UtilParser {
   }
 
   /// Escape-enabled split.
-  /// * [targetCharacter] : The length must be 1.
-  /// * [targetCharacterAdd] : If true, Add target character to return list.
-  static List<String> split(String src, String targetCharacter,
-      {bool targetCharacterAdd = false}) {
+  /// * [targetChar] : The length must be 1.
+  /// * [targetCharAdd] : If true, Add target character to return list.
+  static List<String> split(String src, String targetChar,
+      {bool targetCharAdd = false}) {
     List<String> r = [];
     String buf = "";
     bool isInEscape = false;
@@ -252,12 +252,12 @@ class UtilParser {
           isInEscape = false;
         } else {
           // エスケープ中では無い場合
-          if (i == targetCharacter) {
+          if (i == targetChar) {
             // 対象がターゲット文字列
             if (buf.isNotEmpty) {
               r.add(buf);
             }
-            if (targetCharacterAdd) {
+            if (targetCharAdd) {
               r.add(i);
             }
             buf = "";

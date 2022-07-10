@@ -1,3 +1,9 @@
+## 6.0.0
+* The language parser has been changed to a new one. Along with this, some bugs have been fixed.
+* Escapes are no longer required for parentheses in the text. However, it is still required within the parameters.
+* Line breaks now have meaning on the code. For this reason, it is no longer possible to list multiple types in one line.
+* Added enableTapLabel parameter to radio buttons and checkboxes. The default is false, and if set to true, can tap child view.
+
 ## 5.0.1
 * Fixed function name for RadioBtnElement and CheckboxElement.
 

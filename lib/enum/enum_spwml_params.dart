@@ -107,6 +107,7 @@ enum EnumSpWMLParams {
   rBR,
   ellipticalX,
   ellipticalY,
+  enableTapLabel,
 }
 
 extension EXTEnumSpWMLParams on EnumSpWMLParams {
@@ -344,7 +345,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       } else if (this == EnumSpWMLParams.isSelectable ||
           this == EnumSpWMLParams.isPrimary ||
           this == EnumSpWMLParams.isExpanded ||
-          this == EnumSpWMLParams.value) {
+          this == EnumSpWMLParams.value ||
+          this == EnumSpWMLParams.enableTapLabel) {
         if (v == "true") {
           return true;
         } else if (v == "false") {
@@ -550,6 +552,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       return EnumSpWMLParams.ellipticalY;
     } else if (s == EnumSpWMLParams.borderShape.toStr()) {
       return EnumSpWMLParams.borderShape;
+    } else if (s == EnumSpWMLParams.enableTapLabel.toStr()) {
+      return EnumSpWMLParams.enableTapLabel;
     } else {
       throw SpWMLException(
           EnumSpWMLExceptionType.paramException, lineStart, lineEnd);

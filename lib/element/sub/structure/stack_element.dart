@@ -17,7 +17,7 @@ class StackElement extends SpWMLElement {
 
   StackElement(
       int serial,
-      List<String> param,
+      Map<String, String> params,
       SpWMLParamsWrapper spwmlEP,
       int parentSerial,
       int lineStart,
@@ -25,7 +25,7 @@ class StackElement extends SpWMLElement {
       SpWMLFontStyle style,
       this.children,
       this.elParams)
-      : super(serial, EnumSpWMLElementType.stack, param, spwmlEP, parentSerial,
+      : super(serial, EnumSpWMLElementType.stack, params, spwmlEP, parentSerial,
             lineStart, lineEnd, style);
 
   @override

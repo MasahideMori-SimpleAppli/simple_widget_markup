@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:simple_widget_markup/element/sub/structure/table_row_element.dart';
+import '../../../element/sub/structure/table_row_element.dart';
 import '../../../element_params/element_child.dart';
 import '../../../element_params/sub/structure/table_params.dart';
 import '../../../element_params/super/spwml_params.dart';
@@ -20,7 +20,7 @@ class TableElement extends SpWMLElement {
 
   TableElement(
       int serial,
-      List<String> param,
+      Map<String, String> params,
       SpWMLParamsWrapper spwmlEP,
       int parentSerial,
       int lineStart,
@@ -28,7 +28,7 @@ class TableElement extends SpWMLElement {
       SpWMLFontStyle style,
       this.children,
       this.elParams)
-      : super(serial, EnumSpWMLElementType.table, param, spwmlEP, parentSerial,
+      : super(serial, EnumSpWMLElementType.table, params, spwmlEP, parentSerial,
             lineStart, lineEnd, style);
 
   @override

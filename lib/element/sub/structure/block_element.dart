@@ -15,14 +15,14 @@ class BlockElement extends SpWMLElement {
 
   BlockElement(
       int serial,
-      List<String> param,
+      Map<String, String> params,
       SpWMLParamsWrapper spwmlEP,
       int parentSerial,
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
       this.child)
-      : super(serial, EnumSpWMLElementType.block, param, spwmlEP, parentSerial,
+      : super(serial, EnumSpWMLElementType.block, params, spwmlEP, parentSerial,
             lineStart, lineEnd, style);
 
   @override

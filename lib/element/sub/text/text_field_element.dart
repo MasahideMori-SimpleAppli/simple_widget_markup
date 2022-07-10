@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:simple_widget_markup/element/sub/text/text_element.dart';
+import '../../../element/sub/text/text_element.dart';
 import '../../../element_params/sub/text/text_params.dart';
 import '../../../element_params/super/spwml_params.dart';
 import '../../../element_params/sub/text/textfield_params.dart';
@@ -18,7 +18,7 @@ class TextFieldElement extends TextElement {
 
   TextFieldElement(
       int serial,
-      List<String> param,
+      Map<String, String> params,
       SpWMLParamsWrapper spwmlEP,
       int parentSerial,
       int lineStart,
@@ -26,7 +26,7 @@ class TextFieldElement extends TextElement {
       SpWMLFontStyle style,
       TextParamsWrapper textParams,
       this.tfParams)
-      : super(serial, EnumSpWMLElementType.textField, param, spwmlEP,
+      : super(serial, EnumSpWMLElementType.textField, params, spwmlEP,
             parentSerial, lineStart, lineEnd, style, textParams);
 
   /// initialize parameters

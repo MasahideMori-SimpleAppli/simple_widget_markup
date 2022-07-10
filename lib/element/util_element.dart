@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:simple_widget_markup/element/sub/button/checkbox_element.dart';
-import 'package:simple_widget_markup/element/sub/button/radio_btn_element.dart';
-import 'package:simple_widget_markup/element/sub/structure/table_element.dart';
+import '../element/sub/button/checkbox_element.dart';
+import '../element/sub/button/radio_btn_element.dart';
+import '../element/sub/structure/table_element.dart';
+import '../element_params/sub/button/checkbox_params.dart';
+import '../element_params/sub/button/radio_btn_params.dart';
+import '../element_params/sub/structure/table_params.dart';
 import '../element/sub/button/btn_element.dart';
 import '../element/sub/button/dropdown_btn_element.dart';
 import '../element/sub/button/popupmenu_btn_element.dart';
@@ -15,10 +18,8 @@ import '../element/sub/structure/wrap_element.dart';
 import '../element/sub/text/text_field_element.dart';
 import '../element/super/spwml_element.dart';
 import '../element_params/sub/button/btn_params.dart';
-import '../element_params/sub/button/checkbox_params.dart';
 import '../element_params/sub/button/dropdown_btn_params.dart';
 import '../element_params/sub/button/popupmenu_btn_params.dart';
-import '../element_params/sub/button/radio_btn_params.dart';
 import '../element_params/sub/button/switch_btn_params.dart';
 import '../element_params/sub/other/icon_element_params.dart';
 import '../element_params/sub/other/img_element_params.dart';
@@ -30,7 +31,6 @@ import '../element_params/sub/structure/row_col_params.dart';
 import '../element_params/sub/structure/scroll_params.dart';
 import '../element_params/sub/structure/span_params.dart';
 import '../element_params/sub/structure/stack_params.dart';
-import '../element_params/sub/structure/table_params.dart';
 import '../element_params/sub/structure/table_row_params.dart';
 import '../element_params/sub/structure/wrap_params.dart';
 import '../element_params/sub/text/href_params.dart';
@@ -65,7 +65,7 @@ class UtilElement {
   /// Create Element.
   /// * [serial] : Array Index.
   /// * [type] : Element Type.
-  /// * [param] : Element Parameter.
+  /// * [params] : Element Parameter.
   /// * [text] : The text.
   /// * [parentSerial] : The parent element serial.
   /// * [lineStart] : line info for the Error handling.
@@ -79,7 +79,7 @@ class UtilElement {
   static SpWMLElement create(
       int serial,
       String type,
-      List<String> param,
+      Map<String, String> params,
       String text,
       int parentSerial,
       int lineStart,
@@ -103,12 +103,12 @@ class UtilElement {
         eType == EnumSpWMLElementType.caption ||
         eType == EnumSpWMLElementType.overline ||
         eType == EnumSpWMLElementType.menu) {
-      r = TextElement(serial, eType, param, spwmlEP, parentSerial, lineStart,
+      r = TextElement(serial, eType, params, spwmlEP, parentSerial, lineStart,
           lineEnd, style, TextParamsWrapper(TextParams()));
     } else if (eType == EnumSpWMLElementType.textField) {
       r = TextFieldElement(
           serial,
-          param,
+          params,
           spwmlEP,
           parentSerial,
           lineStart,
@@ -119,7 +119,7 @@ class UtilElement {
     } else if (eType == EnumSpWMLElementType.href) {
       r = HrefElement(
           serial,
-          param,
+          params,
           spwmlEP,
           parentSerial,
           lineStart,
@@ -128,18 +128,18 @@ class UtilElement {
           TextParamsWrapper(TextParams()),
           HrefParamsWrapper(HrefParams()));
     } else if (eType == EnumSpWMLElementType.line) {
-      r = LineElement(serial, param, spwmlEP, parentSerial, lineStart, lineEnd,
+      r = LineElement(serial, params, spwmlEP, parentSerial, lineStart, lineEnd,
           style, LineParamsWrapper(LineParams()));
     } else if (eType == EnumSpWMLElementType.vline) {
-      r = VLineElement(serial, param, spwmlEP, parentSerial, lineStart, lineEnd,
-          style, VLineParamsWrapper(VLineParams()));
+      r = VLineElement(serial, params, spwmlEP, parentSerial, lineStart,
+          lineEnd, style, VLineParamsWrapper(VLineParams()));
     } else if (eType == EnumSpWMLElementType.img) {
-      r = ImgElement(serial, param, spwmlEP, parentSerial, lineStart, lineEnd,
+      r = ImgElement(serial, params, spwmlEP, parentSerial, lineStart, lineEnd,
           style, ImgParamsWrapper(ImgParams()));
     } else if (eType == EnumSpWMLElementType.col) {
       r = ColElement(
           serial,
-          param,
+          params,
           spwmlEP,
           parentSerial,
           lineStart,
@@ -150,7 +150,7 @@ class UtilElement {
     } else if (eType == EnumSpWMLElementType.row) {
       r = RowElement(
           serial,
-          param,
+          params,
           spwmlEP,
           parentSerial,
           lineStart,
@@ -159,12 +159,12 @@ class UtilElement {
           StructureElementChildren(),
           RowColParamsWrapper(RowColParams()));
     } else if (eType == EnumSpWMLElementType.block) {
-      r = BlockElement(serial, param, spwmlEP, parentSerial, lineStart, lineEnd,
-          style, BlockElementChild());
+      r = BlockElement(serial, params, spwmlEP, parentSerial, lineStart,
+          lineEnd, style, BlockElementChild());
     } else if (eType == EnumSpWMLElementType.span) {
       r = SpanElement(
           serial,
-          param,
+          params,
           spwmlEP,
           parentSerial,
           lineStart,
@@ -176,7 +176,7 @@ class UtilElement {
     } else if (eType == EnumSpWMLElementType.btn) {
       r = BtnElement(
           serial,
-          param,
+          params,
           spwmlEP,
           parentSerial,
           lineStart,
@@ -186,15 +186,23 @@ class UtilElement {
           TextParamsWrapper(TextParams()),
           BtnParamsWrapper(BtnParams()));
     } else if (eType == EnumSpWMLElementType.stack) {
-      r = StackElement(serial, param, spwmlEP, parentSerial, lineStart, lineEnd,
-          style, StructureElementChildren(), StackParamsWrapper(StackParams()));
+      r = StackElement(
+          serial,
+          params,
+          spwmlEP,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          StructureElementChildren(),
+          StackParamsWrapper(StackParams()));
     } else if (eType == EnumSpWMLElementType.wrap) {
-      r = WrapElement(serial, param, spwmlEP, parentSerial, lineStart, lineEnd,
+      r = WrapElement(serial, params, spwmlEP, parentSerial, lineStart, lineEnd,
           style, StructureElementChildren(), WrapParamsWrapper(WrapParams()));
     } else if (eType == EnumSpWMLElementType.dropdownBtn) {
       r = DropdownBtnElement(
           serial,
-          param,
+          params,
           spwmlEP,
           parentSerial,
           lineStart,
@@ -205,7 +213,7 @@ class UtilElement {
     } else if (eType == EnumSpWMLElementType.popupMenuBtn) {
       r = PopupMenuBtnElement(
           serial,
-          param,
+          params,
           spwmlEP,
           parentSerial,
           lineStart,
@@ -216,7 +224,7 @@ class UtilElement {
     } else if (eType == EnumSpWMLElementType.expTile) {
       r = ExpTileElement(
           serial,
-          param,
+          params,
           spwmlEP,
           parentSerial,
           lineStart,
@@ -228,7 +236,7 @@ class UtilElement {
     } else if (eType == EnumSpWMLElementType.checkbox) {
       r = CheckboxElement(
           serial,
-          param,
+          params,
           spwmlEP,
           parentSerial,
           lineStart,
@@ -239,7 +247,7 @@ class UtilElement {
     } else if (eType == EnumSpWMLElementType.radioBtn) {
       r = RadioBtnElement(
           serial,
-          param,
+          params,
           spwmlEP,
           parentSerial,
           lineStart,
@@ -250,7 +258,7 @@ class UtilElement {
     } else if (eType == EnumSpWMLElementType.scroll) {
       r = ScrollElement(
           serial,
-          param,
+          params,
           spwmlEP,
           parentSerial,
           lineStart,
@@ -259,21 +267,29 @@ class UtilElement {
           BlockElementChild(),
           ScrollParamsWrapper(ScrollParams()));
     } else if (eType == EnumSpWMLElementType.switchBtn) {
-      r = SwitchBtnElement(serial, param, spwmlEP, parentSerial, lineStart,
+      r = SwitchBtnElement(serial, params, spwmlEP, parentSerial, lineStart,
           lineEnd, style, SwitchBtnParamsWrapper(SwitchBtnParams()));
     } else if (eType == EnumSpWMLElementType.icon) {
-      r = IconElement(serial, param, spwmlEP, parentSerial, lineStart, lineEnd,
+      r = IconElement(serial, params, spwmlEP, parentSerial, lineStart, lineEnd,
           style, IconParamsWrapper(IconParams()));
     } else if (eType == EnumSpWMLElementType.card) {
-      r = CardElement(serial, param, spwmlEP, parentSerial, lineStart, lineEnd,
+      r = CardElement(serial, params, spwmlEP, parentSerial, lineStart, lineEnd,
           style, BlockElementChild(), CardParamsWrapper(CardParams()));
     } else if (eType == EnumSpWMLElementType.table) {
-      r = TableElement(serial, param, spwmlEP, parentSerial, lineStart, lineEnd,
-          style, StructureElementChildren(), TableParamsWrapper(TableParams()));
+      r = TableElement(
+          serial,
+          params,
+          spwmlEP,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          StructureElementChildren(),
+          TableParamsWrapper(TableParams()));
     } else if (eType == EnumSpWMLElementType.tableRow) {
       r = TableRowElement(
           serial,
-          param,
+          params,
           spwmlEP,
           parentSerial,
           lineStart,

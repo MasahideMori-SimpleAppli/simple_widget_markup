@@ -19,7 +19,7 @@ class ScrollElement extends SpWMLElement {
 
   ScrollElement(
       int serial,
-      List<String> param,
+      Map<String, String> params,
       SpWMLParamsWrapper spwmlEP,
       int parentSerial,
       int lineStart,
@@ -27,8 +27,8 @@ class ScrollElement extends SpWMLElement {
       SpWMLFontStyle style,
       this.child,
       this.elParams)
-      : super(serial, EnumSpWMLElementType.scroll, param, spwmlEP, parentSerial,
-            lineStart, lineEnd, style);
+      : super(serial, EnumSpWMLElementType.scroll, params, spwmlEP,
+            parentSerial, lineStart, lineEnd, style);
 
   @override
   ScrollElement initParams() {

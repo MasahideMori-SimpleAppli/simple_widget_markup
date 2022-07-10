@@ -18,7 +18,7 @@ class RowElement extends SpWMLElement {
 
   RowElement(
       int serial,
-      List<String> param,
+      Map<String, String> params,
       SpWMLParamsWrapper spwmlEP,
       int parentSerial,
       int lineStart,
@@ -26,7 +26,7 @@ class RowElement extends SpWMLElement {
       SpWMLFontStyle style,
       this.children,
       this.elParams)
-      : super(serial, EnumSpWMLElementType.row, param, spwmlEP, parentSerial,
+      : super(serial, EnumSpWMLElementType.row, params, spwmlEP, parentSerial,
             lineStart, lineEnd, style);
 
   @override

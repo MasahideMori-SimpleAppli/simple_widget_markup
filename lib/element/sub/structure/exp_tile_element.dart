@@ -19,7 +19,7 @@ class ExpTileElement extends TextElement {
 
   ExpTileElement(
       int serial,
-      List<String> param,
+      Map<String, String> params,
       SpWMLParamsWrapper spwmlEP,
       int parentSerial,
       int lineStart,
@@ -28,7 +28,7 @@ class ExpTileElement extends TextElement {
       this.children,
       TextParamsWrapper textParams,
       this.elParams)
-      : super(serial, EnumSpWMLElementType.expTile, param, spwmlEP,
+      : super(serial, EnumSpWMLElementType.expTile, params, spwmlEP,
             parentSerial, lineStart, lineEnd, style, textParams);
 
   @override

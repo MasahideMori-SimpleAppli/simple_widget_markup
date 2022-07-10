@@ -19,7 +19,7 @@ class TableRowElement extends SpWMLElement {
 
   TableRowElement(
       int serial,
-      List<String> param,
+      Map<String, String> params,
       SpWMLParamsWrapper spwmlEP,
       int parentSerial,
       int lineStart,
@@ -27,7 +27,7 @@ class TableRowElement extends SpWMLElement {
       SpWMLFontStyle style,
       this.children,
       this.elParams)
-      : super(serial, EnumSpWMLElementType.tableRow, param, spwmlEP,
+      : super(serial, EnumSpWMLElementType.tableRow, params, spwmlEP,
             parentSerial, lineStart, lineEnd, style);
 
   @override

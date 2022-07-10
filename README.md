@@ -59,7 +59,7 @@ Currently, the types are as follows.
     - body2
     - caption
     - overline (Text to display above the line.)
-    - menu(Plane text for dropdownBtn and popupMenuBtn.)
+    - menu(Non margin plain text, It is mainly used for dropdownBtn.)
     - textField(tf, The text input field)
   - Other than text
     - img (Image. URL is described in the text part.)
@@ -79,7 +79,7 @@ Elements with a + mark at the beginning are nested elements.
 Which element is a child element depends on the position of the element and the number of + marks.
 
 ### Escape sequence
-To include the + sign, parentheses, commas, and backslash in the text, put one backslash in front of it.  
+To write a + sign, parentheses, commas, backslashes, etc. as parameter values, write one backslash in front.
 Note that if you write directly as text in the code instead of reading the file,  
 the backslash itself will be you will need one extra to receive the Dart escape.
 

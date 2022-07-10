@@ -400,7 +400,7 @@ class SpWMLBuilder {
               TextElement(
                       -1,
                       EnumSpWMLElementType.text,
-                      const [],
+                      const {},
                       SpWMLParamsWrapper(SpWMLParams(eStr)),
                       -1,
                       j.lineStart,

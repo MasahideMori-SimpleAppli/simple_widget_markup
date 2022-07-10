@@ -19,7 +19,7 @@ class DropdownBtnElement extends SpWMLElement {
 
   DropdownBtnElement(
       int serial,
-      List<String> param,
+      Map<String, String> params,
       SpWMLParamsWrapper spwmlEP,
       int parentSerial,
       int lineStart,
@@ -27,7 +27,7 @@ class DropdownBtnElement extends SpWMLElement {
       SpWMLFontStyle style,
       this.children,
       this.elParams)
-      : super(serial, EnumSpWMLElementType.dropdownBtn, param, spwmlEP,
+      : super(serial, EnumSpWMLElementType.dropdownBtn, params, spwmlEP,
             parentSerial, lineStart, lineEnd, style);
 
   @override

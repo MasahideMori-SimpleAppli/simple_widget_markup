@@ -22,7 +22,7 @@ class SpanElement extends TextElement {
 
   SpanElement(
       int serial,
-      List<String> param,
+      Map<String, String> params,
       SpWMLParamsWrapper spwmlEP,
       int parentSerial,
       int lineStart,
@@ -31,7 +31,7 @@ class SpanElement extends TextElement {
       this.children,
       TextParamsWrapper textParams,
       this.elParams)
-      : super(serial, EnumSpWMLElementType.span, param, spwmlEP, parentSerial,
+      : super(serial, EnumSpWMLElementType.span, params, spwmlEP, parentSerial,
             lineStart, lineEnd, style, textParams);
 
   @override

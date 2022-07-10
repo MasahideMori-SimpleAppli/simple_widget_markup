@@ -3,8 +3,6 @@ import '../../element_params/super/spwml_params.dart';
 import '../../enum/enum_spwml_params.dart';
 import '../../enum/enum_spwml_element_type.dart';
 import '../../spwml_exception.dart';
-import '../../util_parser.dart';
-
 import '../spwml_font_style.dart';
 
 ///
@@ -37,28 +35,27 @@ class SpWMLElement extends StatelessWidget {
   ///
   /// Throws [SpWMLException] : ParamException.
   /// Throws [SpWMLException] : ParamValueException.
-  SpWMLElement(this.serial, this.type, List<String> param, this.spwmlParams,
-      this.parentSerial, this.lineStart, this.lineEnd, this.style)
+  SpWMLElement(
+      this.serial,
+      this.type,
+      Map<String, String> param,
+      this.spwmlParams,
+      this.parentSerial,
+      this.lineStart,
+      this.lineEnd,
+      this.style)
       : params = _setParam(type, param, lineStart, lineEnd);
 
   static Map<EnumSpWMLParams, dynamic> _setParam(EnumSpWMLElementType type,
-      List<String> param, int lineStart, int lineEnd) {
+      Map<String, String> param, int lineStart, int lineEnd) {
     Map<EnumSpWMLParams, dynamic> mParam = {};
-    for (String i in param) {
-      List<String> p = UtilParser.split(i, ":");
-      if (p.length == 2) {
-        // 変換される時点（パース時）で値の検査も行う。
-        EnumSpWMLParams t = EXTEnumSpWMLParams.fromStr(
-            p[0].replaceAll(" ", "").replaceAll("　", ""), lineStart, lineEnd);
-        if (t == EnumSpWMLParams.alt) {
-          mParam[t] = p[1];
-        } else {
-          mParam[t] = t.parseValue(type,
-              p[1].replaceAll(" ", "").replaceAll("　", ""), lineStart, lineEnd);
-        }
+    for (String i in param.keys) {
+      // 変換される時点（パース時）で値の検査も行う。
+      EnumSpWMLParams t = EXTEnumSpWMLParams.fromStr(i, lineStart, lineEnd);
+      if (t == EnumSpWMLParams.alt) {
+        mParam[t] = param[i]!;
       } else {
-        throw SpWMLException(
-            EnumSpWMLExceptionType.paramException, lineStart, lineEnd);
+        mParam[t] = t.parseValue(type, param[i]!, lineStart, lineEnd);
       }
     }
     return mParam;
@@ -105,9 +102,12 @@ class SpWMLElement extends StatelessWidget {
     return this;
   }
 
-  /// Get element decoration. It disabled in btn or card and return null.
+  /// Get element decoration. It disabled in btn card, radioBtn, checkbox. these return null.
   BoxDecoration? _getDecoration() {
-    if (type != EnumSpWMLElementType.btn && type != EnumSpWMLElementType.card) {
+    if (type != EnumSpWMLElementType.btn &&
+        type != EnumSpWMLElementType.card &&
+        type != EnumSpWMLElementType.radioBtn &&
+        type != EnumSpWMLElementType.checkbox) {
       return BoxDecoration(
           color: spwmlParams.p.containerParams!.color,
           border: Border.all(
@@ -159,7 +159,7 @@ class SpWMLElement extends StatelessWidget {
     }
   }
 
-  /// Get element shape. It works differently for btn or card.
+  /// Get element shape. It works for btn, card, radioBtn and checkbox.
   OutlinedBorder? getShape() {
     if (params.containsKey(EnumSpWMLParams.shape)) {
       if (params[EnumSpWMLParams.shape] is RoundedRectangleBorder) {

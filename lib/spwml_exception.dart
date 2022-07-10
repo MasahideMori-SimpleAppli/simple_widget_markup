@@ -1,5 +1,3 @@
-import 'spwml_parser.dart';
-
 ///
 /// (en)An exception class for SpWML.
 /// Returns the type and line number of the exception that occurred.
@@ -39,7 +37,6 @@ enum EnumSpWMLExceptionType {
   nullException,
   levelException,
   replaceException,
-  paramHealthException,
   syntaxException,
   elementException,
   tableParamException,
@@ -60,11 +57,9 @@ extension EXTEnumSpWMLExceptionType on EnumSpWMLExceptionType {
     } else if (this == EnumSpWMLExceptionType.nullException) {
       return "The target did not exist.";
     } else if (this == EnumSpWMLExceptionType.levelException) {
-      return "The number of " + SpWMLParser.lower + " mark is invalid.";
+      return "The number of indent mark is invalid.";
     } else if (this == EnumSpWMLExceptionType.replaceException) {
       return "Only the child elements of the block element can be replaced.";
-    } else if (this == EnumSpWMLExceptionType.paramHealthException) {
-      return 'The correspondence between the "(" symbol and ")" symbol is incorrect.';
     } else if (this == EnumSpWMLExceptionType.syntaxException) {
       return 'Syntax Error.';
     } else if (this == EnumSpWMLExceptionType.elementException) {

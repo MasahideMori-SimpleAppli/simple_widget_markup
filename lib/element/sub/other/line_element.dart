@@ -16,14 +16,14 @@ class LineElement extends SpWMLElement {
 
   LineElement(
       int serial,
-      List<String> param,
+      Map<String, String> params,
       SpWMLParamsWrapper spwmlEP,
       int parentSerial,
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
       this.elParams)
-      : super(serial, EnumSpWMLElementType.line, param, spwmlEP, parentSerial,
+      : super(serial, EnumSpWMLElementType.line, params, spwmlEP, parentSerial,
             lineStart, lineEnd, style);
 
   @override

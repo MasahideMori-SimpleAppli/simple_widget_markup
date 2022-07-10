@@ -17,14 +17,14 @@ class IconElement extends SpWMLElement {
 
   IconElement(
       int serial,
-      List<String> param,
+      Map<String, String> params,
       SpWMLParamsWrapper spwmlEP,
       int parentSerial,
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
       this.elParams)
-      : super(serial, EnumSpWMLElementType.icon, param, spwmlEP, parentSerial,
+      : super(serial, EnumSpWMLElementType.icon, params, spwmlEP, parentSerial,
             lineStart, lineEnd, style);
 
   @override

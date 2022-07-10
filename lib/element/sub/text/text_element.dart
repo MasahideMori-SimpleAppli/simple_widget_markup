@@ -18,14 +18,14 @@ class TextElement extends SpWMLElement {
   TextElement(
       int serial,
       EnumSpWMLElementType type,
-      List<String> param,
+      Map<String, String> params,
       SpWMLParamsWrapper spwmlEP,
       int parentSerial,
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
       this.textParams)
-      : super(serial, type, param, spwmlEP, parentSerial, lineStart, lineEnd,
+      : super(serial, type, params, spwmlEP, parentSerial, lineStart, lineEnd,
             style);
 
   @override

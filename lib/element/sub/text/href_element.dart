@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:simple_widget_markup/element/sub/text/text_element.dart';
+import '../../../element/sub/text/text_element.dart';
 import '../../../element_params/sub/text/href_params.dart';
 import '../../../element_params/sub/text/text_params.dart';
 import '../../../element_params/super/spwml_params.dart';
@@ -19,7 +19,7 @@ class HrefElement extends TextElement {
 
   HrefElement(
       int serial,
-      List<String> param,
+      Map<String, String> params,
       SpWMLParamsWrapper spwmlEP,
       int parentSerial,
       int lineStart,
@@ -27,7 +27,7 @@ class HrefElement extends TextElement {
       SpWMLFontStyle style,
       TextParamsWrapper textParams,
       this.elParams)
-      : super(serial, EnumSpWMLElementType.href, param, spwmlEP, parentSerial,
+      : super(serial, EnumSpWMLElementType.href, params, spwmlEP, parentSerial,
             lineStart, lineEnd, style, textParams);
 
   @override

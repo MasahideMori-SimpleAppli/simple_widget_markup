@@ -19,7 +19,7 @@ class CheckboxElement extends SpWMLElement {
 
   CheckboxElement(
       int serial,
-      List<String> param,
+      Map<String, String> params,
       SpWMLParamsWrapper spwmlEP,
       int parentSerial,
       int lineStart,
@@ -27,7 +27,7 @@ class CheckboxElement extends SpWMLElement {
       SpWMLFontStyle style,
       this.children,
       this.elParams)
-      : super(serial, EnumSpWMLElementType.checkbox, param, spwmlEP,
+      : super(serial, EnumSpWMLElementType.checkbox, params, spwmlEP,
             parentSerial, lineStart, lineEnd, style);
 
   @override
@@ -57,6 +57,10 @@ class CheckboxElement extends SpWMLElement {
         ? params[EnumSpWMLParams.splashRadius]
         : null;
     elParams.p.disableParams = disabled;
+    elParams.p.enableTapLabel =
+        params.containsKey(EnumSpWMLParams.enableTapLabel)
+            ? params[EnumSpWMLParams.enableTapLabel]
+            : false;
     return this;
   }
 
@@ -68,7 +72,7 @@ class CheckboxElement extends SpWMLElement {
         elParams.p.checkValues!.add(false);
       }
     }
-    return _CheckboxElementWidget(children, elParams);
+    return _CheckboxElementWidget(children, elParams, getShape());
   }
 
   /// (en)Set the initial value of the check box.
@@ -95,94 +99,152 @@ class CheckboxElement extends SpWMLElement {
 class _CheckboxElementWidget extends StatefulWidget {
   final StructureElementChildren children;
   final CheckboxParamsWrapper elParams;
+  final OutlinedBorder? shape;
 
-  const _CheckboxElementWidget(this.children, this.elParams);
+  const _CheckboxElementWidget(this.children, this.elParams, this.shape);
 
   @override
   _CheckboxElementWidgetState createState() => _CheckboxElementWidgetState();
 }
 
 class _CheckboxElementWidgetState extends State<_CheckboxElementWidget> {
+  /// The onTap callback.
+  void _onTapCallback(int index) {
+    setState(() {
+      widget.elParams.p.checkValues![index] =
+          !widget.elParams.p.checkValues![index];
+      if (widget.elParams.p.callback != null) {
+        widget.elParams.p.callback!(widget.elParams.p.checkValues!);
+      }
+    });
+  }
+
+  /// Return wrapped widget.
+  Widget _getWrap(int index, Widget w) {
+    if (widget.elParams.p.enableTapLabel) {
+      return InkWell(
+        key: widget.elParams.p.enableTapInkWellParams.key,
+        child: w,
+        onTap: () {
+          _onTapCallback(index);
+        },
+        onDoubleTap: widget.elParams.p.enableTapInkWellParams.onDoubleTap,
+        onLongPress: widget.elParams.p.enableTapInkWellParams.onLongPress,
+        onTapDown: widget.elParams.p.enableTapInkWellParams.onTapDown,
+        onTapUp: widget.elParams.p.enableTapInkWellParams.onTapUp,
+        onTapCancel: widget.elParams.p.enableTapInkWellParams.onTapCancel,
+        onHighlightChanged:
+            widget.elParams.p.enableTapInkWellParams.onHighlightChanged,
+        onHover: widget.elParams.p.enableTapInkWellParams.onHover,
+        mouseCursor: widget.elParams.p.enableTapInkWellParams.mouseCursor,
+        focusColor: widget.elParams.p.enableTapInkWellParams.focusColor,
+        hoverColor: widget.elParams.p.enableTapInkWellParams.hoverColor,
+        highlightColor: widget.elParams.p.enableTapInkWellParams.highlightColor,
+        overlayColor: widget.elParams.p.enableTapInkWellParams.overlayColor,
+        splashColor: widget.elParams.p.enableTapInkWellParams.splashColor,
+        splashFactory: widget.elParams.p.enableTapInkWellParams.splashFactory,
+        radius: widget.elParams.p.enableTapInkWellParams.radius,
+        borderRadius: widget.elParams.p.enableTapInkWellParams.borderRadius,
+        customBorder: widget.elParams.p.enableTapInkWellParams.customBorder ??
+            widget.shape,
+        enableFeedback: widget.elParams.p.enableTapInkWellParams.enableFeedback,
+        excludeFromSemantics:
+            widget.elParams.p.enableTapInkWellParams.excludeFromSemantics,
+        focusNode: widget.elParams.p.enableTapInkWellParams.focusNode,
+        canRequestFocus:
+            widget.elParams.p.enableTapInkWellParams.canRequestFocus,
+        onFocusChange: widget.elParams.p.enableTapInkWellParams.onFocusChange,
+        autofocus: widget.elParams.p.enableTapInkWellParams.autofocus,
+      );
+    } else {
+      return w;
+    }
+  }
+
   Widget _getLayout() {
     List<Widget> r = [];
     for (int i = 0; i < widget.children.children.length; i++) {
-      r.add(Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            widget.elParams.p.checkValues![i]
-                ? IconButton(
-                    key: widget.elParams.p.enableParams!.key,
-                    iconSize: widget.elParams.p.enableParams!.iconSize,
-                    visualDensity:
-                        widget.elParams.p.enableParams!.visualDensity,
-                    padding: widget.elParams.p.enableParams!.padding,
-                    alignment: widget.elParams.p.enableParams!.alignment,
-                    splashRadius: widget.elParams.p.enableParams!.splashRadius,
-                    color: widget.elParams.p.enableParams!.color,
-                    focusColor: widget.elParams.p.enableParams!.focusColor,
-                    hoverColor: widget.elParams.p.enableParams!.hoverColor,
-                    highlightColor:
-                        widget.elParams.p.enableParams!.highlightColor,
-                    splashColor: widget.elParams.p.enableParams!.splashColor,
-                    disabledColor:
-                        widget.elParams.p.enableParams!.disabledColor,
-                    onPressed: () {
-                      setState(() {
-                        widget.elParams.p.checkValues![i] =
-                            !widget.elParams.p.checkValues![i];
-                        if (widget.elParams.p.callback != null) {
-                          widget.elParams.p
-                              .callback!(widget.elParams.p.checkValues!);
-                        }
-                      });
-                    },
-                    mouseCursor: widget.elParams.p.enableParams!.mouseCursor,
-                    focusNode: widget.elParams.p.enableParams!.focusNode,
-                    autofocus: widget.elParams.p.enableParams!.autofocus,
-                    tooltip: widget.elParams.p.enableParams!.tooltip,
-                    enableFeedback:
-                        widget.elParams.p.enableParams!.enableFeedback,
-                    constraints: widget.elParams.p.enableParams!.constraints,
-                    icon: widget.elParams.p.enableParams!.icon!,
-                  )
-                : IconButton(
-                    key: widget.elParams.p.disableParams!.key,
-                    iconSize: widget.elParams.p.disableParams!.iconSize,
-                    visualDensity:
-                        widget.elParams.p.disableParams!.visualDensity,
-                    padding: widget.elParams.p.disableParams!.padding,
-                    alignment: widget.elParams.p.disableParams!.alignment,
-                    splashRadius: widget.elParams.p.disableParams!.splashRadius,
-                    color: widget.elParams.p.disableParams!.color,
-                    focusColor: widget.elParams.p.disableParams!.focusColor,
-                    hoverColor: widget.elParams.p.disableParams!.hoverColor,
-                    highlightColor:
-                        widget.elParams.p.disableParams!.highlightColor,
-                    splashColor: widget.elParams.p.disableParams!.splashColor,
-                    disabledColor:
-                        widget.elParams.p.disableParams!.disabledColor,
-                    onPressed: () {
-                      setState(() {
-                        widget.elParams.p.checkValues![i] =
-                            !widget.elParams.p.checkValues![i];
-                        if (widget.elParams.p.callback != null) {
-                          widget.elParams.p
-                              .callback!(widget.elParams.p.checkValues!);
-                        }
-                      });
-                    },
-                    mouseCursor: widget.elParams.p.disableParams!.mouseCursor,
-                    focusNode: widget.elParams.p.disableParams!.focusNode,
-                    autofocus: widget.elParams.p.disableParams!.autofocus,
-                    tooltip: widget.elParams.p.disableParams!.tooltip,
-                    enableFeedback:
-                        widget.elParams.p.disableParams!.enableFeedback,
-                    constraints: widget.elParams.p.disableParams!.constraints,
-                    icon: widget.elParams.p.disableParams!.icon!,
-                  ),
-            widget.children.children[i]
-          ]));
+      r.add(_getWrap(
+          i,
+          Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                widget.elParams.p.checkValues![i]
+                    ? IconButton(
+                        key: widget.elParams.p.enableParams!.key,
+                        iconSize: widget.elParams.p.enableParams!.iconSize,
+                        visualDensity:
+                            widget.elParams.p.enableParams!.visualDensity,
+                        padding: widget.elParams.p.enableParams!.padding,
+                        alignment: widget.elParams.p.enableParams!.alignment,
+                        splashRadius:
+                            widget.elParams.p.enableParams!.splashRadius,
+                        color: widget.elParams.p.enableParams!.color,
+                        focusColor: widget.elParams.p.enableParams!.focusColor,
+                        hoverColor: widget.elParams.p.enableParams!.hoverColor,
+                        highlightColor:
+                            widget.elParams.p.enableParams!.highlightColor,
+                        splashColor:
+                            widget.elParams.p.enableParams!.splashColor,
+                        disabledColor: widget.elParams.p.enableTapLabel
+                            ? widget.elParams.p.enableParams!.color ??
+                                Colors.black87
+                            : widget.elParams.p.enableParams!.disabledColor,
+                        onPressed: widget.elParams.p.enableTapLabel
+                            ? null
+                            : () {
+                                _onTapCallback(i);
+                              },
+                        mouseCursor:
+                            widget.elParams.p.enableParams!.mouseCursor,
+                        focusNode: widget.elParams.p.enableParams!.focusNode,
+                        autofocus: widget.elParams.p.enableParams!.autofocus,
+                        tooltip: widget.elParams.p.enableParams!.tooltip,
+                        enableFeedback:
+                            widget.elParams.p.enableParams!.enableFeedback,
+                        constraints:
+                            widget.elParams.p.enableParams!.constraints,
+                        icon: widget.elParams.p.enableParams!.icon!,
+                      )
+                    : IconButton(
+                        key: widget.elParams.p.disableParams!.key,
+                        iconSize: widget.elParams.p.disableParams!.iconSize,
+                        visualDensity:
+                            widget.elParams.p.disableParams!.visualDensity,
+                        padding: widget.elParams.p.disableParams!.padding,
+                        alignment: widget.elParams.p.disableParams!.alignment,
+                        splashRadius:
+                            widget.elParams.p.disableParams!.splashRadius,
+                        color: widget.elParams.p.disableParams!.color,
+                        focusColor: widget.elParams.p.disableParams!.focusColor,
+                        hoverColor: widget.elParams.p.disableParams!.hoverColor,
+                        highlightColor:
+                            widget.elParams.p.disableParams!.highlightColor,
+                        splashColor:
+                            widget.elParams.p.disableParams!.splashColor,
+                        disabledColor: widget.elParams.p.enableTapLabel
+                            ? widget.elParams.p.enableParams!.color ??
+                                Colors.black87
+                            : widget.elParams.p.disableParams!.disabledColor,
+                        onPressed: widget.elParams.p.enableTapLabel
+                            ? null
+                            : () {
+                                _onTapCallback(i);
+                              },
+                        mouseCursor:
+                            widget.elParams.p.disableParams!.mouseCursor,
+                        focusNode: widget.elParams.p.disableParams!.focusNode,
+                        autofocus: widget.elParams.p.disableParams!.autofocus,
+                        tooltip: widget.elParams.p.disableParams!.tooltip,
+                        enableFeedback:
+                            widget.elParams.p.disableParams!.enableFeedback,
+                        constraints:
+                            widget.elParams.p.disableParams!.constraints,
+                        icon: widget.elParams.p.disableParams!.icon!,
+                      ),
+                widget.children.children[i]
+              ])));
     }
     return Column(
         mainAxisAlignment: MainAxisAlignment.start,

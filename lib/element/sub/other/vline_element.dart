@@ -16,14 +16,14 @@ class VLineElement extends SpWMLElement {
 
   VLineElement(
       int serial,
-      List<String> param,
+      Map<String, String> params,
       SpWMLParamsWrapper spwmlEP,
       int parentSerial,
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
       this.elParams)
-      : super(serial, EnumSpWMLElementType.vline, param, spwmlEP, parentSerial,
+      : super(serial, EnumSpWMLElementType.vline, params, spwmlEP, parentSerial,
             lineStart, lineEnd, style);
 
   @override

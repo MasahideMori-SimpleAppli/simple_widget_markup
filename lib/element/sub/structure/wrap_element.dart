@@ -18,7 +18,7 @@ class WrapElement extends SpWMLElement {
 
   WrapElement(
       int serial,
-      List<String> param,
+      Map<String, String> params,
       SpWMLParamsWrapper spwmlEP,
       int parentSerial,
       int lineStart,
@@ -26,7 +26,7 @@ class WrapElement extends SpWMLElement {
       SpWMLFontStyle style,
       this.children,
       this.elParams)
-      : super(serial, EnumSpWMLElementType.wrap, param, spwmlEP, parentSerial,
+      : super(serial, EnumSpWMLElementType.wrap, params, spwmlEP, parentSerial,
             lineStart, lineEnd, style);
 
   @override

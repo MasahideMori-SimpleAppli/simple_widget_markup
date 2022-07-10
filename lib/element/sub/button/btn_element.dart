@@ -22,7 +22,7 @@ class BtnElement extends TextElement {
 
   BtnElement(
       int serial,
-      List<String> param,
+      Map<String, String> params,
       SpWMLParamsWrapper spwmlEP,
       int parentSerial,
       int lineStart,
@@ -31,7 +31,7 @@ class BtnElement extends TextElement {
       this.child,
       TextParamsWrapper textParams,
       this.elParams)
-      : super(serial, EnumSpWMLElementType.btn, param, spwmlEP, parentSerial,
+      : super(serial, EnumSpWMLElementType.btn, params, spwmlEP, parentSerial,
             lineStart, lineEnd, style, textParams);
 
   @override
