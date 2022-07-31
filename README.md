@@ -18,18 +18,14 @@ You can try how it works on the following sites.
 ### Description method
 The basic form is as follows.
 ```
-(type, parameter1:value1, parameter2:value2,...)letter body
+(type, parameter1:value1, parameter2:value2,...)content body
 ```
-
-The comment line is as follows.
-```
-// comment text
-```
-
-type is required and parameters are optional.  
-The parameters are explained in detail on the SpWML editor page in the quickstart above.  
+The format conforms to the Simple Block Markup Language (SBML).  
+See the packages below for details.  
+[SBML](https://github.com/MasahideMori-SimpleAppli/simple_block_markup_language)
 
 Currently, the types are as follows.
+The parameters are explained in detail on the SpWML editor page in the quickstart above.
 
 - Container system (Container is a container for elements.)
   - Only one element inside.
@@ -69,19 +65,6 @@ Currently, the types are as follows.
     - btn(Button)
     - icon
     - switchBtn
-
-### new line
-Start a new line with a normal line feed code.  
-Line breaks at the end of the sentence are ignored.
-
-### Nested structure
-Elements with a + mark at the beginning are nested elements.  
-Which element is a child element depends on the position of the element and the number of + marks.
-
-### Escape sequence
-To write a + sign, parentheses, commas, backslashes, etc. as parameter values, write one backslash in front.
-Note that if you write directly as text in the code instead of reading the file,  
-the backslash itself will be you will need one extra to receive the Dart escape.
 
 ### Sample code
 ```dart
@@ -212,13 +195,16 @@ Simple Widget Markup Language
 ## MIME Type (Temporary)
 text/x.spwml
 
-## What this object is useful for
+## What this package is useful for
 It is suitable for things that need to be created frequently and the layout is not so complicated,
 such as new information of apps.
+Even without updating the app itself, 
+you can update the screen displayed to the user simply by changing the delivery file.
 
-## What this object is not useful
+## What this package is not useful
 Not suitable for direct coding of complex app layouts.  
 However, it is possible to create a wire frame that is premised on replacement.
+Note that resource loading and parsing takes time.
 
 ## About version control
 The C part will be changed at the time of version upgrade.

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:simple_widget_markup/sbml_parser.dart';
 import 'package:simple_widget_markup/spwml_exception.dart';
 import 'element/super/spwml_element.dart';
 import 'element_params/sub/text/text_params.dart';
@@ -8,6 +7,8 @@ import 'enum/enum_spwml_element_type.dart';
 import 'element/sub/text/text_element.dart';
 import 'element/util_element.dart';
 import 'element/spwml_font_style.dart';
+import 'package:simple_block_markup_language/sbml_parser.dart';
+import 'package:simple_block_markup_language/sbml_block.dart';
 
 ///
 /// Author Masahide Mori
@@ -32,7 +33,7 @@ class SpWMLParser {
       for (SBMLBlock i in blocks) {
         // エレメントを生成して追加
         r.add(UtilElement.create(i.serial, i.type, i.params, i.content,
-            i.parentSerial, i.lineStart, i.lineEnd!, spWMLStyle));
+            i.parentSerial, i.lineStart!, i.lineEnd!, spWMLStyle));
       }
     } catch (e) {
       debugPrint(e.toString());

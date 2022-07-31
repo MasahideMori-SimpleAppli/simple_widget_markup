@@ -1,3 +1,6 @@
+## 7.0.0
+* Changed the parser to the versatile simple_block_markup_language package.
+
 ## 6.0.1
 * Fixed bug that alt parameter is disabled in hrefElement.
 
