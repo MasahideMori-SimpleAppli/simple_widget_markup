@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:simple_widget_markup/element/sub/text/text_element.dart';
+import '../../../element/sub/text/text_element.dart';
 import '../../../element_params/sub/text/href_params.dart';
 import '../../../element_params/sub/text/text_params.dart';
 import '../../../element_params/super/spwml_params.dart';

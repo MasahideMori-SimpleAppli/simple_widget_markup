@@ -108,6 +108,23 @@ enum EnumSpWMLParams {
   ellipticalX,
   ellipticalY,
   enableTapLabel,
+  // ruby text parameter
+  rubyText,
+  rubySize,
+  rubyLetterSpacing,
+  rubyMargin,
+  rubyFontName,
+  rubyFontWeight,
+  rubyFontStyle,
+  rubyWordSpacing,
+  rubyColor,
+  rubyBGColor,
+  rubyDeco,
+  rubyDecoStyle,
+  rubyDecoColor,
+  rubyDecoThickness,
+  rubyAlign,
+  rubyHeight,
 }
 
 extension EXTEnumSpWMLParams on EnumSpWMLParams {
@@ -133,6 +150,7 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.pTop ||
           this == EnumSpWMLParams.pBottom ||
           this == EnumSpWMLParams.thickness ||
+          this == EnumSpWMLParams.textDecoThickness ||
           this == EnumSpWMLParams.minHeight ||
           this == EnumSpWMLParams.minWidth ||
           this == EnumSpWMLParams.maxHeight ||
@@ -158,7 +176,13 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.rBL ||
           this == EnumSpWMLParams.rBR ||
           this == EnumSpWMLParams.ellipticalX ||
-          this == EnumSpWMLParams.ellipticalY) {
+          this == EnumSpWMLParams.ellipticalY ||
+          this == EnumSpWMLParams.rubySize ||
+          this == EnumSpWMLParams.rubyLetterSpacing ||
+          this == EnumSpWMLParams.rubyMargin ||
+          this == EnumSpWMLParams.rubyWordSpacing ||
+          this == EnumSpWMLParams.rubyDecoThickness ||
+          this == EnumSpWMLParams.rubyHeight) {
         return double.parse(v);
       }
       if (this == EnumSpWMLParams.weight || this == EnumSpWMLParams.hNum) {
@@ -256,7 +280,10 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.btnBGColor ||
           this == EnumSpWMLParams.fillColor ||
           this == EnumSpWMLParams.underlineColor ||
-          this == EnumSpWMLParams.borderColor) {
+          this == EnumSpWMLParams.borderColor ||
+          this == EnumSpWMLParams.rubyColor ||
+          this == EnumSpWMLParams.rubyBGColor ||
+          this == EnumSpWMLParams.rubyDecoColor) {
         return UtilParser.convertColor(v);
       } else if (this == EnumSpWMLParams.id) {
         return int.parse(v);
@@ -274,7 +301,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           v = v.replaceFirst('0x', '');
         }
         return IconData(int.parse(v, radix: 16), fontFamily: "MaterialIcons");
-      } else if (this == EnumSpWMLParams.fontWeight) {
+      } else if (this == EnumSpWMLParams.fontWeight ||
+          this == EnumSpWMLParams.rubyFontWeight) {
         if (v == "w100" || v == "thin") {
           return FontWeight.w100;
         } else if (v == "w200") {
@@ -296,7 +324,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
         } else {
           throw Exception();
         }
-      } else if (this == EnumSpWMLParams.fontStyle) {
+      } else if (this == EnumSpWMLParams.fontStyle ||
+          this == EnumSpWMLParams.rubyFontStyle) {
         if (v == "normal") {
           return FontStyle.normal;
         } else if (v == "italic") {
@@ -304,7 +333,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
         } else {
           throw Exception();
         }
-      } else if (this == EnumSpWMLParams.textDeco) {
+      } else if (this == EnumSpWMLParams.textDeco ||
+          this == EnumSpWMLParams.rubyDeco) {
         if (v == "none") {
           return TextDecoration.none;
         } else if (v == "underline") {
@@ -316,7 +346,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
         } else {
           throw Exception();
         }
-      } else if (this == EnumSpWMLParams.textDecoStyle) {
+      } else if (this == EnumSpWMLParams.textDecoStyle ||
+          this == EnumSpWMLParams.rubyDecoStyle) {
         if (v == "solid") {
           return TextDecorationStyle.solid;
         } else if (v == "dotted") {
@@ -330,7 +361,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
         } else {
           throw Exception();
         }
-      } else if (this == EnumSpWMLParams.textAlign) {
+      } else if (this == EnumSpWMLParams.textAlign ||
+          this == EnumSpWMLParams.rubyAlign) {
         if (v == "left") {
           return TextAlign.left;
         } else if (v == "center") {
@@ -408,6 +440,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       return EnumSpWMLParams.textDecoStyle;
     } else if (s == EnumSpWMLParams.textDecoColor.toStr()) {
       return EnumSpWMLParams.textDecoColor;
+    } else if (s == EnumSpWMLParams.textDecoThickness.toStr()) {
+      return EnumSpWMLParams.textDecoThickness;
     } else if (s == EnumSpWMLParams.textAlign.toStr()) {
       return EnumSpWMLParams.textAlign;
     } else if (s == EnumSpWMLParams.textHeight.toStr()) {
@@ -554,6 +588,38 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       return EnumSpWMLParams.borderShape;
     } else if (s == EnumSpWMLParams.enableTapLabel.toStr()) {
       return EnumSpWMLParams.enableTapLabel;
+    } else if (s == EnumSpWMLParams.rubyText.toStr()) {
+      return EnumSpWMLParams.rubyText;
+    } else if (s == EnumSpWMLParams.rubySize.toStr()) {
+      return EnumSpWMLParams.rubySize;
+    } else if (s == EnumSpWMLParams.rubyLetterSpacing.toStr()) {
+      return EnumSpWMLParams.rubyLetterSpacing;
+    } else if (s == EnumSpWMLParams.rubyMargin.toStr()) {
+      return EnumSpWMLParams.rubyMargin;
+    } else if (s == EnumSpWMLParams.rubyFontName.toStr()) {
+      return EnumSpWMLParams.rubyFontName;
+    } else if (s == EnumSpWMLParams.rubyFontWeight.toStr()) {
+      return EnumSpWMLParams.rubyFontWeight;
+    } else if (s == EnumSpWMLParams.rubyFontStyle.toStr()) {
+      return EnumSpWMLParams.rubyFontStyle;
+    } else if (s == EnumSpWMLParams.rubyWordSpacing.toStr()) {
+      return EnumSpWMLParams.rubyWordSpacing;
+    } else if (s == EnumSpWMLParams.rubyColor.toStr()) {
+      return EnumSpWMLParams.rubyColor;
+    } else if (s == EnumSpWMLParams.rubyBGColor.toStr()) {
+      return EnumSpWMLParams.rubyBGColor;
+    } else if (s == EnumSpWMLParams.rubyDeco.toStr()) {
+      return EnumSpWMLParams.rubyDeco;
+    } else if (s == EnumSpWMLParams.rubyDecoStyle.toStr()) {
+      return EnumSpWMLParams.rubyDecoStyle;
+    } else if (s == EnumSpWMLParams.rubyDecoColor.toStr()) {
+      return EnumSpWMLParams.rubyDecoColor;
+    } else if (s == EnumSpWMLParams.rubyDecoThickness.toStr()) {
+      return EnumSpWMLParams.rubyDecoThickness;
+    } else if (s == EnumSpWMLParams.rubyAlign.toStr()) {
+      return EnumSpWMLParams.rubyAlign;
+    } else if (s == EnumSpWMLParams.rubyHeight.toStr()) {
+      return EnumSpWMLParams.rubyHeight;
     } else {
       throw SpWMLException(
           EnumSpWMLExceptionType.paramException, lineStart, lineEnd);

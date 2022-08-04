@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import '../../../element/sub/text/ruby_text_element.dart';
 import '../../../element_params/sub/structure/span_params.dart';
 import '../../../element_params/sub/text/text_params.dart';
 import '../../../element_params/super/spwml_params.dart';
@@ -7,7 +8,6 @@ import '../../../enum/enum_spwml_params.dart';
 import '../../../enum/enum_spwml_element_type.dart';
 import '../text/href_element.dart';
 import '../text/text_element.dart';
-import '../../../spwml_exception.dart';
 import '../../../element_params/element_child.dart';
 import '../../spwml_font_style.dart';
 
@@ -130,27 +130,15 @@ class SpanElement extends TextElement {
           );
   }
 
-  List<TextSpan> _convertChildren(BuildContext context) {
-    List<TextSpan> r = [];
+  List<InlineSpan> _convertChildren(BuildContext context) {
+    List<InlineSpan> r = [];
     if (children.children.length ==
         (elParams.p.textSpanParamsList?.length ?? -1)) {
       int count = 0;
       final List<TextSpanParams> tsp = elParams.p.textSpanParamsList!;
       for (Widget i in children.children) {
         final int n = count;
-        if (i is TextElement) {
-          r.add(TextSpan(
-              text: tsp[n].text ?? i.spwmlParams.p.text,
-              children: tsp[n].children,
-              style: tsp[n].style ?? i.getStyle(),
-              recognizer: tsp[n].recognizer,
-              mouseCursor: tsp[n].mouseCursor,
-              onEnter: tsp[n].onEnter,
-              onExit: tsp[n].onExit,
-              semanticsLabel: tsp[n].semanticsLabel,
-              locale: tsp[n].locale,
-              spellOut: tsp[n].spellOut));
-        } else if (i is HrefElement) {
+        if (i is HrefElement) {
           r.add(TextSpan(
               text: tsp[n].text ?? i.getDisplayText(),
               children: tsp[n].children,
@@ -166,20 +154,28 @@ class SpanElement extends TextElement {
               semanticsLabel: tsp[n].semanticsLabel,
               locale: tsp[n].locale,
               spellOut: tsp[n].spellOut));
+        } else if (i is RubyTextElement) {
+          r.add(WidgetSpan(child: i));
+        } else if (i is TextElement) {
+          r.add(TextSpan(
+              text: tsp[n].text ?? i.spwmlParams.p.text,
+              children: tsp[n].children,
+              style: tsp[n].style ?? i.getStyle(),
+              recognizer: tsp[n].recognizer,
+              mouseCursor: tsp[n].mouseCursor,
+              onEnter: tsp[n].onEnter,
+              onExit: tsp[n].onExit,
+              semanticsLabel: tsp[n].semanticsLabel,
+              locale: tsp[n].locale,
+              spellOut: tsp[n].spellOut));
         } else {
-          throw SpWMLException(
-              EnumSpWMLExceptionType.elementException, lineStart, lineEnd);
+          r.add(WidgetSpan(child: i));
         }
         count += 1;
       }
     } else {
       for (Widget i in children.children) {
-        if (i is TextElement) {
-          r.add(TextSpan(
-            text: i.spwmlParams.p.text,
-            style: i.getStyle(),
-          ));
-        } else if (i is HrefElement) {
+        if (i is HrefElement) {
           r.add(TextSpan(
               text: i.getDisplayText(),
               style: i.getStyle(),
@@ -187,9 +183,15 @@ class SpanElement extends TextElement {
                 ..onTap = () {
                   i.onTapFunc(context);
                 }));
+        } else if (i is RubyTextElement) {
+          r.add(WidgetSpan(child: i));
+        } else if (i is TextElement) {
+          r.add(TextSpan(
+            text: i.spwmlParams.p.text,
+            style: i.getStyle(),
+          ));
         } else {
-          throw SpWMLException(
-              EnumSpWMLExceptionType.elementException, lineStart, lineEnd);
+          r.add(WidgetSpan(child: i));
         }
       }
     }

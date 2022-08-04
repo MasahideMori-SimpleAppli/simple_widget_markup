@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:simple_widget_markup/spwml_exception.dart';
 import 'element/super/spwml_element.dart';
 import 'element_params/sub/text/text_params.dart';
 import 'element_params/super/spwml_params.dart';

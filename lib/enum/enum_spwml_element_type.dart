@@ -45,6 +45,7 @@ enum EnumSpWMLElementType {
   table,
   tableRow,
   tr,
+  ruby
 }
 
 extension EXTEnumSpWMLElementType on EnumSpWMLElementType {
@@ -133,6 +134,8 @@ extension EXTEnumSpWMLElementType on EnumSpWMLElementType {
       return EnumSpWMLElementType.tableRow;
     } else if (s == EnumSpWMLElementType.tr.toStr()) {
       return EnumSpWMLElementType.tableRow;
+    } else if (s == EnumSpWMLElementType.ruby.toStr()) {
+      return EnumSpWMLElementType.ruby;
     } else {
       throw SpWMLException(
           EnumSpWMLExceptionType.typeException, lineStart, lineEnd);

@@ -101,9 +101,9 @@ class TextElement extends SpWMLElement {
     return Text(
       spwmlParams.p.text,
       key: textParams.p.key,
-      style: getStyle(),
-      strutStyle: getStrutStyle(),
-      textAlign: getTextAlign(),
+      style: textParams.p.style ?? getStyle(),
+      strutStyle: textParams.p.strutStyle ?? getStrutStyle(),
+      textAlign: textParams.p.textAlign ?? getTextAlign(),
       textDirection: textParams.p.textDirection,
       locale: textParams.p.locale,
       softWrap: textParams.p.softWrap,

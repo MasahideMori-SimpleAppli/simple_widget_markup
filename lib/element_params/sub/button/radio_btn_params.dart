@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import '../../../element_params/sub/button/checkbox_params.dart';
 
 import 'btn_params.dart';
-import 'checkbox_params.dart';
 
 class RadioBtnParamsWrapper {
   RadioBtnParams p;

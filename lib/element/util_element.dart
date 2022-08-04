@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import '../element/sub/button/checkbox_element.dart';
 import '../element/sub/button/radio_btn_element.dart';
 import '../element/sub/structure/table_element.dart';
+import '../element/sub/text/ruby_text_element.dart';
 import '../element_params/sub/button/checkbox_params.dart';
 import '../element_params/sub/button/radio_btn_params.dart';
 import '../element_params/sub/structure/table_params.dart';
+import '../element_params/sub/text/ruby_text_params.dart';
 import '../element/sub/button/btn_element.dart';
 import '../element/sub/button/dropdown_btn_element.dart';
 import '../element/sub/button/popupmenu_btn_element.dart';
@@ -127,6 +129,17 @@ class UtilElement {
           style,
           TextParamsWrapper(TextParams()),
           HrefParamsWrapper(HrefParams()));
+    } else if (eType == EnumSpWMLElementType.ruby) {
+      r = RubyTextElement(
+          serial,
+          params,
+          spwmlEP,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          TextParamsWrapper(TextParams()),
+          RubyTextParamsWrapper(RubyTextParams()));
     } else if (eType == EnumSpWMLElementType.line) {
       r = LineElement(serial, params, spwmlEP, parentSerial, lineStart, lineEnd,
           style, LineParamsWrapper(LineParams()));

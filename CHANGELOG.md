@@ -1,3 +1,8 @@
+## 7.1.0
+* Added RubyTextElement.
+* Fixed bug with TextElement parameters.
+* All elements can now be child element of a SpanElement.
+
 ## 7.0.0
 * Changed the parser to the versatile simple_block_markup_language package.
 
