@@ -1,3 +1,6 @@
+## 7.2.1
+* The SBML library has been updated so the relevant I ran the update.
+
 ## 7.2.0
 * The content of RubyTextElement is now selectable.
 * Fixed an issue where selectable text was misaligned relative to normal text.

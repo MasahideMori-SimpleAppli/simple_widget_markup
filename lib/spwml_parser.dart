@@ -6,8 +6,7 @@ import 'enum/enum_spwml_element_type.dart';
 import 'element/sub/text/text_element.dart';
 import 'element/util_element.dart';
 import 'element/spwml_font_style.dart';
-import 'package:simple_block_markup_language/sbml_parser.dart';
-import 'package:simple_block_markup_language/sbml_block.dart';
+import 'package:simple_block_markup_language/simple_block_markup_language.dart';
 
 ///
 /// Author Masahide Mori
