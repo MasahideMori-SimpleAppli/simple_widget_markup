@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   url_launcher: ^6.1.0
-  simple_block_markup_language: ^0.0.3
+  simple_block_markup_language: ^0.0.4
 
 dev_dependencies:
   flutter_test:
