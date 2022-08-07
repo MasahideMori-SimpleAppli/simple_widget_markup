@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_widget_markup/element_params/sub/text/text_params.dart';
 
 class RubyTextParamsWrapper {
   RubyTextParams p;
@@ -29,4 +30,8 @@ class RubyTextParams {
   String? semanticsLabel;
   TextWidthBasis? textWidthBasis;
   TextHeightBehavior? textHeightBehavior;
+
+  // for selectable. ruby text part default is false.
+  bool isSelectable = false;
+  SelectableTextParams? selectableTextParams;
 }

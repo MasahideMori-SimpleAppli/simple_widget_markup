@@ -32,6 +32,7 @@ class RubyTextElement extends TextElement {
   @override
   RubyTextElement initParams() {
     super.initParams();
+    // ここからルビの設定
     rubyParams.p.text = params.containsKey(EnumSpWMLParams.rubyText)
         ? params[EnumSpWMLParams.rubyText]
         : RubyTextParams.defText;
@@ -45,6 +46,13 @@ class RubyTextElement extends TextElement {
     rubyParams.p.margin = params.containsKey(EnumSpWMLParams.rubyMargin)
         ? params[EnumSpWMLParams.rubyMargin]
         : RubyTextParams.defMargin;
+    rubyParams.p.isSelectable =
+        params.containsKey(EnumSpWMLParams.isRubySelectable)
+            ? params[EnumSpWMLParams.isRubySelectable]
+            : false;
+    if (rubyParams.p.isSelectable) {
+      rubyParams.p.selectableTextParams = SelectableTextParams();
+    }
     return this;
   }
 
@@ -54,11 +62,65 @@ class RubyTextElement extends TextElement {
       key: textParams.p.key,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        getRubyText(context),
+        getRubyWidget(context),
         SizedBox(height: rubyParams.p.margin),
-        getText(context)
+        getTextWidget(context)
       ],
     );
+  }
+
+  /// Get ruby text widget.
+  Widget getRubyWidget(BuildContext context) {
+    return rubyParams.p.isSelectable
+        ? SelectableText(
+            rubyParams.p.text,
+            key: rubyParams.p.selectableTextParams!.key,
+            focusNode: rubyParams.p.selectableTextParams!.focusNode,
+            style: rubyParams.p.selectableTextParams!.style ?? getRubyStyle(),
+            strutStyle: rubyParams.p.selectableTextParams!.strutStyle ??
+                getRubyStrutStyle(),
+            textAlign:
+                rubyParams.p.selectableTextParams!.textAlign ?? getRubyAlign(),
+            textDirection: rubyParams.p.selectableTextParams!.textDirection,
+            textScaleFactor:
+                rubyParams.p.selectableTextParams!.textScaleFactor ??
+                    MediaQuery.of(context).textScaleFactor,
+            showCursor: rubyParams.p.selectableTextParams!.showCursor,
+            autofocus: rubyParams.p.selectableTextParams!.autofocus,
+            toolbarOptions: rubyParams.p.selectableTextParams!.toolbarOptions,
+            minLines: rubyParams.p.selectableTextParams!.minLines,
+            maxLines: rubyParams.p.selectableTextParams!.maxLines,
+            cursorWidth: rubyParams.p.selectableTextParams!.cursorWidth,
+            cursorHeight: rubyParams.p.selectableTextParams!.cursorHeight,
+            cursorRadius: rubyParams.p.selectableTextParams!.cursorRadius,
+            cursorColor: rubyParams.p.selectableTextParams!.cursorColor,
+            selectionHeightStyle:
+                rubyParams.p.selectableTextParams!.selectionHeightStyle,
+            selectionWidthStyle:
+                rubyParams.p.selectableTextParams!.selectionWidthStyle,
+            dragStartBehavior:
+                rubyParams.p.selectableTextParams!.dragStartBehavior,
+            enableInteractiveSelection:
+                rubyParams.p.selectableTextParams!.enableInteractiveSelection,
+            selectionControls:
+                rubyParams.p.selectableTextParams!.selectionControls,
+            onTap: rubyParams.p.selectableTextParams!.onTap,
+            scrollPhysics: rubyParams.p.selectableTextParams!.scrollPhysics,
+            semanticsLabel: rubyParams.p.selectableTextParams!.semanticsLabel,
+            textHeightBehavior:
+                rubyParams.p.selectableTextParams!.textHeightBehavior,
+            textWidthBasis: rubyParams.p.selectableTextParams!.textWidthBasis,
+            onSelectionChanged:
+                rubyParams.p.selectableTextParams!.onSelectionChanged,
+          )
+        : getRubyText(context);
+  }
+
+  /// Get ruby text alignment.
+  TextAlign getRubyAlign() {
+    return params.containsKey(EnumSpWMLParams.rubyAlign)
+        ? params[EnumSpWMLParams.rubyAlign]
+        : TextAlign.left;
   }
 
   /// get ruby font size.
@@ -123,7 +185,7 @@ class RubyTextElement extends TextElement {
       rubyParams.p.text,
       style: rubyParams.p.style ?? getRubyStyle(),
       strutStyle: rubyParams.p.strutStyle ?? getRubyStrutStyle(),
-      textAlign: rubyParams.p.textAlign,
+      textAlign: rubyParams.p.textAlign ?? getRubyAlign(),
       textDirection: rubyParams.p.textDirection,
       locale: rubyParams.p.locale,
       softWrap: rubyParams.p.softWrap,

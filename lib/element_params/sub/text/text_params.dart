@@ -24,7 +24,7 @@ class SelectableTextParams {
   ToolbarOptions? toolbarOptions;
   int? minLines;
   int? maxLines;
-  double cursorWidth = 2.0;
+  double cursorWidth = 0.0;
   double? cursorHeight;
   Radius? cursorRadius;
   Color? cursorColor;

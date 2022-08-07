@@ -1,3 +1,7 @@
+## 7.2.0
+* The content of RubyTextElement is now selectable.
+* Fixed an issue where selectable text was misaligned relative to normal text.
+
 ## 7.1.0
 * Added RubyTextElement.
 * Fixed bug with TextElement parameters.

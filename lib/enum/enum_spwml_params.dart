@@ -125,6 +125,7 @@ enum EnumSpWMLParams {
   rubyDecoThickness,
   rubyAlign,
   rubyHeight,
+  isRubySelectable,
 }
 
 extension EXTEnumSpWMLParams on EnumSpWMLParams {
@@ -378,7 +379,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.isPrimary ||
           this == EnumSpWMLParams.isExpanded ||
           this == EnumSpWMLParams.value ||
-          this == EnumSpWMLParams.enableTapLabel) {
+          this == EnumSpWMLParams.enableTapLabel ||
+          this == EnumSpWMLParams.isRubySelectable) {
         if (v == "true") {
           return true;
         } else if (v == "false") {
@@ -620,6 +622,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       return EnumSpWMLParams.rubyAlign;
     } else if (s == EnumSpWMLParams.rubyHeight.toStr()) {
       return EnumSpWMLParams.rubyHeight;
+    } else if (s == EnumSpWMLParams.isRubySelectable.toStr()) {
+      return EnumSpWMLParams.isRubySelectable;
     } else {
       throw SpWMLException(
           EnumSpWMLExceptionType.paramException, lineStart, lineEnd);

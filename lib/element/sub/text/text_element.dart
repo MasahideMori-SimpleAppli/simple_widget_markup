@@ -44,6 +44,11 @@ class TextElement extends SpWMLElement {
 
   @override
   Widget getWidget(BuildContext context) {
+    return getTextWidget(context);
+  }
+
+  /// Get Text or SelectableText.
+  Widget getTextWidget(BuildContext context) {
     return textParams.p.isSelectable
         ? SelectableText(
             textParams.p.data ?? spwmlParams.p.text,
