@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:simple_widget_markup/element/sub/button/btn_element.dart';
-import 'package:simple_widget_markup/spwml_builder.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:simple_widget_markup/simple_widget_markup.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,54 +27,30 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String? _layout;
-
-  // for directly in the code.
-  // String _layout = SpWMLLayout.layout;
-
-  @override
-  void initState() {
-    super.initState();
-    loadData();
-  }
-
-  void loadData() {
-    // This sample describes a flexible pattern for fast development.
-    // However, it is also possible to embed SpWML code directly in the code.
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final String layoutData =
-          await rootBundle.loadString('/layout/layout_name.spwml');
-      setState(() {
-        _layout = layoutData;
-      });
-    });
-  }
+  // This is how it is used when embedding SpWML.
+  // Since SpWML is text, you can also load what you have saved as an asset.
+  // It can also be downloaded from the server and displayed.
+  static const String _layout =
+      "(h3)Hello SpWML!\n(row, hAlign:right, mTop:20)\n+(overline)2022/08/13 (Sat.)\n(line)\n(h5)*Language specifications and latest version information\n(text)The core of this project, Simple Widget Markup Language, is open source.\nThe latest information and source code can be found at the following URL.\nAlso, the Flutter package is available.\n(h6)Flutter package\n(href)https://pub.dev/packages/simple_widget_markup\n(h6)Github\n(href)https://github.com/MasahideMori-SimpleAppli/simple_widget_markup\n(h5, mT:48)*Below is some practice code for first-time users.\n(h6)The button operation sample\n// Sample to make a button work with Dart code\n(btn, id:1, mTop:20, type: elevated, textColor:#FFFFFF, height:32, width:180) Show dialog";
 
   @override
   Widget build(BuildContext context) {
-    if (_layout == null) {
-      return const Scaffold(
-          body: SafeArea(
-        child: Center(
-          child: CircularProgressIndicator(),
-        ),
-      ));
-    } else {
-      SpWMLBuilder builder = SpWMLBuilder(_layout);
-      BtnElement btnElement = builder.getElementByID(1) as BtnElement;
-      btnElement.setBtnCallback(() async {
-        final Uri uri =
-            Uri.parse("https://simple-widget-markup-editor.web.app/");
-        if (await canLaunchUrl(uri)) {
-          await launchUrl(uri);
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text("The specified URL could not be opened."),
-            duration: Duration(seconds: 3),
-          ));
-        }
-      });
-      return Scaffold(body: SafeArea(child: builder.build(context)));
-    }
+    SpWMLBuilder builder = SpWMLBuilder(_layout);
+    BtnElement btnElement = builder.getElementByID(1) as BtnElement;
+    btnElement.setBtnCallback(() {
+      showDialog(
+          context: context,
+          builder: (_) {
+            return AlertDialog(
+                title:
+                    SizedBox(height: 64, child: SpWML('(h2, mT:0)Good job!')),
+                content: SizedBox(
+                  height: 196,
+                  child: SpWML(
+                      "(h4, mT:0)Achievement\n(text)* You have mastered basic SpWML usage.\n* You learned how to access SpWML programmatically.\n(text)Please use SpWML for your wonderful work!\nThank you!"),
+                ));
+          });
+    });
+    return Scaffold(body: SafeArea(child: builder.build(context)));
   }
 }

@@ -1,3 +1,6 @@
+## 8.0.0
+* Optimized the internal structure of the program. This made importing easier.
+
 ## 7.2.1
 * The SBML library has been updated so the relevant I ran the update.
 

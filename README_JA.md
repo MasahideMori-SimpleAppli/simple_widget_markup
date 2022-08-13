@@ -68,7 +68,7 @@ SpWMLは、Widget（一定の要素のかたまり）を手軽に扱えるよう
 ### サンプルコード
 ```dart
 import 'package:flutter/material.dart';
-import 'package:simple_widget_markup/spwml_builder.dart';
+import 'package:simple_widget_markup/simple_widget_markup.dart';
 
 void main() {
   runApp(const MyApp());

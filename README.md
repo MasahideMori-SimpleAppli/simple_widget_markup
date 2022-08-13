@@ -69,7 +69,7 @@ The parameters are explained in detail on the SpWML editor page in the quickstar
 ### Sample code
 ```dart
 import 'package:flutter/material.dart';
-import 'package:simple_widget_markup/spwml_builder.dart';
+import 'package:simple_widget_markup/simple_widget_markup.dart';
 
 void main() {
   runApp(const MyApp());
