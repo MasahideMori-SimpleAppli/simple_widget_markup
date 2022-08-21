@@ -1,3 +1,6 @@
+## 8.0.2
+* Fixed a bug where vertical alignment of WrapElements did not work.
+
 ## 8.0.1
 * Fixed an issue where the CardElement parameters borderWidth and borderColor were invalid.
 * Fixed an issue where touch animations were not clipped when changing card element content or borders.

@@ -35,8 +35,8 @@ class WrapElement extends SpWMLElement {
     elParams.p.alignment = params.containsKey(EnumSpWMLParams.hAlign)
         ? params[EnumSpWMLParams.hAlign]
         : WrapAlignment.start;
-    elParams.p.runAlignment = params.containsKey(EnumSpWMLParams.hAlign)
-        ? params[EnumSpWMLParams.hAlign]
+    elParams.p.runAlignment = params.containsKey(EnumSpWMLParams.vAlign)
+        ? params[EnumSpWMLParams.vAlign]
         : WrapAlignment.start;
     return this;
   }
