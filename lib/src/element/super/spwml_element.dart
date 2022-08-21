@@ -159,6 +159,19 @@ class SpWMLElement extends StatelessWidget {
     }
   }
 
+  /// Get button or card borderSide.
+  BorderSide? getBorderSide() {
+    final bool isUseWidth = params.containsKey(EnumSpWMLParams.borderWidth);
+    final bool isUseColor = params.containsKey(EnumSpWMLParams.borderColor);
+    return isUseWidth || isUseColor
+        ? BorderSide(
+            width: isUseWidth ? params[EnumSpWMLParams.borderWidth]! : 1.0,
+            color:
+                isUseColor ? params[EnumSpWMLParams.borderColor] : Colors.black,
+            style: BorderStyle.solid)
+        : null;
+  }
+
   /// Get element shape. It works for btn, card, radioBtn and checkbox.
   OutlinedBorder? getShape() {
     if (params.containsKey(EnumSpWMLParams.shape)) {

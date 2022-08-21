@@ -1,3 +1,7 @@
+## 8.0.1
+* Fixed an issue where the CardElement parameters borderWidth and borderColor were invalid.
+* Fixed an issue where touch animations were not clipped when changing card element content or borders.
+
 ## 8.0.0
 * Optimized the internal structure of the program. This made importing easier.
 

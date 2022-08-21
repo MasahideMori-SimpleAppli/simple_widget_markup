@@ -38,7 +38,7 @@ class CardElement extends SpWMLElement {
     elParams.p.elevation = params.containsKey(EnumSpWMLParams.cardElevation)
         ? params[EnumSpWMLParams.cardElevation]
         : null;
-    elParams.p.shape = getShape();
+    elParams.p.shape = getShape()?.copyWith(side: getBorderSide());
     return this;
   }
 
@@ -53,7 +53,7 @@ class CardElement extends SpWMLElement {
       shape: elParams.p.shape,
       borderOnForeground: elParams.p.borderOnForeground,
       margin: elParams.p.margin,
-      clipBehavior: elParams.p.clipBehavior,
+      clipBehavior: elParams.p.clipBehavior ?? Clip.antiAliasWithSaveLayer,
       child: elParams.p.child ?? child.getChild(),
       semanticContainer: elParams.p.semanticContainer,
     );

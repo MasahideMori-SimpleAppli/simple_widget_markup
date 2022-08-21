@@ -266,7 +266,7 @@ class BtnElement extends TextElement {
           backgroundColor: params.containsKey(EnumSpWMLParams.btnBGColor)
               ? params[EnumSpWMLParams.btnBGColor]
               : null,
-          side: _getBorderSide(),
+          side: getBorderSide(),
           shape: getShape());
     } else if (bType == EnumBtnType.elevated) {
       return ElevatedButton.styleFrom(
@@ -277,18 +277,5 @@ class BtnElement extends TextElement {
     } else {
       return null;
     }
-  }
-
-  /// Get button borderSide
-  BorderSide? _getBorderSide() {
-    final bool isUseWidth = params.containsKey(EnumSpWMLParams.borderWidth);
-    final bool isUseColor = params.containsKey(EnumSpWMLParams.borderColor);
-    return isUseWidth || isUseColor
-        ? BorderSide(
-            width: isUseWidth ? params[EnumSpWMLParams.borderWidth]! : 1.0,
-            color:
-                isUseColor ? params[EnumSpWMLParams.borderColor] : Colors.black,
-            style: BorderStyle.solid)
-        : null;
   }
 }
