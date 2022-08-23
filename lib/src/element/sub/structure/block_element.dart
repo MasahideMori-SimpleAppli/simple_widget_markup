@@ -24,6 +24,7 @@ class BlockElement extends SpWMLElement {
   /// * [child] : This element child.
   ///
   /// Throws [SpWMLException] : ParamException.
+  ///
   /// Throws [SpWMLException] : ParamValueException.
   BlockElement(
       int serial,
