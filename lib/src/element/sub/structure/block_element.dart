@@ -13,17 +13,29 @@ import '../../super/spwml_element.dart';
 class BlockElement extends SpWMLElement {
   final BlockElementChild child;
 
+  ///
+  /// * [serial] : Array Index.
+  /// * [params] : Element parameters.
+  /// * [spwmlParams] : The spwml element parameters.
+  /// * [parentSerial] : Parent Element serial.
+  /// * [lineStart] : line info for the Error handling.
+  /// * [lineEnd] : line info for the Error handling.
+  /// * [style] : Font styles.
+  /// * [child] : This element child.
+  ///
+  /// Throws [SpWMLException] : ParamException.
+  /// Throws [SpWMLException] : ParamValueException.
   BlockElement(
       int serial,
       Map<String, String> params,
-      SpWMLParamsWrapper spwmlEP,
+      SpWMLParamsWrapper spwmlParams,
       int parentSerial,
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
       this.child)
-      : super(serial, EnumSpWMLElementType.block, params, spwmlEP, parentSerial,
-            lineStart, lineEnd, style);
+      : super(serial, EnumSpWMLElementType.block, params, spwmlParams,
+            parentSerial, lineStart, lineEnd, style);
 
   @override
   BlockElement initParams() {

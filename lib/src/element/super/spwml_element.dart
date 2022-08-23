@@ -34,6 +34,7 @@ class SpWMLElement extends StatelessWidget {
   /// * [style] : Font styles.
   ///
   /// Throws [SpWMLException] : ParamException.
+  ///
   /// Throws [SpWMLException] : ParamValueException.
   SpWMLElement(
       this.serial,
@@ -61,7 +62,8 @@ class SpWMLElement extends StatelessWidget {
     return mParam;
   }
 
-  /// initialize parameters
+  /// initialize parameters.
+  /// This method is used internally by the package and should not be called externally.
   SpWMLElement initParams() {
     spwmlParams.p.weight = params.containsKey(EnumSpWMLParams.weight)
         ? params[EnumSpWMLParams.weight]
@@ -160,6 +162,7 @@ class SpWMLElement extends StatelessWidget {
   }
 
   /// Get button or card borderSide.
+  /// This method is used internally by the package and should not be called externally.
   BorderSide? getBorderSide() {
     final bool isUseWidth = params.containsKey(EnumSpWMLParams.borderWidth);
     final bool isUseColor = params.containsKey(EnumSpWMLParams.borderColor);
@@ -173,6 +176,7 @@ class SpWMLElement extends StatelessWidget {
   }
 
   /// Get element shape. It works for btn, card, radioBtn and checkbox.
+  /// This method is used internally by the package and should not be called externally.
   OutlinedBorder? getShape() {
     if (params.containsKey(EnumSpWMLParams.shape)) {
       if (params[EnumSpWMLParams.shape] is RoundedRectangleBorder) {
@@ -271,6 +275,7 @@ class SpWMLElement extends StatelessWidget {
   }
 
   /// get this element widget.
+  /// This method is used internally by the package and should not be called externally.
   Widget getWidget(BuildContext context) {
     throw UnimplementedError();
   }

@@ -16,17 +16,30 @@ import '../../super/spwml_element.dart';
 class ImgElement extends SpWMLElement {
   final ImgParamsWrapper elParams;
 
+  ///
+  /// * [serial] : Array Index.
+  /// * [params] : Element parameters.
+  /// * [spwmlParams] : The spwml element parameters.
+  /// * [parentSerial] : Parent Element serial.
+  /// * [lineStart] : line info for the Error handling.
+  /// * [lineEnd] : line info for the Error handling.
+  /// * [style] : Font styles.
+  /// * [elParams] : This element parameters.
+  ///
+  /// Throws [SpWMLException] : ParamException.
+  ///
+  /// Throws [SpWMLException] : ParamValueException.
   ImgElement(
       int serial,
       Map<String, String> params,
-      SpWMLParamsWrapper spwmlEP,
+      SpWMLParamsWrapper spwmlParams,
       int parentSerial,
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
       this.elParams)
-      : super(serial, EnumSpWMLElementType.img, params, spwmlEP, parentSerial,
-            lineStart, lineEnd, style);
+      : super(serial, EnumSpWMLElementType.img, params, spwmlParams,
+            parentSerial, lineStart, lineEnd, style);
 
   @override
   ImgElement initParams() {

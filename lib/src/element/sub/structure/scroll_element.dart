@@ -17,17 +17,31 @@ class ScrollElement extends SpWMLElement {
   final BlockElementChild child;
   final ScrollParamsWrapper elParams;
 
+  ///
+  /// * [serial] : Array Index.
+  /// * [params] : Element parameters.
+  /// * [spwmlParams] : The spwml element parameters.
+  /// * [parentSerial] : Parent Element serial.
+  /// * [lineStart] : line info for the Error handling.
+  /// * [lineEnd] : line info for the Error handling.
+  /// * [style] : Font styles.
+  /// * [child] : This element child.
+  /// * [elParams] : This element parameters.
+  ///
+  /// Throws [SpWMLException] : ParamException.
+  ///
+  /// Throws [SpWMLException] : ParamValueException.
   ScrollElement(
       int serial,
       Map<String, String> params,
-      SpWMLParamsWrapper spwmlEP,
+      SpWMLParamsWrapper spwmlParams,
       int parentSerial,
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
       this.child,
       this.elParams)
-      : super(serial, EnumSpWMLElementType.scroll, params, spwmlEP,
+      : super(serial, EnumSpWMLElementType.scroll, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style);
 
   @override

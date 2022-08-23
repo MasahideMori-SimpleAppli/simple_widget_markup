@@ -1,3 +1,7 @@
+## 8.0.3
+* Added setSwitchValue method to SwitchBtnElement.
+* Added some documentation content.
+
 ## 8.0.2
 * Fixed a bug where vertical alignment of WrapElements did not work.
 

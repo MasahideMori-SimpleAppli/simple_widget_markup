@@ -16,17 +16,31 @@ import '../../../style/spwml_font_style.dart';
 class TextFieldElement extends TextElement {
   final TextFieldParamsWrapper tfParams;
 
+  ///
+  /// * [serial] : Array Index.
+  /// * [params] : Element parameters.
+  /// * [spwmlParams] : The spwml element parameters.
+  /// * [parentSerial] : Parent Element serial.
+  /// * [lineStart] : line info for the Error handling.
+  /// * [lineEnd] : line info for the Error handling.
+  /// * [style] : Font styles.
+  /// * [textParams] : Parent class parameters.
+  /// * [tfParams] : This element parameters.
+  ///
+  /// Throws [SpWMLException] : ParamException.
+  ///
+  /// Throws [SpWMLException] : ParamValueException.
   TextFieldElement(
       int serial,
       Map<String, String> params,
-      SpWMLParamsWrapper spwmlEP,
+      SpWMLParamsWrapper spwmlParams,
       int parentSerial,
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
       TextParamsWrapper textParams,
       this.tfParams)
-      : super(serial, EnumSpWMLElementType.textField, params, spwmlEP,
+      : super(serial, EnumSpWMLElementType.textField, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, textParams);
 
   /// initialize parameters

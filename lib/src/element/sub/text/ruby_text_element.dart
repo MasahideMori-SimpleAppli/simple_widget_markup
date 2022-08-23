@@ -16,18 +16,32 @@ import '../../../style/spwml_font_style.dart';
 class RubyTextElement extends TextElement {
   final RubyTextParamsWrapper rubyParams;
 
+  ///
+  /// * [serial] : Array Index.
+  /// * [params] : Element parameters.
+  /// * [spwmlParams] : The spwml element parameters.
+  /// * [parentSerial] : Parent Element serial.
+  /// * [lineStart] : line info for the Error handling.
+  /// * [lineEnd] : line info for the Error handling.
+  /// * [style] : Font styles.
+  /// * [textParams] : Parent class parameters.
+  /// * [rubyParams] : This element parameters.
+  ///
+  /// Throws [SpWMLException] : ParamException.
+  ///
+  /// Throws [SpWMLException] : ParamValueException.
   RubyTextElement(
       int serial,
       Map<String, String> params,
-      SpWMLParamsWrapper spwmlEP,
+      SpWMLParamsWrapper spwmlParams,
       int parentSerial,
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
       TextParamsWrapper textParams,
       this.rubyParams)
-      : super(serial, EnumSpWMLElementType.ruby, params, spwmlEP, parentSerial,
-            lineStart, lineEnd, style, textParams);
+      : super(serial, EnumSpWMLElementType.ruby, params, spwmlParams,
+            parentSerial, lineStart, lineEnd, style, textParams);
 
   @override
   RubyTextElement initParams() {

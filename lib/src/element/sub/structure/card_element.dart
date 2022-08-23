@@ -16,18 +16,32 @@ class CardElement extends SpWMLElement {
   final BlockElementChild child;
   final CardParamsWrapper elParams;
 
+  ///
+  /// * [serial] : Array Index.
+  /// * [params] : Element parameters.
+  /// * [spwmlParams] : The spwml element parameters.
+  /// * [parentSerial] : Parent Element serial.
+  /// * [lineStart] : line info for the Error handling.
+  /// * [lineEnd] : line info for the Error handling.
+  /// * [style] : Font styles.
+  /// * [child] : This element child.
+  /// * [elParams] : This element parameters.
+  ///
+  /// Throws [SpWMLException] : ParamException.
+  ///
+  /// Throws [SpWMLException] : ParamValueException.
   CardElement(
       int serial,
       Map<String, String> params,
-      SpWMLParamsWrapper spwmlEP,
+      SpWMLParamsWrapper spwmlParams,
       int parentSerial,
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
       this.child,
       this.elParams)
-      : super(serial, EnumSpWMLElementType.card, params, spwmlEP, parentSerial,
-            lineStart, lineEnd, style);
+      : super(serial, EnumSpWMLElementType.card, params, spwmlParams,
+            parentSerial, lineStart, lineEnd, style);
 
   @override
   CardElement initParams() {

@@ -15,18 +15,32 @@ import '../../super/spwml_element.dart';
 class TextElement extends SpWMLElement {
   final TextParamsWrapper textParams;
 
+  ///
+  /// * [serial] : Array Index.
+  /// * [type] : Element type.
+  /// * [param] : Element parameters.
+  /// * [spwmlParams] : The spwml element parameters.
+  /// * [parentSerial] : Parent Element serial.
+  /// * [lineStart] : line info for the Error handling.
+  /// * [lineEnd] : line info for the Error handling.
+  /// * [style] : Font styles.
+  /// * [textParams] : This element parameters.
+  ///
+  /// Throws [SpWMLException] : ParamException.
+  ///
+  /// Throws [SpWMLException] : ParamValueException.
   TextElement(
       int serial,
       EnumSpWMLElementType type,
       Map<String, String> params,
-      SpWMLParamsWrapper spwmlEP,
+      SpWMLParamsWrapper spwmlParams,
       int parentSerial,
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
       this.textParams)
-      : super(serial, type, params, spwmlEP, parentSerial, lineStart, lineEnd,
-            style);
+      : super(serial, type, params, spwmlParams, parentSerial, lineStart,
+            lineEnd, style);
 
   @override
   TextElement initParams() {

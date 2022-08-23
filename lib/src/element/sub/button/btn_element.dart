@@ -20,10 +20,25 @@ class BtnElement extends TextElement {
   final BlockElementChild child;
   final BtnParamsWrapper elParams;
 
+  ///
+  /// * [serial] : Array Index.
+  /// * [params] : Element parameters.
+  /// * [spwmlParams] : The spwml element parameters.
+  /// * [parentSerial] : Parent Element serial.
+  /// * [lineStart] : line info for the Error handling.
+  /// * [lineEnd] : line info for the Error handling.
+  /// * [style] : Font styles.
+  /// * [child] : This element child.
+  /// * [textParams] : Parent class parameters.
+  /// * [elParams] : This element parameters.
+  ///
+  /// Throws [SpWMLException] : ParamException.
+  ///
+  /// Throws [SpWMLException] : ParamValueException.
   BtnElement(
       int serial,
       Map<String, String> params,
-      SpWMLParamsWrapper spwmlEP,
+      SpWMLParamsWrapper spwmlParams,
       int parentSerial,
       int lineStart,
       int lineEnd,
@@ -31,8 +46,8 @@ class BtnElement extends TextElement {
       this.child,
       TextParamsWrapper textParams,
       this.elParams)
-      : super(serial, EnumSpWMLElementType.btn, params, spwmlEP, parentSerial,
-            lineStart, lineEnd, style, textParams);
+      : super(serial, EnumSpWMLElementType.btn, params, spwmlParams,
+            parentSerial, lineStart, lineEnd, style, textParams);
 
   @override
   BtnElement initParams() {

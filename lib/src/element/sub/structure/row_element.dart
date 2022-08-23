@@ -16,18 +16,32 @@ class RowElement extends SpWMLElement {
   final StructureElementChildren children;
   final RowColParamsWrapper elParams;
 
+  ///
+  /// * [serial] : Array Index.
+  /// * [params] : Element parameters.
+  /// * [spwmlParams] : The spwml element parameters.
+  /// * [parentSerial] : Parent Element serial.
+  /// * [lineStart] : line info for the Error handling.
+  /// * [lineEnd] : line info for the Error handling.
+  /// * [style] : Font styles.
+  /// * [children] : This element children.
+  /// * [elParams] : This element parameters.
+  ///
+  /// Throws [SpWMLException] : ParamException.
+  ///
+  /// Throws [SpWMLException] : ParamValueException.
   RowElement(
       int serial,
       Map<String, String> params,
-      SpWMLParamsWrapper spwmlEP,
+      SpWMLParamsWrapper spwmlParams,
       int parentSerial,
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
       this.children,
       this.elParams)
-      : super(serial, EnumSpWMLElementType.row, params, spwmlEP, parentSerial,
-            lineStart, lineEnd, style);
+      : super(serial, EnumSpWMLElementType.row, params, spwmlParams,
+            parentSerial, lineStart, lineEnd, style);
 
   @override
   RowElement initParams() {
