@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'table_row_element.dart';
+import '../../../element/super/multi_child_element.dart';
 import '../../../element_params/element_child.dart';
+import 'table_row_element.dart';
 import '../../../element_params/sub/structure/table_params.dart';
 import '../../../element_params/super/spwml_params.dart';
 import '../../../enum/enum_spwml_params.dart';
 import '../../../enum/enum_spwml_element_type.dart';
 import '../../../spwml_exception.dart';
 import '../../../style/spwml_font_style.dart';
-import '../../super/spwml_element.dart';
 
 ///
 /// Author Masahide Mori
 ///
 /// First edition creation date 2022-06-13 21:12:04
 ///
-class TableElement extends SpWMLElement {
-  final StructureElementChildren children;
+class TableElement extends MultiChildElement {
   final TableParamsWrapper elParams;
 
   ///
@@ -40,10 +39,10 @@ class TableElement extends SpWMLElement {
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
-      this.children,
+      StructureElementChildren children,
       this.elParams)
       : super(serial, EnumSpWMLElementType.table, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style);
+            parentSerial, lineStart, lineEnd, style, children);
 
   @override
   TableElement initParams() {

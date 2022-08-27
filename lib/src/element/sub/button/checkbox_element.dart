@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
-
+import '../../../element/super/multi_child_element.dart';
 import '../../../element_params/element_child.dart';
 import '../../../element_params/sub/button/checkbox_params.dart';
 import '../../../element_params/super/spwml_params.dart';
 import '../../../enum/enum_spwml_params.dart';
 import '../../../enum/enum_spwml_element_type.dart';
 import '../../../style/spwml_font_style.dart';
-import '../../super/spwml_element.dart';
 
 ///
 /// Author Masahide Mori
 ///
 /// First edition creation date 2022-06-13 21:13:22
 ///
-class CheckboxElement extends SpWMLElement {
-  final StructureElementChildren children;
+class CheckboxElement extends MultiChildElement {
   final CheckboxParamsWrapper elParams;
 
   ///
@@ -39,10 +37,10 @@ class CheckboxElement extends SpWMLElement {
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
-      this.children,
+      StructureElementChildren children,
       this.elParams)
       : super(serial, EnumSpWMLElementType.checkbox, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style);
+            parentSerial, lineStart, lineEnd, style, children);
 
   @override
   CheckboxElement initParams() {

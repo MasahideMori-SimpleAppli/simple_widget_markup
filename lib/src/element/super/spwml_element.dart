@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../element_params/super/spwml_params.dart';
-import '../../enum/enum_spwml_params.dart';
 import '../../enum/enum_spwml_element_type.dart';
-import '../../spwml_exception.dart';
+import '../../enum/enum_spwml_params.dart';
 import '../../style/spwml_font_style.dart';
 
 ///

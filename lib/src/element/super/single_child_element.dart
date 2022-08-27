@@ -1,18 +1,20 @@
-import 'package:flutter/material.dart';
-import '../../../element_params/element_child.dart';
-import '../../../element_params/super/spwml_params.dart';
-import '../../../enum/enum_spwml_element_type.dart';
-import '../../../style/spwml_font_style.dart';
-import '../../super/single_child_element.dart';
+import '../../element_params/element_child.dart';
+import '../../element_params/super/spwml_params.dart';
+import '../../enum/enum_spwml_element_type.dart';
+import '../../style/spwml_font_style.dart';
+import 'spwml_element.dart';
 
 ///
 /// Author Masahide Mori
 ///
-/// First edition creation date 2021-12-31 17:50:22
+/// First edition creation date 2022-08-27 17:45:38
 ///
-class BlockElement extends SingleChildElement {
+class SingleChildElement extends SpWMLElement {
+  final BlockElementChild child;
+
   ///
   /// * [serial] : Array Index.
+  /// * [type] : Element type.
   /// * [params] : Element parameters.
   /// * [spwmlParams] : The spwml element parameters.
   /// * [parentSerial] : Parent Element serial.
@@ -24,26 +26,22 @@ class BlockElement extends SingleChildElement {
   /// Throws [SpWMLException] : ParamException.
   ///
   /// Throws [SpWMLException] : ParamValueException.
-  BlockElement(
+  SingleChildElement(
       int serial,
+      EnumSpWMLElementType type,
       Map<String, String> params,
       SpWMLParamsWrapper spwmlParams,
       int parentSerial,
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
-      BlockElementChild child)
-      : super(serial, EnumSpWMLElementType.block, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, child);
+      this.child)
+      : super(serial, type, params, spwmlParams, parentSerial, lineStart,
+            lineEnd, style);
 
   @override
-  BlockElement initParams() {
+  SingleChildElement initParams() {
     super.initParams();
     return this;
-  }
-
-  @override
-  Widget getWidget(BuildContext context) {
-    return child.getChild();
   }
 }

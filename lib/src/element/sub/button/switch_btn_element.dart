@@ -60,7 +60,7 @@ class SwitchBtnElement extends SpWMLElement {
   /// (en)Set button callback.
   ///
   /// (ja)ボタンのコールバックを設定します。
-  /// * [callback] : Menu callback.
+  /// * [callback] : The button callback.
   void setCallback(void Function(bool btnEnabled)? callback) {
     elParams.p.onChanged = callback;
   }

@@ -1,3 +1,7 @@
+export 'super/multi_child_element.dart';
+export 'super/multi_child_text_element.dart';
+export 'super/single_child_element.dart';
+export 'super/single_child_text_element.dart';
 export 'super/spwml_element.dart';
 export 'sub/button/btn_element.dart';
 export 'sub/button/checkbox_element.dart';

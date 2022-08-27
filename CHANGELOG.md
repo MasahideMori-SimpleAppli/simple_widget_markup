@@ -1,3 +1,9 @@
+## 9.0.0
+* The parent class of some classes has changed.
+* Fixed some documentation content.
+* Added btnElement support to replaceID method in SpWMLBuilder.
+* Added spanElement support to replaceUnderStructure method in SpWMLBuilder.
+
 ## 8.0.3
 * Added setSwitchValue method to SwitchBtnElement.
 * Added some documentation content.

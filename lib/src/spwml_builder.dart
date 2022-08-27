@@ -59,7 +59,7 @@ class SpWMLBuilder {
       final SpWMLElement elm = _parsedWidgets[i];
       if (elm.params.containsKey(EnumSpWMLParams.id)) {
         if (elm.params[EnumSpWMLParams.id] == id) {
-          if (elm is BlockElement) {
+          if (elm is SingleChildElement) {
             elm.child.child = newWidget;
             for (SpWMLElement j in _parsedWidgets) {
               if (elm.serial == j.parentSerial) {
@@ -68,16 +68,7 @@ class SpWMLBuilder {
             }
             needReturn = true;
             break;
-          } else if (elm is ScrollElement) {
-            elm.child.child = newWidget;
-            for (SpWMLElement j in _parsedWidgets) {
-              if (elm.serial == j.parentSerial) {
-                removeTarget = j;
-              }
-            }
-            needReturn = true;
-            break;
-          } else if (elm is CardElement) {
+          } else if (elm is SingleChildTextElement) {
             elm.child.child = newWidget;
             for (SpWMLElement j in _parsedWidgets) {
               if (elm.serial == j.parentSerial) {
@@ -118,7 +109,7 @@ class SpWMLBuilder {
       final SpWMLElement elm = _parsedWidgets[i];
       if (elm.params.containsKey(EnumSpWMLParams.id)) {
         if (elm.params[EnumSpWMLParams.id] == id) {
-          if (elm is ColElement) {
+          if (elm is MultiChildElement) {
             elm.children.children = newWidgets;
             for (SpWMLElement j in _parsedWidgets) {
               if (elm.serial == j.parentSerial) {
@@ -127,79 +118,7 @@ class SpWMLBuilder {
             }
             needReturn = true;
             break;
-          } else if (elm is RowElement) {
-            elm.children.children = newWidgets;
-            for (SpWMLElement j in _parsedWidgets) {
-              if (elm.serial == j.parentSerial) {
-                removeTargets.add(j);
-              }
-            }
-            needReturn = true;
-            break;
-          } else if (elm is WrapElement) {
-            elm.children.children = newWidgets;
-            for (SpWMLElement j in _parsedWidgets) {
-              if (elm.serial == j.parentSerial) {
-                removeTargets.add(j);
-              }
-            }
-            needReturn = true;
-            break;
-          } else if (elm is DropdownBtnElement) {
-            elm.children.children = newWidgets;
-            for (SpWMLElement j in _parsedWidgets) {
-              if (elm.serial == j.parentSerial) {
-                removeTargets.add(j);
-              }
-            }
-            needReturn = true;
-            break;
-          } else if (elm is PopupMenuBtnElement) {
-            elm.children.children = newWidgets;
-            for (SpWMLElement j in _parsedWidgets) {
-              if (elm.serial == j.parentSerial) {
-                removeTargets.add(j);
-              }
-            }
-            needReturn = true;
-            break;
-          } else if (elm is ExpTileElement) {
-            elm.children.children = newWidgets;
-            for (SpWMLElement j in _parsedWidgets) {
-              if (elm.serial == j.parentSerial) {
-                removeTargets.add(j);
-              }
-            }
-            needReturn = true;
-            break;
-          } else if (elm is CheckboxElement) {
-            elm.children.children = newWidgets;
-            for (SpWMLElement j in _parsedWidgets) {
-              if (elm.serial == j.parentSerial) {
-                removeTargets.add(j);
-              }
-            }
-            needReturn = true;
-            break;
-          } else if (elm is RadioBtnElement) {
-            elm.children.children = newWidgets;
-            for (SpWMLElement j in _parsedWidgets) {
-              if (elm.serial == j.parentSerial) {
-                removeTargets.add(j);
-              }
-            }
-            needReturn = true;
-            break;
-          } else if (elm is TableElement) {
-            elm.children.children = newWidgets;
-            for (SpWMLElement j in _parsedWidgets) {
-              if (elm.serial == j.parentSerial) {
-                removeTargets.add(j);
-              }
-            }
-            needReturn = true;
-            break;
-          } else if (elm is TableRowElement) {
+          } else if (elm is MultiChildTextElement) {
             elm.children.children = newWidgets;
             for (SpWMLElement j in _parsedWidgets) {
               if (elm.serial == j.parentSerial) {
@@ -269,104 +188,30 @@ class SpWMLBuilder {
   List<Widget> _getStructuralWidget(BuildContext context) {
     List<Widget> r = [];
     for (SpWMLElement i in _parsedWidgets) {
-      if (i is ColElement) {
+      if (i is MultiChildElement) {
         for (SpWMLElement j in _parsedWidgets) {
           if (i.serial == j.parentSerial) {
             i.children.children.add(j);
           }
         }
-      } else if (i is RowElement) {
+      } else if (i is MultiChildTextElement) {
         for (SpWMLElement j in _parsedWidgets) {
           if (i.serial == j.parentSerial) {
             i.children.children.add(j);
           }
         }
-      } else if (i is BlockElement) {
+      } else if (i is SingleChildElement) {
         for (SpWMLElement j in _parsedWidgets) {
           if (i.serial == j.parentSerial) {
             i.child.child = j;
             break;
           }
         }
-      } else if (i is CardElement) {
+      } else if (i is SingleChildTextElement) {
         for (SpWMLElement j in _parsedWidgets) {
           if (i.serial == j.parentSerial) {
             i.child.child = j;
             break;
-          }
-        }
-      } else if (i is BtnElement) {
-        for (SpWMLElement j in _parsedWidgets) {
-          if (i.serial == j.parentSerial) {
-            i.child.child = j;
-            break;
-          }
-        }
-      } else if (i is ScrollElement) {
-        for (SpWMLElement j in _parsedWidgets) {
-          if (i.serial == j.parentSerial) {
-            i.child.child = j;
-            break;
-          }
-        }
-      } else if (i is SpanElement) {
-        for (SpWMLElement j in _parsedWidgets) {
-          if (i.serial == j.parentSerial) {
-            i.children.children.add(j);
-          }
-        }
-      } else if (i is StackElement) {
-        for (SpWMLElement j in _parsedWidgets) {
-          if (i.serial == j.parentSerial) {
-            i.children.children.add(j);
-          }
-        }
-      } else if (i is WrapElement) {
-        for (SpWMLElement j in _parsedWidgets) {
-          if (i.serial == j.parentSerial) {
-            i.children.children.add(j);
-          }
-        }
-      } else if (i is DropdownBtnElement) {
-        for (SpWMLElement j in _parsedWidgets) {
-          if (i.serial == j.parentSerial) {
-            i.children.children.add(j);
-          }
-        }
-      } else if (i is PopupMenuBtnElement) {
-        for (SpWMLElement j in _parsedWidgets) {
-          if (i.serial == j.parentSerial) {
-            i.children.children.add(j);
-          }
-        }
-      } else if (i is ExpTileElement) {
-        for (SpWMLElement j in _parsedWidgets) {
-          if (i.serial == j.parentSerial) {
-            i.children.children.add(j);
-          }
-        }
-      } else if (i is CheckboxElement) {
-        for (SpWMLElement j in _parsedWidgets) {
-          if (i.serial == j.parentSerial) {
-            i.children.children.add(j);
-          }
-        }
-      } else if (i is RadioBtnElement) {
-        for (SpWMLElement j in _parsedWidgets) {
-          if (i.serial == j.parentSerial) {
-            i.children.children.add(j);
-          }
-        }
-      } else if (i is TableElement) {
-        for (SpWMLElement j in _parsedWidgets) {
-          if (i.serial == j.parentSerial) {
-            i.children.children.add(j);
-          }
-        }
-      } else if (i is TableRowElement) {
-        for (SpWMLElement j in _parsedWidgets) {
-          if (i.serial == j.parentSerial) {
-            i.children.children.add(j);
           }
         }
       } else {

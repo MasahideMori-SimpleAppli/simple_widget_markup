@@ -1,23 +1,23 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import '../text/ruby_text_element.dart';
+import '../../../element/super/multi_child_text_element.dart';
+import '../../../element_params/element_child.dart';
 import '../../../element_params/sub/structure/span_params.dart';
 import '../../../element_params/sub/text/text_params.dart';
 import '../../../element_params/super/spwml_params.dart';
 import '../../../enum/enum_spwml_params.dart';
 import '../../../enum/enum_spwml_element_type.dart';
-import '../text/href_element.dart';
-import '../text/text_element.dart';
-import '../../../element_params/element_child.dart';
 import '../../../style/spwml_font_style.dart';
+import '../text/href_element.dart';
+import '../text/ruby_text_element.dart';
+import '../text/text_element.dart';
 
 ///
 /// Author Masahide Mori
 ///
 /// First edition creation date 2022-01-04 00:15:15
 ///
-class SpanElement extends TextElement {
-  final StructureElementChildren children;
+class SpanElement extends MultiChildTextElement {
   final SpanParamsWrapper elParams;
 
   ///
@@ -42,11 +42,11 @@ class SpanElement extends TextElement {
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
-      this.children,
+      StructureElementChildren children,
       TextParamsWrapper textParams,
       this.elParams)
       : super(serial, EnumSpWMLElementType.span, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, textParams);
+            parentSerial, lineStart, lineEnd, style, children, textParams);
 
   @override
   SpanElement initParams() {
@@ -182,6 +182,9 @@ class SpanElement extends TextElement {
               semanticsLabel: tsp[n].semanticsLabel,
               locale: tsp[n].locale,
               spellOut: tsp[n].spellOut));
+        } else if (i is InlineSpan) {
+          // user added span widget
+          r.add(i as InlineSpan);
         } else {
           r.add(WidgetSpan(child: i));
         }
@@ -204,6 +207,9 @@ class SpanElement extends TextElement {
             text: i.spwmlParams.p.text,
             style: i.getStyle(),
           ));
+        } else if (i is InlineSpan) {
+          // user added span widget
+          r.add(i as InlineSpan);
         } else {
           r.add(WidgetSpan(child: i));
         }

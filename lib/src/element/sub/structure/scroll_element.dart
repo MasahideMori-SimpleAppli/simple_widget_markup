@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
-
+import '../../../element/super/single_child_element.dart';
 import '../../../element_params/element_child.dart';
 import '../../../element_params/sub/structure/scroll_params.dart';
 import '../../../element_params/super/spwml_params.dart';
 import '../../../enum/enum_spwml_params.dart';
 import '../../../enum/enum_spwml_element_type.dart';
 import '../../../style/spwml_font_style.dart';
-import '../../super/spwml_element.dart';
 
 ///
 /// Author Masahide Mori
 ///
 /// First edition creation date 2022-01-30 20:14:05
 ///
-class ScrollElement extends SpWMLElement {
-  final BlockElementChild child;
+class ScrollElement extends SingleChildElement {
   final ScrollParamsWrapper elParams;
 
   ///
@@ -39,10 +37,10 @@ class ScrollElement extends SpWMLElement {
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
-      this.child,
+      BlockElementChild child,
       this.elParams)
       : super(serial, EnumSpWMLElementType.scroll, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style);
+            parentSerial, lineStart, lineEnd, style, child);
 
   @override
   ScrollElement initParams() {

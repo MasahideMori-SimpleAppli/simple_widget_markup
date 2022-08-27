@@ -9,15 +9,14 @@ import '../../../enum/enum_spwml_params.dart';
 import '../../../enum/enum_spwml_element_type.dart';
 import '../../../spwml_exception.dart';
 import '../../../style/spwml_font_style.dart';
-import '../text/text_element.dart';
+import '../../super/single_child_text_element.dart';
 
 ///
 /// Author Masahide Mori
 ///
 /// First edition creation date 2022-02-09 20:12:30
 ///
-class BtnElement extends TextElement {
-  final BlockElementChild child;
+class BtnElement extends SingleChildTextElement {
   final BtnParamsWrapper elParams;
 
   ///
@@ -43,11 +42,11 @@ class BtnElement extends TextElement {
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
-      this.child,
+      BlockElementChild child,
       TextParamsWrapper textParams,
       this.elParams)
       : super(serial, EnumSpWMLElementType.btn, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, textParams);
+            parentSerial, lineStart, lineEnd, style, child, textParams);
 
   @override
   BtnElement initParams() {

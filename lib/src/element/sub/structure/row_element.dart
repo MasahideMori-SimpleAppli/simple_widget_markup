@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
+import '../../super/multi_child_element.dart';
 import '../../../element_params/element_child.dart';
 import '../../../element_params/sub/structure/row_col_params.dart';
 import '../../../element_params/super/spwml_params.dart';
 import '../../../enum/enum_spwml_params.dart';
 import '../../../enum/enum_spwml_element_type.dart';
 import '../../../style/spwml_font_style.dart';
-import '../../super/spwml_element.dart';
 
 ///
 /// Author Masahide Mori
 ///
 /// First edition creation date 2021-12-31 18:25:16
 ///
-class RowElement extends SpWMLElement {
-  final StructureElementChildren children;
+class RowElement extends MultiChildElement {
   final RowColParamsWrapper elParams;
 
   ///
@@ -38,10 +37,10 @@ class RowElement extends SpWMLElement {
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
-      this.children,
+      StructureElementChildren children,
       this.elParams)
       : super(serial, EnumSpWMLElementType.row, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style);
+            parentSerial, lineStart, lineEnd, style, children);
 
   @override
   RowElement initParams() {

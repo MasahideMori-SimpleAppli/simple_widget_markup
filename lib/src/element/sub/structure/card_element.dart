@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
+import '../../super/single_child_element.dart';
 import '../../../element_params/element_child.dart';
 import '../../../element_params/sub/structure/card_params.dart';
 import '../../../element_params/super/spwml_params.dart';
 import '../../../enum/enum_spwml_element_type.dart';
 import '../../../enum/enum_spwml_params.dart';
 import '../../../style/spwml_font_style.dart';
-import '../../super/spwml_element.dart';
 
 ///
 /// Author Masahide Mori
 ///
 /// First edition creation date 2022-05-29 20:00:35
 ///
-class CardElement extends SpWMLElement {
-  final BlockElementChild child;
+class CardElement extends SingleChildElement {
   final CardParamsWrapper elParams;
 
   ///
@@ -38,10 +37,10 @@ class CardElement extends SpWMLElement {
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
-      this.child,
+      BlockElementChild child,
       this.elParams)
       : super(serial, EnumSpWMLElementType.card, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style);
+            parentSerial, lineStart, lineEnd, style, child);
 
   @override
   CardElement initParams() {

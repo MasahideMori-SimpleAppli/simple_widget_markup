@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
-
+import '../../../element/super/multi_child_element.dart';
 import '../../../element_params/element_child.dart';
 import '../../../element_params/sub/button/dropdown_btn_params.dart';
 import '../../../element_params/super/spwml_params.dart';
 import '../../../enum/enum_spwml_params.dart';
 import '../../../enum/enum_spwml_element_type.dart';
 import '../../../style/spwml_font_style.dart';
-import '../../super/spwml_element.dart';
 
 ///
 /// Author Masahide Mori
 ///
 /// First edition creation date 2022-04-11 15:02:04
 ///
-class DropdownBtnElement extends SpWMLElement {
-  final StructureElementChildren children;
+class DropdownBtnElement extends MultiChildElement {
   final DropdownBtnParamsWrapper elParams;
 
   ///
@@ -39,10 +37,10 @@ class DropdownBtnElement extends SpWMLElement {
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
-      this.children,
+      StructureElementChildren children,
       this.elParams)
       : super(serial, EnumSpWMLElementType.dropdownBtn, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style);
+            parentSerial, lineStart, lineEnd, style, children);
 
   @override
   DropdownBtnElement initParams() {
