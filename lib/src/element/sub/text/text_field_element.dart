@@ -108,6 +108,30 @@ class TextFieldElement extends TextElement {
   Widget getWidget(BuildContext context) {
     return _TextFieldElementWidget(tfParams);
   }
+
+  /// Set suffix icon button callback.
+  /// * [suffixCallback] : The callback. The argument is passed the current user input.
+  void setSuffixCallback(Function(String inputText)? suffixCallback) {
+    tfParams.p.suffixCallback = suffixCallback;
+  }
+
+  /// Set onSubmitted callback.
+  /// * [onSubmitted] : The callback.　This will be called back when the user has completed input.
+  void setOnSubmitted(void Function(String)? onSubmitted) {
+    tfParams.p.onSubmitted = onSubmitted;
+  }
+
+  /// Set TextEditingController.
+  /// * [controller] : The controller.
+  void setController(TextEditingController? controller) {
+    tfParams.p.controller = controller;
+  }
+
+  /// Set focusNode.
+  /// * [focusNode] : The focusNode.
+  void setFocusNode(FocusNode? focusNode) {
+    tfParams.p.focusNode = focusNode;
+  }
 }
 
 class _TextFieldElementWidget extends StatefulWidget {

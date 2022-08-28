@@ -1,3 +1,6 @@
+## 9.1.0
+* Added functions to easily set commonly used variables to TextFieldElement.
+
 ## 9.0.0
 * The parent class of some classes has changed.
 * Fixed some documentation content.
