@@ -124,6 +124,7 @@ enum EnumSpWMLParams {
   rubyAlign,
   rubyHeight,
   isRubySelectable,
+  fgColor,
 }
 
 extension EXTEnumSpWMLParams on EnumSpWMLParams {
@@ -282,7 +283,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.borderColor ||
           this == EnumSpWMLParams.rubyColor ||
           this == EnumSpWMLParams.rubyBGColor ||
-          this == EnumSpWMLParams.rubyDecoColor) {
+          this == EnumSpWMLParams.rubyDecoColor ||
+          this == EnumSpWMLParams.fgColor) {
         return UtilParams.convertColor(v);
       } else if (this == EnumSpWMLParams.id) {
         return int.parse(v);
@@ -622,6 +624,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       return EnumSpWMLParams.rubyHeight;
     } else if (s == EnumSpWMLParams.isRubySelectable.toStr()) {
       return EnumSpWMLParams.isRubySelectable;
+    } else if (s == EnumSpWMLParams.fgColor.toStr()) {
+      return EnumSpWMLParams.fgColor;
     } else {
       throw SpWMLException(
           EnumSpWMLExceptionType.paramException, lineStart, lineEnd);

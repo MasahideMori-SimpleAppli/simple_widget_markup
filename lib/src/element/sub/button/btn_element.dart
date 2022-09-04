@@ -261,32 +261,39 @@ class BtnElement extends SingleChildTextElement {
     }
   }
 
+  Color? _getBtnColor() {
+    Color? c1 = params.containsKey(EnumSpWMLParams.color)
+        ? params[EnumSpWMLParams.color]
+        : null;
+    Color? c2 = params.containsKey(EnumSpWMLParams.btnBGColor)
+        ? params[EnumSpWMLParams.btnBGColor]
+        : null;
+    return c1 ?? c2;
+  }
+
   /// Get button style from parameters.
   ButtonStyle? _getBtnStyle(EnumBtnType bType) {
     if (bType == EnumBtnType.text) {
       return TextButton.styleFrom(
-          primary: params.containsKey(EnumSpWMLParams.color)
-              ? params[EnumSpWMLParams.color]
+          foregroundColor: params.containsKey(EnumSpWMLParams.fgColor)
+              ? params[EnumSpWMLParams.fgColor]
               : null,
-          backgroundColor: params.containsKey(EnumSpWMLParams.btnBGColor)
-              ? params[EnumSpWMLParams.btnBGColor]
-              : null,
+          backgroundColor: _getBtnColor(),
           shape: getShape());
     } else if (bType == EnumBtnType.outlined) {
       return OutlinedButton.styleFrom(
-          primary: params.containsKey(EnumSpWMLParams.color)
-              ? params[EnumSpWMLParams.color]
+          foregroundColor: params.containsKey(EnumSpWMLParams.fgColor)
+              ? params[EnumSpWMLParams.fgColor]
               : null,
-          backgroundColor: params.containsKey(EnumSpWMLParams.btnBGColor)
-              ? params[EnumSpWMLParams.btnBGColor]
-              : null,
+          backgroundColor: _getBtnColor(),
           side: getBorderSide(),
           shape: getShape());
     } else if (bType == EnumBtnType.elevated) {
       return ElevatedButton.styleFrom(
-          primary: params.containsKey(EnumSpWMLParams.color)
-              ? params[EnumSpWMLParams.color]
+          foregroundColor: params.containsKey(EnumSpWMLParams.fgColor)
+              ? params[EnumSpWMLParams.fgColor]
               : null,
+          backgroundColor: _getBtnColor(),
           shape: getShape());
     } else {
       return null;

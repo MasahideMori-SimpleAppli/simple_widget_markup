@@ -1,17 +1,17 @@
 name: simple_widget_markup
 description: This is an option that allows you to statically create layouts.
-version: 9.1.0
+version: 10.0.0
 repository: https://github.com/MasahideMori-SimpleAppli/simple_widget_markup
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
-  flutter: ">=2.0.0"
+  flutter: ">=3.1.0"
 
 dependencies:
   flutter:
     sdk: flutter
   url_launcher: ^6.1.0
-  simple_block_markup_language: ^0.0.5
+  simple_block_markup_language: ^0.0.6
 
 dev_dependencies:
   flutter_test:

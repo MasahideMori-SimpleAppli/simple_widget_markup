@@ -11,59 +11,11 @@ SpWMLは、Widget（一定の要素のかたまり）を手軽に扱えるよう
 
 ## 利用方法
 ### クイックスタート
+以下に詳細なドキュメントがあります。
+[SpWMLの日本語ドキュメント](https://masahidemori-simpleappli.github.io/spwml_docs_jp/index.html)
+
 以下のサイトでどのように動作するのか試すことが出来ます。  
 [SpWMLエディター](https://simple-widget-markup-editor.web.app/)
-
-### 書き方
-基本形は以下の通りです。
-```
-(type, パラメータ1:値1, パラメータ2:値2,...)テキスト
-```
-書式はSimple Block Markup Language (SBML)に準拠しています。  
-詳しくは以下のパッケージを確認してください。  
-[SBML](https://github.com/MasahideMori-SimpleAppli/simple_block_markup_language)
-
-現在、typeは以下の通りです。  
-パラメータについては、上記クイックスタートのSpWMLエディターのページに詳細な説明があります。
-
-- コンテナ系（コンテナは要素の入れ物です）
-  - 内部が１要素のみ
-    - block(基本コンテナ。置き換え用の仮配置にも利用できる)
-    - scroll(内部がスクロールできるコンテナ)
-    - card
-  - 内部が複数要素
-    - col(内部が行のコンテナ)
-    - row(内部が列のコンテナ)
-    - span(内部がtextまたはhrefのコンテナ。行内要素にそれぞれ違うパラメータが設定出来る)
-    - stack(内部を重ね合わせられるコンテナ)
-    - wrap(内部が所謂グリッドビューになるコンテナ)
-    - expTile(内部が所謂アコーディオンメニューになるコンテナ)
-    - dropdownBtn(内部がドロップダウンメニュー要素のコンテナ。コールバックはプログラムコード側からDropdownBtnElement.setCallbackで設定します)
-    - popupMenuBtn(内部がポップアップメニュー要素のコンテナ。コールバックはプログラムコード側からPopupMenuBtnElement.setCallbackで設定します)
-    - radioBtn(単一選択)
-    - checkbox(複数選択)
-    - table(表)
-    - tableRow(tr, 表の内部要素)
-
-- コンテナ内要素
-  - text系
-    - h1-h6(ヘッダテキスト。h1-h6の６種類)
-    - subtitle1
-    - subtitle2
-    - body1(textと書いても動く。通常テキスト)
-    - body2
-    - caption
-    - overline(線の上に表示するためのテキスト)
-    - menu(マージン等が適用されていないプレーンなテキスト。dropdownBtnなどで使用します。)
-    - textField(tf, テキスト入力)
-  - text以外
-    - img(画像。テキスト部分にURLまたはbase64画像を記載する)
-    - href(テキスト部分にハイパーリンクを記載する。altパラメータで見た目を変えられる)
-    - line(水平区切り)
-    - vline(垂直区切り)
-    - btn(ボタン要素)
-    - icon
-    - switchBtn
 
 ### サンプルコード
 ```dart

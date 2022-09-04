@@ -1,3 +1,8 @@
+## 10.0.0
+* The button color setting method has been changed.
+  From now on color and btnBGColor have the same effect. A new fgColor (foreground color) parameter has been added.
+* Changed to support Flutter 3.1.0 or later.
+
 ## 9.1.0
 * Added functions to easily set commonly used variables to TextFieldElement.
 
