@@ -1,3 +1,6 @@
+## 10.0.2
+* Updated README_JA file.
+
 ## 10.0.1
 * Updated README files. Added links to documentation with detailed specifications.
 
