@@ -5,66 +5,17 @@
 
 ## Overview
 This package is a practical Flutter (Dart) implementation of the Simple Widget Markup Language (SpWML).  
-SpWML is a markup language that makes it easy to handle widgets (a block of certain elements).  
-Files output in this format have the extension .spwml.  
-This specification is mainly intended to be able to describe the contents easily and lightly when new information is delivered in the application.  
-It also focuses on ease of learning.  
+SpWML allows for users to create statically flutter layout.
+It also reduces the amount of program code required and often speeds up compilation.
+Files output in SpWML have the extension .spwml.
 
 ## Usage
 ### Quick Start
+Below is detailed documentation.
+[SpWML documentation](https://masahidemori-simpleappli.github.io/spwml_docs/index.html)
+
 You can try how it works on the following sites.  
 [SpWML Editor](https://simple-widget-markup-editor.web.app/)
-
-### Description method
-The basic form is as follows.
-```
-(type, parameter1:value1, parameter2:value2,...)content body
-```
-The format conforms to the Simple Block Markup Language (SBML).  
-See the packages below for details.  
-[SBML](https://github.com/MasahideMori-SimpleAppli/simple_block_markup_language)
-
-Currently, the types are as follows.
-The parameters are explained in detail on the SpWML editor page in the quickstart above.
-
-- Container system (Container is a container for elements.)
-  - Only one element inside.
-    - block (basic container. Can also be used for temporary placement for replacement.)
-    - scroll (A container that can be scrolled inside.)
-    - card
-  - Multiple elements inside.
-    - col (The Container with rows inside.)
-    - row (The Container with columns inside.)
-    - span (The Container with text or href inside. Different parameters can be set for each element in the line.)
-    - stack(The Container that can be superposed inside.)
-    - wrap(The container whose inside is a so-called grid view.)
-    - expTile(The container whose inside is a so-called accordion menu.)
-    - dropdownBtn(The container whose inside is a so-called dropdown menu. Callback is set by DropdownBtnElement.setCallback from the program code side.)
-    - popupMenuBtn(The container whose inside is a so-called popup menu. Callback is set by PopupMenuBtnElement.setCallback from the program code side.)
-    - radioBtn(Single choice)
-    - checkbox(Multiple selection)
-    - table
-    - tableRow(tr, Internal elements of the table)
-
-- Elements in the container
-  - text system
-    - h1-h6 (header text. 6 types of h1-h6.)
-    - subtitle1
-    - subtitle2
-    - body1 (It works even if you write "text". Normal text.)
-    - body2
-    - caption
-    - overline (Text to display above the line.)
-    - menu(Non margin plain text, It is mainly used for dropdownBtn.)
-    - textField(tf, The text input field)
-  - Other than text
-    - img (Image. URL is described in the text part.)
-    - href (Hyperlinks are written in the text part. The appearance can be changed with the alt parameter.)
-    - line (Horizontal divider)
-    - vline(Vertical divider)
-    - btn(Button)
-    - icon
-    - switchBtn
 
 ### Sample code
 ```dart

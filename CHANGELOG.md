@@ -1,3 +1,6 @@
+## 10.0.1
+* Updated README files. Added links to documentation with detailed specifications.
+
 ## 10.0.0
 * The button color setting method has been changed.
   From now on color and btnBGColor have the same effect. A new fgColor (foreground color) parameter has been added.
