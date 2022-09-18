@@ -1,3 +1,6 @@
+## 10.0.3
+* Fixed ink animations being disabled on block-type btnElement when the parent block has a background color.
+
 ## 10.0.2
 * Updated README_JA file.
 

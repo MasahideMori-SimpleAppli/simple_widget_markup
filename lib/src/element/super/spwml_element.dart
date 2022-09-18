@@ -282,24 +282,26 @@ class SpWMLElement extends StatelessWidget {
   /// Wrap if necessary.
   /// * [child] : The child widget.
   Widget _container(Widget child) {
-    return Container(
-      key: spwmlParams.p.containerParams!.key,
-      alignment: spwmlParams.p.containerParams!.alignment,
-      padding: spwmlParams.p.containerParams!.padding,
-      color: spwmlParams.p.containerParams!.decoration == null
-          ? spwmlParams.p.containerParams!.color
-          : null,
-      decoration: spwmlParams.p.containerParams!.decoration,
-      foregroundDecoration: spwmlParams.p.containerParams!.foregroundDecoration,
-      width: spwmlParams.p.containerParams!.width,
-      height: spwmlParams.p.containerParams!.height,
-      constraints: spwmlParams.p.containerParams!.constraints,
-      margin: spwmlParams.p.containerParams!.margin,
-      transform: spwmlParams.p.containerParams!.transform,
-      transformAlignment: spwmlParams.p.containerParams!.transformAlignment,
-      child: child,
-      clipBehavior: spwmlParams.p.containerParams!.clipBehavior,
-    );
+    return Ink(
+        key: spwmlParams.p.containerParams!.key,
+        color: spwmlParams.p.containerParams!.decoration == null
+            ? spwmlParams.p.containerParams!.color
+            : null,
+        decoration: spwmlParams.p.containerParams!.decoration,
+        child: Container(
+          alignment: spwmlParams.p.containerParams!.alignment,
+          padding: spwmlParams.p.containerParams!.padding,
+          foregroundDecoration:
+              spwmlParams.p.containerParams!.foregroundDecoration,
+          width: spwmlParams.p.containerParams!.width,
+          height: spwmlParams.p.containerParams!.height,
+          constraints: spwmlParams.p.containerParams!.constraints,
+          margin: spwmlParams.p.containerParams!.margin,
+          transform: spwmlParams.p.containerParams!.transform,
+          transformAlignment: spwmlParams.p.containerParams!.transformAlignment,
+          child: child,
+          clipBehavior: spwmlParams.p.containerParams!.clipBehavior,
+        ));
   }
 
   /// If true, this widget need transform.
