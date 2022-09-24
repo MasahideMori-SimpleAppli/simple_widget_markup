@@ -1,3 +1,6 @@
+## 10.1.1
+* Fixed a bug where margins were not valid for background colors.
+
 ## 10.1.0
 * Fixed a bug, When the background color and border are enabled, the border color becomes white on elevation.
 * Added sid parameter. From SpWMLBuilder it can now search for widgets by String ID as well as by id.
