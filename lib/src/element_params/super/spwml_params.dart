@@ -11,7 +11,7 @@ class MaterialParams {
   Key? key;
   MaterialType type = MaterialType.canvas;
   double elevation = 0.0;
-  Color? color;
+  Color? color = Colors.transparent;
   Color? shadowColor;
   Color? surfaceTintColor;
   TextStyle? textStyle;

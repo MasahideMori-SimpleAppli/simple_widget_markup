@@ -93,6 +93,56 @@ class SpWMLBuilder {
     throw SpWMLException(EnumSpWMLExceptionType.nullException, -1, -1);
   }
 
+  /// (en)Replaces the contents of the specified String ID with a widget.
+  ///
+  /// (ja)指定String IDの内容をウィジェットで置き換えます。
+  ///
+  /// * [sid] : Target String ID.
+  /// * [newWidget] : Replace Widget.
+  ///
+  /// Throws [SpWMLException] : If target is null, throws nullException.
+  void replaceSID(String sid, Widget newWidget) {
+    // 空の場合もあるのでフラグ処理が必要。
+    bool needReturn = false;
+    Widget? removeTarget;
+    for (int i = 0; i < _parsedWidgets.length; i++) {
+      final SpWMLElement elm = _parsedWidgets[i];
+      if (elm.params.containsKey(EnumSpWMLParams.sid)) {
+        if (elm.params[EnumSpWMLParams.sid] == sid) {
+          if (elm is SingleChildElement) {
+            elm.child.child = newWidget;
+            for (SpWMLElement j in _parsedWidgets) {
+              if (elm.serial == j.parentSerial) {
+                removeTarget = j;
+              }
+            }
+            needReturn = true;
+            break;
+          } else if (elm is SingleChildTextElement) {
+            elm.child.child = newWidget;
+            for (SpWMLElement j in _parsedWidgets) {
+              if (elm.serial == j.parentSerial) {
+                removeTarget = j;
+              }
+            }
+            needReturn = true;
+            break;
+          } else {
+            throw SpWMLException(
+                EnumSpWMLExceptionType.replaceException, -1, -1);
+          }
+        }
+      }
+    }
+    if (removeTarget != null) {
+      _parsedWidgets.remove(removeTarget);
+    }
+    if (needReturn) {
+      return;
+    }
+    throw SpWMLException(EnumSpWMLExceptionType.nullException, -1, -1);
+  }
+
   /// (en)Disables any child element of col, row, or wrap with the specified ID and replaces it with a new widget.
   ///
   /// (ja)指定されたIDを持つcol, row, wrap, expTileのいずれかの子要素を無効化して、新しいウィジェットに置き換えます。
@@ -109,6 +159,58 @@ class SpWMLBuilder {
       final SpWMLElement elm = _parsedWidgets[i];
       if (elm.params.containsKey(EnumSpWMLParams.id)) {
         if (elm.params[EnumSpWMLParams.id] == id) {
+          if (elm is MultiChildElement) {
+            elm.children.children = newWidgets;
+            for (SpWMLElement j in _parsedWidgets) {
+              if (elm.serial == j.parentSerial) {
+                removeTargets.add(j);
+              }
+            }
+            needReturn = true;
+            break;
+          } else if (elm is MultiChildTextElement) {
+            elm.children.children = newWidgets;
+            for (SpWMLElement j in _parsedWidgets) {
+              if (elm.serial == j.parentSerial) {
+                removeTargets.add(j);
+              }
+            }
+            needReturn = true;
+            break;
+          } else {
+            throw SpWMLException(
+                EnumSpWMLExceptionType.replaceException, -1, -1);
+          }
+        }
+      }
+    }
+    if (removeTargets.isNotEmpty) {
+      for (final i in removeTargets) {
+        _parsedWidgets.remove(i);
+      }
+    }
+    if (needReturn) {
+      return;
+    }
+    throw SpWMLException(EnumSpWMLExceptionType.nullException, -1, -1);
+  }
+
+  /// (en)Disables any child element of col, row, or wrap with the specified String ID and replaces it with a new widget.
+  ///
+  /// (ja)指定されたString IDを持つcol, row, wrap, expTileのいずれかの子要素を無効化して、新しいウィジェットに置き換えます。
+  ///
+  /// * [sid] : Target String ID.
+  /// * [newWidgets] : Replace Widgets.
+  ///
+  /// Throws [SpWMLException] : If target is null, throws nullException.
+  void replaceUnderStructureSID(String sid, List<Widget> newWidgets) {
+    // 空の場合もあるのでフラグ処理が必要。
+    bool needReturn = false;
+    List<Widget> removeTargets = [];
+    for (int i = 0; i < _parsedWidgets.length; i++) {
+      final SpWMLElement elm = _parsedWidgets[i];
+      if (elm.params.containsKey(EnumSpWMLParams.sid)) {
+        if (elm.params[EnumSpWMLParams.sid] == sid) {
           if (elm is MultiChildElement) {
             elm.children.children = newWidgets;
             for (SpWMLElement j in _parsedWidgets) {
@@ -178,6 +280,23 @@ class SpWMLBuilder {
     for (SpWMLElement i in _parsedWidgets) {
       if (i.params.containsKey(EnumSpWMLParams.id)) {
         if (i.params[EnumSpWMLParams.id] == id) {
+          return i;
+        }
+      }
+    }
+    return null;
+  }
+
+  /// (en) Gets the element with the specified String ID.
+  ///
+  /// (ja) 指定String IDを持つエレメントを取得します。
+  /// * [id]: String ID param of SpWML.
+  ///
+  /// returns: If target is not exist, return null.
+  SpWMLElement? getElementBySID(String sid) {
+    for (SpWMLElement i in _parsedWidgets) {
+      if (i.params.containsKey(EnumSpWMLParams.sid)) {
+        if (i.params[EnumSpWMLParams.sid] == sid) {
           return i;
         }
       }

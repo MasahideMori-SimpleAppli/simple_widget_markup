@@ -1,3 +1,7 @@
+## 10.1.0
+* Fixed a bug, When the background color and border are enabled, the border color becomes white on elevation.
+* Added sid parameter. From SpWMLBuilder it can now search for widgets by String ID as well as by id.
+
 ## 10.0.3
 * Fixed ink animations being disabled on block-type btnElement when the parent block has a background color.
 

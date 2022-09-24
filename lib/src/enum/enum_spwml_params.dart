@@ -66,6 +66,7 @@ enum EnumSpWMLParams {
   pB,
   weight,
   id,
+  sid,
   axis,
   isPrimary,
   type,
@@ -288,6 +289,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
         return UtilParams.convertColor(v);
       } else if (this == EnumSpWMLParams.id) {
         return int.parse(v);
+      } else if (this == EnumSpWMLParams.sid) {
+        return v;
       } else if (this == EnumSpWMLParams.axis) {
         if (v == "vertical") {
           return Axis.vertical;
@@ -498,6 +501,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       return EnumSpWMLParams.weight;
     } else if (s == EnumSpWMLParams.id.toStr()) {
       return EnumSpWMLParams.id;
+    } else if (s == EnumSpWMLParams.sid.toStr()) {
+      return EnumSpWMLParams.sid;
     } else if (s == EnumSpWMLParams.axis.toStr()) {
       return EnumSpWMLParams.axis;
     } else if (s == EnumSpWMLParams.isPrimary.toStr()) {
