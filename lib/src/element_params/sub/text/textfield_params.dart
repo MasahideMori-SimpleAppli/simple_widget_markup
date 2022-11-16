@@ -130,4 +130,19 @@ class TextFieldParams {
     enableSuggestions = true;
     autocorrect = true;
   }
+
+  /// Change textField content padding.
+  /// If not all null, isDense will be set true.
+  void changeContentPadding(
+      {double? cpL, double? cpT, double? cpR, double? cpB}) {
+    if (cpL == null && cpT == null && cpR == null && cpB == null) {
+      return;
+    } else {
+      decoration = decoration.copyWith(
+          contentPadding:
+              EdgeInsets.fromLTRB(cpL ?? 0, cpT ?? 12, cpR ?? 0, cpB ?? 12),
+          isDense: true);
+      _design = EnumTextFieldType.rounded;
+    }
+  }
 }

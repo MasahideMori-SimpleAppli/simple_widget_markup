@@ -126,6 +126,11 @@ enum EnumSpWMLParams {
   rubyHeight,
   isRubySelectable,
   fgColor,
+  isGone,
+  cpL,
+  cpT,
+  cpR,
+  cpB,
 }
 
 extension EXTEnumSpWMLParams on EnumSpWMLParams {
@@ -183,7 +188,11 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.rubyMargin ||
           this == EnumSpWMLParams.rubyWordSpacing ||
           this == EnumSpWMLParams.rubyDecoThickness ||
-          this == EnumSpWMLParams.rubyHeight) {
+          this == EnumSpWMLParams.rubyHeight ||
+          this == EnumSpWMLParams.cpL ||
+          this == EnumSpWMLParams.cpT ||
+          this == EnumSpWMLParams.cpR ||
+          this == EnumSpWMLParams.cpB) {
         return double.parse(v);
       }
       if (this == EnumSpWMLParams.weight || this == EnumSpWMLParams.hNum) {
@@ -383,7 +392,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.isExpanded ||
           this == EnumSpWMLParams.value ||
           this == EnumSpWMLParams.enableTapLabel ||
-          this == EnumSpWMLParams.isRubySelectable) {
+          this == EnumSpWMLParams.isRubySelectable ||
+          this == EnumSpWMLParams.isGone) {
         if (v == "true") {
           return true;
         } else if (v == "false") {
@@ -631,6 +641,16 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       return EnumSpWMLParams.isRubySelectable;
     } else if (s == EnumSpWMLParams.fgColor.toStr()) {
       return EnumSpWMLParams.fgColor;
+    } else if (s == EnumSpWMLParams.isGone.toStr()) {
+      return EnumSpWMLParams.isGone;
+    } else if (s == EnumSpWMLParams.cpL.toStr()) {
+      return EnumSpWMLParams.cpL;
+    } else if (s == EnumSpWMLParams.cpT.toStr()) {
+      return EnumSpWMLParams.cpT;
+    } else if (s == EnumSpWMLParams.cpR.toStr()) {
+      return EnumSpWMLParams.cpR;
+    } else if (s == EnumSpWMLParams.cpB.toStr()) {
+      return EnumSpWMLParams.cpB;
     } else {
       throw SpWMLException(
           EnumSpWMLExceptionType.paramException, lineStart, lineEnd);

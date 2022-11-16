@@ -59,6 +59,9 @@ class SpWMLParams {
   // Container
   ContainerParams? containerParams;
 
+  // Visibility
+  bool isGone;
+
   /// The SpWMLElement Parameters.
   SpWMLParams(this.text,
       {this.materialParams,
@@ -66,5 +69,6 @@ class SpWMLParams {
       this.weight,
       this.shiftX,
       this.shiftY,
-      this.constrains});
+      this.constrains,
+      this.isGone = false});
 }

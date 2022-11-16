@@ -100,6 +100,10 @@ class SpWMLElement extends StatelessWidget {
             : null;
     // Decoration
     spwmlParams.p.containerParams!.decoration = _getDecoration();
+    // Visibility
+    spwmlParams.p.isGone = params.containsKey(EnumSpWMLParams.isGone)
+        ? params[EnumSpWMLParams.isGone]!
+        : false;
     return this;
   }
 
@@ -370,7 +374,11 @@ class SpWMLElement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _expand(
-        _transform(_material(_constraints(_container(getWidget(context))))));
+    if (spwmlParams.p.isGone) {
+      return const SizedBox();
+    } else {
+      return _expand(
+          _transform(_material(_constraints(_container(getWidget(context))))));
+    }
   }
 }

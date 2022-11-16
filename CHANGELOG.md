@@ -1,3 +1,7 @@
+## 10.2.0
+* Added isGone parameter to SpWMLElement.
+* Added cpL, cpT, cpR, and cpB parameters to TextFieldElement. These are the "content padding" parameters.
+
 ## 10.1.1
 * Fixed a bug where margins were not valid for background colors.
 

@@ -101,6 +101,20 @@ class TextFieldElement extends TextElement {
     if (params.containsKey(EnumSpWMLParams.suffixIconColor)) {
       tfParams.p.suffixIconColor = params[EnumSpWMLParams.suffixIconColor];
     }
+    // Content padding
+    double? cpL = params.containsKey(EnumSpWMLParams.cpL)
+        ? params[EnumSpWMLParams.cpL]
+        : null;
+    double? cpT = params.containsKey(EnumSpWMLParams.cpT)
+        ? params[EnumSpWMLParams.cpT]
+        : null;
+    double? cpR = params.containsKey(EnumSpWMLParams.cpR)
+        ? params[EnumSpWMLParams.cpR]
+        : null;
+    double? cpB = params.containsKey(EnumSpWMLParams.cpB)
+        ? params[EnumSpWMLParams.cpB]
+        : null;
+    tfParams.p.changeContentPadding(cpL: cpL, cpT: cpT, cpR: cpR, cpB: cpB);
     return this;
   }
 
