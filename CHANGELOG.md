@@ -1,3 +1,6 @@
+## 10.2.1
+* Updated simple_block_markup_language package.
+
 ## 10.2.0
 * Added isGone parameter to SpWMLElement.
 * Added cpL, cpT, cpR, and cpB parameters to TextFieldElement. These are the "content padding" parameters.
@@ -47,7 +50,7 @@
 * Optimized the internal structure of the program. This made importing easier.
 
 ## 7.2.1
-* The SBML library has been updated so the relevant I ran the update.
+* The SBML(SpBML) library has been updated so the relevant I ran the update.
 
 ## 7.2.0
 * The content of RubyTextElement is now selectable.

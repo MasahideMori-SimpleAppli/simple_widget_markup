@@ -26,9 +26,9 @@ class SpWMLParser {
   static List<SpWMLElement> run(String spWML, SpWMLFontStyle spWMLStyle) {
     List<SpWMLElement> r = [];
     try {
-      // 一旦汎用のSBMLに変換。
-      List<SBMLBlock> blocks = SBMLParser.run(spWML);
-      for (SBMLBlock i in blocks) {
+      // 一旦汎用のSpBMLに変換。
+      List<SpBMLBlock> blocks = SpBMLParser.run(spWML);
+      for (SpBMLBlock i in blocks) {
         // エレメントを生成して追加
         r.add(UtilElement.create(i.serial, i.type, i.params, i.content,
             i.parentSerial, i.lineStart!, i.lineEnd!, spWMLStyle));
