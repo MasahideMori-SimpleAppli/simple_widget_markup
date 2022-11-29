@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../element_params/spwml_info.dart';
 import 'text_element.dart';
 import '../../../element_params/sub/text/text_params.dart';
 import '../../../element_params/super/spwml_params.dart';
@@ -24,6 +25,7 @@ class TextFieldElement extends TextElement {
   /// * [lineStart] : line info for the Error handling.
   /// * [lineEnd] : line info for the Error handling.
   /// * [style] : Font styles.
+  /// * [info] : SpWML info.
   /// * [textParams] : Parent class parameters.
   /// * [tfParams] : This element parameters.
   ///
@@ -38,10 +40,11 @@ class TextFieldElement extends TextElement {
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
+      SpWMLInfo? info,
       TextParamsWrapper textParams,
       this.tfParams)
       : super(serial, EnumSpWMLElementType.textField, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, textParams);
+            parentSerial, lineStart, lineEnd, style, info, textParams);
 
   /// initialize parameters
   @override
@@ -129,8 +132,14 @@ class TextFieldElement extends TextElement {
     tfParams.p.suffixCallback = suffixCallback;
   }
 
+  /// Set onChanged callback.
+  /// * [onChanged] : The callback. This will be called back when the user has entered some value.
+  void setOnChanged(void Function(String)? onChanged) {
+    tfParams.p.onChanged = onChanged;
+  }
+
   /// Set onSubmitted callback.
-  /// * [onSubmitted] : The callback.　This will be called back when the user has completed input.
+  /// * [onSubmitted] : The callback. This will be called back when the user has completed input.
   void setOnSubmitted(void Function(String)? onSubmitted) {
     tfParams.p.onSubmitted = onSubmitted;
   }

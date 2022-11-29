@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../element/super/multi_child_element.dart';
 import '../../../element_params/element_child.dart';
+import '../../../element_params/spwml_info.dart';
 import 'table_row_element.dart';
 import '../../../element_params/sub/structure/table_params.dart';
 import '../../../element_params/super/spwml_params.dart';
@@ -25,6 +26,7 @@ class TableElement extends MultiChildElement {
   /// * [lineStart] : line info for the Error handling.
   /// * [lineEnd] : line info for the Error handling.
   /// * [style] : Font styles.
+  /// * [info] : SpWML info.
   /// * [children] : This element children.
   /// * [elParams] : This element parameters.
   ///
@@ -39,10 +41,11 @@ class TableElement extends MultiChildElement {
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
+      SpWMLInfo? info,
       StructureElementChildren children,
       this.elParams)
       : super(serial, EnumSpWMLElementType.table, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, children);
+            parentSerial, lineStart, lineEnd, style, info, children);
 
   @override
   TableElement initParams() {
@@ -55,7 +58,7 @@ class TableElement extends MultiChildElement {
       }
     } else {
       throw SpWMLException(
-          EnumSpWMLExceptionType.tableParamException, lineStart, lineEnd);
+          EnumSpWMLExceptionType.tableParamException, lineStart, lineEnd, info);
     }
     elParams.p.border = TableBorder.all(
       color: params.containsKey(EnumSpWMLParams.color)

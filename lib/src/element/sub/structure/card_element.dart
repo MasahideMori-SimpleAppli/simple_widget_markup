@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../element_params/spwml_info.dart';
 import '../../super/single_child_element.dart';
 import '../../../element_params/element_child.dart';
 import '../../../element_params/sub/structure/card_params.dart';
@@ -23,6 +24,7 @@ class CardElement extends SingleChildElement {
   /// * [lineStart] : line info for the Error handling.
   /// * [lineEnd] : line info for the Error handling.
   /// * [style] : Font styles.
+  /// * [info] : SpWML info.
   /// * [child] : This element child.
   /// * [elParams] : This element parameters.
   ///
@@ -37,10 +39,11 @@ class CardElement extends SingleChildElement {
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
+      SpWMLInfo? info,
       BlockElementChild child,
       this.elParams)
       : super(serial, EnumSpWMLElementType.card, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, child);
+            parentSerial, lineStart, lineEnd, style, info, child);
 
   @override
   CardElement initParams() {

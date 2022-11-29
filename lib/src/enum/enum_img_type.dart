@@ -1,3 +1,4 @@
+import '../element_params/spwml_info.dart';
 import '../spwml_exception.dart';
 
 ///
@@ -14,14 +15,15 @@ extension EXTEnumImgType on EnumImgType {
   }
 
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
-  static EnumImgType fromStr(String s, int lineStart, int lineEnd) {
+  static EnumImgType fromStr(
+      String s, int lineStart, int lineEnd, SpWMLInfo? info) {
     if (s == EnumImgType.network.toStr()) {
       return EnumImgType.network;
     } else if (s == EnumImgType.asset.toStr()) {
       return EnumImgType.asset;
     } else {
       throw SpWMLException(
-          EnumSpWMLExceptionType.typeException, lineStart, lineEnd);
+          EnumSpWMLExceptionType.typeException, lineStart, lineEnd, info);
     }
   }
 }

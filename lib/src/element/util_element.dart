@@ -23,10 +23,12 @@ class UtilElement {
   /// * [lineStart] : line info for the Error handling.
   /// * [lineEnd] : line info for the Error handling.
   /// * [style] : Font styles.
+  /// * [info] : SpWML info.
   ///
   /// Returns SpWMLElement.
   ///
-  /// Throws [SpWMLException] : ParamException.
+  /// Throws [
+  /// SpWMLException] : ParamException.
   /// Throws [SpWMLException] : ParamValueException.
   static SpWMLElement create(
       int serial,
@@ -36,9 +38,10 @@ class UtilElement {
       int parentSerial,
       int lineStart,
       int lineEnd,
-      SpWMLFontStyle style) {
+      SpWMLFontStyle style,
+      SpWMLInfo? info) {
     EnumSpWMLElementType eType =
-        EXTEnumSpWMLElementType.fromStr(type, lineStart, lineEnd);
+        EXTEnumSpWMLElementType.fromStr(type, lineStart, lineEnd, info);
     late SpWMLElement r;
     final SpWMLParamsWrapper spwmlParams =
         SpWMLParamsWrapper(SpWMLParams(text));
@@ -57,7 +60,7 @@ class UtilElement {
         eType == EnumSpWMLElementType.overline ||
         eType == EnumSpWMLElementType.menu) {
       r = TextElement(serial, eType, params, spwmlParams, parentSerial,
-          lineStart, lineEnd, style, TextParamsWrapper(TextParams()));
+          lineStart, lineEnd, style, info, TextParamsWrapper(TextParams()));
     } else if (eType == EnumSpWMLElementType.textField) {
       r = TextFieldElement(
           serial,
@@ -67,6 +70,7 @@ class UtilElement {
           lineStart,
           lineEnd,
           style,
+          info,
           TextParamsWrapper(TextParams()),
           TextFieldParamsWrapper(TextFieldParams()));
     } else if (eType == EnumSpWMLElementType.href) {
@@ -78,6 +82,7 @@ class UtilElement {
           lineStart,
           lineEnd,
           style,
+          info,
           TextParamsWrapper(TextParams()),
           HrefParamsWrapper(HrefParams()));
     } else if (eType == EnumSpWMLElementType.ruby) {
@@ -89,17 +94,18 @@ class UtilElement {
           lineStart,
           lineEnd,
           style,
+          info,
           TextParamsWrapper(TextParams()),
           RubyTextParamsWrapper(RubyTextParams()));
     } else if (eType == EnumSpWMLElementType.line) {
       r = LineElement(serial, params, spwmlParams, parentSerial, lineStart,
-          lineEnd, style, LineParamsWrapper(LineParams()));
+          lineEnd, style, info, LineParamsWrapper(LineParams()));
     } else if (eType == EnumSpWMLElementType.vline) {
       r = VLineElement(serial, params, spwmlParams, parentSerial, lineStart,
-          lineEnd, style, VLineParamsWrapper(VLineParams()));
+          lineEnd, style, info, VLineParamsWrapper(VLineParams()));
     } else if (eType == EnumSpWMLElementType.img) {
       r = ImgElement(serial, params, spwmlParams, parentSerial, lineStart,
-          lineEnd, style, ImgParamsWrapper(ImgParams()));
+          lineEnd, style, info, ImgParamsWrapper(ImgParams()));
     } else if (eType == EnumSpWMLElementType.col) {
       r = ColElement(
           serial,
@@ -109,6 +115,7 @@ class UtilElement {
           lineStart,
           lineEnd,
           style,
+          info,
           StructureElementChildren(),
           RowColParamsWrapper(RowColParams()));
     } else if (eType == EnumSpWMLElementType.row) {
@@ -120,11 +127,12 @@ class UtilElement {
           lineStart,
           lineEnd,
           style,
+          info,
           StructureElementChildren(),
           RowColParamsWrapper(RowColParams()));
     } else if (eType == EnumSpWMLElementType.block) {
       r = BlockElement(serial, params, spwmlParams, parentSerial, lineStart,
-          lineEnd, style, BlockElementChild());
+          lineEnd, style, info, BlockElementChild());
     } else if (eType == EnumSpWMLElementType.span) {
       r = SpanElement(
           serial,
@@ -134,6 +142,7 @@ class UtilElement {
           lineStart,
           lineEnd,
           style,
+          info,
           StructureElementChildren(),
           TextParamsWrapper(TextParams()),
           SpanParamsWrapper(SpanParams()));
@@ -146,6 +155,7 @@ class UtilElement {
           lineStart,
           lineEnd,
           style,
+          info,
           BlockElementChild(),
           TextParamsWrapper(TextParams()),
           BtnParamsWrapper(BtnParams()));
@@ -158,6 +168,7 @@ class UtilElement {
           lineStart,
           lineEnd,
           style,
+          info,
           StructureElementChildren(),
           StackParamsWrapper(StackParams()));
     } else if (eType == EnumSpWMLElementType.wrap) {
@@ -169,6 +180,7 @@ class UtilElement {
           lineStart,
           lineEnd,
           style,
+          info,
           StructureElementChildren(),
           WrapParamsWrapper(WrapParams()));
     } else if (eType == EnumSpWMLElementType.dropdownBtn) {
@@ -180,6 +192,7 @@ class UtilElement {
           lineStart,
           lineEnd,
           style,
+          info,
           StructureElementChildren(),
           DropdownBtnParamsWrapper(DropdownBtnParams()));
     } else if (eType == EnumSpWMLElementType.popupMenuBtn) {
@@ -191,6 +204,7 @@ class UtilElement {
           lineStart,
           lineEnd,
           style,
+          info,
           StructureElementChildren(),
           PopupMenuBtnParamsWrapper(PopupMenuBtnParams()));
     } else if (eType == EnumSpWMLElementType.expTile) {
@@ -202,6 +216,7 @@ class UtilElement {
           lineStart,
           lineEnd,
           style,
+          info,
           StructureElementChildren(),
           TextParamsWrapper(TextParams()),
           ExpTileParamsWrapper(ExpTileParams()));
@@ -214,6 +229,7 @@ class UtilElement {
           lineStart,
           lineEnd,
           style,
+          info,
           StructureElementChildren(),
           CheckboxParamsWrapper(CheckboxParams()));
     } else if (eType == EnumSpWMLElementType.radioBtn) {
@@ -225,6 +241,7 @@ class UtilElement {
           lineStart,
           lineEnd,
           style,
+          info,
           StructureElementChildren(),
           RadioBtnParamsWrapper(RadioBtnParams()));
     } else if (eType == EnumSpWMLElementType.scroll) {
@@ -236,17 +253,27 @@ class UtilElement {
           lineStart,
           lineEnd,
           style,
+          info,
           BlockElementChild(),
           ScrollParamsWrapper(ScrollParams()));
     } else if (eType == EnumSpWMLElementType.switchBtn) {
       r = SwitchBtnElement(serial, params, spwmlParams, parentSerial, lineStart,
-          lineEnd, style, SwitchBtnParamsWrapper(SwitchBtnParams()));
+          lineEnd, style, info, SwitchBtnParamsWrapper(SwitchBtnParams()));
     } else if (eType == EnumSpWMLElementType.icon) {
       r = IconElement(serial, params, spwmlParams, parentSerial, lineStart,
-          lineEnd, style, IconParamsWrapper(IconParams()));
+          lineEnd, style, info, IconParamsWrapper(IconParams()));
     } else if (eType == EnumSpWMLElementType.card) {
-      r = CardElement(serial, params, spwmlParams, parentSerial, lineStart,
-          lineEnd, style, BlockElementChild(), CardParamsWrapper(CardParams()));
+      r = CardElement(
+          serial,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          BlockElementChild(),
+          CardParamsWrapper(CardParams()));
     } else if (eType == EnumSpWMLElementType.table) {
       r = TableElement(
           serial,
@@ -256,6 +283,7 @@ class UtilElement {
           lineStart,
           lineEnd,
           style,
+          info,
           StructureElementChildren(),
           TableParamsWrapper(TableParams()));
     } else if (eType == EnumSpWMLElementType.tableRow) {
@@ -267,13 +295,14 @@ class UtilElement {
           lineStart,
           lineEnd,
           style,
+          info,
           StructureElementChildren(),
           TableRowParamsWrapper(TableRowParams()));
     } else {
       // 存在しないタイプの場合は通常はfromStr時点で例外が発生している。
       // ここで発生する場合は処理の追加漏れ。
       throw SpWMLException(
-          EnumSpWMLExceptionType.typeException, lineStart, lineEnd);
+          EnumSpWMLExceptionType.typeException, lineStart, lineEnd, info);
     }
     // 各エレメント固有のパラメータを変数として初期化・格納する。
     r.initParams();

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../element/super/multi_child_element.dart';
 import '../../../element_params/element_child.dart';
+import '../../../element_params/spwml_info.dart';
 import '../../../element_params/sub/button/dropdown_btn_params.dart';
 import '../../../element_params/super/spwml_params.dart';
 import '../../../enum/enum_spwml_params.dart';
@@ -23,6 +24,7 @@ class DropdownBtnElement extends MultiChildElement {
   /// * [lineStart] : line info for the Error handling.
   /// * [lineEnd] : line info for the Error handling.
   /// * [style] : Font styles.
+  /// * [info] : SpWML info.
   /// * [children] : This element children.
   /// * [elParams] : This element parameters.
   ///
@@ -37,10 +39,11 @@ class DropdownBtnElement extends MultiChildElement {
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
+      SpWMLInfo? info,
       StructureElementChildren children,
       this.elParams)
       : super(serial, EnumSpWMLElementType.dropdownBtn, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, children);
+            parentSerial, lineStart, lineEnd, style, info, children);
 
   @override
   DropdownBtnElement initParams() {

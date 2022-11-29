@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../element_params/spwml_info.dart';
 import 'text_element.dart';
 import '../../../element_params/sub/text/ruby_text_params.dart';
 import '../../../element_params/sub/text/text_params.dart';
@@ -24,6 +25,7 @@ class RubyTextElement extends TextElement {
   /// * [lineStart] : line info for the Error handling.
   /// * [lineEnd] : line info for the Error handling.
   /// * [style] : Font styles.
+  /// * [info] : SpWML info.
   /// * [textParams] : Parent class parameters.
   /// * [rubyParams] : This element parameters.
   ///
@@ -38,10 +40,11 @@ class RubyTextElement extends TextElement {
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
+      SpWMLInfo? info,
       TextParamsWrapper textParams,
       this.rubyParams)
       : super(serial, EnumSpWMLElementType.ruby, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, textParams);
+            parentSerial, lineStart, lineEnd, style, info, textParams);
 
   @override
   RubyTextElement initParams() {

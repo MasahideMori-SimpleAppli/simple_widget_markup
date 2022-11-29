@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../element_params/spwml_info.dart';
 import '../../../element_params/sub/other/img_element_params.dart';
 import '../../../element_params/super/spwml_params.dart';
 import '../../../enum/enum_img_type.dart';
@@ -24,6 +25,7 @@ class ImgElement extends SpWMLElement {
   /// * [lineStart] : line info for the Error handling.
   /// * [lineEnd] : line info for the Error handling.
   /// * [style] : Font styles.
+  /// * [info] : SpWML info.
   /// * [elParams] : This element parameters.
   ///
   /// Throws [SpWMLException] : ParamException.
@@ -37,9 +39,10 @@ class ImgElement extends SpWMLElement {
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
+      SpWMLInfo? info,
       this.elParams)
       : super(serial, EnumSpWMLElementType.img, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style);
+            parentSerial, lineStart, lineEnd, style, info);
 
   @override
   ImgElement initParams() {

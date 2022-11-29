@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../element_params/spwml_info.dart';
 import '../enum/enum_btn_type.dart';
 import 'enum_img_type.dart';
 import 'enum_spwml_element_type.dart';
@@ -141,8 +142,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
 
   /// Throws [SpWMLException] : If the parameter value is incorrect,
   /// Throws ParamValueException.
-  dynamic parseValue(
-      EnumSpWMLElementType type, String v, int lineStart, int lineEnd) {
+  dynamic parseValue(EnumSpWMLElementType type, String v, int lineStart,
+      int lineEnd, SpWMLInfo? info) {
     try {
       // Frequently used
       if (this == EnumSpWMLParams.height ||
@@ -201,21 +202,21 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       // col, row or wrap only
       if (type == EnumSpWMLElementType.col) {
         if (this == EnumSpWMLParams.vAlign) {
-          return UtilParams.convertMainAxisAlign(v, lineStart, lineEnd);
+          return UtilParams.convertMainAxisAlign(v, lineStart, lineEnd, info);
         } else if (this == EnumSpWMLParams.hAlign) {
-          return UtilParams.convertCrossAxisAlign(v, lineStart, lineEnd);
+          return UtilParams.convertCrossAxisAlign(v, lineStart, lineEnd, info);
         }
       } else if (type == EnumSpWMLElementType.row) {
         if (this == EnumSpWMLParams.vAlign) {
-          return UtilParams.convertCrossAxisAlign(v, lineStart, lineEnd);
+          return UtilParams.convertCrossAxisAlign(v, lineStart, lineEnd, info);
         } else if (this == EnumSpWMLParams.hAlign) {
-          return UtilParams.convertMainAxisAlign(v, lineStart, lineEnd);
+          return UtilParams.convertMainAxisAlign(v, lineStart, lineEnd, info);
         }
       } else if (type == EnumSpWMLElementType.wrap) {
         if (this == EnumSpWMLParams.vAlign) {
-          return UtilParams.convertWrapAlign(v, lineStart, lineEnd);
+          return UtilParams.convertWrapAlign(v, lineStart, lineEnd, info);
         } else if (this == EnumSpWMLParams.hAlign) {
-          return UtilParams.convertWrapAlign(v, lineStart, lineEnd);
+          return UtilParams.convertWrapAlign(v, lineStart, lineEnd, info);
         }
       } else if (type == EnumSpWMLElementType.img) {
         if (this == EnumSpWMLParams.fit) {
@@ -245,15 +246,15 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
             throw Exception();
           }
         } else if (this == EnumSpWMLParams.type) {
-          return EXTEnumImgType.fromStr(v, lineStart, lineEnd);
+          return EXTEnumImgType.fromStr(v, lineStart, lineEnd, info);
         }
       }
       // textField only
       if (type == EnumSpWMLElementType.textField) {
         if (this == EnumSpWMLParams.type) {
-          return EXTEnumTextFieldType.fromStr(v, lineStart, lineEnd);
+          return EXTEnumTextFieldType.fromStr(v, lineStart, lineEnd, info);
         } else if (this == EnumSpWMLParams.mode) {
-          return EXTEnumTextFieldMode.fromStr(v, lineStart, lineEnd);
+          return EXTEnumTextFieldMode.fromStr(v, lineStart, lineEnd, info);
         }
         // speed up code
         else if (this == EnumSpWMLParams.labelText) {
@@ -263,7 +264,7 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       // btn only
       if (type == EnumSpWMLElementType.btn) {
         if (this == EnumSpWMLParams.type) {
-          return EXTEnumBtnType.fromStr(v, lineStart, lineEnd);
+          return EXTEnumBtnType.fromStr(v, lineStart, lineEnd, info);
         }
       }
       // shape
@@ -415,12 +416,13 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       }
     } catch (e) {
       throw SpWMLException(
-          EnumSpWMLExceptionType.paramValueException, lineStart, lineEnd);
+          EnumSpWMLExceptionType.paramValueException, lineStart, lineEnd, info);
     }
   }
 
   /// Throws [SpWMLException] : If the parameter is incorrect, Throws ParamException.
-  static EnumSpWMLParams fromStr(String s, int lineStart, int lineEnd) {
+  static EnumSpWMLParams fromStr(
+      String s, int lineStart, int lineEnd, SpWMLInfo? info) {
     if (s == EnumSpWMLParams.h.toStr()) {
       return EnumSpWMLParams.height;
     } else if (s == EnumSpWMLParams.w.toStr()) {
@@ -653,7 +655,7 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       return EnumSpWMLParams.cpB;
     } else {
       throw SpWMLException(
-          EnumSpWMLExceptionType.paramException, lineStart, lineEnd);
+          EnumSpWMLExceptionType.paramException, lineStart, lineEnd, info);
     }
   }
 }

@@ -1,4 +1,5 @@
 import '../../element_params/element_child.dart';
+import '../../element_params/spwml_info.dart';
 import '../../element_params/super/spwml_params.dart';
 import '../../enum/enum_spwml_element_type.dart';
 import '../../style/spwml_font_style.dart';
@@ -22,6 +23,7 @@ class SingleChildElement extends SpWMLElement {
   /// * [lineEnd] : line info for the Error handling.
   /// * [style] : Font styles.
   /// * [child] : This element child.
+  /// * [info] : SpWML info.
   ///
   /// Throws [SpWMLException] : ParamException.
   ///
@@ -35,9 +37,10 @@ class SingleChildElement extends SpWMLElement {
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
+      SpWMLInfo? info,
       this.child)
       : super(serial, type, params, spwmlParams, parentSerial, lineStart,
-            lineEnd, style);
+            lineEnd, style, info);
 
   @override
   SingleChildElement initParams() {

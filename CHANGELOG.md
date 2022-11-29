@@ -1,3 +1,8 @@
+## 11.0.0
+* An optional argument SpWMLInfo has been added to SpWMLBuilder.
+  Setting this makes it easier to track where the error occurred when it occurs.
+* Added setOnChanged method to TextFieldElement.
+
 ## 10.2.1
 * Updated simple_block_markup_language package.
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../element_params/element_child.dart';
+import '../../../element_params/spwml_info.dart';
 import '../../../element_params/sub/button/btn_params.dart';
 import '../../../element_params/sub/text/text_params.dart';
 import '../../../element_params/super/spwml_params.dart';
@@ -27,6 +28,7 @@ class BtnElement extends SingleChildTextElement {
   /// * [lineStart] : line info for the Error handling.
   /// * [lineEnd] : line info for the Error handling.
   /// * [style] : Font styles.
+  /// * [info] : SpWML info.
   /// * [child] : This element child.
   /// * [textParams] : Parent class parameters.
   /// * [elParams] : This element parameters.
@@ -42,11 +44,12 @@ class BtnElement extends SingleChildTextElement {
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
+      SpWMLInfo? info,
       BlockElementChild child,
       TextParamsWrapper textParams,
       this.elParams)
       : super(serial, EnumSpWMLElementType.btn, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, child, textParams);
+            parentSerial, lineStart, lineEnd, style, info, child, textParams);
 
   @override
   BtnElement initParams() {
@@ -58,7 +61,7 @@ class BtnElement extends SingleChildTextElement {
     if (elParams.p.type == EnumBtnType.icon) {
       if (!elParams.p.isUseIcon) {
         throw SpWMLException(
-            EnumSpWMLExceptionType.paramException, lineStart, lineEnd);
+            EnumSpWMLExceptionType.paramException, lineStart, lineEnd, info);
       } else {
         IconBtnParams p = IconBtnParams();
         p.icon = _getIcon(true);
@@ -76,7 +79,7 @@ class BtnElement extends SingleChildTextElement {
     } else if (elParams.p.type == EnumBtnType.block) {
       if (elParams.p.isUseIcon) {
         throw SpWMLException(
-            EnumSpWMLExceptionType.paramException, lineStart, lineEnd);
+            EnumSpWMLExceptionType.paramException, lineStart, lineEnd, info);
       } else {
         InkWellParams p = InkWellParams();
         elParams.p.inkWellBtnParams = p;

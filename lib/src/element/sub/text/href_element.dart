@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../element_params/spwml_info.dart';
 import 'text_element.dart';
 import '../../../element_params/sub/text/href_params.dart';
 import '../../../element_params/sub/text/text_params.dart';
@@ -25,6 +26,7 @@ class HrefElement extends TextElement {
   /// * [lineStart] : line info for the Error handling.
   /// * [lineEnd] : line info for the Error handling.
   /// * [style] : Font styles.
+  /// * [info] : SpWML info.
   /// * [textParams] : Parent class parameters.
   /// * [elParams] : This element parameters.
   ///
@@ -39,10 +41,11 @@ class HrefElement extends TextElement {
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
+      SpWMLInfo? info,
       TextParamsWrapper textParams,
       this.elParams)
       : super(serial, EnumSpWMLElementType.href, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, textParams);
+            parentSerial, lineStart, lineEnd, style, info, textParams);
 
   @override
   HrefElement initParams() {

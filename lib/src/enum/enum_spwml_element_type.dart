@@ -1,3 +1,4 @@
+import '../element_params/spwml_info.dart';
 import '../spwml_exception.dart';
 
 ///
@@ -55,7 +56,8 @@ extension EXTEnumSpWMLElementType on EnumSpWMLElementType {
   }
 
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
-  static EnumSpWMLElementType fromStr(String s, int lineStart, int lineEnd) {
+  static EnumSpWMLElementType fromStr(
+      String s, int lineStart, int lineEnd, SpWMLInfo? info) {
     if (s == EnumSpWMLElementType.col.toStr()) {
       return EnumSpWMLElementType.col;
     } else if (s == EnumSpWMLElementType.row.toStr()) {
@@ -138,7 +140,7 @@ extension EXTEnumSpWMLElementType on EnumSpWMLElementType {
       return EnumSpWMLElementType.ruby;
     } else {
       throw SpWMLException(
-          EnumSpWMLExceptionType.typeException, lineStart, lineEnd);
+          EnumSpWMLExceptionType.typeException, lineStart, lineEnd, info);
     }
   }
 }

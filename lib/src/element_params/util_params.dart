@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../spwml_exception.dart';
+import '../../simple_widget_markup.dart';
 
 ///
 /// Author Masahide Mori
@@ -169,12 +168,13 @@ class UtilParams {
   /// * [s] : Alignment text.
   /// * [lineStart] : line info for the Error handling.
   /// * [lineEnd] : line info for the Error handling.
+  /// * [info] : SpWML info.
   ///
   /// Returns MainAxisAlignment.
   ///
   /// Throws [SpWMLException] : ParamValueException.
   static MainAxisAlignment convertMainAxisAlign(
-      String s, int lineStart, int lineEnd) {
+      String s, int lineStart, int lineEnd, SpWMLInfo? info) {
     if (s == "left" || s == "start") {
       // Row
       return MainAxisAlignment.start;
@@ -192,7 +192,7 @@ class UtilParams {
       return MainAxisAlignment.end;
     } else {
       throw SpWMLException(
-          EnumSpWMLExceptionType.paramValueException, lineStart, lineEnd);
+          EnumSpWMLExceptionType.paramValueException, lineStart, lineEnd, info);
     }
   }
 
@@ -200,12 +200,13 @@ class UtilParams {
   /// * [s] : Alignment text.
   /// * [lineStart] : line info for the Error handling.
   /// * [lineEnd] : line info for the Error handling.
+  /// * [info] : SpWML info.
   ///
   /// Returns CrossAxisAlignment.
   ///
   /// Throws [SpWMLException] : ParamValueException.
   static CrossAxisAlignment convertCrossAxisAlign(
-      String s, int lineStart, int lineEnd) {
+      String s, int lineStart, int lineEnd, SpWMLInfo? info) {
     if (s == "left" || s == "start") {
       // Column
       return CrossAxisAlignment.start;
@@ -223,7 +224,7 @@ class UtilParams {
       return CrossAxisAlignment.end;
     } else {
       throw SpWMLException(
-          EnumSpWMLExceptionType.paramValueException, lineStart, lineEnd);
+          EnumSpWMLExceptionType.paramValueException, lineStart, lineEnd, info);
     }
   }
 
@@ -231,11 +232,13 @@ class UtilParams {
   /// * [s] : Alignment text.
   /// * [lineStart] : line info for the Error handling.
   /// * [lineEnd] : line info for the Error handling.
+  /// * [info] : SpWML info.
   ///
   /// Returns WrapAlignment.
   ///
   /// Throws [SpWMLException] : ParamValueException.
-  static WrapAlignment convertWrapAlign(String s, int lineStart, int lineEnd) {
+  static WrapAlignment convertWrapAlign(
+      String s, int lineStart, int lineEnd, SpWMLInfo? info) {
     if (s == "left" || s == "start") {
       return WrapAlignment.start;
     } else if (s == "center") {
@@ -248,7 +251,7 @@ class UtilParams {
       return WrapAlignment.end;
     } else {
       throw SpWMLException(
-          EnumSpWMLExceptionType.paramValueException, lineStart, lineEnd);
+          EnumSpWMLExceptionType.paramValueException, lineStart, lineEnd, info);
     }
   }
 }

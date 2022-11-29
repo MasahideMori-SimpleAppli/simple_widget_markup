@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'element_params/spwml_info.dart';
 import 'style/spwml_font_style.dart';
 import 'spwml_builder.dart';
 
@@ -16,13 +17,24 @@ class SpWML extends StatelessWidget {
   final EdgeInsets margin;
   final EdgeInsets padding;
   final SpWMLFontStyle style;
+  final SpWMLInfo? info;
 
+  /// Constructor
+  /// * [spWML] : SpWML text.
+  /// * [mainAA] : Top level Column MainAxisAlignment.
+  /// * [crossAA] : Top level Column CrossAxisAlignment.
+  /// * [margin] : Top level Column Margin.
+  /// * [padding] : Top level Column Padding.
+  /// * [spWMLStyle] : Font styles.
+  /// * [info] : This is information object. e.g. A hint when an error occurs.
+  /// It is convenient to set when nesting multiple SpWMLs.
   SpWML(this.spWML,
       {this.mainAA = MainAxisAlignment.start,
       this.crossAA = CrossAxisAlignment.start,
       this.margin = const EdgeInsets.all(0),
       this.padding = const EdgeInsets.all(8),
       SpWMLFontStyle? spWMLStyle,
+      this.info,
       GlobalKey? key})
       : style = spWMLStyle ?? SpWMLFontStyle(),
         super(key: key);
@@ -34,7 +46,8 @@ class SpWML extends StatelessWidget {
             crossAA: crossAA,
             margin: margin,
             padding: padding,
-            spWMLStyle: style)
+            spWMLStyle: style,
+            info: info)
         .build(context);
   }
 }

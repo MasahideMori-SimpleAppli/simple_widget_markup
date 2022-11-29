@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../element_params/element_child.dart';
+import '../../../element_params/spwml_info.dart';
 import '../../../element_params/super/spwml_params.dart';
 import '../../../enum/enum_spwml_element_type.dart';
 import '../../../style/spwml_font_style.dart';
@@ -19,6 +20,7 @@ class BlockElement extends SingleChildElement {
   /// * [lineStart] : line info for the Error handling.
   /// * [lineEnd] : line info for the Error handling.
   /// * [style] : Font styles.
+  /// * [info] : SpWML info.
   /// * [child] : This element child.
   ///
   /// Throws [SpWMLException] : ParamException.
@@ -32,9 +34,10 @@ class BlockElement extends SingleChildElement {
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
+      SpWMLInfo? info,
       BlockElementChild child)
       : super(serial, EnumSpWMLElementType.block, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, child);
+            parentSerial, lineStart, lineEnd, style, info, child);
 
   @override
   BlockElement initParams() {

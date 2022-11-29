@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../element_params/spwml_info.dart';
 import '../../super/multi_child_element.dart';
 import '../../../element_params/element_child.dart';
 import '../../../element_params/sub/structure/row_col_params.dart';
@@ -23,6 +24,7 @@ class ColElement extends MultiChildElement {
   /// * [lineStart] : line info for the Error handling.
   /// * [lineEnd] : line info for the Error handling.
   /// * [style] : Font styles.
+  /// * [info] : SpWML info.
   /// * [children] : This element children.
   /// * [elParams] : This element parameters.
   ///
@@ -37,10 +39,11 @@ class ColElement extends MultiChildElement {
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
+      SpWMLInfo? info,
       StructureElementChildren children,
       this.elParams)
       : super(serial, EnumSpWMLElementType.col, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, children);
+            parentSerial, lineStart, lineEnd, style, info, children);
 
   @override
   ColElement initParams() {

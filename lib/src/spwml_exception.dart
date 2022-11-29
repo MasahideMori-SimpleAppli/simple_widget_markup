@@ -1,3 +1,5 @@
+import 'element_params/spwml_info.dart';
+
 ///
 /// (en)An exception class for SpWML.
 /// Returns the type and line number of the exception that occurred.
@@ -11,12 +13,23 @@ class SpWMLException implements Exception {
   final EnumSpWMLExceptionType type;
   final int lineStart;
   final int lineEnd;
+  final SpWMLInfo? info;
 
   /// Constructor
   /// * [type] : Exception type.
   /// * [lineStart] : Exception occurred line start.
   /// * [lineEnd] : Exception occurred line end.
-  SpWMLException(this.type, this.lineStart, this.lineEnd);
+  /// * [info] : A hint when an error occurs.
+  /// It is convenient to set when nesting multiple SpWMLs.
+  SpWMLException(this.type, this.lineStart, this.lineEnd, this.info);
+
+  String _getHint() {
+    if (info == null) {
+      return "";
+    } else {
+      return ", Hint:" + info!.errorHint;
+    }
+  }
 
   @override
   String toString() =>
@@ -27,7 +40,8 @@ class SpWMLException implements Exception {
       "-" +
       lineEnd.toString() +
       ", " +
-      type.toErrorText();
+      type.toErrorText() +
+      _getHint();
 }
 
 enum EnumSpWMLExceptionType {

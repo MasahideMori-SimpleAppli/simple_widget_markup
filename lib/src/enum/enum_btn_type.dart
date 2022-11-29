@@ -1,3 +1,4 @@
+import '../element_params/spwml_info.dart';
 import '../spwml_exception.dart';
 
 ///
@@ -14,7 +15,8 @@ extension EXTEnumBtnType on EnumBtnType {
   }
 
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
-  static EnumBtnType fromStr(String s, int lineStart, int lineEnd) {
+  static EnumBtnType fromStr(
+      String s, int lineStart, int lineEnd, SpWMLInfo? info) {
     if (s == EnumBtnType.text.toStr()) {
       return EnumBtnType.text;
     } else if (s == EnumBtnType.outlined.toStr()) {
@@ -27,7 +29,7 @@ extension EXTEnumBtnType on EnumBtnType {
       return EnumBtnType.block;
     } else {
       throw SpWMLException(
-          EnumSpWMLExceptionType.typeException, lineStart, lineEnd);
+          EnumSpWMLExceptionType.typeException, lineStart, lineEnd, info);
     }
   }
 }

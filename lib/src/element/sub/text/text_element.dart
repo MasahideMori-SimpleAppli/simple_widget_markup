@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../element_params/spwml_info.dart';
 import '../../../element_params/sub/text/text_params.dart';
 import '../../../element_params/super/spwml_params.dart';
 import '../../../enum/enum_spwml_params.dart';
@@ -24,6 +25,7 @@ class TextElement extends SpWMLElement {
   /// * [lineStart] : line info for the Error handling.
   /// * [lineEnd] : line info for the Error handling.
   /// * [style] : Font styles.
+  /// * [info] : SpWML info.
   /// * [textParams] : This element parameters.
   ///
   /// Throws [SpWMLException] : ParamException.
@@ -38,9 +40,10 @@ class TextElement extends SpWMLElement {
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
+      SpWMLInfo? info,
       this.textParams)
       : super(serial, type, params, spwmlParams, parentSerial, lineStart,
-            lineEnd, style);
+            lineEnd, style, info);
 
   @override
   TextElement initParams() {
@@ -214,46 +217,46 @@ class TextElement extends SpWMLElement {
   FontWeight getDefFontWeight() {
     if (type == EnumSpWMLElementType.h1) {
       return EnumSpWMLParams.fontWeight
-          .parseValue(type, style.h1Weight, lineStart, lineEnd);
+          .parseValue(type, style.h1Weight, lineStart, lineEnd, info);
     } else if (type == EnumSpWMLElementType.h2) {
       return EnumSpWMLParams.fontWeight
-          .parseValue(type, style.h2Weight, lineStart, lineEnd);
+          .parseValue(type, style.h2Weight, lineStart, lineEnd, info);
     } else if (type == EnumSpWMLElementType.h3) {
       return EnumSpWMLParams.fontWeight
-          .parseValue(type, style.h3Weight, lineStart, lineEnd);
+          .parseValue(type, style.h3Weight, lineStart, lineEnd, info);
     } else if (type == EnumSpWMLElementType.h4) {
       return EnumSpWMLParams.fontWeight
-          .parseValue(type, style.h4Weight, lineStart, lineEnd);
+          .parseValue(type, style.h4Weight, lineStart, lineEnd, info);
     } else if (type == EnumSpWMLElementType.h5) {
       return EnumSpWMLParams.fontWeight
-          .parseValue(type, style.h5Weight, lineStart, lineEnd);
+          .parseValue(type, style.h5Weight, lineStart, lineEnd, info);
     } else if (type == EnumSpWMLElementType.h6) {
       return EnumSpWMLParams.fontWeight
-          .parseValue(type, style.h6Weight, lineStart, lineEnd);
+          .parseValue(type, style.h6Weight, lineStart, lineEnd, info);
     } else if (type == EnumSpWMLElementType.href) {
       return EnumSpWMLParams.fontWeight
-          .parseValue(type, style.hrefWeight, lineStart, lineEnd);
+          .parseValue(type, style.hrefWeight, lineStart, lineEnd, info);
     } else if (type == EnumSpWMLElementType.subtitle1) {
       return EnumSpWMLParams.fontWeight
-          .parseValue(type, style.subtitle1Weight, lineStart, lineEnd);
+          .parseValue(type, style.subtitle1Weight, lineStart, lineEnd, info);
     } else if (type == EnumSpWMLElementType.subtitle2) {
       return EnumSpWMLParams.fontWeight
-          .parseValue(type, style.subtitle2Weight, lineStart, lineEnd);
+          .parseValue(type, style.subtitle2Weight, lineStart, lineEnd, info);
     } else if (type == EnumSpWMLElementType.body1) {
       return EnumSpWMLParams.fontWeight
-          .parseValue(type, style.body1Weight, lineStart, lineEnd);
+          .parseValue(type, style.body1Weight, lineStart, lineEnd, info);
     } else if (type == EnumSpWMLElementType.body2) {
       return EnumSpWMLParams.fontWeight
-          .parseValue(type, style.body2Weight, lineStart, lineEnd);
+          .parseValue(type, style.body2Weight, lineStart, lineEnd, info);
     } else if (type == EnumSpWMLElementType.caption) {
       return EnumSpWMLParams.fontWeight
-          .parseValue(type, style.captionWeight, lineStart, lineEnd);
+          .parseValue(type, style.captionWeight, lineStart, lineEnd, info);
     } else if (type == EnumSpWMLElementType.overline) {
       return EnumSpWMLParams.fontWeight
-          .parseValue(type, style.overlineWeight, lineStart, lineEnd);
+          .parseValue(type, style.overlineWeight, lineStart, lineEnd, info);
     } else {
       return EnumSpWMLParams.fontWeight
-          .parseValue(type, style.body1Weight, lineStart, lineEnd);
+          .parseValue(type, style.body1Weight, lineStart, lineEnd, info);
     }
   }
 

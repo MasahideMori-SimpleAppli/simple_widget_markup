@@ -1,5 +1,6 @@
 export 'element_child.dart';
 export 'util_params.dart';
+export 'spwml_info.dart';
 export 'super/spwml_params.dart';
 export 'sub/button/btn_params.dart';
 export 'sub/button/checkbox_params.dart';

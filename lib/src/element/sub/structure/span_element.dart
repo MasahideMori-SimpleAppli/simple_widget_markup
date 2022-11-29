@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../../../element/super/multi_child_text_element.dart';
 import '../../../element_params/element_child.dart';
+import '../../../element_params/spwml_info.dart';
 import '../../../element_params/sub/structure/span_params.dart';
 import '../../../element_params/sub/text/text_params.dart';
 import '../../../element_params/super/spwml_params.dart';
@@ -28,6 +29,7 @@ class SpanElement extends MultiChildTextElement {
   /// * [lineStart] : line info for the Error handling.
   /// * [lineEnd] : line info for the Error handling.
   /// * [style] : Font styles.
+  /// * [info] : SpWML info.
   /// * [children] : This element children.
   /// * [elParams] : This element parameters.
   ///
@@ -42,11 +44,22 @@ class SpanElement extends MultiChildTextElement {
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
+      SpWMLInfo? info,
       StructureElementChildren children,
       TextParamsWrapper textParams,
       this.elParams)
-      : super(serial, EnumSpWMLElementType.span, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, children, textParams);
+      : super(
+            serial,
+            EnumSpWMLElementType.span,
+            params,
+            spwmlParams,
+            parentSerial,
+            lineStart,
+            lineEnd,
+            style,
+            info,
+            children,
+            textParams);
 
   @override
   SpanElement initParams() {

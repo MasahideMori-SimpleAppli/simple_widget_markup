@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../element_params/spwml_info.dart';
 import '../../element_params/super/spwml_params.dart';
 import '../../enum/enum_spwml_element_type.dart';
 import '../../enum/enum_spwml_params.dart';
@@ -21,6 +22,7 @@ class SpWMLElement extends StatelessWidget {
   final int lineStart;
   final int lineEnd;
   final SpWMLFontStyle style;
+  final SpWMLInfo? info;
 
   ///
   /// * [serial] : Array Index.
@@ -31,6 +33,7 @@ class SpWMLElement extends StatelessWidget {
   /// * [lineStart] : line info for the Error handling.
   /// * [lineEnd] : line info for the Error handling.
   /// * [style] : Font styles.
+  /// * [info] : SpWML info.
   ///
   /// Throws [SpWMLException] : ParamException.
   ///
@@ -43,19 +46,21 @@ class SpWMLElement extends StatelessWidget {
       this.parentSerial,
       this.lineStart,
       this.lineEnd,
-      this.style)
-      : params = _setParam(type, param, lineStart, lineEnd);
+      this.style,
+      this.info)
+      : params = _setParam(type, param, lineStart, lineEnd, info);
 
   static Map<EnumSpWMLParams, dynamic> _setParam(EnumSpWMLElementType type,
-      Map<String, String> param, int lineStart, int lineEnd) {
+      Map<String, String> param, int lineStart, int lineEnd, SpWMLInfo? info) {
     Map<EnumSpWMLParams, dynamic> mParam = {};
     for (String i in param.keys) {
       // 変換される時点（パース時）で値の検査も行う。
-      EnumSpWMLParams t = EXTEnumSpWMLParams.fromStr(i, lineStart, lineEnd);
+      EnumSpWMLParams t =
+          EXTEnumSpWMLParams.fromStr(i, lineStart, lineEnd, info);
       if (t == EnumSpWMLParams.alt) {
         mParam[t] = param[i]!;
       } else {
-        mParam[t] = t.parseValue(type, param[i]!, lineStart, lineEnd);
+        mParam[t] = t.parseValue(type, param[i]!, lineStart, lineEnd, info);
       }
     }
     return mParam;

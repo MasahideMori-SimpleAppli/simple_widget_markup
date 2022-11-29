@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../element_params/spwml_info.dart';
 import '../../../element_params/sub/other/vline_element_params.dart';
 import '../../../element_params/super/spwml_params.dart';
 import '../../../enum/enum_spwml_params.dart';
@@ -22,6 +23,7 @@ class VLineElement extends SpWMLElement {
   /// * [lineStart] : line info for the Error handling.
   /// * [lineEnd] : line info for the Error handling.
   /// * [style] : Font styles.
+  /// * [info] : SpWML info.
   /// * [elParams] : This element parameters.
   ///
   /// Throws [SpWMLException] : ParamException.
@@ -35,9 +37,10 @@ class VLineElement extends SpWMLElement {
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
+      SpWMLInfo? info,
       this.elParams)
       : super(serial, EnumSpWMLElementType.vline, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style);
+            parentSerial, lineStart, lineEnd, style, info);
 
   @override
   VLineElement initParams() {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'element/spwml_element_part.dart';
+import 'element_params/spwml_info.dart';
 import 'style/spwml_font_style.dart';
 import 'element_params/sub/text/text_params.dart';
 import 'element_params/super/spwml_params.dart';
@@ -25,6 +26,7 @@ class SpWMLBuilder {
   final EdgeInsets padding;
   final SpWMLFontStyle style;
   final GlobalKey? key;
+  final SpWMLInfo? info;
 
   /// Constructor
   /// * [spWML] : SpWML text.
@@ -33,14 +35,18 @@ class SpWMLBuilder {
   /// * [margin] : Top level Column Margin.
   /// * [padding] : Top level Column Padding.
   /// * [spWMLStyle] : Font styles.
+  /// * [info] : This is information object. e.g. A hint when an error occurs.
+  /// It is convenient to set when nesting multiple SpWMLs.
   SpWMLBuilder(spWML,
       {this.mainAA = MainAxisAlignment.start,
       this.crossAA = CrossAxisAlignment.start,
       this.margin = const EdgeInsets.all(0),
       this.padding = const EdgeInsets.all(8),
       SpWMLFontStyle? spWMLStyle,
+      this.info,
       this.key})
-      : _parsedWidgets = SpWMLParser.run(spWML, spWMLStyle ?? SpWMLFontStyle()),
+      : _parsedWidgets =
+            SpWMLParser.run(spWML, spWMLStyle ?? SpWMLFontStyle(), info),
         style = spWMLStyle ?? SpWMLFontStyle();
 
   /// (en)Replaces the contents of the specified ID with a widget.
@@ -79,7 +85,7 @@ class SpWMLBuilder {
             break;
           } else {
             throw SpWMLException(
-                EnumSpWMLExceptionType.replaceException, -1, -1);
+                EnumSpWMLExceptionType.replaceException, -1, -1, info);
           }
         }
       }
@@ -90,7 +96,7 @@ class SpWMLBuilder {
     if (needReturn) {
       return;
     }
-    throw SpWMLException(EnumSpWMLExceptionType.nullException, -1, -1);
+    throw SpWMLException(EnumSpWMLExceptionType.nullException, -1, -1, info);
   }
 
   /// (en)Replaces the contents of the specified String ID with a widget.
@@ -129,7 +135,7 @@ class SpWMLBuilder {
             break;
           } else {
             throw SpWMLException(
-                EnumSpWMLExceptionType.replaceException, -1, -1);
+                EnumSpWMLExceptionType.replaceException, -1, -1, info);
           }
         }
       }
@@ -140,7 +146,7 @@ class SpWMLBuilder {
     if (needReturn) {
       return;
     }
-    throw SpWMLException(EnumSpWMLExceptionType.nullException, -1, -1);
+    throw SpWMLException(EnumSpWMLExceptionType.nullException, -1, -1, info);
   }
 
   /// (en)Disables any child element of col, row, or wrap with the specified ID and replaces it with a new widget.
@@ -179,7 +185,7 @@ class SpWMLBuilder {
             break;
           } else {
             throw SpWMLException(
-                EnumSpWMLExceptionType.replaceException, -1, -1);
+                EnumSpWMLExceptionType.replaceException, -1, -1, info);
           }
         }
       }
@@ -192,7 +198,7 @@ class SpWMLBuilder {
     if (needReturn) {
       return;
     }
-    throw SpWMLException(EnumSpWMLExceptionType.nullException, -1, -1);
+    throw SpWMLException(EnumSpWMLExceptionType.nullException, -1, -1, info);
   }
 
   /// (en)Disables any child element of col, row, or wrap with the specified String ID and replaces it with a new widget.
@@ -231,7 +237,7 @@ class SpWMLBuilder {
             break;
           } else {
             throw SpWMLException(
-                EnumSpWMLExceptionType.replaceException, -1, -1);
+                EnumSpWMLExceptionType.replaceException, -1, -1, info);
           }
         }
       }
@@ -244,7 +250,7 @@ class SpWMLBuilder {
     if (needReturn) {
       return;
     }
-    throw SpWMLException(EnumSpWMLExceptionType.nullException, -1, -1);
+    throw SpWMLException(EnumSpWMLExceptionType.nullException, -1, -1, info);
   }
 
   /// (en) Gets the element length.
@@ -339,7 +345,8 @@ class SpWMLBuilder {
             final String eStr = SpWMLException(
                     EnumSpWMLExceptionType.levelException,
                     j.lineStart,
-                    j.lineEnd)
+                    j.lineEnd,
+                    info)
                 .toString();
             debugPrint(eStr);
             r.clear();
@@ -353,6 +360,7 @@ class SpWMLBuilder {
                       j.lineStart,
                       j.lineEnd,
                       style,
+                      info,
                       TextParamsWrapper(TextParams()))
                   .initParams()
             ];

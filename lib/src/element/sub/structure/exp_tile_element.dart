@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../element_params/spwml_info.dart';
 import '../../super/multi_child_text_element.dart';
 import '../../../element_params/element_child.dart';
 import '../../../element_params/sub/structure/exp_tile_params.dart';
@@ -24,6 +25,7 @@ class ExpTileElement extends MultiChildTextElement {
   /// * [lineStart] : line info for the Error handling.
   /// * [lineEnd] : line info for the Error handling.
   /// * [style] : Font styles.
+  /// * [info] : SpWML info.
   /// * [children] : This element children.
   /// * [elParams] : This element parameters.
   ///
@@ -38,11 +40,22 @@ class ExpTileElement extends MultiChildTextElement {
       int lineStart,
       int lineEnd,
       SpWMLFontStyle style,
+      SpWMLInfo? info,
       StructureElementChildren children,
       TextParamsWrapper textParams,
       this.elParams)
-      : super(serial, EnumSpWMLElementType.expTile, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, children, textParams);
+      : super(
+            serial,
+            EnumSpWMLElementType.expTile,
+            params,
+            spwmlParams,
+            parentSerial,
+            lineStart,
+            lineEnd,
+            style,
+            info,
+            children,
+            textParams);
 
   @override
   ExpTileElement initParams() {

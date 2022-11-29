@@ -1,3 +1,4 @@
+import '../element_params/spwml_info.dart';
 import '../spwml_exception.dart';
 
 ///
@@ -14,14 +15,15 @@ extension EXTEnumTextFieldType on EnumTextFieldType {
   }
 
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
-  static EnumTextFieldType fromStr(String s, int lineStart, int lineEnd) {
+  static EnumTextFieldType fromStr(
+      String s, int lineStart, int lineEnd, SpWMLInfo? info) {
     if (s == EnumTextFieldType.material.toStr()) {
       return EnumTextFieldType.material;
     } else if (s == EnumTextFieldType.rounded.toStr()) {
       return EnumTextFieldType.rounded;
     } else {
       throw SpWMLException(
-          EnumSpWMLExceptionType.typeException, lineStart, lineEnd);
+          EnumSpWMLExceptionType.typeException, lineStart, lineEnd, info);
     }
   }
 }
@@ -35,7 +37,8 @@ extension EXTEnumTextFieldMode on EnumTextFieldMode {
   }
 
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
-  static EnumTextFieldMode fromStr(String s, int lineStart, int lineEnd) {
+  static EnumTextFieldMode fromStr(
+      String s, int lineStart, int lineEnd, SpWMLInfo? info) {
     if (s == EnumTextFieldMode.normal.toStr()) {
       return EnumTextFieldMode.normal;
     } else if (s == EnumTextFieldMode.password.toStr()) {
@@ -46,7 +49,7 @@ extension EXTEnumTextFieldMode on EnumTextFieldMode {
       return EnumTextFieldMode.manual;
     } else {
       throw SpWMLException(
-          EnumSpWMLExceptionType.typeException, lineStart, lineEnd);
+          EnumSpWMLExceptionType.typeException, lineStart, lineEnd, info);
     }
   }
 }
