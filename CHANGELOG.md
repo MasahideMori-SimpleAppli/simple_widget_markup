@@ -1,3 +1,7 @@
+## 11.1.0
+* Added setEnabled method to TextFieldElement.
+* Added setManager method to TextFieldElement. This addition added textfield_manager to the dependencies.
+
 ## 11.0.0
 * An optional argument SpWMLInfo has been added to SpWMLBuilder.
   Setting this makes it easier to track where the error occurred when it occurs.

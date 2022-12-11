@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:textfield_manager/textfield_manager.dart';
 import '../../../element_params/spwml_info.dart';
 import 'text_element.dart';
 import '../../../element_params/sub/text/text_params.dart';
@@ -154,6 +155,23 @@ class TextFieldElement extends TextElement {
   /// * [focusNode] : The focusNode.
   void setFocusNode(FocusNode? focusNode) {
     tfParams.p.focusNode = focusNode;
+  }
+
+  /// Set enabled flag.
+  /// * [isEnable] : If set false, This element to be not editable.
+  void setEnabled(bool enabled) {
+    tfParams.p.enabled = enabled;
+  }
+
+  /// Use TextFieldManager to apply setController and setFocusNode at the same time.
+  /// * [manager] : TextFieldManager.
+  /// * [name] : A unique name for the controller and focus.
+  /// * [initialText] : Initial text for the controller in TextFieldManager.
+  /// Applies only when first created.
+  void setManager(TextFieldManager manager, String name,
+      {String? initialText}) {
+    setController(manager.getCtrl(name, initialText: initialText));
+    setFocusNode(manager.getFocus(name));
   }
 }
 
