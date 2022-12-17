@@ -112,6 +112,13 @@ class SpWMLElement extends StatelessWidget {
     return this;
   }
 
+  /// Set visibility flag.
+  ///
+  /// * [isGone] : If true, remove this element in build result.
+  void setIsGone(bool isGone) {
+    spwmlParams.p.isGone = isGone;
+  }
+
   /// Get element decoration. It disabled in btn card, radioBtn, checkbox. these return null.
   BoxDecoration? _getDecoration() {
     if (type != EnumSpWMLElementType.btn &&

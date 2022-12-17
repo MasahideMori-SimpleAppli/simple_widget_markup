@@ -55,6 +55,17 @@ class TextElement extends SpWMLElement {
             : true;
     if (textParams.p.isSelectable) {
       textParams.p.selectableTextParams = SelectableTextParams();
+      textParams.p.selectableTextParams!.maxLines =
+          params.containsKey(EnumSpWMLParams.maxLines)
+              ? params[EnumSpWMLParams.maxLines]
+              : null;
+    } else {
+      textParams.p.overflow = params.containsKey(EnumSpWMLParams.overflow)
+          ? params[EnumSpWMLParams.overflow]
+          : null;
+      textParams.p.maxLines = params.containsKey(EnumSpWMLParams.maxLines)
+          ? params[EnumSpWMLParams.maxLines]
+          : null;
     }
     return this;
   }
@@ -129,6 +140,7 @@ class TextElement extends SpWMLElement {
       textDirection: textParams.p.textDirection,
       locale: textParams.p.locale,
       softWrap: textParams.p.softWrap,
+      overflow: textParams.p.overflow,
       textScaleFactor: textParams.p.textScaleFactor ??
           MediaQuery.of(context).textScaleFactor,
       maxLines: textParams.p.maxLines,

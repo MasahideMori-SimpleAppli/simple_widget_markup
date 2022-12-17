@@ -1,3 +1,8 @@
+## 11.2.0
+* Added setIsGone method to SpWMLElement.
+* Added overflow parameter on SpWML to TextElement. This parameter is valid only when isSelectable is false.
+* Added maxLines parameter on SpWML to TextElement.
+
 ## 11.1.0
 * Added setEnabled method to TextFieldElement.
 * Added setManager method to TextFieldElement. This addition added textfield_manager to the dependencies.
