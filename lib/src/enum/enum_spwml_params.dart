@@ -66,6 +66,7 @@ enum EnumSpWMLParams {
   pR,
   pB,
   weight,
+  wt,
   id,
   sid,
   axis,
@@ -526,6 +527,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
     } else if (s == EnumSpWMLParams.pB.toStr()) {
       return EnumSpWMLParams.pBottom;
     } else if (s == EnumSpWMLParams.weight.toStr()) {
+      return EnumSpWMLParams.weight;
+    } else if (s == EnumSpWMLParams.wt.toStr()) {
       return EnumSpWMLParams.weight;
     } else if (s == EnumSpWMLParams.id.toStr()) {
       return EnumSpWMLParams.id;

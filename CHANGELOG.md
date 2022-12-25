@@ -1,3 +1,6 @@
+## 11.2.1
+* Added wt parameter. wt works as an abbreviation for weight.
+
 ## 11.2.0
 * Added setIsGone method to SpWMLElement.
 * Added overflow parameter on SpWML to TextElement. This parameter is valid only when isSelectable is false.
