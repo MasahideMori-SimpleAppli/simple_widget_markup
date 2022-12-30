@@ -119,6 +119,13 @@ class TextFieldElement extends TextElement {
         ? params[EnumSpWMLParams.cpB]
         : null;
     tfParams.p.changeContentPadding(cpL: cpL, cpT: cpT, cpR: cpR, cpB: cpB);
+    // max setting（textと共通では無いので注意）
+    tfParams.p.maxLines = params.containsKey(EnumSpWMLParams.maxLines)
+        ? params[EnumSpWMLParams.maxLines]
+        : null;
+    tfParams.p.maxLength = params.containsKey(EnumSpWMLParams.maxLength)
+        ? params[EnumSpWMLParams.maxLength]
+        : null;
     return this;
   }
 

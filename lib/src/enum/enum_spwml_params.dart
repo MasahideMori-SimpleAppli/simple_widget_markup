@@ -134,7 +134,8 @@ enum EnumSpWMLParams {
   cpR,
   cpB,
   overflow,
-  maxLines
+  maxLines,
+  maxLength
 }
 
 extension EXTEnumSpWMLParams on EnumSpWMLParams {
@@ -199,10 +200,12 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.cpB) {
         return double.parse(v);
       }
-      if (this == EnumSpWMLParams.weight ||
-          this == EnumSpWMLParams.hNum ||
-          this == EnumSpWMLParams.maxLines) {
+      if (this == EnumSpWMLParams.weight || this == EnumSpWMLParams.hNum) {
         return int.parse(v);
+      }
+      if (this == EnumSpWMLParams.maxLines ||
+          this == EnumSpWMLParams.maxLength) {
+        return int.tryParse(v);
       }
       // col, row or wrap only
       if (type == EnumSpWMLElementType.col) {
@@ -676,6 +679,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       return EnumSpWMLParams.overflow;
     } else if (s == EnumSpWMLParams.maxLines.toStr()) {
       return EnumSpWMLParams.maxLines;
+    } else if (s == EnumSpWMLParams.maxLength.toStr()) {
+      return EnumSpWMLParams.maxLength;
     } else {
       throw SpWMLException(
           EnumSpWMLExceptionType.paramException, lineStart, lineEnd, info);

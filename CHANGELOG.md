@@ -1,3 +1,6 @@
+## 11.2.2
+* Added maxLines and maxLength parameter to TextFieldElement.
+
 ## 11.2.1
 * Added wt parameter. wt works as an abbreviation for weight.
 
