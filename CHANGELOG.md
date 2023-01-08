@@ -1,3 +1,7 @@
+## 11.3.0
+* Updated textfield_manager package.
+* The setManager method of TextFieldElement has been updated according to the package update.
+
 ## 11.2.2
 * Added maxLines and maxLength parameter to TextFieldElement.
 

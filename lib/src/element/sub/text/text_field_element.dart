@@ -175,9 +175,12 @@ class TextFieldElement extends TextElement {
   /// * [name] : A unique name for the controller and focus.
   /// * [initialText] : Initial text for the controller in TextFieldManager.
   /// Applies only when first created.
+  /// * [isAlwaysInitialize] : If true, always set initialText.
+  /// If true and initialText is null, initialize by empty string
   void setManager(TextFieldManager manager, String name,
-      {String? initialText}) {
-    setController(manager.getCtrl(name, initialText: initialText));
+      {String? initialText, bool isAlwaysInitialize = false}) {
+    setController(manager.getCtrl(name,
+        initialText: initialText, isAlwaysInitialize: isAlwaysInitialize));
     setFocusNode(manager.getFocus(name));
   }
 }
