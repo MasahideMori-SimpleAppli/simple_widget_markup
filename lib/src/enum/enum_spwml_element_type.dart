@@ -46,7 +46,8 @@ enum EnumSpWMLElementType {
   table,
   tableRow,
   tr,
-  ruby
+  ruby,
+  progressIndicator
 }
 
 extension EXTEnumSpWMLElementType on EnumSpWMLElementType {
@@ -138,6 +139,8 @@ extension EXTEnumSpWMLElementType on EnumSpWMLElementType {
       return EnumSpWMLElementType.tableRow;
     } else if (s == EnumSpWMLElementType.ruby.toStr()) {
       return EnumSpWMLElementType.ruby;
+    } else if (s == EnumSpWMLElementType.progressIndicator.toStr()) {
+      return EnumSpWMLElementType.progressIndicator;
     } else {
       throw SpWMLException(
           EnumSpWMLExceptionType.typeException, lineStart, lineEnd, info);

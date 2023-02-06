@@ -1,3 +1,11 @@
+## 12.0.0
+* Removed toolbarOptions from textfield, ruby and more.
+* Added missing parameters to text type elements.
+* Added clipType parameter to ImgElement.
+* Added ProgressIndicatorElement.
+* Added memory type and setByteImage method to imgElement.
+* Added setBGColor method to SpWMLElement.
+
 ## 11.3.0
 * Updated textfield_manager package.
 * The setManager method of TextFieldElement has been updated according to the package update.

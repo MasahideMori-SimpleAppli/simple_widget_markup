@@ -119,6 +119,16 @@ class SpWMLElement extends StatelessWidget {
     spwmlParams.p.isGone = isGone;
   }
 
+  /// Set background color.
+  /// Calling this will also automatically update the box decoration internally.
+  ///
+  /// * [c] : color.
+  void setBGColor(Color c) {
+    spwmlParams.p.containerParams!.color = c;
+    // update decoration.
+    spwmlParams.p.containerParams!.decoration = _getDecoration();
+  }
+
   /// Get element decoration. It disabled in btn card, radioBtn, checkbox. these return null.
   BoxDecoration? _getDecoration() {
     if (type != EnumSpWMLElementType.btn &&

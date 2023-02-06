@@ -21,7 +21,6 @@ class SelectableTextParams {
   double? textScaleFactor;
   bool showCursor = false;
   bool autofocus = false;
-  ToolbarOptions? toolbarOptions;
   int? minLines;
   int? maxLines;
   double cursorWidth = 0.0;
@@ -38,6 +37,8 @@ class SelectableTextParams {
   String? semanticsLabel;
   TextHeightBehavior? textHeightBehavior;
   TextWidthBasis? textWidthBasis;
+  Widget Function(BuildContext, EditableTextState)? contextMenuBuilder;
+  TextMagnifierConfiguration? magnifierConfiguration;
   void Function(TextSelection, SelectionChangedCause?)? onSelectionChanged;
 }
 

@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import '../../../enum/enum_img_type.dart';
+
+import '../../../../simple_widget_markup.dart';
 
 class ImgParamsWrapper {
   ImgParams p;
@@ -17,6 +19,8 @@ class AssetImageParams {
 class ImgParams {
   EnumImgType type = EnumImgType.network;
   String? src;
+  // for memory type
+  Uint8List? bytes;
   Key? key;
   double scale = 1.0;
   Widget Function(BuildContext, Widget, int?, bool)? frameBuilder;
@@ -43,4 +47,18 @@ class ImgParams {
 
   // Asset image additional parameter.
   AssetImageParams? assetImgParams;
+
+  // Clipping option
+  ClipParams clipParams = ClipParams();
+}
+
+class ClipParams {
+  Key? key;
+  EnumClipType clipType = EnumClipType.none;
+  CustomClipper<Rect>? clipper;
+  Clip clipBehavior = Clip.antiAlias;
+
+  // for ClipRRect
+  BorderRadiusGeometry? borderRadius = BorderRadius.circular(8.0);
+  CustomClipper<RRect>? clipperRRect;
 }

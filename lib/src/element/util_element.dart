@@ -103,6 +103,17 @@ class UtilElement {
     } else if (eType == EnumSpWMLElementType.vline) {
       r = VLineElement(serial, params, spwmlParams, parentSerial, lineStart,
           lineEnd, style, info, VLineParamsWrapper(VLineParams()));
+    } else if (eType == EnumSpWMLElementType.progressIndicator) {
+      r = ProgressIndicatorElement(
+          serial,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          ProgressIndicatorParamsWrapper(ProgressIndicatorParams()));
     } else if (eType == EnumSpWMLElementType.img) {
       r = ImgElement(serial, params, spwmlParams, parentSerial, lineStart,
           lineEnd, style, info, ImgParamsWrapper(ImgParams()));

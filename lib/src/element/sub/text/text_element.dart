@@ -93,7 +93,6 @@ class TextElement extends SpWMLElement {
                     MediaQuery.of(context).textScaleFactor,
             showCursor: textParams.p.selectableTextParams!.showCursor,
             autofocus: textParams.p.selectableTextParams!.autofocus,
-            toolbarOptions: textParams.p.selectableTextParams!.toolbarOptions,
             minLines: textParams.p.selectableTextParams!.minLines,
             maxLines: textParams.p.selectableTextParams!.maxLines,
             cursorWidth: textParams.p.selectableTextParams!.cursorWidth,
@@ -118,6 +117,10 @@ class TextElement extends SpWMLElement {
             textWidthBasis: textParams.p.selectableTextParams!.textWidthBasis,
             onSelectionChanged:
                 textParams.p.selectableTextParams!.onSelectionChanged,
+            contextMenuBuilder:
+                textParams.p.selectableTextParams!.contextMenuBuilder,
+            magnifierConfiguration:
+                textParams.p.selectableTextParams!.magnifierConfiguration,
           )
         : getText(context);
   }

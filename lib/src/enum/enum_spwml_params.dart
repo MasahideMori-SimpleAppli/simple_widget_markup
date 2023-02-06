@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import '../element_params/spwml_info.dart';
-import '../enum/enum_btn_type.dart';
-import 'enum_img_type.dart';
-import 'enum_spwml_element_type.dart';
-import '../element_params/util_params.dart';
-import '../spwml_exception.dart';
-import 'enum_textfield_params.dart';
+
+import '../../simple_widget_markup.dart';
 
 ///
 /// Author Masahide Mori
@@ -135,7 +130,11 @@ enum EnumSpWMLParams {
   cpB,
   overflow,
   maxLines,
-  maxLength
+  maxLength,
+  indicatorColor,
+  indicatorBGColor,
+  clipType,
+  clipRadius,
 }
 
 extension EXTEnumSpWMLParams on EnumSpWMLParams {
@@ -257,6 +256,12 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           return EXTEnumImgType.fromStr(v, lineStart, lineEnd, info);
         }
       }
+      // indicator only
+      if (type == EnumSpWMLElementType.progressIndicator) {
+        if (this == EnumSpWMLParams.type) {
+          return EXTEnumIndicatorType.fromStr(v, lineStart, lineEnd, info);
+        }
+      }
       // textField only
       if (type == EnumSpWMLElementType.textField) {
         if (this == EnumSpWMLParams.type) {
@@ -289,6 +294,13 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           throw Exception();
         }
       }
+      // clip
+      if (this == EnumSpWMLParams.clipType) {
+        return EXTEnumClipType.fromStr(v, lineStart, lineEnd, info);
+      }
+      if (this == EnumSpWMLParams.clipRadius) {
+        return BorderRadius.circular(double.parse(v));
+      }
       if (this == EnumSpWMLParams.bgColor ||
           this == EnumSpWMLParams.color ||
           this == EnumSpWMLParams.textColor ||
@@ -303,7 +315,9 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.rubyColor ||
           this == EnumSpWMLParams.rubyBGColor ||
           this == EnumSpWMLParams.rubyDecoColor ||
-          this == EnumSpWMLParams.fgColor) {
+          this == EnumSpWMLParams.fgColor ||
+          this == EnumSpWMLParams.indicatorColor ||
+          this == EnumSpWMLParams.indicatorBGColor) {
         return UtilParams.convertColor(v);
       } else if (this == EnumSpWMLParams.id) {
         return int.parse(v);
@@ -403,12 +417,16 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.enableTapLabel ||
           this == EnumSpWMLParams.isRubySelectable ||
           this == EnumSpWMLParams.isGone) {
-        if (v == "true") {
-          return true;
-        } else if (v == "false") {
-          return false;
+        if (type == EnumSpWMLElementType.progressIndicator) {
+          return double.parse(v);
         } else {
-          throw Exception();
+          if (v == "true") {
+            return true;
+          } else if (v == "false") {
+            return false;
+          } else {
+            throw Exception();
+          }
         }
       } else if (this == EnumSpWMLParams.borderShape) {
         if (v == "rectangle") {
@@ -681,6 +699,14 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       return EnumSpWMLParams.maxLines;
     } else if (s == EnumSpWMLParams.maxLength.toStr()) {
       return EnumSpWMLParams.maxLength;
+    } else if (s == EnumSpWMLParams.indicatorColor.toStr()) {
+      return EnumSpWMLParams.indicatorColor;
+    } else if (s == EnumSpWMLParams.indicatorBGColor.toStr()) {
+      return EnumSpWMLParams.indicatorBGColor;
+    } else if (s == EnumSpWMLParams.clipType.toStr()) {
+      return EnumSpWMLParams.clipType;
+    } else if (s == EnumSpWMLParams.clipRadius.toStr()) {
+      return EnumSpWMLParams.clipRadius;
     } else {
       throw SpWMLException(
           EnumSpWMLExceptionType.paramException, lineStart, lineEnd, info);

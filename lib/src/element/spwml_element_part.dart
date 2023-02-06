@@ -13,6 +13,7 @@ export 'sub/other/icon_element.dart';
 export 'sub/other/img_element.dart';
 export 'sub/other/line_element.dart';
 export 'sub/other/vline_element.dart';
+export 'sub/other/progress_indicator_element.dart';
 export 'sub/structure/block_element.dart';
 export 'sub/structure/card_element.dart';
 export 'sub/structure/col_element.dart';

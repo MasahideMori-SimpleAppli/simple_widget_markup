@@ -104,7 +104,6 @@ class RubyTextElement extends TextElement {
                     MediaQuery.of(context).textScaleFactor,
             showCursor: rubyParams.p.selectableTextParams!.showCursor,
             autofocus: rubyParams.p.selectableTextParams!.autofocus,
-            toolbarOptions: rubyParams.p.selectableTextParams!.toolbarOptions,
             minLines: rubyParams.p.selectableTextParams!.minLines,
             maxLines: rubyParams.p.selectableTextParams!.maxLines,
             cursorWidth: rubyParams.p.selectableTextParams!.cursorWidth,
@@ -129,6 +128,10 @@ class RubyTextElement extends TextElement {
             textWidthBasis: rubyParams.p.selectableTextParams!.textWidthBasis,
             onSelectionChanged:
                 rubyParams.p.selectableTextParams!.onSelectionChanged,
+            contextMenuBuilder:
+                rubyParams.p.selectableTextParams!.contextMenuBuilder,
+            magnifierConfiguration:
+                rubyParams.p.selectableTextParams!.magnifierConfiguration,
           )
         : getRubyText(context);
   }

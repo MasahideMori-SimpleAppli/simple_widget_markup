@@ -102,8 +102,6 @@ class SpanElement extends MultiChildTextElement {
                 .p.selectableTextRichParams!.selectableTextParams.showCursor,
             autofocus: elParams
                 .p.selectableTextRichParams!.selectableTextParams.autofocus,
-            toolbarOptions: elParams.p.selectableTextRichParams!
-                .selectableTextParams.toolbarOptions,
             minLines: elParams
                 .p.selectableTextRichParams!.selectableTextParams.minLines,
             maxLines: elParams
@@ -136,6 +134,10 @@ class SpanElement extends MultiChildTextElement {
                 .selectableTextParams.textHeightBehavior,
             textWidthBasis: elParams.p.selectableTextRichParams!
                 .selectableTextParams.textWidthBasis,
+            contextMenuBuilder: elParams.p.selectableTextRichParams!
+                .selectableTextParams.contextMenuBuilder,
+            magnifierConfiguration: elParams.p.selectableTextRichParams!
+                .selectableTextParams.magnifierConfiguration,
             onSelectionChanged: elParams.p.selectableTextRichParams!
                 .selectableTextParams.onSelectionChanged,
           )
@@ -154,6 +156,8 @@ class SpanElement extends MultiChildTextElement {
             strutStyle: elParams.p.richTextParams!.strutStyle,
             textWidthBasis: elParams.p.richTextParams!.textWidthBasis,
             textHeightBehavior: elParams.p.richTextParams!.textHeightBehavior,
+            selectionRegistrar: elParams.p.richTextParams!.selectionRegistrar,
+            selectionColor: elParams.p.richTextParams!.selectionColor,
           );
   }
 

@@ -26,7 +26,6 @@ class TextFieldParams {
   TextAlignVertical? textAlignVertical;
   TextDirection? textDirection;
   bool readOnly = false;
-  ToolbarOptions? toolbarOptions;
   bool? showCursor;
   bool autofocus = false;
   String obscuringCharacter = '•';
@@ -58,6 +57,7 @@ class TextFieldParams {
   bool enableInteractiveSelection = true;
   TextSelectionControls? selectionControls;
   void Function()? onTap;
+  void Function(PointerDownEvent)? onTapOutside;
   MouseCursor? mouseCursor;
   Widget? Function(BuildContext,
       {required int currentLength,
@@ -68,7 +68,11 @@ class TextFieldParams {
   Iterable<String>? autofillHints = const [];
   Clip clipBehavior = Clip.hardEdge;
   String? restorationId;
+  bool scribbleEnabled = true;
   bool enableIMEPersonalizedLearning = true;
+  Widget Function(BuildContext, EditableTextState)? contextMenuBuilder;
+  SpellCheckConfiguration? spellCheckConfiguration;
+  TextMagnifierConfiguration? magnifierConfiguration;
 
   // others
   EnumTextFieldType _design = EnumTextFieldType.material;

@@ -289,7 +289,6 @@ class _TextFieldElementWidgetState extends State<_TextFieldElementWidget> {
       textAlignVertical: widget.tfParams.p.textAlignVertical,
       textDirection: widget.tfParams.p.textDirection,
       readOnly: widget.tfParams.p.readOnly,
-      toolbarOptions: widget.tfParams.p.toolbarOptions,
       showCursor: widget.tfParams.p.showCursor,
       autofocus: widget.tfParams.p.autofocus,
       obscuringCharacter: widget.tfParams.p.obscuringCharacter,
@@ -321,6 +320,7 @@ class _TextFieldElementWidgetState extends State<_TextFieldElementWidget> {
       enableInteractiveSelection: widget.tfParams.p.enableInteractiveSelection,
       selectionControls: widget.tfParams.p.selectionControls,
       onTap: widget.tfParams.p.onTap,
+      onTapOutside: widget.tfParams.p.onTapOutside,
       mouseCursor: widget.tfParams.p.mouseCursor,
       buildCounter: widget.tfParams.p.buildCounter,
       scrollController: widget.tfParams.p.scrollController,
@@ -328,8 +328,12 @@ class _TextFieldElementWidgetState extends State<_TextFieldElementWidget> {
       autofillHints: widget.tfParams.p.autofillHints,
       clipBehavior: widget.tfParams.p.clipBehavior,
       restorationId: widget.tfParams.p.restorationId,
+      scribbleEnabled: widget.tfParams.p.scribbleEnabled,
       enableIMEPersonalizedLearning:
           widget.tfParams.p.enableIMEPersonalizedLearning,
+      contextMenuBuilder: widget.tfParams.p.contextMenuBuilder,
+      spellCheckConfiguration: widget.tfParams.p.spellCheckConfiguration,
+      magnifierConfiguration: widget.tfParams.p.magnifierConfiguration,
     );
   }
 }

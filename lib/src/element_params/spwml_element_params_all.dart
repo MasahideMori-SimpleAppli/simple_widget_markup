@@ -12,6 +12,7 @@ export 'sub/other/icon_element_params.dart';
 export 'sub/other/img_element_params.dart';
 export 'sub/other/line_element_params.dart';
 export 'sub/other/vline_element_params.dart';
+export 'sub/other/progress_indicator_element_params.dart';
 export 'sub/structure/card_params.dart';
 export 'sub/structure/exp_tile_params.dart';
 export 'sub/structure/row_col_params.dart';
