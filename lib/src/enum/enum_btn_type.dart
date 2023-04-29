@@ -9,23 +9,18 @@ import '../spwml_exception.dart';
 enum EnumBtnType { text, outlined, elevated, icon, block }
 
 extension EXTEnumBtnType on EnumBtnType {
-  /// Convert string name.
-  String toStr() {
-    return toString().split('.').last;
-  }
-
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
   static EnumBtnType fromStr(
       String s, int lineStart, int lineEnd, SpWMLInfo? info) {
-    if (s == EnumBtnType.text.toStr()) {
+    if (s == EnumBtnType.text.name) {
       return EnumBtnType.text;
-    } else if (s == EnumBtnType.outlined.toStr()) {
+    } else if (s == EnumBtnType.outlined.name) {
       return EnumBtnType.outlined;
-    } else if (s == EnumBtnType.elevated.toStr()) {
+    } else if (s == EnumBtnType.elevated.name) {
       return EnumBtnType.elevated;
-    } else if (s == EnumBtnType.icon.toStr()) {
+    } else if (s == EnumBtnType.icon.name) {
       return EnumBtnType.icon;
-    } else if (s == EnumBtnType.block.toStr()) {
+    } else if (s == EnumBtnType.block.name) {
       return EnumBtnType.block;
     } else {
       throw SpWMLException(

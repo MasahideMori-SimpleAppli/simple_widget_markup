@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../simple_widget_markup.dart';
 
 class ProgressIndicatorParamsWrapper {

@@ -9,17 +9,12 @@ import '../spwml_exception.dart';
 enum EnumTextFieldType { material, rounded }
 
 extension EXTEnumTextFieldType on EnumTextFieldType {
-  /// Convert string name.
-  String toStr() {
-    return toString().split('.').last;
-  }
-
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
   static EnumTextFieldType fromStr(
       String s, int lineStart, int lineEnd, SpWMLInfo? info) {
-    if (s == EnumTextFieldType.material.toStr()) {
+    if (s == EnumTextFieldType.material.name) {
       return EnumTextFieldType.material;
-    } else if (s == EnumTextFieldType.rounded.toStr()) {
+    } else if (s == EnumTextFieldType.rounded.name) {
       return EnumTextFieldType.rounded;
     } else {
       throw SpWMLException(
@@ -31,21 +26,16 @@ extension EXTEnumTextFieldType on EnumTextFieldType {
 enum EnumTextFieldMode { normal, password, search, manual }
 
 extension EXTEnumTextFieldMode on EnumTextFieldMode {
-  /// Convert string name.
-  String toStr() {
-    return toString().split('.').last;
-  }
-
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
   static EnumTextFieldMode fromStr(
       String s, int lineStart, int lineEnd, SpWMLInfo? info) {
-    if (s == EnumTextFieldMode.normal.toStr()) {
+    if (s == EnumTextFieldMode.normal.name) {
       return EnumTextFieldMode.normal;
-    } else if (s == EnumTextFieldMode.password.toStr()) {
+    } else if (s == EnumTextFieldMode.password.name) {
       return EnumTextFieldMode.password;
-    } else if (s == EnumTextFieldMode.search.toStr()) {
+    } else if (s == EnumTextFieldMode.search.name) {
       return EnumTextFieldMode.search;
-    } else if (s == EnumTextFieldMode.manual.toStr()) {
+    } else if (s == EnumTextFieldMode.manual.name) {
       return EnumTextFieldMode.manual;
     } else {
       throw SpWMLException(

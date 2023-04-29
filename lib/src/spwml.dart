@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'element_params/spwml_info.dart';
-import 'style/spwml_font_style.dart';
-import 'spwml_builder.dart';
+import '../simple_widget_markup.dart';
 
 ///
 /// SpWMLBuilder wrapper widget.
@@ -25,7 +23,8 @@ class SpWML extends StatelessWidget {
   /// * [crossAA] : Top level Column CrossAxisAlignment.
   /// * [margin] : Top level Column Margin.
   /// * [padding] : Top level Column Padding.
-  /// * [spWMLStyle] : Font styles.
+  /// * [spWMLStyle] : Font styles. If you want to change the default style,
+  /// you can change the contents of the singleton SpWMLFontManager class.
   /// * [info] : This is information object. e.g. A hint when an error occurs.
   /// It is convenient to set when nesting multiple SpWMLs.
   SpWML(this.spWML,
@@ -36,7 +35,7 @@ class SpWML extends StatelessWidget {
       SpWMLFontStyle? spWMLStyle,
       this.info,
       GlobalKey? key})
-      : style = spWMLStyle ?? SpWMLFontStyle(),
+      : style = spWMLStyle ?? SpWMLFontStyleManager().style,
         super(key: key);
 
   @override

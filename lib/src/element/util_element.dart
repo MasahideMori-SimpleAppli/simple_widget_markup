@@ -45,6 +45,7 @@ class UtilElement {
     late SpWMLElement r;
     final SpWMLParamsWrapper spwmlParams =
         SpWMLParamsWrapper(SpWMLParams(text));
+    // v2
     if (eType == EnumSpWMLElementType.text ||
         eType == EnumSpWMLElementType.h1 ||
         eType == EnumSpWMLElementType.h2 ||
@@ -59,6 +60,25 @@ class UtilElement {
         eType == EnumSpWMLElementType.caption ||
         eType == EnumSpWMLElementType.overline ||
         eType == EnumSpWMLElementType.menu) {
+      r = TextElement(serial, eType, params, spwmlParams, parentSerial,
+          lineStart, lineEnd, style, info, TextParamsWrapper(TextParams()));
+    }
+    // v3
+    else if (eType == EnumSpWMLElementType.displayL ||
+        eType == EnumSpWMLElementType.displayM ||
+        eType == EnumSpWMLElementType.displayS ||
+        eType == EnumSpWMLElementType.headlineL ||
+        eType == EnumSpWMLElementType.headlineM ||
+        eType == EnumSpWMLElementType.headlineS ||
+        eType == EnumSpWMLElementType.titleL ||
+        eType == EnumSpWMLElementType.titleM ||
+        eType == EnumSpWMLElementType.titleS ||
+        eType == EnumSpWMLElementType.labelL ||
+        eType == EnumSpWMLElementType.labelM ||
+        eType == EnumSpWMLElementType.labelS ||
+        eType == EnumSpWMLElementType.bodyL ||
+        eType == EnumSpWMLElementType.bodyM ||
+        eType == EnumSpWMLElementType.bodyS) {
       r = TextElement(serial, eType, params, spwmlParams, parentSerial,
           lineStart, lineEnd, style, info, TextParamsWrapper(TextParams()));
     } else if (eType == EnumSpWMLElementType.textField) {

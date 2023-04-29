@@ -1,13 +1,5 @@
 import 'package:flutter/material.dart';
-import 'element/spwml_element_part.dart';
-import 'element_params/spwml_info.dart';
-import 'style/spwml_font_style.dart';
-import 'element_params/sub/text/text_params.dart';
-import 'element_params/super/spwml_params.dart';
-import 'enum/enum_spwml_params.dart';
-import 'enum/enum_spwml_element_type.dart';
-import 'spwml_exception.dart';
-import 'spwml_parser.dart';
+import '../simple_widget_markup.dart';
 
 ///
 /// (en)A builder class for converting SpWML to widgets.
@@ -34,7 +26,8 @@ class SpWMLBuilder {
   /// * [crossAA] : Top level Column CrossAxisAlignment.
   /// * [margin] : Top level Column Margin.
   /// * [padding] : Top level Column Padding.
-  /// * [spWMLStyle] : Font styles.
+  /// * [spWMLStyle] : Font styles. If you want to change the default style,
+  /// you can change the contents of the singleton SpWMLFontManager class.
   /// * [info] : This is information object. e.g. A hint when an error occurs.
   /// It is convenient to set when nesting multiple SpWMLs.
   SpWMLBuilder(spWML,
@@ -45,9 +38,9 @@ class SpWMLBuilder {
       SpWMLFontStyle? spWMLStyle,
       this.info,
       this.key})
-      : _parsedWidgets =
-            SpWMLParser.run(spWML, spWMLStyle ?? SpWMLFontStyle(), info),
-        style = spWMLStyle ?? SpWMLFontStyle();
+      : _parsedWidgets = SpWMLParser.run(
+            spWML, spWMLStyle ?? SpWMLFontStyleManager().style, info),
+        style = spWMLStyle ?? SpWMLFontStyleManager().style;
 
   /// (en)Replaces the contents of the specified ID with a widget.
   ///

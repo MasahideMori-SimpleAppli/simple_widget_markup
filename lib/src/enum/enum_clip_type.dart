@@ -9,19 +9,14 @@ import '../spwml_exception.dart';
 enum EnumClipType { none, oval, rRect }
 
 extension EXTEnumClipType on EnumClipType {
-  /// Convert string name.
-  String toStr() {
-    return toString().split('.').last;
-  }
-
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
   static EnumClipType fromStr(
       String s, int lineStart, int lineEnd, SpWMLInfo? info) {
-    if (s == EnumClipType.none.toStr()) {
+    if (s == EnumClipType.none.name) {
       return EnumClipType.none;
-    } else if (s == EnumClipType.oval.toStr()) {
+    } else if (s == EnumClipType.oval.name) {
       return EnumClipType.oval;
-    } else if (s == EnumClipType.rRect.toStr()) {
+    } else if (s == EnumClipType.rRect.name) {
       return EnumClipType.rRect;
     } else {
       throw SpWMLException(

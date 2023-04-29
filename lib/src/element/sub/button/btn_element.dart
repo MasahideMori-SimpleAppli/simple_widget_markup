@@ -118,81 +118,200 @@ class BtnElement extends SingleChildTextElement {
   /// get button of selected type.
   Widget _getBtn(BuildContext context) {
     if (elParams.p.type == EnumBtnType.text) {
-      if (elParams.p.isUseIcon) {
-        return TextButton.icon(
-            key: elParams.p.normalBtnParams!.key,
-            onPressed: elParams.p.normalBtnParams!.onPressed,
-            onLongPress: elParams.p.normalBtnParams!.onLongPress,
-            onHover: elParams.p.normalBtnParams!.onHover,
-            onFocusChange: elParams.p.normalBtnParams!.onFocusChange,
-            focusNode: elParams.p.normalBtnParams!.focusNode,
-            autofocus: elParams.p.normalBtnParams!.autofocus,
-            clipBehavior: elParams.p.normalBtnParams!.clipBehavior,
-            style: elParams.p.normalBtnParams!.style,
-            icon: elParams.p.normalBtnParams!.icon!,
-            label: elParams.p.normalBtnParams!.label ?? getText(context));
+      if (child.child == null) {
+        if (elParams.p.isUseIcon) {
+          return TextButton.icon(
+              key: elParams.p.normalBtnParams!.key,
+              onPressed: elParams.p.normalBtnParams!.onPressed,
+              onLongPress: elParams.p.normalBtnParams!.onLongPress,
+              onHover: elParams.p.normalBtnParams!.onHover,
+              onFocusChange: elParams.p.normalBtnParams!.onFocusChange,
+              focusNode: elParams.p.normalBtnParams!.focusNode,
+              autofocus: elParams.p.normalBtnParams!.autofocus,
+              clipBehavior: elParams.p.normalBtnParams!.clipBehavior,
+              style: elParams.p.normalBtnParams!.style,
+              icon: elParams.p.normalBtnParams!.icon!,
+              label: elParams.p.normalBtnParams!.label ?? getText(context));
+        } else {
+          return TextButton(
+              key: elParams.p.normalBtnParams!.key,
+              onPressed: elParams.p.normalBtnParams!.onPressed,
+              onLongPress: elParams.p.normalBtnParams!.onLongPress,
+              onHover: elParams.p.normalBtnParams!.onHover,
+              onFocusChange: elParams.p.normalBtnParams!.onFocusChange,
+              style: elParams.p.normalBtnParams!.style,
+              focusNode: elParams.p.normalBtnParams!.focusNode,
+              autofocus: elParams.p.normalBtnParams!.autofocus ?? false,
+              clipBehavior:
+                  elParams.p.normalBtnParams!.clipBehavior ?? Clip.none,
+              child: elParams.p.normalBtnParams!.label ?? getText(context));
+        }
       } else {
-        return TextButton(
-            key: elParams.p.normalBtnParams!.key,
-            onPressed: elParams.p.normalBtnParams!.onPressed,
-            onLongPress: elParams.p.normalBtnParams!.onLongPress,
-            onHover: elParams.p.normalBtnParams!.onHover,
-            onFocusChange: elParams.p.normalBtnParams!.onFocusChange,
-            style: elParams.p.normalBtnParams!.style,
-            focusNode: elParams.p.normalBtnParams!.focusNode,
-            autofocus: elParams.p.normalBtnParams!.autofocus ?? false,
-            clipBehavior: elParams.p.normalBtnParams!.clipBehavior ?? Clip.none,
-            child: elParams.p.normalBtnParams!.label ?? getText(context));
+        if (child.child == null) {
+          if (elParams.p.isUseIcon) {
+            return TextButton.icon(
+                key: elParams.p.normalBtnParams!.key,
+                onPressed: elParams.p.normalBtnParams!.onPressed,
+                onLongPress: elParams.p.normalBtnParams!.onLongPress,
+                onHover: elParams.p.normalBtnParams!.onHover,
+                onFocusChange: elParams.p.normalBtnParams!.onFocusChange,
+                focusNode: elParams.p.normalBtnParams!.focusNode,
+                autofocus: elParams.p.normalBtnParams!.autofocus,
+                clipBehavior: elParams.p.normalBtnParams!.clipBehavior,
+                style: elParams.p.normalBtnParams!.style,
+                icon: elParams.p.normalBtnParams!.icon!,
+                label: elParams.p.normalBtnParams!.label ?? getText(context));
+          } else {
+            return TextButton(
+                key: elParams.p.normalBtnParams!.key,
+                onPressed: elParams.p.normalBtnParams!.onPressed,
+                onLongPress: elParams.p.normalBtnParams!.onLongPress,
+                onHover: elParams.p.normalBtnParams!.onHover,
+                onFocusChange: elParams.p.normalBtnParams!.onFocusChange,
+                style: elParams.p.normalBtnParams!.style,
+                focusNode: elParams.p.normalBtnParams!.focusNode,
+                autofocus: elParams.p.normalBtnParams!.autofocus ?? false,
+                clipBehavior:
+                    elParams.p.normalBtnParams!.clipBehavior ?? Clip.none,
+                child: elParams.p.normalBtnParams!.label ?? getText(context));
+          }
+        } else {
+          if (elParams.p.isUseIcon) {
+            return TextButton.icon(
+                key: elParams.p.normalBtnParams!.key,
+                onPressed: elParams.p.normalBtnParams!.onPressed,
+                onLongPress: elParams.p.normalBtnParams!.onLongPress,
+                onHover: elParams.p.normalBtnParams!.onHover,
+                onFocusChange: elParams.p.normalBtnParams!.onFocusChange,
+                focusNode: elParams.p.normalBtnParams!.focusNode,
+                autofocus: elParams.p.normalBtnParams!.autofocus,
+                clipBehavior: elParams.p.normalBtnParams!.clipBehavior,
+                style: elParams.p.normalBtnParams!.style,
+                icon: elParams.p.normalBtnParams!.icon!,
+                label: child.child!);
+          } else {
+            return TextButton(
+                key: elParams.p.normalBtnParams!.key,
+                onPressed: elParams.p.normalBtnParams!.onPressed,
+                onLongPress: elParams.p.normalBtnParams!.onLongPress,
+                onHover: elParams.p.normalBtnParams!.onHover,
+                onFocusChange: elParams.p.normalBtnParams!.onFocusChange,
+                style: elParams.p.normalBtnParams!.style,
+                focusNode: elParams.p.normalBtnParams!.focusNode,
+                autofocus: elParams.p.normalBtnParams!.autofocus ?? false,
+                clipBehavior:
+                    elParams.p.normalBtnParams!.clipBehavior ?? Clip.none,
+                child: child.child!);
+          }
+        }
       }
     } else if (elParams.p.type == EnumBtnType.outlined) {
-      if (elParams.p.isUseIcon) {
-        return OutlinedButton.icon(
-            key: elParams.p.normalBtnParams!.key,
-            onPressed: elParams.p.normalBtnParams!.onPressed,
-            onLongPress: elParams.p.normalBtnParams!.onLongPress,
-            style: elParams.p.normalBtnParams!.style,
-            focusNode: elParams.p.normalBtnParams!.focusNode,
-            autofocus: elParams.p.normalBtnParams!.autofocus,
-            clipBehavior: elParams.p.normalBtnParams!.clipBehavior,
-            icon: elParams.p.normalBtnParams!.icon!,
-            label: elParams.p.normalBtnParams!.label ?? getText(context));
+      if (child.child == null) {
+        if (elParams.p.isUseIcon) {
+          return OutlinedButton.icon(
+              key: elParams.p.normalBtnParams!.key,
+              onPressed: elParams.p.normalBtnParams!.onPressed,
+              onLongPress: elParams.p.normalBtnParams!.onLongPress,
+              style: elParams.p.normalBtnParams!.style,
+              focusNode: elParams.p.normalBtnParams!.focusNode,
+              autofocus: elParams.p.normalBtnParams!.autofocus,
+              clipBehavior: elParams.p.normalBtnParams!.clipBehavior,
+              icon: elParams.p.normalBtnParams!.icon!,
+              label: elParams.p.normalBtnParams!.label ?? getText(context));
+        } else {
+          return OutlinedButton(
+              key: elParams.p.normalBtnParams!.key,
+              onPressed: elParams.p.normalBtnParams!.onPressed,
+              onLongPress: elParams.p.normalBtnParams!.onLongPress,
+              style: elParams.p.normalBtnParams!.style,
+              focusNode: elParams.p.normalBtnParams!.focusNode,
+              autofocus: elParams.p.normalBtnParams!.autofocus ?? false,
+              clipBehavior:
+                  elParams.p.normalBtnParams!.clipBehavior ?? Clip.none,
+              child: elParams.p.normalBtnParams!.label ?? getText(context));
+        }
       } else {
-        return OutlinedButton(
-            key: elParams.p.normalBtnParams!.key,
-            onPressed: elParams.p.normalBtnParams!.onPressed,
-            onLongPress: elParams.p.normalBtnParams!.onLongPress,
-            style: elParams.p.normalBtnParams!.style,
-            focusNode: elParams.p.normalBtnParams!.focusNode,
-            autofocus: elParams.p.normalBtnParams!.autofocus ?? false,
-            clipBehavior: elParams.p.normalBtnParams!.clipBehavior ?? Clip.none,
-            child: elParams.p.normalBtnParams!.label ?? getText(context));
+        if (elParams.p.isUseIcon) {
+          return OutlinedButton.icon(
+              key: elParams.p.normalBtnParams!.key,
+              onPressed: elParams.p.normalBtnParams!.onPressed,
+              onLongPress: elParams.p.normalBtnParams!.onLongPress,
+              style: elParams.p.normalBtnParams!.style,
+              focusNode: elParams.p.normalBtnParams!.focusNode,
+              autofocus: elParams.p.normalBtnParams!.autofocus,
+              clipBehavior: elParams.p.normalBtnParams!.clipBehavior,
+              icon: elParams.p.normalBtnParams!.icon!,
+              label: child.child!);
+        } else {
+          return OutlinedButton(
+              key: elParams.p.normalBtnParams!.key,
+              onPressed: elParams.p.normalBtnParams!.onPressed,
+              onLongPress: elParams.p.normalBtnParams!.onLongPress,
+              style: elParams.p.normalBtnParams!.style,
+              focusNode: elParams.p.normalBtnParams!.focusNode,
+              autofocus: elParams.p.normalBtnParams!.autofocus ?? false,
+              clipBehavior:
+                  elParams.p.normalBtnParams!.clipBehavior ?? Clip.none,
+              child: child.child!);
+        }
       }
     } else if (elParams.p.type == EnumBtnType.elevated) {
-      if (elParams.p.isUseIcon) {
-        return ElevatedButton.icon(
-            key: elParams.p.normalBtnParams!.key,
-            onPressed: elParams.p.normalBtnParams!.onPressed,
-            onLongPress: elParams.p.normalBtnParams!.onLongPress,
-            onHover: elParams.p.normalBtnParams!.onHover,
-            onFocusChange: elParams.p.normalBtnParams!.onFocusChange,
-            focusNode: elParams.p.normalBtnParams!.focusNode,
-            autofocus: elParams.p.normalBtnParams!.autofocus,
-            clipBehavior: elParams.p.normalBtnParams!.clipBehavior,
-            style: elParams.p.normalBtnParams!.style,
-            icon: elParams.p.normalBtnParams!.icon!,
-            label: elParams.p.normalBtnParams!.label ?? getText(context));
+      if (child.child == null) {
+        if (elParams.p.isUseIcon) {
+          return ElevatedButton.icon(
+              key: elParams.p.normalBtnParams!.key,
+              onPressed: elParams.p.normalBtnParams!.onPressed,
+              onLongPress: elParams.p.normalBtnParams!.onLongPress,
+              onHover: elParams.p.normalBtnParams!.onHover,
+              onFocusChange: elParams.p.normalBtnParams!.onFocusChange,
+              focusNode: elParams.p.normalBtnParams!.focusNode,
+              autofocus: elParams.p.normalBtnParams!.autofocus,
+              clipBehavior: elParams.p.normalBtnParams!.clipBehavior,
+              style: elParams.p.normalBtnParams!.style,
+              icon: elParams.p.normalBtnParams!.icon!,
+              label: elParams.p.normalBtnParams!.label ?? getText(context));
+        } else {
+          return ElevatedButton(
+              key: elParams.p.normalBtnParams!.key,
+              onPressed: elParams.p.normalBtnParams!.onPressed,
+              onLongPress: elParams.p.normalBtnParams!.onLongPress,
+              onHover: elParams.p.normalBtnParams!.onHover,
+              onFocusChange: elParams.p.normalBtnParams!.onFocusChange,
+              style: elParams.p.normalBtnParams!.style,
+              focusNode: elParams.p.normalBtnParams!.focusNode,
+              autofocus: elParams.p.normalBtnParams!.autofocus ?? false,
+              clipBehavior:
+                  elParams.p.normalBtnParams!.clipBehavior ?? Clip.none,
+              child: elParams.p.normalBtnParams!.label ?? getText(context));
+        }
       } else {
-        return ElevatedButton(
-            key: elParams.p.normalBtnParams!.key,
-            onPressed: elParams.p.normalBtnParams!.onPressed,
-            onLongPress: elParams.p.normalBtnParams!.onLongPress,
-            onHover: elParams.p.normalBtnParams!.onHover,
-            onFocusChange: elParams.p.normalBtnParams!.onFocusChange,
-            style: elParams.p.normalBtnParams!.style,
-            focusNode: elParams.p.normalBtnParams!.focusNode,
-            autofocus: elParams.p.normalBtnParams!.autofocus ?? false,
-            clipBehavior: elParams.p.normalBtnParams!.clipBehavior ?? Clip.none,
-            child: elParams.p.normalBtnParams!.label ?? getText(context));
+        if (elParams.p.isUseIcon) {
+          return ElevatedButton.icon(
+              key: elParams.p.normalBtnParams!.key,
+              onPressed: elParams.p.normalBtnParams!.onPressed,
+              onLongPress: elParams.p.normalBtnParams!.onLongPress,
+              onHover: elParams.p.normalBtnParams!.onHover,
+              onFocusChange: elParams.p.normalBtnParams!.onFocusChange,
+              focusNode: elParams.p.normalBtnParams!.focusNode,
+              autofocus: elParams.p.normalBtnParams!.autofocus,
+              clipBehavior: elParams.p.normalBtnParams!.clipBehavior,
+              style: elParams.p.normalBtnParams!.style,
+              icon: elParams.p.normalBtnParams!.icon!,
+              label: child.child!);
+        } else {
+          return ElevatedButton(
+              key: elParams.p.normalBtnParams!.key,
+              onPressed: elParams.p.normalBtnParams!.onPressed,
+              onLongPress: elParams.p.normalBtnParams!.onLongPress,
+              onHover: elParams.p.normalBtnParams!.onHover,
+              onFocusChange: elParams.p.normalBtnParams!.onFocusChange,
+              style: elParams.p.normalBtnParams!.style,
+              focusNode: elParams.p.normalBtnParams!.focusNode,
+              autofocus: elParams.p.normalBtnParams!.autofocus ?? false,
+              clipBehavior:
+                  elParams.p.normalBtnParams!.clipBehavior ?? Clip.none,
+              child: child.child!);
+        }
       }
     } else if (elParams.p.type == EnumBtnType.icon) {
       return IconButton(

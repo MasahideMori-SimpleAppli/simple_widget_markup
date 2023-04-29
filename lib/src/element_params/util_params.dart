@@ -10,7 +10,14 @@ class UtilParams {
   static const escape = "\\";
 
   /// ARGB or material parameter to Color
-  static Color convertColor(String color) {
+  /// * [color] : color code string.
+  /// * [lineStart] : SpWML line start.
+  /// * [lineEnd] : SpWML line end.
+  /// * [info] : SPWML information.
+  ///
+  /// Throws [SpWMLException] : If the parameter value is incorrect,
+  static Color convertColor(
+      String color, int lineStart, int lineEnd, SpWMLInfo? info) {
     if (color.startsWith('#')) {
       String c = color.toUpperCase().replaceAll('#', '');
       if (c.length == 6) {
@@ -54,7 +61,8 @@ class UtilParams {
         } else if (color.startsWith('deepOrangeAccent')) {
           return Colors.deepOrangeAccent[_getShade(color, true)]!;
         } else {
-          throw Exception();
+          throw SpWMLException(EnumSpWMLExceptionType.paramValueException,
+              lineStart, lineEnd, info);
         }
       } else {
         // primary
@@ -96,18 +104,23 @@ class UtilParams {
           return Colors.grey[_getShade(color, false)]!;
         } else if (color.startsWith('blueGrey')) {
           return Colors.blueGrey[_getShade(color, false)]!;
+        } else if (color.startsWith('gray')) {
+          return Colors.grey[_getShade(color, false)]!;
+        } else if (color.startsWith('blueGray')) {
+          return Colors.blueGrey[_getShade(color, false)]!;
         } else if (color.startsWith('transparent')) {
           return Colors.transparent;
         } else if (color.startsWith('white')) {
-          return _getWhiteVariation(color);
+          return _getWhiteVariation(color, lineStart, lineEnd, info);
         } else {
-          return _getBlackVariation(color);
+          return _getBlackVariation(color, lineStart, lineEnd, info);
         }
       }
     }
   }
 
-  static Color _getWhiteVariation(String color) {
+  static Color _getWhiteVariation(
+      String color, int lineStart, int lineEnd, SpWMLInfo? info) {
     if (color == 'white') {
       return Colors.white;
     } else if (color == 'white10') {
@@ -127,11 +140,13 @@ class UtilParams {
     } else if (color == 'white70') {
       return Colors.white70;
     } else {
-      throw Exception();
+      throw SpWMLException(
+          EnumSpWMLExceptionType.paramValueException, lineStart, lineEnd, info);
     }
   }
 
-  static Color _getBlackVariation(String color) {
+  static Color _getBlackVariation(
+      String color, int lineStart, int lineEnd, SpWMLInfo? info) {
     if (color == 'black') {
       return Colors.black;
     } else if (color == 'black12') {
@@ -147,7 +162,8 @@ class UtilParams {
     } else if (color == 'black87') {
       return Colors.black87;
     } else {
-      throw Exception();
+      throw SpWMLException(
+          EnumSpWMLExceptionType.paramValueException, lineStart, lineEnd, info);
     }
   }
 

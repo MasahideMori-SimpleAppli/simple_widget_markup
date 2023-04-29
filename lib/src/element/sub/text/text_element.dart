@@ -1,12 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../element_params/spwml_info.dart';
-import '../../../element_params/sub/text/text_params.dart';
-import '../../../element_params/super/spwml_params.dart';
-import '../../../enum/enum_spwml_params.dart';
-import '../../../enum/enum_spwml_element_type.dart';
-import '../../../element_params/util_params.dart';
-import '../../../style/spwml_font_style.dart';
-import '../../super/spwml_element.dart';
+import '../../../../simple_widget_markup.dart';
 
 ///
 /// Author Masahide Mori
@@ -167,145 +160,143 @@ class TextElement extends SpWMLElement {
         fontSize: params.containsKey(EnumSpWMLParams.fontSize)
             ? params[EnumSpWMLParams.fontSize]
             : getDefFontSize(),
-        height: params.containsKey(EnumSpWMLParams.textHeight)
-            ? params[EnumSpWMLParams.textHeight]
-            : 1.0);
+        height: params.containsKey(EnumSpWMLParams.lineHeight)
+            ? params[EnumSpWMLParams.lineHeight]
+            : null);
   }
 
-  /// get text height from param. If null, return style value or 1.0.
-  double getTextHeight() {
-    if (type == EnumSpWMLElementType.text ||
-        type == EnumSpWMLElementType.body1 ||
-        type == EnumSpWMLElementType.body2) {
-      return params.containsKey(EnumSpWMLParams.textHeight)
-          ? params[EnumSpWMLParams.textHeight]
-          : style.textHeight;
-    } else if (type == EnumSpWMLElementType.h1 ||
-        type == EnumSpWMLElementType.h2 ||
-        type == EnumSpWMLElementType.h3 ||
-        type == EnumSpWMLElementType.h4 ||
-        type == EnumSpWMLElementType.h5 ||
-        type == EnumSpWMLElementType.h6) {
-      return params.containsKey(EnumSpWMLParams.textHeight)
-          ? params[EnumSpWMLParams.textHeight]
-          : style.hHeight;
-    }
-    return params.containsKey(EnumSpWMLParams.textHeight)
-        ? params[EnumSpWMLParams.textHeight]
-        : 1.0;
-  }
-
-  /// get style font size from param.
-  double getDefFontSize() {
-    if (type == EnumSpWMLElementType.h1) {
-      return style.h1Size;
-    } else if (type == EnumSpWMLElementType.h2) {
-      return style.h2Size;
-    } else if (type == EnumSpWMLElementType.h3) {
-      return style.h3Size;
-    } else if (type == EnumSpWMLElementType.h4) {
-      return style.h4Size;
-    } else if (type == EnumSpWMLElementType.h5) {
-      return style.h5Size;
-    } else if (type == EnumSpWMLElementType.h6) {
-      return style.h6Size;
-    } else if (type == EnumSpWMLElementType.href) {
-      return style.body1Size;
-    } else if (type == EnumSpWMLElementType.subtitle1) {
-      return style.subtitle1Size;
-    } else if (type == EnumSpWMLElementType.subtitle2) {
-      return style.subtitle2Size;
-    } else if (type == EnumSpWMLElementType.body1) {
-      return style.body1Size;
-    } else if (type == EnumSpWMLElementType.body2) {
-      return style.body2Size;
-    } else if (type == EnumSpWMLElementType.caption) {
-      return style.captionSize;
-    } else if (type == EnumSpWMLElementType.overline) {
-      return style.overlineSize;
+  /// get text height from param.
+  double? getTextHeight() {
+    if (style.styleMap.containsKey(type)) {
+      return style.styleMap[type]!.lineHeight;
     } else {
-      return style.body1Size;
+      return null;
     }
   }
 
-  /// get style font weight from param.
-  FontWeight getDefFontWeight() {
-    if (type == EnumSpWMLElementType.h1) {
-      return EnumSpWMLParams.fontWeight
-          .parseValue(type, style.h1Weight, lineStart, lineEnd, info);
-    } else if (type == EnumSpWMLElementType.h2) {
-      return EnumSpWMLParams.fontWeight
-          .parseValue(type, style.h2Weight, lineStart, lineEnd, info);
-    } else if (type == EnumSpWMLElementType.h3) {
-      return EnumSpWMLParams.fontWeight
-          .parseValue(type, style.h3Weight, lineStart, lineEnd, info);
-    } else if (type == EnumSpWMLElementType.h4) {
-      return EnumSpWMLParams.fontWeight
-          .parseValue(type, style.h4Weight, lineStart, lineEnd, info);
-    } else if (type == EnumSpWMLElementType.h5) {
-      return EnumSpWMLParams.fontWeight
-          .parseValue(type, style.h5Weight, lineStart, lineEnd, info);
-    } else if (type == EnumSpWMLElementType.h6) {
-      return EnumSpWMLParams.fontWeight
-          .parseValue(type, style.h6Weight, lineStart, lineEnd, info);
-    } else if (type == EnumSpWMLElementType.href) {
-      return EnumSpWMLParams.fontWeight
-          .parseValue(type, style.hrefWeight, lineStart, lineEnd, info);
-    } else if (type == EnumSpWMLElementType.subtitle1) {
-      return EnumSpWMLParams.fontWeight
-          .parseValue(type, style.subtitle1Weight, lineStart, lineEnd, info);
-    } else if (type == EnumSpWMLElementType.subtitle2) {
-      return EnumSpWMLParams.fontWeight
-          .parseValue(type, style.subtitle2Weight, lineStart, lineEnd, info);
-    } else if (type == EnumSpWMLElementType.body1) {
-      return EnumSpWMLParams.fontWeight
-          .parseValue(type, style.body1Weight, lineStart, lineEnd, info);
-    } else if (type == EnumSpWMLElementType.body2) {
-      return EnumSpWMLParams.fontWeight
-          .parseValue(type, style.body2Weight, lineStart, lineEnd, info);
-    } else if (type == EnumSpWMLElementType.caption) {
-      return EnumSpWMLParams.fontWeight
-          .parseValue(type, style.captionWeight, lineStart, lineEnd, info);
-    } else if (type == EnumSpWMLElementType.overline) {
-      return EnumSpWMLParams.fontWeight
-          .parseValue(type, style.overlineWeight, lineStart, lineEnd, info);
-    } else {
-      return EnumSpWMLParams.fontWeight
-          .parseValue(type, style.body1Weight, lineStart, lineEnd, info);
+  /// get default text color
+  Color? getDefTextColor() {
+    if (style.styleMap.containsKey(type)) {
+      if (style.styleMap[type]!.textColor != null) {
+        return UtilParams.convertColor(
+            style.styleMap[type]!.textColor!, lineStart, lineEnd, info);
+      }
     }
+    return null;
   }
 
-  /// get style text letter spacing from param.
+  /// get default text backgound color
+  Color? getDefTextBGColor() {
+    if (style.styleMap.containsKey(type)) {
+      if (style.styleMap[type]!.textBGColor != null) {
+        return UtilParams.convertColor(
+            style.styleMap[type]!.textBGColor!, lineStart, lineEnd, info);
+      }
+    }
+    return null;
+  }
+
+  /// get default font size.
+  double? getDefFontSize() {
+    if (style.styleMap.containsKey(type)) {
+      return style.styleMap[type]!.fontSize;
+    }
+    return null;
+  }
+
+  /// get default font weight.
+  FontWeight? getDefFontWeight() {
+    if (style.styleMap.containsKey(type)) {
+      if (style.styleMap[type]!.fontWeight == null) {
+        return null;
+      } else {
+        return style.styleMap[type]!.fontWeight!
+            .toObj(lineStart, lineEnd, info);
+      }
+    }
+    return null;
+  }
+
+  /// get default font style.
+  FontStyle? getDefFontStyle() {
+    if (style.styleMap.containsKey(type)) {
+      if (style.styleMap[type]!.fontStyle == null) {
+        return null;
+      } else {
+        return style.styleMap[type]!.fontStyle!.toObj(lineStart, lineEnd, info);
+      }
+    }
+    return null;
+  }
+
+  /// get default text letter spacing.
   double? getDefFontLetterSpacing() {
-    if (type == EnumSpWMLElementType.h1) {
-      return style.h1LetterSpacing;
-    } else if (type == EnumSpWMLElementType.h2) {
-      return style.h2LetterSpacing;
-    } else if (type == EnumSpWMLElementType.h3) {
-      return style.h3LetterSpacing;
-    } else if (type == EnumSpWMLElementType.h4) {
-      return style.h4LetterSpacing;
-    } else if (type == EnumSpWMLElementType.h5) {
-      return style.h5LetterSpacing;
-    } else if (type == EnumSpWMLElementType.h6) {
-      return style.h6LetterSpacing;
-    } else if (type == EnumSpWMLElementType.href) {
-      return style.body1LetterSpacing;
-    } else if (type == EnumSpWMLElementType.subtitle1) {
-      return style.subtitle1LetterSpacing;
-    } else if (type == EnumSpWMLElementType.subtitle2) {
-      return style.subtitle2LetterSpacing;
-    } else if (type == EnumSpWMLElementType.body1) {
-      return style.body1LetterSpacing;
-    } else if (type == EnumSpWMLElementType.body2) {
-      return style.body2LetterSpacing;
-    } else if (type == EnumSpWMLElementType.caption) {
-      return style.captionLetterSpacing;
-    } else if (type == EnumSpWMLElementType.overline) {
-      return style.overlineLetterSpacing;
-    } else {
-      return style.body1LetterSpacing;
+    if (style.styleMap.containsKey(type)) {
+      return style.styleMap[type]!.letterSpacing;
     }
+    return null;
+  }
+
+  /// get default word spacing.
+  double? getDefWordSpacing() {
+    if (style.styleMap.containsKey(type)) {
+      return style.styleMap[type]!.wordSpacing;
+    }
+    return null;
+  }
+
+  /// get default text decoration.
+  TextDecoration? getDefTextDeco() {
+    if (style.styleMap.containsKey(type)) {
+      if (style.styleMap[type]!.textDeco == null) {
+        return null;
+      } else {
+        return style.styleMap[type]!.textDeco!.toObj(lineStart, lineEnd, info);
+      }
+    }
+    return null;
+  }
+
+  /// get default decoration style.
+  TextDecorationStyle? getDefDecorationStyle() {
+    if (style.styleMap.containsKey(type)) {
+      if (style.styleMap[type]!.textDecoStyle == null) {
+        return null;
+      } else {
+        return style.styleMap[type]!.textDecoStyle!
+            .toObj(lineStart, lineEnd, info);
+      }
+    }
+    return null;
+  }
+
+  /// get default decoration color.
+  Color? getDefTextDecoColor() {
+    if (style.styleMap.containsKey(type)) {
+      if (style.styleMap[type]!.textDecoColor == null) {
+        return null;
+      } else {
+        return UtilParams.convertColor(
+            style.styleMap[type]!.textDecoColor!, lineStart, lineEnd, info);
+      }
+    }
+    return null;
+  }
+
+  /// get default decoration thickness.
+  double? getDefTextDecoThickness() {
+    if (style.styleMap.containsKey(type)) {
+      return style.styleMap[type]!.textDecoThickness;
+    }
+    return null;
+  }
+
+  /// get default font family.
+  String? getDefFontFamily() {
+    if (style.styleMap.containsKey(type)) {
+      return style.styleMap[type]!.fontFamily;
+    }
+    return null;
   }
 
   /// get text style from parameters.
@@ -313,10 +304,10 @@ class TextElement extends SpWMLElement {
     return TextStyle(
       color: params.containsKey(EnumSpWMLParams.textColor)
           ? params[EnumSpWMLParams.textColor]
-          : UtilParams.convertColor(style.textColor),
+          : getDefTextColor(),
       backgroundColor: params.containsKey(EnumSpWMLParams.textBGColor)
           ? params[EnumSpWMLParams.textBGColor]
-          : null,
+          : getDefTextBGColor(),
       fontSize: params.containsKey(EnumSpWMLParams.fontSize)
           ? params[EnumSpWMLParams.fontSize]
           : getDefFontSize(),
@@ -325,28 +316,28 @@ class TextElement extends SpWMLElement {
           : getDefFontWeight(),
       fontStyle: params.containsKey(EnumSpWMLParams.fontStyle)
           ? params[EnumSpWMLParams.fontStyle]
-          : FontStyle.normal,
+          : getDefFontStyle(),
       letterSpacing: params.containsKey(EnumSpWMLParams.letterSpacing)
           ? params[EnumSpWMLParams.letterSpacing]
           : getDefFontLetterSpacing(),
       wordSpacing: params.containsKey(EnumSpWMLParams.wordSpacing)
           ? params[EnumSpWMLParams.wordSpacing]
-          : null,
+          : getDefWordSpacing(),
       decoration: params.containsKey(EnumSpWMLParams.textDeco)
           ? params[EnumSpWMLParams.textDeco]
-          : TextDecoration.none,
+          : getDefTextDeco(),
       decorationStyle: params.containsKey(EnumSpWMLParams.textDecoStyle)
           ? params[EnumSpWMLParams.textDecoStyle]
-          : TextDecorationStyle.solid,
+          : getDefDecorationStyle(),
       decorationColor: params.containsKey(EnumSpWMLParams.textDecoColor)
           ? params[EnumSpWMLParams.textDecoColor]
-          : null,
+          : getDefTextDecoColor(),
       decorationThickness: params.containsKey(EnumSpWMLParams.textDecoThickness)
           ? params[EnumSpWMLParams.textDecoThickness]
-          : null,
-      fontFamily: params.containsKey(EnumSpWMLParams.fontName)
-          ? params[EnumSpWMLParams.fontName]
-          : null,
+          : getDefTextDecoThickness(),
+      fontFamily: params.containsKey(EnumSpWMLParams.fontFamily)
+          ? params[EnumSpWMLParams.fontFamily]
+          : getDefFontFamily(),
       height: getTextHeight(),
     );
   }

@@ -11,7 +11,7 @@ Files output in SpWML have the extension .spwml.
 
 ## Usage
 ### Quick Start
-Below is detailed documentation.
+Below is detailed documentation.  
 [SpWML documentation](https://masahidemori-simpleappli.github.io/spwml_docs/index.html)
 
 You can try how it works on the following sites.  
@@ -84,9 +84,9 @@ Please rewrite _getSpWMLWidget in Sample code as follows.
 ```dart
   Widget _getSpWMLWidget(BuildContext context) {
     SpWMLBuilder builder = SpWMLBuilder("(h1)Replace below this text.\n"
-            "(block, id:1)");
-    builder.replaceID(
-            1,
+            "(block, sid:button_name)");
+    builder.replaceSID(
+            "button_name",
             OutlinedButton(
                     onPressed: () {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -103,18 +103,17 @@ Please rewrite _getSpWMLWidget in Sample code as follows.
 Please rewrite _getSpWMLWidget in Sample code as follows.
 ```dart
   Widget _getSpWMLWidget(BuildContext context) {
-  SpWMLFontStyle fontStyle1 = SpWMLFontStyle();
-  SpWMLFontStyle fontStyle2 = SpWMLFontStyleMaterial();
-  SpWMLFontStyle userCustomFontStyle = SpWMLFontStyle(h1Size: 48);
-  return Column(
-    children: [
-      SpWMLBuilder("(h1)Example text", spWMLStyle: fontStyle1).build(context),
-      SpWMLBuilder("(h1)Example text", spWMLStyle: fontStyle2).build(context),
-      SpWMLBuilder("(h1)Example text", spWMLStyle: userCustomFontStyle)
-              .build(context),
-    ],
-  );
-}
+    SpWMLFontStyle fontStyle1 = SpWMLFontStyle();
+    SpWMLFontStyle fontStyle2 = fontStyle1.deepCopy();
+    fontStyle2.styleMap[EnumSpWMLElementType.h1]!.fontWeight =
+            EnumFontWeight.light;
+    return Column(
+      children: [
+        SpWMLBuilder("(h1)Example text1", spWMLStyle: fontStyle1).build(context),
+        SpWMLBuilder("(h1)Example text2", spWMLStyle: fontStyle2).build(context),
+      ],
+    );
+  }
 ```
 The style can also be saved as a JSON file.  
 You can create a Map with toDict and restore it with fromDict.  
@@ -145,17 +144,6 @@ Simple Widget Markup Language
 
 ## MIME Type (Temporary)
 text/x.spwml
-
-## What this package is useful for
-It is suitable for things that need to be created frequently and the layout is not so complicated,
-such as new information of apps.
-Even without updating the app itself, 
-you can update the screen displayed to the user simply by changing the delivery file.
-
-## What this package is not useful
-Not suitable for direct coding of complex app layouts.  
-However, it is possible to create a wire frame that is premised on replacement.
-Note that resource loading and parsing takes time.
 
 ## About version control
 The C part will be changed at the time of version upgrade.

@@ -6,7 +6,6 @@ import '../../../element_params/sub/text/text_params.dart';
 import '../../../element_params/super/spwml_params.dart';
 import '../../../enum/enum_spwml_element_type.dart';
 import '../../../enum/enum_spwml_params.dart';
-import '../../../element_params/util_params.dart';
 import '../../../style/spwml_font_style.dart';
 
 ///
@@ -59,7 +58,7 @@ class RubyTextElement extends TextElement {
     rubyParams.p.letterSpacing =
         params.containsKey(EnumSpWMLParams.rubyLetterSpacing)
             ? params[EnumSpWMLParams.rubyLetterSpacing]
-            : RubyTextParams.defLetterSpacing;
+            : getDefFontLetterSpacing();
     rubyParams.p.margin = params.containsKey(EnumSpWMLParams.rubyMargin)
         ? params[EnumSpWMLParams.rubyMargin]
         : RubyTextParams.defMargin;
@@ -165,36 +164,36 @@ class RubyTextElement extends TextElement {
     return TextStyle(
       color: params.containsKey(EnumSpWMLParams.rubyColor)
           ? params[EnumSpWMLParams.rubyColor]
-          : UtilParams.convertColor(style.textColor),
+          : getDefTextColor(),
       backgroundColor: params.containsKey(EnumSpWMLParams.rubyBGColor)
           ? params[EnumSpWMLParams.rubyBGColor]
-          : null,
+          : getDefTextBGColor(),
       fontSize: _rubyFontSize(),
       fontWeight: params.containsKey(EnumSpWMLParams.rubyFontWeight)
           ? params[EnumSpWMLParams.rubyFontWeight]
           : getDefFontWeight(),
       fontStyle: params.containsKey(EnumSpWMLParams.rubyFontStyle)
           ? params[EnumSpWMLParams.rubyFontStyle]
-          : FontStyle.normal,
+          : getDefFontStyle(),
       letterSpacing: rubyParams.p.letterSpacing,
       wordSpacing: params.containsKey(EnumSpWMLParams.rubyWordSpacing)
           ? params[EnumSpWMLParams.rubyWordSpacing]
-          : null,
+          : getDefWordSpacing(),
       decoration: params.containsKey(EnumSpWMLParams.rubyDeco)
           ? params[EnumSpWMLParams.rubyDeco]
-          : TextDecoration.none,
+          : getDefTextDeco(),
       decorationStyle: params.containsKey(EnumSpWMLParams.rubyDecoStyle)
           ? params[EnumSpWMLParams.rubyDecoStyle]
-          : TextDecorationStyle.solid,
+          : getDefDecorationStyle(),
       decorationColor: params.containsKey(EnumSpWMLParams.rubyDecoColor)
           ? params[EnumSpWMLParams.rubyDecoColor]
-          : null,
+          : getDefTextDecoColor(),
       decorationThickness: params.containsKey(EnumSpWMLParams.rubyDecoThickness)
           ? params[EnumSpWMLParams.rubyDecoThickness]
-          : null,
+          : getDefTextDecoThickness(),
       fontFamily: params.containsKey(EnumSpWMLParams.rubyFontName)
           ? params[EnumSpWMLParams.rubyFontName]
-          : null,
+          : getDefFontFamily(),
       height: getTextHeight(),
     );
   }

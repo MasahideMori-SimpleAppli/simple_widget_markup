@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../element_params/spwml_info.dart';
-import '../../element_params/super/spwml_params.dart';
-import '../../enum/enum_spwml_element_type.dart';
-import '../../enum/enum_spwml_params.dart';
-import '../../style/spwml_font_style.dart';
+
+import '../../../simple_widget_markup.dart';
 
 ///
 /// (en)Definition of the basic structure of the element.
@@ -219,26 +216,15 @@ class SpWMLElement extends StatelessWidget {
   }
 
   double _getMarginTop() {
-    if (type == EnumSpWMLElementType.text ||
-        type == EnumSpWMLElementType.body1 ||
-        type == EnumSpWMLElementType.body2 ||
-        type == EnumSpWMLElementType.href) {
+    if (style.styleMap.containsKey(type)) {
       return params.containsKey(EnumSpWMLParams.mTop)
           ? params[EnumSpWMLParams.mTop]
-          : style.textMTop;
-    } else if (type == EnumSpWMLElementType.h1 ||
-        type == EnumSpWMLElementType.h2 ||
-        type == EnumSpWMLElementType.h3 ||
-        type == EnumSpWMLElementType.h4 ||
-        type == EnumSpWMLElementType.h5 ||
-        type == EnumSpWMLElementType.h6) {
+          : style.styleMap[type]!.mT ?? 0.0;
+    } else {
       return params.containsKey(EnumSpWMLParams.mTop)
           ? params[EnumSpWMLParams.mTop]
-          : style.hMTop;
+          : 0.0;
     }
-    return params.containsKey(EnumSpWMLParams.mTop)
-        ? params[EnumSpWMLParams.mTop]
-        : 0.0;
   }
 
   /// get margin from param.

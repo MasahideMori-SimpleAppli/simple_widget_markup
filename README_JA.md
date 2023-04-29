@@ -82,9 +82,9 @@ class _SpWMLSampleState extends State<SpWMLSample> {
 ```dart
   Widget _getSpWMLWidget(BuildContext context) {
   SpWMLBuilder builder = SpWMLBuilder("(h1)この下の要素を置き換えます。\n"
-          "(block, id:1)");
-  builder.replaceID(
-          1,
+          "(block, sid:ボタン名)");
+  builder.replaceSID(
+          "ボタン名",
           OutlinedButton(
                   onPressed: () {
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -101,18 +101,17 @@ class _SpWMLSampleState extends State<SpWMLSample> {
 サンプルコードの_getSpWMLWidgetを以下のように書き替えてください。
 ```dart
   Widget _getSpWMLWidget(BuildContext context) {
-  SpWMLFontStyle fontStyle1 = SpWMLFontStyle();
-  SpWMLFontStyle fontStyle2 = SpWMLFontStyleMaterial();
-  SpWMLFontStyle userCustomFontStyle = SpWMLFontStyle(h1Size: 48);
-  return Column(
-    children: [
-      SpWMLBuilder("(h1)テキストの例", spWMLStyle: fontStyle1).build(context),
-      SpWMLBuilder("(h1)テキストの例", spWMLStyle: fontStyle2).build(context),
-      SpWMLBuilder("(h1)テキストの例", spWMLStyle: userCustomFontStyle)
-              .build(context),
-    ],
-  );
-}
+    SpWMLFontStyle fontStyle1 = SpWMLFontStyle();
+    SpWMLFontStyle fontStyle2 = fontStyle1.deepCopy();
+    fontStyle2.styleMap[EnumSpWMLElementType.h1]!.fontWeight =
+    EnumFontWeight.light;
+    return Column(
+      children: [
+        SpWMLBuilder("(h1)テキストの例１", spWMLStyle: fontStyle1).build(context),
+        SpWMLBuilder("(h1)テキストの例２", spWMLStyle: fontStyle2).build(context),
+      ],
+    );
+  }
 ```
 スタイルはJSONファイルとして保存することも出来ます。  
 toDictでMapに出来、それをfromDictで復元することができます。  
@@ -143,14 +142,6 @@ Simple Widget Markup Language
 
 ## MIME Type ( 仮 )
 text/x.spwml
-
-## このパッケージが有用なもの
-アプリの新着情報など、高頻度で作成する必要があり、かつレイアウトがそれほど複雑では無いものに向いています。
-アプリ本体を更新しないでも、配信ファイルを変更するだけでユーザーに表示される画面を更新できます。
-
-## このパッケージが有用でないもの
-複雑なアプリのレイアウトを直接組み立てる用途には向いていません。ただし、置き換え前提の骨組みは作成可能です。
-リソースの読み込みとDartへの変換に時間がかかることに注意してください。
 
 ## バージョン管理について
 それぞれ、Cの部分が変更されます。
