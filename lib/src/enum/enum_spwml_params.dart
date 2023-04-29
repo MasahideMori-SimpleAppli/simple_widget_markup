@@ -188,6 +188,7 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.shiftY ||
           this == EnumSpWMLParams.radius ||
           this == EnumSpWMLParams.fontSize ||
+          // ignore: deprecated_member_use_from_same_package
           this == EnumSpWMLParams.textHeight ||
           this == EnumSpWMLParams.lineHeight ||
           this == EnumSpWMLParams.letterSpacing ||
@@ -685,9 +686,12 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       return EnumSpWMLParams.maxWidth;
     }
     // 廃止されたパラメータ。互換モードで動作するので優先度は最低です。
+    // ignore: deprecated_member_use_from_same_package
     else if (s == EnumSpWMLParams.fontName.name) {
       return EnumSpWMLParams.fontFamily;
-    } else if (s == EnumSpWMLParams.textHeight.name) {
+    }
+    // ignore: deprecated_member_use_from_same_package
+    else if (s == EnumSpWMLParams.textHeight.name) {
       return EnumSpWMLParams.lineHeight;
     } else {
       throw SpWMLException(

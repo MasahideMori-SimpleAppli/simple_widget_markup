@@ -1,7 +1,6 @@
 ## 13.0.0
 * The fontName and textHeight parameters have been deprecated. Use fontFamily and lineHeight instead.
 * Speed up parsing.
-* The font weight also supports specification of numerical values only.
 * Added SpWMLLayoutManager class. This class simplifies layout management.
 * Update style management system.
 * All types of buttons can now have single child blocks.
