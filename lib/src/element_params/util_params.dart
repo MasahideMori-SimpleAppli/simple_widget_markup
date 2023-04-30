@@ -16,8 +16,11 @@ class UtilParams {
   /// * [info] : SPWML information.
   ///
   /// Throws [SpWMLException] : If the parameter value is incorrect,
-  static Color convertColor(
+  static Color? convertColor(
       String color, int lineStart, int lineEnd, SpWMLInfo? info) {
+    if (color == "null" || color == "nil") {
+      return null;
+    }
     if (color.startsWith('#')) {
       String c = color.toUpperCase().replaceAll('#', '');
       if (c.length == 6) {

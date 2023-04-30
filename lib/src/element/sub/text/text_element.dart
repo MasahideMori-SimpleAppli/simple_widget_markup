@@ -143,6 +143,7 @@ class TextElement extends SpWMLElement {
       semanticsLabel: textParams.p.semanticsLabel,
       textWidthBasis: textParams.p.textWidthBasis,
       textHeightBehavior: textParams.p.textHeightBehavior,
+      selectionColor: textParams.p.selectionColor,
     );
   }
 

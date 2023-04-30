@@ -57,6 +57,7 @@ class TextParams {
   String? semanticsLabel;
   TextWidthBasis? textWidthBasis;
   TextHeightBehavior? textHeightBehavior;
+  Color? selectionColor;
 
   // for selectable
   bool isSelectable = true;

@@ -1,3 +1,7 @@
+## 13.0.1
+* The null can now be specified for color parameters.
+* Added missing parameter for text.
+
 ## 13.0.0
 * The fontName and textHeight parameters have been deprecated. Use fontFamily and lineHeight instead.
 * Speed up parsing.
