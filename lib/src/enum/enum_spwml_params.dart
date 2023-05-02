@@ -16,10 +16,12 @@ enum EnumSpWMLParams {
   mT,
   mR,
   mB,
+  mAll,
   pL,
   pT,
   pR,
   pB,
+  pAll,
   wt,
   id,
   sid,
@@ -166,10 +168,12 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.mRight ||
           this == EnumSpWMLParams.mTop ||
           this == EnumSpWMLParams.mBottom ||
+          this == EnumSpWMLParams.mAll ||
           this == EnumSpWMLParams.pLeft ||
           this == EnumSpWMLParams.pRight ||
           this == EnumSpWMLParams.pTop ||
           this == EnumSpWMLParams.pBottom ||
+          this == EnumSpWMLParams.pAll ||
           this == EnumSpWMLParams.thickness ||
           this == EnumSpWMLParams.textDecoThickness ||
           this == EnumSpWMLParams.minHeight ||
@@ -440,6 +444,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       return EnumSpWMLParams.mRight;
     } else if (s == EnumSpWMLParams.mB.name) {
       return EnumSpWMLParams.mBottom;
+    } else if (s == EnumSpWMLParams.mAll.name) {
+      return EnumSpWMLParams.mAll;
     } else if (s == EnumSpWMLParams.pL.name) {
       return EnumSpWMLParams.pLeft;
     } else if (s == EnumSpWMLParams.pT.name) {
@@ -448,6 +454,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       return EnumSpWMLParams.pRight;
     } else if (s == EnumSpWMLParams.pB.name) {
       return EnumSpWMLParams.pBottom;
+    } else if (s == EnumSpWMLParams.pAll.name) {
+      return EnumSpWMLParams.pAll;
     } else if (s == EnumSpWMLParams.wt.name) {
       return EnumSpWMLParams.weight;
     } else if (s == EnumSpWMLParams.id.name) {

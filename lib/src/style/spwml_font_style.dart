@@ -12,6 +12,7 @@ class SpWMLFontStyle {
   static const String version = '3';
   late Map<EnumSpWMLElementType, SpWMLFontStyleParams> styleMap;
   bool useV2MaterialStyle;
+  bool isBtnColorModeV3;
 
   /// Constructor
   /// * [overrideMap] : (en) A map for overriding parameters.
@@ -20,9 +21,11 @@ class SpWMLFontStyle {
   /// システムに設定されたキーに対するデフォルトのパラメータを上書きできます。
   /// * [useV2MaterialStyle] : If true, load SpWMLFontStyle of material version2 style and material version3 style.
   /// If false, load default SpWMLFontStyle and material version3 style.
+  /// * [isBtnColorModeV3] : If true, set button color null.
   SpWMLFontStyle(
       {Map<EnumSpWMLElementType, SpWMLFontStyleParams>? overrideMap,
-      this.useV2MaterialStyle = false}) {
+      this.useV2MaterialStyle = false,
+      this.isBtnColorModeV3 = false}) {
     styleMap = _loadDefaultMap();
     if (overrideMap != null) {
       for (EnumSpWMLElementType i in overrideMap.keys) {
@@ -38,17 +41,19 @@ class SpWMLFontStyle {
   /// * [styleMap] : The font style map.
   /// * [useV2MaterialStyle] : If true, load SpWMLFontStyle of material version2 style and material version3 style.
   /// If false, load default SpWMLFontStyle and material version3 style.
-  SpWMLFontStyle.copy(this.styleMap, {this.useV2MaterialStyle = false});
+  /// * [isBtnColorModeV3] : If true, set button color null.
+  SpWMLFontStyle.copy(this.styleMap,
+      {this.useV2MaterialStyle = false, this.isBtnColorModeV3 = false});
 
   /// Loads the default styleMap.
   Map<EnumSpWMLElementType, SpWMLFontStyleParams> _loadDefaultMap() {
     Map<EnumSpWMLElementType, SpWMLFontStyleParams> r = {};
     // style v2
     if (useV2MaterialStyle) {
-      UtilSpWMLFontStyleV2.setMaterialV2(r);
+      UtilSpWMLFontStyleV2.setMaterialV2(r, isBtnColorModeV3);
     } else {
       // SpWML default style.
-      UtilSpWMLFontStyleV2.setDefaultV2(r);
+      UtilSpWMLFontStyleV2.setDefaultV2(r, isBtnColorModeV3);
     }
     // v3
     // The definition conforms to Google's Material Design 3.

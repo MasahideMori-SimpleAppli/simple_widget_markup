@@ -1,3 +1,8 @@
+## 14.0.0
+* Fixed an issue where padding was also enabled for block background colors. This fix may affect existing layouts if they use background colors.
+* Added isBtnColorModeV3 flag to SpWMLFontStyle.
+* Added pAll and mAll params to SpWMLElement.
+
 ## 13.0.1
 * The null can now be specified for color parameters.
 * Added missing parameter for text.

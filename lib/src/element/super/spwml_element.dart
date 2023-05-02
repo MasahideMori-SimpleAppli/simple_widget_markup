@@ -219,11 +219,15 @@ class SpWMLElement extends StatelessWidget {
     if (style.styleMap.containsKey(type)) {
       return params.containsKey(EnumSpWMLParams.mTop)
           ? params[EnumSpWMLParams.mTop]
-          : style.styleMap[type]!.mT ?? 0.0;
+          : (params.containsKey(EnumSpWMLParams.mAll)
+              ? params[EnumSpWMLParams.mAll]
+              : style.styleMap[type]!.mT ?? 0.0);
     } else {
       return params.containsKey(EnumSpWMLParams.mTop)
           ? params[EnumSpWMLParams.mTop]
-          : 0.0;
+          : (params.containsKey(EnumSpWMLParams.mAll)
+              ? params[EnumSpWMLParams.mAll]
+              : 0.0);
     }
   }
 
@@ -231,14 +235,20 @@ class SpWMLElement extends StatelessWidget {
   EdgeInsets _getMargin() {
     final double left = params.containsKey(EnumSpWMLParams.mLeft)
         ? params[EnumSpWMLParams.mLeft]
-        : 0.0;
+        : (params.containsKey(EnumSpWMLParams.mAll)
+            ? params[EnumSpWMLParams.mAll]
+            : 0.0);
     final double top = _getMarginTop();
     final double right = params.containsKey(EnumSpWMLParams.mRight)
         ? params[EnumSpWMLParams.mRight]
-        : 0.0;
+        : (params.containsKey(EnumSpWMLParams.mAll)
+            ? params[EnumSpWMLParams.mAll]
+            : 0.0);
     final double bottom = params.containsKey(EnumSpWMLParams.mBottom)
         ? params[EnumSpWMLParams.mBottom]
-        : 0.0;
+        : (params.containsKey(EnumSpWMLParams.mAll)
+            ? params[EnumSpWMLParams.mAll]
+            : 0.0);
     return EdgeInsets.fromLTRB(left, top, right, bottom);
   }
 
@@ -246,16 +256,24 @@ class SpWMLElement extends StatelessWidget {
   EdgeInsets _getPadding() {
     final double left = params.containsKey(EnumSpWMLParams.pLeft)
         ? params[EnumSpWMLParams.pLeft]
-        : 0.0;
+        : (params.containsKey(EnumSpWMLParams.pAll)
+            ? params[EnumSpWMLParams.pAll]
+            : 0.0);
     final double top = params.containsKey(EnumSpWMLParams.pTop)
         ? params[EnumSpWMLParams.pTop]
-        : 0.0;
+        : (params.containsKey(EnumSpWMLParams.pAll)
+            ? params[EnumSpWMLParams.pAll]
+            : 0.0);
     final double right = params.containsKey(EnumSpWMLParams.pRight)
         ? params[EnumSpWMLParams.pRight]
-        : 0.0;
+        : (params.containsKey(EnumSpWMLParams.pAll)
+            ? params[EnumSpWMLParams.pAll]
+            : 0.0);
     final double bottom = params.containsKey(EnumSpWMLParams.pBottom)
         ? params[EnumSpWMLParams.pBottom]
-        : 0.0;
+        : (params.containsKey(EnumSpWMLParams.pAll)
+            ? params[EnumSpWMLParams.pAll]
+            : 0.0);
     return EdgeInsets.fromLTRB(left, top, right, bottom);
   }
 
@@ -297,7 +315,6 @@ class SpWMLElement extends StatelessWidget {
     return Container(
       key: spwmlParams.p.containerParams!.key,
       alignment: spwmlParams.p.containerParams!.alignment,
-      padding: spwmlParams.p.containerParams!.padding,
       foregroundDecoration: spwmlParams.p.containerParams!.foregroundDecoration,
       width: spwmlParams.p.containerParams!.width,
       height: spwmlParams.p.containerParams!.height,
@@ -310,7 +327,8 @@ class SpWMLElement extends StatelessWidget {
               ? spwmlParams.p.containerParams!.color
               : null,
           decoration: spwmlParams.p.containerParams!.decoration,
-          child: child),
+          child: Container(
+              padding: spwmlParams.p.containerParams!.padding, child: child)),
       clipBehavior: spwmlParams.p.containerParams!.clipBehavior,
     );
   }

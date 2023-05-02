@@ -10,7 +10,9 @@ import '../../../simple_widget_markup.dart';
 class UtilSpWMLFontStyleV2 {
   /// set material V2 params to map.
   /// * [r] : override map.
-  static void setMaterialV2(Map<EnumSpWMLElementType, SpWMLFontStyleParams> r) {
+  /// * [isBtnColorModeV3] : If true, set button color null.
+  static void setMaterialV2(Map<EnumSpWMLElementType, SpWMLFontStyleParams> r,
+      bool isBtnColorModeV3) {
     // common
     r[EnumSpWMLElementType.href] = SpWMLFontStyleParams(
         mT: 0,
@@ -44,14 +46,14 @@ class UtilSpWMLFontStyleV2 {
         letterSpacing: 0.5,
         fontWeight: EnumFontWeight.regular,
         textColor: "#DD000000");
+    // material v2
     r[EnumSpWMLElementType.btn] = SpWMLFontStyleParams(
         mT: 0,
         lineHeight: 1.0,
         fontSize: 16,
         letterSpacing: 0.5,
         fontWeight: EnumFontWeight.medium,
-        textColor: "#DD000000");
-    // material v2
+        textColor: isBtnColorModeV3 ? null : "#DD000000");
     r[EnumSpWMLElementType.h1] = SpWMLFontStyleParams(
         mT: 16,
         lineHeight: 1.0,
@@ -140,7 +142,9 @@ class UtilSpWMLFontStyleV2 {
 
   /// set default V2 params to map.
   /// * [r] : override map.
-  static void setDefaultV2(Map<EnumSpWMLElementType, SpWMLFontStyleParams> r) {
+  /// * [isBtnColorModeV3] : If true, set button color null.
+  static void setDefaultV2(Map<EnumSpWMLElementType, SpWMLFontStyleParams> r,
+      bool isBtnColorModeV3) {
     // common
     r[EnumSpWMLElementType.href] = SpWMLFontStyleParams(
         mT: 0,
@@ -174,14 +178,14 @@ class UtilSpWMLFontStyleV2 {
         letterSpacing: 0.5,
         fontWeight: EnumFontWeight.regular,
         textColor: "#DD000000");
+    // material v2
     r[EnumSpWMLElementType.btn] = SpWMLFontStyleParams(
         mT: 0,
         lineHeight: 1.0,
         fontSize: 18,
         letterSpacing: 0.5,
         fontWeight: EnumFontWeight.medium,
-        textColor: "#DD000000");
-    // material v2
+        textColor: isBtnColorModeV3 ? null : "#DD000000");
     r[EnumSpWMLElementType.h1] = SpWMLFontStyleParams(
         mT: 16,
         lineHeight: 1.0,
