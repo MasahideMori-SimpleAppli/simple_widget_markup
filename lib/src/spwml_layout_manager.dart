@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../simple_widget_markup.dart';
+
 ///
 /// (en)A manager class for managing SpWML layout files with a singleton.
 /// This manager class suppressing unnecessary resource downloads.
+/// This class can also determine screen orientation and device type.
 ///
 /// (ja)SpWMLのレイアウトファイルをシングルトンで管理し、不必要なリソースのダウンロードを抑えるためのマネージャークラスです。
+/// 画面の向きやデバイスの種類の判定も行えます。
 ///
 /// Author Masahide Mori
 ///
@@ -55,6 +59,19 @@ class SpWMLLayoutManager {
     }
   }
 
+  /// (en)Removes a layout registered with this class.
+  /// Nothing happens if you specify an unregistered key.
+  ///
+  /// (ja)このクラスに登録されたレイアウトを削除します。
+  /// 未登録のキーを指定した場合は何も起こりません。
+  ///
+  /// * [key] : layout key.
+  void removeLayout(String key) {
+    if (_buffLayouts.containsKey(key)) {
+      _buffLayouts.remove(key);
+    }
+  }
+
   /// (en)Asynchronously retrieves the layout present at the given path and calls back when complete.
   /// If you specify an asset that has already been acquired,
   /// the contents will be returned as is and no callback will occur.
@@ -74,13 +91,15 @@ class SpWMLLayoutManager {
     } else {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
         _buffLayouts[path] = await rootBundle.loadString(path, cache: false);
-        setStateCallback();
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          setStateCallback();
+        });
       });
       return null;
     }
   }
 
-  /// A multi-simultaneous version of getAssets.
+  /// The multi-simultaneous version of getAssets.
   List<String>? getMultiAssets(
       List<String> paths, void Function() setStateCallback) {
     bool isAllContained = true;
@@ -104,9 +123,163 @@ class SpWMLLayoutManager {
             _buffLayouts[i] = await rootBundle.loadString(i, cache: false);
           }
         }
-        setStateCallback();
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          setStateCallback();
+        });
       });
       return null;
+    }
+  }
+
+  /// (en)Register with this class and call back when the resource acquisition is complete.
+  /// If you specify a URL that has already been acquired,
+  /// the content will be returned as is and no callback will occur.
+  /// If you specify a URL that has not yet been acquired, null will be returned,
+  /// and resource acquisition will start after the current rendering is completed.
+  ///
+  /// (ja) リソースの取得が完了したらこのクラスに登録してコールバックします。
+  /// 既に取得済みのURLを指定した場合はそのまま内容が返却され、コールバックは発生しません。
+  /// まだ取得されていないURLを指定した場合はnullが返却され、現在のレンダリングの完了後のタイミングでリソースの取得が開始されます。
+  ///
+  /// * [url] : The layout url.
+  /// * [getDataFunction] : Pass the function that actually gets the resource via https and returns the result.
+  /// * [setStateCallback] : Pass the setState of the parent widget in the callback.
+  /// If you're using another state management, let the screen refresh.
+  String? getResource(
+      String url,
+      Future<String> Function(String url) getDataFunction,
+      void Function() setStateCallback) {
+    if (_buffLayouts.containsKey(url)) {
+      return _buffLayouts[url];
+    } else {
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        _buffLayouts[url] = await getDataFunction(url);
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          setStateCallback();
+        });
+      });
+      return null;
+    }
+  }
+
+  /// The multi-simultaneous version of getResource.
+  ///
+  /// Note: The order of the resources returned by getDataFunction must match the urls.
+  List<String>? getMultiResource(
+      List<String> urls,
+      Future<List<String>> Function(List<String> urls) getDataFunction,
+      void Function() setStateCallback) {
+    bool isAllContained = true;
+    for (String i in urls) {
+      if (!_buffLayouts.containsKey(i)) {
+        isAllContained = false;
+        break;
+      }
+    }
+    if (isAllContained) {
+      List<String> r = [];
+      for (String i in urls) {
+        r.add(_buffLayouts[i]!);
+      }
+      return r;
+    } else {
+      // ロードした後でコールバックする。こちらはAssetsと異なり常に上書き。
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        final List<String> result = await getDataFunction(urls);
+        int count = 0;
+        for (String i in urls) {
+          _buffLayouts[i] = result[count];
+          count += 1;
+        }
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          setStateCallback();
+        });
+      });
+      return null;
+    }
+  }
+
+  /// (en) Gets the current screen height.
+  /// However, it does not include the status bar or notch height.
+  ///
+  /// (ja) 現在の画面の高さを取得します。
+  /// ただし、ステータスバーやノッチの高さは含まれません。
+  static double getScreenHeight(BuildContext context) {
+    return MediaQuery.of(context).size.height;
+  }
+
+  /// (en) Gets the current screen width.
+  ///
+  /// (ja) 現在の画面の幅を取得します。
+  static double getScreenWidth(BuildContext context) {
+    return MediaQuery.of(context).size.width;
+  }
+
+  /// (en) Determines if the current device is smartphone size.
+  /// By default, true is returned if either height or width is 480px or less.
+  ///
+  /// (ja) 現在のデバイスがスマホサイズかどうかを判定します。
+  /// デフォルトでは縦横どちらかが480px以下であればtrueが返されます。
+  static bool isSmartPhone(BuildContext context, {double threshold = 480}) {
+    return getScreenHeight(context) <= threshold ||
+        getScreenWidth(context) <= threshold;
+  }
+
+  /// (en) Determines if the current device is tablet size or less.
+  /// By default, true is returned if either height or width is 1024px or less.
+  ///
+  /// (ja) 現在のデバイスがタブレットサイズ以下かどうかを判定します。
+  /// デフォルトでは縦横どちらかが1024px以下であればtrueが返されます。
+  static bool isTablet(BuildContext context, {double threshold = 1024}) {
+    return getScreenHeight(context) <= threshold ||
+        getScreenWidth(context) <= threshold;
+  }
+
+  /// (en) Determines if the current device is PC size.
+  /// By default, true is returned if both height and width exceed 1024px.
+  ///
+  /// (ja) 現在のデバイスがPCサイズかどうかを判定します。
+  /// デフォルトでは縦横両方が1024pxを超える場合にtrueが返されます。
+  static bool isPC(BuildContext context, {double threshold = 1024}) {
+    return !isTablet(context, threshold: threshold);
+  }
+
+  /// (en) Determines and returns the device type (PC, Tablet, Phone).
+  ///
+  /// (ja) デバイスの種類 (PC, Tablet, Phone)を判定して返します。
+  static EnumDeviceType getDeviceType(BuildContext context,
+      {phoneThreshold = 480, tabletThreshold = 1024}) {
+    if (isSmartPhone(context, threshold: phoneThreshold)) {
+      return EnumDeviceType.phone;
+    } else if (isTablet(context, threshold: tabletThreshold)) {
+      return EnumDeviceType.tablet;
+    } else {
+      return EnumDeviceType.pc;
+    }
+  }
+
+  /// (en) Returns True if the current device is in portrait orientation.
+  ///
+  /// (ja) 現在のデバイスが縦向きならTrueを返します。
+  static bool isVertical(BuildContext context) {
+    return getScreenHeight(context) > getScreenWidth(context);
+  }
+
+  /// (en) Returns True if the current device is in landscape orientation.
+  ///
+  /// (ja) 現在のデバイスが横向きならTrueを返します。
+  static bool isHorizontal(BuildContext context) {
+    return getScreenHeight(context) < getScreenWidth(context);
+  }
+
+  /// (en) Returns the current device orientation.
+  ///
+  /// (ja) 現在のデバイスの向きを返します。
+  static EnumOrientation getOrientation(BuildContext context) {
+    if (isHorizontal(context)) {
+      return EnumOrientation.horizontal;
+    } else {
+      return EnumOrientation.vertical;
     }
   }
 }

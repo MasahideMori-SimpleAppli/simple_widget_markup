@@ -1,3 +1,7 @@
+## 14.1.0
+* Resources that can be managed by SpWMLLayoutManager are now more flexible.
+* SpWMLLayoutManager can now determine screen orientation and device type.
+
 ## 14.0.0
 * Fixed an issue where padding was also enabled for block background colors. This fix may affect existing layouts if they use background colors.
 * Added isBtnColorModeV3 flag to SpWMLFontStyle.
