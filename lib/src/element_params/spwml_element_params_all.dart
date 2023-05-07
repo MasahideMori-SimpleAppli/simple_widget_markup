@@ -24,5 +24,6 @@ export 'sub/structure/table_row_params.dart';
 export 'sub/structure/wrap_params.dart';
 export 'sub/text/href_params.dart';
 export 'sub/text/ruby_text_params.dart';
+export 'sub/text/super_and_subscript_params.dart';
 export 'sub/text/text_params.dart';
 export 'sub/text/textfield_params.dart';

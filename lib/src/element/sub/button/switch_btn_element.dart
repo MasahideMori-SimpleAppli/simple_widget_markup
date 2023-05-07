@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../element_params/spwml_info.dart';
-import '../../../element_params/sub/button/switch_btn_params.dart';
-import '../../../element_params/super/spwml_params.dart';
-import '../../../enum/enum_spwml_element_type.dart';
-import '../../../enum/enum_spwml_params.dart';
-import '../../../style/spwml_font_style.dart';
-import '../../super/spwml_element.dart';
+import '../../../../simple_widget_markup.dart';
 
 ///
 /// Author Masahide Mori
@@ -52,6 +46,11 @@ class SwitchBtnElement extends SpWMLElement {
     elParams.p.value = params.containsKey(EnumSpWMLParams.value)
         ? params[EnumSpWMLParams.value]
         : false;
+    if (params.containsKey(EnumSpWMLParams.type)) {
+      if (params[EnumSpWMLParams.type] == EnumSwitchBtnType.check) {
+        setSwitchIcon(Icons.check, Icons.close);
+      }
+    }
     return this;
   }
 
@@ -75,6 +74,22 @@ class SwitchBtnElement extends SpWMLElement {
   void setSwitchValue(bool v) {
     elParams.p.value = v;
   }
+
+  /// (en)Set switch value.
+  ///
+  /// (ja)スイッチのアイコンを設定します。
+  /// * [selected] : The icon for selected state.
+  /// * [nonSelected] : The icon for non-selected state.
+  void setSwitchIcon(IconData? selected, IconData? nonSelected) {
+    elParams.p.thumbIcon = MaterialStateProperty.resolveWith<Icon?>(
+      (Set<MaterialState> states) {
+        if (states.contains(MaterialState.selected)) {
+          return Icon(selected);
+        }
+        return Icon(nonSelected);
+      },
+    );
+  }
 }
 
 class _SwitchBtnElementWidget extends StatefulWidget {
@@ -87,11 +102,6 @@ class _SwitchBtnElementWidget extends StatefulWidget {
 }
 
 class _SwitchBtnElementWidgetState extends State<_SwitchBtnElementWidget> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Switch(
@@ -117,6 +127,7 @@ class _SwitchBtnElementWidgetState extends State<_SwitchBtnElementWidget> {
       onInactiveThumbImageError: widget.elParams.p.onInactiveThumbImageError,
       thumbColor: widget.elParams.p.thumbColor,
       trackColor: widget.elParams.p.trackColor,
+      thumbIcon: widget.elParams.p.thumbIcon,
       materialTapTargetSize: widget.elParams.p.materialTapTargetSize,
       dragStartBehavior: widget.elParams.p.dragStartBehavior,
       mouseCursor: widget.elParams.p.mouseCursor,

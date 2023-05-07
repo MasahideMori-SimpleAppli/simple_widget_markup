@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/rendering.dart';
 
 import '../text/text_params.dart';
@@ -32,23 +31,11 @@ class RichTextParams {
   Color? selectionColor;
 }
 
-class TextSpanParams {
-  String? text;
-  List<InlineSpan>? children;
-  TextStyle? style;
-  GestureRecognizer? recognizer;
-  MouseCursor? mouseCursor;
-  void Function(PointerEnterEvent)? onEnter;
-  void Function(PointerExitEvent)? onExit;
-  String? semanticsLabel;
-  Locale? locale;
-  bool? spellOut;
-}
-
 class SpanParams {
   bool isSelectable = true;
   double? textScaleFactor;
   SelectableTextRichParams? selectableTextRichParams;
   RichTextParams? richTextParams;
-  List<TextSpanParams>? textSpanParamsList;
+  // trueの場合、レイアウトを全てWidgetSpanにし、位置を正確に描画する。
+  bool isLayoutStrictMode = false;
 }

@@ -53,6 +53,15 @@ enum EnumSpWMLParams {
   isSelectable,
   thickness,
   color,
+  // material 3 color mode flag.
+  isV3,
+  // icon btn param
+  isSelected,
+  selectedIcon,
+  // text base line.
+  baselineType,
+  baselineCorrection,
+  //
   fit,
   repeat,
   minH,
@@ -99,6 +108,8 @@ enum EnumSpWMLParams {
   ellipticalX,
   ellipticalY,
   enableTapLabel,
+  // checkbox
+  isPrefixIcon,
   // ruby text parameter
   rubyText,
   rubySize,
@@ -130,6 +141,7 @@ enum EnumSpWMLParams {
   indicatorBGColor,
   clipType,
   clipRadius,
+  isLayoutStrictMode,
   // フルネーム系は利用頻度が低いので、解析の優先度を下げる。
   mLeft,
   mTop,
@@ -213,7 +225,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.cpL ||
           this == EnumSpWMLParams.cpT ||
           this == EnumSpWMLParams.cpR ||
-          this == EnumSpWMLParams.cpB) {
+          this == EnumSpWMLParams.cpB ||
+          this == EnumSpWMLParams.baselineCorrection) {
         return double.parse(v);
       }
       if (this == EnumSpWMLParams.weight || this == EnumSpWMLParams.hNum) {
@@ -295,6 +308,12 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       if (type == EnumSpWMLElementType.btn) {
         if (this == EnumSpWMLParams.type) {
           return EXTEnumBtnType.fromStr(v, lineStart, lineEnd, info);
+        }
+      }
+      // switch btn only
+      if (type == EnumSpWMLElementType.switchBtn) {
+        if (this == EnumSpWMLParams.type) {
+          return EXTEnumSwitchBtnType.fromStr(v, lineStart, lineEnd, info);
         }
       }
       // shape
@@ -385,7 +404,10 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.value ||
           this == EnumSpWMLParams.enableTapLabel ||
           this == EnumSpWMLParams.isRubySelectable ||
-          this == EnumSpWMLParams.isGone) {
+          this == EnumSpWMLParams.isGone ||
+          this == EnumSpWMLParams.isPrefixIcon ||
+          this == EnumSpWMLParams.isV3 ||
+          this == EnumSpWMLParams.isLayoutStrictMode) {
         if (type == EnumSpWMLElementType.progressIndicator) {
           return double.parse(v);
         } else {
@@ -414,6 +436,14 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           return TextOverflow.fade;
         } else if (v == "visible") {
           return TextOverflow.visible;
+        } else {
+          throw Exception();
+        }
+      } else if (this == EnumSpWMLParams.baselineType) {
+        if (v == TextBaseline.alphabetic.name) {
+          return TextBaseline.alphabetic;
+        } else if (v == TextBaseline.ideographic.name) {
+          return TextBaseline.ideographic;
         } else {
           throw Exception();
         }
@@ -506,7 +536,25 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       return EnumSpWMLParams.thickness;
     } else if (s == EnumSpWMLParams.color.name) {
       return EnumSpWMLParams.color;
-    } else if (s == EnumSpWMLParams.fit.name) {
+    }
+    // material v3 color mode
+    else if (s == EnumSpWMLParams.isV3.name) {
+      return EnumSpWMLParams.isV3;
+    }
+    // icon btn params
+    else if (s == EnumSpWMLParams.isSelected.name) {
+      return EnumSpWMLParams.isSelected;
+    } else if (s == EnumSpWMLParams.selectedIcon.name) {
+      return EnumSpWMLParams.selectedIcon;
+    }
+    // text baseline
+    else if (s == EnumSpWMLParams.baselineType.name) {
+      return EnumSpWMLParams.baselineType;
+    } else if (s == EnumSpWMLParams.baselineCorrection.name) {
+      return EnumSpWMLParams.baselineCorrection;
+    }
+    //
+    else if (s == EnumSpWMLParams.fit.name) {
       return EnumSpWMLParams.fit;
     } else if (s == EnumSpWMLParams.repeat.name) {
       return EnumSpWMLParams.repeat;
@@ -599,6 +647,10 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
     } else if (s == EnumSpWMLParams.enableTapLabel.name) {
       return EnumSpWMLParams.enableTapLabel;
     }
+    // checkbox
+    else if (s == EnumSpWMLParams.isPrefixIcon.name) {
+      return EnumSpWMLParams.isPrefixIcon;
+    }
     // ruby text parameter
     else if (s == EnumSpWMLParams.rubyText.name) {
       return EnumSpWMLParams.rubyText;
@@ -660,6 +712,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       return EnumSpWMLParams.clipType;
     } else if (s == EnumSpWMLParams.clipRadius.name) {
       return EnumSpWMLParams.clipRadius;
+    } else if (s == EnumSpWMLParams.isLayoutStrictMode.name) {
+      return EnumSpWMLParams.isLayoutStrictMode;
     }
     // フルネーム系は利用頻度が低いので、解析の優先度を下げる。
     else if (s == EnumSpWMLParams.mLeft.name) {

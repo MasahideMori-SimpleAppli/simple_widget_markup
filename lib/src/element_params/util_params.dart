@@ -209,6 +209,12 @@ class UtilParams {
     } else if (s == "bottom") {
       // Column
       return MainAxisAlignment.end;
+    } else if (s == MainAxisAlignment.spaceAround.name) {
+      return MainAxisAlignment.spaceAround;
+    } else if (s == MainAxisAlignment.spaceEvenly.name) {
+      return MainAxisAlignment.spaceEvenly;
+    } else if (s == MainAxisAlignment.spaceBetween.name) {
+      return MainAxisAlignment.spaceBetween;
     } else {
       throw SpWMLException(
           EnumSpWMLExceptionType.paramValueException, lineStart, lineEnd, info);
@@ -241,6 +247,12 @@ class UtilParams {
     } else if (s == "bottom") {
       // Row
       return CrossAxisAlignment.end;
+    } else if (s == CrossAxisAlignment.baseline.name) {
+      // Row
+      return CrossAxisAlignment.baseline;
+    } else if (s == CrossAxisAlignment.stretch.name) {
+      // Row
+      return CrossAxisAlignment.stretch;
     } else {
       throw SpWMLException(
           EnumSpWMLExceptionType.paramValueException, lineStart, lineEnd, info);

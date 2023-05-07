@@ -39,6 +39,20 @@ class UtilSpWMLFontStyleV2 {
         letterSpacing: 0.5,
         fontWeight: EnumFontWeight.regular,
         textColor: "#DD000000");
+    r[EnumSpWMLElementType.superscript] = SpWMLFontStyleParams(
+        mT: 0,
+        lineHeight: 1.0,
+        fontSize: 16,
+        letterSpacing: 0,
+        fontWeight: EnumFontWeight.regular,
+        textColor: "#DD000000");
+    r[EnumSpWMLElementType.subscript] = SpWMLFontStyleParams(
+        mT: 0,
+        lineHeight: 1.0,
+        fontSize: 16,
+        letterSpacing: 0,
+        fontWeight: EnumFontWeight.regular,
+        textColor: "#DD000000");
     r[EnumSpWMLElementType.ruby] = SpWMLFontStyleParams(
         mT: 0,
         lineHeight: 1.0,
@@ -169,6 +183,20 @@ class UtilSpWMLFontStyleV2 {
         lineHeight: 1.0,
         fontSize: 18,
         letterSpacing: 0.5,
+        fontWeight: EnumFontWeight.regular,
+        textColor: "#DD000000");
+    r[EnumSpWMLElementType.superscript] = SpWMLFontStyleParams(
+        mT: 0,
+        lineHeight: 1.0,
+        fontSize: 18,
+        letterSpacing: 0,
+        fontWeight: EnumFontWeight.regular,
+        textColor: "#DD000000");
+    r[EnumSpWMLElementType.subscript] = SpWMLFontStyleParams(
+        mT: 0,
+        lineHeight: 1.0,
+        fontSize: 18,
+        letterSpacing: 0,
         fontWeight: EnumFontWeight.regular,
         textColor: "#DD000000");
     r[EnumSpWMLElementType.ruby] = SpWMLFontStyleParams(

@@ -88,7 +88,7 @@ class TextFieldParams {
 
   /// Change textField design.
   void changeRoundedDesign(
-      {double radius = 10, Color fillColor = Colors.white70}) {
+      {double radius = 10, Color? fillColor = Colors.white70}) {
     decoration = decoration.copyWith(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(radius),
@@ -109,7 +109,12 @@ class TextFieldParams {
   IconData? suffixIconData;
   double? suffixIconSize;
   Color? suffixIconColor;
-  Function(String inputText)? suffixCallback;
+
+  // The search mode callback function.
+  Function(String inputText)? searchCallback;
+
+  // The search mode clear function callback function.
+  Function()? clearCallback;
 
   /// Change textField mode.
   void changeNormalMode() {
@@ -119,17 +124,29 @@ class TextFieldParams {
     autocorrect = true;
   }
 
-  /// Change textField design.
-  void changePasswordMode() {
-    _mode = EnumTextFieldMode.password;
+  /// Change textField mode.
+  void changePasswordMode(bool prefixIcon) {
+    _mode = prefixIcon
+        ? EnumTextFieldMode.passwordPrefix
+        : EnumTextFieldMode.password;
+    maxLines = 1;
     obscureText = true;
     enableSuggestions = false;
     autocorrect = false;
   }
 
   /// Change textField mode.
-  void changeSearchMode() {
-    _mode = EnumTextFieldMode.search;
+  void changeSearchMode(bool prefixIcon) {
+    _mode =
+        prefixIcon ? EnumTextFieldMode.searchPrefix : EnumTextFieldMode.search;
+    obscureText = false;
+    enableSuggestions = true;
+    autocorrect = true;
+  }
+
+  /// Change textField mode.
+  void changeSearchAndClearMode() {
+    _mode = EnumTextFieldMode.searchAndClear;
     obscureText = false;
     enableSuggestions = true;
     autocorrect = true;

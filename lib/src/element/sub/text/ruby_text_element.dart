@@ -194,7 +194,7 @@ class RubyTextElement extends TextElement {
       fontFamily: params.containsKey(EnumSpWMLParams.rubyFontName)
           ? params[EnumSpWMLParams.rubyFontName]
           : getDefFontFamily(),
-      height: getTextHeight(),
+      height: getLineHeight(),
     );
   }
 

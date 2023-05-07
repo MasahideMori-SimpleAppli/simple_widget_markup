@@ -66,7 +66,7 @@ class TextFieldElement extends TextElement {
         tfParams.p.changeRoundedDesign(
           fillColor: params.containsKey(EnumSpWMLParams.fillColor)
               ? params[EnumSpWMLParams.fillColor]
-              : Colors.white70,
+              : null,
           radius: params.containsKey(EnumSpWMLParams.radius)
               ? params[EnumSpWMLParams.radius]
               : 10,
@@ -76,13 +76,6 @@ class TextFieldElement extends TextElement {
     if (params.containsKey(EnumSpWMLParams.labelText)) {
       tfParams.p.decoration = tfParams.p.decoration
           .copyWith(labelText: params[EnumSpWMLParams.labelText]);
-    }
-    if (params.containsKey(EnumSpWMLParams.mode)) {
-      if (params[EnumSpWMLParams.mode] == EnumTextFieldMode.password) {
-        tfParams.p.changePasswordMode();
-      } else if (params[EnumSpWMLParams.mode] == EnumTextFieldMode.search) {
-        tfParams.p.changeSearchMode();
-      }
     }
     if (params.containsKey(EnumSpWMLParams.iconNum)) {
       tfParams.p.prefixIconData = params[EnumSpWMLParams.iconNum];
@@ -126,6 +119,23 @@ class TextFieldElement extends TextElement {
     tfParams.p.maxLength = params.containsKey(EnumSpWMLParams.maxLength)
         ? params[EnumSpWMLParams.maxLength]
         : null;
+    // モードチェンジは最後に行う必要がある。
+    if (params.containsKey(EnumSpWMLParams.mode)) {
+      if (params[EnumSpWMLParams.mode] == EnumTextFieldMode.password) {
+        tfParams.p.changePasswordMode(false);
+      } else if (params[EnumSpWMLParams.mode] ==
+          EnumTextFieldMode.passwordPrefix) {
+        tfParams.p.changePasswordMode(true);
+      } else if (params[EnumSpWMLParams.mode] == EnumTextFieldMode.search) {
+        tfParams.p.changeSearchMode(false);
+      } else if (params[EnumSpWMLParams.mode] ==
+          EnumTextFieldMode.searchPrefix) {
+        tfParams.p.changeSearchMode(true);
+      } else if (params[EnumSpWMLParams.mode] ==
+          EnumTextFieldMode.searchAndClear) {
+        tfParams.p.changeSearchAndClearMode();
+      }
+    }
     return this;
   }
 
@@ -134,10 +144,16 @@ class TextFieldElement extends TextElement {
     return _TextFieldElementWidget(tfParams);
   }
 
-  /// Set suffix icon button callback.
-  /// * [suffixCallback] : The callback. The argument is passed the current user input.
-  void setSuffixCallback(Function(String inputText)? suffixCallback) {
-    tfParams.p.suffixCallback = suffixCallback;
+  /// Set search mode search icon button callback.
+  /// * [btnCallback] : The callback. The argument is passed the current user input.
+  void setSearchCallback(Function(String inputText)? btnCallback) {
+    tfParams.p.searchCallback = btnCallback;
+  }
+
+  /// Set searchAndClear mode clear icon button callback.
+  /// * [btnCallback] : The callback.
+  void setClearCallback(Function()? btnCallback) {
+    tfParams.p.clearCallback = btnCallback;
   }
 
   /// Set onChanged callback.
@@ -218,12 +234,14 @@ class _TextFieldElementWidgetState extends State<_TextFieldElementWidget> {
     }
   }
 
-  Widget _getPassWordIcon() {
+  Widget _getPassWordIcon(bool isPrefix) {
     return IconButton(
       icon: Icon(widget.tfParams.p.obscureText
           ? Icons.visibility_off
           : Icons.visibility),
-      iconSize: widget.tfParams.p.suffixIconSize,
+      iconSize: isPrefix
+          ? widget.tfParams.p.prefixIconSize
+          : widget.tfParams.p.suffixIconSize,
       onPressed: () {
         setState(() {
           widget.tfParams.p.obscureText = !widget.tfParams.p.obscureText;
@@ -233,15 +251,35 @@ class _TextFieldElementWidgetState extends State<_TextFieldElementWidget> {
     );
   }
 
-  Widget _getSearchIcon() {
+  Widget _getSearchIcon(bool isPrefix) {
     return IconButton(
       icon: const Icon(Icons.search),
-      iconSize: widget.tfParams.p.suffixIconSize,
+      iconSize: isPrefix
+          ? widget.tfParams.p.prefixIconSize
+          : widget.tfParams.p.suffixIconSize,
       onPressed: () {
-        if (widget.tfParams.p.suffixCallback != null) {
+        if (widget.tfParams.p.searchCallback != null) {
           widget.tfParams.p
-              .suffixCallback!(widget.tfParams.p.controller?.text ?? "");
+              .searchCallback!(widget.tfParams.p.controller?.text ?? "");
         }
+      },
+      splashRadius: widget.tfParams.p.suffixIconSplashRadius,
+    );
+  }
+
+  Widget _getClearIcon(bool isPrefix) {
+    return IconButton(
+      icon: const Icon(Icons.clear),
+      iconSize: isPrefix
+          ? widget.tfParams.p.prefixIconSize
+          : widget.tfParams.p.suffixIconSize,
+      onPressed: () {
+        setState(() {
+          widget.tfParams.p.controller?.clear();
+          if (widget.tfParams.p.clearCallback != null) {
+            widget.tfParams.p.clearCallback!();
+          }
+        });
       },
       splashRadius: widget.tfParams.p.suffixIconSplashRadius,
     );
@@ -258,14 +296,31 @@ class _TextFieldElementWidgetState extends State<_TextFieldElementWidget> {
       return widget.tfParams.p.decoration.copyWith(
           prefixIcon: _getPrefixIcon(),
           prefixIconColor: widget.tfParams.p.prefixIconColor,
-          suffixIcon: _getPassWordIcon(),
+          suffixIcon: _getPassWordIcon(false),
+          suffixIconColor: widget.tfParams.p.suffixIconColor);
+    } else if (widget.tfParams.p.mode == EnumTextFieldMode.passwordPrefix) {
+      return widget.tfParams.p.decoration.copyWith(
+          prefixIcon: _getPassWordIcon(true),
+          prefixIconColor: widget.tfParams.p.prefixIconColor,
+          suffixIcon: _getSuffixIcon(),
           suffixIconColor: widget.tfParams.p.suffixIconColor);
     } else if (widget.tfParams.p.mode == EnumTextFieldMode.search) {
-      // search
       return widget.tfParams.p.decoration.copyWith(
           prefixIcon: _getPrefixIcon(),
           prefixIconColor: widget.tfParams.p.prefixIconColor,
-          suffixIcon: _getSearchIcon(),
+          suffixIcon: _getSearchIcon(false),
+          suffixIconColor: widget.tfParams.p.suffixIconColor);
+    } else if (widget.tfParams.p.mode == EnumTextFieldMode.searchPrefix) {
+      return widget.tfParams.p.decoration.copyWith(
+          prefixIcon: _getSearchIcon(true),
+          prefixIconColor: widget.tfParams.p.prefixIconColor,
+          suffixIcon: _getSuffixIcon(),
+          suffixIconColor: widget.tfParams.p.suffixIconColor);
+    } else if (widget.tfParams.p.mode == EnumTextFieldMode.searchAndClear) {
+      return widget.tfParams.p.decoration.copyWith(
+          prefixIcon: _getSearchIcon(true),
+          prefixIconColor: widget.tfParams.p.prefixIconColor,
+          suffixIcon: _getClearIcon(false),
           suffixIconColor: widget.tfParams.p.suffixIconColor);
     } else {
       // manual

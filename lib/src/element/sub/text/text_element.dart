@@ -147,6 +147,20 @@ class TextElement extends SpWMLElement {
     );
   }
 
+  /// (en) A dedicated function to be called in a span block.
+  /// Using SelectableText in a span will break the range, but you can avoid it.
+  ///
+  /// (ja) spanブロックの中で呼び出す専用の関数です。
+  /// span中でSelectableTextを用いると範囲が壊れますが、それを回避できます。
+  Widget getInSpan(BuildContext context) {
+    if (spwmlParams.p.isGone) {
+      return const SizedBox();
+    } else {
+      return expand(
+          transform(material(constraints(container(getText(context))))));
+    }
+  }
+
   /// (en)Set new text of this element.
   ///
   /// (ja)このエレメントの新しいテキストを設定します。
@@ -161,17 +175,19 @@ class TextElement extends SpWMLElement {
         fontSize: params.containsKey(EnumSpWMLParams.fontSize)
             ? params[EnumSpWMLParams.fontSize]
             : getDefFontSize(),
-        height: params.containsKey(EnumSpWMLParams.lineHeight)
-            ? params[EnumSpWMLParams.lineHeight]
-            : null);
+        height: getLineHeight());
   }
 
   /// get text height from param.
-  double? getTextHeight() {
+  double? getLineHeight() {
     if (style.styleMap.containsKey(type)) {
-      return style.styleMap[type]!.lineHeight;
+      return params.containsKey(EnumSpWMLParams.lineHeight)
+          ? params[EnumSpWMLParams.lineHeight]
+          : style.styleMap[type]!.lineHeight;
     } else {
-      return null;
+      return params.containsKey(EnumSpWMLParams.lineHeight)
+          ? params[EnumSpWMLParams.lineHeight]
+          : null;
     }
   }
 
@@ -300,6 +316,13 @@ class TextElement extends SpWMLElement {
     return null;
   }
 
+  /// get font size.
+  double? getFontSize() {
+    return params.containsKey(EnumSpWMLParams.fontSize)
+        ? params[EnumSpWMLParams.fontSize]
+        : getDefFontSize();
+  }
+
   /// get text style from parameters.
   TextStyle getStyle() {
     return TextStyle(
@@ -309,9 +332,7 @@ class TextElement extends SpWMLElement {
       backgroundColor: params.containsKey(EnumSpWMLParams.textBGColor)
           ? params[EnumSpWMLParams.textBGColor]
           : getDefTextBGColor(),
-      fontSize: params.containsKey(EnumSpWMLParams.fontSize)
-          ? params[EnumSpWMLParams.fontSize]
-          : getDefFontSize(),
+      fontSize: getFontSize(),
       fontWeight: params.containsKey(EnumSpWMLParams.fontWeight)
           ? params[EnumSpWMLParams.fontWeight]
           : getDefFontWeight(),
@@ -339,7 +360,7 @@ class TextElement extends SpWMLElement {
       fontFamily: params.containsKey(EnumSpWMLParams.fontFamily)
           ? params[EnumSpWMLParams.fontFamily]
           : getDefFontFamily(),
-      height: getTextHeight(),
+      height: getLineHeight(),
     );
   }
 }

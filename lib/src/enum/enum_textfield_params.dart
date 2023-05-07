@@ -23,7 +23,15 @@ extension EXTEnumTextFieldType on EnumTextFieldType {
   }
 }
 
-enum EnumTextFieldMode { normal, password, search, manual }
+enum EnumTextFieldMode {
+  normal,
+  password,
+  passwordPrefix,
+  search,
+  searchPrefix,
+  searchAndClear,
+  manual
+}
 
 extension EXTEnumTextFieldMode on EnumTextFieldMode {
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
@@ -33,8 +41,14 @@ extension EXTEnumTextFieldMode on EnumTextFieldMode {
       return EnumTextFieldMode.normal;
     } else if (s == EnumTextFieldMode.password.name) {
       return EnumTextFieldMode.password;
+    } else if (s == EnumTextFieldMode.passwordPrefix.name) {
+      return EnumTextFieldMode.passwordPrefix;
     } else if (s == EnumTextFieldMode.search.name) {
       return EnumTextFieldMode.search;
+    } else if (s == EnumTextFieldMode.searchPrefix.name) {
+      return EnumTextFieldMode.searchPrefix;
+    } else if (s == EnumTextFieldMode.searchAndClear.name) {
+      return EnumTextFieldMode.searchAndClear;
     } else if (s == EnumTextFieldMode.manual.name) {
       return EnumTextFieldMode.manual;
     } else {

@@ -81,6 +81,20 @@ class UtilElement {
         eType == EnumSpWMLElementType.bodyS) {
       r = TextElement(serial, eType, params, spwmlParams, parentSerial,
           lineStart, lineEnd, style, info, TextParamsWrapper(TextParams()));
+    } else if (eType == EnumSpWMLElementType.superscript ||
+        eType == EnumSpWMLElementType.subscript) {
+      r = SuperAndSubscriptElement(
+          serial,
+          eType,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          TextParamsWrapper(TextParams()),
+          SuperAndSubscriptParamsWrapper(SuperAndSubscriptParams()));
     } else if (eType == EnumSpWMLElementType.textField) {
       r = TextFieldElement(
           serial,

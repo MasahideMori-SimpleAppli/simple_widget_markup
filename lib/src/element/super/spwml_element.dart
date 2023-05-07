@@ -311,7 +311,8 @@ class SpWMLElement extends StatelessWidget {
 
   /// Wrap if necessary.
   /// * [child] : The child widget.
-  Widget _container(Widget child) {
+  @protected
+  Widget container(Widget child) {
     return Container(
       key: spwmlParams.p.containerParams!.key,
       alignment: spwmlParams.p.containerParams!.alignment,
@@ -340,7 +341,8 @@ class SpWMLElement extends StatelessWidget {
 
   /// Wrap if necessary.
   /// * [child] : The child widget.
-  Widget _transform(Widget child) {
+  @protected
+  Widget transform(Widget child) {
     if (_isEnableTransform()) {
       return Transform(
           transform: Matrix4.translationValues(
@@ -356,7 +358,8 @@ class SpWMLElement extends StatelessWidget {
 
   /// Wrap if necessary.
   /// * [child] : The child widget.
-  Widget _constraints(Widget child) {
+  @protected
+  Widget constraints(Widget child) {
     if (spwmlParams.p.constrains != null) {
       return ConstrainedBox(
           constraints: spwmlParams.p.constrains!, child: child);
@@ -367,7 +370,8 @@ class SpWMLElement extends StatelessWidget {
 
   /// Wrap if necessary.
   /// * [child] : The child widget.
-  Widget _material(Widget child) {
+  @protected
+  Widget material(Widget child) {
     if (spwmlParams.p.materialParams != null) {
       return Material(
           key: spwmlParams.p.materialParams!.key,
@@ -390,7 +394,8 @@ class SpWMLElement extends StatelessWidget {
 
   /// Wrap if necessary.
   /// * [child] : The child widget.
-  Widget _expand(Widget child) {
+  @protected
+  Widget expand(Widget child) {
     if (spwmlParams.p.weight != null) {
       return Expanded(flex: spwmlParams.p.weight!, child: child);
     } else {
@@ -403,8 +408,8 @@ class SpWMLElement extends StatelessWidget {
     if (spwmlParams.p.isGone) {
       return const SizedBox();
     } else {
-      return _expand(
-          _transform(_material(_constraints(_container(getWidget(context))))));
+      return expand(
+          transform(material(constraints(container(getWidget(context))))));
     }
   }
 }

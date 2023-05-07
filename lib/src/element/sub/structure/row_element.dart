@@ -54,6 +54,16 @@ class RowElement extends MultiChildElement {
     elParams.p.crossAxisAlignment = params.containsKey(EnumSpWMLParams.vAlign)
         ? params[EnumSpWMLParams.vAlign]
         : CrossAxisAlignment.start;
+    elParams.p.textBaseline = params.containsKey(EnumSpWMLParams.baselineType)
+        ? params[EnumSpWMLParams.baselineType]
+        : null;
+    if (elParams.p.textBaseline != null) {
+      elParams.p.crossAxisAlignment = CrossAxisAlignment.baseline;
+    }
+    if (elParams.p.crossAxisAlignment == CrossAxisAlignment.baseline &&
+        elParams.p.textBaseline == null) {
+      elParams.p.textBaseline = TextBaseline.alphabetic;
+    }
     return this;
   }
 

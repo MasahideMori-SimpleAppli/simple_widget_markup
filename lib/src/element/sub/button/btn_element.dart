@@ -383,6 +383,17 @@ class BtnElement extends SingleChildTextElement {
     }
   }
 
+  /// (en) Disable this button. callback is set to null.
+  /// Note that the block button does not change its appearance.
+  ///
+  /// (ja)このボタンを無効化します。コールバックがnullに設定されます。
+  /// ブロックボタンは見た目が変化しないため注意してください。
+  void setDisabled() {
+    elParams.p.iconBtnParams?.onPressed = null;
+    elParams.p.inkWellBtnParams?.onTap = null;
+    elParams.p.normalBtnParams?.onPressed = null;
+  }
+
   Color? _getBtnColor() {
     Color? c1 = params.containsKey(EnumSpWMLParams.color)
         ? params[EnumSpWMLParams.color]

@@ -28,7 +28,13 @@ class SelectableIconBtnParams {
   String? tooltip;
   bool enableFeedback = true;
   BoxConstraints? constraints;
+  ButtonStyle? style;
+  bool? isSelected;
+  Widget? selectedIcon;
   Widget? icon;
+  // Material V3 color mode.
+  // Note, however, that the specifications themselves are not material widget.
+  bool isV3 = false;
 }
 
 class CheckboxParams {
@@ -42,4 +48,6 @@ class CheckboxParams {
   // This inner onTap parameter is disabled.
   InkWellParams enableTapInkWellParams = InkWellParams();
   OutlinedBorder? shape;
+  // The icon position.
+  bool isPrefixIcon = true;
 }

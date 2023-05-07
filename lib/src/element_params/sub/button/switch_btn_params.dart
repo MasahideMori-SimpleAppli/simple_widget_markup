@@ -22,6 +22,7 @@ class SwitchBtnParams {
   void Function(Object, StackTrace?)? onInactiveThumbImageError;
   MaterialStateProperty<Color>? thumbColor;
   MaterialStateProperty<Color>? trackColor;
+  MaterialStateProperty<Icon?>? thumbIcon;
   MaterialTapTargetSize? materialTapTargetSize;
   DragStartBehavior dragStartBehavior = DragStartBehavior.start;
   MouseCursor? mouseCursor;

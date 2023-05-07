@@ -1,3 +1,17 @@
+## 15.0.0
+* Added passwordPrefix and searchPrefix type to tf.
+* Default fill color change to null in tf.
+* Added setDisabled method to BtnElement.
+* Added searchAndClear mode of tf.
+* Added isPrefixIcon param to checkbox and radioBtn.
+* Added isV3 param to checkbox and radioBtn.
+* Fixed text lineHeight parameter not enable bug.
+* Added baseLine params to row, and some Align type added.
+* Added superscript and subscript type.
+* Removed textSpanParamsList param in SpanParams. 
+* Removed TextSpanParams class. 
+* Added isLayoutStrictMode param to span.
+
 ## 14.1.0
 * Resources that can be managed by SpWMLLayoutManager are now more flexible.
 * SpWMLLayoutManager can now determine screen orientation and device type.

@@ -66,7 +66,10 @@ enum EnumSpWMLElementType {
   table,
   tableRow,
   tr,
-  progressIndicator
+  progressIndicator,
+  // super and subscript.
+  superscript,
+  subscript
 }
 
 extension EXTEnumSpWMLElementType on EnumSpWMLElementType {
@@ -193,6 +196,12 @@ extension EXTEnumSpWMLElementType on EnumSpWMLElementType {
       return EnumSpWMLElementType.tableRow;
     } else if (s == EnumSpWMLElementType.progressIndicator.name) {
       return EnumSpWMLElementType.progressIndicator;
+    }
+    // super and subscript
+    else if (s == EnumSpWMLElementType.superscript.name) {
+      return EnumSpWMLElementType.superscript;
+    } else if (s == EnumSpWMLElementType.subscript.name) {
+      return EnumSpWMLElementType.subscript;
     } else {
       throw SpWMLException(
           EnumSpWMLExceptionType.typeException, lineStart, lineEnd, info);

@@ -77,6 +77,13 @@ class RadioBtnElement extends MultiChildElement {
         params.containsKey(EnumSpWMLParams.enableTapLabel)
             ? params[EnumSpWMLParams.enableTapLabel]
             : false;
+    elParams.p.isPrefixIcon = params.containsKey(EnumSpWMLParams.isPrefixIcon)
+        ? params[EnumSpWMLParams.isPrefixIcon]
+        : true;
+    if (params.containsKey(EnumSpWMLParams.isV3)) {
+      elParams.p.enableParams!.isV3 = params[EnumSpWMLParams.isV3];
+      elParams.p.disableParams!.isV3 = params[EnumSpWMLParams.isV3];
+    }
     return this;
   }
 
@@ -170,6 +177,160 @@ class _RadioBtnElementWidgetState extends State<_RadioBtnElementWidget> {
     }
   }
 
+  Widget _getEnabledIconBtn(int index) {
+    if (widget.elParams.p.enableParams!.isV3) {
+      final ColorScheme colors = Theme.of(context).colorScheme;
+      return IconButton(
+        iconSize: widget.elParams.p.enableParams!.iconSize,
+        visualDensity: widget.elParams.p.enableParams!.visualDensity,
+        padding: widget.elParams.p.enableParams!.padding,
+        alignment: widget.elParams.p.enableParams!.alignment,
+        splashRadius: widget.elParams.p.enableParams!.splashRadius,
+        color: widget.elParams.p.enableParams!.color ?? colors.primary,
+        focusColor: widget.elParams.p.enableParams!.focusColor,
+        hoverColor: widget.elParams.p.enableParams!.hoverColor,
+        highlightColor: widget.elParams.p.enableParams!.highlightColor,
+        splashColor: widget.elParams.p.enableParams!.splashColor,
+        disabledColor: widget.elParams.p.enableTapLabel
+            ? widget.elParams.p.enableParams!.color
+            : widget.elParams.p.enableParams!.disabledColor,
+        onPressed: widget.elParams.p.enableTapLabel
+            ? null
+            : () {
+                _onTapCallback(index);
+              },
+        mouseCursor: widget.elParams.p.enableParams!.mouseCursor,
+        focusNode: widget.elParams.p.enableParams!.focusNode,
+        autofocus: widget.elParams.p.enableParams!.autofocus,
+        tooltip: widget.elParams.p.enableParams!.tooltip,
+        enableFeedback: widget.elParams.p.enableParams!.enableFeedback,
+        constraints: widget.elParams.p.enableParams!.constraints,
+        style: widget.elParams.p.enableParams!.style,
+        isSelected: widget.elParams.p.enableParams!.isSelected,
+        selectedIcon: widget.elParams.p.enableParams!.selectedIcon,
+        icon: widget.elParams.p.enableParams!.icon!,
+      );
+    } else {
+      return IconButton(
+        key: widget.elParams.p.enableParams!.key,
+        iconSize: widget.elParams.p.enableParams!.iconSize,
+        visualDensity: widget.elParams.p.enableParams!.visualDensity,
+        padding: widget.elParams.p.enableParams!.padding,
+        alignment: widget.elParams.p.enableParams!.alignment,
+        splashRadius: widget.elParams.p.enableParams!.splashRadius,
+        color: widget.elParams.p.enableParams!.color,
+        focusColor: widget.elParams.p.enableParams!.focusColor,
+        hoverColor: widget.elParams.p.enableParams!.hoverColor,
+        highlightColor: widget.elParams.p.enableParams!.highlightColor,
+        splashColor: widget.elParams.p.enableParams!.splashColor,
+        disabledColor: widget.elParams.p.enableTapLabel
+            ? widget.elParams.p.enableParams!.color ?? Colors.black87
+            : widget.elParams.p.enableParams!.disabledColor,
+        onPressed: widget.elParams.p.enableTapLabel
+            ? null
+            : () {
+                _onTapCallback(index);
+              },
+        mouseCursor: widget.elParams.p.enableParams!.mouseCursor,
+        focusNode: widget.elParams.p.enableParams!.focusNode,
+        autofocus: widget.elParams.p.enableParams!.autofocus,
+        tooltip: widget.elParams.p.enableParams!.tooltip,
+        enableFeedback: widget.elParams.p.enableParams!.enableFeedback,
+        constraints: widget.elParams.p.enableParams!.constraints,
+        style: widget.elParams.p.enableParams!.style,
+        isSelected: widget.elParams.p.enableParams!.isSelected,
+        selectedIcon: widget.elParams.p.enableParams!.selectedIcon,
+        icon: widget.elParams.p.enableParams!.icon!,
+      );
+    }
+  }
+
+  Widget _getDisableIconBtn(int index) {
+    if (widget.elParams.p.disableParams!.isV3) {
+      final ColorScheme colors = Theme.of(context).colorScheme;
+      return IconButton(
+        iconSize: widget.elParams.p.disableParams!.iconSize,
+        visualDensity: widget.elParams.p.disableParams!.visualDensity,
+        padding: widget.elParams.p.disableParams!.padding,
+        alignment: widget.elParams.p.disableParams!.alignment,
+        splashRadius: widget.elParams.p.disableParams!.splashRadius,
+        color: widget.elParams.p.disableParams!.color ?? colors.primary,
+        focusColor: widget.elParams.p.disableParams!.focusColor,
+        hoverColor: widget.elParams.p.disableParams!.hoverColor,
+        highlightColor: widget.elParams.p.disableParams!.highlightColor,
+        splashColor: widget.elParams.p.disableParams!.splashColor,
+        disabledColor: widget.elParams.p.enableTapLabel
+            ? widget.elParams.p.enableParams!.color ?? Colors.black87
+            : widget.elParams.p.disableParams!.disabledColor,
+        onPressed: widget.elParams.p.enableTapLabel
+            ? null
+            : () {
+                _onTapCallback(index);
+              },
+        mouseCursor: widget.elParams.p.disableParams!.mouseCursor,
+        focusNode: widget.elParams.p.disableParams!.focusNode,
+        autofocus: widget.elParams.p.disableParams!.autofocus,
+        tooltip: widget.elParams.p.disableParams!.tooltip,
+        enableFeedback: widget.elParams.p.disableParams!.enableFeedback,
+        constraints: widget.elParams.p.disableParams!.constraints,
+        style: widget.elParams.p.disableParams!.style,
+        isSelected: widget.elParams.p.disableParams!.isSelected,
+        selectedIcon: widget.elParams.p.disableParams!.selectedIcon,
+        icon: widget.elParams.p.disableParams!.icon!,
+      );
+    } else {
+      return IconButton(
+        key: widget.elParams.p.disableParams!.key,
+        iconSize: widget.elParams.p.disableParams!.iconSize,
+        visualDensity: widget.elParams.p.disableParams!.visualDensity,
+        padding: widget.elParams.p.disableParams!.padding,
+        alignment: widget.elParams.p.disableParams!.alignment,
+        splashRadius: widget.elParams.p.disableParams!.splashRadius,
+        color: widget.elParams.p.disableParams!.color,
+        focusColor: widget.elParams.p.disableParams!.focusColor,
+        hoverColor: widget.elParams.p.disableParams!.hoverColor,
+        highlightColor: widget.elParams.p.disableParams!.highlightColor,
+        splashColor: widget.elParams.p.disableParams!.splashColor,
+        disabledColor: widget.elParams.p.enableTapLabel
+            ? widget.elParams.p.enableParams!.color ?? Colors.black87
+            : widget.elParams.p.disableParams!.disabledColor,
+        onPressed: widget.elParams.p.enableTapLabel
+            ? null
+            : () {
+                _onTapCallback(index);
+              },
+        mouseCursor: widget.elParams.p.disableParams!.mouseCursor,
+        focusNode: widget.elParams.p.disableParams!.focusNode,
+        autofocus: widget.elParams.p.disableParams!.autofocus,
+        tooltip: widget.elParams.p.disableParams!.tooltip,
+        enableFeedback: widget.elParams.p.disableParams!.enableFeedback,
+        constraints: widget.elParams.p.disableParams!.constraints,
+        style: widget.elParams.p.disableParams!.style,
+        isSelected: widget.elParams.p.disableParams!.isSelected,
+        selectedIcon: widget.elParams.p.disableParams!.selectedIcon,
+        icon: widget.elParams.p.disableParams!.icon!,
+      );
+    }
+  }
+
+  List<Widget> _getIconAndWidget(int index) {
+    if (widget.elParams.p.isPrefixIcon) {
+      return [
+        widget.elParams.p.selectedIndex == index
+            ? _getEnabledIconBtn(index)
+            : _getDisableIconBtn(index),
+        widget.children.children[index]
+      ];
+    } else {
+      return [
+        Expanded(child: widget.children.children[index]),
+        widget.elParams.p.selectedIndex == index
+            ? _getEnabledIconBtn(index)
+            : _getDisableIconBtn(index)
+      ];
+    }
+  }
+
   Widget _getLayout() {
     List<Widget> r = [];
     for (int i = 0; i < widget.children.children.length; i++) {
@@ -178,82 +339,7 @@ class _RadioBtnElementWidgetState extends State<_RadioBtnElementWidget> {
           Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                widget.elParams.p.selectedIndex == i
-                    ? IconButton(
-                        key: widget.elParams.p.enableParams!.key,
-                        iconSize: widget.elParams.p.enableParams!.iconSize,
-                        visualDensity:
-                            widget.elParams.p.enableParams!.visualDensity,
-                        padding: widget.elParams.p.enableParams!.padding,
-                        alignment: widget.elParams.p.enableParams!.alignment,
-                        splashRadius:
-                            widget.elParams.p.enableParams!.splashRadius,
-                        color: widget.elParams.p.enableParams!.color,
-                        focusColor: widget.elParams.p.enableParams!.focusColor,
-                        hoverColor: widget.elParams.p.enableParams!.hoverColor,
-                        highlightColor:
-                            widget.elParams.p.enableParams!.highlightColor,
-                        splashColor:
-                            widget.elParams.p.enableParams!.splashColor,
-                        disabledColor: widget.elParams.p.enableTapLabel
-                            ? widget.elParams.p.enableParams!.color ??
-                                Colors.black87
-                            : widget.elParams.p.enableParams!.disabledColor,
-                        onPressed: widget.elParams.p.enableTapLabel
-                            ? null
-                            : () {
-                                _onTapCallback(i);
-                              },
-                        mouseCursor:
-                            widget.elParams.p.enableParams!.mouseCursor,
-                        focusNode: widget.elParams.p.enableParams!.focusNode,
-                        autofocus: widget.elParams.p.enableParams!.autofocus,
-                        tooltip: widget.elParams.p.enableParams!.tooltip,
-                        enableFeedback:
-                            widget.elParams.p.enableParams!.enableFeedback,
-                        constraints:
-                            widget.elParams.p.enableParams!.constraints,
-                        icon: widget.elParams.p.enableParams!.icon!,
-                      )
-                    : IconButton(
-                        key: widget.elParams.p.disableParams!.key,
-                        iconSize: widget.elParams.p.disableParams!.iconSize,
-                        visualDensity:
-                            widget.elParams.p.disableParams!.visualDensity,
-                        padding: widget.elParams.p.disableParams!.padding,
-                        alignment: widget.elParams.p.disableParams!.alignment,
-                        splashRadius:
-                            widget.elParams.p.disableParams!.splashRadius,
-                        color: widget.elParams.p.disableParams!.color,
-                        focusColor: widget.elParams.p.disableParams!.focusColor,
-                        hoverColor: widget.elParams.p.disableParams!.hoverColor,
-                        highlightColor:
-                            widget.elParams.p.disableParams!.highlightColor,
-                        splashColor:
-                            widget.elParams.p.disableParams!.splashColor,
-                        disabledColor: widget.elParams.p.enableTapLabel
-                            ? widget.elParams.p.enableParams!.color ??
-                                Colors.black87
-                            : widget.elParams.p.disableParams!.disabledColor,
-                        onPressed: widget.elParams.p.enableTapLabel
-                            ? null
-                            : () {
-                                _onTapCallback(i);
-                              },
-                        mouseCursor:
-                            widget.elParams.p.disableParams!.mouseCursor,
-                        focusNode: widget.elParams.p.disableParams!.focusNode,
-                        autofocus: widget.elParams.p.disableParams!.autofocus,
-                        tooltip: widget.elParams.p.disableParams!.tooltip,
-                        enableFeedback:
-                            widget.elParams.p.disableParams!.enableFeedback,
-                        constraints:
-                            widget.elParams.p.disableParams!.constraints,
-                        icon: widget.elParams.p.disableParams!.icon!,
-                      ),
-                widget.children.children[i]
-              ])));
+              children: _getIconAndWidget(i))));
     }
     return Column(
         mainAxisAlignment: MainAxisAlignment.start,

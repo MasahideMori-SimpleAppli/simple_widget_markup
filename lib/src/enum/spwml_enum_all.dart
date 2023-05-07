@@ -8,6 +8,7 @@ export 'enum_indicator_type.dart';
 export 'enum_orientation.dart';
 export 'enum_spwml_element_type.dart';
 export 'enum_spwml_params.dart';
+export 'enum_switch_btn_type.dart';
 export 'enum_text_decoration.dart';
 export 'enum_text_decoration_style.dart';
 export 'enum_textfield_params.dart';

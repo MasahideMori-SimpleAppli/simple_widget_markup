@@ -21,4 +21,6 @@ class RadioBtnParams {
   // This inner onTap parameter is disabled.
   InkWellParams enableTapInkWellParams = InkWellParams();
   OutlinedBorder? shape;
+  // The icon position.
+  bool isPrefixIcon = true;
 }

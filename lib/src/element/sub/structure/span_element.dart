@@ -1,17 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import '../../../element/super/multi_child_text_element.dart';
-import '../../../element_params/element_child.dart';
-import '../../../element_params/spwml_info.dart';
-import '../../../element_params/sub/structure/span_params.dart';
-import '../../../element_params/sub/text/text_params.dart';
-import '../../../element_params/super/spwml_params.dart';
-import '../../../enum/enum_spwml_params.dart';
-import '../../../enum/enum_spwml_element_type.dart';
-import '../../../style/spwml_font_style.dart';
-import '../text/href_element.dart';
-import '../text/ruby_text_element.dart';
-import '../text/text_element.dart';
+
+import '../../../../simple_widget_markup.dart';
 
 ///
 /// Author Masahide Mori
@@ -72,7 +62,29 @@ class SpanElement extends MultiChildTextElement {
     } else {
       elParams.p.richTextParams = RichTextParams();
     }
+    elParams.p.isLayoutStrictMode =
+        params.containsKey(EnumSpWMLParams.isLayoutStrictMode)
+            ? params[EnumSpWMLParams.isLayoutStrictMode]
+            : false;
     return this;
+  }
+
+  /// (en) Set onSelectionChanged function.
+  ///
+  /// (ja) 選択状態が変化した時のコールバックを設定します。
+  void setOnSelectionChanged(
+      void Function(TextSelection, SelectionChangedCause?)?
+          onSelectionChanged) {
+    elParams.p.selectableTextRichParams ??= SelectableTextRichParams();
+    elParams.p.selectableTextRichParams!.selectableTextParams
+        .onSelectionChanged = onSelectionChanged;
+  }
+
+  /// (en)If set to true, all child blocks will be calculated as WidgetSpan.
+  ///
+  /// (ja) trueを設定した場合、子ブロックを全てWidgetSpanとして計算します。
+  void setStrictMode(bool isEnable) {
+    elParams.p.isLayoutStrictMode = isEnable;
   }
 
   @override
@@ -163,49 +175,15 @@ class SpanElement extends MultiChildTextElement {
 
   List<InlineSpan> _convertChildren(BuildContext context) {
     List<InlineSpan> r = [];
-    if (children.children.length ==
-        (elParams.p.textSpanParamsList?.length ?? -1)) {
-      int count = 0;
-      final List<TextSpanParams> tsp = elParams.p.textSpanParamsList!;
+    if (elParams.p.isLayoutStrictMode) {
       for (Widget i in children.children) {
-        final int n = count;
-        if (i is HrefElement) {
-          r.add(TextSpan(
-              text: tsp[n].text ?? i.getDisplayText(),
-              children: tsp[n].children,
-              style: tsp[n].style ?? i.getStyle(),
-              recognizer: tsp[n].recognizer ??
-                  (TapGestureRecognizer()
-                    ..onTap = () {
-                      i.onTapFunc(context);
-                    }),
-              mouseCursor: tsp[n].mouseCursor,
-              onEnter: tsp[n].onEnter,
-              onExit: tsp[n].onExit,
-              semanticsLabel: tsp[n].semanticsLabel,
-              locale: tsp[n].locale,
-              spellOut: tsp[n].spellOut));
-        } else if (i is RubyTextElement) {
-          r.add(WidgetSpan(child: i));
+        if (i is SuperAndSubscriptElement) {
+          r.add(WidgetSpan(child: i.getInSpan(context)));
         } else if (i is TextElement) {
-          r.add(TextSpan(
-              text: tsp[n].text ?? i.spwmlParams.p.text,
-              children: tsp[n].children,
-              style: tsp[n].style ?? i.getStyle(),
-              recognizer: tsp[n].recognizer,
-              mouseCursor: tsp[n].mouseCursor,
-              onEnter: tsp[n].onEnter,
-              onExit: tsp[n].onExit,
-              semanticsLabel: tsp[n].semanticsLabel,
-              locale: tsp[n].locale,
-              spellOut: tsp[n].spellOut));
-        } else if (i is InlineSpan) {
-          // user added span widget
-          r.add(i as InlineSpan);
+          r.add(WidgetSpan(child: i.getInSpan(context)));
         } else {
           r.add(WidgetSpan(child: i));
         }
-        count += 1;
       }
     } else {
       for (Widget i in children.children) {
@@ -219,14 +197,13 @@ class SpanElement extends MultiChildTextElement {
                 }));
         } else if (i is RubyTextElement) {
           r.add(WidgetSpan(child: i));
+        } else if (i is SuperAndSubscriptElement) {
+          r.add(WidgetSpan(child: i.getInSpanOfNonStrictMode(context)));
         } else if (i is TextElement) {
           r.add(TextSpan(
             text: i.spwmlParams.p.text,
             style: i.getStyle(),
           ));
-        } else if (i is InlineSpan) {
-          // user added span widget
-          r.add(i as InlineSpan);
         } else {
           r.add(WidgetSpan(child: i));
         }
