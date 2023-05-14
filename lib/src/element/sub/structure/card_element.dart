@@ -70,8 +70,8 @@ class CardElement extends SingleChildElement {
       borderOnForeground: elParams.p.borderOnForeground,
       margin: elParams.p.margin,
       clipBehavior: elParams.p.clipBehavior ?? Clip.antiAliasWithSaveLayer,
-      child: elParams.p.child ?? child.getChild(),
       semanticContainer: elParams.p.semanticContainer,
+      child: elParams.p.child ?? child.getChild(),
     );
   }
 }

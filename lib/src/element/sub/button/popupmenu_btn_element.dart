@@ -102,13 +102,13 @@ class PopupMenuBtnElement extends MultiChildElement {
         final int v = count;
         if (elParams.p.menuCallback != null) {
           menus.add(PopupMenuItem(
-              child: i,
               value: v,
               onTap: () {
                 elParams.p.menuCallback!(v);
-              }));
+              },
+              child: i));
         } else {
-          menus.add(PopupMenuItem(child: i, value: v));
+          menus.add(PopupMenuItem(value: v, child: i));
         }
         count += 1;
       }
@@ -153,7 +153,6 @@ class _PopupMenuElementWidgetState extends State<_PopupMenuElementWidget> {
       tooltip: widget.elParam.p.tooltip,
       elevation: widget.elParam.p.elevation,
       padding: widget.elParam.p.padding,
-      child: widget.elParam.p.child,
       splashRadius: widget.elParam.p.splashRadius,
       icon: widget.elParam.p.icon,
       iconSize: widget.elParam.p.iconSize,
@@ -164,6 +163,7 @@ class _PopupMenuElementWidgetState extends State<_PopupMenuElementWidget> {
       enableFeedback: widget.elParam.p.enableFeedback,
       constraints: widget.elParam.p.constraints,
       position: widget.elParam.p.position,
+      child: widget.elParam.p.child,
     );
   }
 }

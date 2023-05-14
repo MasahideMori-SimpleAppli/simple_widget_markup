@@ -1,3 +1,11 @@
+## 16.0.0
+* Supported Dart 3.
+* Added btn type of filled, filledTonal, iconFilled, iconFilledTonal, iconOutlined.
+* super and subscript default mag change. Support parameter of mag, mag is changing display magnification of super and subscript.
+* Added windows class breakpoint support to SpWMLLayoutManager.
+* Added autoConfigureTextFieldManager method to SpWMLBuilder.
+* Some minor fixes and addition of missing parameters.
+
 ## 15.0.0
 * Added passwordPrefix and searchPrefix type to tf.
 * Default fill color change to null in tf.

@@ -147,7 +147,6 @@ class _CheckboxElementWidgetState extends State<_CheckboxElementWidget> {
     if (widget.elParams.p.enableTapLabel) {
       return InkWell(
         key: widget.elParams.p.enableTapInkWellParams.key,
-        child: w,
         onTap: () {
           _onTapCallback(index);
         },
@@ -178,6 +177,7 @@ class _CheckboxElementWidgetState extends State<_CheckboxElementWidget> {
             widget.elParams.p.enableTapInkWellParams.canRequestFocus,
         onFocusChange: widget.elParams.p.enableTapInkWellParams.onFocusChange,
         autofocus: widget.elParams.p.enableTapInkWellParams.autofocus,
+        child: w,
       );
     } else {
       return w;

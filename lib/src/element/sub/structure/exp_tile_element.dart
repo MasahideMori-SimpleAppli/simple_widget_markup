@@ -93,7 +93,6 @@ class ExpTileElement extends MultiChildTextElement {
           ),
       subtitle: elParams.p.subtitle,
       onExpansionChanged: elParams.p.onExpansionChanged,
-      children: elParams.p.children ?? children.getChildren(),
       trailing: elParams.p.trailing,
       initiallyExpanded: elParams.p.initiallyExpanded,
       maintainState: elParams.p.maintainState,
@@ -108,6 +107,7 @@ class ExpTileElement extends MultiChildTextElement {
       iconColor: elParams.p.iconColor,
       collapsedIconColor: elParams.p.collapsedIconColor,
       controlAffinity: elParams.p.controlAffinity,
+      children: elParams.p.children ?? children.getChildren(),
     );
   }
 }

@@ -11,8 +11,6 @@ class BtnParamsWrapper {
 
 class NormalBtnParams {
   Key? key;
-  Widget? icon;
-  Widget? label;
   void Function()? onPressed = () {};
   void Function()? onLongPress;
   void Function(bool)? onHover;
@@ -21,6 +19,9 @@ class NormalBtnParams {
   FocusNode? focusNode;
   bool? autofocus;
   Clip? clipBehavior;
+  MaterialStatesController? statesController;
+  Widget? icon;
+  Widget? label;
 }
 
 class IconBtnParams {
@@ -43,6 +44,9 @@ class IconBtnParams {
   String? tooltip;
   bool enableFeedback = true;
   BoxConstraints? constraints;
+  ButtonStyle? style;
+  bool? isSelected;
+  Widget? selectedIcon;
   Widget? icon;
 }
 
@@ -73,6 +77,7 @@ class InkWellParams {
   bool canRequestFocus = true;
   void Function(bool)? onFocusChange;
   bool autofocus = false;
+  MaterialStatesController? statesController;
 }
 
 class BtnParams {

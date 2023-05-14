@@ -27,21 +27,13 @@ class SpWMLException implements Exception {
     if (info == null) {
       return "";
     } else {
-      return ", Hint:" + info!.errorHint;
+      return ", Hint:${info!.errorHint}";
     }
   }
 
   @override
   String toString() =>
-      "SpWMLException, Type:" +
-      type.toStr() +
-      ", Line:" +
-      lineStart.toString() +
-      "-" +
-      lineEnd.toString() +
-      ", " +
-      type.toErrorText() +
-      _getHint();
+      "SpWMLException, Type:${type.toStr()}, Line:$lineStart-$lineEnd, ${type.toErrorText()}${_getHint()}";
 }
 
 enum EnumSpWMLExceptionType {

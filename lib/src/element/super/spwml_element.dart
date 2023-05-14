@@ -323,6 +323,7 @@ class SpWMLElement extends StatelessWidget {
       margin: spwmlParams.p.containerParams!.margin,
       transform: spwmlParams.p.containerParams!.transform,
       transformAlignment: spwmlParams.p.containerParams!.transformAlignment,
+      clipBehavior: spwmlParams.p.containerParams!.clipBehavior,
       child: Ink(
           color: spwmlParams.p.containerParams!.decoration == null
               ? spwmlParams.p.containerParams!.color
@@ -330,7 +331,6 @@ class SpWMLElement extends StatelessWidget {
           decoration: spwmlParams.p.containerParams!.decoration,
           child: Container(
               padding: spwmlParams.p.containerParams!.padding, child: child)),
-      clipBehavior: spwmlParams.p.containerParams!.clipBehavior,
     );
   }
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../simple_widget_markup.dart';
+import 'enum/enum_window_class.dart';
 
 ///
 /// (en)A manager class for managing SpWML layout files with a singleton.
@@ -280,6 +281,22 @@ class SpWMLLayoutManager {
       return EnumOrientation.horizontal;
     } else {
       return EnumOrientation.vertical;
+    }
+  }
+
+  /// (en) Returns the window class.
+  ///
+  /// (ja) ウィンドウクラスを返します。
+  ///
+  /// (reference) https://m3.material.io/foundations/layout/applying-layout/window-size-classes
+  static EnumWindowClass getWindowClass(BuildContext context) {
+    final double w = getScreenWidth(context);
+    if (w < 600) {
+      return EnumWindowClass.compact;
+    } else if (600 < w && w < 840) {
+      return EnumWindowClass.medium;
+    } else {
+      return EnumWindowClass.expanded;
     }
   }
 }

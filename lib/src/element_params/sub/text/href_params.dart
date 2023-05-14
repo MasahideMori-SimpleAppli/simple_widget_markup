@@ -8,6 +8,9 @@ class HrefParamsWrapper {
 }
 
 class HrefParams {
+  static const defUrlOpenErrorMsg = "The specified URL could not be opened.";
   String? alt;
   InkWellParams inkWellParams = InkWellParams();
+  String urlOpenErrorMsg = defUrlOpenErrorMsg;
+  Duration urlOpenErrorMsgDuration = const Duration(seconds: 3);
 }

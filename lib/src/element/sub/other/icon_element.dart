@@ -64,10 +64,14 @@ class IconElement extends SpWMLElement {
       elParams.p.icon,
       key: elParams.p.key,
       size: elParams.p.size,
+      fill: elParams.p.fill,
+      weight: elParams.p.weight,
+      grade: elParams.p.grade,
+      opticalSize: elParams.p.opticalSize,
       color: elParams.p.color,
+      shadows: elParams.p.shadows,
       semanticLabel: elParams.p.semanticLabel,
       textDirection: elParams.p.textDirection,
-      shadows: elParams.p.shadows,
     );
   }
 }

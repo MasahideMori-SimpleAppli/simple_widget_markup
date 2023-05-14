@@ -48,7 +48,10 @@ class SuperAndSubscriptElement extends TextElement {
     elParams.p.baselineCorrection =
         params.containsKey(EnumSpWMLParams.baselineCorrection)
             ? params[EnumSpWMLParams.baselineCorrection]
-            : 0.0;
+            : SuperAndSubscriptParams.defBaselineCorrection;
+    elParams.p.magnification = params.containsKey(EnumSpWMLParams.mag)
+        ? params[EnumSpWMLParams.mag]
+        : SuperAndSubscriptParams.defMag;
     return this;
   }
 
@@ -97,14 +100,14 @@ class SuperAndSubscriptElement extends TextElement {
     if (type == EnumSpWMLElementType.superscript) {
       return Offset(
           0,
-          _amplifiedValue(getFontSize()!, 1.26) / 4 +
+          _amplifiedValue(getFontSize()!, 1.225) / 4 +
               getFontSize()! / 2 +
               (-1 * super.getFontSize()!) +
               elParams.p.baselineCorrection);
     } else {
       return Offset(
           0,
-          _amplifiedValue(getFontSize()!, 1.26) / 4 +
+          _amplifiedValue(getFontSize()!, 1.225) / 4 +
               elParams.p.baselineCorrection);
     }
   }

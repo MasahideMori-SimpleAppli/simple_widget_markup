@@ -67,11 +67,11 @@ class ScrollElement extends SingleChildElement {
       primary: elParams.p.primary,
       physics: elParams.p.physics,
       controller: elParams.p.controller,
-      child: child.getChild(),
       dragStartBehavior: elParams.p.dragStartBehavior,
       clipBehavior: elParams.p.clipBehavior,
       restorationId: elParams.p.restorationId,
       keyboardDismissBehavior: elParams.p.keyboardDismissBehavior,
+      child: child.getChild(),
     );
   }
 }

@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../element_params/spwml_info.dart';
-import 'text_element.dart';
-import '../../../element_params/sub/text/href_params.dart';
-import '../../../element_params/sub/text/text_params.dart';
-import '../../../element_params/super/spwml_params.dart';
-import '../../../enum/enum_spwml_params.dart';
-import '../../../enum/enum_spwml_element_type.dart';
-import '../../../style/spwml_font_style.dart';
-
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../../../simple_widget_markup.dart';
 
 ///
 /// Author Masahide Mori
@@ -60,7 +53,6 @@ class HrefElement extends TextElement {
   Widget getWidget(BuildContext context) {
     return InkWell(
       key: elParams.p.inkWellParams.key,
-      child: getText(context),
       onTap: () {
         if (elParams.p.inkWellParams.onTap != null) {
           elParams.p.inkWellParams.onTap!();
@@ -90,6 +82,7 @@ class HrefElement extends TextElement {
       canRequestFocus: elParams.p.inkWellParams.canRequestFocus,
       onFocusChange: elParams.p.inkWellParams.onFocusChange,
       autofocus: elParams.p.inkWellParams.autofocus,
+      child: getText(context),
     );
   }
 
@@ -125,10 +118,12 @@ class HrefElement extends TextElement {
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text("The specified URL could not be opened."),
-        duration: Duration(seconds: 3),
-      ));
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(elParams.p.urlOpenErrorMsg),
+          duration: elParams.p.urlOpenErrorMsgDuration,
+        ));
+      }
     }
   }
 }

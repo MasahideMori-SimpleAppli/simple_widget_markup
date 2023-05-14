@@ -24,7 +24,7 @@ class UtilParams {
     if (color.startsWith('#')) {
       String c = color.toUpperCase().replaceAll('#', '');
       if (c.length == 6) {
-        c = 'FF' + c;
+        c = 'FF$c';
       }
       return Color(
           int.tryParse(c, radix: 16) ?? int.parse("FFFFFFFF", radix: 16));

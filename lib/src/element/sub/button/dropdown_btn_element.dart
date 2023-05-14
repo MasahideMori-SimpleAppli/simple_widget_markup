@@ -118,13 +118,13 @@ class DropdownBtnElement extends MultiChildElement {
         final int v = count;
         if (elParams.p.menuCallback != null) {
           menus.add(DropdownMenuItem(
-              child: i,
               value: v,
               onTap: () {
                 elParams.p.menuCallback!(v);
-              }));
+              },
+              child: i));
         } else {
-          menus.add(DropdownMenuItem(child: i, value: v));
+          menus.add(DropdownMenuItem(value: v, child: i));
         }
         count += 1;
       }
@@ -195,6 +195,7 @@ class _DropDownElementWidgetState extends State<_DropDownElementWidget> {
       enableFeedback: widget.elParams.p.enableFeedback,
       alignment: widget.elParams.p.alignment,
       borderRadius: widget.elParams.p.borderRadius,
+      padding: widget.elParams.p.padding,
       onChanged: (int? v) => {
         setState(() {
           if (v != null) {

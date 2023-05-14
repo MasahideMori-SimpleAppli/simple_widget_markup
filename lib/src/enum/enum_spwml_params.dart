@@ -55,9 +55,9 @@ enum EnumSpWMLParams {
   color,
   // material 3 color mode flag.
   isV3,
-  // icon btn param
+  // icon btn param.
   isSelected,
-  selectedIcon,
+  selectedIconNum,
   // text base line.
   baselineType,
   baselineCorrection,
@@ -142,6 +142,8 @@ enum EnumSpWMLParams {
   clipType,
   clipRadius,
   isLayoutStrictMode,
+  //倍率
+  mag,
   // フルネーム系は利用頻度が低いので、解析の優先度を下げる。
   mLeft,
   mTop,
@@ -226,7 +228,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.cpT ||
           this == EnumSpWMLParams.cpR ||
           this == EnumSpWMLParams.cpB ||
-          this == EnumSpWMLParams.baselineCorrection) {
+          this == EnumSpWMLParams.baselineCorrection ||
+          this == EnumSpWMLParams.mag) {
         return double.parse(v);
       }
       if (this == EnumSpWMLParams.weight || this == EnumSpWMLParams.hNum) {
@@ -368,7 +371,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           throw Exception();
         }
       } else if (this == EnumSpWMLParams.iconNum ||
-          this == EnumSpWMLParams.suffixIconNum) {
+          this == EnumSpWMLParams.suffixIconNum ||
+          this == EnumSpWMLParams.selectedIconNum) {
         if (v.startsWith('0x')) {
           v = v.replaceFirst('0x', '');
         }
@@ -407,7 +411,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.isGone ||
           this == EnumSpWMLParams.isPrefixIcon ||
           this == EnumSpWMLParams.isV3 ||
-          this == EnumSpWMLParams.isLayoutStrictMode) {
+          this == EnumSpWMLParams.isLayoutStrictMode ||
+          this == EnumSpWMLParams.isSelected) {
         if (type == EnumSpWMLElementType.progressIndicator) {
           return double.parse(v);
         } else {
@@ -544,8 +549,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
     // icon btn params
     else if (s == EnumSpWMLParams.isSelected.name) {
       return EnumSpWMLParams.isSelected;
-    } else if (s == EnumSpWMLParams.selectedIcon.name) {
-      return EnumSpWMLParams.selectedIcon;
+    } else if (s == EnumSpWMLParams.selectedIconNum.name) {
+      return EnumSpWMLParams.selectedIconNum;
     }
     // text baseline
     else if (s == EnumSpWMLParams.baselineType.name) {
@@ -714,6 +719,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       return EnumSpWMLParams.clipRadius;
     } else if (s == EnumSpWMLParams.isLayoutStrictMode.name) {
       return EnumSpWMLParams.isLayoutStrictMode;
+    } else if (s == EnumSpWMLParams.mag.name) {
+      return EnumSpWMLParams.mag;
     }
     // フルネーム系は利用頻度が低いので、解析の優先度を下げる。
     else if (s == EnumSpWMLParams.mLeft.name) {

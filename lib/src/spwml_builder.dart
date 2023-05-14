@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:textfield_manager/textfield_manager.dart';
 import '../simple_widget_markup.dart';
 
 ///
@@ -385,5 +386,26 @@ class SpWMLBuilder {
           crossAxisAlignment: crossAA,
           children: _getStructuralWidget(context),
         ));
+  }
+
+  /// (en)Both TextEditingController and FocusNode are automatically set
+  /// with the sid set in the layout as a key.
+  /// The initial value set is empty.
+  ///
+  /// (ja)レイアウトに設定されているsidをキーとして、
+  /// TextEditingControllerとFocusNodeの両方を自動設定します。
+  /// 設定される初期値は空です。
+  ///
+  /// * [tfm] : The manager for text fields.
+  void autoConfigureTextFieldManager(TextFieldManager tfm) {
+    for (SpWMLElement i in _parsedWidgets) {
+      if (i.type != EnumSpWMLElementType.textField) {
+        continue;
+      }
+      if (i.params.containsKey(EnumSpWMLParams.sid)) {
+        TextFieldElement tfe = i as TextFieldElement;
+        tfe.setManager(tfm, i.params[EnumSpWMLParams.sid]);
+      }
+    }
   }
 }

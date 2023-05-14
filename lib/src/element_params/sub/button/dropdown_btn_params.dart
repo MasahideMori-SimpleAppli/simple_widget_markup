@@ -45,6 +45,7 @@ class DropdownBtnParams {
   bool? enableFeedback;
   AlignmentGeometry alignment = AlignmentDirectional.centerStart;
   BorderRadius? borderRadius;
+  EdgeInsetsGeometry? padding;
   // others
   List<DropdownMenuItemParams> dropdownMenuItemParams = [];
   int? selectedIndex;
