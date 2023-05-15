@@ -16,7 +16,11 @@ enum EnumBtnType {
   iconOutlined,
   block,
   filled,
-  filledTonal
+  filledTonal,
+  faSmall,
+  faExtended,
+  fa,
+  faLarge
 }
 
 extension EXTEnumBtnType on EnumBtnType {
@@ -43,6 +47,14 @@ extension EXTEnumBtnType on EnumBtnType {
       return EnumBtnType.filled;
     } else if (s == EnumBtnType.filledTonal.name) {
       return EnumBtnType.filledTonal;
+    } else if (s == EnumBtnType.faSmall.name) {
+      return EnumBtnType.faSmall;
+    } else if (s == EnumBtnType.faExtended.name) {
+      return EnumBtnType.faExtended;
+    } else if (s == EnumBtnType.fa.name) {
+      return EnumBtnType.fa;
+    } else if (s == EnumBtnType.faLarge.name) {
+      return EnumBtnType.faLarge;
     } else {
       throw SpWMLException(
           EnumSpWMLExceptionType.typeException, lineStart, lineEnd, info);

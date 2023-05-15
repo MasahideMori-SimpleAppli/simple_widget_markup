@@ -91,6 +91,23 @@ class BtnElement extends SingleChildTextElement {
         InkWellParams p = InkWellParams();
         elParams.p.inkWellBtnParams = p;
       }
+    } else if (elParams.p.type == EnumBtnType.faSmall ||
+        elParams.p.type == EnumBtnType.faExtended ||
+        elParams.p.type == EnumBtnType.fa ||
+        elParams.p.type == EnumBtnType.faLarge) {
+      FAButtonParams p = FAButtonParams();
+      if (elParams.p.type == EnumBtnType.faExtended) {
+        p.fabExtParams.icon = elParams.p.isUseIcon ? _getIcon(false) : null;
+        p.fabExtParams.extendedTextStyle = getStyle();
+      } else {
+        p.child = elParams.p.isUseIcon ? _getIcon(false) : null;
+      }
+      p.foregroundColor = params.containsKey(EnumSpWMLParams.fgColor)
+          ? params[EnumSpWMLParams.fgColor]
+          : null;
+      p.backgroundColor = _getBtnColor();
+      p.shape = getShape();
+      elParams.p.faButtonParams = p;
     } else {
       NormalBtnParams p = NormalBtnParams();
       p.icon = elParams.p.isUseIcon ? _getIcon(false) : null;
@@ -409,6 +426,118 @@ class BtnElement extends SingleChildTextElement {
         selectedIcon: elParams.p.iconBtnParams!.selectedIcon,
         icon: elParams.p.iconBtnParams!.icon!,
       );
+    } else if (elParams.p.type == EnumBtnType.faSmall) {
+      return FloatingActionButton.small(
+        key: elParams.p.faButtonParams!.key,
+        tooltip: elParams.p.faButtonParams!.tooltip,
+        foregroundColor: elParams.p.faButtonParams!.foregroundColor,
+        backgroundColor: elParams.p.faButtonParams!.backgroundColor,
+        focusColor: elParams.p.faButtonParams!.focusColor,
+        hoverColor: elParams.p.faButtonParams!.hoverColor,
+        splashColor: elParams.p.faButtonParams!.splashColor,
+        heroTag: elParams.p.faButtonParams!.heroTag,
+        elevation: elParams.p.faButtonParams!.elevation,
+        focusElevation: elParams.p.faButtonParams!.focusElevation,
+        hoverElevation: elParams.p.faButtonParams!.hoverElevation,
+        highlightElevation: elParams.p.faButtonParams!.highlightElevation,
+        disabledElevation: elParams.p.faButtonParams!.disabledElevation,
+        onPressed: elParams.p.faButtonParams!.onPressed,
+        mouseCursor: elParams.p.faButtonParams!.mouseCursor,
+        shape: elParams.p.faButtonParams!.shape,
+        clipBehavior: elParams.p.faButtonParams!.clipBehavior,
+        focusNode: elParams.p.faButtonParams!.focusNode,
+        autofocus: elParams.p.faButtonParams!.autofocus,
+        materialTapTargetSize: elParams.p.faButtonParams!.materialTapTargetSize,
+        enableFeedback: elParams.p.faButtonParams!.enableFeedback,
+        child: elParams.p.faButtonParams!.child,
+      );
+    } else if (elParams.p.type == EnumBtnType.faExtended) {
+      return FloatingActionButton.extended(
+          key: elParams.p.faButtonParams!.key,
+          tooltip: elParams.p.faButtonParams!.tooltip,
+          foregroundColor: elParams.p.faButtonParams!.foregroundColor,
+          backgroundColor: elParams.p.faButtonParams!.backgroundColor,
+          focusColor: elParams.p.faButtonParams!.focusColor,
+          hoverColor: elParams.p.faButtonParams!.hoverColor,
+          splashColor: elParams.p.faButtonParams!.splashColor,
+          heroTag: elParams.p.faButtonParams!.heroTag,
+          elevation: elParams.p.faButtonParams!.elevation,
+          focusElevation: elParams.p.faButtonParams!.focusElevation,
+          hoverElevation: elParams.p.faButtonParams!.hoverElevation,
+          highlightElevation: elParams.p.faButtonParams!.highlightElevation,
+          disabledElevation: elParams.p.faButtonParams!.disabledElevation,
+          onPressed: elParams.p.faButtonParams!.onPressed,
+          mouseCursor: elParams.p.faButtonParams!.mouseCursor,
+          shape: elParams.p.faButtonParams!.shape,
+          clipBehavior: elParams.p.faButtonParams!.clipBehavior,
+          focusNode: elParams.p.faButtonParams!.focusNode,
+          autofocus: elParams.p.faButtonParams!.autofocus,
+          materialTapTargetSize:
+              elParams.p.faButtonParams!.materialTapTargetSize,
+          enableFeedback: elParams.p.faButtonParams!.enableFeedback,
+          isExtended: true,
+          extendedIconLabelSpacing:
+              elParams.p.faButtonParams!.fabExtParams.extendedIconLabelSpacing,
+          extendedPadding:
+              elParams.p.faButtonParams!.fabExtParams.extendedPadding,
+          extendedTextStyle:
+              elParams.p.faButtonParams!.fabExtParams.extendedTextStyle,
+          icon: elParams.p.faButtonParams!.fabExtParams.icon,
+          label: child.child == null
+              ? (elParams.p.faButtonParams!.child ?? getText(context))
+              : child.child!);
+    } else if (elParams.p.type == EnumBtnType.fa) {
+      return FloatingActionButton(
+        key: elParams.p.faButtonParams!.key,
+        tooltip: elParams.p.faButtonParams!.tooltip,
+        foregroundColor: elParams.p.faButtonParams!.foregroundColor,
+        backgroundColor: elParams.p.faButtonParams!.backgroundColor,
+        focusColor: elParams.p.faButtonParams!.focusColor,
+        hoverColor: elParams.p.faButtonParams!.hoverColor,
+        splashColor: elParams.p.faButtonParams!.splashColor,
+        heroTag: elParams.p.faButtonParams!.heroTag,
+        elevation: elParams.p.faButtonParams!.elevation,
+        focusElevation: elParams.p.faButtonParams!.focusElevation,
+        hoverElevation: elParams.p.faButtonParams!.hoverElevation,
+        highlightElevation: elParams.p.faButtonParams!.highlightElevation,
+        disabledElevation: elParams.p.faButtonParams!.disabledElevation,
+        onPressed: elParams.p.faButtonParams!.onPressed,
+        mouseCursor: elParams.p.faButtonParams!.mouseCursor,
+        mini: false,
+        shape: elParams.p.faButtonParams!.shape,
+        clipBehavior: elParams.p.faButtonParams!.clipBehavior,
+        focusNode: elParams.p.faButtonParams!.focusNode,
+        autofocus: elParams.p.faButtonParams!.autofocus,
+        materialTapTargetSize: elParams.p.faButtonParams!.materialTapTargetSize,
+        enableFeedback: elParams.p.faButtonParams!.enableFeedback,
+        isExtended: false,
+        child: elParams.p.faButtonParams!.child,
+      );
+    } else if (elParams.p.type == EnumBtnType.faLarge) {
+      return FloatingActionButton.large(
+        key: elParams.p.faButtonParams!.key,
+        tooltip: elParams.p.faButtonParams!.tooltip,
+        foregroundColor: elParams.p.faButtonParams!.foregroundColor,
+        backgroundColor: elParams.p.faButtonParams!.backgroundColor,
+        focusColor: elParams.p.faButtonParams!.focusColor,
+        hoverColor: elParams.p.faButtonParams!.hoverColor,
+        splashColor: elParams.p.faButtonParams!.splashColor,
+        heroTag: elParams.p.faButtonParams!.heroTag,
+        elevation: elParams.p.faButtonParams!.elevation,
+        focusElevation: elParams.p.faButtonParams!.focusElevation,
+        hoverElevation: elParams.p.faButtonParams!.hoverElevation,
+        highlightElevation: elParams.p.faButtonParams!.highlightElevation,
+        disabledElevation: elParams.p.faButtonParams!.disabledElevation,
+        onPressed: elParams.p.faButtonParams!.onPressed,
+        mouseCursor: elParams.p.faButtonParams!.mouseCursor,
+        shape: elParams.p.faButtonParams!.shape,
+        clipBehavior: elParams.p.faButtonParams!.clipBehavior,
+        focusNode: elParams.p.faButtonParams!.focusNode,
+        autofocus: elParams.p.faButtonParams!.autofocus,
+        materialTapTargetSize: elParams.p.faButtonParams!.materialTapTargetSize,
+        enableFeedback: elParams.p.faButtonParams!.enableFeedback,
+        child: elParams.p.faButtonParams!.child,
+      );
     } else {
       // block type
       return InkWell(
@@ -448,10 +577,18 @@ class BtnElement extends SingleChildTextElement {
   /// (ja)このボタンのクリック時動作を設定します。
   /// * [callback] : Button callback.
   void setBtnCallback(void Function()? callback) {
-    if (elParams.p.type == EnumBtnType.icon) {
+    if (elParams.p.type == EnumBtnType.icon ||
+        elParams.p.type == EnumBtnType.iconFilled ||
+        elParams.p.type == EnumBtnType.iconFilledTonal ||
+        elParams.p.type == EnumBtnType.iconOutlined) {
       elParams.p.iconBtnParams!.onPressed = callback;
     } else if (elParams.p.type == EnumBtnType.block) {
       elParams.p.inkWellBtnParams!.onTap = callback;
+    } else if (elParams.p.type == EnumBtnType.faSmall ||
+        elParams.p.type == EnumBtnType.faExtended ||
+        elParams.p.type == EnumBtnType.fa ||
+        elParams.p.type == EnumBtnType.faLarge) {
+      elParams.p.faButtonParams!.onPressed = callback;
     } else {
       elParams.p.normalBtnParams!.onPressed = callback;
     }
@@ -466,6 +603,7 @@ class BtnElement extends SingleChildTextElement {
     elParams.p.iconBtnParams?.onPressed = null;
     elParams.p.inkWellBtnParams?.onTap = null;
     elParams.p.normalBtnParams?.onPressed = null;
+    elParams.p.faButtonParams?.onPressed = null;
   }
 
   Color? _getBtnColor() {

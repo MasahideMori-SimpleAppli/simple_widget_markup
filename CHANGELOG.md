@@ -1,3 +1,12 @@
+## 17.0.0
+* Removed EnumDeviceType and change only use window class.
+* Fixed flutter version dependencies.
+* Added any to EnumWindowClass.
+* Fixed miss addition of EnumWindowClass reference.
+* Fixed of SpWMLLayoutManager window class judgement.
+* Fixed BtnElement setCallback method.
+* Added btn type faSmall, faExtended, fa, faLarge. These are floating action buttons.
+
 ## 16.0.0
 * Supported Dart 3.
 * Added btn type of filled, filledTonal, iconFilled, iconFilledTonal, iconOutlined.

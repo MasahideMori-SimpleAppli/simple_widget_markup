@@ -80,10 +80,54 @@ class InkWellParams {
   MaterialStatesController? statesController;
 }
 
+class FAButtonDefaultHeroTag {
+  const FAButtonDefaultHeroTag();
+
+  @override
+  String toString() => 'DefFAButtonHeroTag';
+}
+
+class FAButtonExtendedParams {
+  double? extendedIconLabelSpacing;
+  EdgeInsetsGeometry? extendedPadding;
+  TextStyle? extendedTextStyle;
+  Widget? icon;
+// Label parameter does not exist. Use child parameter of FAButtonParams.
+}
+
+class FAButtonParams {
+  Key? key;
+  Widget? child;
+  String? tooltip;
+  Color? foregroundColor;
+  Color? backgroundColor;
+  Color? focusColor;
+  Color? hoverColor;
+  Color? splashColor;
+  Object? heroTag = const FAButtonDefaultHeroTag();
+  double? elevation;
+  double? focusElevation;
+  double? hoverElevation;
+  double? highlightElevation;
+  double? disabledElevation;
+  void Function()? onPressed = () {};
+  MouseCursor? mouseCursor = SystemMouseCursors.click;
+  ShapeBorder? shape;
+  Clip clipBehavior = Clip.none;
+  FocusNode? focusNode;
+  bool autofocus = false;
+  MaterialTapTargetSize? materialTapTargetSize;
+  bool? enableFeedback;
+
+  // extended params
+  FAButtonExtendedParams fabExtParams = FAButtonExtendedParams();
+}
+
 class BtnParams {
   EnumBtnType? type;
   bool isUseIcon = false;
   NormalBtnParams? normalBtnParams;
   IconBtnParams? iconBtnParams;
   InkWellParams? inkWellBtnParams;
+  FAButtonParams? faButtonParams;
 }

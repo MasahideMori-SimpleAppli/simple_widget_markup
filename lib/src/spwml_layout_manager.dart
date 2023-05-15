@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../simple_widget_markup.dart';
-import 'enum/enum_window_class.dart';
 
 ///
 /// (en)A manager class for managing SpWML layout files with a singleton.
@@ -216,49 +215,6 @@ class SpWMLLayoutManager {
     return MediaQuery.of(context).size.width;
   }
 
-  /// (en) Determines if the current device is smartphone size.
-  /// By default, true is returned if either height or width is 480px or less.
-  ///
-  /// (ja) 現在のデバイスがスマホサイズかどうかを判定します。
-  /// デフォルトでは縦横どちらかが480px以下であればtrueが返されます。
-  static bool isSmartPhone(BuildContext context, {double threshold = 480}) {
-    return getScreenHeight(context) <= threshold ||
-        getScreenWidth(context) <= threshold;
-  }
-
-  /// (en) Determines if the current device is tablet size or less.
-  /// By default, true is returned if either height or width is 1024px or less.
-  ///
-  /// (ja) 現在のデバイスがタブレットサイズ以下かどうかを判定します。
-  /// デフォルトでは縦横どちらかが1024px以下であればtrueが返されます。
-  static bool isTablet(BuildContext context, {double threshold = 1024}) {
-    return getScreenHeight(context) <= threshold ||
-        getScreenWidth(context) <= threshold;
-  }
-
-  /// (en) Determines if the current device is PC size.
-  /// By default, true is returned if both height and width exceed 1024px.
-  ///
-  /// (ja) 現在のデバイスがPCサイズかどうかを判定します。
-  /// デフォルトでは縦横両方が1024pxを超える場合にtrueが返されます。
-  static bool isPC(BuildContext context, {double threshold = 1024}) {
-    return !isTablet(context, threshold: threshold);
-  }
-
-  /// (en) Determines and returns the device type (PC, Tablet, Phone).
-  ///
-  /// (ja) デバイスの種類 (PC, Tablet, Phone)を判定して返します。
-  static EnumDeviceType getDeviceType(BuildContext context,
-      {phoneThreshold = 480, tabletThreshold = 1024}) {
-    if (isSmartPhone(context, threshold: phoneThreshold)) {
-      return EnumDeviceType.phone;
-    } else if (isTablet(context, threshold: tabletThreshold)) {
-      return EnumDeviceType.tablet;
-    } else {
-      return EnumDeviceType.pc;
-    }
-  }
-
   /// (en) Returns True if the current device is in portrait orientation.
   ///
   /// (ja) 現在のデバイスが縦向きならTrueを返します。
@@ -284,16 +240,16 @@ class SpWMLLayoutManager {
     }
   }
 
-  /// (en) Returns the window class.
+  /// (en) Returns the window class. Classes are determined by width.
   ///
-  /// (ja) ウィンドウクラスを返します。
+  /// (ja) ウィンドウクラスを返します。クラスは幅を基準として判定されます。
   ///
-  /// (reference) https://m3.material.io/foundations/layout/applying-layout/window-size-classes
+  /// (reference) https://developer.android.com/guide/topics/large-screens/support-different-screen-sizes?hl=ja#window_size_classes
   static EnumWindowClass getWindowClass(BuildContext context) {
     final double w = getScreenWidth(context);
     if (w < 600) {
       return EnumWindowClass.compact;
-    } else if (600 < w && w < 840) {
+    } else if (600 <= w && w < 840) {
       return EnumWindowClass.medium;
     } else {
       return EnumWindowClass.expanded;
