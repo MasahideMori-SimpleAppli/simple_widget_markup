@@ -35,7 +35,7 @@ class SpWMLBuilder {
       {this.mainAA = MainAxisAlignment.start,
       this.crossAA = CrossAxisAlignment.start,
       this.margin = const EdgeInsets.all(0),
-      this.padding = const EdgeInsets.all(8),
+      this.padding = const EdgeInsets.all(0),
       SpWMLFontStyle? spWMLStyle,
       this.info,
       this.key})

@@ -1,3 +1,6 @@
+## 18.0.0
+* SpWMLBuilder and SpWML widget default padding changed to zero.
+
 ## 17.0.0
 * Removed EnumDeviceType and change only use window class.
 * Fixed flutter version dependencies.
