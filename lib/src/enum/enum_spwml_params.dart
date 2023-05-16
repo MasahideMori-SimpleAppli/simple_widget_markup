@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../simple_widget_markup.dart';
 
 ///
@@ -142,7 +141,9 @@ enum EnumSpWMLParams {
   clipType,
   clipRadius,
   isLayoutStrictMode,
-  //倍率
+  // スクロールの許可設定
+  scrollBehavior,
+  // 倍率
   mag,
   // フルネーム系は利用頻度が低いので、解析の優先度を下げる。
   mLeft,
@@ -452,6 +453,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
         } else {
           throw Exception();
         }
+      } else if (this == EnumSpWMLParams.scrollBehavior) {
+        return EXTEnumScrollBehavior.toObjFromStr(v, lineStart, lineEnd, info);
       } else {
         // 変換不要ならそのまま返す。
         return v;
@@ -719,6 +722,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       return EnumSpWMLParams.clipRadius;
     } else if (s == EnumSpWMLParams.isLayoutStrictMode.name) {
       return EnumSpWMLParams.isLayoutStrictMode;
+    } else if (s == EnumSpWMLParams.scrollBehavior.name) {
+      return EnumSpWMLParams.scrollBehavior;
     } else if (s == EnumSpWMLParams.mag.name) {
       return EnumSpWMLParams.mag;
     }

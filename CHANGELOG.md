@@ -1,3 +1,6 @@
+## 18.1.0
+* Added scrollBehavior param to ScrollElement.
+
 ## 18.0.0
 * SpWMLBuilder and SpWML widget default padding changed to zero.
 

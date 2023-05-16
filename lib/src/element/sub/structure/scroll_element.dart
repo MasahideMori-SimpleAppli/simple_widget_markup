@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import '../../../element/super/single_child_element.dart';
 import '../../../element_params/element_child.dart';
@@ -54,24 +56,52 @@ class ScrollElement extends SingleChildElement {
     elParams.p.scrollDirection = params.containsKey(EnumSpWMLParams.axis)
         ? params[EnumSpWMLParams.axis]!
         : Axis.vertical;
+    elParams.p.scrollBehavior =
+        params.containsKey(EnumSpWMLParams.scrollBehavior)
+            ? params[EnumSpWMLParams.scrollBehavior]!
+            : null;
+    if (elParams.p.scrollDirection == Axis.horizontal &&
+        elParams.p.scrollBehavior == null) {
+      elParams.p.scrollBehavior = const MaterialScrollBehavior().copyWith(
+          dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse});
+    }
     return this;
   }
 
   @override
   Widget getWidget(BuildContext context) {
-    return SingleChildScrollView(
-      key: elParams.p.key,
-      scrollDirection: elParams.p.scrollDirection,
-      reverse: elParams.p.reverse,
-      padding: elParams.p.padding,
-      primary: elParams.p.primary,
-      physics: elParams.p.physics,
-      controller: elParams.p.controller,
-      dragStartBehavior: elParams.p.dragStartBehavior,
-      clipBehavior: elParams.p.clipBehavior,
-      restorationId: elParams.p.restorationId,
-      keyboardDismissBehavior: elParams.p.keyboardDismissBehavior,
-      child: child.getChild(),
-    );
+    if (elParams.p.scrollBehavior != null) {
+      return ScrollConfiguration(
+          behavior: elParams.p.scrollBehavior!,
+          child: SingleChildScrollView(
+            key: elParams.p.key,
+            scrollDirection: elParams.p.scrollDirection,
+            reverse: elParams.p.reverse,
+            padding: elParams.p.padding,
+            primary: elParams.p.primary,
+            physics: elParams.p.physics,
+            controller: elParams.p.controller,
+            dragStartBehavior: elParams.p.dragStartBehavior,
+            clipBehavior: elParams.p.clipBehavior,
+            restorationId: elParams.p.restorationId,
+            keyboardDismissBehavior: elParams.p.keyboardDismissBehavior,
+            child: child.getChild(),
+          ));
+    } else {
+      return SingleChildScrollView(
+        key: elParams.p.key,
+        scrollDirection: elParams.p.scrollDirection,
+        reverse: elParams.p.reverse,
+        padding: elParams.p.padding,
+        primary: elParams.p.primary,
+        physics: elParams.p.physics,
+        controller: elParams.p.controller,
+        dragStartBehavior: elParams.p.dragStartBehavior,
+        clipBehavior: elParams.p.clipBehavior,
+        restorationId: elParams.p.restorationId,
+        keyboardDismissBehavior: elParams.p.keyboardDismissBehavior,
+        child: child.getChild(),
+      );
+    }
   }
 }

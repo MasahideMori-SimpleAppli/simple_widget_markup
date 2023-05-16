@@ -22,4 +22,5 @@ class ScrollParams {
   String? restorationId;
   ScrollViewKeyboardDismissBehavior keyboardDismissBehavior =
       ScrollViewKeyboardDismissBehavior.manual;
+  ScrollBehavior? scrollBehavior;
 }
