@@ -110,7 +110,7 @@ class SpWMLElement extends StatelessWidget {
     spwmlParams.p.useMaterial = params.containsKey(EnumSpWMLParams.useMaterial)
         ? params[EnumSpWMLParams.useMaterial]!
         : false;
-    if(spwmlParams.p.useMaterial){
+    if (spwmlParams.p.useMaterial) {
       spwmlParams.p.materialParams ??= MaterialParams();
     }
     return this;
