@@ -606,6 +606,30 @@ class BtnElement extends SingleChildTextElement {
     elParams.p.faButtonParams?.onPressed = null;
   }
 
+  /// (en) Sets the color of this button.
+  /// block type buttons have no effect.
+  ///
+  /// (ja)このボタンの色を設定します。
+  /// block系のボタンには効果がありません。
+  void setBtnColor(Color color) {
+    if (elParams.p.type == EnumBtnType.block) {
+      return;
+    } else if (elParams.p.type == EnumBtnType.faSmall ||
+        elParams.p.type == EnumBtnType.faExtended ||
+        elParams.p.type == EnumBtnType.fa ||
+        elParams.p.type == EnumBtnType.faLarge) {
+      elParams.p.faButtonParams?.backgroundColor = color;
+    } else if (elParams.p.type == EnumBtnType.icon ||
+        elParams.p.type == EnumBtnType.iconOutlined ||
+        elParams.p.type == EnumBtnType.iconFilled ||
+        elParams.p.type == EnumBtnType.iconFilledTonal) {
+      elParams.p.iconBtnParams?.color = color;
+    } else {
+      params[EnumSpWMLParams.btnBGColor] = color;
+      elParams.p.normalBtnParams?.style = _getBtnStyle(elParams.p.type!);
+    }
+  }
+
   Color? _getBtnColor() {
     Color? c1 = params.containsKey(EnumSpWMLParams.color)
         ? params[EnumSpWMLParams.color]

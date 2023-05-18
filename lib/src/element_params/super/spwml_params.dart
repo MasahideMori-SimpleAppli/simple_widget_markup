@@ -62,6 +62,9 @@ class SpWMLParams {
   // Visibility
   bool isGone;
 
+  // Force wrap the Material
+  bool useMaterial;
+
   /// The SpWMLElement Parameters.
   SpWMLParams(this.text,
       {this.materialParams,
@@ -70,5 +73,6 @@ class SpWMLParams {
       this.shiftX,
       this.shiftY,
       this.constrains,
-      this.isGone = false});
+      this.isGone = false,
+      this.useMaterial = false});
 }

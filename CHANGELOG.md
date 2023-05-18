@@ -1,3 +1,7 @@
+## 18.2.0
+* Added useMaterial param to SpWMLElement.
+* Added setBtnColor method to BtnElement.
+
 ## 18.1.0
 * Added scrollBehavior param to ScrollElement.
 

@@ -145,6 +145,8 @@ enum EnumSpWMLParams {
   scrollBehavior,
   // 倍率
   mag,
+  // Materialでラップして一部の描画の問題を解消する。
+  useMaterial,
   // フルネーム系は利用頻度が低いので、解析の優先度を下げる。
   mLeft,
   mTop,
@@ -413,7 +415,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.isPrefixIcon ||
           this == EnumSpWMLParams.isV3 ||
           this == EnumSpWMLParams.isLayoutStrictMode ||
-          this == EnumSpWMLParams.isSelected) {
+          this == EnumSpWMLParams.isSelected ||
+          this == EnumSpWMLParams.useMaterial) {
         if (type == EnumSpWMLElementType.progressIndicator) {
           return double.parse(v);
         } else {
@@ -726,6 +729,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       return EnumSpWMLParams.scrollBehavior;
     } else if (s == EnumSpWMLParams.mag.name) {
       return EnumSpWMLParams.mag;
+    } else if (s == EnumSpWMLParams.useMaterial.name) {
+      return EnumSpWMLParams.useMaterial;
     }
     // フルネーム系は利用頻度が低いので、解析の優先度を下げる。
     else if (s == EnumSpWMLParams.mLeft.name) {

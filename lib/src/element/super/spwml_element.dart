@@ -106,6 +106,13 @@ class SpWMLElement extends StatelessWidget {
     spwmlParams.p.isGone = params.containsKey(EnumSpWMLParams.isGone)
         ? params[EnumSpWMLParams.isGone]!
         : false;
+    // Force wrap the Material
+    spwmlParams.p.useMaterial = params.containsKey(EnumSpWMLParams.useMaterial)
+        ? params[EnumSpWMLParams.useMaterial]!
+        : false;
+    if(spwmlParams.p.useMaterial){
+      spwmlParams.p.materialParams ??= MaterialParams();
+    }
     return this;
   }
 
