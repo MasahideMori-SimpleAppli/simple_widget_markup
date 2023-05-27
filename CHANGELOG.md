@@ -1,3 +1,6 @@
+## 18.3.1
+* Fixed an issue where the initial value of SegmentedBtnElement was broken.
+
 ## 18.3.0
 * Added SegmentedBtnElement.
 * Added CircleAvatarElement.

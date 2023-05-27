@@ -10,13 +10,15 @@ class SegmentedBtnParamsWrapper {
 }
 
 class SegmentedBtnParams {
+  static const defMultiSelectionEnabled = false;
+  static const defEmptySelectionAllowed = true;
   Key? key;
   List<ButtonSegment<int>>? segments;
   Set<int>? selected;
   // The set value is children indexes.
   void Function(Set<int>)? onSelectionChanged;
-  bool multiSelectionEnabled = false;
-  bool emptySelectionAllowed = false;
+  bool multiSelectionEnabled = defMultiSelectionEnabled;
+  bool emptySelectionAllowed = defEmptySelectionAllowed;
   ButtonStyle? style;
   bool showSelectedIcon = true;
   Widget? selectedIcon;

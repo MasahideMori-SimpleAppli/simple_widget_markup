@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:simple_widget_markup/simple_widget_markup.dart';
+
+import '../../../../simple_widget_markup.dart';
 
 ///
 /// Author Masahide Mori
@@ -44,11 +45,11 @@ class SegmentedBtnElement extends MultiChildElement {
     elParams.p.multiSelectionEnabled =
         params.containsKey(EnumSpWMLParams.isMultiSelection)
             ? params[EnumSpWMLParams.isMultiSelection]
-            : false;
+            : SegmentedBtnParams.defMultiSelectionEnabled;
     elParams.p.emptySelectionAllowed =
         params.containsKey(EnumSpWMLParams.allowEmpty)
             ? params[EnumSpWMLParams.allowEmpty]
-            : false;
+            : SegmentedBtnParams.defEmptySelectionAllowed;
     return this;
   }
 
@@ -129,13 +130,7 @@ class _SegmentedBtnElementWidgetState
 
   Set<int> _getSelected() {
     if (widget.elParams.p.selected == null) {
-      Set<int> r = {};
-      int count = 0;
-      for (Widget _ in widget.children.children) {
-        r.add(count);
-        count += 1;
-      }
-      return r;
+      return {};
     } else {
       return widget.elParams.p.selected!;
     }
