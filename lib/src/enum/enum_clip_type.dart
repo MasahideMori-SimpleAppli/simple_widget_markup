@@ -12,13 +12,9 @@ extension EXTEnumClipType on EnumClipType {
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
   static EnumClipType fromStr(
       String s, int lineStart, int lineEnd, SpWMLInfo? info) {
-    if (s == EnumClipType.none.name) {
-      return EnumClipType.none;
-    } else if (s == EnumClipType.oval.name) {
-      return EnumClipType.oval;
-    } else if (s == EnumClipType.rRect.name) {
-      return EnumClipType.rRect;
-    } else {
+    try {
+      return EnumClipType.values.byName(s);
+    } catch (e) {
       throw SpWMLException(
           EnumSpWMLExceptionType.typeException, lineStart, lineEnd, info);
     }

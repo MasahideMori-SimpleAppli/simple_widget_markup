@@ -1,3 +1,9 @@
+## 18.3.0
+* Added SegmentedBtnElement.
+* Added CircleAvatarElement.
+* Added SliderElement.
+* Added BadgeElement.
+
 ## 18.2.0
 * Added useMaterial param to SpWMLElement.
 * Added setBtnColor method to BtnElement.

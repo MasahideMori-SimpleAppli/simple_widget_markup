@@ -9,19 +9,8 @@ import '../../simple_widget_markup.dart';
 enum EnumSpWMLParams {
   // 基本的に解析の優先度順にすることで高速化する。
   // ここの記載順は分かりやすさのためにfromStrと合わせる。
-  h,
-  w,
-  mL,
-  mT,
-  mR,
-  mB,
   mAll,
-  pL,
-  pT,
-  pR,
-  pB,
   pAll,
-  wt,
   id,
   sid,
   // 以下２つは対象に応じて動的にStrから変更
@@ -29,9 +18,6 @@ enum EnumSpWMLParams {
   vAlign,
   alt,
   bgColor,
-  @Deprecated(
-      'Use fontFamily instead. This variable will be deprecated in the future.')
-  fontName,
   fontFamily,
   fontSize,
   fontWeight,
@@ -45,9 +31,6 @@ enum EnumSpWMLParams {
   textDecoColor,
   textDecoThickness,
   textAlign,
-  @Deprecated(
-      'Use lineHeight instead. This variable will be deprecated in the future.')
-  textHeight,
   lineHeight,
   isSelectable,
   thickness,
@@ -63,10 +46,6 @@ enum EnumSpWMLParams {
   //
   fit,
   repeat,
-  minH,
-  minW,
-  maxH,
-  maxW,
   axis,
   isPrimary,
   borderWidth,
@@ -147,6 +126,22 @@ enum EnumSpWMLParams {
   mag,
   // Materialでラップして一部の描画の問題を解消する。
   useMaterial,
+  // segmented btn用
+  isMultiSelection,
+  allowEmpty,
+  // slider用
+  min,
+  max,
+  activeColor,
+  inactiveColor,
+  divisions,
+  useAutoLabel,
+  // sliderやbadge
+  label,
+  // badge
+  smallSize,
+  offsetX,
+  offsetY,
   // フルネーム系は利用頻度が低いので、解析の優先度を下げる。
   mLeft,
   mTop,
@@ -163,6 +158,32 @@ enum EnumSpWMLParams {
   minWidth,
   maxHeight,
   maxWidth,
+}
+
+/// 重複を避けて高速化するために、短縮系だけをまとめたもの。
+enum _EnumSpWMLParamsShort {
+  h,
+  w,
+  mL,
+  mT,
+  mR,
+  mB,
+  pL,
+  pT,
+  pR,
+  pB,
+  wt,
+  minH,
+  minW,
+  maxH,
+  maxW,
+  // 廃止パラメータも直接参照禁止なのでこちら。
+  @Deprecated(
+      'Use fontFamily instead. This variable will be deprecated in the future.')
+  fontName,
+  @Deprecated(
+      'Use lineHeight instead. This variable will be deprecated in the future.')
+  textHeight,
 }
 
 extension EXTEnumSpWMLParams on EnumSpWMLParams {
@@ -209,8 +230,6 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.shiftY ||
           this == EnumSpWMLParams.radius ||
           this == EnumSpWMLParams.fontSize ||
-          // ignore: deprecated_member_use_from_same_package
-          this == EnumSpWMLParams.textHeight ||
           this == EnumSpWMLParams.lineHeight ||
           this == EnumSpWMLParams.letterSpacing ||
           this == EnumSpWMLParams.wordSpacing ||
@@ -232,14 +251,22 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.cpR ||
           this == EnumSpWMLParams.cpB ||
           this == EnumSpWMLParams.baselineCorrection ||
-          this == EnumSpWMLParams.mag) {
+          this == EnumSpWMLParams.mag ||
+          this == EnumSpWMLParams.min ||
+          this == EnumSpWMLParams.max ||
+          this == EnumSpWMLParams.smallSize ||
+          this == EnumSpWMLParams.offsetX ||
+          this == EnumSpWMLParams.offsetY) {
         return double.parse(v);
       }
-      if (this == EnumSpWMLParams.weight || this == EnumSpWMLParams.hNum) {
+      if (this == EnumSpWMLParams.id ||
+          this == EnumSpWMLParams.weight ||
+          this == EnumSpWMLParams.hNum) {
         return int.parse(v);
       }
       if (this == EnumSpWMLParams.maxLines ||
-          this == EnumSpWMLParams.maxLength) {
+          this == EnumSpWMLParams.maxLength ||
+          this == EnumSpWMLParams.divisions) {
         return int.tryParse(v);
       }
       // col, row or wrap only
@@ -359,10 +386,10 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.rubyDecoColor ||
           this == EnumSpWMLParams.fgColor ||
           this == EnumSpWMLParams.indicatorColor ||
-          this == EnumSpWMLParams.indicatorBGColor) {
+          this == EnumSpWMLParams.indicatorBGColor ||
+          this == EnumSpWMLParams.activeColor ||
+          this == EnumSpWMLParams.inactiveColor) {
         return UtilParams.convertColor(v, lineStart, lineEnd, info);
-      } else if (this == EnumSpWMLParams.id) {
-        return int.parse(v);
       } else if (this == EnumSpWMLParams.sid) {
         return v;
       } else if (this == EnumSpWMLParams.axis) {
@@ -416,8 +443,12 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.isV3 ||
           this == EnumSpWMLParams.isLayoutStrictMode ||
           this == EnumSpWMLParams.isSelected ||
-          this == EnumSpWMLParams.useMaterial) {
-        if (type == EnumSpWMLElementType.progressIndicator) {
+          this == EnumSpWMLParams.useMaterial ||
+          this == EnumSpWMLParams.isMultiSelection ||
+          this == EnumSpWMLParams.allowEmpty ||
+          this == EnumSpWMLParams.useAutoLabel) {
+        if (type == EnumSpWMLElementType.progressIndicator ||
+            type == EnumSpWMLElementType.slider) {
           return double.parse(v);
         } else {
           if (v == "true") {
@@ -471,310 +502,55 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
   /// Throws [SpWMLException] : If the parameter is incorrect, Throws ParamException.
   static EnumSpWMLParams fromStr(
       String s, int lineStart, int lineEnd, SpWMLInfo? info) {
-    // 基本的に解析の優先度順にすることで高速化する。
-    // なお、一旦Enumになった後は十分早いので気にしないで良い。
-    if (s == EnumSpWMLParams.h.name) {
+    // 省略系
+    if (s == _EnumSpWMLParamsShort.h.name) {
       return EnumSpWMLParams.height;
-    } else if (s == EnumSpWMLParams.w.name) {
+    } else if (s == _EnumSpWMLParamsShort.w.name) {
       return EnumSpWMLParams.width;
-    } else if (s == EnumSpWMLParams.mL.name) {
+    } else if (s == _EnumSpWMLParamsShort.mL.name) {
       return EnumSpWMLParams.mLeft;
-    } else if (s == EnumSpWMLParams.mT.name) {
+    } else if (s == _EnumSpWMLParamsShort.mT.name) {
       return EnumSpWMLParams.mTop;
-    } else if (s == EnumSpWMLParams.mR.name) {
+    } else if (s == _EnumSpWMLParamsShort.mR.name) {
       return EnumSpWMLParams.mRight;
-    } else if (s == EnumSpWMLParams.mB.name) {
+    } else if (s == _EnumSpWMLParamsShort.mB.name) {
       return EnumSpWMLParams.mBottom;
-    } else if (s == EnumSpWMLParams.mAll.name) {
-      return EnumSpWMLParams.mAll;
-    } else if (s == EnumSpWMLParams.pL.name) {
+    } else if (s == _EnumSpWMLParamsShort.pL.name) {
       return EnumSpWMLParams.pLeft;
-    } else if (s == EnumSpWMLParams.pT.name) {
+    } else if (s == _EnumSpWMLParamsShort.pT.name) {
       return EnumSpWMLParams.pTop;
-    } else if (s == EnumSpWMLParams.pR.name) {
+    } else if (s == _EnumSpWMLParamsShort.pR.name) {
       return EnumSpWMLParams.pRight;
-    } else if (s == EnumSpWMLParams.pB.name) {
+    } else if (s == _EnumSpWMLParamsShort.pB.name) {
       return EnumSpWMLParams.pBottom;
-    } else if (s == EnumSpWMLParams.pAll.name) {
-      return EnumSpWMLParams.pAll;
-    } else if (s == EnumSpWMLParams.wt.name) {
+    } else if (s == _EnumSpWMLParamsShort.wt.name) {
       return EnumSpWMLParams.weight;
-    } else if (s == EnumSpWMLParams.id.name) {
-      return EnumSpWMLParams.id;
-    } else if (s == EnumSpWMLParams.sid.name) {
-      return EnumSpWMLParams.sid;
-    }
-    // 以下２つは対象に応じて動的にStrから変更
-    else if (s == EnumSpWMLParams.hAlign.name) {
-      return EnumSpWMLParams.hAlign;
-    } else if (s == EnumSpWMLParams.vAlign.name) {
-      return EnumSpWMLParams.vAlign;
-    } else if (s == EnumSpWMLParams.alt.name) {
-      return EnumSpWMLParams.alt;
-    } else if (s == EnumSpWMLParams.bgColor.name) {
-      return EnumSpWMLParams.bgColor;
-    } else if (s == EnumSpWMLParams.fontFamily.name) {
-      return EnumSpWMLParams.fontFamily;
-    } else if (s == EnumSpWMLParams.fontSize.name) {
-      return EnumSpWMLParams.fontSize;
-    } else if (s == EnumSpWMLParams.fontWeight.name) {
-      return EnumSpWMLParams.fontWeight;
-    } else if (s == EnumSpWMLParams.fontStyle.name) {
-      return EnumSpWMLParams.fontStyle;
-    } else if (s == EnumSpWMLParams.letterSpacing.name) {
-      return EnumSpWMLParams.letterSpacing;
-    } else if (s == EnumSpWMLParams.wordSpacing.name) {
-      return EnumSpWMLParams.wordSpacing;
-    } else if (s == EnumSpWMLParams.textColor.name) {
-      return EnumSpWMLParams.textColor;
-    } else if (s == EnumSpWMLParams.textBGColor.name) {
-      return EnumSpWMLParams.textBGColor;
-    } else if (s == EnumSpWMLParams.textDeco.name) {
-      return EnumSpWMLParams.textDeco;
-    } else if (s == EnumSpWMLParams.textDecoStyle.name) {
-      return EnumSpWMLParams.textDecoStyle;
-    } else if (s == EnumSpWMLParams.textDecoColor.name) {
-      return EnumSpWMLParams.textDecoColor;
-    } else if (s == EnumSpWMLParams.textDecoThickness.name) {
-      return EnumSpWMLParams.textDecoThickness;
-    } else if (s == EnumSpWMLParams.textAlign.name) {
-      return EnumSpWMLParams.textAlign;
-    } else if (s == EnumSpWMLParams.lineHeight.name) {
-      return EnumSpWMLParams.lineHeight;
-    } else if (s == EnumSpWMLParams.isSelectable.name) {
-      return EnumSpWMLParams.isSelectable;
-    } else if (s == EnumSpWMLParams.thickness.name) {
-      return EnumSpWMLParams.thickness;
-    } else if (s == EnumSpWMLParams.color.name) {
-      return EnumSpWMLParams.color;
-    }
-    // material v3 color mode
-    else if (s == EnumSpWMLParams.isV3.name) {
-      return EnumSpWMLParams.isV3;
-    }
-    // icon btn params
-    else if (s == EnumSpWMLParams.isSelected.name) {
-      return EnumSpWMLParams.isSelected;
-    } else if (s == EnumSpWMLParams.selectedIconNum.name) {
-      return EnumSpWMLParams.selectedIconNum;
-    }
-    // text baseline
-    else if (s == EnumSpWMLParams.baselineType.name) {
-      return EnumSpWMLParams.baselineType;
-    } else if (s == EnumSpWMLParams.baselineCorrection.name) {
-      return EnumSpWMLParams.baselineCorrection;
-    }
-    //
-    else if (s == EnumSpWMLParams.fit.name) {
-      return EnumSpWMLParams.fit;
-    } else if (s == EnumSpWMLParams.repeat.name) {
-      return EnumSpWMLParams.repeat;
-    } else if (s == EnumSpWMLParams.minH.name) {
+    } else if (s == _EnumSpWMLParamsShort.minH.name) {
       return EnumSpWMLParams.minHeight;
-    } else if (s == EnumSpWMLParams.minW.name) {
+    } else if (s == _EnumSpWMLParamsShort.minW.name) {
       return EnumSpWMLParams.minWidth;
-    } else if (s == EnumSpWMLParams.maxH.name) {
+    } else if (s == _EnumSpWMLParamsShort.maxH.name) {
       return EnumSpWMLParams.maxHeight;
-    } else if (s == EnumSpWMLParams.maxW.name) {
+    } else if (s == _EnumSpWMLParamsShort.maxW.name) {
       return EnumSpWMLParams.maxWidth;
-    } else if (s == EnumSpWMLParams.axis.name) {
-      return EnumSpWMLParams.axis;
-    } else if (s == EnumSpWMLParams.isPrimary.name) {
-      return EnumSpWMLParams.isPrimary;
-    } else if (s == EnumSpWMLParams.borderWidth.name) {
-      return EnumSpWMLParams.borderWidth;
-    } else if (s == EnumSpWMLParams.borderRadius.name) {
-      return EnumSpWMLParams.borderRadius;
-    } else if (s == EnumSpWMLParams.borderColor.name) {
-      return EnumSpWMLParams.borderColor;
-    } else if (s == EnumSpWMLParams.borderShape.name) {
-      return EnumSpWMLParams.borderShape;
-    } else if (s == EnumSpWMLParams.shape.name) {
-      return EnumSpWMLParams.shape;
-    } else if (s == EnumSpWMLParams.type.name) {
-      return EnumSpWMLParams.type;
-    } else if (s == EnumSpWMLParams.iconNum.name) {
-      return EnumSpWMLParams.iconNum;
-    } else if (s == EnumSpWMLParams.iconSize.name) {
-      return EnumSpWMLParams.iconSize;
-    } else if (s == EnumSpWMLParams.iconColor.name) {
-      return EnumSpWMLParams.iconColor;
-    } else if (s == EnumSpWMLParams.splashRadius.name) {
-      return EnumSpWMLParams.splashRadius;
-    } else if (s == EnumSpWMLParams.suffixIconNum.name) {
-      return EnumSpWMLParams.suffixIconNum;
-    } else if (s == EnumSpWMLParams.suffixIconSize.name) {
-      return EnumSpWMLParams.suffixIconSize;
-    } else if (s == EnumSpWMLParams.suffixIconColor.name) {
-      return EnumSpWMLParams.suffixIconColor;
-    } else if (s == EnumSpWMLParams.suffixIconSplashRadius.name) {
-      return EnumSpWMLParams.suffixIconSplashRadius;
-    } else if (s == EnumSpWMLParams.btnBGColor.name) {
-      return EnumSpWMLParams.btnBGColor;
-    } else if (s == EnumSpWMLParams.elevation.name) {
-      return EnumSpWMLParams.elevation;
-    } else if (s == EnumSpWMLParams.cardElevation.name) {
-      return EnumSpWMLParams.cardElevation;
-    } else if (s == EnumSpWMLParams.shiftX.name) {
-      return EnumSpWMLParams.shiftX;
-    } else if (s == EnumSpWMLParams.shiftY.name) {
-      return EnumSpWMLParams.shiftY;
-    } else if (s == EnumSpWMLParams.hint.name) {
-      return EnumSpWMLParams.hint;
-    } else if (s == EnumSpWMLParams.isExpanded.name) {
-      return EnumSpWMLParams.isExpanded;
-    } else if (s == EnumSpWMLParams.fillColor.name) {
-      return EnumSpWMLParams.fillColor;
-    } else if (s == EnumSpWMLParams.radius.name) {
-      return EnumSpWMLParams.radius;
-    } else if (s == EnumSpWMLParams.mode.name) {
-      return EnumSpWMLParams.mode;
-    } else if (s == EnumSpWMLParams.labelText.name) {
-      return EnumSpWMLParams.labelText;
-    } else if (s == EnumSpWMLParams.value.name) {
-      return EnumSpWMLParams.value;
-    } else if (s == EnumSpWMLParams.underlineColor.name) {
-      return EnumSpWMLParams.underlineColor;
-    } else if (s == EnumSpWMLParams.underlineHeight.name) {
-      return EnumSpWMLParams.underlineHeight;
-    }
-    // tableの水平方向の要素数
-    else if (s == EnumSpWMLParams.hNum.name) {
-      return EnumSpWMLParams.hNum;
-    }
-    // 単一指定系のボーダー角の指定
-    else if (s == EnumSpWMLParams.rTL.name) {
-      return EnumSpWMLParams.rTL;
-    } else if (s == EnumSpWMLParams.rTR.name) {
-      return EnumSpWMLParams.rTR;
-    } else if (s == EnumSpWMLParams.rBL.name) {
-      return EnumSpWMLParams.rBL;
-    } else if (s == EnumSpWMLParams.rBR.name) {
-      return EnumSpWMLParams.rBR;
-    } else if (s == EnumSpWMLParams.ellipticalX.name) {
-      return EnumSpWMLParams.ellipticalX;
-    } else if (s == EnumSpWMLParams.ellipticalY.name) {
-      return EnumSpWMLParams.ellipticalY;
-    } else if (s == EnumSpWMLParams.enableTapLabel.name) {
-      return EnumSpWMLParams.enableTapLabel;
-    }
-    // checkbox
-    else if (s == EnumSpWMLParams.isPrefixIcon.name) {
-      return EnumSpWMLParams.isPrefixIcon;
-    }
-    // ruby text parameter
-    else if (s == EnumSpWMLParams.rubyText.name) {
-      return EnumSpWMLParams.rubyText;
-    } else if (s == EnumSpWMLParams.rubySize.name) {
-      return EnumSpWMLParams.rubySize;
-    } else if (s == EnumSpWMLParams.rubyLetterSpacing.name) {
-      return EnumSpWMLParams.rubyLetterSpacing;
-    } else if (s == EnumSpWMLParams.rubyMargin.name) {
-      return EnumSpWMLParams.rubyMargin;
-    } else if (s == EnumSpWMLParams.rubyFontName.name) {
-      return EnumSpWMLParams.rubyFontName;
-    } else if (s == EnumSpWMLParams.rubyFontWeight.name) {
-      return EnumSpWMLParams.rubyFontWeight;
-    } else if (s == EnumSpWMLParams.rubyFontStyle.name) {
-      return EnumSpWMLParams.rubyFontStyle;
-    } else if (s == EnumSpWMLParams.rubyWordSpacing.name) {
-      return EnumSpWMLParams.rubyWordSpacing;
-    } else if (s == EnumSpWMLParams.rubyColor.name) {
-      return EnumSpWMLParams.rubyColor;
-    } else if (s == EnumSpWMLParams.rubyBGColor.name) {
-      return EnumSpWMLParams.rubyBGColor;
-    } else if (s == EnumSpWMLParams.rubyDeco.name) {
-      return EnumSpWMLParams.rubyDeco;
-    } else if (s == EnumSpWMLParams.rubyDecoStyle.name) {
-      return EnumSpWMLParams.rubyDecoStyle;
-    } else if (s == EnumSpWMLParams.rubyDecoColor.name) {
-      return EnumSpWMLParams.rubyDecoColor;
-    } else if (s == EnumSpWMLParams.rubyDecoThickness.name) {
-      return EnumSpWMLParams.rubyDecoThickness;
-    } else if (s == EnumSpWMLParams.rubyAlign.name) {
-      return EnumSpWMLParams.rubyAlign;
-    } else if (s == EnumSpWMLParams.rubyHeight.name) {
-      return EnumSpWMLParams.rubyHeight;
-    } else if (s == EnumSpWMLParams.isRubySelectable.name) {
-      return EnumSpWMLParams.isRubySelectable;
-    } else if (s == EnumSpWMLParams.fgColor.name) {
-      return EnumSpWMLParams.fgColor;
-    } else if (s == EnumSpWMLParams.isGone.name) {
-      return EnumSpWMLParams.isGone;
-    } else if (s == EnumSpWMLParams.cpL.name) {
-      return EnumSpWMLParams.cpL;
-    } else if (s == EnumSpWMLParams.cpT.name) {
-      return EnumSpWMLParams.cpT;
-    } else if (s == EnumSpWMLParams.cpR.name) {
-      return EnumSpWMLParams.cpR;
-    } else if (s == EnumSpWMLParams.cpB.name) {
-      return EnumSpWMLParams.cpB;
-    } else if (s == EnumSpWMLParams.overflow.name) {
-      return EnumSpWMLParams.overflow;
-    } else if (s == EnumSpWMLParams.maxLines.name) {
-      return EnumSpWMLParams.maxLines;
-    } else if (s == EnumSpWMLParams.maxLength.name) {
-      return EnumSpWMLParams.maxLength;
-    } else if (s == EnumSpWMLParams.indicatorColor.name) {
-      return EnumSpWMLParams.indicatorColor;
-    } else if (s == EnumSpWMLParams.indicatorBGColor.name) {
-      return EnumSpWMLParams.indicatorBGColor;
-    } else if (s == EnumSpWMLParams.clipType.name) {
-      return EnumSpWMLParams.clipType;
-    } else if (s == EnumSpWMLParams.clipRadius.name) {
-      return EnumSpWMLParams.clipRadius;
-    } else if (s == EnumSpWMLParams.isLayoutStrictMode.name) {
-      return EnumSpWMLParams.isLayoutStrictMode;
-    } else if (s == EnumSpWMLParams.scrollBehavior.name) {
-      return EnumSpWMLParams.scrollBehavior;
-    } else if (s == EnumSpWMLParams.mag.name) {
-      return EnumSpWMLParams.mag;
-    } else if (s == EnumSpWMLParams.useMaterial.name) {
-      return EnumSpWMLParams.useMaterial;
-    }
-    // フルネーム系は利用頻度が低いので、解析の優先度を下げる。
-    else if (s == EnumSpWMLParams.mLeft.name) {
-      return EnumSpWMLParams.mLeft;
-    } else if (s == EnumSpWMLParams.mTop.name) {
-      return EnumSpWMLParams.mTop;
-    } else if (s == EnumSpWMLParams.mRight.name) {
-      return EnumSpWMLParams.mRight;
-    } else if (s == EnumSpWMLParams.mBottom.name) {
-      return EnumSpWMLParams.mBottom;
-    } else if (s == EnumSpWMLParams.pLeft.name) {
-      return EnumSpWMLParams.pLeft;
-    } else if (s == EnumSpWMLParams.pTop.name) {
-      return EnumSpWMLParams.pTop;
-    } else if (s == EnumSpWMLParams.pRight.name) {
-      return EnumSpWMLParams.pRight;
-    } else if (s == EnumSpWMLParams.pBottom.name) {
-      return EnumSpWMLParams.pBottom;
-    } else if (s == EnumSpWMLParams.height.name) {
-      return EnumSpWMLParams.height;
-    } else if (s == EnumSpWMLParams.width.name) {
-      return EnumSpWMLParams.width;
-    } else if (s == EnumSpWMLParams.weight.name) {
-      return EnumSpWMLParams.weight;
-    } else if (s == EnumSpWMLParams.minHeight.name) {
-      return EnumSpWMLParams.minHeight;
-    } else if (s == EnumSpWMLParams.minWidth.name) {
-      return EnumSpWMLParams.minWidth;
-    } else if (s == EnumSpWMLParams.maxHeight.name) {
-      return EnumSpWMLParams.maxHeight;
-    } else if (s == EnumSpWMLParams.maxWidth.name) {
-      return EnumSpWMLParams.maxWidth;
-    }
-    // 廃止されたパラメータ。互換モードで動作するので優先度は最低です。
-    // ignore: deprecated_member_use_from_same_package
-    else if (s == EnumSpWMLParams.fontName.name) {
-      return EnumSpWMLParams.fontFamily;
-    }
-    // ignore: deprecated_member_use_from_same_package
-    else if (s == EnumSpWMLParams.textHeight.name) {
-      return EnumSpWMLParams.lineHeight;
     } else {
-      throw SpWMLException(
-          EnumSpWMLExceptionType.paramException, lineStart, lineEnd, info);
+      // それ以外の一括処理。
+      try {
+        return EnumSpWMLParams.values.byName(s);
+      } catch (e) {
+        // 廃止されたパラメータ。
+        // ignore: deprecated_member_use_from_same_package
+        if (s == _EnumSpWMLParamsShort.fontName.name) {
+          return EnumSpWMLParams.fontFamily;
+        }
+        // ignore: deprecated_member_use_from_same_package
+        else if (s == _EnumSpWMLParamsShort.textHeight.name) {
+          return EnumSpWMLParams.lineHeight;
+        } else {
+          throw SpWMLException(
+              EnumSpWMLExceptionType.paramException, lineStart, lineEnd, info);
+        }
+      }
     }
   }
 }

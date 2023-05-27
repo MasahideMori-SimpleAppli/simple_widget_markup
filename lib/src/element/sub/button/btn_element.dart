@@ -67,7 +67,7 @@ class BtnElement extends SingleChildTextElement {
             EnumSpWMLExceptionType.paramException, lineStart, lineEnd, info);
       } else {
         IconBtnParams p = IconBtnParams();
-        p.icon = _getIcon(true);
+        p.icon = getIcon(true);
         p.iconSize = params.containsKey(EnumSpWMLParams.iconSize)
             ? params[EnumSpWMLParams.iconSize]!
             : 24;
@@ -97,10 +97,10 @@ class BtnElement extends SingleChildTextElement {
         elParams.p.type == EnumBtnType.faLarge) {
       FAButtonParams p = FAButtonParams();
       if (elParams.p.type == EnumBtnType.faExtended) {
-        p.fabExtParams.icon = elParams.p.isUseIcon ? _getIcon(false) : null;
+        p.fabExtParams.icon = elParams.p.isUseIcon ? getIcon(false) : null;
         p.fabExtParams.extendedTextStyle = getStyle();
       } else {
-        p.child = elParams.p.isUseIcon ? _getIcon(false) : null;
+        p.child = elParams.p.isUseIcon ? getIcon(false) : null;
       }
       p.foregroundColor = params.containsKey(EnumSpWMLParams.fgColor)
           ? params[EnumSpWMLParams.fgColor]
@@ -110,7 +110,7 @@ class BtnElement extends SingleChildTextElement {
       elParams.p.faButtonParams = p;
     } else {
       NormalBtnParams p = NormalBtnParams();
-      p.icon = elParams.p.isUseIcon ? _getIcon(false) : null;
+      p.icon = elParams.p.isUseIcon ? getIcon(false) : null;
       p.style = _getBtnStyle(elParams.p.type!);
       elParams.p.normalBtnParams = p;
     }
@@ -123,7 +123,29 @@ class BtnElement extends SingleChildTextElement {
   }
 
   /// get converted icon widget.
-  Widget _getIcon(bool onlyIconData) {
+  /// if icon already set, return now icon widget.
+  Widget getIcon(bool onlyIconData) {
+    if (elParams.p.type != EnumBtnType.block) {
+      if (elParams.p.type == EnumBtnType.icon ||
+          elParams.p.type == EnumBtnType.iconFilled ||
+          elParams.p.type == EnumBtnType.iconFilledTonal ||
+          elParams.p.type == EnumBtnType.iconOutlined) {
+        if (elParams.p.iconBtnParams?.icon != null) {
+          return elParams.p.iconBtnParams!.icon!;
+        }
+      } else if (elParams.p.type == EnumBtnType.faSmall ||
+          elParams.p.type == EnumBtnType.faExtended ||
+          elParams.p.type == EnumBtnType.fa ||
+          elParams.p.type == EnumBtnType.faLarge) {
+        if (elParams.p.faButtonParams?.fabExtParams.icon != null) {
+          return elParams.p.faButtonParams!.fabExtParams.icon!;
+        }
+      } else {
+        if (elParams.p.normalBtnParams?.icon != null) {
+          return elParams.p.normalBtnParams!.icon!;
+        }
+      }
+    }
     if (onlyIconData) {
       return Icon(params[EnumSpWMLParams.iconNum]);
     } else {

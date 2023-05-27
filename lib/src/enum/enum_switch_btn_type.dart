@@ -12,11 +12,9 @@ extension EXTEnumSwitchBtnType on EnumSwitchBtnType {
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
   static EnumSwitchBtnType fromStr(
       String s, int lineStart, int lineEnd, SpWMLInfo? info) {
-    if (s == EnumSwitchBtnType.normal.name) {
-      return EnumSwitchBtnType.normal;
-    } else if (s == EnumSwitchBtnType.check.name) {
-      return EnumSwitchBtnType.check;
-    } else {
+    try {
+      return EnumSwitchBtnType.values.byName(s);
+    } catch (e) {
       throw SpWMLException(
           EnumSpWMLExceptionType.typeException, lineStart, lineEnd, info);
     }

@@ -12,11 +12,9 @@ extension EXTEnumTextFieldType on EnumTextFieldType {
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
   static EnumTextFieldType fromStr(
       String s, int lineStart, int lineEnd, SpWMLInfo? info) {
-    if (s == EnumTextFieldType.material.name) {
-      return EnumTextFieldType.material;
-    } else if (s == EnumTextFieldType.rounded.name) {
-      return EnumTextFieldType.rounded;
-    } else {
+    try {
+      return EnumTextFieldType.values.byName(s);
+    } catch (e) {
       throw SpWMLException(
           EnumSpWMLExceptionType.typeException, lineStart, lineEnd, info);
     }
@@ -37,21 +35,9 @@ extension EXTEnumTextFieldMode on EnumTextFieldMode {
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
   static EnumTextFieldMode fromStr(
       String s, int lineStart, int lineEnd, SpWMLInfo? info) {
-    if (s == EnumTextFieldMode.normal.name) {
-      return EnumTextFieldMode.normal;
-    } else if (s == EnumTextFieldMode.password.name) {
-      return EnumTextFieldMode.password;
-    } else if (s == EnumTextFieldMode.passwordPrefix.name) {
-      return EnumTextFieldMode.passwordPrefix;
-    } else if (s == EnumTextFieldMode.search.name) {
-      return EnumTextFieldMode.search;
-    } else if (s == EnumTextFieldMode.searchPrefix.name) {
-      return EnumTextFieldMode.searchPrefix;
-    } else if (s == EnumTextFieldMode.searchAndClear.name) {
-      return EnumTextFieldMode.searchAndClear;
-    } else if (s == EnumTextFieldMode.manual.name) {
-      return EnumTextFieldMode.manual;
-    } else {
+    try {
+      return EnumTextFieldMode.values.byName(s);
+    } catch (e) {
       throw SpWMLException(
           EnumSpWMLExceptionType.typeException, lineStart, lineEnd, info);
     }

@@ -343,6 +343,46 @@ class UtilElement {
           info,
           StructureElementChildren(),
           TableRowParamsWrapper(TableRowParams()));
+    } else if (eType == EnumSpWMLElementType.segmentedBtn) {
+      r = SegmentedBtnElement(
+          serial,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          StructureElementChildren(),
+          SegmentedBtnParamsWrapper(SegmentedBtnParams()));
+    } else if (eType == EnumSpWMLElementType.circleAvatar) {
+      r = CircleAvatarElement(
+          serial,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          BlockElementChild(),
+          CircleAvatarParamsWrapper(CircleAvatarParams()));
+    } else if (eType == EnumSpWMLElementType.slider) {
+      r = SliderElement(serial, params, spwmlParams, parentSerial, lineStart,
+          lineEnd, style, info, SliderParamsWrapper(SliderParams()));
+    } else if (eType == EnumSpWMLElementType.badge) {
+      r = BadgeElement(
+          serial,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          BlockElementChild(),
+          TextParamsWrapper(TextParams()),
+          BadgeParamsWrapper(BadgeParams()));
     } else {
       // 存在しないタイプの場合は通常はfromStr時点で例外が発生している。
       // ここで発生する場合は処理の追加漏れ。

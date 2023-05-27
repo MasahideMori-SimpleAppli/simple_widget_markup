@@ -12,11 +12,9 @@ extension EXTEnumIndicatorType on EnumIndicatorType {
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
   static EnumIndicatorType fromStr(
       String s, int lineStart, int lineEnd, SpWMLInfo? info) {
-    if (s == EnumIndicatorType.circular.name) {
-      return EnumIndicatorType.circular;
-    } else if (s == EnumIndicatorType.linear.name) {
-      return EnumIndicatorType.linear;
-    } else {
+    try {
+      return EnumIndicatorType.values.byName(s);
+    } catch (e) {
       throw SpWMLException(
           EnumSpWMLExceptionType.typeException, lineStart, lineEnd, info);
     }
