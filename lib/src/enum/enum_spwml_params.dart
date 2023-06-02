@@ -136,12 +136,15 @@ enum EnumSpWMLParams {
   inactiveColor,
   divisions,
   useAutoLabel,
+  isIntValue,
   // sliderやbadge
   label,
   // badge
   smallSize,
   offsetX,
   offsetY,
+  // col and row
+  mainAxisSize,
   // フルネーム系は利用頻度が低いので、解析の優先度を下げる。
   mLeft,
   mTop,
@@ -256,7 +259,11 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.max ||
           this == EnumSpWMLParams.smallSize ||
           this == EnumSpWMLParams.offsetX ||
-          this == EnumSpWMLParams.offsetY) {
+          this == EnumSpWMLParams.offsetY ||
+          (type == EnumSpWMLElementType.progressIndicator &&
+              this == EnumSpWMLParams.value) ||
+          (type == EnumSpWMLElementType.slider &&
+              this == EnumSpWMLParams.value)) {
         return double.parse(v);
       }
       if (this == EnumSpWMLParams.id ||
@@ -446,18 +453,14 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.useMaterial ||
           this == EnumSpWMLParams.isMultiSelection ||
           this == EnumSpWMLParams.allowEmpty ||
-          this == EnumSpWMLParams.useAutoLabel) {
-        if (type == EnumSpWMLElementType.progressIndicator ||
-            type == EnumSpWMLElementType.slider) {
-          return double.parse(v);
+          this == EnumSpWMLParams.useAutoLabel ||
+          this == EnumSpWMLParams.isIntValue) {
+        if (v == "true") {
+          return true;
+        } else if (v == "false") {
+          return false;
         } else {
-          if (v == "true") {
-            return true;
-          } else if (v == "false") {
-            return false;
-          } else {
-            throw Exception();
-          }
+          throw Exception();
         }
       } else if (this == EnumSpWMLParams.borderShape) {
         if (v == "rectangle") {
@@ -489,6 +492,14 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
         }
       } else if (this == EnumSpWMLParams.scrollBehavior) {
         return EXTEnumScrollBehavior.toObjFromStr(v, lineStart, lineEnd, info);
+      } else if (this == EnumSpWMLParams.mainAxisSize) {
+        if (v == "max") {
+          return MainAxisSize.max;
+        } else if (v == "min") {
+          return MainAxisSize.min;
+        } else {
+          throw Exception();
+        }
       } else {
         // 変換不要ならそのまま返す。
         return v;

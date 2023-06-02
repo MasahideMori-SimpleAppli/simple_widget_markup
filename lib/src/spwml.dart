@@ -12,6 +12,7 @@ class SpWML extends StatelessWidget {
   final String spWML;
   final MainAxisAlignment mainAA;
   final CrossAxisAlignment crossAA;
+  final MainAxisSize mainAS;
   final EdgeInsets margin;
   final EdgeInsets padding;
   final SpWMLFontStyle style;
@@ -21,6 +22,7 @@ class SpWML extends StatelessWidget {
   /// * [spWML] : SpWML text.
   /// * [mainAA] : Top level Column MainAxisAlignment.
   /// * [crossAA] : Top level Column CrossAxisAlignment.
+  /// * [mainAS] : The MainAxisSize of wrap column.
   /// * [margin] : Top level Column Margin.
   /// * [padding] : Top level Column Padding.
   /// * [spWMLStyle] : Font styles. If you want to change the default style,
@@ -30,6 +32,7 @@ class SpWML extends StatelessWidget {
   SpWML(this.spWML,
       {this.mainAA = MainAxisAlignment.start,
       this.crossAA = CrossAxisAlignment.start,
+      this.mainAS = MainAxisSize.max,
       this.margin = const EdgeInsets.all(0),
       this.padding = const EdgeInsets.all(0),
       SpWMLFontStyle? spWMLStyle,
@@ -43,6 +46,7 @@ class SpWML extends StatelessWidget {
     return SpWMLBuilder(spWML,
             mainAA: mainAA,
             crossAA: crossAA,
+            mainAS: mainAS,
             margin: margin,
             padding: padding,
             spWMLStyle: style,

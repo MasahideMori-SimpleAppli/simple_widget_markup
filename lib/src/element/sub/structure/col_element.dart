@@ -54,6 +54,9 @@ class ColElement extends MultiChildElement {
     elParams.p.crossAxisAlignment = params.containsKey(EnumSpWMLParams.hAlign)
         ? params[EnumSpWMLParams.hAlign]
         : CrossAxisAlignment.start;
+    elParams.p.mainAxisSize = params.containsKey(EnumSpWMLParams.mainAxisSize)
+        ? params[EnumSpWMLParams.mainAxisSize]
+        : MainAxisSize.max;
     return this;
   }
 

@@ -16,6 +16,7 @@ import 'package:simple_block_markup_language/simple_block_markup_language.dart';
 ///
 class SpWMLParser {
   /// (en)Returns a list of the results of parsing SpWML.
+  ///
   /// (ja)SpWMLをパースした結果のリストを返します。
   ///
   /// * [spWML] : SpWML text.

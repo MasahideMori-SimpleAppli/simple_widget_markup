@@ -12,6 +12,8 @@ class SliderParams {
   static const double defMin = 0.0;
   static const double defMax = 10.0;
   static const int defDivisions = 10;
+  static const bool defUseAutoLabel = true;
+  static const bool defIsIntValue = true;
 
   Key? key;
   double value = defValue;
@@ -34,5 +36,8 @@ class SliderParams {
   bool autofocus = false;
 
   // Added SpWML params. If true and divisions is not null, auto set the value string to label.
-  bool useAutoLabel = true;
+  bool useAutoLabel = defUseAutoLabel;
+
+  // If true, autoLabel convert Int value.
+  bool isIntValue = defIsIntValue;
 }

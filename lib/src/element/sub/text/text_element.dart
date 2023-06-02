@@ -161,12 +161,20 @@ class TextElement extends SpWMLElement {
     }
   }
 
-  /// (en)Set new text of this element.
+  /// (en) Gets the content text set on this element.
   ///
-  /// (ja)このエレメントの新しいテキストを設定します。
-  /// * [newText] 新しいテキスト.
-  void setText(String newText) {
-    spwmlParams.p.text = newText;
+  /// (ja) このエレメントに設定されているコンテンツテキストを取得します。
+  String getContentText() {
+    return spwmlParams.p.text;
+  }
+
+  /// (en) Sets the content text for this element.
+  ///
+  /// (ja) このエレメントにコンテンツテキストを設定します。
+  ///
+  /// * [text] : The content text.
+  void setContentText(String text) {
+    spwmlParams.p.text = text;
   }
 
   /// get text strut style from parameters.
@@ -202,7 +210,7 @@ class TextElement extends SpWMLElement {
     return null;
   }
 
-  /// get default text backgound color
+  /// get default text background color
   Color? getDefTextBGColor() {
     if (style.styleMap.containsKey(type)) {
       if (style.styleMap[type]!.textBGColor != null) {

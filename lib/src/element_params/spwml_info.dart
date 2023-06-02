@@ -1,5 +1,6 @@
 ///
 /// (en)Reference class for hints when SpWML throws an error.
+///
 /// (ja)SpWMLがエラーをスローする時のヒントの参照用クラスです。
 ///
 /// Author Masahide Mori

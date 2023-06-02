@@ -15,6 +15,7 @@ class SpWMLBuilder {
   final List<SpWMLElement> _parsedWidgets;
   final MainAxisAlignment mainAA;
   final CrossAxisAlignment crossAA;
+  final MainAxisSize mainAS;
   final EdgeInsets margin;
   final EdgeInsets padding;
   final SpWMLFontStyle style;
@@ -25,6 +26,7 @@ class SpWMLBuilder {
   /// * [spWML] : SpWML text.
   /// * [mainAA] : Top level Column MainAxisAlignment.
   /// * [crossAA] : Top level Column CrossAxisAlignment.
+  /// * [mainAS] : The MainAxisSize of wrap column.
   /// * [margin] : Top level Column Margin.
   /// * [padding] : Top level Column Padding.
   /// * [spWMLStyle] : Font styles. If you want to change the default style,
@@ -34,6 +36,7 @@ class SpWMLBuilder {
   SpWMLBuilder(spWML,
       {this.mainAA = MainAxisAlignment.start,
       this.crossAA = CrossAxisAlignment.start,
+      this.mainAS = MainAxisSize.max,
       this.margin = const EdgeInsets.all(0),
       this.padding = const EdgeInsets.all(0),
       SpWMLFontStyle? spWMLStyle,
@@ -384,6 +387,7 @@ class SpWMLBuilder {
         child: Column(
           mainAxisAlignment: mainAA,
           crossAxisAlignment: crossAA,
+          mainAxisSize: mainAS,
           children: _getStructuralWidget(context),
         ));
   }

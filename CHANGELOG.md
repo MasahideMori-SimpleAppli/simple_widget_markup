@@ -1,3 +1,12 @@
+## 19.0.0
+* Fixed bug progressIndicator and slider bool value conversion.
+* Added param of mainAxisSize to SpWMLBuilder and SpWML.
+* Added getSID and getID method to SpWMLElement.
+* Removed setText method from TextElement.
+* Added getContentText and setContentText method to TextElement.
+* Added mainAxisSize param to col and row.
+* Added useAutoLabel and isIntValue param to SliderElement.
+
 ## 18.3.1
 * Fixed an issue where the initial value of SegmentedBtnElement was broken.
 

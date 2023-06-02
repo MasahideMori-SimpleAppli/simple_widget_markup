@@ -66,6 +66,12 @@ class SliderElement extends SpWMLElement {
     elParams.p.divisions = params.containsKey(EnumSpWMLParams.divisions)
         ? params[EnumSpWMLParams.divisions]
         : SliderParams.defDivisions;
+    elParams.p.useAutoLabel = params.containsKey(EnumSpWMLParams.useAutoLabel)
+        ? params[EnumSpWMLParams.useAutoLabel]
+        : SliderParams.defUseAutoLabel;
+    elParams.p.isIntValue = params.containsKey(EnumSpWMLParams.isIntValue)
+        ? params[EnumSpWMLParams.isIntValue]
+        : SliderParams.defIsIntValue;
     return this;
   }
 
@@ -124,7 +130,9 @@ class _SliderElementWidgetState extends State<_SliderElementWidget> {
       divisions: widget.elParams.p.divisions,
       label: widget.elParams.p.label ??
           (widget.elParams.p.useAutoLabel
-              ? widget.elParams.p.value.toString()
+              ? (widget.elParams.p.isIntValue
+                  ? widget.elParams.p.value.toInt().toString()
+                  : widget.elParams.p.value.toString())
               : null),
       activeColor: widget.elParams.p.activeColor,
       inactiveColor: widget.elParams.p.inactiveColor,

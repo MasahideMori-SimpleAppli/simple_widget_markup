@@ -64,6 +64,9 @@ class RowElement extends MultiChildElement {
         elParams.p.textBaseline == null) {
       elParams.p.textBaseline = TextBaseline.alphabetic;
     }
+    elParams.p.mainAxisSize = params.containsKey(EnumSpWMLParams.mainAxisSize)
+        ? params[EnumSpWMLParams.mainAxisSize]
+        : MainAxisSize.max;
     return this;
   }
 

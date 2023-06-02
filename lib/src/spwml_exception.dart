@@ -33,7 +33,7 @@ class SpWMLException implements Exception {
 
   @override
   String toString() =>
-      "SpWMLException, Type:${type.toStr()}, Line:$lineStart-$lineEnd, ${type.toErrorText()}${_getHint()}";
+      "SpWMLException, Type:${type.name}, Line:$lineStart-$lineEnd, ${type.toErrorText()}${_getHint()}";
 }
 
 enum EnumSpWMLExceptionType {
@@ -45,35 +45,30 @@ enum EnumSpWMLExceptionType {
   replaceException,
   syntaxException,
   elementException,
-  tableParamException,
+  tableParamException
 }
 
 extension EXTEnumSpWMLExceptionType on EnumSpWMLExceptionType {
-  String toStr() {
-    return toString().split('.').last;
-  }
-
   String toErrorText() {
-    if (this == EnumSpWMLExceptionType.typeException) {
-      return "It is an invalid type.";
-    } else if (this == EnumSpWMLExceptionType.paramException) {
-      return "The parameter length is invalid.";
-    } else if (this == EnumSpWMLExceptionType.paramValueException) {
-      return "It is an invalid parameter value.";
-    } else if (this == EnumSpWMLExceptionType.nullException) {
-      return "The target did not exist.";
-    } else if (this == EnumSpWMLExceptionType.levelException) {
-      return "The number of indent mark is invalid.";
-    } else if (this == EnumSpWMLExceptionType.replaceException) {
-      return "Only the child elements of the block element can be replaced.";
-    } else if (this == EnumSpWMLExceptionType.syntaxException) {
-      return 'Syntax Error.';
-    } else if (this == EnumSpWMLExceptionType.elementException) {
-      return 'The specified position contains an element that cannot be placed.';
-    } else if (this == EnumSpWMLExceptionType.tableParamException) {
-      return 'Please set hNum parameter.';
-    } else {
-      return "An unknown exception.";
+    switch (this) {
+      case EnumSpWMLExceptionType.typeException:
+        return "It is an invalid type.";
+      case EnumSpWMLExceptionType.paramException:
+        return "The parameter length is invalid.";
+      case EnumSpWMLExceptionType.paramValueException:
+        return "It is an invalid parameter value.";
+      case EnumSpWMLExceptionType.nullException:
+        return "The target did not exist.";
+      case EnumSpWMLExceptionType.levelException:
+        return "The number of indent mark is invalid.";
+      case EnumSpWMLExceptionType.replaceException:
+        return "Only the child elements of the block element can be replaced.";
+      case EnumSpWMLExceptionType.syntaxException:
+        return 'Syntax Error.';
+      case EnumSpWMLExceptionType.elementException:
+        return 'The specified position contains an element that cannot be placed.';
+      case EnumSpWMLExceptionType.tableParamException:
+        return 'Please set hNum parameter.';
     }
   }
 }
