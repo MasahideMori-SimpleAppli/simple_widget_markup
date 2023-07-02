@@ -1,3 +1,6 @@
+## 20.0.2
+* Manager can now be set automatically from SpWMLBuilder for ProgressIndicatorElement and SliderElement.
+
 ## 20.0.1
 * Fixed a bug that the initial value of SliderElement when value were not set was 0 instead of the minimum value.
 

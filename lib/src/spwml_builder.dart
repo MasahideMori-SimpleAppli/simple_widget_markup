@@ -273,12 +273,14 @@ class SpWMLBuilder {
   /// * [fm] : The manager for switchBtn.
   /// * [mim] : The manager for segmentedBtn.
   /// * [mfm] : The manager for checkbox.
+  /// * [vm] : The manager for progressIndicator and slider.
   void setManager(
       {TextFieldManager? tfm,
       IndexManager? im,
       FlagManager? fm,
       MultiIndexManager? mim,
-      MultiFlagManager? mfm}) {
+      MultiFlagManager? mfm,
+      ValueManager? vm}) {
     for (SpWMLElement i in _parsedWidgets) {
       final String? sid = i.getSID();
       if (sid == null) {
@@ -318,6 +320,15 @@ class SpWMLBuilder {
           if (i.type == EnumSpWMLElementType.checkbox) {
             CheckboxElement elm = i as CheckboxElement;
             elm.setManager(mfm);
+          }
+        }
+        if (vm != null) {
+          if (i.type == EnumSpWMLElementType.progressIndicator) {
+            ProgressIndicatorElement elm = i as ProgressIndicatorElement;
+            elm.setManager(vm);
+          } else if (i.type == EnumSpWMLElementType.slider) {
+            SliderElement elm = i as SliderElement;
+            elm.setManager(vm);
           }
         }
       }
