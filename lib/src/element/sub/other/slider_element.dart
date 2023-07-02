@@ -129,7 +129,8 @@ class _SliderElementWidgetState extends State<_SliderElementWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final double value = widget.elParams.p.manager!.getValue(widget.sid) ?? 0;
+    final double value = widget.elParams.p.manager!.getValue(widget.sid) ??
+        widget.elParams.p.min;
     return Slider(
       key: widget.elParams.p.key,
       value: value,

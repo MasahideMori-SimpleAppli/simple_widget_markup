@@ -1,3 +1,6 @@
+## 20.0.1
+* Fixed a bug that the initial value of SliderElement when value were not set was 0 instead of the minimum value.
+
 ## 20.0.0
 * There are major specification changes in this version.
 * The id parameter has been removed and changed to sid only.
