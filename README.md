@@ -85,7 +85,7 @@ Please rewrite _getSpWMLWidget in Sample code as follows.
   Widget _getSpWMLWidget(BuildContext context) {
     SpWMLBuilder builder = SpWMLBuilder("(h1)Replace below this text.\n"
             "(block, sid:button_name)");
-    builder.replaceSID(
+    builder.replace(
             "button_name",
             OutlinedButton(
                     onPressed: () {

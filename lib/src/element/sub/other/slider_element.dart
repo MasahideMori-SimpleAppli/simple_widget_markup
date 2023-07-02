@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../element_params/spwml_info.dart';
-import '../../../element_params/sub/other/slider_element_params.dart';
-import '../../../element_params/super/spwml_params.dart';
-import '../../../enum/enum_spwml_params.dart';
-import '../../../enum/enum_spwml_element_type.dart';
-import '../../../style/spwml_font_style.dart';
-import '../../super/spwml_element.dart';
+import 'package:simple_managers/simple_managers.dart';
+import '../../../../simple_widget_markup.dart';
 
 ///
 /// Author Masahide Mori
@@ -45,9 +40,6 @@ class SliderElement extends SpWMLElement {
   @override
   SliderElement initParams() {
     super.initParams();
-    elParams.p.value = params.containsKey(EnumSpWMLParams.value)
-        ? params[EnumSpWMLParams.value]!
-        : SliderParams.defValue;
     elParams.p.min = params.containsKey(EnumSpWMLParams.min)
         ? params[EnumSpWMLParams.min]!
         : SliderParams.defMin;
@@ -72,15 +64,22 @@ class SliderElement extends SpWMLElement {
     elParams.p.isIntValue = params.containsKey(EnumSpWMLParams.isIntValue)
         ? params[EnumSpWMLParams.isIntValue]
         : SliderParams.defIsIntValue;
+    // SIDが設定されていなければエラー。
+    if (getSID() == null) {
+      throw SpWMLException(EnumSpWMLExceptionType.sidDoesNotExistException,
+          lineStart, lineEnd, info);
+    }
     return this;
   }
 
-  /// (en) Set slider value.
+  /// (en) Set slider value. Invalid if the manager class is not set.
   ///
-  /// (ja) スライダーの値を設定します。
+  /// (ja) スライダーの値を設定します。マネージャークラスが未設定の場合は無効です。
   /// * [v] : The slider value.
   void setValue(double v) {
-    elParams.p.value = v;
+    if (elParams.p.manager != null) {
+      elParams.p.manager!.setValue(getSID()!, v);
+    }
   }
 
   /// (en) Set a callback when the slider value changes.
@@ -93,16 +92,27 @@ class SliderElement extends SpWMLElement {
     elParams.p.onChanged = onChanged;
   }
 
+  /// (en) Sets the manager class that manages the state.
+  ///
+  /// (ja) 状態を管理するマネージャクラスを設定します。
+  /// * [m] : Manager class.
+  void setManager(ValueManager m) {
+    elParams.p.manager = m;
+  }
+
   @override
   Widget getWidget(BuildContext context) {
-    return _SliderElementWidget(elParams);
+    // マネージャークラスが未設定の場合、仮のマネージャークラスを生成する。
+    elParams.p.manager ??= ValueManager();
+    return _SliderElementWidget(getSID()!, elParams);
   }
 }
 
 class _SliderElementWidget extends StatefulWidget {
+  final String sid;
   final SliderParamsWrapper elParams;
 
-  const _SliderElementWidget(this.elParams);
+  const _SliderElementWidget(this.sid, this.elParams);
 
   @override
   _SliderElementWidgetState createState() => _SliderElementWidgetState();
@@ -112,16 +122,17 @@ class _SliderElementWidgetState extends State<_SliderElementWidget> {
   /// onChanged wrapper.
   void _onChanged(double v) {
     setState(() {
-      widget.elParams.p.value = v;
+      widget.elParams.p.manager!.setValue(widget.sid, v);
       widget.elParams.p.onChanged!(v);
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    final double value = widget.elParams.p.manager!.getValue(widget.sid) ?? 0;
     return Slider(
       key: widget.elParams.p.key,
-      value: widget.elParams.p.value,
+      value: value,
       onChanged: widget.elParams.p.onChanged == null ? null : _onChanged,
       onChangeStart: widget.elParams.p.onChangeStart,
       onChangeEnd: widget.elParams.p.onChangeEnd,
@@ -131,8 +142,8 @@ class _SliderElementWidgetState extends State<_SliderElementWidget> {
       label: widget.elParams.p.label ??
           (widget.elParams.p.useAutoLabel
               ? (widget.elParams.p.isIntValue
-                  ? widget.elParams.p.value.toInt().toString()
-                  : widget.elParams.p.value.toString())
+                  ? value.toInt().toString()
+                  : value.toString())
               : null),
       activeColor: widget.elParams.p.activeColor,
       inactiveColor: widget.elParams.p.inactiveColor,

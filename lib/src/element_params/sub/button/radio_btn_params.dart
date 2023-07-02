@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_managers/simple_managers.dart';
 import 'checkbox_params.dart';
 
 import 'btn_params.dart';
@@ -13,7 +14,8 @@ class RadioBtnParamsWrapper {
 class RadioBtnParams {
   SelectableIconBtnParams? enableParams;
   SelectableIconBtnParams? disableParams;
-  int? selectedIndex;
+  // pre version, this is selectedIndex.
+  IndexManager? manager;
   void Function(int? selectedIndex)? callback = (int? i) {};
   // If true, enable tap of label.
   bool enableTapLabel = false;

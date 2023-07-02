@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../element/super/multi_child_element.dart';
-import '../../../element_params/element_child.dart';
-import '../../../element_params/spwml_info.dart';
-import '../../../element_params/sub/button/popupmenu_btn_params.dart';
-import '../../../element_params/super/spwml_params.dart';
-import '../../../enum/enum_spwml_params.dart';
-import '../../../enum/enum_spwml_element_type.dart';
-import '../../../style/spwml_font_style.dart';
+import 'package:simple_managers/simple_managers.dart';
+import '../../../../simple_widget_markup.dart';
 
 ///
 /// Author Masahide Mori
@@ -61,6 +55,11 @@ class PopupMenuBtnElement extends MultiChildElement {
     elParams.p.iconSize = params.containsKey(EnumSpWMLParams.iconSize)
         ? params[EnumSpWMLParams.iconSize]
         : null;
+    // SIDが設定されていなければエラー。
+    if (getSID() == null) {
+      throw SpWMLException(EnumSpWMLExceptionType.sidDoesNotExistException,
+          lineStart, lineEnd, info);
+    }
     return this;
   }
 
@@ -71,6 +70,8 @@ class PopupMenuBtnElement extends MultiChildElement {
 
   /// create dropdown button.
   Widget _getBtn(BuildContext context) {
+    // マネージャークラスが未設定の場合、仮のマネージャークラスを生成する。
+    elParams.p.manager ??= IndexManager();
     List<PopupMenuItem<int>> menus = [];
     int count = 0;
     if (elParams.p.popupMenuItemParams.length == children.children.length) {
@@ -80,6 +81,10 @@ class PopupMenuBtnElement extends MultiChildElement {
           key: elParams.p.popupMenuItemParams[v].key,
           value: v,
           onTap: () {
+            final String? sid = getSID();
+            if (sid != null) {
+              elParams.p.manager!.setIndex(sid, v);
+            }
             if (elParams.p.popupMenuItemParams[v].onTap == null) {
               if (elParams.p.menuCallback != null) {
                 elParams.p.menuCallback!(v);
@@ -104,6 +109,10 @@ class PopupMenuBtnElement extends MultiChildElement {
           menus.add(PopupMenuItem(
               value: v,
               onTap: () {
+                final String? sid = getSID();
+                if (sid != null) {
+                  elParams.p.manager!.setIndex(sid, v);
+                }
                 elParams.p.menuCallback!(v);
               },
               child: i));
@@ -114,6 +123,7 @@ class PopupMenuBtnElement extends MultiChildElement {
       }
     }
     return _PopupMenuElementWidget(
+      getSID()!,
       menus,
       elParams,
     );
@@ -126,13 +136,35 @@ class PopupMenuBtnElement extends MultiChildElement {
   void setCallback(void Function(int index)? callback) {
     elParams.p.menuCallback = callback;
   }
+
+  /// (en) Sets the value. Disabled if the manager class is not set.
+  ///
+  /// (ja) 値を設定します。マネージャークラスが未設定の場合は無効になります。
+  /// * [v] : value.
+  void setValue(int? v) {
+    if (elParams.p.manager != null) {
+      final String? sid = getSID();
+      if (sid != null) {
+        elParams.p.manager!.setIndex(sid, v);
+      }
+    }
+  }
+
+  /// (en) Sets the manager class that manages the state.
+  ///
+  /// (ja) 状態を管理するマネージャクラスを設定します。
+  /// * [m] : Manager class.
+  void setManager(IndexManager m) {
+    elParams.p.manager = m;
+  }
 }
 
 class _PopupMenuElementWidget extends StatefulWidget {
+  final String sid;
   final List<PopupMenuEntry<int>> menus;
-  final PopupMenuBtnParamsWrapper elParam;
+  final PopupMenuBtnParamsWrapper elParams;
 
-  const _PopupMenuElementWidget(this.menus, this.elParam);
+  const _PopupMenuElementWidget(this.sid, this.menus, this.elParams);
 
   @override
   _PopupMenuElementWidgetState createState() => _PopupMenuElementWidgetState();
@@ -142,28 +174,30 @@ class _PopupMenuElementWidgetState extends State<_PopupMenuElementWidget> {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<int>(
-      key: widget.elParam.p.key,
-      itemBuilder: widget.elParam.p.itemBuilder ??
+      key: widget.elParams.p.key,
+      itemBuilder: widget.elParams.p.itemBuilder ??
           (BuildContext context) {
             return widget.menus;
           },
-      initialValue: widget.elParam.p.initialValue,
-      onSelected: widget.elParam.p.onSelected,
-      onCanceled: widget.elParam.p.onCanceled,
-      tooltip: widget.elParam.p.tooltip,
-      elevation: widget.elParam.p.elevation,
-      padding: widget.elParam.p.padding,
-      splashRadius: widget.elParam.p.splashRadius,
-      icon: widget.elParam.p.icon,
-      iconSize: widget.elParam.p.iconSize,
-      offset: widget.elParam.p.offset,
-      enabled: widget.elParam.p.enabled,
-      shape: widget.elParam.p.shape,
-      color: widget.elParam.p.color,
-      enableFeedback: widget.elParam.p.enableFeedback,
-      constraints: widget.elParam.p.constraints,
-      position: widget.elParam.p.position,
-      child: widget.elParam.p.child,
+      initialValue: widget.elParams.p.manager!.getIndex(widget.sid),
+      onOpened: widget.elParams.p.onOpened,
+      onSelected: widget.elParams.p.onSelected,
+      onCanceled: widget.elParams.p.onCanceled,
+      tooltip: widget.elParams.p.tooltip,
+      elevation: widget.elParams.p.elevation,
+      padding: widget.elParams.p.padding,
+      splashRadius: widget.elParams.p.splashRadius,
+      icon: widget.elParams.p.icon,
+      iconSize: widget.elParams.p.iconSize,
+      offset: widget.elParams.p.offset,
+      enabled: widget.elParams.p.enabled,
+      shape: widget.elParams.p.shape,
+      color: widget.elParams.p.color,
+      enableFeedback: widget.elParams.p.enableFeedback,
+      constraints: widget.elParams.p.constraints,
+      position: widget.elParams.p.position,
+      clipBehavior: widget.elParams.p.clipBehavior,
+      child: widget.elParams.p.child,
     );
   }
 }

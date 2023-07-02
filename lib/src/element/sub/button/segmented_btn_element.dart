@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_managers/simple_managers.dart';
 
 import '../../../../simple_widget_markup.dart';
 
@@ -50,24 +51,20 @@ class SegmentedBtnElement extends MultiChildElement {
         params.containsKey(EnumSpWMLParams.allowEmpty)
             ? params[EnumSpWMLParams.allowEmpty]
             : SegmentedBtnParams.defEmptySelectionAllowed;
+    // SIDが設定されていなければエラー。
+    if (getSID() == null) {
+      throw SpWMLException(EnumSpWMLExceptionType.sidDoesNotExistException,
+          lineStart, lineEnd, info);
+    }
     return this;
   }
 
   @override
   Widget getWidget(BuildContext context) {
-    return _SegmentedBtnElementWidget(children, elParams, getShape());
-  }
-
-  /// (en)Set the initial value.
-  /// To keep the value when the screen is refreshed,
-  /// hold the value in the upper widget etc. and call this.
-  ///
-  /// (ja)初期値を設定します。
-  /// 画面の更新時に値を保持するには、
-  /// 上位のウィジェット等で値を保持し、これを呼び出します。
-  /// * [v] : The values.
-  void setInitialValues(Set<int> v) {
-    elParams.p.selected = v;
+    // マネージャークラスが未設定の場合、仮のマネージャークラスを生成する。
+    elParams.p.manager ??= MultiIndexManager();
+    return _SegmentedBtnElementWidget(
+        getSID()!, children, elParams, getShape());
   }
 
   /// (en)Set callback.
@@ -77,14 +74,37 @@ class SegmentedBtnElement extends MultiChildElement {
   void setCallback(void Function(Set<int>)? onSelectionChanged) {
     elParams.p.onSelectionChanged = onSelectionChanged;
   }
+
+  /// (en) Sets the value. Disabled if the manager class is not set.
+  ///
+  /// (ja) 値を設定します。マネージャークラスが未設定の場合は無効になります。
+  /// * [v] : value.
+  void setValue(Set<int> v) {
+    if (elParams.p.manager != null) {
+      final String? sid = getSID();
+      if (sid != null) {
+        elParams.p.manager!.setIndexSet(sid, v);
+      }
+    }
+  }
+
+  /// (en) Sets the manager class that manages the state.
+  ///
+  /// (ja) 状態を管理するマネージャクラスを設定します。
+  /// * [m] : Manager class.
+  void setManager(MultiIndexManager m) {
+    elParams.p.manager = m;
+  }
 }
 
 class _SegmentedBtnElementWidget extends StatefulWidget {
+  final String sid;
   final StructureElementChildren children;
   final SegmentedBtnParamsWrapper elParams;
   final OutlinedBorder? shape;
 
-  const _SegmentedBtnElementWidget(this.children, this.elParams, this.shape);
+  const _SegmentedBtnElementWidget(
+      this.sid, this.children, this.elParams, this.shape);
 
   @override
   _SegmentedBtnElementWidgetState createState() =>
@@ -96,7 +116,7 @@ class _SegmentedBtnElementWidgetState
   /// The onTap callback.
   void _onTapCallback(Set<int> selection) {
     setState(() {
-      widget.elParams.p.selected = selection;
+      widget.elParams.p.manager!.setIndexSet(widget.sid, selection);
       if (widget.elParams.p.onSelectionChanged != null) {
         widget.elParams.p.onSelectionChanged!(selection);
       }
@@ -128,20 +148,12 @@ class _SegmentedBtnElementWidgetState
     return r;
   }
 
-  Set<int> _getSelected() {
-    if (widget.elParams.p.selected == null) {
-      return {};
-    } else {
-      return widget.elParams.p.selected!;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return SegmentedButton(
       key: widget.elParams.p.key,
       segments: widget.elParams.p.segments ?? _getSegments(),
-      selected: _getSelected(),
+      selected: widget.elParams.p.manager!.getIndexSet(widget.sid),
       onSelectionChanged: _onTapCallback,
       multiSelectionEnabled: widget.elParams.p.multiSelectionEnabled,
       emptySelectionAllowed: widget.elParams.p.emptySelectionAllowed,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:textfield_manager/textfield_manager.dart';
+import 'package:simple_managers/simple_managers.dart';
 import '../simple_widget_markup.dart';
 
 ///
@@ -46,65 +46,15 @@ class SpWMLBuilder {
             spWML, spWMLStyle ?? SpWMLFontStyleManager().style, info),
         style = spWMLStyle ?? SpWMLFontStyleManager().style;
 
-  /// (en)Replaces the contents of the specified ID with a widget.
+  /// (en)Replaces the contents of the specified SID with a widget.
   ///
-  /// (ja)指定IDの内容をウィジェットで置き換えます。
+  /// (ja)指定SIDの内容をウィジェットで置き換えます。
   ///
-  /// * [id] : Target ID.
+  /// * [sid] : Target SID.
   /// * [newWidget] : Replace Widget.
   ///
   /// Throws [SpWMLException] : If target is null, throws nullException.
-  void replaceID(int id, Widget newWidget) {
-    // 空の場合もあるのでフラグ処理が必要。
-    bool needReturn = false;
-    Widget? removeTarget;
-    for (int i = 0; i < _parsedWidgets.length; i++) {
-      final SpWMLElement elm = _parsedWidgets[i];
-      if (elm.params.containsKey(EnumSpWMLParams.id)) {
-        if (elm.params[EnumSpWMLParams.id] == id) {
-          if (elm is SingleChildElement) {
-            elm.child.child = newWidget;
-            for (SpWMLElement j in _parsedWidgets) {
-              if (elm.serial == j.parentSerial) {
-                removeTarget = j;
-              }
-            }
-            needReturn = true;
-            break;
-          } else if (elm is SingleChildTextElement) {
-            elm.child.child = newWidget;
-            for (SpWMLElement j in _parsedWidgets) {
-              if (elm.serial == j.parentSerial) {
-                removeTarget = j;
-              }
-            }
-            needReturn = true;
-            break;
-          } else {
-            throw SpWMLException(
-                EnumSpWMLExceptionType.replaceException, -1, -1, info);
-          }
-        }
-      }
-    }
-    if (removeTarget != null) {
-      _parsedWidgets.remove(removeTarget);
-    }
-    if (needReturn) {
-      return;
-    }
-    throw SpWMLException(EnumSpWMLExceptionType.nullException, -1, -1, info);
-  }
-
-  /// (en)Replaces the contents of the specified String ID with a widget.
-  ///
-  /// (ja)指定String IDの内容をウィジェットで置き換えます。
-  ///
-  /// * [sid] : Target String ID.
-  /// * [newWidget] : Replace Widget.
-  ///
-  /// Throws [SpWMLException] : If target is null, throws nullException.
-  void replaceSID(String sid, Widget newWidget) {
+  void replace(String sid, Widget newWidget) {
     // 空の場合もあるのでフラグ処理が必要。
     bool needReturn = false;
     Widget? removeTarget;
@@ -146,67 +96,15 @@ class SpWMLBuilder {
     throw SpWMLException(EnumSpWMLExceptionType.nullException, -1, -1, info);
   }
 
-  /// (en)Disables any child element of col, row, or wrap with the specified ID and replaces it with a new widget.
+  /// (en)Disables any child element of col, row, or wrap with the specified SID and replaces it with a new widget.
   ///
-  /// (ja)指定されたIDを持つcol, row, wrap, expTileのいずれかの子要素を無効化して、新しいウィジェットに置き換えます。
+  /// (ja)指定されたSIDを持つcol, row, wrap, expTileのいずれかの子要素を無効化して、新しいウィジェットに置き換えます。
   ///
-  /// * [id] : Target ID.
+  /// * [sid] : Target SID.
   /// * [newWidgets] : Replace Widgets.
   ///
   /// Throws [SpWMLException] : If target is null, throws nullException.
-  void replaceUnderStructure(int id, List<Widget> newWidgets) {
-    // 空の場合もあるのでフラグ処理が必要。
-    bool needReturn = false;
-    List<Widget> removeTargets = [];
-    for (int i = 0; i < _parsedWidgets.length; i++) {
-      final SpWMLElement elm = _parsedWidgets[i];
-      if (elm.params.containsKey(EnumSpWMLParams.id)) {
-        if (elm.params[EnumSpWMLParams.id] == id) {
-          if (elm is MultiChildElement) {
-            elm.children.children = newWidgets;
-            for (SpWMLElement j in _parsedWidgets) {
-              if (elm.serial == j.parentSerial) {
-                removeTargets.add(j);
-              }
-            }
-            needReturn = true;
-            break;
-          } else if (elm is MultiChildTextElement) {
-            elm.children.children = newWidgets;
-            for (SpWMLElement j in _parsedWidgets) {
-              if (elm.serial == j.parentSerial) {
-                removeTargets.add(j);
-              }
-            }
-            needReturn = true;
-            break;
-          } else {
-            throw SpWMLException(
-                EnumSpWMLExceptionType.replaceException, -1, -1, info);
-          }
-        }
-      }
-    }
-    if (removeTargets.isNotEmpty) {
-      for (final i in removeTargets) {
-        _parsedWidgets.remove(i);
-      }
-    }
-    if (needReturn) {
-      return;
-    }
-    throw SpWMLException(EnumSpWMLExceptionType.nullException, -1, -1, info);
-  }
-
-  /// (en)Disables any child element of col, row, or wrap with the specified String ID and replaces it with a new widget.
-  ///
-  /// (ja)指定されたString IDを持つcol, row, wrap, expTileのいずれかの子要素を無効化して、新しいウィジェットに置き換えます。
-  ///
-  /// * [sid] : Target String ID.
-  /// * [newWidgets] : Replace Widgets.
-  ///
-  /// Throws [SpWMLException] : If target is null, throws nullException.
-  void replaceUnderStructureSID(String sid, List<Widget> newWidgets) {
+  void replaceUnderStructure(String sid, List<Widget> newWidgets) {
     // 空の場合もあるのでフラグ処理が必要。
     bool needReturn = false;
     List<Widget> removeTargets = [];
@@ -257,37 +155,11 @@ class SpWMLBuilder {
     return _parsedWidgets.length;
   }
 
-  /// (en) Gets the element with the specified serial.
-  ///
-  /// (ja) 指定シリアルを持つエレメントを取得します。
-  /// * [serial]: The index value assigned to each element when parsing SpWML.
-  /// Starting from 0, it is in the order of SpWML description.
-  SpWMLElement getElement(int serial) {
-    return _parsedWidgets[serial];
-  }
-
   /// (en) Get a reference to the elements.
   ///
   /// (ja) エレメントの参照を取得します。
   List<SpWMLElement> getAllElements() {
     return _parsedWidgets;
-  }
-
-  /// (en) Gets the element with the specified id.
-  ///
-  /// (ja) 指定IDを持つエレメントを取得します。
-  /// * [id]: ID param of SpWML.
-  ///
-  /// returns: If target is not exist, return null.
-  SpWMLElement? getElementByID(int id) {
-    for (SpWMLElement i in _parsedWidgets) {
-      if (i.params.containsKey(EnumSpWMLParams.id)) {
-        if (i.params[EnumSpWMLParams.id] == id) {
-          return i;
-        }
-      }
-    }
-    return null;
   }
 
   /// (en) Gets the element with the specified String ID.
@@ -296,7 +168,7 @@ class SpWMLBuilder {
   /// * [id]: String ID param of SpWML.
   ///
   /// returns: If target is not exist, return null.
-  SpWMLElement? getElementBySID(String sid) {
+  SpWMLElement? getElement(String sid) {
     for (SpWMLElement i in _parsedWidgets) {
       if (i.params.containsKey(EnumSpWMLParams.sid)) {
         if (i.params[EnumSpWMLParams.sid] == sid) {
@@ -392,23 +264,62 @@ class SpWMLBuilder {
         ));
   }
 
-  /// (en)Both TextEditingController and FocusNode are automatically set
-  /// with the sid set in the layout as a key.
-  /// The initial value set is empty.
+  /// (en)The manager class is automatically set using the sid set in the layout as a key.
   ///
-  /// (ja)レイアウトに設定されているsidをキーとして、
-  /// TextEditingControllerとFocusNodeの両方を自動設定します。
-  /// 設定される初期値は空です。
+  /// (ja)レイアウトに設定されているsidをキーとして、マネージャークラスを自動設定します。
   ///
-  /// * [tfm] : The manager for text fields.
-  void autoConfigureTextFieldManager(TextFieldManager tfm) {
+  /// * [tfm] : The manager for textfield.
+  /// * [im] : The manager for dropdownBtn and popupMenuBtn and radioBtn.
+  /// * [fm] : The manager for switchBtn.
+  /// * [mim] : The manager for segmentedBtn.
+  /// * [mfm] : The manager for checkbox.
+  void setManager(
+      {TextFieldManager? tfm,
+      IndexManager? im,
+      FlagManager? fm,
+      MultiIndexManager? mim,
+      MultiFlagManager? mfm}) {
     for (SpWMLElement i in _parsedWidgets) {
-      if (i.type != EnumSpWMLElementType.textField) {
+      final String? sid = i.getSID();
+      if (sid == null) {
         continue;
-      }
-      if (i.params.containsKey(EnumSpWMLParams.sid)) {
-        TextFieldElement tfe = i as TextFieldElement;
-        tfe.setManager(tfm, i.params[EnumSpWMLParams.sid]);
+      } else {
+        if (tfm != null) {
+          if (i.type == EnumSpWMLElementType.textField) {
+            TextFieldElement elm = i as TextFieldElement;
+            elm.setManager(tfm, sid);
+          }
+        }
+        if (im != null) {
+          if (i.type == EnumSpWMLElementType.dropdownBtn) {
+            DropdownBtnElement elm = i as DropdownBtnElement;
+            elm.setManager(im);
+          } else if (i.type == EnumSpWMLElementType.popupMenuBtn) {
+            PopupMenuBtnElement elm = i as PopupMenuBtnElement;
+            elm.setManager(im);
+          } else if (i.type == EnumSpWMLElementType.radioBtn) {
+            RadioBtnElement elm = i as RadioBtnElement;
+            elm.setManager(im);
+          }
+        }
+        if (fm != null) {
+          if (i.type == EnumSpWMLElementType.switchBtn) {
+            SwitchBtnElement elm = i as SwitchBtnElement;
+            elm.setManager(fm);
+          }
+        }
+        if (mim != null) {
+          if (i.type == EnumSpWMLElementType.segmentedBtn) {
+            SegmentedBtnElement elm = i as SegmentedBtnElement;
+            elm.setManager(mim);
+          }
+        }
+        if (mfm != null) {
+          if (i.type == EnumSpWMLElementType.checkbox) {
+            CheckboxElement elm = i as CheckboxElement;
+            elm.setManager(mfm);
+          }
+        }
       }
     }
   }

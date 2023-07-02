@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_managers/simple_managers.dart';
 
 import '../../../../simple_widget_markup.dart';
 
@@ -43,20 +44,24 @@ class SwitchBtnElement extends SpWMLElement {
     elParams.p.splashRadius = params.containsKey(EnumSpWMLParams.splashRadius)
         ? params[EnumSpWMLParams.splashRadius]
         : null;
-    elParams.p.value = params.containsKey(EnumSpWMLParams.value)
-        ? params[EnumSpWMLParams.value]
-        : false;
     if (params.containsKey(EnumSpWMLParams.type)) {
       if (params[EnumSpWMLParams.type] == EnumSwitchBtnType.check) {
         setSwitchIcon(Icons.check, Icons.close);
       }
+    }
+    // SIDが設定されていなければエラー。
+    if (getSID() == null) {
+      throw SpWMLException(EnumSpWMLExceptionType.sidDoesNotExistException,
+          lineStart, lineEnd, info);
     }
     return this;
   }
 
   @override
   Widget getWidget(BuildContext context) {
-    return _SwitchBtnElementWidget(elParams);
+    // マネージャークラスが未設定の場合、仮のマネージャークラスを生成する。
+    elParams.p.manager ??= FlagManager();
+    return _SwitchBtnElementWidget(getSID()!, elParams);
   }
 
   /// (en)Set button callback.
@@ -65,14 +70,6 @@ class SwitchBtnElement extends SpWMLElement {
   /// * [callback] : The button callback.
   void setCallback(void Function(bool btnEnabled)? callback) {
     elParams.p.onChanged = callback;
-  }
-
-  /// (en)Set switch value.
-  ///
-  /// (ja)スイッチの値を設定します。
-  /// * [v] : If true, switch initial value is true.
-  void setSwitchValue(bool v) {
-    elParams.p.value = v;
   }
 
   /// (en)Set switch value.
@@ -90,12 +87,34 @@ class SwitchBtnElement extends SpWMLElement {
       },
     );
   }
+
+  /// (en) Sets the switch value. Disabled if the manager class is not set.
+  ///
+  /// (ja) スイッチの値を設定します。マネージャークラスが未設定の場合は無効になります。
+  /// * [v] : Switch value.
+  void setValue(bool v) {
+    if (elParams.p.manager != null) {
+      final String? sid = getSID();
+      if (sid != null) {
+        elParams.p.manager!.setFlag(sid, v);
+      }
+    }
+  }
+
+  /// (en) Sets the manager class that manages the state.
+  ///
+  /// (ja) 状態を管理するマネージャクラスを設定します。
+  /// * [m] : Manager class.
+  void setManager(FlagManager m) {
+    elParams.p.manager = m;
+  }
 }
 
 class _SwitchBtnElementWidget extends StatefulWidget {
+  final String sid;
   final SwitchBtnParamsWrapper elParams;
 
-  const _SwitchBtnElementWidget(this.elParams);
+  const _SwitchBtnElementWidget(this.sid, this.elParams);
 
   @override
   _SwitchBtnElementWidgetState createState() => _SwitchBtnElementWidgetState();
@@ -106,11 +125,11 @@ class _SwitchBtnElementWidgetState extends State<_SwitchBtnElementWidget> {
   Widget build(BuildContext context) {
     return Switch(
       key: widget.elParams.p.key,
-      value: widget.elParams.p.value,
+      value: widget.elParams.p.manager!.getFlag(widget.sid),
       onChanged: widget.elParams.p.onChanged != null
           ? (bool b) {
               setState(() {
-                widget.elParams.p.value = b;
+                widget.elParams.p.manager!.setFlag(widget.sid, b);
                 if (widget.elParams.p.onChanged != null) {
                   widget.elParams.p.onChanged!(b);
                 }

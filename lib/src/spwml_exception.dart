@@ -45,7 +45,8 @@ enum EnumSpWMLExceptionType {
   replaceException,
   syntaxException,
   elementException,
-  tableParamException
+  tableParamException,
+  sidDoesNotExistException,
 }
 
 extension EXTEnumSpWMLExceptionType on EnumSpWMLExceptionType {
@@ -69,6 +70,8 @@ extension EXTEnumSpWMLExceptionType on EnumSpWMLExceptionType {
         return 'The specified position contains an element that cannot be placed.';
       case EnumSpWMLExceptionType.tableParamException:
         return 'Please set hNum parameter.';
+      case EnumSpWMLExceptionType.sidDoesNotExistException:
+        return 'Please set sid parameter.';
     }
   }
 }

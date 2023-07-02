@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_managers/simple_managers.dart';
 import '../../../../simple_widget_markup.dart';
 
 class ProgressIndicatorParamsWrapper {
@@ -16,7 +17,8 @@ class ProgressIndicatorParams {
 
 class CircularProgressIndicatorParams {
   Key? key;
-  double? value;
+  // pre version, This is value params.
+  ValueManager? manager;
   Color? backgroundColor;
   Color? color;
   Animation<Color?>? valueColor;
@@ -27,7 +29,8 @@ class CircularProgressIndicatorParams {
 
 class LinearProgressIndicatorParams {
   Key? key;
-  double? value;
+  // pre version, This is value params.
+  ValueManager? manager;
   Color? backgroundColor;
   Color? color;
   Animation<Color?>? valueColor;

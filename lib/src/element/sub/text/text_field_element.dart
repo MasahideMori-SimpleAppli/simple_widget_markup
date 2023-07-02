@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:textfield_manager/textfield_manager.dart';
+import 'package:simple_managers/simple_managers.dart';
 import '../../../element_params/spwml_info.dart';
 import 'text_element.dart';
 import '../../../element_params/sub/text/text_params.dart';

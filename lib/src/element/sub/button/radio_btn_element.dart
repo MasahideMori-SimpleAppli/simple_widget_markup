@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../element/super/multi_child_element.dart';
-import '../../../element_params/element_child.dart';
-import '../../../element_params/spwml_info.dart';
-import '../../../element_params/sub/button/checkbox_params.dart';
-import '../../../element_params/sub/button/radio_btn_params.dart';
-import '../../../element_params/super/spwml_params.dart';
-import '../../../enum/enum_spwml_params.dart';
-import '../../../enum/enum_spwml_element_type.dart';
-import '../../../style/spwml_font_style.dart';
+import 'package:simple_managers/simple_managers.dart';
+import '../../../../simple_widget_markup.dart';
 
 ///
 /// Author Masahide Mori
@@ -84,24 +77,19 @@ class RadioBtnElement extends MultiChildElement {
       elParams.p.enableParams!.isV3 = params[EnumSpWMLParams.isV3];
       elParams.p.disableParams!.isV3 = params[EnumSpWMLParams.isV3];
     }
+    // SIDが設定されていなければエラー。
+    if (getSID() == null) {
+      throw SpWMLException(EnumSpWMLExceptionType.sidDoesNotExistException,
+          lineStart, lineEnd, info);
+    }
     return this;
   }
 
   @override
   Widget getWidget(BuildContext context) {
-    return _RadioBtnElementWidget(children, elParams, getShape());
-  }
-
-  /// (en)Set the initial value of the radio button.
-  /// To keep the value of the radio button when the screen is refreshed,
-  /// hold the value in the upper widget etc. and call this.
-  ///
-  /// (ja)ラジオボタンの初期値を設定します。
-  /// 画面の更新時にラジオボタンの値を保持するには、
-  /// 上位のウィジェット等で値を保持し、これを呼び出します。
-  /// * [v] : The value.
-  void setInitialIndex(int? v) {
-    elParams.p.selectedIndex = v;
+    // マネージャークラスが未設定の場合、仮のマネージャークラスを生成する。
+    elParams.p.manager ??= IndexManager();
+    return _RadioBtnElementWidget(getSID()!, children, elParams, getShape());
   }
 
   /// (en)Set radio button callback.
@@ -111,14 +99,37 @@ class RadioBtnElement extends MultiChildElement {
   void setCallback(void Function(int? selectedIndex)? callback) {
     elParams.p.callback = callback;
   }
+
+  /// (en) Sets the value. Disabled if the manager class is not set.
+  ///
+  /// (ja) 値を設定します。マネージャークラスが未設定の場合は無効になります。
+  /// * [v] : value.
+  void setValue(int? v) {
+    if (elParams.p.manager != null) {
+      final String? sid = getSID();
+      if (sid != null) {
+        elParams.p.manager!.setIndex(sid, v);
+      }
+    }
+  }
+
+  /// (en) Sets the manager class that manages the state.
+  ///
+  /// (ja) 状態を管理するマネージャクラスを設定します。
+  /// * [m] : Manager class.
+  void setManager(IndexManager m) {
+    elParams.p.manager = m;
+  }
 }
 
 class _RadioBtnElementWidget extends StatefulWidget {
+  final String sid;
   final StructureElementChildren children;
   final RadioBtnParamsWrapper elParams;
   final OutlinedBorder? shape;
 
-  const _RadioBtnElementWidget(this.children, this.elParams, this.shape);
+  const _RadioBtnElementWidget(
+      this.sid, this.children, this.elParams, this.shape);
 
   @override
   _RadioBtnElementWidgetState createState() => _RadioBtnElementWidgetState();
@@ -128,7 +139,7 @@ class _RadioBtnElementWidgetState extends State<_RadioBtnElementWidget> {
   /// The onTap callback.
   void _onTapCallback(int index) {
     setState(() {
-      widget.elParams.p.selectedIndex = index;
+      widget.elParams.p.manager!.setIndex(widget.sid, index);
       if (widget.elParams.p.callback != null) {
         widget.elParams.p.callback!(index);
       }
@@ -316,7 +327,7 @@ class _RadioBtnElementWidgetState extends State<_RadioBtnElementWidget> {
   List<Widget> _getIconAndWidget(int index) {
     if (widget.elParams.p.isPrefixIcon) {
       return [
-        widget.elParams.p.selectedIndex == index
+        widget.elParams.p.manager!.getIndex(widget.sid) == index
             ? _getEnabledIconBtn(index)
             : _getDisableIconBtn(index),
         widget.children.children[index]
@@ -324,7 +335,7 @@ class _RadioBtnElementWidgetState extends State<_RadioBtnElementWidget> {
     } else {
       return [
         Expanded(child: widget.children.children[index]),
-        widget.elParams.p.selectedIndex == index
+        widget.elParams.p.manager!.getIndex(widget.sid) == index
             ? _getEnabledIconBtn(index)
             : _getDisableIconBtn(index)
       ];

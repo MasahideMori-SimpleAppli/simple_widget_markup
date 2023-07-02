@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_managers/simple_managers.dart';
 
 class DropdownBtnParamsWrapper {
   DropdownBtnParams p;
@@ -48,6 +49,7 @@ class DropdownBtnParams {
   EdgeInsetsGeometry? padding;
   // others
   List<DropdownMenuItemParams> dropdownMenuItemParams = [];
-  int? selectedIndex;
+  // Pre version, This is selectedIndex.
+  IndexManager? manager;
   void Function(int index)? menuCallback;
 }

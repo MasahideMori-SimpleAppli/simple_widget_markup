@@ -83,7 +83,7 @@ class _SpWMLSampleState extends State<SpWMLSample> {
   Widget _getSpWMLWidget(BuildContext context) {
   SpWMLBuilder builder = SpWMLBuilder("(h1)この下の要素を置き換えます。\n"
           "(block, sid:ボタン名)");
-  builder.replaceSID(
+  builder.replace(
           "ボタン名",
           OutlinedButton(
                   onPressed: () {

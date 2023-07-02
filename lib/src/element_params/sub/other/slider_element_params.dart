@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_managers/simple_managers.dart';
 
 class SliderParamsWrapper {
   SliderParams p;
@@ -8,7 +9,6 @@ class SliderParamsWrapper {
 }
 
 class SliderParams {
-  static const double defValue = 0.0;
   static const double defMin = 0.0;
   static const double defMax = 10.0;
   static const int defDivisions = 10;
@@ -16,7 +16,8 @@ class SliderParams {
   static const bool defIsIntValue = true;
 
   Key? key;
-  double value = defValue;
+  // pre version, This is value params.
+  ValueManager? manager;
   double? secondaryTrackValue;
   void Function(double)? onChanged = (double d) {};
   void Function(double)? onChangeStart;

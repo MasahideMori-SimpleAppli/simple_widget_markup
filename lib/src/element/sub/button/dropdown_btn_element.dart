@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../element/super/multi_child_element.dart';
-import '../../../element_params/element_child.dart';
-import '../../../element_params/spwml_info.dart';
-import '../../../element_params/sub/button/dropdown_btn_params.dart';
-import '../../../element_params/super/spwml_params.dart';
-import '../../../enum/enum_spwml_params.dart';
-import '../../../enum/enum_spwml_element_type.dart';
-import '../../../style/spwml_font_style.dart';
+import 'package:simple_managers/simple_managers.dart';
+import '../../../../simple_widget_markup.dart';
 
 ///
 /// Author Masahide Mori
@@ -53,9 +47,6 @@ class DropdownBtnElement extends MultiChildElement {
     elParams.p.hint = params.containsKey(EnumSpWMLParams.hint)
         ? Text(params[EnumSpWMLParams.hint] as String)
         : null;
-    if (elParams.p.hint == null) {
-      elParams.p.selectedIndex = 0;
-    }
     elParams.p.icon = params.containsKey(EnumSpWMLParams.iconNum)
         ? Icon(
             params[EnumSpWMLParams.iconNum]!,
@@ -80,6 +71,11 @@ class DropdownBtnElement extends MultiChildElement {
               ? params[EnumSpWMLParams.underlineHeight]
               : 1.0);
     }
+    // SIDが設定されていなければエラー。
+    if (getSID() == null) {
+      throw SpWMLException(EnumSpWMLExceptionType.sidDoesNotExistException,
+          lineStart, lineEnd, info);
+    }
     return this;
   }
 
@@ -90,6 +86,8 @@ class DropdownBtnElement extends MultiChildElement {
 
   /// create dropdown button.
   Widget _getBtn(BuildContext context) {
+    // マネージャークラスが未設定の場合、仮のマネージャークラスを生成する。
+    elParams.p.manager ??= IndexManager();
     List<DropdownMenuItem<int>> menus = [];
     int count = 0;
     if (elParams.p.dropdownMenuItemParams.length == children.children.length) {
@@ -130,21 +128,10 @@ class DropdownBtnElement extends MultiChildElement {
       }
     }
     return _DropDownElementWidget(
+      getSID()!,
       menus,
       elParams,
     );
-  }
-
-  /// (en)Set initial index of dropdown items.
-  /// To keep the value of the radio button when the screen is refreshed,
-  /// hold the value in the upper widget etc. and call this.
-  ///
-  /// (ja)ドロップダウンアイテムの初期インデックスを設定します。
-  /// 画面の更新時にラジオボタンの値を保持するには、
-  /// 上位のウィジェット等で値を保持し、これを呼び出します。
-  /// * [index] : The index. The first child element is counted as 0.
-  void setInitialIndex(int? index) {
-    elParams.p.selectedIndex = index;
   }
 
   /// (en)Set menus callback.
@@ -154,13 +141,35 @@ class DropdownBtnElement extends MultiChildElement {
   void setCallback(void Function(int index)? callback) {
     elParams.p.menuCallback = callback;
   }
+
+  /// (en) Sets the value. Disabled if the manager class is not set.
+  ///
+  /// (ja) 値を設定します。マネージャークラスが未設定の場合は無効になります。
+  /// * [v] : value.
+  void setValue(int? v) {
+    if (elParams.p.manager != null) {
+      final String? sid = getSID();
+      if (sid != null) {
+        elParams.p.manager!.setIndex(sid, v);
+      }
+    }
+  }
+
+  /// (en) Sets the manager class that manages the state.
+  ///
+  /// (ja) 状態を管理するマネージャクラスを設定します。
+  /// * [m] : Manager class.
+  void setManager(IndexManager m) {
+    elParams.p.manager = m;
+  }
 }
 
 class _DropDownElementWidget extends StatefulWidget {
+  final String sid;
   final List<DropdownMenuItem<int>> menus;
   final DropdownBtnParamsWrapper elParams;
 
-  const _DropDownElementWidget(this.menus, this.elParams);
+  const _DropDownElementWidget(this.sid, this.menus, this.elParams);
 
   @override
   _DropDownElementWidgetState createState() => _DropDownElementWidgetState();
@@ -173,7 +182,7 @@ class _DropDownElementWidgetState extends State<_DropDownElementWidget> {
       key: widget.elParams.p.key,
       items: widget.elParams.p.items ?? widget.menus,
       selectedItemBuilder: widget.elParams.p.selectedItemBuilder,
-      value: widget.elParams.p.selectedIndex,
+      value: widget.elParams.p.manager!.getIndex(widget.sid),
       hint: widget.elParams.p.hint,
       disabledHint: widget.elParams.p.disabledHint,
       onTap: widget.elParams.p.onTap,
@@ -199,7 +208,7 @@ class _DropDownElementWidgetState extends State<_DropDownElementWidget> {
       onChanged: (int? v) => {
         setState(() {
           if (v != null) {
-            widget.elParams.p.selectedIndex = v;
+            widget.elParams.p.manager!.setIndex(widget.sid, v);
           }
         }),
       },

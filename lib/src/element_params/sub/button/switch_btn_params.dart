@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:simple_managers/simple_managers.dart';
 
 class SwitchBtnParamsWrapper {
   SwitchBtnParams p;
@@ -10,7 +11,8 @@ class SwitchBtnParamsWrapper {
 
 class SwitchBtnParams {
   Key? key;
-  bool value = false;
+  // pre version, This is value params.
+  FlagManager? manager;
   void Function(bool)? onChanged = (bool b) {};
   Color? activeColor;
   Color? activeTrackColor;

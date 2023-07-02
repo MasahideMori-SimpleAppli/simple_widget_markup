@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../element/super/multi_child_element.dart';
-import '../../../element_params/element_child.dart';
-import '../../../element_params/spwml_info.dart';
-import '../../../element_params/sub/button/checkbox_params.dart';
-import '../../../element_params/super/spwml_params.dart';
-import '../../../enum/enum_spwml_params.dart';
-import '../../../enum/enum_spwml_element_type.dart';
-import '../../../style/spwml_font_style.dart';
+import 'package:simple_managers/simple_managers.dart';
+import '../../../../simple_widget_markup.dart';
 
 ///
 /// Author Masahide Mori
@@ -84,30 +78,30 @@ class CheckboxElement extends MultiChildElement {
       elParams.p.disableParams!.isV3 = params[EnumSpWMLParams.isV3];
       enabled.icon = const Icon(Icons.check_box);
     }
+    // SIDが設定されていなければエラー。
+    if (getSID() == null) {
+      throw SpWMLException(EnumSpWMLExceptionType.sidDoesNotExistException,
+          lineStart, lineEnd, info);
+    }
     return this;
   }
 
   @override
   Widget getWidget(BuildContext context) {
-    if (elParams.p.checkValues == null) {
-      elParams.p.checkValues = [];
-      for (int i = 0; i < children.children.length; i++) {
-        elParams.p.checkValues!.add(false);
+    // マネージャークラスが未設定の場合、動作確認用の仮のマネージャークラスを設定する。
+    elParams.p.manager ??= MultiFlagManager();
+    final String? sid = getSID();
+    if (sid != null) {
+      List<bool> manageFlags = elParams.p.manager!.getFlags(sid);
+      // まだ内容が未構成の場合
+      if (manageFlags.isEmpty) {
+        for (int i = 0; i < children.children.length; i++) {
+          manageFlags.add(false);
+        }
+        elParams.p.manager!.setFlags(sid, manageFlags);
       }
     }
-    return _CheckboxElementWidget(children, elParams, getShape());
-  }
-
-  /// (en)Set the initial value of the check box.
-  /// To keep the value of the check box when the screen is refreshed,
-  /// hold the value in the upper widget etc. and call this.
-  ///
-  /// (ja)チェックボックスの初期値を設定します。
-  /// 画面の更新時にチェックボックスの値を保持するには、
-  /// 上位のウィジェット等で値を保持し、これを呼び出します。
-  /// * [v] : The values.
-  void setInitialValues(List<bool> v) {
-    elParams.p.checkValues = v;
+    return _CheckboxElementWidget(getSID()!, children, elParams, getShape());
   }
 
   /// (en)Set checkboxes callback.
@@ -117,14 +111,37 @@ class CheckboxElement extends MultiChildElement {
   void setCallback(void Function(List<bool>? checkValues)? callback) {
     elParams.p.callback = callback;
   }
+
+  /// (en) Sets the value. Disabled if the manager class is not set.
+  ///
+  /// (ja) 値を設定します。マネージャークラスが未設定の場合は無効になります。
+  /// * [v] : value.
+  void setValue(List<bool> v) {
+    if (elParams.p.manager != null) {
+      final String? sid = getSID();
+      if (sid != null) {
+        elParams.p.manager!.setFlags(sid, v);
+      }
+    }
+  }
+
+  /// (en) Sets the manager class that manages the state.
+  ///
+  /// (ja) 状態を管理するマネージャクラスを設定します。
+  /// * [m] : Manager class.
+  void setManager(MultiFlagManager m) {
+    elParams.p.manager = m;
+  }
 }
 
 class _CheckboxElementWidget extends StatefulWidget {
+  final String sid;
   final StructureElementChildren children;
   final CheckboxParamsWrapper elParams;
   final OutlinedBorder? shape;
 
-  const _CheckboxElementWidget(this.children, this.elParams, this.shape);
+  const _CheckboxElementWidget(
+      this.sid, this.children, this.elParams, this.shape);
 
   @override
   _CheckboxElementWidgetState createState() => _CheckboxElementWidgetState();
@@ -134,10 +151,11 @@ class _CheckboxElementWidgetState extends State<_CheckboxElementWidget> {
   /// The onTap callback.
   void _onTapCallback(int index) {
     setState(() {
-      widget.elParams.p.checkValues![index] =
-          !widget.elParams.p.checkValues![index];
+      widget.elParams.p.manager!.getFlags(widget.sid)[index] =
+          !widget.elParams.p.manager!.getFlags(widget.sid)[index];
       if (widget.elParams.p.callback != null) {
-        widget.elParams.p.callback!(widget.elParams.p.checkValues!);
+        widget.elParams.p
+            .callback!(widget.elParams.p.manager!.getFlags(widget.sid));
       }
     });
   }
@@ -323,7 +341,7 @@ class _CheckboxElementWidgetState extends State<_CheckboxElementWidget> {
   List<Widget> _getIconAndWidget(int index) {
     if (widget.elParams.p.isPrefixIcon) {
       return [
-        widget.elParams.p.checkValues![index]
+        widget.elParams.p.manager!.getFlags(widget.sid)[index]
             ? _getEnabledIconBtn(index)
             : _getDisableIconBtn(index),
         widget.children.children[index]
@@ -331,7 +349,7 @@ class _CheckboxElementWidgetState extends State<_CheckboxElementWidget> {
     } else {
       return [
         Expanded(child: widget.children.children[index]),
-        widget.elParams.p.checkValues![index]
+        widget.elParams.p.manager!.getFlags(widget.sid)[index]
             ? _getEnabledIconBtn(index)
             : _getDisableIconBtn(index)
       ];

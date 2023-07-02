@@ -316,17 +316,6 @@ class SpWMLElement extends StatelessWidget {
     throw UnimplementedError();
   }
 
-  /// (en) Gets the ID set for this element. Returns null if not set.
-  ///
-  /// (ja) このエレメントに設定されているIDを取得します。設定されていない場合はnullを返します。
-  int? getID() {
-    if (params.containsKey(EnumSpWMLParams.id)) {
-      return int.tryParse(params[EnumSpWMLParams.id]);
-    } else {
-      return null;
-    }
-  }
-
   /// (en) Gets the SID set for this element. Returns null if not set.
   ///
   /// (ja) このエレメントに設定されているSIDを取得します。設定されていない場合はnullを返します。

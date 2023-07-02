@@ -114,6 +114,11 @@ class BtnElement extends SingleChildTextElement {
       p.style = _getBtnStyle(elParams.p.type!);
       elParams.p.normalBtnParams = p;
     }
+    // SIDが設定されていなければエラー。
+    if (getSID() == null) {
+      throw SpWMLException(EnumSpWMLExceptionType.sidDoesNotExistException,
+          lineStart, lineEnd, info);
+    }
     return this;
   }
 
@@ -598,7 +603,7 @@ class BtnElement extends SingleChildTextElement {
   ///
   /// (ja)このボタンのクリック時動作を設定します。
   /// * [callback] : Button callback.
-  void setBtnCallback(void Function()? callback) {
+  void setCallback(void Function()? callback) {
     if (elParams.p.type == EnumBtnType.icon ||
         elParams.p.type == EnumBtnType.iconFilled ||
         elParams.p.type == EnumBtnType.iconFilledTonal ||

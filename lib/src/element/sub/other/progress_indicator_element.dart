@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_managers/simple_managers.dart';
 
 import '../../../../simple_widget_markup.dart';
 
@@ -46,10 +47,6 @@ class ProgressIndicatorElement extends SpWMLElement {
     if (elParams.p.indicatorType == EnumIndicatorType.circular) {
       elParams.p.circularProgressIndicatorParams =
           CircularProgressIndicatorParams();
-      elParams.p.circularProgressIndicatorParams!.value =
-          params.containsKey(EnumSpWMLParams.value)
-              ? params[EnumSpWMLParams.value]
-              : null;
       elParams.p.circularProgressIndicatorParams!.color =
           params.containsKey(EnumSpWMLParams.indicatorColor)
               ? params[EnumSpWMLParams.indicatorColor]
@@ -61,10 +58,6 @@ class ProgressIndicatorElement extends SpWMLElement {
     } else {
       elParams.p.linearProgressIndicatorParams =
           LinearProgressIndicatorParams();
-      elParams.p.linearProgressIndicatorParams!.value =
-          params.containsKey(EnumSpWMLParams.value)
-              ? params[EnumSpWMLParams.value]
-              : null;
       elParams.p.linearProgressIndicatorParams!.color =
           params.containsKey(EnumSpWMLParams.indicatorColor)
               ? params[EnumSpWMLParams.indicatorColor]
@@ -74,15 +67,27 @@ class ProgressIndicatorElement extends SpWMLElement {
               ? params[EnumSpWMLParams.indicatorBGColor]
               : null;
     }
+    // SIDが設定されていなければエラー。
+    if (getSID() == null) {
+      throw SpWMLException(EnumSpWMLExceptionType.sidDoesNotExistException,
+          lineStart, lineEnd, info);
+    }
     return this;
   }
 
   @override
   Widget getWidget(BuildContext context) {
     if (elParams.p.indicatorType == EnumIndicatorType.circular) {
+      // マネージャークラスが未設定の場合、仮のマネージャークラスを生成する。
+      if (elParams.p.circularProgressIndicatorParams!.manager == null) {
+        elParams.p.circularProgressIndicatorParams!.manager = ValueManager();
+        elParams.p.circularProgressIndicatorParams!.manager!
+            .setValue(getSID()!, null);
+      }
       return CircularProgressIndicator(
           key: elParams.p.circularProgressIndicatorParams!.key,
-          value: elParams.p.circularProgressIndicatorParams!.value,
+          value: elParams.p.circularProgressIndicatorParams!.manager!
+              .getValue(getSID()!),
           backgroundColor:
               elParams.p.circularProgressIndicatorParams!.backgroundColor,
           color: elParams.p.circularProgressIndicatorParams!.color,
@@ -93,9 +98,16 @@ class ProgressIndicatorElement extends SpWMLElement {
           semanticsValue:
               elParams.p.circularProgressIndicatorParams!.semanticsValue);
     } else {
+      // マネージャークラスが未設定の場合、仮のマネージャークラスを生成する。
+      if (elParams.p.linearProgressIndicatorParams!.manager == null) {
+        elParams.p.linearProgressIndicatorParams!.manager = ValueManager();
+        elParams.p.linearProgressIndicatorParams!.manager!
+            .setValue(getSID()!, null);
+      }
       return LinearProgressIndicator(
           key: elParams.p.linearProgressIndicatorParams!.key,
-          value: elParams.p.linearProgressIndicatorParams!.value,
+          value: elParams.p.linearProgressIndicatorParams!.manager!
+              .getValue(getSID()!),
           backgroundColor:
               elParams.p.linearProgressIndicatorParams!.backgroundColor,
           color: elParams.p.linearProgressIndicatorParams!.color,
@@ -108,16 +120,36 @@ class ProgressIndicatorElement extends SpWMLElement {
     }
   }
 
-  /// (en)Set progress.
+  /// (en)Set progress. Invalid if the manager class is not set.
   ///
-  /// (ja)進捗具合を設定します。
+  /// (ja)進捗具合を設定します。マネージャークラスが未設定の場合は無効です。
+  /// nullを設定するとアニメーションになります。
+  ///
   /// * [v] The progress value. null or the value between 0.0 and 1.0.
   /// If null, set loading animation.
   void setValue(double? v) {
     if (elParams.p.indicatorType == EnumIndicatorType.circular) {
-      elParams.p.circularProgressIndicatorParams!.value = v;
+      if (elParams.p.circularProgressIndicatorParams!.manager != null) {
+        elParams.p.circularProgressIndicatorParams!.manager!
+            .setValue(getSID()!, v);
+      }
     } else {
-      elParams.p.linearProgressIndicatorParams!.value = v;
+      if (elParams.p.linearProgressIndicatorParams!.manager != null) {
+        elParams.p.linearProgressIndicatorParams!.manager!
+            .setValue(getSID()!, v);
+      }
+    }
+  }
+
+  /// (en) Sets the manager class that manages the state.
+  ///
+  /// (ja) 状態を管理するマネージャクラスを設定します。
+  /// * [m] : Manager class.
+  void setManager(ValueManager m) {
+    if (elParams.p.indicatorType == EnumIndicatorType.circular) {
+      elParams.p.circularProgressIndicatorParams!.manager = m;
+    } else {
+      elParams.p.linearProgressIndicatorParams!.manager = m;
     }
   }
 }

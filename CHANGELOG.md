@@ -1,3 +1,12 @@
+## 20.0.0
+* There are major specification changes in this version.
+* The id parameter has been removed and changed to sid only.
+* Changed to set a manager class for state management for multiple widgets with state.
+* Manager classes can now be collectively set in SpWMLBuilder. With this, if the element has a sid set, state management will be performed automatically.
+* Changed to issue an error if sid is not set for elements that require sid.
+* Some methods have been renamed to simpler ones.
+* Value parameters for indicator, slider and switch buttons have been removed. This is a change with the use of the manager class and must now be specified from the Dart code.
+
 ## 19.0.0
 * Fixed bug progressIndicator and slider bool value conversion.
 * Added param of mainAxisSize to SpWMLBuilder and SpWML.

@@ -11,7 +11,6 @@ enum EnumSpWMLParams {
   // ここの記載順は分かりやすさのためにfromStrと合わせる。
   mAll,
   pAll,
-  id,
   sid,
   // 以下２つは対象に応じて動的にStrから変更
   hAlign,
@@ -73,7 +72,6 @@ enum EnumSpWMLParams {
   radius,
   mode,
   labelText,
-  value,
   underlineColor,
   underlineHeight,
   // tableの水平方向の要素数
@@ -259,16 +257,10 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.max ||
           this == EnumSpWMLParams.smallSize ||
           this == EnumSpWMLParams.offsetX ||
-          this == EnumSpWMLParams.offsetY ||
-          (type == EnumSpWMLElementType.progressIndicator &&
-              this == EnumSpWMLParams.value) ||
-          (type == EnumSpWMLElementType.slider &&
-              this == EnumSpWMLParams.value)) {
+          this == EnumSpWMLParams.offsetY) {
         return double.parse(v);
       }
-      if (this == EnumSpWMLParams.id ||
-          this == EnumSpWMLParams.weight ||
-          this == EnumSpWMLParams.hNum) {
+      if (this == EnumSpWMLParams.weight || this == EnumSpWMLParams.hNum) {
         return int.parse(v);
       }
       if (this == EnumSpWMLParams.maxLines ||
@@ -442,7 +434,6 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       } else if (this == EnumSpWMLParams.isSelectable ||
           this == EnumSpWMLParams.isPrimary ||
           this == EnumSpWMLParams.isExpanded ||
-          this == EnumSpWMLParams.value ||
           this == EnumSpWMLParams.enableTapLabel ||
           this == EnumSpWMLParams.isRubySelectable ||
           this == EnumSpWMLParams.isGone ||

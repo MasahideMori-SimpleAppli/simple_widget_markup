@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_managers/simple_managers.dart';
 
 import 'btn_params.dart';
 
@@ -40,7 +41,8 @@ class SelectableIconBtnParams {
 class CheckboxParams {
   SelectableIconBtnParams? enableParams;
   SelectableIconBtnParams? disableParams;
-  List<bool>? checkValues;
+  // selection manager. pre version, this is checkValues.
+  MultiFlagManager? manager;
   void Function(List<bool>? checkValues)? callback;
   // If true, enable tap of label.
   bool enableTapLabel = false;
