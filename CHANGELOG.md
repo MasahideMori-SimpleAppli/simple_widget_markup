@@ -1,3 +1,7 @@
+# 20.0.3
+* Fixed update timing issue for manager class values set in DropdownBtnElement.
+* Updated simple_managers to the latest version. Along with this, the default behavior of ProgressIndicatorElement is improved.
+
 ## 20.0.2
 * Manager can now be set automatically from SpWMLBuilder for ProgressIndicatorElement and SliderElement.
 

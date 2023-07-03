@@ -73,6 +73,7 @@ class PopupMenuBtnElement extends MultiChildElement {
     // マネージャークラスが未設定の場合、仮のマネージャークラスを生成する。
     elParams.p.manager ??= IndexManager();
     List<PopupMenuItem<int>> menus = [];
+    final String sid = getSID()!;
     int count = 0;
     if (elParams.p.popupMenuItemParams.length == children.children.length) {
       for (final i in children.children) {
@@ -81,10 +82,7 @@ class PopupMenuBtnElement extends MultiChildElement {
           key: elParams.p.popupMenuItemParams[v].key,
           value: v,
           onTap: () {
-            final String? sid = getSID();
-            if (sid != null) {
-              elParams.p.manager!.setIndex(sid, v);
-            }
+            elParams.p.manager!.setIndex(sid, v);
             if (elParams.p.popupMenuItemParams[v].onTap == null) {
               if (elParams.p.menuCallback != null) {
                 elParams.p.menuCallback!(v);
@@ -109,10 +107,7 @@ class PopupMenuBtnElement extends MultiChildElement {
           menus.add(PopupMenuItem(
               value: v,
               onTap: () {
-                final String? sid = getSID();
-                if (sid != null) {
-                  elParams.p.manager!.setIndex(sid, v);
-                }
+                elParams.p.manager!.setIndex(sid, v);
                 elParams.p.menuCallback!(v);
               },
               child: i));

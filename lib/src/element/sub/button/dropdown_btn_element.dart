@@ -88,6 +88,7 @@ class DropdownBtnElement extends MultiChildElement {
   Widget _getBtn(BuildContext context) {
     // マネージャークラスが未設定の場合、仮のマネージャークラスを生成する。
     elParams.p.manager ??= IndexManager();
+    final String sid = getSID()!;
     List<DropdownMenuItem<int>> menus = [];
     int count = 0;
     if (elParams.p.dropdownMenuItemParams.length == children.children.length) {
@@ -96,6 +97,7 @@ class DropdownBtnElement extends MultiChildElement {
         menus.add(DropdownMenuItem(
           key: elParams.p.dropdownMenuItemParams[v].key,
           onTap: () {
+            elParams.p.manager!.setIndex(sid, v);
             if (elParams.p.dropdownMenuItemParams[v].onTap == null) {
               if (elParams.p.menuCallback != null) {
                 elParams.p.menuCallback!(v);
@@ -118,6 +120,7 @@ class DropdownBtnElement extends MultiChildElement {
           menus.add(DropdownMenuItem(
               value: v,
               onTap: () {
+                elParams.p.manager!.setIndex(sid, v);
                 elParams.p.menuCallback!(v);
               },
               child: i));
@@ -206,11 +209,7 @@ class _DropDownElementWidgetState extends State<_DropDownElementWidget> {
       borderRadius: widget.elParams.p.borderRadius,
       padding: widget.elParams.p.padding,
       onChanged: (int? v) => {
-        setState(() {
-          if (v != null) {
-            widget.elParams.p.manager!.setIndex(widget.sid, v);
-          }
-        }),
+        setState(() {}),
       },
     );
   }
