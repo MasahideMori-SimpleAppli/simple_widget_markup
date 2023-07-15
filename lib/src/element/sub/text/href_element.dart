@@ -40,6 +40,7 @@ class HrefElement extends TextElement {
       : super(serial, EnumSpWMLElementType.href, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, textParams);
 
+  /// Initialize the parameters.
   @override
   HrefElement initParams() {
     super.initParams();
@@ -49,6 +50,7 @@ class HrefElement extends TextElement {
     return this;
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     return InkWell(

@@ -38,6 +38,7 @@ class CircleAvatarElement extends SingleChildElement {
       : super(serial, EnumSpWMLElementType.circleAvatar, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, child);
 
+  /// Initialize the parameters.
   @override
   CircleAvatarElement initParams() {
     super.initParams();
@@ -53,6 +54,7 @@ class CircleAvatarElement extends SingleChildElement {
     return this;
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     return CircleAvatar(

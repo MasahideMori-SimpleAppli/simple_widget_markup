@@ -42,6 +42,7 @@ class SuperAndSubscriptElement extends TextElement {
       : super(serial, type, params, spwmlParams, parentSerial, lineStart,
             lineEnd, style, info, textParams);
 
+  /// Initialize the parameters.
   @override
   SuperAndSubscriptElement initParams() {
     super.initParams();

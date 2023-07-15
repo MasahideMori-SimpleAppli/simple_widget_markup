@@ -43,6 +43,7 @@ class IconElement extends SpWMLElement {
       : super(serial, EnumSpWMLElementType.icon, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info);
 
+  /// Initialize the parameters.
   @override
   IconElement initParams() {
     super.initParams();
@@ -58,6 +59,7 @@ class IconElement extends SpWMLElement {
     return this;
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     return Icon(

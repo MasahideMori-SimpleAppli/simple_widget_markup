@@ -39,6 +39,7 @@ class PopupMenuBtnElement extends MultiChildElement {
       : super(serial, EnumSpWMLElementType.popupMenuBtn, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, children);
 
+  /// Initialize the parameters.
   @override
   PopupMenuBtnElement initParams() {
     super.initParams();
@@ -63,6 +64,7 @@ class PopupMenuBtnElement extends MultiChildElement {
     return this;
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     return _getBtn(context);

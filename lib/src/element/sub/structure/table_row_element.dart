@@ -45,6 +45,7 @@ class TableRowElement extends MultiChildElement {
       : super(serial, EnumSpWMLElementType.tableRow, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, children);
 
+  /// Initialize the parameters.
   @override
   TableRowElement initParams() {
     super.initParams();
@@ -55,6 +56,7 @@ class TableRowElement extends MultiChildElement {
     return this;
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     return const SizedBox();

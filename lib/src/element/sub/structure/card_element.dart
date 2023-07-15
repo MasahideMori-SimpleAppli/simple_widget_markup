@@ -45,6 +45,7 @@ class CardElement extends SingleChildElement {
       : super(serial, EnumSpWMLElementType.card, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, child);
 
+  /// Initialize the parameters.
   @override
   CardElement initParams() {
     super.initParams();
@@ -58,6 +59,7 @@ class CardElement extends SingleChildElement {
     return this;
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     return Card(

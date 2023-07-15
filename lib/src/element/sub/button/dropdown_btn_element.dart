@@ -39,6 +39,7 @@ class DropdownBtnElement extends MultiChildElement {
       : super(serial, EnumSpWMLElementType.dropdownBtn, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, children);
 
+  /// Initialize the parameters.
   @override
   DropdownBtnElement initParams() {
     super.initParams();
@@ -79,6 +80,7 @@ class DropdownBtnElement extends MultiChildElement {
     return this;
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     return _getBtn(context);

@@ -47,6 +47,7 @@ class TableElement extends MultiChildElement {
       : super(serial, EnumSpWMLElementType.table, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, children);
 
+  /// Initialize the parameters.
   @override
   TableElement initParams() {
     super.initParams();
@@ -75,6 +76,7 @@ class TableElement extends MultiChildElement {
     return this;
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     return Table(

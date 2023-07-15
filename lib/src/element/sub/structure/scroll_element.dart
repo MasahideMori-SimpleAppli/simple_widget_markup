@@ -47,6 +47,7 @@ class ScrollElement extends SingleChildElement {
       : super(serial, EnumSpWMLElementType.scroll, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, child);
 
+  /// Initialize the parameters.
   @override
   ScrollElement initParams() {
     super.initParams();
@@ -68,6 +69,7 @@ class ScrollElement extends SingleChildElement {
     return this;
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     if (elParams.p.scrollBehavior != null) {

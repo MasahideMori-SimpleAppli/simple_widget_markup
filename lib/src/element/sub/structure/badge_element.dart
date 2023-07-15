@@ -39,6 +39,7 @@ class BadgeElement extends SingleChildTextElement {
       : super(serial, EnumSpWMLElementType.badge, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, child, textParams);
 
+  /// Initialize the parameters.
   @override
   BadgeElement initParams() {
     super.initParams();
@@ -82,6 +83,7 @@ class BadgeElement extends SingleChildTextElement {
     elParams.p.offset = offset;
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     return Badge(

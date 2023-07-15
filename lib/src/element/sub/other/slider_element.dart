@@ -37,6 +37,7 @@ class SliderElement extends SpWMLElement {
       : super(serial, EnumSpWMLElementType.slider, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info);
 
+  /// Initialize the parameters.
   @override
   SliderElement initParams() {
     super.initParams();
@@ -100,6 +101,7 @@ class SliderElement extends SpWMLElement {
     elParams.p.manager = m;
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     // マネージャークラスが未設定の場合、仮のマネージャークラスを生成する。

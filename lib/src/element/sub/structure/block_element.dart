@@ -39,12 +39,14 @@ class BlockElement extends SingleChildElement {
       : super(serial, EnumSpWMLElementType.block, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, child);
 
+  /// Initialize the parameters.
   @override
   BlockElement initParams() {
     super.initParams();
     return this;
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     return child.getChild();

@@ -42,6 +42,7 @@ class VLineElement extends SpWMLElement {
       : super(serial, EnumSpWMLElementType.vline, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info);
 
+  /// Initialize the parameters.
   @override
   VLineElement initParams() {
     super.initParams();
@@ -54,6 +55,7 @@ class VLineElement extends SpWMLElement {
     return this;
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     return VerticalDivider(

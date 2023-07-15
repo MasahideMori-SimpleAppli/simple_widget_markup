@@ -45,6 +45,7 @@ class WrapElement extends MultiChildElement {
       : super(serial, EnumSpWMLElementType.wrap, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, children);
 
+  /// Initialize the parameters.
   @override
   WrapElement initParams() {
     super.initParams();
@@ -57,6 +58,7 @@ class WrapElement extends MultiChildElement {
     return this;
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     return Wrap(

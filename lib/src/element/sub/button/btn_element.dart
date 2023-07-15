@@ -51,6 +51,7 @@ class BtnElement extends SingleChildTextElement {
       : super(serial, EnumSpWMLElementType.btn, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, child, textParams);
 
+  /// Initialize the parameters.
   @override
   BtnElement initParams() {
     super.initParams();
@@ -122,6 +123,7 @@ class BtnElement extends SingleChildTextElement {
     return this;
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     return _getBtn(context);

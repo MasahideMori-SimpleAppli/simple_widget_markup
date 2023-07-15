@@ -1,3 +1,7 @@
+# 20.0.4
+* Added useMaterial3 parameter to SpWMLFontStyleManager.
+  When true, TextFieldElement's StrutStyle will always be initialized with null to avoid Japanese input bugs.
+
 # 20.0.3
 * Fixed update timing issue for manager class values set in DropdownBtnElement.
 * Updated simple_managers to the latest version. Along with this, the default behavior of ProgressIndicatorElement is improved.

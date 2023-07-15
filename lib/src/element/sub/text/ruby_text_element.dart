@@ -45,6 +45,7 @@ class RubyTextElement extends TextElement {
       : super(serial, EnumSpWMLElementType.ruby, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, textParams);
 
+  /// Initialize the parameters.
   @override
   RubyTextElement initParams() {
     super.initParams();
@@ -72,6 +73,7 @@ class RubyTextElement extends TextElement {
     return this;
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     return Column(

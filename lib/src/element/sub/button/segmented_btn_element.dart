@@ -40,6 +40,7 @@ class SegmentedBtnElement extends MultiChildElement {
       : super(serial, EnumSpWMLElementType.segmentedBtn, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, children);
 
+  /// Initialize the parameters.
   @override
   SegmentedBtnElement initParams() {
     super.initParams();
@@ -59,6 +60,7 @@ class SegmentedBtnElement extends MultiChildElement {
     return this;
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     // マネージャークラスが未設定の場合、仮のマネージャークラスを生成する。

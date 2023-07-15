@@ -39,6 +39,7 @@ class ImgElement extends SpWMLElement {
       : super(serial, EnumSpWMLElementType.img, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info);
 
+  /// Initialize the parameters.
   @override
   ImgElement initParams() {
     super.initParams();
@@ -84,6 +85,7 @@ class ImgElement extends SpWMLElement {
     }
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     if (elParams.p.type == EnumImgType.asset) {

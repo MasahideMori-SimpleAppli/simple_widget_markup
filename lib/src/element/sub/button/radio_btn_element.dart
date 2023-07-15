@@ -39,6 +39,7 @@ class RadioBtnElement extends MultiChildElement {
       : super(serial, EnumSpWMLElementType.radioBtn, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, children);
 
+  /// Initialize the parameters.
   @override
   RadioBtnElement initParams() {
     super.initParams();
@@ -85,6 +86,7 @@ class RadioBtnElement extends MultiChildElement {
     return this;
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     // マネージャークラスが未設定の場合、仮のマネージャークラスを生成する。

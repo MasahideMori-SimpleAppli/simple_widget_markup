@@ -38,6 +38,7 @@ class TextElement extends SpWMLElement {
       : super(serial, type, params, spwmlParams, parentSerial, lineStart,
             lineEnd, style, info);
 
+  /// Initialize the parameters.
   @override
   TextElement initParams() {
     super.initParams();
@@ -63,6 +64,7 @@ class TextElement extends SpWMLElement {
     return this;
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     return getTextWidget(context);
@@ -178,12 +180,24 @@ class TextElement extends SpWMLElement {
   }
 
   /// get text strut style from parameters.
-  StrutStyle getStrutStyle() {
-    return StrutStyle(
-        fontSize: params.containsKey(EnumSpWMLParams.fontSize)
-            ? params[EnumSpWMLParams.fontSize]
-            : getDefFontSize(),
-        height: getLineHeight());
+  StrutStyle? getStrutStyle() {
+    if (type == EnumSpWMLElementType.textField) {
+      if (SpWMLFontStyleManager().useMaterial3) {
+        return null;
+      } else {
+        return StrutStyle(
+            fontSize: params.containsKey(EnumSpWMLParams.fontSize)
+                ? params[EnumSpWMLParams.fontSize]
+                : getDefFontSize(),
+            height: getLineHeight());
+      }
+    } else {
+      return StrutStyle(
+          fontSize: params.containsKey(EnumSpWMLParams.fontSize)
+              ? params[EnumSpWMLParams.fontSize]
+              : getDefFontSize(),
+          height: getLineHeight());
+    }
   }
 
   /// get text height from param.

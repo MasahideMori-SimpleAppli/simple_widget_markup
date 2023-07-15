@@ -44,12 +44,14 @@ class StackElement extends MultiChildElement {
       : super(serial, EnumSpWMLElementType.stack, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, children);
 
+  /// Initialize the parameters.
   @override
   StackElement initParams() {
     super.initParams();
     return this;
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     return Stack(

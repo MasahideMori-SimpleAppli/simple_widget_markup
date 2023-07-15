@@ -421,6 +421,7 @@ class SpWMLElement extends StatelessWidget {
     }
   }
 
+  /// Assemble and return the widget.
   @override
   Widget build(BuildContext context) {
     if (spwmlParams.p.isGone) {

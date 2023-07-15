@@ -57,6 +57,7 @@ class ExpTileElement extends MultiChildTextElement {
             children,
             textParams);
 
+  /// Initialize the parameters.
   @override
   ExpTileElement initParams() {
     super.initParams();
@@ -75,6 +76,7 @@ class ExpTileElement extends MultiChildTextElement {
     return this;
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     return ExpansionTile(

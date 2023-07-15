@@ -45,6 +45,7 @@ class RowElement extends MultiChildElement {
       : super(serial, EnumSpWMLElementType.row, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, children);
 
+  /// Initialize the parameters.
   @override
   RowElement initParams() {
     super.initParams();
@@ -70,6 +71,7 @@ class RowElement extends MultiChildElement {
     return this;
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     return Row(

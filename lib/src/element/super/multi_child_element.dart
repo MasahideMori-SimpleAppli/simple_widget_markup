@@ -42,6 +42,7 @@ class MultiChildElement extends SpWMLElement {
       : super(serial, type, params, spwmlParams, parentSerial, lineStart,
             lineEnd, style, info);
 
+  /// Initialize the parameters.
   @override
   MultiChildElement initParams() {
     super.initParams();

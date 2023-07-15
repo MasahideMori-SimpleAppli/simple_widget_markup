@@ -39,6 +39,7 @@ class CheckboxElement extends MultiChildElement {
       : super(serial, EnumSpWMLElementType.checkbox, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, children);
 
+  /// Initialize the parameters.
   @override
   CheckboxElement initParams() {
     super.initParams();
@@ -86,6 +87,7 @@ class CheckboxElement extends MultiChildElement {
     return this;
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     // マネージャークラスが未設定の場合、動作確認用の仮のマネージャークラスを設定する。

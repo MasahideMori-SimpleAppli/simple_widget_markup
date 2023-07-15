@@ -42,6 +42,7 @@ class LineElement extends SpWMLElement {
       : super(serial, EnumSpWMLElementType.line, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info);
 
+  /// Initialize the parameters.
   @override
   LineElement initParams() {
     super.initParams();
@@ -54,6 +55,7 @@ class LineElement extends SpWMLElement {
     return this;
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     return Divider(

@@ -51,6 +51,7 @@ class SpanElement extends MultiChildTextElement {
             children,
             textParams);
 
+  /// Initialize the parameters.
   @override
   SpanElement initParams() {
     super.initParams();
@@ -87,6 +88,7 @@ class SpanElement extends MultiChildTextElement {
     elParams.p.isLayoutStrictMode = isEnable;
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     return elParams.p.isSelectable

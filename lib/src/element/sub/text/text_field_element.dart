@@ -139,6 +139,7 @@ class TextFieldElement extends TextElement {
     return this;
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     return _TextFieldElementWidget(tfParams);

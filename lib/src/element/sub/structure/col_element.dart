@@ -45,6 +45,7 @@ class ColElement extends MultiChildElement {
       : super(serial, EnumSpWMLElementType.col, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, children);
 
+  /// Initialize the parameters.
   @override
   ColElement initParams() {
     super.initParams();
@@ -60,6 +61,7 @@ class ColElement extends MultiChildElement {
     return this;
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     return Column(

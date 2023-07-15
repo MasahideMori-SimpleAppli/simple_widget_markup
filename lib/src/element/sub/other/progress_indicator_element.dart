@@ -38,6 +38,7 @@ class ProgressIndicatorElement extends SpWMLElement {
       : super(serial, EnumSpWMLElementType.progressIndicator, params,
             spwmlParams, parentSerial, lineStart, lineEnd, style, info);
 
+  /// Initialize the parameters.
   @override
   ProgressIndicatorElement initParams() {
     super.initParams();
@@ -75,6 +76,7 @@ class ProgressIndicatorElement extends SpWMLElement {
     return this;
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     if (elParams.p.indicatorType == EnumIndicatorType.circular) {

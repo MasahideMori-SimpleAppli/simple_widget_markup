@@ -38,6 +38,7 @@ class SwitchBtnElement extends SpWMLElement {
       : super(serial, EnumSpWMLElementType.switchBtn, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info);
 
+  /// Initialize the parameters.
   @override
   SwitchBtnElement initParams() {
     super.initParams();
@@ -57,6 +58,7 @@ class SwitchBtnElement extends SpWMLElement {
     return this;
   }
 
+  /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
     // マネージャークラスが未設定の場合、仮のマネージャークラスを生成する。
