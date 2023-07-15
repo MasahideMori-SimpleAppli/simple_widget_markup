@@ -7,6 +7,7 @@ import '../../simple_widget_markup.dart';
 /// First edition creation date 2021-12-29 18:13:38
 ///
 class UtilParams {
+  /// escape code
   static const escape = "\\";
 
   /// ARGB or material parameter to Color

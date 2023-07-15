@@ -8,6 +8,7 @@
 /// First edition creation date 2022-11-29 20:55:23
 ///
 class SpWMLInfo {
+  /// The hint text added to the error information when SpWML throws an error.
   final String errorHint;
 
   /// * [errorHint] : The hint text added to the error information
