@@ -1,6 +1,7 @@
 ## 20.0.5
 
 * Fixed Change log format.
+* Added some documentation comments.
 
 
 ## 20.0.4
