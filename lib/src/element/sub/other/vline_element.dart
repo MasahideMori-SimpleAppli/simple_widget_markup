@@ -42,6 +42,12 @@ class VLineElement extends SpWMLElement {
       : super(serial, EnumSpWMLElementType.vline, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info);
 
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "VLineElement";
+  }
+
   /// Initialize the parameters.
   @override
   VLineElement initParams() {

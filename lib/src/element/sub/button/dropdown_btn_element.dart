@@ -39,6 +39,12 @@ class DropdownBtnElement extends MultiChildElement {
       : super(serial, EnumSpWMLElementType.dropdownBtn, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, children);
 
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "DropdownBtnElement";
+  }
+
   /// Initialize the parameters.
   @override
   DropdownBtnElement initParams() {
@@ -118,17 +124,15 @@ class DropdownBtnElement extends MultiChildElement {
     } else {
       for (final i in children.children) {
         final int v = count;
-        if (elParams.p.menuCallback != null) {
-          menus.add(DropdownMenuItem(
-              value: v,
-              onTap: () {
-                elParams.p.manager!.setIndex(sid, v);
+        menus.add(DropdownMenuItem(
+            value: v,
+            onTap: () {
+              elParams.p.manager!.setIndex(sid, v);
+              if (elParams.p.menuCallback != null) {
                 elParams.p.menuCallback!(v);
-              },
-              child: i));
-        } else {
-          menus.add(DropdownMenuItem(value: v, child: i));
-        }
+              }
+            },
+            child: i));
         count += 1;
       }
     }

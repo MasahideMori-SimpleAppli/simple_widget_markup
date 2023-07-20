@@ -31,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
   // Since SpWML is text, you can also load what you have saved as an asset.
   // It can also be downloaded from the server and displayed.
   static const String _layout =
-      "(h3)Hello SpWML!\n(row, hAlign:right, mTop:20)\n+(overline)2022/08/13 (Sat.)\n(line)\n(h5)*Language specifications and latest version information\n(text)The core of this project, Simple Widget Markup Language, is open source.\nThe latest information and source code can be found at the following URL.\nAlso, the Flutter package is available.\n(h6)Flutter package\n(href)https://pub.dev/packages/simple_widget_markup\n(h6)Github\n(href)https://github.com/MasahideMori-SimpleAppli/simple_widget_markup\n(h5, mT:48)*Below is some practice code for first-time users.\n(h6)The button operation sample\n// Sample to make a button work with Dart code\n(btn, id:show_dialog, mTop:20, type: elevated, textColor:#FFFFFF, height:32, width:180) Show dialog";
+      "(h3)Hello SpWML!\n(row, hAlign:right, mT:20)\n+(overline)2023/07/20 (Thu.)\n(line)\n(h5)*Language specifications and latest version information\n(text)The core of this project, Simple Widget Markup Language, is open source.\nThe latest information and source code can be found at the following URL.\nAlso, the Flutter package is available.\n(h6)Flutter package\n(href)https://pub.dev/packages/simple_widget_markup\n(h6)Github\n(href)https://github.com/MasahideMori-SimpleAppli/simple_widget_markup\n(h5, mT:48)*Below is some practice code for first-time users.\n(h6)The button operation sample\n// Sample to make a button work with Dart code\n(btn, sid:show_dialog, mT:20, type: elevated, textColor:white, h:32, w:180) Show dialog";
 
   @override
   Widget build(BuildContext context) {

@@ -38,6 +38,12 @@ class TextElement extends SpWMLElement {
       : super(serial, type, params, spwmlParams, parentSerial, lineStart,
             lineEnd, style, info);
 
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "TextElement";
+  }
+
   /// Initialize the parameters.
   @override
   TextElement initParams() {

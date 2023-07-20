@@ -1,3 +1,10 @@
+## 21.0.0
+
+* Added SpWMLDialog class.
+* Added getClassName method to SpWMLElement.
+* It is now mandatory to set the sid in the textfield.
+* Other minor fixes.
+
 ## 20.0.5
 
 * Fixed Change log format.

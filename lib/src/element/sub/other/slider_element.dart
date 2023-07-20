@@ -37,6 +37,12 @@ class SliderElement extends SpWMLElement {
       : super(serial, EnumSpWMLElementType.slider, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info);
 
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "SliderElement";
+  }
+
   /// Initialize the parameters.
   @override
   SliderElement initParams() {

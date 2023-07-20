@@ -47,6 +47,12 @@ class ScrollElement extends SingleChildElement {
       : super(serial, EnumSpWMLElementType.scroll, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, child);
 
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "ScrollElement";
+  }
+
   /// Initialize the parameters.
   @override
   ScrollElement initParams() {

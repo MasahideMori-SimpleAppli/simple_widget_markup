@@ -39,6 +39,12 @@ class RadioBtnElement extends MultiChildElement {
       : super(serial, EnumSpWMLElementType.radioBtn, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, children);
 
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "RadioBtnElement";
+  }
+
   /// Initialize the parameters.
   @override
   RadioBtnElement initParams() {

@@ -44,6 +44,12 @@ class StackElement extends MultiChildElement {
       : super(serial, EnumSpWMLElementType.stack, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, children);
 
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "StackElement";
+  }
+
   /// Initialize the parameters.
   @override
   StackElement initParams() {

@@ -39,6 +39,12 @@ class BadgeElement extends SingleChildTextElement {
       : super(serial, EnumSpWMLElementType.badge, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, child, textParams);
 
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "BadgeElement";
+  }
+
   /// Initialize the parameters.
   @override
   BadgeElement initParams() {

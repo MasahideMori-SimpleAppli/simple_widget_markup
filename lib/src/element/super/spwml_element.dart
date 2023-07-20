@@ -47,6 +47,11 @@ class SpWMLElement extends StatelessWidget {
       this.info)
       : params = _setParam(type, param, lineStart, lineEnd, info);
 
+  /// Get this class name.
+  String getClassName() {
+    return "SpWMLElement";
+  }
+
   static Map<EnumSpWMLParams, dynamic> _setParam(EnumSpWMLElementType type,
       Map<String, String> param, int lineStart, int lineEnd, SpWMLInfo? info) {
     Map<EnumSpWMLParams, dynamic> mParam = {};

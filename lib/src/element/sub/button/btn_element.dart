@@ -51,6 +51,12 @@ class BtnElement extends SingleChildTextElement {
       : super(serial, EnumSpWMLElementType.btn, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, child, textParams);
 
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "BtnElement";
+  }
+
   /// Initialize the parameters.
   @override
   BtnElement initParams() {

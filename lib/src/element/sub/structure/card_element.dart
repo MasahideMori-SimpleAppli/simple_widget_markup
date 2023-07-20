@@ -45,6 +45,12 @@ class CardElement extends SingleChildElement {
       : super(serial, EnumSpWMLElementType.card, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, child);
 
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "CardElement";
+  }
+
   /// Initialize the parameters.
   @override
   CardElement initParams() {

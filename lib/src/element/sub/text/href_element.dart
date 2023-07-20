@@ -40,6 +40,12 @@ class HrefElement extends TextElement {
       : super(serial, EnumSpWMLElementType.href, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, textParams);
 
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "HrefElement";
+  }
+
   /// Initialize the parameters.
   @override
   HrefElement initParams() {

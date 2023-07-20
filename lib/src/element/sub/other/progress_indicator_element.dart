@@ -38,6 +38,12 @@ class ProgressIndicatorElement extends SpWMLElement {
       : super(serial, EnumSpWMLElementType.progressIndicator, params,
             spwmlParams, parentSerial, lineStart, lineEnd, style, info);
 
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "ProgressIndicatorElement";
+  }
+
   /// Initialize the parameters.
   @override
   ProgressIndicatorElement initParams() {

@@ -39,6 +39,12 @@ class BlockElement extends SingleChildElement {
       : super(serial, EnumSpWMLElementType.block, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, child);
 
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "BlockElement";
+  }
+
   /// Initialize the parameters.
   @override
   BlockElement initParams() {

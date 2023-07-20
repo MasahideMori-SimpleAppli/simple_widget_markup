@@ -42,6 +42,12 @@ class LineElement extends SpWMLElement {
       : super(serial, EnumSpWMLElementType.line, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info);
 
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "LineElement";
+  }
+
   /// Initialize the parameters.
   @override
   LineElement initParams() {

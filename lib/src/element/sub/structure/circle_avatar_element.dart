@@ -38,6 +38,12 @@ class CircleAvatarElement extends SingleChildElement {
       : super(serial, EnumSpWMLElementType.circleAvatar, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, child);
 
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "CircleAvatarElement";
+  }
+
   /// Initialize the parameters.
   @override
   CircleAvatarElement initParams() {

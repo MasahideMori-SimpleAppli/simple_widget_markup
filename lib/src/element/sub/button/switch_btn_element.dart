@@ -38,6 +38,12 @@ class SwitchBtnElement extends SpWMLElement {
       : super(serial, EnumSpWMLElementType.switchBtn, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info);
 
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "SwitchBtnElement";
+  }
+
   /// Initialize the parameters.
   @override
   SwitchBtnElement initParams() {

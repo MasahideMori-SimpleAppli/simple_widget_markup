@@ -43,6 +43,12 @@ class IconElement extends SpWMLElement {
       : super(serial, EnumSpWMLElementType.icon, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info);
 
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "IconElement";
+  }
+
   /// Initialize the parameters.
   @override
   IconElement initParams() {

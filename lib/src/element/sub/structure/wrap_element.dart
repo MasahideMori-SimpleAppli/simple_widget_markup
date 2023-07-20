@@ -45,6 +45,12 @@ class WrapElement extends MultiChildElement {
       : super(serial, EnumSpWMLElementType.wrap, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, children);
 
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "WrapElement";
+  }
+
   /// Initialize the parameters.
   @override
   WrapElement initParams() {

@@ -42,6 +42,12 @@ class SingleChildElement extends SpWMLElement {
       : super(serial, type, params, spwmlParams, parentSerial, lineStart,
             lineEnd, style, info);
 
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "SingleChildElement";
+  }
+
   /// Initialize the parameters.
   @override
   SingleChildElement initParams() {

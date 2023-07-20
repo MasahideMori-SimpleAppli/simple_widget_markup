@@ -40,6 +40,12 @@ class SegmentedBtnElement extends MultiChildElement {
       : super(serial, EnumSpWMLElementType.segmentedBtn, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, children);
 
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "SegmentedBtnElement";
+  }
+
   /// Initialize the parameters.
   @override
   SegmentedBtnElement initParams() {

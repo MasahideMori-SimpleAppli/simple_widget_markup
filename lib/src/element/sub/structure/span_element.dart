@@ -51,6 +51,12 @@ class SpanElement extends MultiChildTextElement {
             children,
             textParams);
 
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "SpanElement";
+  }
+
   /// Initialize the parameters.
   @override
   SpanElement initParams() {

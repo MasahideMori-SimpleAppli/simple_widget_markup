@@ -45,6 +45,12 @@ class MultiChildTextElement extends TextElement {
       : super(serial, type, params, spwmlParams, parentSerial, lineStart,
             lineEnd, style, info, textParams);
 
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "MultiChildTextElement";
+  }
+
   /// Initialize the parameters.
   @override
   MultiChildTextElement initParams() {

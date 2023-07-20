@@ -45,6 +45,12 @@ class RowElement extends MultiChildElement {
       : super(serial, EnumSpWMLElementType.row, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, children);
 
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "RowElement";
+  }
+
   /// Initialize the parameters.
   @override
   RowElement initParams() {

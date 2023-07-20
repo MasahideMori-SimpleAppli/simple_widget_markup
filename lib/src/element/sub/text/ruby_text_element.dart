@@ -45,6 +45,12 @@ class RubyTextElement extends TextElement {
       : super(serial, EnumSpWMLElementType.ruby, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, textParams);
 
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "RubyTextElement";
+  }
+
   /// Initialize the parameters.
   @override
   RubyTextElement initParams() {

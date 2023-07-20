@@ -45,6 +45,12 @@ class ColElement extends MultiChildElement {
       : super(serial, EnumSpWMLElementType.col, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, children);
 
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "ColElement";
+  }
+
   /// Initialize the parameters.
   @override
   ColElement initParams() {

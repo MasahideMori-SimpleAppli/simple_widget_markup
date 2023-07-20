@@ -39,6 +39,12 @@ class PopupMenuBtnElement extends MultiChildElement {
       : super(serial, EnumSpWMLElementType.popupMenuBtn, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, children);
 
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "PopupMenuBtnElement";
+  }
+
   /// Initialize the parameters.
   @override
   PopupMenuBtnElement initParams() {

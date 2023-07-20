@@ -39,6 +39,12 @@ class ImgElement extends SpWMLElement {
       : super(serial, EnumSpWMLElementType.img, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info);
 
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "ImgElement";
+  }
+
   /// Initialize the parameters.
   @override
   ImgElement initParams() {

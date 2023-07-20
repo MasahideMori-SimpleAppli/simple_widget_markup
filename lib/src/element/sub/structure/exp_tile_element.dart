@@ -57,6 +57,12 @@ class ExpTileElement extends MultiChildTextElement {
             children,
             textParams);
 
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "ExpTileElement";
+  }
+
   /// Initialize the parameters.
   @override
   ExpTileElement initParams() {

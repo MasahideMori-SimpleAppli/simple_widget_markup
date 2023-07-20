@@ -1,14 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_managers/simple_managers.dart';
-import '../../../element_params/spwml_info.dart';
-import 'text_element.dart';
-import '../../../element_params/sub/text/text_params.dart';
-import '../../../element_params/super/spwml_params.dart';
-import '../../../element_params/sub/text/textfield_params.dart';
-import '../../../enum/enum_spwml_params.dart';
-import '../../../enum/enum_spwml_element_type.dart';
-import '../../../enum/enum_textfield_params.dart';
-import '../../../style/spwml_font_style.dart';
+import '../../../../simple_widget_markup.dart';
 
 ///
 /// Author Masahide Mori
@@ -46,6 +38,12 @@ class TextFieldElement extends TextElement {
       this.tfParams)
       : super(serial, EnumSpWMLElementType.textField, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, textParams);
+
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "TextFieldElement";
+  }
 
   /// initialize parameters
   @override
@@ -135,6 +133,11 @@ class TextFieldElement extends TextElement {
           EnumTextFieldMode.searchAndClear) {
         tfParams.p.changeSearchAndClearMode();
       }
+    }
+    // SIDが設定されていなければエラー。
+    if (getSID() == null) {
+      throw SpWMLException(EnumSpWMLExceptionType.sidDoesNotExistException,
+          lineStart, lineEnd, info);
     }
     return this;
   }

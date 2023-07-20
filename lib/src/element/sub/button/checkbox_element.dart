@@ -39,6 +39,12 @@ class CheckboxElement extends MultiChildElement {
       : super(serial, EnumSpWMLElementType.checkbox, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, children);
 
+  /// Get this class name.
+  @override
+  String getClassName() {
+    return "CheckboxElement";
+  }
+
   /// Initialize the parameters.
   @override
   CheckboxElement initParams() {
