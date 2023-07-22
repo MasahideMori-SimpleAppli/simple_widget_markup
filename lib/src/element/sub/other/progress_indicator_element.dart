@@ -86,12 +86,6 @@ class ProgressIndicatorElement extends SpWMLElement {
   @override
   Widget getWidget(BuildContext context) {
     if (elParams.p.indicatorType == EnumIndicatorType.circular) {
-      // マネージャークラスが未設定の場合、仮のマネージャークラスを生成する。
-      if (elParams.p.circularProgressIndicatorParams!.manager == null) {
-        elParams.p.circularProgressIndicatorParams!.manager = ValueManager();
-        elParams.p.circularProgressIndicatorParams!.manager!
-            .setValue(getSID()!, null);
-      }
       return CircularProgressIndicator(
           key: elParams.p.circularProgressIndicatorParams!.key,
           value: elParams.p.circularProgressIndicatorParams!.manager!
@@ -106,12 +100,6 @@ class ProgressIndicatorElement extends SpWMLElement {
           semanticsValue:
               elParams.p.circularProgressIndicatorParams!.semanticsValue);
     } else {
-      // マネージャークラスが未設定の場合、仮のマネージャークラスを生成する。
-      if (elParams.p.linearProgressIndicatorParams!.manager == null) {
-        elParams.p.linearProgressIndicatorParams!.manager = ValueManager();
-        elParams.p.linearProgressIndicatorParams!.manager!
-            .setValue(getSID()!, null);
-      }
       return LinearProgressIndicator(
           key: elParams.p.linearProgressIndicatorParams!.key,
           value: elParams.p.linearProgressIndicatorParams!.manager!

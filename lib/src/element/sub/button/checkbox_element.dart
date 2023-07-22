@@ -96,8 +96,6 @@ class CheckboxElement extends MultiChildElement {
   /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
-    // マネージャークラスが未設定の場合、動作確認用の仮のマネージャークラスを設定する。
-    elParams.p.manager ??= MultiFlagManager();
     final String? sid = getSID();
     if (sid != null) {
       List<bool> manageFlags = elParams.p.manager!.getFlags(sid);
@@ -122,7 +120,7 @@ class CheckboxElement extends MultiChildElement {
 
   /// (en) Sets the value. Disabled if the manager class is not set.
   ///
-  /// (ja) 値を設定します。マネージャークラスが未設定の場合は無効になります。
+  /// (ja) 値を設定します。マネージャークラスが未設定の場合は無効です。
   /// * [v] : value.
   void setValue(List<bool> v) {
     if (elParams.p.manager != null) {

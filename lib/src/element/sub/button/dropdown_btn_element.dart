@@ -94,8 +94,6 @@ class DropdownBtnElement extends MultiChildElement {
 
   /// create dropdown button.
   Widget _getBtn(BuildContext context) {
-    // マネージャークラスが未設定の場合、仮のマネージャークラスを生成する。
-    elParams.p.manager ??= IndexManager();
     final String sid = getSID()!;
     List<DropdownMenuItem<int>> menus = [];
     int count = 0;
@@ -153,7 +151,7 @@ class DropdownBtnElement extends MultiChildElement {
 
   /// (en) Sets the value. Disabled if the manager class is not set.
   ///
-  /// (ja) 値を設定します。マネージャークラスが未設定の場合は無効になります。
+  /// (ja) 値を設定します。マネージャークラスが未設定の場合は無効です。
   /// * [v] : value.
   void setValue(int? v) {
     if (elParams.p.manager != null) {

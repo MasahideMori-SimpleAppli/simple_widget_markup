@@ -67,8 +67,6 @@ class SwitchBtnElement extends SpWMLElement {
   /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
-    // マネージャークラスが未設定の場合、仮のマネージャークラスを生成する。
-    elParams.p.manager ??= FlagManager();
     return _SwitchBtnElementWidget(getSID()!, elParams);
   }
 
@@ -98,7 +96,7 @@ class SwitchBtnElement extends SpWMLElement {
 
   /// (en) Sets the switch value. Disabled if the manager class is not set.
   ///
-  /// (ja) スイッチの値を設定します。マネージャークラスが未設定の場合は無効になります。
+  /// (ja) スイッチの値を設定します。マネージャークラスが未設定の場合は無効です。
   /// * [v] : Switch value.
   void setValue(bool v) {
     if (elParams.p.manager != null) {

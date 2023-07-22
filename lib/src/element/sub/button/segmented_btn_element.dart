@@ -69,8 +69,6 @@ class SegmentedBtnElement extends MultiChildElement {
   /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
-    // マネージャークラスが未設定の場合、仮のマネージャークラスを生成する。
-    elParams.p.manager ??= MultiIndexManager();
     return _SegmentedBtnElementWidget(
         getSID()!, children, elParams, getShape());
   }
@@ -85,7 +83,7 @@ class SegmentedBtnElement extends MultiChildElement {
 
   /// (en) Sets the value. Disabled if the manager class is not set.
   ///
-  /// (ja) 値を設定します。マネージャークラスが未設定の場合は無効になります。
+  /// (ja) 値を設定します。マネージャークラスが未設定の場合は無効です。
   /// * [v] : value.
   void setValue(Set<int> v) {
     if (elParams.p.manager != null) {

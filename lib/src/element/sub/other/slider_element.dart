@@ -110,8 +110,6 @@ class SliderElement extends SpWMLElement {
   /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
-    // マネージャークラスが未設定の場合、仮のマネージャークラスを生成する。
-    elParams.p.manager ??= ValueManager();
     return _SliderElementWidget(getSID()!, elParams);
   }
 }
