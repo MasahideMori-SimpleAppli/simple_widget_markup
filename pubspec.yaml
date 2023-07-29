@@ -1,6 +1,6 @@
 name: simple_widget_markup
 description: This is an option that allows you to statically create layouts.
-version: 21.0.1
+version: 21.0.2
 repository: https://github.com/MasahideMori-SimpleAppli/simple_widget_markup
 
 environment:

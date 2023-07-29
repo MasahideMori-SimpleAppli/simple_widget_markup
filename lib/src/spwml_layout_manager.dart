@@ -77,12 +77,14 @@ class SpWMLLayoutManager {
   /// the contents will be returned as is and no callback will occur.
   /// If you specify an asset that has not yet been acquired,
   /// null will be returned, and resource acquisition will start after the current rendering is complete.
+  /// Asset registration in pubspec.yaml is mandatory.
   ///
   /// (ja) 指定されたパスに存在するレイアウトを非同期で取得し、完了したらコールバックします。
   /// 既に取得済みのアセットを指定した場合はそのまま内容が返却され、コールバックは発生しません。
   /// まだ取得されていないアセットを指定した場合はnullが返却され、現在のレンダリングの完了後のタイミングでリソースの取得が開始されます。
+  /// pubspec.yamlにアセットの登録が必須です。
   ///
-  /// * [path] : The layout path in assets directory. e.g. [/layout/en/top/base.spwml]
+  /// * [path] : The layout path in assets directory. e.g. [assets/layout/en/top/base.spwml]
   /// * [setStateCallback] : Pass the setState of the parent widget in the callback.
   /// If you're using another state management, let the screen refresh.
   String? getAssets(String path, void Function() setStateCallback) {
@@ -100,6 +102,7 @@ class SpWMLLayoutManager {
   }
 
   /// The multi-simultaneous version of getAssets.
+  /// Asset registration in pubspec.yaml is mandatory.
   List<String>? getMultiAssets(
       List<String> paths, void Function() setStateCallback) {
     bool isAllContained = true;

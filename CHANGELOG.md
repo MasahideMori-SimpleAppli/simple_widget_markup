@@ -1,3 +1,7 @@
+## 21.0.2
+
+* Updated SpWMLLayoutManager description.
+
 ## 21.0.1
 
 * For some elements, the temporary manager class is no longer set when the manager class is null.
