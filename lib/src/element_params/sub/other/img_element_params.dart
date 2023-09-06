@@ -59,6 +59,6 @@ class ClipParams {
   Clip clipBehavior = Clip.antiAlias;
 
   // for ClipRRect
-  BorderRadiusGeometry? borderRadius = BorderRadius.circular(8.0);
+  BorderRadiusGeometry borderRadius = BorderRadius.circular(8.0);
   CustomClipper<RRect>? clipperRRect;
 }

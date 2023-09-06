@@ -1,3 +1,7 @@
+## 22.0.0
+
+* ClipRRect's borderRadius no longer accepts null values, so fixed related arguments. ImgElement is affected by this.
+
 ## 21.0.2
 
 * Updated SpWMLLayoutManager description.
