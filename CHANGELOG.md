@@ -1,3 +1,7 @@
+## 22.0.1
+
+* Changed some private methods of SuperAndSubscriptElement to public methods.
+
 ## 22.0.0
 
 * ClipRRect's borderRadius no longer accepts null values, so fixed related arguments. ImgElement is affected by this.

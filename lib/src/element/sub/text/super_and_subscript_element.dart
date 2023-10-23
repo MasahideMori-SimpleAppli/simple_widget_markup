@@ -78,8 +78,8 @@ class SuperAndSubscriptElement extends TextElement {
     }
   }
 
-  /// calculate script offset.
-  Offset _getOffset() {
+  /// calculate and return the script offset.
+  Offset getOffset() {
     if (type == EnumSpWMLElementType.superscript) {
       return Offset(
           0,
@@ -102,8 +102,8 @@ class SuperAndSubscriptElement extends TextElement {
     }
   }
 
-  /// calculate script offset.
-  Offset _getOffsetOfNonStrictMode() {
+  /// calculate and return the script offset for non strict mode.
+  Offset getOffsetOfNonStrictMode() {
     if (type == EnumSpWMLElementType.superscript) {
       return Offset(
           0,
@@ -123,14 +123,14 @@ class SuperAndSubscriptElement extends TextElement {
   @override
   Widget getTextWidget(BuildContext context) {
     return Transform.translate(
-        offset: _getOffset(), child: super.getTextWidget(context));
+        offset: getOffset(), child: super.getTextWidget(context));
   }
 
   /// Get text widget
   @override
   Widget getText(BuildContext context) {
     return Transform.translate(
-        offset: _getOffset(),
+        offset: getOffset(),
         child: Text(
           spwmlParams.p.text,
           key: textParams.p.key,
@@ -153,7 +153,7 @@ class SuperAndSubscriptElement extends TextElement {
 
   Widget _getTextOfNonStrictMode(BuildContext context) {
     return Transform.translate(
-        offset: _getOffsetOfNonStrictMode(),
+        offset: getOffsetOfNonStrictMode(),
         child: Text(
           spwmlParams.p.text,
           key: textParams.p.key,
