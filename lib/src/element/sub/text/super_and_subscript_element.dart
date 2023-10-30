@@ -95,7 +95,7 @@ class SuperAndSubscriptElement extends TextElement {
   /// Get super font size.
   /// This returns the original font size
   /// before applying any scaling calculations.
-  double? getNonResizedFontSize(){
+  double? getNonResizedFontSize() {
     return super.getFontSize();
   }
 
