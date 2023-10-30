@@ -1,3 +1,8 @@
+## 22.1.0
+
+* Added getNonResizedFontSize method to SuperAndSubscriptElement.
+* Added getNonResizedStyle method to SuperAndSubscriptElement.
+
 ## 22.0.1
 
 * Changed some private methods of SuperAndSubscriptElement to public methods.

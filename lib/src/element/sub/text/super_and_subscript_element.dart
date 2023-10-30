@@ -92,6 +92,54 @@ class SuperAndSubscriptElement extends TextElement {
     }
   }
 
+  /// Get super font size.
+  /// This returns the original font size
+  /// before applying any scaling calculations.
+  double? getNonResizedFontSize(){
+    return super.getFontSize();
+  }
+
+  /// Get getNonResizedFontSize method based style.
+  TextStyle getNonResizedStyle() {
+    return TextStyle(
+      color: params.containsKey(EnumSpWMLParams.textColor)
+          ? params[EnumSpWMLParams.textColor]
+          : getDefTextColor(),
+      backgroundColor: params.containsKey(EnumSpWMLParams.textBGColor)
+          ? params[EnumSpWMLParams.textBGColor]
+          : getDefTextBGColor(),
+      fontSize: getNonResizedFontSize(),
+      fontWeight: params.containsKey(EnumSpWMLParams.fontWeight)
+          ? params[EnumSpWMLParams.fontWeight]
+          : getDefFontWeight(),
+      fontStyle: params.containsKey(EnumSpWMLParams.fontStyle)
+          ? params[EnumSpWMLParams.fontStyle]
+          : getDefFontStyle(),
+      letterSpacing: params.containsKey(EnumSpWMLParams.letterSpacing)
+          ? params[EnumSpWMLParams.letterSpacing]
+          : getDefFontLetterSpacing(),
+      wordSpacing: params.containsKey(EnumSpWMLParams.wordSpacing)
+          ? params[EnumSpWMLParams.wordSpacing]
+          : getDefWordSpacing(),
+      decoration: params.containsKey(EnumSpWMLParams.textDeco)
+          ? params[EnumSpWMLParams.textDeco]
+          : getDefTextDeco(),
+      decorationStyle: params.containsKey(EnumSpWMLParams.textDecoStyle)
+          ? params[EnumSpWMLParams.textDecoStyle]
+          : getDefDecorationStyle(),
+      decorationColor: params.containsKey(EnumSpWMLParams.textDecoColor)
+          ? params[EnumSpWMLParams.textDecoColor]
+          : getDefTextDecoColor(),
+      decorationThickness: params.containsKey(EnumSpWMLParams.textDecoThickness)
+          ? params[EnumSpWMLParams.textDecoThickness]
+          : getDefTextDecoThickness(),
+      fontFamily: params.containsKey(EnumSpWMLParams.fontFamily)
+          ? params[EnumSpWMLParams.fontFamily]
+          : getDefFontFamily(),
+      height: getLineHeight(),
+    );
+  }
+
   /// non static amplified position shift value.
   double _amplifiedValue(double input, double curveFactor) {
     if (input <= 0) {
