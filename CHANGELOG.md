@@ -1,3 +1,7 @@
+## 22.1.1
+
+* Updates associated with base library updates.
+
 ## 22.1.0
 
 * Added getNonResizedFontSize method to SuperAndSubscriptElement.
