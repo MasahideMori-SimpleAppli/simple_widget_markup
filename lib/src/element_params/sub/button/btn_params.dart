@@ -130,4 +130,5 @@ class BtnParams {
   IconBtnParams? iconBtnParams;
   InkWellParams? inkWellBtnParams;
   FAButtonParams? faButtonParams;
+  bool isEnabled = true;
 }

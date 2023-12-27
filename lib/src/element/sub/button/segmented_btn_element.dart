@@ -50,6 +50,9 @@ class SegmentedBtnElement extends MultiChildElement {
   @override
   SegmentedBtnElement initParams() {
     super.initParams();
+    elParams.p.isEnabled = params.containsKey(EnumSpWMLParams.isEnabled)
+        ? params[EnumSpWMLParams.isEnabled]
+        : true;
     elParams.p.multiSelectionEnabled =
         params.containsKey(EnumSpWMLParams.isMultiSelection)
             ? params[EnumSpWMLParams.isMultiSelection]
@@ -100,6 +103,15 @@ class SegmentedBtnElement extends MultiChildElement {
   /// * [m] : Manager class.
   void setManager(MultiIndexManager m) {
     elParams.p.manager = m;
+  }
+
+  /// (en) Enable/disable this button.
+  ///
+  /// (ja)このボタンの有効・無効を切り替えます。
+  ///
+  /// * [isEnabled] : If true, the button is enabled.
+  void setEnabled(bool isEnabled) {
+    elParams.p.isEnabled = isEnabled;
   }
 }
 
@@ -160,7 +172,7 @@ class _SegmentedBtnElementWidgetState
       key: widget.elParams.p.key,
       segments: widget.elParams.p.segments ?? _getSegments(),
       selected: widget.elParams.p.manager!.getIndexSet(widget.sid),
-      onSelectionChanged: _onTapCallback,
+      onSelectionChanged: widget.elParams.p.isEnabled ? _onTapCallback : null,
       multiSelectionEnabled: widget.elParams.p.multiSelectionEnabled,
       emptySelectionAllowed: widget.elParams.p.emptySelectionAllowed,
       style: widget.elParams.p.style,

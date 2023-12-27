@@ -51,6 +51,9 @@ class PopupMenuBtnElement extends MultiChildElement {
     super.initParams();
     // メニューアイテムのパラメーターはここでは設定できない。
     // 設定可能なのはウィジェット側パラメータのみ。
+    elParams.p.isEnabled = params.containsKey(EnumSpWMLParams.isEnabled)
+        ? params[EnumSpWMLParams.isEnabled]
+        : true;
     elParams.p.icon = params.containsKey(EnumSpWMLParams.iconNum)
         ? Icon(
             params[EnumSpWMLParams.iconNum]!,
@@ -87,16 +90,18 @@ class PopupMenuBtnElement extends MultiChildElement {
         menus.add(PopupMenuItem(
           key: elParams.p.popupMenuItemParams[v].key,
           value: v,
-          onTap: () {
-            elParams.p.manager!.setIndex(sid, v);
-            if (elParams.p.popupMenuItemParams[v].onTap == null) {
-              if (elParams.p.menuCallback != null) {
-                elParams.p.menuCallback!(v);
-              }
-            } else {
-              elParams.p.popupMenuItemParams[v].onTap!();
-            }
-          },
+          onTap: elParams.p.isEnabled
+              ? () {
+                  elParams.p.manager!.setIndex(sid, v);
+                  if (elParams.p.popupMenuItemParams[v].onTap == null) {
+                    if (elParams.p.menuCallback != null) {
+                      elParams.p.menuCallback!(v);
+                    }
+                  } else {
+                    elParams.p.popupMenuItemParams[v].onTap!();
+                  }
+                }
+              : null,
           enabled: elParams.p.popupMenuItemParams[v].enabled,
           height: elParams.p.popupMenuItemParams[v].height,
           padding: elParams.p.popupMenuItemParams[v].padding,
@@ -112,10 +117,12 @@ class PopupMenuBtnElement extends MultiChildElement {
         if (elParams.p.menuCallback != null) {
           menus.add(PopupMenuItem(
               value: v,
-              onTap: () {
-                elParams.p.manager!.setIndex(sid, v);
-                elParams.p.menuCallback!(v);
-              },
+              onTap: elParams.p.isEnabled
+                  ? () {
+                      elParams.p.manager!.setIndex(sid, v);
+                      elParams.p.menuCallback!(v);
+                    }
+                  : null,
               child: i));
         } else {
           menus.add(PopupMenuItem(value: v, child: i));
@@ -158,6 +165,15 @@ class PopupMenuBtnElement extends MultiChildElement {
   void setManager(IndexManager m) {
     elParams.p.manager = m;
   }
+
+  /// (en) Enable/disable this button.
+  ///
+  /// (ja)このボタンの有効・無効を切り替えます。
+  ///
+  /// * [isEnabled] : If true, the button is enabled.
+  void setEnabled(bool isEnabled) {
+    elParams.p.isEnabled = isEnabled;
+  }
 }
 
 class _PopupMenuElementWidget extends StatefulWidget {
@@ -182,7 +198,8 @@ class _PopupMenuElementWidgetState extends State<_PopupMenuElementWidget> {
           },
       initialValue: widget.elParams.p.manager!.getIndex(widget.sid),
       onOpened: widget.elParams.p.onOpened,
-      onSelected: widget.elParams.p.onSelected,
+      onSelected:
+          widget.elParams.p.isEnabled ? widget.elParams.p.onSelected : null,
       onCanceled: widget.elParams.p.onCanceled,
       tooltip: widget.elParams.p.tooltip,
       elevation: widget.elParams.p.elevation,

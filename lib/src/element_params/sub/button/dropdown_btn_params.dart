@@ -52,4 +52,5 @@ class DropdownBtnParams {
   // Pre version, This is selectedIndex.
   IndexManager? manager;
   void Function(int index)? menuCallback;
+  bool isEnabled = true;
 }

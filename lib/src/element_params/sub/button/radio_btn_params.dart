@@ -25,4 +25,5 @@ class RadioBtnParams {
   OutlinedBorder? shape;
   // The icon position.
   bool isPrefixIcon = true;
+  bool isEnabled = true;
 }

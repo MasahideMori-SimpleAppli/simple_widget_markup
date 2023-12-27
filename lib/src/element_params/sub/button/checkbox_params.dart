@@ -52,4 +52,5 @@ class CheckboxParams {
   OutlinedBorder? shape;
   // The icon position.
   bool isPrefixIcon = true;
+  bool isEnabled = true;
 }

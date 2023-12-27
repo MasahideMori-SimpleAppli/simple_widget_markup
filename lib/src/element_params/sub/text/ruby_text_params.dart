@@ -25,7 +25,7 @@ class RubyTextParams {
   Locale? locale;
   bool? softWrap;
   TextOverflow? overflow;
-  double? textScaleFactor;
+  TextScaler? textScaler;
   int? maxLines;
   String? semanticsLabel;
   TextWidthBasis? textWidthBasis;

@@ -89,9 +89,8 @@ class TextElement extends SpWMLElement {
             textAlign:
                 textParams.p.selectableTextParams!.textAlign ?? getTextAlign(),
             textDirection: textParams.p.selectableTextParams!.textDirection,
-            textScaleFactor:
-                textParams.p.selectableTextParams!.textScaleFactor ??
-                    MediaQuery.of(context).textScaleFactor,
+            textScaler: textParams.p.selectableTextParams!.textScaler ??
+                MediaQuery.of(context).textScaler,
             showCursor: textParams.p.selectableTextParams!.showCursor,
             autofocus: textParams.p.selectableTextParams!.autofocus,
             minLines: textParams.p.selectableTextParams!.minLines,
@@ -145,8 +144,7 @@ class TextElement extends SpWMLElement {
       locale: textParams.p.locale,
       softWrap: textParams.p.softWrap,
       overflow: textParams.p.overflow,
-      textScaleFactor: textParams.p.textScaleFactor ??
-          MediaQuery.of(context).textScaleFactor,
+      textScaler: textParams.p.textScaler ?? MediaQuery.of(context).textScaler,
       maxLines: textParams.p.maxLines,
       semanticsLabel: textParams.p.semanticsLabel,
       textWidthBasis: textParams.p.textWidthBasis,

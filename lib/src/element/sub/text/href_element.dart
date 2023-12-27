@@ -106,8 +106,7 @@ class HrefElement extends TextElement {
       textDirection: textParams.p.textDirection,
       locale: textParams.p.locale,
       softWrap: textParams.p.softWrap,
-      textScaleFactor: textParams.p.textScaleFactor ??
-          MediaQuery.of(context).textScaleFactor,
+      textScaler: textParams.p.textScaler ?? MediaQuery.of(context).textScaler,
       maxLines: textParams.p.maxLines,
       semanticsLabel: textParams.p.semanticsLabel,
       textWidthBasis: textParams.p.textWidthBasis,

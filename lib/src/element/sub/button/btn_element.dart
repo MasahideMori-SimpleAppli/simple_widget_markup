@@ -61,6 +61,9 @@ class BtnElement extends SingleChildTextElement {
   @override
   BtnElement initParams() {
     super.initParams();
+    elParams.p.isEnabled = params.containsKey(EnumSpWMLParams.isEnabled)
+        ? params[EnumSpWMLParams.isEnabled]
+        : true;
     elParams.p.type = params.containsKey(EnumSpWMLParams.type)
         ? params[EnumSpWMLParams.type]!
         : EnumBtnType.text;
@@ -200,7 +203,9 @@ class BtnElement extends SingleChildTextElement {
       if (elParams.p.isUseIcon) {
         return TextButton.icon(
             key: elParams.p.normalBtnParams!.key,
-            onPressed: elParams.p.normalBtnParams!.onPressed,
+            onPressed: elParams.p.isEnabled
+                ? elParams.p.normalBtnParams!.onPressed
+                : null,
             onLongPress: elParams.p.normalBtnParams!.onLongPress,
             onHover: elParams.p.normalBtnParams!.onHover,
             onFocusChange: elParams.p.normalBtnParams!.onFocusChange,
@@ -216,7 +221,9 @@ class BtnElement extends SingleChildTextElement {
       } else {
         return TextButton(
             key: elParams.p.normalBtnParams!.key,
-            onPressed: elParams.p.normalBtnParams!.onPressed,
+            onPressed: elParams.p.isEnabled
+                ? elParams.p.normalBtnParams!.onPressed
+                : null,
             onLongPress: elParams.p.normalBtnParams!.onLongPress,
             onHover: elParams.p.normalBtnParams!.onHover,
             onFocusChange: elParams.p.normalBtnParams!.onFocusChange,
@@ -233,7 +240,9 @@ class BtnElement extends SingleChildTextElement {
       if (elParams.p.isUseIcon) {
         return OutlinedButton.icon(
             key: elParams.p.normalBtnParams!.key,
-            onPressed: elParams.p.normalBtnParams!.onPressed,
+            onPressed: elParams.p.isEnabled
+                ? elParams.p.normalBtnParams!.onPressed
+                : null,
             onLongPress: elParams.p.normalBtnParams!.onLongPress,
             style: elParams.p.normalBtnParams!.style,
             focusNode: elParams.p.normalBtnParams!.focusNode,
@@ -247,7 +256,9 @@ class BtnElement extends SingleChildTextElement {
       } else {
         return OutlinedButton(
             key: elParams.p.normalBtnParams!.key,
-            onPressed: elParams.p.normalBtnParams!.onPressed,
+            onPressed: elParams.p.isEnabled
+                ? elParams.p.normalBtnParams!.onPressed
+                : null,
             onLongPress: elParams.p.normalBtnParams!.onLongPress,
             style: elParams.p.normalBtnParams!.style,
             focusNode: elParams.p.normalBtnParams!.focusNode,
@@ -262,7 +273,9 @@ class BtnElement extends SingleChildTextElement {
       if (elParams.p.isUseIcon) {
         return ElevatedButton.icon(
             key: elParams.p.normalBtnParams!.key,
-            onPressed: elParams.p.normalBtnParams!.onPressed,
+            onPressed: elParams.p.isEnabled
+                ? elParams.p.normalBtnParams!.onPressed
+                : null,
             onLongPress: elParams.p.normalBtnParams!.onLongPress,
             onHover: elParams.p.normalBtnParams!.onHover,
             onFocusChange: elParams.p.normalBtnParams!.onFocusChange,
@@ -278,7 +291,9 @@ class BtnElement extends SingleChildTextElement {
       } else {
         return ElevatedButton(
             key: elParams.p.normalBtnParams!.key,
-            onPressed: elParams.p.normalBtnParams!.onPressed,
+            onPressed: elParams.p.isEnabled
+                ? elParams.p.normalBtnParams!.onPressed
+                : null,
             onLongPress: elParams.p.normalBtnParams!.onLongPress,
             onHover: elParams.p.normalBtnParams!.onHover,
             onFocusChange: elParams.p.normalBtnParams!.onFocusChange,
@@ -295,7 +310,9 @@ class BtnElement extends SingleChildTextElement {
       if (elParams.p.isUseIcon) {
         return FilledButton.icon(
             key: elParams.p.normalBtnParams!.key,
-            onPressed: elParams.p.normalBtnParams!.onPressed,
+            onPressed: elParams.p.isEnabled
+                ? elParams.p.normalBtnParams!.onPressed
+                : null,
             onLongPress: elParams.p.normalBtnParams!.onLongPress,
             onHover: elParams.p.normalBtnParams!.onHover,
             onFocusChange: elParams.p.normalBtnParams!.onFocusChange,
@@ -311,7 +328,9 @@ class BtnElement extends SingleChildTextElement {
       } else {
         return FilledButton(
             key: elParams.p.normalBtnParams!.key,
-            onPressed: elParams.p.normalBtnParams!.onPressed,
+            onPressed: elParams.p.isEnabled
+                ? elParams.p.normalBtnParams!.onPressed
+                : null,
             onLongPress: elParams.p.normalBtnParams!.onLongPress,
             onHover: elParams.p.normalBtnParams!.onHover,
             onFocusChange: elParams.p.normalBtnParams!.onFocusChange,
@@ -328,7 +347,9 @@ class BtnElement extends SingleChildTextElement {
       if (elParams.p.isUseIcon) {
         return FilledButton.tonalIcon(
             key: elParams.p.normalBtnParams!.key,
-            onPressed: elParams.p.normalBtnParams!.onPressed,
+            onPressed: elParams.p.isEnabled
+                ? elParams.p.normalBtnParams!.onPressed
+                : null,
             onLongPress: elParams.p.normalBtnParams!.onLongPress,
             onHover: elParams.p.normalBtnParams!.onHover,
             onFocusChange: elParams.p.normalBtnParams!.onFocusChange,
@@ -344,7 +365,9 @@ class BtnElement extends SingleChildTextElement {
       } else {
         return FilledButton.tonal(
             key: elParams.p.normalBtnParams!.key,
-            onPressed: elParams.p.normalBtnParams!.onPressed,
+            onPressed: elParams.p.isEnabled
+                ? elParams.p.normalBtnParams!.onPressed
+                : null,
             onLongPress: elParams.p.normalBtnParams!.onLongPress,
             onHover: elParams.p.normalBtnParams!.onHover,
             onFocusChange: elParams.p.normalBtnParams!.onFocusChange,
@@ -371,7 +394,8 @@ class BtnElement extends SingleChildTextElement {
         highlightColor: elParams.p.iconBtnParams!.highlightColor,
         splashColor: elParams.p.iconBtnParams!.splashColor,
         disabledColor: elParams.p.iconBtnParams!.disabledColor,
-        onPressed: elParams.p.iconBtnParams!.onPressed,
+        onPressed:
+            elParams.p.isEnabled ? elParams.p.iconBtnParams!.onPressed : null,
         mouseCursor: elParams.p.iconBtnParams!.mouseCursor,
         focusNode: elParams.p.iconBtnParams!.focusNode,
         autofocus: elParams.p.iconBtnParams!.autofocus,
@@ -397,7 +421,8 @@ class BtnElement extends SingleChildTextElement {
         highlightColor: elParams.p.iconBtnParams!.highlightColor,
         splashColor: elParams.p.iconBtnParams!.splashColor,
         disabledColor: elParams.p.iconBtnParams!.disabledColor,
-        onPressed: elParams.p.iconBtnParams!.onPressed,
+        onPressed:
+            elParams.p.isEnabled ? elParams.p.iconBtnParams!.onPressed : null,
         mouseCursor: elParams.p.iconBtnParams!.mouseCursor,
         focusNode: elParams.p.iconBtnParams!.focusNode,
         autofocus: elParams.p.iconBtnParams!.autofocus,
@@ -423,7 +448,8 @@ class BtnElement extends SingleChildTextElement {
         highlightColor: elParams.p.iconBtnParams!.highlightColor,
         splashColor: elParams.p.iconBtnParams!.splashColor,
         disabledColor: elParams.p.iconBtnParams!.disabledColor,
-        onPressed: elParams.p.iconBtnParams!.onPressed,
+        onPressed:
+            elParams.p.isEnabled ? elParams.p.iconBtnParams!.onPressed : null,
         mouseCursor: elParams.p.iconBtnParams!.mouseCursor,
         focusNode: elParams.p.iconBtnParams!.focusNode,
         autofocus: elParams.p.iconBtnParams!.autofocus,
@@ -449,7 +475,8 @@ class BtnElement extends SingleChildTextElement {
         highlightColor: elParams.p.iconBtnParams!.highlightColor,
         splashColor: elParams.p.iconBtnParams!.splashColor,
         disabledColor: elParams.p.iconBtnParams!.disabledColor,
-        onPressed: elParams.p.iconBtnParams!.onPressed,
+        onPressed:
+            elParams.p.isEnabled ? elParams.p.iconBtnParams!.onPressed : null,
         mouseCursor: elParams.p.iconBtnParams!.mouseCursor,
         focusNode: elParams.p.iconBtnParams!.focusNode,
         autofocus: elParams.p.iconBtnParams!.autofocus,
@@ -476,7 +503,8 @@ class BtnElement extends SingleChildTextElement {
         hoverElevation: elParams.p.faButtonParams!.hoverElevation,
         highlightElevation: elParams.p.faButtonParams!.highlightElevation,
         disabledElevation: elParams.p.faButtonParams!.disabledElevation,
-        onPressed: elParams.p.faButtonParams!.onPressed,
+        onPressed:
+            elParams.p.isEnabled ? elParams.p.faButtonParams!.onPressed : null,
         mouseCursor: elParams.p.faButtonParams!.mouseCursor,
         shape: elParams.p.faButtonParams!.shape,
         clipBehavior: elParams.p.faButtonParams!.clipBehavior,
@@ -501,7 +529,9 @@ class BtnElement extends SingleChildTextElement {
           hoverElevation: elParams.p.faButtonParams!.hoverElevation,
           highlightElevation: elParams.p.faButtonParams!.highlightElevation,
           disabledElevation: elParams.p.faButtonParams!.disabledElevation,
-          onPressed: elParams.p.faButtonParams!.onPressed,
+          onPressed: elParams.p.isEnabled
+              ? elParams.p.faButtonParams!.onPressed
+              : null,
           mouseCursor: elParams.p.faButtonParams!.mouseCursor,
           shape: elParams.p.faButtonParams!.shape,
           clipBehavior: elParams.p.faButtonParams!.clipBehavior,
@@ -536,7 +566,8 @@ class BtnElement extends SingleChildTextElement {
         hoverElevation: elParams.p.faButtonParams!.hoverElevation,
         highlightElevation: elParams.p.faButtonParams!.highlightElevation,
         disabledElevation: elParams.p.faButtonParams!.disabledElevation,
-        onPressed: elParams.p.faButtonParams!.onPressed,
+        onPressed:
+            elParams.p.isEnabled ? elParams.p.faButtonParams!.onPressed : null,
         mouseCursor: elParams.p.faButtonParams!.mouseCursor,
         mini: false,
         shape: elParams.p.faButtonParams!.shape,
@@ -563,7 +594,8 @@ class BtnElement extends SingleChildTextElement {
         hoverElevation: elParams.p.faButtonParams!.hoverElevation,
         highlightElevation: elParams.p.faButtonParams!.highlightElevation,
         disabledElevation: elParams.p.faButtonParams!.disabledElevation,
-        onPressed: elParams.p.faButtonParams!.onPressed,
+        onPressed:
+            elParams.p.isEnabled ? elParams.p.faButtonParams!.onPressed : null,
         mouseCursor: elParams.p.faButtonParams!.mouseCursor,
         shape: elParams.p.faButtonParams!.shape,
         clipBehavior: elParams.p.faButtonParams!.clipBehavior,
@@ -577,7 +609,7 @@ class BtnElement extends SingleChildTextElement {
       // block type
       return InkWell(
         key: elParams.p.inkWellBtnParams!.key,
-        onTap: elParams.p.inkWellBtnParams!.onTap,
+        onTap: elParams.p.isEnabled ? elParams.p.inkWellBtnParams!.onTap : null,
         onDoubleTap: elParams.p.inkWellBtnParams!.onDoubleTap,
         onLongPress: elParams.p.inkWellBtnParams!.onLongPress,
         onTapDown: elParams.p.inkWellBtnParams!.onTapDown,
@@ -629,16 +661,15 @@ class BtnElement extends SingleChildTextElement {
     }
   }
 
-  /// (en) Disable this button. callback is set to null.
+  /// (en) Enable/disable this button.
   /// Note that the block button does not change its appearance.
   ///
-  /// (ja)このボタンを無効化します。コールバックがnullに設定されます。
+  /// (ja)このボタンの有効・無効を切り替えます。
   /// ブロックボタンは見た目が変化しないため注意してください。
-  void setDisabled() {
-    elParams.p.iconBtnParams?.onPressed = null;
-    elParams.p.inkWellBtnParams?.onTap = null;
-    elParams.p.normalBtnParams?.onPressed = null;
-    elParams.p.faButtonParams?.onPressed = null;
+  ///
+  /// * [isEnabled] : If true, the button is enabled.
+  void setEnabled(bool isEnabled) {
+    elParams.p.isEnabled = isEnabled;
   }
 
   /// (en) Sets the color of this button.

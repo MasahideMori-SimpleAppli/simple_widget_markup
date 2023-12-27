@@ -51,6 +51,9 @@ class DropdownBtnElement extends MultiChildElement {
     super.initParams();
     // メニューアイテムのパラメーターはここでは設定できない。
     // 設定可能なのはウィジェット側パラメータのみ。
+    elParams.p.isEnabled = params.containsKey(EnumSpWMLParams.isEnabled)
+        ? params[EnumSpWMLParams.isEnabled]
+        : true;
     elParams.p.hint = params.containsKey(EnumSpWMLParams.hint)
         ? Text(params[EnumSpWMLParams.hint] as String)
         : null;
@@ -169,6 +172,15 @@ class DropdownBtnElement extends MultiChildElement {
   void setManager(IndexManager m) {
     elParams.p.manager = m;
   }
+
+  /// (en) Enable/disable this button.
+  ///
+  /// (ja)このボタンの有効・無効を切り替えます。
+  ///
+  /// * [isEnabled] : If true, the button is enabled.
+  void setEnabled(bool isEnabled) {
+    elParams.p.isEnabled = isEnabled;
+  }
 }
 
 class _DropDownElementWidget extends StatefulWidget {
@@ -212,9 +224,11 @@ class _DropDownElementWidgetState extends State<_DropDownElementWidget> {
       alignment: widget.elParams.p.alignment,
       borderRadius: widget.elParams.p.borderRadius,
       padding: widget.elParams.p.padding,
-      onChanged: (int? v) => {
-        setState(() {}),
-      },
+      onChanged: widget.elParams.p.isEnabled
+          ? (int? v) => {
+                setState(() {}),
+              }
+          : null,
     );
   }
 }

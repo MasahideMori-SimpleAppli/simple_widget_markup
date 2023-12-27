@@ -106,9 +106,8 @@ class RubyTextElement extends TextElement {
             textAlign:
                 rubyParams.p.selectableTextParams!.textAlign ?? getRubyAlign(),
             textDirection: rubyParams.p.selectableTextParams!.textDirection,
-            textScaleFactor:
-                rubyParams.p.selectableTextParams!.textScaleFactor ??
-                    MediaQuery.of(context).textScaleFactor,
+            textScaler: rubyParams.p.selectableTextParams!.textScaler ??
+                MediaQuery.of(context).textScaler,
             showCursor: rubyParams.p.selectableTextParams!.showCursor,
             autofocus: rubyParams.p.selectableTextParams!.autofocus,
             minLines: rubyParams.p.selectableTextParams!.minLines,
@@ -216,8 +215,7 @@ class RubyTextElement extends TextElement {
       textDirection: rubyParams.p.textDirection,
       locale: rubyParams.p.locale,
       softWrap: rubyParams.p.softWrap,
-      textScaleFactor: rubyParams.p.textScaleFactor ??
-          MediaQuery.of(context).textScaleFactor,
+      textScaler: rubyParams.p.textScaler ?? MediaQuery.of(context).textScaler,
       maxLines: rubyParams.p.maxLines,
       semanticsLabel: rubyParams.p.semanticsLabel,
       textWidthBasis: rubyParams.p.textWidthBasis,

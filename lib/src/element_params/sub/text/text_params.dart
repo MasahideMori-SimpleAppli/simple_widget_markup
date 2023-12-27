@@ -18,7 +18,7 @@ class SelectableTextParams {
   StrutStyle? strutStyle;
   TextAlign? textAlign;
   TextDirection? textDirection;
-  double? textScaleFactor;
+  TextScaler? textScaler;
   bool showCursor = false;
   bool autofocus = false;
   int? minLines;
@@ -52,7 +52,7 @@ class TextParams {
   Locale? locale;
   bool? softWrap;
   TextOverflow? overflow;
-  double? textScaleFactor;
+  TextScaler? textScaler;
   int? maxLines;
   String? semanticsLabel;
   TextWidthBasis? textWidthBasis;

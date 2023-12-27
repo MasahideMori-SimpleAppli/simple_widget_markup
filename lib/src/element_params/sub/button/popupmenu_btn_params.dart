@@ -47,4 +47,5 @@ class PopupMenuBtnParams {
   // others
   List<PopupMenuItemParams> popupMenuItemParams = [];
   void Function(int index)? menuCallback;
+  bool isEnabled = true;
 }

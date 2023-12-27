@@ -21,7 +21,7 @@ class RichTextParams {
   TextDirection? textDirection;
   bool softWrap = true;
   TextOverflow overflow = TextOverflow.clip;
-  double? textScaleFactor;
+  TextScaler? textScaler;
   int? maxLines;
   Locale? locale;
   StrutStyle? strutStyle;

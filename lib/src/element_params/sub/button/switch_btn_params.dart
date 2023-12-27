@@ -34,4 +34,5 @@ class SwitchBtnParams {
   double? splashRadius;
   FocusNode? focusNode;
   bool autofocus = false;
+  bool isEnabled = true;
 }

@@ -115,9 +115,9 @@ class SpanElement extends MultiChildTextElement {
                 getTextAlign(),
             textDirection: elParams
                 .p.selectableTextRichParams!.selectableTextParams.textDirection,
-            textScaleFactor: elParams.p.selectableTextRichParams!
-                    .selectableTextParams.textScaleFactor ??
-                MediaQuery.of(context).textScaleFactor,
+            textScaler: elParams.p.selectableTextRichParams!
+                    .selectableTextParams.textScaler ??
+                MediaQuery.of(context).textScaler,
             showCursor: elParams
                 .p.selectableTextRichParams!.selectableTextParams.showCursor,
             autofocus: elParams
@@ -169,8 +169,8 @@ class SpanElement extends MultiChildTextElement {
             textDirection: elParams.p.richTextParams!.textDirection,
             softWrap: elParams.p.richTextParams!.softWrap,
             overflow: elParams.p.richTextParams!.overflow,
-            textScaleFactor: elParams.p.richTextParams!.textScaleFactor ??
-                MediaQuery.of(context).textScaleFactor,
+            textScaler: elParams.p.richTextParams!.textScaler ??
+                MediaQuery.of(context).textScaler,
             maxLines: elParams.p.richTextParams!.maxLines,
             locale: elParams.p.richTextParams!.locale,
             strutStyle: elParams.p.richTextParams!.strutStyle,

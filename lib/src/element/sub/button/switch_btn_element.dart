@@ -48,6 +48,9 @@ class SwitchBtnElement extends SpWMLElement {
   @override
   SwitchBtnElement initParams() {
     super.initParams();
+    elParams.p.isEnabled = params.containsKey(EnumSpWMLParams.isEnabled)
+        ? params[EnumSpWMLParams.isEnabled]
+        : true;
     elParams.p.splashRadius = params.containsKey(EnumSpWMLParams.splashRadius)
         ? params[EnumSpWMLParams.splashRadius]
         : null;
@@ -114,6 +117,15 @@ class SwitchBtnElement extends SpWMLElement {
   void setManager(FlagManager m) {
     elParams.p.manager = m;
   }
+
+  /// (en) Enable/disable this button.
+  ///
+  /// (ja)このボタンの有効・無効を切り替えます。
+  ///
+  /// * [isEnabled] : If true, the button is enabled.
+  void setEnabled(bool isEnabled) {
+    elParams.p.isEnabled = isEnabled;
+  }
 }
 
 class _SwitchBtnElementWidget extends StatefulWidget {
@@ -132,16 +144,17 @@ class _SwitchBtnElementWidgetState extends State<_SwitchBtnElementWidget> {
     return Switch(
       key: widget.elParams.p.key,
       value: widget.elParams.p.manager!.getFlag(widget.sid),
-      onChanged: widget.elParams.p.onChanged != null
-          ? (bool b) {
-              setState(() {
-                widget.elParams.p.manager!.setFlag(widget.sid, b);
-                if (widget.elParams.p.onChanged != null) {
-                  widget.elParams.p.onChanged!(b);
+      onChanged:
+          widget.elParams.p.onChanged != null && widget.elParams.p.isEnabled
+              ? (bool b) {
+                  setState(() {
+                    widget.elParams.p.manager!.setFlag(widget.sid, b);
+                    if (widget.elParams.p.onChanged != null) {
+                      widget.elParams.p.onChanged!(b);
+                    }
+                  });
                 }
-              });
-            }
-          : null,
+              : null,
       activeColor: widget.elParams.p.activeColor,
       activeTrackColor: widget.elParams.p.activeTrackColor,
       inactiveThumbColor: widget.elParams.p.inactiveThumbColor,

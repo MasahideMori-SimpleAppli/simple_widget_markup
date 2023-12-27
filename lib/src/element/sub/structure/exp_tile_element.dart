@@ -91,7 +91,7 @@ class ExpTileElement extends MultiChildTextElement {
       title: elParams.p.title ??
           Text(
             spwmlParams.p.text,
-            textScaleFactor: MediaQuery.of(context).textScaleFactor,
+            textScaler: MediaQuery.of(context).textScaler,
             style: getStyle(),
             strutStyle: getStrutStyle(),
             textAlign: params.containsKey(EnumSpWMLParams.textAlign)

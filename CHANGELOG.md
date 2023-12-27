@@ -1,3 +1,9 @@
+## 24.0.0
+
+* The setEnabled method and isEnabled flag have been added to various button elements.
+* BtnElement's setDisabled method has been deprecated.
+* Variables in some classes have been changed to textScaler variables due to the deprecation of textScaleFactor in Flutter.
+
 ## 23.0.0
 
 * Updates associated with base library updates.

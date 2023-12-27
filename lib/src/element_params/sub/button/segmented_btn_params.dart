@@ -24,4 +24,5 @@ class SegmentedBtnParams {
   ButtonStyle? style;
   bool showSelectedIcon = true;
   Widget? selectedIcon;
+  bool isEnabled = true;
 }

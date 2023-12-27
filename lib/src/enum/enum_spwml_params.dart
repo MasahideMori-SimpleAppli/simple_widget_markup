@@ -159,6 +159,8 @@ enum EnumSpWMLParams {
   minWidth,
   maxHeight,
   maxWidth,
+  // ボタンの有効無効フラグ
+  isEnabled,
 }
 
 /// 重複を避けて高速化するために、短縮系だけをまとめたもの。
@@ -445,7 +447,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.isMultiSelection ||
           this == EnumSpWMLParams.allowEmpty ||
           this == EnumSpWMLParams.useAutoLabel ||
-          this == EnumSpWMLParams.isIntValue) {
+          this == EnumSpWMLParams.isIntValue ||
+          this == EnumSpWMLParams.isEnabled) {
         if (v == "true") {
           return true;
         } else if (v == "false") {

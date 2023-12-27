@@ -49,6 +49,9 @@ class CheckboxElement extends MultiChildElement {
   @override
   CheckboxElement initParams() {
     super.initParams();
+    elParams.p.isEnabled = params.containsKey(EnumSpWMLParams.isEnabled)
+        ? params[EnumSpWMLParams.isEnabled]
+        : true;
     SelectableIconBtnParams enabled = SelectableIconBtnParams();
     enabled.icon = const Icon(Icons.check_box_outlined);
     enabled.iconSize = params.containsKey(EnumSpWMLParams.iconSize)
@@ -138,6 +141,15 @@ class CheckboxElement extends MultiChildElement {
   void setManager(MultiFlagManager m) {
     elParams.p.manager = m;
   }
+
+  /// (en) Enable/disable this button.
+  ///
+  /// (ja)このボタンの有効・無効を切り替えます。
+  ///
+  /// * [isEnabled] : If true, the button is enabled.
+  void setEnabled(bool isEnabled) {
+    elParams.p.isEnabled = isEnabled;
+  }
 }
 
 class _CheckboxElementWidget extends StatefulWidget {
@@ -171,9 +183,11 @@ class _CheckboxElementWidgetState extends State<_CheckboxElementWidget> {
     if (widget.elParams.p.enableTapLabel) {
       return InkWell(
         key: widget.elParams.p.enableTapInkWellParams.key,
-        onTap: () {
-          _onTapCallback(index);
-        },
+        onTap: widget.elParams.p.isEnabled
+            ? () {
+                _onTapCallback(index);
+              }
+            : null,
         onDoubleTap: widget.elParams.p.enableTapInkWellParams.onDoubleTap,
         onLongPress: widget.elParams.p.enableTapInkWellParams.onLongPress,
         onTapDown: widget.elParams.p.enableTapInkWellParams.onTapDown,
@@ -222,14 +236,12 @@ class _CheckboxElementWidgetState extends State<_CheckboxElementWidget> {
         hoverColor: widget.elParams.p.enableParams!.hoverColor,
         highlightColor: widget.elParams.p.enableParams!.highlightColor,
         splashColor: widget.elParams.p.enableParams!.splashColor,
-        disabledColor: widget.elParams.p.enableTapLabel
-            ? widget.elParams.p.enableParams!.color
-            : widget.elParams.p.enableParams!.disabledColor,
-        onPressed: widget.elParams.p.enableTapLabel
-            ? null
-            : () {
+        disabledColor: widget.elParams.p.enableParams!.disabledColor,
+        onPressed: widget.elParams.p.isEnabled
+            ? () {
                 _onTapCallback(index);
-              },
+              }
+            : null,
         mouseCursor: widget.elParams.p.enableParams!.mouseCursor,
         focusNode: widget.elParams.p.enableParams!.focusNode,
         autofocus: widget.elParams.p.enableParams!.autofocus,
@@ -254,14 +266,12 @@ class _CheckboxElementWidgetState extends State<_CheckboxElementWidget> {
         hoverColor: widget.elParams.p.enableParams!.hoverColor,
         highlightColor: widget.elParams.p.enableParams!.highlightColor,
         splashColor: widget.elParams.p.enableParams!.splashColor,
-        disabledColor: widget.elParams.p.enableTapLabel
-            ? widget.elParams.p.enableParams!.color ?? Colors.black87
-            : widget.elParams.p.enableParams!.disabledColor,
-        onPressed: widget.elParams.p.enableTapLabel
-            ? null
-            : () {
+        disabledColor: widget.elParams.p.enableParams!.disabledColor,
+        onPressed: widget.elParams.p.isEnabled
+            ? () {
                 _onTapCallback(index);
-              },
+              }
+            : null,
         mouseCursor: widget.elParams.p.enableParams!.mouseCursor,
         focusNode: widget.elParams.p.enableParams!.focusNode,
         autofocus: widget.elParams.p.enableParams!.autofocus,
@@ -290,14 +300,12 @@ class _CheckboxElementWidgetState extends State<_CheckboxElementWidget> {
         hoverColor: widget.elParams.p.disableParams!.hoverColor,
         highlightColor: widget.elParams.p.disableParams!.highlightColor,
         splashColor: widget.elParams.p.disableParams!.splashColor,
-        disabledColor: widget.elParams.p.enableTapLabel
-            ? widget.elParams.p.enableParams!.color ?? Colors.black87
-            : widget.elParams.p.disableParams!.disabledColor,
-        onPressed: widget.elParams.p.enableTapLabel
-            ? null
-            : () {
+        disabledColor: widget.elParams.p.disableParams!.disabledColor,
+        onPressed: widget.elParams.p.isEnabled
+            ? () {
                 _onTapCallback(index);
-              },
+              }
+            : null,
         mouseCursor: widget.elParams.p.disableParams!.mouseCursor,
         focusNode: widget.elParams.p.disableParams!.focusNode,
         autofocus: widget.elParams.p.disableParams!.autofocus,
@@ -322,14 +330,12 @@ class _CheckboxElementWidgetState extends State<_CheckboxElementWidget> {
         hoverColor: widget.elParams.p.disableParams!.hoverColor,
         highlightColor: widget.elParams.p.disableParams!.highlightColor,
         splashColor: widget.elParams.p.disableParams!.splashColor,
-        disabledColor: widget.elParams.p.enableTapLabel
-            ? widget.elParams.p.enableParams!.color ?? Colors.black87
-            : widget.elParams.p.disableParams!.disabledColor,
-        onPressed: widget.elParams.p.enableTapLabel
-            ? null
-            : () {
+        disabledColor: widget.elParams.p.disableParams!.disabledColor,
+        onPressed: widget.elParams.p.isEnabled
+            ? () {
                 _onTapCallback(index);
-              },
+              }
+            : null,
         mouseCursor: widget.elParams.p.disableParams!.mouseCursor,
         focusNode: widget.elParams.p.disableParams!.focusNode,
         autofocus: widget.elParams.p.disableParams!.autofocus,
