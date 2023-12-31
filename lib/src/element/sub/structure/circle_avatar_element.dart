@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import '../../../../simple_widget_markup.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) The circleAvatar.
 ///
-/// First edition creation date 2023-05-22 00:08:08
+/// (ja) circleAvatarの実装。
 ///
 class CircleAvatarElement extends SingleChildElement {
   final CircleAvatarParamsWrapper elParams;

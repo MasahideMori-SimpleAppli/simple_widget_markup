@@ -11,10 +11,6 @@ import '../simple_widget_markup.dart';
 /// (ja)SpWMLのレイアウトファイルをシングルトンで管理し、不必要なリソースのダウンロードを抑えるためのマネージャークラスです。
 /// 画面の向きやデバイスの種類の判定も行えます。
 ///
-/// Author Masahide Mori
-///
-/// First edition creation date 2023-04-28 19:57:59
-///
 class SpWMLLayoutManager {
   // singleton
   static final SpWMLLayoutManager _instance = SpWMLLayoutManager._internal();
@@ -249,13 +245,6 @@ class SpWMLLayoutManager {
   ///
   /// (reference) https://developer.android.com/guide/topics/large-screens/support-different-screen-sizes?hl=ja#window_size_classes
   static EnumWindowClass getWindowClass(BuildContext context) {
-    final double w = getScreenWidth(context);
-    if (w < 600) {
-      return EnumWindowClass.compact;
-    } else if (600 <= w && w < 840) {
-      return EnumWindowClass.medium;
-    } else {
-      return EnumWindowClass.expanded;
-    }
+    return EXTEnumWindowClass.getWindowClass(getScreenWidth(context));
   }
 }

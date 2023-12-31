@@ -3,6 +3,11 @@ import 'dart:ui';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+///
+/// (en) A wrapper class for parameters used in classes with the same prefix name (XXXParamsWrapper of X).
+///
+/// (ja) 接頭名(XXXParamsWrapper of X)が同じクラスで利用するパラメータ用ラッパークラス。
+///
 class TextParamsWrapper {
   TextParams p;
 
@@ -10,6 +15,11 @@ class TextParamsWrapper {
   TextParamsWrapper(this.p);
 }
 
+///
+/// (en) A class for holding parameters used in the text class.
+///
+/// (ja) テキストクラスで利用するパラメータを保持するためのクラス。
+///
 class SelectableTextParams {
   String? data;
   Key? key;
@@ -42,6 +52,11 @@ class SelectableTextParams {
   void Function(TextSelection, SelectionChangedCause?)? onSelectionChanged;
 }
 
+///
+/// (en) A class for holding parameters that are used in classes with the same prefix name (XXXParams of X).
+///
+/// (ja) 接頭名(XXXParams of X)が同じクラスで利用するパラメータを保持するためのクラス。
+///
 class TextParams {
   String? data;
   Key? key;

@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+///
+/// (en) A wrapper for storing SpWML parameters.
+///
+/// (ja) SpWMLのパラメータ格納用のラッパー。
+///
 class SpWMLParamsWrapper {
   SpWMLParams p;
 
@@ -7,6 +12,11 @@ class SpWMLParamsWrapper {
   SpWMLParamsWrapper(this.p);
 }
 
+///
+/// (en) A class for holding parameters related to Material.
+///
+/// (ja) Materialに関係したパラメータを保持するためのクラス。
+///
 class MaterialParams {
   Key? key;
   MaterialType type = MaterialType.canvas;
@@ -23,6 +33,11 @@ class MaterialParams {
   Widget? child;
 }
 
+///
+/// (en) A class for holding parameters related to Container.
+///
+/// (ja) Containerに関係したパラメータを保持するためのクラス。
+///
 class ContainerParams {
   Key? key;
   AlignmentGeometry? alignment;
@@ -40,6 +55,11 @@ class ContainerParams {
   Clip clipBehavior = Clip.none;
 }
 
+///
+/// (en) A class for holding common SpWML parameters.
+///
+/// (ja) SpWMLの共通パラメータを保持するためのクラス。
+///
 class SpWMLParams {
   String text;
 

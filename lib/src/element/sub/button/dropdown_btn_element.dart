@@ -3,9 +3,9 @@ import 'package:simple_managers/simple_managers.dart';
 import '../../../../simple_widget_markup.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) The dropDownBtn.
 ///
-/// First edition creation date 2022-04-11 15:02:04
+/// (ja) dropDownBtnの実装。
 ///
 class DropdownBtnElement extends MultiChildElement {
   final DropdownBtnParamsWrapper elParams;

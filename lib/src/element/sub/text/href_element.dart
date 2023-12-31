@@ -4,9 +4,9 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../../simple_widget_markup.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) The href.
 ///
-/// First edition creation date 2022-01-04 00:16:17
+/// (ja) hrefの実装。
 ///
 class HrefElement extends TextElement {
   final HrefParamsWrapper elParams;

@@ -2,8 +2,12 @@ import 'dart:ui';
 
 import '../../simple_widget_markup.dart';
 
+/// (en) Definitions of text decoration styles available in SpWML.
+///
+/// (ja) SpWMLで利用可能なテキストデコレーションスタイルの定義。
 enum EnumTextDecorationStyle { solid, dotted, dashed, double, wavy }
 
+/// EnumTextDecorationStyle extension.
 extension EXTEnumTextDecorationStyle on EnumTextDecorationStyle {
   /// Convert flutter Object.
   /// * [lineStart] : SpWML line start.

@@ -2,8 +2,12 @@ import 'dart:ui';
 
 import '../../simple_widget_markup.dart';
 
+/// (en) Definitions of text decorations available in SpWML.
+///
+/// (ja) SpWMLで利用可能なテキストデコレーションの定義。
 enum EnumTextDecoration { none, underline, overline, lineThrough }
 
+/// EnumTextDecoration extension.
 extension EXTEnumTextDecoration on EnumTextDecoration {
   /// Convert flutter Object.
   /// * [lineStart] : SpWML line start.

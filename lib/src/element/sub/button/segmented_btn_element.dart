@@ -4,9 +4,9 @@ import 'package:simple_managers/simple_managers.dart';
 import '../../../../simple_widget_markup.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) The segmentedBtn.
 ///
-/// First edition creation date 2023-05-21 16:44:37
+/// (ja) segmentedBtnの実装。
 ///
 class SegmentedBtnElement extends MultiChildElement {
   final SegmentedBtnParamsWrapper elParams;

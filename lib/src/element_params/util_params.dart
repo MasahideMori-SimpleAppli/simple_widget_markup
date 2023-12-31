@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import '../../simple_widget_markup.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) A utility to convert parameters appropriately when parsing SpWML.
 ///
-/// First edition creation date 2021-12-29 18:13:38
+/// (ja) SpWMLをパースする時、パラメータを適切に変換するためのユーティリティ。
 ///
 class UtilParams {
   /// escape code

@@ -2,8 +2,14 @@ import 'dart:ui';
 
 import '../../simple_widget_markup.dart';
 
+///
+/// (en) Definition of Font style.
+///
+/// (ja) Font styleの定義です。
+///
 enum EnumFontStyle { normal, italic }
 
+/// EnumFontStyle extension.
 extension EXTEnumFontStyle on EnumFontStyle {
   /// Convert flutter Object.
   /// * [lineStart] : SpWML line start.

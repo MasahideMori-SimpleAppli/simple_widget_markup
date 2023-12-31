@@ -11,9 +11,9 @@ import '../../../enum/enum_spwml_element_type.dart';
 import '../../../style/spwml_font_style.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) The scroll.
 ///
-/// First edition creation date 2022-01-30 20:14:05
+/// (ja) scrollの実装。
 ///
 class ScrollElement extends SingleChildElement {
   final ScrollParamsWrapper elParams;

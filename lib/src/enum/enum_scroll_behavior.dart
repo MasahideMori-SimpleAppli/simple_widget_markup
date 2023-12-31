@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import '../../simple_widget_markup.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) ScrollBehavior definition.
 ///
-/// First edition creation date 2023-05-16 20:44:06
+/// (ja) ScrollBehaviorの定義です。
 ///
 enum EnumScrollBehavior {
   touch,
@@ -17,6 +17,7 @@ enum EnumScrollBehavior {
   all
 }
 
+/// EnumScrollBehavior extension.
 extension EXTEnumScrollBehavior on EnumScrollBehavior {
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
   static ScrollBehavior toObjFromStr(

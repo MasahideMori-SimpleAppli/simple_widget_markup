@@ -3,9 +3,9 @@ import 'package:simple_managers/simple_managers.dart';
 import '../../../../simple_widget_markup.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) The textfield.
 ///
-/// First edition creation date 2022-4-14 18:09:59
+/// (ja) textfieldの実装。
 ///
 class TextFieldElement extends TextElement {
   final TextFieldParamsWrapper tfParams;

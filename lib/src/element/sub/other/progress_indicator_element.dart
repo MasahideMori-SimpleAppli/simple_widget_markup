@@ -4,9 +4,9 @@ import 'package:simple_managers/simple_managers.dart';
 import '../../../../simple_widget_markup.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) The progressIndicator.
 ///
-/// First edition creation date 2023-02-05 16:50:03
+/// (ja) progressIndicatorの実装。
 ///
 class ProgressIndicatorElement extends SpWMLElement {
   final ProgressIndicatorParamsWrapper elParams;

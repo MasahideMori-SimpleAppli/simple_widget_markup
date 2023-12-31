@@ -6,9 +6,9 @@ import '../../style/spwml_font_style.dart';
 import 'spwml_element.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) Superclass for elements with one child.
 ///
-/// First edition creation date 2022-08-27 17:45:38
+/// (ja) 1つの子を持つエレメントのスーパークラス。
 ///
 class SingleChildElement extends SpWMLElement {
   final BlockElementChild child;

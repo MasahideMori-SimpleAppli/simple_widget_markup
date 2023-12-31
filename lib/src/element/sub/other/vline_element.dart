@@ -8,9 +8,9 @@ import '../../../style/spwml_font_style.dart';
 import '../../super/spwml_element.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) The vline.
 ///
-/// First edition creation date 2022-01-30 20:07:08
+/// (ja) vlineの実装。
 ///
 class VLineElement extends SpWMLElement {
   final VLineParamsWrapper elParams;

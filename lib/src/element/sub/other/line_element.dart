@@ -8,9 +8,9 @@ import '../../../style/spwml_font_style.dart';
 import '../../super/spwml_element.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) The line.
 ///
-/// First edition creation date 2022-01-03 02:14:18
+/// (ja) lineの実装。
 ///
 class LineElement extends SpWMLElement {
   final LineParamsWrapper elParams;

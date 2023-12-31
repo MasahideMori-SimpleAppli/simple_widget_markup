@@ -11,9 +11,9 @@ import '../../../spwml_exception.dart';
 import '../../../style/spwml_font_style.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) The table.
 ///
-/// First edition creation date 2022-06-13 21:12:04
+/// (ja) tableの実装。
 ///
 class TableElement extends MultiChildElement {
   final TableParamsWrapper elParams;

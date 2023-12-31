@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import '../../../../simple_widget_markup.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) The text.
 ///
-/// First edition creation date 2021-12-30 23:42:11
+/// (ja) textの実装。
 ///
 class TextElement extends SpWMLElement {
   final TextParamsWrapper textParams;

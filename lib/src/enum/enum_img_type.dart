@@ -2,12 +2,13 @@ import '../element_params/spwml_info.dart';
 import '../spwml_exception.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) Definition of the type of image data acquisition source.
 ///
-/// First edition creation date 2022-02-09 20:27:34
+/// (ja) 画像データ取得元の種類の定義です。
 ///
 enum EnumImgType { network, asset, memory }
 
+/// EnumImgType extension.
 extension EXTEnumImgType on EnumImgType {
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
   static EnumImgType fromStr(

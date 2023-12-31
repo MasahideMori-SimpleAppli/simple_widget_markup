@@ -10,9 +10,9 @@ import 'style/spwml_font_style.dart';
 import 'package:simple_block_markup_language/simple_block_markup_language.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) A parser class for parsing SpWML text and converting it to SpWMLElement.
 ///
-/// First edition creation date 2021-12-29 18:13:38
+/// (ja) SpWMLテキストをパースしてSpWMLElementに変換するためのパーサークラスです。
 ///
 class SpWMLParser {
   /// (en)Returns a list of the results of parsing SpWML.

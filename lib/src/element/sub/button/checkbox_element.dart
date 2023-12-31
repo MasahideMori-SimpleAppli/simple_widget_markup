@@ -3,9 +3,9 @@ import 'package:simple_managers/simple_managers.dart';
 import '../../../../simple_widget_markup.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) The checkbox.
 ///
-/// First edition creation date 2022-06-13 21:13:22
+/// (ja) checkboxの実装。
 ///
 class CheckboxElement extends MultiChildElement {
   final CheckboxParamsWrapper elParams;

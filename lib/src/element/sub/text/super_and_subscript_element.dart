@@ -4,9 +4,9 @@ import 'dart:math';
 import '../../../../simple_widget_markup.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) The superScript and subScript.
 ///
-/// First edition creation date 2023-05-06 23:16:05
+/// (ja) superScriptとsubScriptの実装。
 ///
 class SuperAndSubscriptElement extends TextElement {
   final SuperAndSubscriptParamsWrapper elParams;

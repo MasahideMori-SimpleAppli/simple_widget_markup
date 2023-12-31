@@ -9,9 +9,9 @@ import '../../../enum/enum_spwml_element_type.dart';
 import '../../../style/spwml_font_style.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) The row.
 ///
-/// First edition creation date 2021-12-31 18:25:16
+/// (ja) rowの実装。
 ///
 class RowElement extends MultiChildElement {
   final RowColParamsWrapper elParams;

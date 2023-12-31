@@ -2,9 +2,9 @@ import '../element_params/spwml_info.dart';
 import '../spwml_exception.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) Definitions of button types that can be used in SpWML.
 ///
-/// First edition creation date 2022-02-09 20:27:34
+/// (ja) SpWMLで利用できるボタンの種類の定義です。
 ///
 enum EnumBtnType {
   text,
@@ -23,6 +23,7 @@ enum EnumBtnType {
   faLarge
 }
 
+/// EnumBtnType extension.
 extension EXTEnumBtnType on EnumBtnType {
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
   static EnumBtnType fromStr(

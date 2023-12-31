@@ -9,9 +9,9 @@ import '../../../style/spwml_font_style.dart';
 import '../../super/spwml_element.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) The icon.
 ///
-/// First edition creation date 2021-12-30 23:42:11
+/// (ja) iconの実装。
 ///
 class IconElement extends SpWMLElement {
   final IconParamsWrapper elParams;

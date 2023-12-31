@@ -6,8 +6,12 @@
 
 import '../../simple_widget_markup.dart';
 
+/// (en) The switch btn state.
+///
+/// (ja) スイッチボタンの状態の定義。
 enum EnumSwitchBtnType { normal, check }
 
+/// EnumSwitchBtnType extension.
 extension EXTEnumSwitchBtnType on EnumSwitchBtnType {
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
   static EnumSwitchBtnType fromStr(

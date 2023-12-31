@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) Class for storing a single child of a block.
 ///
-/// First edition creation date 2021-12-31 23:41:16
+/// (ja) ブロックの単一の子を格納するためのクラス。
 ///
 class BlockElementChild {
   /// The child element.
@@ -15,6 +15,11 @@ class BlockElementChild {
   }
 }
 
+///
+/// (en) Class for storing multiple children of a struct.
+///
+/// (ja) 構造体の複数の子を格納するためのクラス。
+///
 class StructureElementChildren {
   /// List of child elements of this class.
   List<Widget> children = [];

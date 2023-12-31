@@ -6,11 +6,8 @@ import '../spwml_exception.dart';
 
 ///
 /// (en)Utility for generating SpWML elements.
+///
 /// (ja)SpWMLエレメントの生成用ユーティリティです。
-///
-/// Author Masahide Mori
-///
-/// First edition creation date 2021-12-30 16:22:16
 ///
 class UtilElement {
   ///

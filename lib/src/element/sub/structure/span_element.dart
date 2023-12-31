@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import '../../../../simple_widget_markup.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) The span.
 ///
-/// First edition creation date 2022-01-04 00:15:15
+/// (ja) spanの実装。
 ///
 class SpanElement extends MultiChildTextElement {
   final SpanParamsWrapper elParams;

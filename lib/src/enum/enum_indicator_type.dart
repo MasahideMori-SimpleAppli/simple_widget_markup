@@ -2,12 +2,13 @@ import '../element_params/spwml_info.dart';
 import '../spwml_exception.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) Definition of indicator type.
 ///
-/// First edition creation date 2022-02-09 20:27:34
+/// (ja) インジケーターの種類の定義です。
 ///
 enum EnumIndicatorType { circular, linear }
 
+/// EnumIndicatorType extension.
 extension EXTEnumIndicatorType on EnumIndicatorType {
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
   static EnumIndicatorType fromStr(

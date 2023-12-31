@@ -7,11 +7,6 @@ import '../simple_widget_markup.dart';
 ///
 /// (ja) SpWMLを使ってダイアログを作成するためのクラスです。
 ///
-/// Author Masahide Mori
-///
-/// First edition creation date 2023-07-20 19:47:37
-///
-
 class SpWMLDialog extends StatefulWidget {
   final SpWMLBuilder b;
   final Widget title;

@@ -13,9 +13,9 @@ import '../../../style/spwml_font_style.dart';
 import '../../super/single_child_text_element.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) The btn.
 ///
-/// First edition creation date 2022-02-09 20:12:30
+/// (ja) btnの実装。
 ///
 class BtnElement extends SingleChildTextElement {
   final BtnParamsWrapper elParams;

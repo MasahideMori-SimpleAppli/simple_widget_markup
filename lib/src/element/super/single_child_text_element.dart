@@ -7,9 +7,9 @@ import '../../style/spwml_font_style.dart';
 import '../sub/text/text_element.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) Superclass for text-related elements with one child.
 ///
-/// First edition creation date 2022-08-27 18:00:12
+/// (ja) 1つの子を持つテキスト関係のエレメントのスーパークラス。
 ///
 class SingleChildTextElement extends TextElement {
   final BlockElementChild child;

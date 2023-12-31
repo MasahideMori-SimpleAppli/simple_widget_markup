@@ -7,10 +7,6 @@ import '../simple_widget_markup.dart';
 ///
 /// (ja)SpWMLをウィジェットに変換するためのビルダークラスです。
 ///
-/// Author Masahide Mori
-///
-/// First edition creation date 2021-12-29 18:40:02
-///
 class SpWMLBuilder {
   final List<SpWMLElement> _parsedWidgets;
   final MainAxisAlignment mainAA;

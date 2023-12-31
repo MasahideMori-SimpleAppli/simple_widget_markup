@@ -2,6 +2,11 @@ import 'package:flutter/rendering.dart';
 
 import '../text/text_params.dart';
 
+///
+/// (en) A wrapper class for parameters used in classes with the same prefix name (XXXParamsWrapper of X).
+///
+/// (ja) 接頭名(XXXParamsWrapper of X)が同じクラスで利用するパラメータ用ラッパークラス。
+///
 class SpanParamsWrapper {
   SpanParams p;
 
@@ -9,11 +14,21 @@ class SpanParamsWrapper {
   SpanParamsWrapper(this.p);
 }
 
+///
+/// (en) Parameter class used in SpanParams.
+///
+/// (ja) SpanParamsで利用するパラメータのクラス。
+///
 class SelectableTextRichParams {
   TextSpan? textSpan;
   SelectableTextParams selectableTextParams = SelectableTextParams();
 }
 
+///
+/// (en) Parameter class used in SpanParams.
+///
+/// (ja) SpanParamsで利用するパラメータのクラス。
+///
 class RichTextParams {
   Key? key;
   InlineSpan? text;
@@ -31,6 +46,11 @@ class RichTextParams {
   Color? selectionColor;
 }
 
+///
+/// (en) A class for holding parameters that are used in classes with the same prefix name (XXXParams of X).
+///
+/// (ja) 接頭名(XXXParams of X)が同じクラスで利用するパラメータを保持するためのクラス。
+///
 class SpanParams {
   bool isSelectable = true;
   double? textScaleFactor;

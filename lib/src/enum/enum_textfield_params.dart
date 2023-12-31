@@ -2,12 +2,13 @@ import '../element_params/spwml_info.dart';
 import '../spwml_exception.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) This file defines the types of text fields available in SpWML.
 ///
-/// First edition creation date 2022-05-29 14:39:46
+/// (ja) このファイルではSpWMLで利用可能なテキストフィールドの種類を定義しています。
 ///
 enum EnumTextFieldType { material, rounded }
 
+/// EnumTextFieldType extension.
 extension EXTEnumTextFieldType on EnumTextFieldType {
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
   static EnumTextFieldType fromStr(
@@ -21,6 +22,11 @@ extension EXTEnumTextFieldType on EnumTextFieldType {
   }
 }
 
+///
+/// (en) This file defines the modes of text fields available in SpWML.
+///
+/// (ja) このファイルではSpWMLで利用可能なテキストフィールドのモードを定義しています。
+///
 enum EnumTextFieldMode {
   normal,
   password,
@@ -31,6 +37,7 @@ enum EnumTextFieldMode {
   manual
 }
 
+/// EnumTextFieldMode extension.
 extension EXTEnumTextFieldMode on EnumTextFieldMode {
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
   static EnumTextFieldMode fromStr(

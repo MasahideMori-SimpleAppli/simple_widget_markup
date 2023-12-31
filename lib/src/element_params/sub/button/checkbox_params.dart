@@ -3,6 +3,11 @@ import 'package:simple_managers/simple_managers.dart';
 
 import 'btn_params.dart';
 
+///
+/// (en) A wrapper class for parameters used in classes with the same prefix name (XXXParamsWrapper of X).
+///
+/// (ja) 接頭名(XXXParamsWrapper of X)が同じクラスで利用するパラメータ用ラッパークラス。
+///
 class CheckboxParamsWrapper {
   CheckboxParams p;
 
@@ -10,6 +15,11 @@ class CheckboxParamsWrapper {
   CheckboxParamsWrapper(this.p);
 }
 
+///
+/// (en) Parameter class used in CheckboxParams.
+///
+/// (ja) CheckboxParamsで利用するパラメータのクラス。
+///
 class SelectableIconBtnParams {
   Key? key;
   double? iconSize;
@@ -38,6 +48,11 @@ class SelectableIconBtnParams {
   bool isV3 = false;
 }
 
+///
+/// (en) A class for holding parameters that are used in classes with the same prefix name (XXXParams of X).
+///
+/// (ja) 接頭名(XXXParams of X)が同じクラスで利用するパラメータを保持するためのクラス。
+///
 class CheckboxParams {
   SelectableIconBtnParams? enableParams;
   SelectableIconBtnParams? disableParams;

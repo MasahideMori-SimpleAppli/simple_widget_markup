@@ -4,9 +4,9 @@ import 'package:simple_managers/simple_managers.dart';
 import '../../../../simple_widget_markup.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) The switch.
 ///
-/// First edition creation date 2022-05-29 17:50:16
+/// (ja) switchの実装。
 ///
 class SwitchBtnElement extends SpWMLElement {
   final SwitchBtnParamsWrapper elParams;

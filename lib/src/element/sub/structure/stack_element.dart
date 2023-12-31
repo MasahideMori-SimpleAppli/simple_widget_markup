@@ -8,9 +8,9 @@ import '../../../enum/enum_spwml_element_type.dart';
 import '../../../style/spwml_font_style.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) The stack.
 ///
-/// First edition creation date 2022-01-06 14:53:11
+/// (ja) stackの実装。
 ///
 class StackElement extends MultiChildElement {
   final StackParamsWrapper elParams;

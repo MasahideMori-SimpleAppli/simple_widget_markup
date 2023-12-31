@@ -9,9 +9,9 @@ import '../../../enum/enum_spwml_element_type.dart';
 import '../../../style/spwml_font_style.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) The col.
 ///
-/// First edition creation date 2021-12-31 17:58:41
+/// (ja) colの実装。
 ///
 class ColElement extends MultiChildElement {
   final RowColParamsWrapper elParams;

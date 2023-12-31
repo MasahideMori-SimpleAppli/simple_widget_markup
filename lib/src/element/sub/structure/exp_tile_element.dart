@@ -10,9 +10,9 @@ import '../../../enum/enum_spwml_element_type.dart';
 import '../../../style/spwml_font_style.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) The expTile.
 ///
-/// First edition creation date 2021-12-31 17:58:41
+/// (ja) expTileの実装。
 ///
 class ExpTileElement extends MultiChildTextElement {
   final ExpTileParamsWrapper elParams;

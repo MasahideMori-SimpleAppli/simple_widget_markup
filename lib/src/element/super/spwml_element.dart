@@ -4,11 +4,8 @@ import '../../../simple_widget_markup.dart';
 
 ///
 /// (en)Definition of the basic structure of the element.
+///
 /// (ja)要素の基本構造の定義。
-///
-/// Author Masahide Mori
-///
-/// First edition creation date 2021-12-30 20:38:20
 ///
 class SpWMLElement extends StatelessWidget {
   final int serial;

@@ -2,6 +2,11 @@ import 'dart:ui';
 
 import '../../simple_widget_markup.dart';
 
+///
+/// (en) Definition of Font weight.
+///
+/// (ja) Font weightの定義です。
+///
 enum EnumFontWeight {
   w100,
   w200,
@@ -21,6 +26,7 @@ enum EnumFontWeight {
   black
 }
 
+/// EnumFontWeight extension.
 extension EXTEnumFontWeight on EnumFontWeight {
   /// Convert flutter Object.
   ///

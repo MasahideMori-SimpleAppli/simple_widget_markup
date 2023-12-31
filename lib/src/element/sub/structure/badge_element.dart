@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import '../../../../simple_widget_markup.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) The badge.
 ///
-/// First edition creation date 2023-05-27 17:27:12
+/// (ja) badgeの実装。
 ///
 class BadgeElement extends SingleChildTextElement {
   final BadgeParamsWrapper elParams;

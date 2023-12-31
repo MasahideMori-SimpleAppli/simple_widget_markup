@@ -9,9 +9,9 @@ import '../../../enum/enum_spwml_element_type.dart';
 import '../../../style/spwml_font_style.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) The wrap.
 ///
-/// First edition creation date 2022-04-10 16:18:52
+/// (ja) wrapの実装。
 ///
 class WrapElement extends MultiChildElement {
   final WrapParamsWrapper elParams;

@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import '../simple_widget_markup.dart';
 
 ///
-/// SpWMLBuilder wrapper widget.
+/// (en) SpWMLBuilder wrapper widget.
+/// This widget can only be used for widgets that have no internal state.
+/// It is for example the display of text.
 ///
-/// Author Masahide Mori
-///
-/// First edition creation date 2022-01-06 13:14:26
+/// (ja) SpWMLBuilder ラッパー ウィジェット。
+/// このウィジェットは、内部状態を持たないウィジェットにのみ使用できます。
+/// 例えばテキストの表示のみを行う場合は有用です。
 ///
 class SpWML extends StatelessWidget {
   final String spWML;
@@ -41,6 +43,13 @@ class SpWML extends StatelessWidget {
       : style = spWMLStyle ?? SpWMLFontStyleManager().style,
         super(key: key);
 
+  /// (en)Build widget.
+  ///
+  /// (ja)ウィジェットとしてビルドします。
+  ///
+  /// * [context] : Build Context.
+  ///
+  /// Returns Widget.
   @override
   Widget build(BuildContext context) {
     return SpWMLBuilder(spWML,

@@ -9,9 +9,9 @@ import '../../../enum/enum_spwml_params.dart';
 import '../../../style/spwml_font_style.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) The ruby text.
 ///
-/// First edition creation date 2022-08-01 20:51:32
+/// (ja) rubyの実装。
 ///
 class RubyTextElement extends TextElement {
   final RubyTextParamsWrapper rubyParams;

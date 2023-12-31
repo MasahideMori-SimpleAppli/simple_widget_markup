@@ -3,11 +3,8 @@ import 'element_params/spwml_info.dart';
 ///
 /// (en)An exception class for SpWML.
 /// Returns the type and line number of the exception that occurred.
+///
 /// (ja)SpWMLの例外クラスです。発生した例外の種類と行番号を返します。
-///
-/// Author Masahide Mori
-///
-/// First edition creation date 2021-12-29 18:24:30
 ///
 class SpWMLException implements Exception {
   final EnumSpWMLExceptionType type;

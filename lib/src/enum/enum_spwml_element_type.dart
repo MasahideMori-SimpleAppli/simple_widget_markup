@@ -2,9 +2,9 @@ import '../element_params/spwml_info.dart';
 import '../spwml_exception.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) SpWML element type definition.
 ///
-/// First edition creation date 2021-12-30 14:40:09
+/// (ja) SpWMLのエレメントタイプの定義です。
 ///
 enum EnumSpWMLElementType {
   col,
@@ -80,6 +80,7 @@ enum _EnumSpWMLElementTypeShort {
   tr,
 }
 
+/// EnumSpWMLElementType extension.
 extension EXTEnumSpWMLElementType on EnumSpWMLElementType {
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
   static EnumSpWMLElementType fromStr(

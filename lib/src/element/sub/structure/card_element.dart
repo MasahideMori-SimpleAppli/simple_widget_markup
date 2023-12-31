@@ -9,9 +9,9 @@ import '../../../enum/enum_spwml_params.dart';
 import '../../../style/spwml_font_style.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) The card.
 ///
-/// First edition creation date 2022-05-29 20:00:35
+/// (ja) cardの実装。
 ///
 class CardElement extends SingleChildElement {
   final CardParamsWrapper elParams;

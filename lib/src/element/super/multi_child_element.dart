@@ -6,9 +6,9 @@ import '../../style/spwml_font_style.dart';
 import 'spwml_element.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) Superclass for elements with multiple children.
 ///
-/// First edition creation date 2022-08-27 17:53:08
+/// (ja) 複数の子を持つエレメントのスーパークラス。
 ///
 class MultiChildElement extends SpWMLElement {
   final StructureElementChildren children;

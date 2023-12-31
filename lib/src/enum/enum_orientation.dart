@@ -1,3 +1,8 @@
+///
+/// (en) Definition of device orientation.
+///
+/// (ja) デバイスの向きの定義です。
+///
 enum EnumOrientation {
   // 縦
   vertical,

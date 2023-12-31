@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:simple_managers/simple_managers.dart';
 
+///
+/// (en) A wrapper class for parameters used in classes with the same prefix name (XXXParamsWrapper of X).
+///
+/// (ja) 接頭名(XXXParamsWrapper of X)が同じクラスで利用するパラメータ用ラッパークラス。
+///
 class DropdownBtnParamsWrapper {
   DropdownBtnParams p;
 
@@ -8,6 +13,11 @@ class DropdownBtnParamsWrapper {
   DropdownBtnParamsWrapper(this.p);
 }
 
+///
+/// (en) Parameter class used in DropdownBtnParams.
+///
+/// (ja) DropdownBtnParamsで利用するパラメータのクラス。
+///
 class DropdownMenuItemParams {
   Key? key;
   void Function()? onTap;
@@ -17,6 +27,11 @@ class DropdownMenuItemParams {
   Widget? child;
 }
 
+///
+/// (en) A class for holding parameters that are used in classes with the same prefix name (XXXParams of X).
+///
+/// (ja) 接頭名(XXXParams of X)が同じクラスで利用するパラメータを保持するためのクラス。
+///
 class DropdownBtnParams {
   // dropdown button widget parameters
   Key? key;

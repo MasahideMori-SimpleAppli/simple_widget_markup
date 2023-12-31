@@ -1,3 +1,8 @@
+## 24.1.0
+
+* Added EXTEnumWindowClass extension. This will return the appropriate Window class from the screen width.
+* Adjusted some class descriptions.
+
 ## 24.0.0
 
 * The setEnabled method and isEnabled flag have been added to various button elements.

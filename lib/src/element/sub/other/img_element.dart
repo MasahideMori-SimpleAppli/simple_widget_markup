@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import '../../../../simple_widget_markup.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) The img.
 ///
-/// First edition creation date 2021-12-30 23:42:11
+/// (ja) imgの実装。
 ///
 class ImgElement extends SpWMLElement {
   final ImgParamsWrapper elParams;

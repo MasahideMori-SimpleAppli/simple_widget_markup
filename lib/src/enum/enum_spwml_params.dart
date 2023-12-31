@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import '../../simple_widget_markup.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) Definition of available parameters in SpWML.
 ///
-/// First edition creation date 2021-12-30 14:34:48
+/// (ja) SpWMLにおける利用可能なパラメータの定義です。
 ///
 enum EnumSpWMLParams {
   // 基本的に解析の優先度順にすることで高速化する。
@@ -189,6 +189,7 @@ enum _EnumSpWMLParamsShort {
   textHeight,
 }
 
+/// EnumSpWMLParams extension.
 extension EXTEnumSpWMLParams on EnumSpWMLParams {
   /// * [type] : Element type.
   /// * [v] : SpWML parameter value.

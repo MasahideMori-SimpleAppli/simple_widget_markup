@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../../../enum/enum_btn_type.dart';
 
+///
+/// (en) A wrapper class for parameters used in classes with the same prefix name (XXXParamsWrapper of X).
+///
+/// (ja) 接頭名(XXXParamsWrapper of X)が同じクラスで利用するパラメータ用ラッパークラス。
+///
 class BtnParamsWrapper {
   BtnParams p;
 
@@ -9,6 +14,11 @@ class BtnParamsWrapper {
   BtnParamsWrapper(this.p);
 }
 
+///
+/// (en) Parameter class used in BtnParams.
+///
+/// (ja) BtnParamsで利用するパラメータのクラス。
+///
 class NormalBtnParams {
   Key? key;
   void Function()? onPressed = () {};
@@ -24,6 +34,11 @@ class NormalBtnParams {
   Widget? label;
 }
 
+///
+/// (en) Parameter class used in BtnParams.
+///
+/// (ja) BtnParamsで利用するパラメータのクラス。
+///
 class IconBtnParams {
   Key? key;
   double? iconSize;
@@ -50,6 +65,11 @@ class IconBtnParams {
   Widget? icon;
 }
 
+///
+/// (en) Parameter class used in BtnParams.
+///
+/// (ja) BtnParamsで利用するパラメータのクラス。
+///
 class InkWellParams {
   Key? key;
   Widget? child;
@@ -80,6 +100,11 @@ class InkWellParams {
   MaterialStatesController? statesController;
 }
 
+///
+/// (en) FAParameter class used in BtnParams.
+///
+/// (ja) FABtnParamsで利用するパラメータのクラス。
+///
 class FAButtonDefaultHeroTag {
   const FAButtonDefaultHeroTag();
 
@@ -87,6 +112,11 @@ class FAButtonDefaultHeroTag {
   String toString() => 'DefFAButtonHeroTag';
 }
 
+///
+/// (en) Parameter class used in FABtnParams.
+///
+/// (ja) FABtnParamsで利用するパラメータのクラス。
+///
 class FAButtonExtendedParams {
   double? extendedIconLabelSpacing;
   EdgeInsetsGeometry? extendedPadding;
@@ -95,6 +125,11 @@ class FAButtonExtendedParams {
 // Label parameter does not exist. Use child parameter of FAButtonParams.
 }
 
+///
+/// (en) Parameter class used in BtnParams.
+///
+/// (ja) BtnParamsで利用するパラメータのクラス。
+///
 class FAButtonParams {
   Key? key;
   Widget? child;
@@ -123,6 +158,11 @@ class FAButtonParams {
   FAButtonExtendedParams fabExtParams = FAButtonExtendedParams();
 }
 
+///
+/// (en) A class for holding parameters that are used in classes with the same prefix name (XXXParams of X).
+///
+/// (ja) 接頭名(XXXParams of X)が同じクラスで利用するパラメータを保持するためのクラス。
+///
 class BtnParams {
   EnumBtnType? type;
   bool isUseIcon = false;

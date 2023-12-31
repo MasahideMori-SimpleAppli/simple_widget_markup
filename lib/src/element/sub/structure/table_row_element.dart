@@ -9,9 +9,9 @@ import '../../../enum/enum_spwml_element_type.dart';
 import '../../../style/spwml_font_style.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) The tableRow.
 ///
-/// First edition creation date 2022-06-19 16:00:24
+/// (ja) tableRowの実装。
 ///
 class TableRowElement extends MultiChildElement {
   final TableRowParamsWrapper elParams;

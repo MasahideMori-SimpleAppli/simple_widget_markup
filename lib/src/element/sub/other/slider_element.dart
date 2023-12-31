@@ -3,9 +3,9 @@ import 'package:simple_managers/simple_managers.dart';
 import '../../../../simple_widget_markup.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) The slider.
 ///
-/// First edition creation date 2022-05-23 20:00:00
+/// (ja) sliderの実装。
 ///
 class SliderElement extends SpWMLElement {
   final SliderParamsWrapper elParams;

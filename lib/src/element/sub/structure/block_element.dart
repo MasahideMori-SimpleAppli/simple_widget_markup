@@ -7,9 +7,9 @@ import '../../../style/spwml_font_style.dart';
 import '../../super/single_child_element.dart';
 
 ///
-/// Author Masahide Mori
+/// (en) The block.
 ///
-/// First edition creation date 2021-12-31 17:50:22
+/// (ja) blockの実装。
 ///
 class BlockElement extends SingleChildElement {
   ///
