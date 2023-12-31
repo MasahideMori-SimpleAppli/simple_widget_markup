@@ -11,7 +11,7 @@ SpWMLで出力したファイルの拡張子は簡単のために .spwml を使�
 ## 利用方法
 ### クイックスタート
 以下に詳細なドキュメントがあります。
-[SpWMLの日本語ドキュメント](https://masahidemori-simpleappli.github.io/spwml_docs_jp/index.html)
+[SpWMLのドキュメント](https://masahidemori-simpleappli.github.io/spwml_docs/index.html)
 
 以下のサイトでどのように動作するのか試すことが出来ます。  
 [SpWMLエディター](https://simple-widget-markup-editor.web.app/)

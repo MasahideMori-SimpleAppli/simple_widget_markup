@@ -1,3 +1,7 @@
+## 24.1.1
+
+* Updated readme file.
+
 ## 24.1.0
 
 * Added EXTEnumWindowClass extension. This will return the appropriate Window class from the screen width.
