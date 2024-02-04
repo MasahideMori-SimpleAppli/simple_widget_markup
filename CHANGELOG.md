@@ -1,3 +1,7 @@
+## 25.0.1
+
+* Fixed a bug in PopupMenuBtnElement.
+
 ## 25.0.0
 
 * Updates associated with base library updates.

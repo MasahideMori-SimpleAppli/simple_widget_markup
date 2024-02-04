@@ -114,19 +114,17 @@ class PopupMenuBtnElement extends MultiChildElement {
     } else {
       for (final i in children.children) {
         final int v = count;
-        if (elParams.p.menuCallback != null) {
-          menus.add(PopupMenuItem(
-              value: v,
-              onTap: elParams.p.isEnabled
-                  ? () {
-                      elParams.p.manager!.setIndex(sid, v);
+        menus.add(PopupMenuItem(
+            value: v,
+            onTap: elParams.p.isEnabled
+                ? () {
+                    elParams.p.manager!.setIndex(sid, v);
+                    if (elParams.p.menuCallback != null) {
                       elParams.p.menuCallback!(v);
                     }
-                  : null,
-              child: i));
-        } else {
-          menus.add(PopupMenuItem(value: v, child: i));
-        }
+                  }
+                : null,
+            child: i));
         count += 1;
       }
     }
