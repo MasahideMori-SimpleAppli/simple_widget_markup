@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_managers/simple_managers.dart';
 import '../simple_widget_markup.dart';
 
 ///
@@ -20,7 +21,19 @@ class SpWML extends StatelessWidget {
   final SpWMLFontStyle style;
   final SpWMLInfo? info;
 
-  /// Constructor
+  // managers
+  final TextFieldManager? tfm;
+  final IndexManager? im;
+  final FlagManager? fm;
+  final MultiIndexManager? mim;
+  final MultiFlagManager? mfm;
+  final ValueManager? vm;
+
+  /// (en)The manager class is automatically set using the sid set
+  /// in the layout as a key.
+  ///
+  /// (ja)レイアウトに設定されているsidをキーとして、マネージャークラスは自動設定されます。
+  ///
   /// * [spWML] : SpWML text.
   /// * [mainAA] : Top level Column MainAxisAlignment.
   /// * [crossAA] : Top level Column CrossAxisAlignment.
@@ -31,6 +44,12 @@ class SpWML extends StatelessWidget {
   /// you can change the contents of the singleton SpWMLFontManager class.
   /// * [info] : This is information object. e.g. A hint when an error occurs.
   /// It is convenient to set when nesting multiple SpWMLs.
+  /// * [tfm] : The manager for textfield.
+  /// * [im] : The manager for dropdownBtn and popupMenuBtn and radioBtn.
+  /// * [fm] : The manager for switchBtn.
+  /// * [mim] : The manager for segmentedBtn.
+  /// * [mfm] : The manager for checkbox.
+  /// * [vm] : The manager for progressIndicator and slider.
   SpWML(this.spWML,
       {this.mainAA = MainAxisAlignment.start,
       this.crossAA = CrossAxisAlignment.start,
@@ -39,6 +58,12 @@ class SpWML extends StatelessWidget {
       this.padding = const EdgeInsets.all(0),
       SpWMLFontStyle? spWMLStyle,
       this.info,
+      this.tfm,
+      this.im,
+      this.fm,
+      this.mim,
+      this.mfm,
+      this.vm,
       GlobalKey? key})
       : style = spWMLStyle ?? SpWMLFontStyleManager().style,
         super(key: key);
@@ -52,14 +77,15 @@ class SpWML extends StatelessWidget {
   /// Returns Widget.
   @override
   Widget build(BuildContext context) {
-    return SpWMLBuilder(spWML,
-            mainAA: mainAA,
-            crossAA: crossAA,
-            mainAS: mainAS,
-            margin: margin,
-            padding: padding,
-            spWMLStyle: style,
-            info: info)
-        .build(context);
+    final builder = SpWMLBuilder(spWML,
+        mainAA: mainAA,
+        crossAA: crossAA,
+        mainAS: mainAS,
+        margin: margin,
+        padding: padding,
+        spWMLStyle: style,
+        info: info);
+    builder.setManager(tfm: tfm, im: im, fm: fm, mim: mim, mfm: mfm, vm: vm);
+    return builder.build(context);
   }
 }

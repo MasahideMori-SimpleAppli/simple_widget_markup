@@ -44,6 +44,7 @@ enum EnumSpWMLExceptionType {
   elementException,
   tableParamException,
   sidDoesNotExistException,
+  noManagerException
 }
 
 extension EXTEnumSpWMLExceptionType on EnumSpWMLExceptionType {
@@ -69,6 +70,8 @@ extension EXTEnumSpWMLExceptionType on EnumSpWMLExceptionType {
         return 'Please set hNum parameter.';
       case EnumSpWMLExceptionType.sidDoesNotExistException:
         return 'Please set sid parameter.';
+      case EnumSpWMLExceptionType.noManagerException:
+        return 'Please set the required manager class.';
     }
   }
 }

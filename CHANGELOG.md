@@ -1,3 +1,9 @@
+## 25.0.0
+
+* Updates associated with base library updates.
+* Appropriate manager class settings are now required when using SpWML widgets.
+* Error handling has been strengthened, making it easier to understand errors when the manager class is not set.
+
 ## 24.1.1
 
 * Updated readme file.

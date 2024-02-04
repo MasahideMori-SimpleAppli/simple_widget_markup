@@ -270,6 +270,8 @@ class SpWMLBuilder {
   /// * [mim] : The manager for segmentedBtn.
   /// * [mfm] : The manager for checkbox.
   /// * [vm] : The manager for progressIndicator and slider.
+  ///
+  /// Throws : Throws noManagerException if the required manager is not set.
   void setManager(
       {TextFieldManager? tfm,
       IndexManager? im,
@@ -282,49 +284,128 @@ class SpWMLBuilder {
       if (sid == null) {
         continue;
       } else {
-        if (tfm != null) {
-          if (i.type == EnumSpWMLElementType.textField) {
-            TextFieldElement elm = i as TextFieldElement;
+        if (i.type == EnumSpWMLElementType.textField) {
+          TextFieldElement elm = i as TextFieldElement;
+          if (tfm != null) {
             elm.setManager(tfm, sid);
+          } else {
+            throw SpWMLException(
+                EnumSpWMLExceptionType.noManagerException,
+                -1,
+                -1,
+                SpWMLInfo(
+                    errorHint: 'TextFieldManager is not set. ' +
+                        ((info != null) ? info!.errorHint : "")));
           }
         }
-        if (im != null) {
-          if (i.type == EnumSpWMLElementType.dropdownBtn) {
-            DropdownBtnElement elm = i as DropdownBtnElement;
+        if (i.type == EnumSpWMLElementType.dropdownBtn) {
+          DropdownBtnElement elm = i as DropdownBtnElement;
+          if (im != null) {
             elm.setManager(im);
-          } else if (i.type == EnumSpWMLElementType.popupMenuBtn) {
-            PopupMenuBtnElement elm = i as PopupMenuBtnElement;
+          } else {
+            throw SpWMLException(
+                EnumSpWMLExceptionType.noManagerException,
+                -1,
+                -1,
+                SpWMLInfo(
+                    errorHint: 'IndexManager is not set. ' +
+                        ((info != null) ? info!.errorHint : "")));
+          }
+        } else if (i.type == EnumSpWMLElementType.popupMenuBtn) {
+          PopupMenuBtnElement elm = i as PopupMenuBtnElement;
+          if (im != null) {
             elm.setManager(im);
-          } else if (i.type == EnumSpWMLElementType.radioBtn) {
-            RadioBtnElement elm = i as RadioBtnElement;
+          } else {
+            throw SpWMLException(
+                EnumSpWMLExceptionType.noManagerException,
+                -1,
+                -1,
+                SpWMLInfo(
+                    errorHint: 'IndexManager is not set. ' +
+                        ((info != null) ? info!.errorHint : "")));
+          }
+        } else if (i.type == EnumSpWMLElementType.radioBtn) {
+          RadioBtnElement elm = i as RadioBtnElement;
+          if (im != null) {
             elm.setManager(im);
+          } else {
+            throw SpWMLException(
+                EnumSpWMLExceptionType.noManagerException,
+                -1,
+                -1,
+                SpWMLInfo(
+                    errorHint: 'IndexManager is not set. ' +
+                        ((info != null) ? info!.errorHint : "")));
           }
         }
-        if (fm != null) {
-          if (i.type == EnumSpWMLElementType.switchBtn) {
-            SwitchBtnElement elm = i as SwitchBtnElement;
+        if (i.type == EnumSpWMLElementType.switchBtn) {
+          SwitchBtnElement elm = i as SwitchBtnElement;
+          if (fm != null) {
             elm.setManager(fm);
+          } else {
+            throw SpWMLException(
+                EnumSpWMLExceptionType.noManagerException,
+                -1,
+                -1,
+                SpWMLInfo(
+                    errorHint: 'FlagManager is not set. ' +
+                        ((info != null) ? info!.errorHint : "")));
           }
         }
-        if (mim != null) {
-          if (i.type == EnumSpWMLElementType.segmentedBtn) {
-            SegmentedBtnElement elm = i as SegmentedBtnElement;
+        if (i.type == EnumSpWMLElementType.segmentedBtn) {
+          SegmentedBtnElement elm = i as SegmentedBtnElement;
+          if (mim != null) {
             elm.setManager(mim);
+          } else {
+            throw SpWMLException(
+                EnumSpWMLExceptionType.noManagerException,
+                -1,
+                -1,
+                SpWMLInfo(
+                    errorHint: 'MultiIndexManager is not set. ' +
+                        ((info != null) ? info!.errorHint : "")));
           }
         }
-        if (mfm != null) {
-          if (i.type == EnumSpWMLElementType.checkbox) {
-            CheckboxElement elm = i as CheckboxElement;
+        if (i.type == EnumSpWMLElementType.checkbox) {
+          CheckboxElement elm = i as CheckboxElement;
+          if (mfm != null) {
             elm.setManager(mfm);
+          } else {
+            throw SpWMLException(
+                EnumSpWMLExceptionType.noManagerException,
+                -1,
+                -1,
+                SpWMLInfo(
+                    errorHint: 'MultiFlagManager is not set. ' +
+                        ((info != null) ? info!.errorHint : "")));
           }
         }
-        if (vm != null) {
-          if (i.type == EnumSpWMLElementType.progressIndicator) {
-            ProgressIndicatorElement elm = i as ProgressIndicatorElement;
+
+        if (i.type == EnumSpWMLElementType.progressIndicator) {
+          ProgressIndicatorElement elm = i as ProgressIndicatorElement;
+          if (vm != null) {
             elm.setManager(vm);
-          } else if (i.type == EnumSpWMLElementType.slider) {
-            SliderElement elm = i as SliderElement;
+          } else {
+            throw SpWMLException(
+                EnumSpWMLExceptionType.noManagerException,
+                -1,
+                -1,
+                SpWMLInfo(
+                    errorHint: 'ValueManager is not set. ' +
+                        ((info != null) ? info!.errorHint : "")));
+          }
+        } else if (i.type == EnumSpWMLElementType.slider) {
+          SliderElement elm = i as SliderElement;
+          if (vm != null) {
             elm.setManager(vm);
+          } else {
+            throw SpWMLException(
+                EnumSpWMLExceptionType.noManagerException,
+                -1,
+                -1,
+                SpWMLInfo(
+                    errorHint: 'ValueManager is not set. ' +
+                        ((info != null) ? info!.errorHint : "")));
           }
         }
       }
