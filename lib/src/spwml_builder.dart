@@ -380,7 +380,6 @@ class SpWMLBuilder {
                         ((info != null) ? info!.errorHint : "")));
           }
         }
-
         if (i.type == EnumSpWMLElementType.progressIndicator) {
           ProgressIndicatorElement elm = i as ProgressIndicatorElement;
           if (vm != null) {

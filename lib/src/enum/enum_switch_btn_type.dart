@@ -1,9 +1,3 @@
-///
-/// Author Masahide Mori
-///
-/// First edition creation date 2023-05-06 16:38:39
-///
-
 import '../../simple_widget_markup.dart';
 
 /// (en) The switch btn state.

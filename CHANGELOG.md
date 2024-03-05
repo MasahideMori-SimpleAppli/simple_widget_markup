@@ -1,3 +1,7 @@
+## 26.0.0
+
+* Changed SpWMLDialog to be easier to use.
+
 ## 25.0.1
 
 * Fixed a bug in PopupMenuBtnElement.

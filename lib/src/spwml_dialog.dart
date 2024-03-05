@@ -9,8 +9,9 @@ import '../simple_widget_markup.dart';
 ///
 class SpWMLDialog extends StatefulWidget {
   final SpWMLBuilder b;
-  final Widget title;
-  final double width;
+  final Widget? title;
+  final double? width;
+  final double? height;
   final Widget? cancelBtnText;
   final Widget? okBtnText;
   final void Function(Function dialogClose)? cancelBtnCallback;
@@ -18,15 +19,18 @@ class SpWMLDialog extends StatefulWidget {
 
   /// * [b] : Dialog content.
   /// * [title] : Dialog title. e.g. text widget.
-  /// * [width] : Dialog width.
+  /// * [width] : Dialog width. By default it is 80% of the screen width.
+  /// * [height] : Dialog height. By default it is 50% of the screen height.
   /// * [cancelBtnText] : Cancel button text. if this and cancelBtnCallback is null, not create cancel button.
   /// if this is null and cancelBtnCallback is not null, auto set Text('Cancel').
   /// * [okBtnText] : OK button text. if this and okBtnCallback is null, not create ok button.
   /// if this is null and okBtnCallback is not null, auto set Text('OK').
   /// * [cancelBtnCallback] : Cancel button callback function. if this and cancelBtnText is null, not create cancel button.
   /// * [okBtnCallback] : OK button callback function. if this and okBtnText is null, not create ok button.
-  const SpWMLDialog(this.b, this.title, this.width,
-      {this.cancelBtnText,
+  const SpWMLDialog(this.b, this.title,
+      {this.width,
+      this.height,
+      this.cancelBtnText,
       this.okBtnText,
       this.cancelBtnCallback,
       this.okBtnCallback,
@@ -71,7 +75,10 @@ class SpWMLDialogState extends State<SpWMLDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: widget.title,
-      content: SizedBox(width: widget.width, child: widget.b.build(context)),
+      content: SizedBox(
+          width: widget.width ?? MediaQuery.of(context).size.width * 0.8,
+          height: widget.height ?? MediaQuery.of(context).size.width * 0.5,
+          child: widget.b.build(context)),
       actions: _getActions(context),
     );
   }
