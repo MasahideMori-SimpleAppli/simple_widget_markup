@@ -21,6 +21,8 @@ class SpWMLDialog extends StatefulWidget {
   /// * [title] : Dialog title. e.g. text widget.
   /// * [width] : Dialog width. By default it is 80% of the screen width.
   /// * [height] : Dialog height. By default it is 50% of the screen height.
+  /// Note that the height specified here is the height of the dialog's content
+  /// and does not include the height of buttons, etc.
   /// * [cancelBtnText] : Cancel button text. if this and cancelBtnCallback is null, not create cancel button.
   /// if this is null and cancelBtnCallback is not null, auto set Text('Cancel').
   /// * [okBtnText] : OK button text. if this and okBtnCallback is null, not create ok button.
@@ -42,7 +44,7 @@ class SpWMLDialog extends StatefulWidget {
 
 class SpWMLDialogState extends State<SpWMLDialog> {
   // get action buttons
-  List<Widget> _getActions(BuildContext context) {
+  List<Widget>? _getActions(BuildContext context) {
     List<Widget> r = [];
     if (widget.cancelBtnCallback != null || widget.cancelBtnText != null) {
       r.add(TextButton(
@@ -68,7 +70,11 @@ class SpWMLDialogState extends State<SpWMLDialog> {
         },
       ));
     }
-    return r;
+    if (r.isNotEmpty) {
+      return r;
+    } else {
+      return null;
+    }
   }
 
   @override

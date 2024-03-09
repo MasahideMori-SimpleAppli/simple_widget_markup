@@ -1,3 +1,7 @@
+## 26.0.2
+
+* Tweaked SpWMLDialog to make it more useful.
+
 ## 26.0.1
 
 * Fixed a bug where the default height of SpWMLDialog was incorrect.
