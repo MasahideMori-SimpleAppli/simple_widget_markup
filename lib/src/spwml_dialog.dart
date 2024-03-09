@@ -77,7 +77,7 @@ class SpWMLDialogState extends State<SpWMLDialog> {
       title: widget.title,
       content: SizedBox(
           width: widget.width ?? MediaQuery.of(context).size.width * 0.8,
-          height: widget.height ?? MediaQuery.of(context).size.width * 0.5,
+          height: widget.height ?? MediaQuery.of(context).size.height * 0.5,
           child: widget.b.build(context)),
       actions: _getActions(context),
     );
