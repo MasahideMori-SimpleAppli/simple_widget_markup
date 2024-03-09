@@ -1,3 +1,7 @@
+## 27.0.0
+
+* Changed SpWMLDialog to be easier to use.
+
 ## 26.0.2
 
 * Tweaked SpWMLDialog to make it more useful.

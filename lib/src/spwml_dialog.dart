@@ -20,7 +20,7 @@ class SpWMLDialog extends StatefulWidget {
   /// * [b] : Dialog content.
   /// * [title] : Dialog title. e.g. text widget.
   /// * [width] : Dialog width. By default it is 80% of the screen width.
-  /// * [height] : Dialog height. By default it is 50% of the screen height.
+  /// * [height] : Dialog height. By default it height is inner spwml view height.
   /// Note that the height specified here is the height of the dialog's content
   /// and does not include the height of buttons, etc.
   /// * [cancelBtnText] : Cancel button text. if this and cancelBtnCallback is null, not create cancel button.
@@ -83,7 +83,7 @@ class SpWMLDialogState extends State<SpWMLDialog> {
       title: widget.title,
       content: SizedBox(
           width: widget.width ?? MediaQuery.of(context).size.width * 0.8,
-          height: widget.height ?? MediaQuery.of(context).size.height * 0.5,
+          height: widget.height,
           child: widget.b.build(context)),
       actions: _getActions(context),
     );
