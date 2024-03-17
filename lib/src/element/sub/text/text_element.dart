@@ -67,6 +67,10 @@ class TextElement extends SpWMLElement {
           ? params[EnumSpWMLParams.maxLines]
           : null;
     }
+    textParams.p.useTextScaler =
+        params.containsKey(EnumSpWMLParams.useTextScaler)
+            ? params[EnumSpWMLParams.useTextScaler]
+            : false;
     return this;
   }
 
@@ -83,9 +87,10 @@ class TextElement extends SpWMLElement {
             textParams.p.data ?? spwmlParams.p.text,
             key: textParams.p.selectableTextParams!.key,
             focusNode: textParams.p.selectableTextParams!.focusNode,
-            style: textParams.p.selectableTextParams!.style ?? getStyle(),
+            style:
+                textParams.p.selectableTextParams!.style ?? getStyle(context),
             strutStyle: textParams.p.selectableTextParams!.strutStyle ??
-                getStrutStyle(),
+                getStrutStyle(context),
             textAlign:
                 textParams.p.selectableTextParams!.textAlign ?? getTextAlign(),
             textDirection: textParams.p.selectableTextParams!.textDirection,
@@ -122,7 +127,7 @@ class TextElement extends SpWMLElement {
             magnifierConfiguration:
                 textParams.p.selectableTextParams!.magnifierConfiguration,
           )
-        : getText(context);
+        : getNonSelectableTextWidget(context);
   }
 
   /// Get Text alignment.
@@ -133,12 +138,12 @@ class TextElement extends SpWMLElement {
   }
 
   /// Get text widget
-  Widget getText(BuildContext context) {
+  Widget getNonSelectableTextWidget(BuildContext context) {
     return Text(
       spwmlParams.p.text,
       key: textParams.p.key,
-      style: textParams.p.style ?? getStyle(),
-      strutStyle: textParams.p.strutStyle ?? getStrutStyle(),
+      style: textParams.p.style ?? getStyle(context),
+      strutStyle: textParams.p.strutStyle ?? getStrutStyle(context),
       textAlign: textParams.p.textAlign ?? getTextAlign(),
       textDirection: textParams.p.textDirection,
       locale: textParams.p.locale,
@@ -162,8 +167,8 @@ class TextElement extends SpWMLElement {
     if (spwmlParams.p.isGone) {
       return const SizedBox();
     } else {
-      return expand(
-          transform(material(constraints(container(getText(context))))));
+      return expand(transform(material(
+          constraints(container(getNonSelectableTextWidget(context))))));
     }
   }
 
@@ -184,23 +189,51 @@ class TextElement extends SpWMLElement {
   }
 
   /// get text strut style from parameters.
-  StrutStyle? getStrutStyle() {
+  StrutStyle? getStrutStyle(BuildContext context) {
+    final double fontSize = params.containsKey(EnumSpWMLParams.fontSize)
+        ? params[EnumSpWMLParams.fontSize]
+        : getDefFontSize();
+    final TextScaler tScaler = textParams.p.useTextScaler
+        ? MediaQuery.of(context).textScaler
+        : TextScaler.noScaling;
     if (type == EnumSpWMLElementType.textField) {
       if (SpWMLFontStyleManager().useMaterial3) {
         return null;
       } else {
         return StrutStyle(
-            fontSize: params.containsKey(EnumSpWMLParams.fontSize)
-                ? params[EnumSpWMLParams.fontSize]
-                : getDefFontSize(),
-            height: getLineHeight());
+          fontFamily: params.containsKey(EnumSpWMLParams.fontFamily)
+              ? params[EnumSpWMLParams.fontFamily]
+              : getDefFontFamily(),
+          fontSize: tScaler.scale(fontSize),
+          height: getLineHeight(),
+          leading: params.containsKey(EnumSpWMLParams.leading)
+              ? params[EnumSpWMLParams.leading]
+              : null,
+          fontWeight: params.containsKey(EnumSpWMLParams.fontWeight)
+              ? params[EnumSpWMLParams.fontWeight]
+              : getDefFontWeight(),
+          fontStyle: params.containsKey(EnumSpWMLParams.fontStyle)
+              ? params[EnumSpWMLParams.fontStyle]
+              : getDefFontStyle(),
+        );
       }
     } else {
       return StrutStyle(
-          fontSize: params.containsKey(EnumSpWMLParams.fontSize)
-              ? params[EnumSpWMLParams.fontSize]
-              : getDefFontSize(),
-          height: getLineHeight());
+        fontFamily: params.containsKey(EnumSpWMLParams.fontFamily)
+            ? params[EnumSpWMLParams.fontFamily]
+            : getDefFontFamily(),
+        fontSize: tScaler.scale(fontSize),
+        height: getLineHeight(),
+        leading: params.containsKey(EnumSpWMLParams.leading)
+            ? params[EnumSpWMLParams.leading]
+            : null,
+        fontWeight: params.containsKey(EnumSpWMLParams.fontWeight)
+            ? params[EnumSpWMLParams.fontWeight]
+            : getDefFontWeight(),
+        fontStyle: params.containsKey(EnumSpWMLParams.fontStyle)
+            ? params[EnumSpWMLParams.fontStyle]
+            : getDefFontStyle(),
+      );
     }
   }
 
@@ -343,14 +376,18 @@ class TextElement extends SpWMLElement {
   }
 
   /// get font size.
-  double? getFontSize() {
-    return params.containsKey(EnumSpWMLParams.fontSize)
+  double? getFontSize(BuildContext context) {
+    final double fontSize = params.containsKey(EnumSpWMLParams.fontSize)
         ? params[EnumSpWMLParams.fontSize]
         : getDefFontSize();
+    final TextScaler tScaler = textParams.p.useTextScaler
+        ? MediaQuery.of(context).textScaler
+        : TextScaler.noScaling;
+    return tScaler.scale(fontSize);
   }
 
   /// get text style from parameters.
-  TextStyle getStyle() {
+  TextStyle getStyle(BuildContext context) {
     return TextStyle(
       color: params.containsKey(EnumSpWMLParams.textColor)
           ? params[EnumSpWMLParams.textColor]
@@ -358,7 +395,7 @@ class TextElement extends SpWMLElement {
       backgroundColor: params.containsKey(EnumSpWMLParams.textBGColor)
           ? params[EnumSpWMLParams.textBGColor]
           : getDefTextBGColor(),
-      fontSize: getFontSize(),
+      fontSize: getFontSize(context),
       fontWeight: params.containsKey(EnumSpWMLParams.fontWeight)
           ? params[EnumSpWMLParams.fontWeight]
           : getDefFontWeight(),

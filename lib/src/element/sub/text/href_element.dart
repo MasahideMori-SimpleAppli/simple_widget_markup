@@ -90,18 +90,18 @@ class HrefElement extends TextElement {
       canRequestFocus: elParams.p.inkWellParams.canRequestFocus,
       onFocusChange: elParams.p.inkWellParams.onFocusChange,
       autofocus: elParams.p.inkWellParams.autofocus,
-      child: getText(context),
+      child: getNonSelectableTextWidget(context),
     );
   }
 
   /// Get text widget
   @override
-  Widget getText(BuildContext context) {
+  Widget getNonSelectableTextWidget(BuildContext context) {
     return Text(
       getDisplayText(),
       key: textParams.p.key,
-      style: getStyle(),
-      strutStyle: getStrutStyle(),
+      style: getStyle(context),
+      strutStyle: getStrutStyle(context),
       textAlign: getTextAlign(),
       textDirection: textParams.p.textDirection,
       locale: textParams.p.locale,

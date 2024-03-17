@@ -108,7 +108,6 @@ class BtnElement extends SingleChildTextElement {
       FAButtonParams p = FAButtonParams();
       if (elParams.p.type == EnumBtnType.faExtended) {
         p.fabExtParams.icon = elParams.p.isUseIcon ? getIcon(false) : null;
-        p.fabExtParams.extendedTextStyle = getStyle();
       } else {
         p.child = elParams.p.isUseIcon ? getIcon(false) : null;
       }
@@ -216,7 +215,8 @@ class BtnElement extends SingleChildTextElement {
             statesController: elParams.p.normalBtnParams!.statesController,
             icon: elParams.p.normalBtnParams!.icon!,
             label: child.child == null
-                ? (elParams.p.normalBtnParams!.label ?? getText(context))
+                ? (elParams.p.normalBtnParams!.label ??
+                    getNonSelectableTextWidget(context))
                 : child.child!);
       } else {
         return TextButton(
@@ -233,7 +233,8 @@ class BtnElement extends SingleChildTextElement {
             clipBehavior: elParams.p.normalBtnParams!.clipBehavior ?? Clip.none,
             statesController: elParams.p.normalBtnParams!.statesController,
             child: child.child == null
-                ? (elParams.p.normalBtnParams!.label ?? getText(context))
+                ? (elParams.p.normalBtnParams!.label ??
+                    getNonSelectableTextWidget(context))
                 : child.child!);
       }
     } else if (elParams.p.type == EnumBtnType.outlined) {
@@ -251,7 +252,8 @@ class BtnElement extends SingleChildTextElement {
             statesController: elParams.p.normalBtnParams!.statesController,
             icon: elParams.p.normalBtnParams!.icon!,
             label: child.child == null
-                ? (elParams.p.normalBtnParams!.label ?? getText(context))
+                ? (elParams.p.normalBtnParams!.label ??
+                    getNonSelectableTextWidget(context))
                 : child.child!);
       } else {
         return OutlinedButton(
@@ -266,7 +268,8 @@ class BtnElement extends SingleChildTextElement {
             clipBehavior: elParams.p.normalBtnParams!.clipBehavior ?? Clip.none,
             statesController: elParams.p.normalBtnParams!.statesController,
             child: child.child == null
-                ? (elParams.p.normalBtnParams!.label ?? getText(context))
+                ? (elParams.p.normalBtnParams!.label ??
+                    getNonSelectableTextWidget(context))
                 : child.child!);
       }
     } else if (elParams.p.type == EnumBtnType.elevated) {
@@ -286,7 +289,8 @@ class BtnElement extends SingleChildTextElement {
             statesController: elParams.p.normalBtnParams!.statesController,
             icon: elParams.p.normalBtnParams!.icon!,
             label: child.child == null
-                ? (elParams.p.normalBtnParams!.label ?? getText(context))
+                ? (elParams.p.normalBtnParams!.label ??
+                    getNonSelectableTextWidget(context))
                 : child.child!);
       } else {
         return ElevatedButton(
@@ -303,7 +307,8 @@ class BtnElement extends SingleChildTextElement {
             clipBehavior: elParams.p.normalBtnParams!.clipBehavior ?? Clip.none,
             statesController: elParams.p.normalBtnParams!.statesController,
             child: child.child == null
-                ? (elParams.p.normalBtnParams!.label ?? getText(context))
+                ? (elParams.p.normalBtnParams!.label ??
+                    getNonSelectableTextWidget(context))
                 : child.child!);
       }
     } else if (elParams.p.type == EnumBtnType.filled) {
@@ -323,7 +328,8 @@ class BtnElement extends SingleChildTextElement {
             statesController: elParams.p.normalBtnParams!.statesController,
             icon: elParams.p.normalBtnParams!.icon!,
             label: child.child == null
-                ? (elParams.p.normalBtnParams!.label ?? getText(context))
+                ? (elParams.p.normalBtnParams!.label ??
+                    getNonSelectableTextWidget(context))
                 : child.child!);
       } else {
         return FilledButton(
@@ -340,7 +346,8 @@ class BtnElement extends SingleChildTextElement {
             clipBehavior: elParams.p.normalBtnParams!.clipBehavior ?? Clip.none,
             statesController: elParams.p.normalBtnParams!.statesController,
             child: child.child == null
-                ? (elParams.p.normalBtnParams!.label ?? getText(context))
+                ? (elParams.p.normalBtnParams!.label ??
+                    getNonSelectableTextWidget(context))
                 : child.child!);
       }
     } else if (elParams.p.type == EnumBtnType.filledTonal) {
@@ -360,7 +367,8 @@ class BtnElement extends SingleChildTextElement {
             statesController: elParams.p.normalBtnParams!.statesController,
             icon: elParams.p.normalBtnParams!.icon!,
             label: child.child == null
-                ? (elParams.p.normalBtnParams!.label ?? getText(context))
+                ? (elParams.p.normalBtnParams!.label ??
+                    getNonSelectableTextWidget(context))
                 : child.child!);
       } else {
         return FilledButton.tonal(
@@ -377,7 +385,8 @@ class BtnElement extends SingleChildTextElement {
             clipBehavior: elParams.p.normalBtnParams!.clipBehavior ?? Clip.none,
             statesController: elParams.p.normalBtnParams!.statesController,
             child: child.child == null
-                ? (elParams.p.normalBtnParams!.label ?? getText(context))
+                ? (elParams.p.normalBtnParams!.label ??
+                    getNonSelectableTextWidget(context))
                 : child.child!);
       }
     } else if (elParams.p.type == EnumBtnType.icon) {
@@ -546,10 +555,12 @@ class BtnElement extends SingleChildTextElement {
           extendedPadding:
               elParams.p.faButtonParams!.fabExtParams.extendedPadding,
           extendedTextStyle:
-              elParams.p.faButtonParams!.fabExtParams.extendedTextStyle,
+              elParams.p.faButtonParams!.fabExtParams.extendedTextStyle ??
+                  getStyle(context),
           icon: elParams.p.faButtonParams!.fabExtParams.icon,
           label: child.child == null
-              ? (elParams.p.faButtonParams!.child ?? getText(context))
+              ? (elParams.p.faButtonParams!.child ??
+                  getNonSelectableTextWidget(context))
               : child.child!);
     } else if (elParams.p.type == EnumBtnType.fa) {
       return FloatingActionButton(

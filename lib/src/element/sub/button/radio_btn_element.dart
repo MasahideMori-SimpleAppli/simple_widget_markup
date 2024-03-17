@@ -156,12 +156,14 @@ class _RadioBtnElementWidget extends StatefulWidget {
 class _RadioBtnElementWidgetState extends State<_RadioBtnElementWidget> {
   /// The onTap callback.
   void _onTapCallback(int index) {
-    setState(() {
-      widget.elParams.p.manager!.setIndex(widget.sid, index);
-      if (widget.elParams.p.callback != null) {
-        widget.elParams.p.callback!(index);
-      }
-    });
+    if (mounted) {
+      setState(() {
+        widget.elParams.p.manager!.setIndex(widget.sid, index);
+        if (widget.elParams.p.callback != null) {
+          widget.elParams.p.callback!(index);
+        }
+      });
+    }
   }
 
   /// Return wrapped widget.

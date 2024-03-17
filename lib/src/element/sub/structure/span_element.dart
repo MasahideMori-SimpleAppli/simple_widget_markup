@@ -106,10 +106,10 @@ class SpanElement extends MultiChildTextElement {
                 .p.selectableTextRichParams!.selectableTextParams.focusNode,
             style: elParams
                     .p.selectableTextRichParams!.selectableTextParams.style ??
-                getStyle(),
+                getStyle(context),
             strutStyle: elParams.p.selectableTextRichParams!
                     .selectableTextParams.strutStyle ??
-                getStrutStyle(),
+                getStrutStyle(context),
             textAlign: elParams.p.selectableTextRichParams!.selectableTextParams
                     .textAlign ??
                 getTextAlign(),
@@ -198,7 +198,7 @@ class SpanElement extends MultiChildTextElement {
         if (i is HrefElement) {
           r.add(TextSpan(
               text: i.getDisplayText(),
-              style: i.getStyle(),
+              style: i.getStyle(context),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
                   i.onTapFunc(context);
@@ -210,7 +210,7 @@ class SpanElement extends MultiChildTextElement {
         } else if (i is TextElement) {
           r.add(TextSpan(
             text: i.spwmlParams.p.text,
-            style: i.getStyle(),
+            style: i.getStyle(context),
           ));
         } else {
           r.add(WidgetSpan(child: i));

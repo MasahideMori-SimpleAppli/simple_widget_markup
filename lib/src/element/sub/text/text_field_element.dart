@@ -52,8 +52,6 @@ class TextFieldElement extends TextElement {
     tfParams.p.textAlign = params.containsKey(EnumSpWMLParams.textAlign)
         ? params[EnumSpWMLParams.textAlign]
         : TextAlign.left;
-    tfParams.p.style = getStyle();
-    tfParams.p.strutStyle = getStrutStyle();
     if (params.containsKey(EnumSpWMLParams.hint)) {
       tfParams.p.decoration = tfParams.p.decoration.copyWith(
           hintText: params[EnumSpWMLParams.hint],
@@ -145,7 +143,7 @@ class TextFieldElement extends TextElement {
   /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
-    return _TextFieldElementWidget(tfParams);
+    return _TextFieldElementWidget(this, tfParams);
   }
 
   /// Set search mode search icon button callback.
@@ -203,12 +201,32 @@ class TextFieldElement extends TextElement {
         initialText: initialText, isAlwaysInitialize: isAlwaysInitialize));
     setFocusNode(manager.getFocus(name));
   }
+
+  /// Set the new text to this widget.
+  /// Disabled if controller or manager is not set.
+  void setText(String text) {
+    if (tfParams.p.controller != null) {
+      tfParams.p.controller!.text = text;
+    }
+  }
+
+  /// Gets the text set to this widget.
+  /// If the controller or manager is not set, null is returned.
+  String? getText() {
+    if (tfParams.p.controller != null) {
+      return tfParams.p.controller!.text;
+    } else {
+      return null;
+    }
+  }
 }
 
 class _TextFieldElementWidget extends StatefulWidget {
+  final TextFieldElement parent;
   final TextFieldParamsWrapper tfParams;
 
-  const _TextFieldElementWidget(this.tfParams, {Key? key}) : super(key: key);
+  const _TextFieldElementWidget(this.parent, this.tfParams, {Key? key})
+      : super(key: key);
 
   @override
   State<_TextFieldElementWidget> createState() =>
@@ -247,9 +265,11 @@ class _TextFieldElementWidgetState extends State<_TextFieldElementWidget> {
           ? widget.tfParams.p.prefixIconSize
           : widget.tfParams.p.suffixIconSize,
       onPressed: () {
-        setState(() {
-          widget.tfParams.p.obscureText = !widget.tfParams.p.obscureText;
-        });
+        if (mounted) {
+          setState(() {
+            widget.tfParams.p.obscureText = !widget.tfParams.p.obscureText;
+          });
+        }
       },
       splashRadius: widget.tfParams.p.suffixIconSplashRadius,
     );
@@ -278,12 +298,14 @@ class _TextFieldElementWidgetState extends State<_TextFieldElementWidget> {
           ? widget.tfParams.p.prefixIconSize
           : widget.tfParams.p.suffixIconSize,
       onPressed: () {
-        setState(() {
-          widget.tfParams.p.controller?.clear();
-          if (widget.tfParams.p.clearCallback != null) {
-            widget.tfParams.p.clearCallback!();
-          }
-        });
+        if (mounted) {
+          setState(() {
+            widget.tfParams.p.controller?.clear();
+            if (widget.tfParams.p.clearCallback != null) {
+              widget.tfParams.p.clearCallback!();
+            }
+          });
+        }
       },
       splashRadius: widget.tfParams.p.suffixIconSplashRadius,
     );
@@ -342,8 +364,9 @@ class _TextFieldElementWidgetState extends State<_TextFieldElementWidget> {
       keyboardType: widget.tfParams.p.keyboardType,
       textInputAction: widget.tfParams.p.textInputAction,
       textCapitalization: widget.tfParams.p.textCapitalization,
-      style: widget.tfParams.p.style,
-      strutStyle: widget.tfParams.p.strutStyle,
+      style: widget.tfParams.p.style ?? widget.parent.getStyle(context),
+      strutStyle:
+          widget.tfParams.p.strutStyle ?? widget.parent.getStrutStyle(context),
       textAlign: widget.tfParams.p.textAlign,
       textAlignVertical: widget.tfParams.p.textAlignVertical,
       textDirection: widget.tfParams.p.textDirection,

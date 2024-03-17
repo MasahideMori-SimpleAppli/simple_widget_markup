@@ -92,8 +92,8 @@ class ExpTileElement extends MultiChildTextElement {
           Text(
             spwmlParams.p.text,
             textScaler: MediaQuery.of(context).textScaler,
-            style: getStyle(),
-            strutStyle: getStrutStyle(),
+            style: getStyle(context),
+            strutStyle: getStrutStyle(context),
             textAlign: params.containsKey(EnumSpWMLParams.textAlign)
                 ? params[EnumSpWMLParams.textAlign]
                 : TextAlign.left,

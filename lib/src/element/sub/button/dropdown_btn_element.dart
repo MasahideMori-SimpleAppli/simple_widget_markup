@@ -226,7 +226,10 @@ class _DropDownElementWidgetState extends State<_DropDownElementWidget> {
       padding: widget.elParams.p.padding,
       onChanged: widget.elParams.p.isEnabled
           ? (int? v) => {
-                setState(() {}),
+                if (mounted)
+                  {
+                    setState(() {}),
+                  }
               }
           : null,
     );

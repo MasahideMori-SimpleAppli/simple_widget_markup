@@ -73,6 +73,9 @@ class TextParams {
   TextWidthBasis? textWidthBasis;
   TextHeightBehavior? textHeightBehavior;
   Color? selectionColor;
+  bool useTextScaler = false;
+  // テキストの行送りの量。
+  double? leading;
 
   // for selectable
   bool isSelectable = true;

@@ -127,10 +127,12 @@ class _SliderElementWidget extends StatefulWidget {
 class _SliderElementWidgetState extends State<_SliderElementWidget> {
   /// onChanged wrapper.
   void _onChanged(double v) {
-    setState(() {
-      widget.elParams.p.manager!.setValue(widget.sid, v);
-      widget.elParams.p.onChanged!(v);
-    });
+    if (mounted) {
+      setState(() {
+        widget.elParams.p.manager!.setValue(widget.sid, v);
+        widget.elParams.p.onChanged!(v);
+      });
+    }
   }
 
   @override

@@ -143,6 +143,10 @@ enum EnumSpWMLParams {
   offsetY,
   // col and row
   mainAxisSize,
+  // ユーザーのテキストのサイズ設定を反映するかどうかのフラグ。
+  useTextScaler,
+  // テキストの行送り。
+  leading,
   // フルネーム系は利用頻度が低いので、解析の優先度を下げる。
   mLeft,
   mTop,
@@ -260,7 +264,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.max ||
           this == EnumSpWMLParams.smallSize ||
           this == EnumSpWMLParams.offsetX ||
-          this == EnumSpWMLParams.offsetY) {
+          this == EnumSpWMLParams.offsetY ||
+          this == EnumSpWMLParams.leading) {
         return double.parse(v);
       }
       if (this == EnumSpWMLParams.weight || this == EnumSpWMLParams.hNum) {
@@ -449,7 +454,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.allowEmpty ||
           this == EnumSpWMLParams.useAutoLabel ||
           this == EnumSpWMLParams.isIntValue ||
-          this == EnumSpWMLParams.isEnabled) {
+          this == EnumSpWMLParams.isEnabled ||
+          this == EnumSpWMLParams.useTextScaler) {
         if (v == "true") {
           return true;
         } else if (v == "false") {

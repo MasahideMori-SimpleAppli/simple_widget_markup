@@ -168,14 +168,16 @@ class _CheckboxElementWidget extends StatefulWidget {
 class _CheckboxElementWidgetState extends State<_CheckboxElementWidget> {
   /// The onTap callback.
   void _onTapCallback(int index) {
-    setState(() {
-      widget.elParams.p.manager!.getFlags(widget.sid)[index] =
-          !widget.elParams.p.manager!.getFlags(widget.sid)[index];
-      if (widget.elParams.p.callback != null) {
-        widget.elParams.p
-            .callback!(widget.elParams.p.manager!.getFlags(widget.sid));
-      }
-    });
+    if (mounted) {
+      setState(() {
+        widget.elParams.p.manager!.getFlags(widget.sid)[index] =
+            !widget.elParams.p.manager!.getFlags(widget.sid)[index];
+        if (widget.elParams.p.callback != null) {
+          widget.elParams.p
+              .callback!(widget.elParams.p.manager!.getFlags(widget.sid));
+        }
+      });
+    }
   }
 
   /// Return wrapped widget.

@@ -69,8 +69,8 @@ class SuperAndSubscriptElement extends TextElement {
 
   /// change small size.
   @override
-  double? getFontSize() {
-    double? fontSize = super.getFontSize();
+  double? getFontSize(BuildContext context) {
+    double? fontSize = super.getFontSize(context);
     if (fontSize == null) {
       return _getDefFontSizeNonNull() * elParams.p.magnification;
     } else {
@@ -79,28 +79,29 @@ class SuperAndSubscriptElement extends TextElement {
   }
 
   /// calculate and return the script offset.
-  Offset getOffset() {
+  Offset getOffset(BuildContext context) {
     if (type == EnumSpWMLElementType.superscript) {
       return Offset(
           0,
-          getFontSize()! -
-              (super.getFontSize() ?? 18) -
-              (getFontSize()! / 7) +
+          getFontSize(context)! -
+              (super.getFontSize(context) ?? 18) -
+              (getFontSize(context)! / 7) +
               elParams.p.baselineCorrection);
     } else {
-      return Offset(0, getFontSize()! / 3 + elParams.p.baselineCorrection);
+      return Offset(
+          0, getFontSize(context)! / 3 + elParams.p.baselineCorrection);
     }
   }
 
   /// Get super font size.
   /// This returns the original font size
   /// before applying any scaling calculations.
-  double? getNonResizedFontSize() {
-    return super.getFontSize();
+  double? getNonResizedFontSize(BuildContext context) {
+    return super.getFontSize(context);
   }
 
   /// Get getNonResizedFontSize method based style.
-  TextStyle getNonResizedStyle() {
+  TextStyle getNonResizedStyle(BuildContext context) {
     return TextStyle(
       color: params.containsKey(EnumSpWMLParams.textColor)
           ? params[EnumSpWMLParams.textColor]
@@ -108,7 +109,7 @@ class SuperAndSubscriptElement extends TextElement {
       backgroundColor: params.containsKey(EnumSpWMLParams.textBGColor)
           ? params[EnumSpWMLParams.textBGColor]
           : getDefTextBGColor(),
-      fontSize: getNonResizedFontSize(),
+      fontSize: getNonResizedFontSize(context),
       fontWeight: params.containsKey(EnumSpWMLParams.fontWeight)
           ? params[EnumSpWMLParams.fontWeight]
           : getDefFontWeight(),
@@ -151,18 +152,18 @@ class SuperAndSubscriptElement extends TextElement {
   }
 
   /// calculate and return the script offset for non strict mode.
-  Offset getOffsetOfNonStrictMode() {
+  Offset getOffsetOfNonStrictMode(BuildContext context) {
     if (type == EnumSpWMLElementType.superscript) {
       return Offset(
           0,
-          _amplifiedValue(getFontSize()!, 1.225) / 4 +
-              getFontSize()! / 2 +
-              (-1 * super.getFontSize()!) +
+          _amplifiedValue(getFontSize(context)!, 1.225) / 4 +
+              getFontSize(context)! / 2 +
+              (-1 * super.getFontSize(context)!) +
               elParams.p.baselineCorrection);
     } else {
       return Offset(
           0,
-          _amplifiedValue(getFontSize()!, 1.225) / 4 +
+          _amplifiedValue(getFontSize(context)!, 1.225) / 4 +
               elParams.p.baselineCorrection);
     }
   }
@@ -171,19 +172,19 @@ class SuperAndSubscriptElement extends TextElement {
   @override
   Widget getTextWidget(BuildContext context) {
     return Transform.translate(
-        offset: getOffset(), child: super.getTextWidget(context));
+        offset: getOffset(context), child: super.getTextWidget(context));
   }
 
   /// Get text widget
   @override
-  Widget getText(BuildContext context) {
+  Widget getNonSelectableTextWidget(BuildContext context) {
     return Transform.translate(
-        offset: getOffset(),
+        offset: getOffset(context),
         child: Text(
           spwmlParams.p.text,
           key: textParams.p.key,
-          style: textParams.p.style ?? getStyle(),
-          strutStyle: textParams.p.strutStyle ?? getStrutStyle(),
+          style: textParams.p.style ?? getStyle(context),
+          strutStyle: textParams.p.strutStyle ?? getStrutStyle(context),
           textAlign: textParams.p.textAlign ?? getTextAlign(),
           textDirection: textParams.p.textDirection,
           locale: textParams.p.locale,
@@ -201,12 +202,12 @@ class SuperAndSubscriptElement extends TextElement {
 
   Widget _getTextOfNonStrictMode(BuildContext context) {
     return Transform.translate(
-        offset: getOffsetOfNonStrictMode(),
+        offset: getOffsetOfNonStrictMode(context),
         child: Text(
           spwmlParams.p.text,
           key: textParams.p.key,
-          style: textParams.p.style ?? getStyle(),
-          strutStyle: textParams.p.strutStyle ?? getStrutStyle(),
+          style: textParams.p.style ?? getStyle(context),
+          strutStyle: textParams.p.strutStyle ?? getStrutStyle(context),
           textAlign: textParams.p.textAlign ?? getTextAlign(),
           textDirection: textParams.p.textDirection,
           locale: textParams.p.locale,
@@ -232,8 +233,8 @@ class SuperAndSubscriptElement extends TextElement {
     if (spwmlParams.p.isGone) {
       return const SizedBox();
     } else {
-      return expand(
-          transform(material(constraints(container(getText(context))))));
+      return expand(transform(material(
+          constraints(container(getNonSelectableTextWidget(context))))));
     }
   }
 

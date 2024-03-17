@@ -98,7 +98,7 @@ class BadgeElement extends SingleChildTextElement {
       textColor: elParams.p.textColor,
       smallSize: elParams.p.smallSize,
       largeSize: elParams.p.largeSize,
-      textStyle: elParams.p.textStyle ?? getStyle(),
+      textStyle: elParams.p.textStyle ?? getStyle(context),
       padding: elParams.p.padding,
       alignment: elParams.p.alignment,
       offset: elParams.p.offset,

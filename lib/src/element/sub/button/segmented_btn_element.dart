@@ -133,12 +133,14 @@ class _SegmentedBtnElementWidgetState
     extends State<_SegmentedBtnElementWidget> {
   /// The onTap callback.
   void _onTapCallback(Set<int> selection) {
-    setState(() {
-      widget.elParams.p.manager!.setIndexSet(widget.sid, selection);
-      if (widget.elParams.p.onSelectionChanged != null) {
-        widget.elParams.p.onSelectionChanged!(selection);
-      }
-    });
+    if (mounted) {
+      setState(() {
+        widget.elParams.p.manager!.setIndexSet(widget.sid, selection);
+        if (widget.elParams.p.onSelectionChanged != null) {
+          widget.elParams.p.onSelectionChanged!(selection);
+        }
+      });
+    }
   }
 
   List<ButtonSegment<int>> _getSegments() {
@@ -146,16 +148,20 @@ class _SegmentedBtnElementWidgetState
     int count = 0;
     for (Widget i in widget.children.children) {
       if (i is TextElement) {
-        r.add(ButtonSegment(value: count, label: i.getText(context)));
+        r.add(ButtonSegment(
+            value: count, label: i.getNonSelectableTextWidget(context)));
       } else if (i is BtnElement) {
         if (i.elParams.p.isUseIcon) {
           r.add(ButtonSegment(
-              value: count, label: i.getText(context), icon: i.getIcon(false)));
+              value: count,
+              label: i.getNonSelectableTextWidget(context),
+              icon: i.getIcon(false)));
         } else {
           if (i.elParams.p.type == EnumBtnType.block) {
             r.add(ButtonSegment(value: count, label: i.child.child));
           } else {
-            r.add(ButtonSegment(value: count, label: i.getText(context)));
+            r.add(ButtonSegment(
+                value: count, label: i.getNonSelectableTextWidget(context)));
           }
         }
       } else {

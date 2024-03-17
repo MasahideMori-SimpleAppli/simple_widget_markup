@@ -147,12 +147,14 @@ class _SwitchBtnElementWidgetState extends State<_SwitchBtnElementWidget> {
       onChanged:
           widget.elParams.p.onChanged != null && widget.elParams.p.isEnabled
               ? (bool b) {
-                  setState(() {
-                    widget.elParams.p.manager!.setFlag(widget.sid, b);
-                    if (widget.elParams.p.onChanged != null) {
-                      widget.elParams.p.onChanged!(b);
-                    }
-                  });
+                  if (mounted) {
+                    setState(() {
+                      widget.elParams.p.manager!.setFlag(widget.sid, b);
+                      if (widget.elParams.p.onChanged != null) {
+                        widget.elParams.p.onChanged!(b);
+                      }
+                    });
+                  }
                 }
               : null,
       activeColor: widget.elParams.p.activeColor,

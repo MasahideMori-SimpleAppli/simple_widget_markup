@@ -1,3 +1,10 @@
+## 28.0.0
+
+* Added a check for the mounted flags of each widget to improve error tolerance.
+* Added flags to text types to accept user's font settings and determine relative actual font size.
+* Added leading parameter to text type.
+* Added setText and getText method to TextFieldElement.
+
 ## 27.0.0
 
 * Changed SpWMLDialog to be easier to use.
