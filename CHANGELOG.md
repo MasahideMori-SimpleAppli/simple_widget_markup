@@ -1,3 +1,7 @@
+## 28.0.1
+
+* Fixed a bug related to font size.
+
 ## 28.0.0
 
 * Added a check for the mounted flags of each widget to improve error tolerance.

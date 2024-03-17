@@ -273,11 +273,11 @@ class TextElement extends SpWMLElement {
   }
 
   /// get default font size.
-  double? getDefFontSize() {
+  double getDefFontSize() {
     if (style.styleMap.containsKey(type)) {
-      return style.styleMap[type]!.fontSize;
+      return style.styleMap[type]!.fontSize ?? 14;
     }
-    return null;
+    return 14;
   }
 
   /// get default font weight.
