@@ -1,3 +1,8 @@
+## 28.1.0
+
+* Updates associated with base library updates.
+* StateManager can now be used in SpWML widgets and SpWMLBuilder.
+
 ## 28.0.1
 
 * Fixed a bug related to font size.

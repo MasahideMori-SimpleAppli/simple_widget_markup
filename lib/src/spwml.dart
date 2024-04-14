@@ -28,6 +28,7 @@ class SpWML extends StatelessWidget {
   final MultiIndexManager? mim;
   final MultiFlagManager? mfm;
   final ValueManager? vm;
+  final StateManager? sm;
 
   /// (en)The manager class is automatically set using the sid set
   /// in the layout as a key.
@@ -50,6 +51,8 @@ class SpWML extends StatelessWidget {
   /// * [mim] : The manager for segmentedBtn.
   /// * [mfm] : The manager for checkbox.
   /// * [vm] : The manager for progressIndicator and slider.
+  /// * [sm] : The manager for all widget state.
+  /// If this is not null, other managers will be disabled.
   SpWML(this.spWML,
       {this.mainAA = MainAxisAlignment.start,
       this.crossAA = CrossAxisAlignment.start,
@@ -64,6 +67,7 @@ class SpWML extends StatelessWidget {
       this.mim,
       this.mfm,
       this.vm,
+      this.sm,
       GlobalKey? key})
       : style = spWMLStyle ?? SpWMLFontStyleManager().style,
         super(key: key);
@@ -85,7 +89,11 @@ class SpWML extends StatelessWidget {
         padding: padding,
         spWMLStyle: style,
         info: info);
-    builder.setManager(tfm: tfm, im: im, fm: fm, mim: mim, mfm: mfm, vm: vm);
+    if (sm != null) {
+      builder.setStateManager(sm!);
+    } else {
+      builder.setManager(tfm: tfm, im: im, fm: fm, mim: mim, mfm: mfm, vm: vm);
+    }
     return builder.build(context);
   }
 }

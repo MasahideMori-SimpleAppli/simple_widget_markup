@@ -410,4 +410,14 @@ class SpWMLBuilder {
       }
     }
   }
+
+  /// (en)The manager class is automatically set using the sid set in the layout as a key.
+  ///
+  /// (ja)レイアウトに設定されているsidをキーとして、マネージャークラスを自動設定します。
+  ///
+  /// * [sm] : The manager for all widget state.
+  void setStateManager(StateManager sm) {
+    setManager(
+        tfm: sm.tfm, im: sm.im, fm: sm.fm, mim: sm.mim, mfm: sm.mfm, vm: sm.vm);
+  }
 }
