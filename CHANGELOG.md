@@ -1,3 +1,7 @@
+## 28.2.0
+
+* Added isLabelVisible parameter and setVisibility method to BadgeElement.
+
 ## 28.1.0
 
 * Updates associated with base library updates.

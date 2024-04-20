@@ -165,6 +165,8 @@ enum EnumSpWMLParams {
   maxWidth,
   // ボタンの有効無効フラグ
   isEnabled,
+  // ラベルの有効無効フラグ
+  isLabelVisible,
 }
 
 /// 重複を避けて高速化するために、短縮系だけをまとめたもの。
@@ -455,7 +457,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.useAutoLabel ||
           this == EnumSpWMLParams.isIntValue ||
           this == EnumSpWMLParams.isEnabled ||
-          this == EnumSpWMLParams.useTextScaler) {
+          this == EnumSpWMLParams.useTextScaler ||
+          this == EnumSpWMLParams.isLabelVisible) {
         if (v == "true") {
           return true;
         } else if (v == "false") {

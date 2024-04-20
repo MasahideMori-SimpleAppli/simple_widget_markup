@@ -68,6 +68,10 @@ class BadgeElement extends SingleChildTextElement {
           useOffsetX ? params[EnumSpWMLParams.offsetX] : 0.0,
           useOffsetY ? params[EnumSpWMLParams.offsetY] : 0.0);
     }
+    elParams.p.isLabelVisible =
+        params.containsKey(EnumSpWMLParams.isLabelVisible)
+            ? params[EnumSpWMLParams.isLabelVisible]
+            : true;
     return this;
   }
 
@@ -78,6 +82,18 @@ class BadgeElement extends SingleChildTextElement {
   /// * [label] : Text widget label.
   void setLabel(Widget label) {
     elParams.p.label = label;
+  }
+
+  /// (en) Set label visibility.
+  /// Note that this method has no effect
+  /// if called after the screen has been configured.
+  ///
+  /// (ja) ラベルの可視化状態を変更します。
+  /// なお、このメソッドは画面構成後に呼び出しても効果がありません。
+  ///
+  /// * [isLabelVisible] : If true, the label is visible.
+  void setVisibility(bool isLabelVisible) {
+    elParams.p.isLabelVisible = isLabelVisible;
   }
 
   /// (en) Set the label offset.
