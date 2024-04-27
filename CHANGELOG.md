@@ -1,3 +1,7 @@
+## 29.0.0
+
+* Added error handling to SpWMLLayoutManager.
+
 ## 28.2.0
 
 * Added isLabelVisible parameter and setVisibility method to BadgeElement.

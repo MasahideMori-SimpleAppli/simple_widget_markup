@@ -83,15 +83,25 @@ class SpWMLLayoutManager {
   /// * [path] : The layout path in assets directory. e.g. [assets/layout/en/top/base.spwml]
   /// * [setStateCallback] : Pass the setState of the parent widget in the callback.
   /// If you're using another state management, let the screen refresh.
-  String? getAssets(String path, void Function() setStateCallback) {
+  /// The callback will be fired after the current rendering is finished.
+  /// * [errorCallback] : The callback in case loading fails.
+  /// The callback will be fired after the current rendering is finished.
+  String? getAssets(String path, void Function() setStateCallback,
+      void Function(dynamic error) errorCallback) {
     if (_buffLayouts.containsKey(path)) {
       return _buffLayouts[path];
     } else {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
-        _buffLayouts[path] = await rootBundle.loadString(path, cache: false);
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          setStateCallback();
-        });
+        try {
+          _buffLayouts[path] = await rootBundle.loadString(path, cache: false);
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            setStateCallback();
+          });
+        } catch (e) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            errorCallback(e);
+          });
+        }
       });
       return null;
     }
@@ -99,8 +109,19 @@ class SpWMLLayoutManager {
 
   /// The multi-simultaneous version of getAssets.
   /// Asset registration in pubspec.yaml is mandatory.
+  ///
+  /// * [paths] : The layout path in assets directory. e.g. [assets/layout/en/top/base.spwml]
+  /// * [setStateCallback] : Pass the setState of the parent widget in the callback.
+  /// If you're using another state management, let the screen refresh.
+  /// The callback will be fired after the current rendering is finished.
+  /// * [errorCallback] : The callback in case loading fails.
+  /// The callback will be fired after the current rendering is finished.
+  /// This is fired only once when an asset fails to load.
+  /// And the asset loading will stop at that point.
   List<String>? getMultiAssets(
-      List<String> paths, void Function() setStateCallback) {
+      List<String> paths,
+      void Function() setStateCallback,
+      void Function(dynamic error) errorCallback) {
     bool isAllContained = true;
     for (String i in paths) {
       if (!_buffLayouts.containsKey(i)) {
@@ -117,14 +138,20 @@ class SpWMLLayoutManager {
     } else {
       // 足りない分をロードした後でコールバックする。
       WidgetsBinding.instance.addPostFrameCallback((_) async {
-        for (String i in paths) {
-          if (!_buffLayouts.containsKey(i)) {
-            _buffLayouts[i] = await rootBundle.loadString(i, cache: false);
+        try {
+          for (String i in paths) {
+            if (!_buffLayouts.containsKey(i)) {
+              _buffLayouts[i] = await rootBundle.loadString(i, cache: false);
+            }
           }
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            setStateCallback();
+          });
+        } catch (e) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            errorCallback(e);
+          });
         }
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          setStateCallback();
-        });
       });
       return null;
     }
@@ -144,18 +171,28 @@ class SpWMLLayoutManager {
   /// * [getDataFunction] : Pass the function that actually gets the resource via https and returns the result.
   /// * [setStateCallback] : Pass the setState of the parent widget in the callback.
   /// If you're using another state management, let the screen refresh.
+  /// The callback will be fired after the current rendering is finished.
+  /// * [errorCallback] : The callback in case loading fails.
+  /// The callback will be fired after the current rendering is finished.
   String? getResource(
       String url,
       Future<String> Function(String url) getDataFunction,
-      void Function() setStateCallback) {
+      void Function() setStateCallback,
+      void Function(dynamic error) errorCallback) {
     if (_buffLayouts.containsKey(url)) {
       return _buffLayouts[url];
     } else {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
-        _buffLayouts[url] = await getDataFunction(url);
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          setStateCallback();
-        });
+        try {
+          _buffLayouts[url] = await getDataFunction(url);
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            setStateCallback();
+          });
+        } catch (e) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            errorCallback(e);
+          });
+        }
       });
       return null;
     }
@@ -164,10 +201,20 @@ class SpWMLLayoutManager {
   /// The multi-simultaneous version of getResource.
   ///
   /// Note: The order of the resources returned by getDataFunction must match the urls.
+  /// * [urls] : The layout urls.
+  /// * [getDataFunction] : Pass the function that actually gets the resource via https and returns the result.
+  /// * [setStateCallback] : Pass the setState of the parent widget in the callback.
+  /// If you're using another state management, let the screen refresh.
+  /// The callback will be fired after the current rendering is finished.
+  /// * [errorCallback] : The callback in case loading fails.
+  /// The callback will be fired after the current rendering is finished.
+  /// This is fired only once when an asset fails to load.
+  /// And the asset loading will stop at that point.
   List<String>? getMultiResource(
       List<String> urls,
       Future<List<String>> Function(List<String> urls) getDataFunction,
-      void Function() setStateCallback) {
+      void Function() setStateCallback,
+      void Function(dynamic error) errorCallback) {
     bool isAllContained = true;
     for (String i in urls) {
       if (!_buffLayouts.containsKey(i)) {
@@ -184,15 +231,21 @@ class SpWMLLayoutManager {
     } else {
       // ロードした後でコールバックする。こちらはAssetsと異なり常に上書き。
       WidgetsBinding.instance.addPostFrameCallback((_) async {
-        final List<String> result = await getDataFunction(urls);
-        int count = 0;
-        for (String i in urls) {
-          _buffLayouts[i] = result[count];
-          count += 1;
+        try {
+          final List<String> result = await getDataFunction(urls);
+          int count = 0;
+          for (String i in urls) {
+            _buffLayouts[i] = result[count];
+            count += 1;
+          }
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            setStateCallback();
+          });
+        } catch (e) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            errorCallback(e);
+          });
         }
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          setStateCallback();
-        });
       });
       return null;
     }
