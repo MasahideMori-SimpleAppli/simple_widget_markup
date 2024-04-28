@@ -1,3 +1,7 @@
+## 29.1.0
+
+* Added setDisabledIndexes method to RadioBtnElement and CheckboxElement.
+
 ## 29.0.0
 
 * Added error handling to SpWMLLayoutManager.

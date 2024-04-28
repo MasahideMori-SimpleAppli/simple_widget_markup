@@ -150,6 +150,19 @@ class CheckboxElement extends MultiChildElement {
   void setEnabled(bool isEnabled) {
     elParams.p.isEnabled = isEnabled;
   }
+
+  /// (en) Specify the checkbox you want to disable by index number.
+  /// If set to empty, all checkbox will be enabled.
+  /// However, if disabled with setEnabled, all checkbox will remain disabled.
+  ///
+  /// (ja) 無効にしたいチェックボックスをインデックス番号で指定します。
+  /// 空を設定した場合は全てのチェックボックスが有効化されます。
+  /// ただし、setEnabledで無効化された場合は全てのチェックボックスが無効なままになります。
+  ///
+  /// * [indexes] : A list of indexes of buttons you want to disable.
+  void setDisabledIndexes(List<int> indexes) {
+    elParams.p.disabledIndexes = indexes;
+  }
 }
 
 class _CheckboxElementWidget extends StatefulWidget {
@@ -185,7 +198,8 @@ class _CheckboxElementWidgetState extends State<_CheckboxElementWidget> {
     if (widget.elParams.p.enableTapLabel) {
       return InkWell(
         key: widget.elParams.p.enableTapInkWellParams.key,
-        onTap: widget.elParams.p.isEnabled
+        onTap: widget.elParams.p.isEnabled &&
+                !widget.elParams.p.disabledIndexes.contains(index)
             ? () {
                 _onTapCallback(index);
               }
@@ -239,7 +253,8 @@ class _CheckboxElementWidgetState extends State<_CheckboxElementWidget> {
         highlightColor: widget.elParams.p.enableParams!.highlightColor,
         splashColor: widget.elParams.p.enableParams!.splashColor,
         disabledColor: widget.elParams.p.enableParams!.disabledColor,
-        onPressed: widget.elParams.p.isEnabled
+        onPressed: widget.elParams.p.isEnabled &&
+                !widget.elParams.p.disabledIndexes.contains(index)
             ? () {
                 _onTapCallback(index);
               }
@@ -269,7 +284,8 @@ class _CheckboxElementWidgetState extends State<_CheckboxElementWidget> {
         highlightColor: widget.elParams.p.enableParams!.highlightColor,
         splashColor: widget.elParams.p.enableParams!.splashColor,
         disabledColor: widget.elParams.p.enableParams!.disabledColor,
-        onPressed: widget.elParams.p.isEnabled
+        onPressed: widget.elParams.p.isEnabled &&
+                !widget.elParams.p.disabledIndexes.contains(index)
             ? () {
                 _onTapCallback(index);
               }
@@ -303,7 +319,8 @@ class _CheckboxElementWidgetState extends State<_CheckboxElementWidget> {
         highlightColor: widget.elParams.p.disableParams!.highlightColor,
         splashColor: widget.elParams.p.disableParams!.splashColor,
         disabledColor: widget.elParams.p.disableParams!.disabledColor,
-        onPressed: widget.elParams.p.isEnabled
+        onPressed: widget.elParams.p.isEnabled &&
+                !widget.elParams.p.disabledIndexes.contains(index)
             ? () {
                 _onTapCallback(index);
               }
@@ -333,7 +350,8 @@ class _CheckboxElementWidgetState extends State<_CheckboxElementWidget> {
         highlightColor: widget.elParams.p.disableParams!.highlightColor,
         splashColor: widget.elParams.p.disableParams!.splashColor,
         disabledColor: widget.elParams.p.disableParams!.disabledColor,
-        onPressed: widget.elParams.p.isEnabled
+        onPressed: widget.elParams.p.isEnabled &&
+                !widget.elParams.p.disabledIndexes.contains(index)
             ? () {
                 _onTapCallback(index);
               }

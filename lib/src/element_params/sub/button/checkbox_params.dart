@@ -68,4 +68,6 @@ class CheckboxParams {
   // The icon position.
   bool isPrefixIcon = true;
   bool isEnabled = true;
+  // Buttons for indexes included in this list will be disabled.
+  List<int> disabledIndexes = [];
 }
