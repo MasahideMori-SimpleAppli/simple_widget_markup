@@ -87,9 +87,9 @@ class SwitchBtnElement extends SpWMLElement {
   /// * [selected] : The icon for selected state.
   /// * [nonSelected] : The icon for non-selected state.
   void setSwitchIcon(IconData? selected, IconData? nonSelected) {
-    elParams.p.thumbIcon = MaterialStateProperty.resolveWith<Icon?>(
-      (Set<MaterialState> states) {
-        if (states.contains(MaterialState.selected)) {
+    elParams.p.thumbIcon = WidgetStateProperty.resolveWith<Icon?>(
+      (Set<WidgetState> states) {
+        if (states.contains(WidgetState.selected)) {
           return Icon(selected);
         }
         return Icon(nonSelected);

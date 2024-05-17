@@ -29,7 +29,7 @@ class NormalBtnParams {
   FocusNode? focusNode;
   bool? autofocus;
   Clip? clipBehavior;
-  MaterialStatesController? statesController;
+  WidgetStatesController? statesController;
   Widget? icon;
   Widget? label;
 }
@@ -85,7 +85,7 @@ class InkWellParams {
   Color? focusColor;
   Color? hoverColor;
   Color? highlightColor;
-  MaterialStateProperty<Color?>? overlayColor;
+  WidgetStateProperty<Color?>? overlayColor;
   Color? splashColor;
   InteractiveInkFeatureFactory? splashFactory;
   double? radius;
@@ -97,7 +97,7 @@ class InkWellParams {
   bool canRequestFocus = true;
   void Function(bool)? onFocusChange;
   bool autofocus = false;
-  MaterialStatesController? statesController;
+  WidgetStatesController? statesController;
 }
 
 ///

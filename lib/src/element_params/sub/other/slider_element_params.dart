@@ -40,7 +40,7 @@ class SliderParams {
   Color? inactiveColor;
   Color? secondaryActiveColor;
   Color? thumbColor;
-  MaterialStateProperty<Color?>? overlayColor;
+  WidgetStateProperty<Color?>? overlayColor;
   MouseCursor? mouseCursor;
   String Function(double)? semanticFormatterCallback;
   FocusNode? focusNode;
