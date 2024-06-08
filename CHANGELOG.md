@@ -1,3 +1,7 @@
+## 30.1.0
+
+* Added buildNonWrap method to SpWMLBuilder.
+
 ## 30.0.0
 
 * In line with Flutter updates, MaterialState has been replaced with WidgetState. Properties are also changed in the same way.
