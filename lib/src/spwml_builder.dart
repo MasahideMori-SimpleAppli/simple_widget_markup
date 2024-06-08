@@ -260,6 +260,22 @@ class SpWMLBuilder {
         ));
   }
 
+  /// (en)Builds without wrapping in containers and columns.
+  /// In other words, the SpWML to be built must be configured to
+  /// have only one parent element.
+  /// Also, key, margin, padding, mainAA, crossAA, and mainAS will be disabled.
+  ///
+  /// (ja)コンテナとカラムでラップせずにビルドします。
+  /// つまり、ビルド対象のSpWMLは１つだけの親要素を持つように構成する必要があります。
+  /// また、key, margin, padding, mainAA, crossAA, mainASが無効になります。
+  ///
+  /// * [context] : Build Context.
+  ///
+  /// Returns Widget.
+  Widget buildNonWrap(BuildContext context) {
+    return _getStructuralWidget(context).first;
+  }
+
   /// (en)The manager class is automatically set using the sid set in the layout as a key.
   ///
   /// (ja)レイアウトに設定されているsidをキーとして、マネージャークラスを自動設定します。
