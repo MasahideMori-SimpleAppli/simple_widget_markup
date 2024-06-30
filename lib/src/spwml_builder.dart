@@ -310,8 +310,8 @@ class SpWMLBuilder {
                 -1,
                 -1,
                 SpWMLInfo(
-                    errorHint: 'TextFieldManager is not set. ' +
-                        ((info != null) ? info!.errorHint : "")));
+                    errorHint:
+                        'TextFieldManager is not set. ${(info != null) ? info!.errorHint : ""}'));
           }
         }
         if (i.type == EnumSpWMLElementType.dropdownBtn) {
@@ -324,8 +324,8 @@ class SpWMLBuilder {
                 -1,
                 -1,
                 SpWMLInfo(
-                    errorHint: 'IndexManager is not set. ' +
-                        ((info != null) ? info!.errorHint : "")));
+                    errorHint:
+                        'IndexManager is not set. ${(info != null) ? info!.errorHint : ""}'));
           }
         } else if (i.type == EnumSpWMLElementType.popupMenuBtn) {
           PopupMenuBtnElement elm = i as PopupMenuBtnElement;
@@ -337,8 +337,8 @@ class SpWMLBuilder {
                 -1,
                 -1,
                 SpWMLInfo(
-                    errorHint: 'IndexManager is not set. ' +
-                        ((info != null) ? info!.errorHint : "")));
+                    errorHint:
+                        'IndexManager is not set. ${(info != null) ? info!.errorHint : ""}'));
           }
         } else if (i.type == EnumSpWMLElementType.radioBtn) {
           RadioBtnElement elm = i as RadioBtnElement;
@@ -350,8 +350,8 @@ class SpWMLBuilder {
                 -1,
                 -1,
                 SpWMLInfo(
-                    errorHint: 'IndexManager is not set. ' +
-                        ((info != null) ? info!.errorHint : "")));
+                    errorHint:
+                        'IndexManager is not set. ${(info != null) ? info!.errorHint : ""}'));
           }
         }
         if (i.type == EnumSpWMLElementType.switchBtn) {
@@ -364,8 +364,8 @@ class SpWMLBuilder {
                 -1,
                 -1,
                 SpWMLInfo(
-                    errorHint: 'FlagManager is not set. ' +
-                        ((info != null) ? info!.errorHint : "")));
+                    errorHint:
+                        'FlagManager is not set. ${(info != null) ? info!.errorHint : ""}'));
           }
         }
         if (i.type == EnumSpWMLElementType.segmentedBtn) {
@@ -378,8 +378,8 @@ class SpWMLBuilder {
                 -1,
                 -1,
                 SpWMLInfo(
-                    errorHint: 'MultiIndexManager is not set. ' +
-                        ((info != null) ? info!.errorHint : "")));
+                    errorHint:
+                        'MultiIndexManager is not set. ${(info != null) ? info!.errorHint : ""}'));
           }
         }
         if (i.type == EnumSpWMLElementType.checkbox) {
@@ -392,8 +392,8 @@ class SpWMLBuilder {
                 -1,
                 -1,
                 SpWMLInfo(
-                    errorHint: 'MultiFlagManager is not set. ' +
-                        ((info != null) ? info!.errorHint : "")));
+                    errorHint:
+                        'MultiFlagManager is not set. ${(info != null) ? info!.errorHint : ""}'));
           }
         }
         if (i.type == EnumSpWMLElementType.progressIndicator) {
@@ -406,8 +406,8 @@ class SpWMLBuilder {
                 -1,
                 -1,
                 SpWMLInfo(
-                    errorHint: 'ValueManager is not set. ' +
-                        ((info != null) ? info!.errorHint : "")));
+                    errorHint:
+                        'ValueManager is not set. ${(info != null) ? info!.errorHint : ""}'));
           }
         } else if (i.type == EnumSpWMLElementType.slider) {
           SliderElement elm = i as SliderElement;
@@ -419,8 +419,8 @@ class SpWMLBuilder {
                 -1,
                 -1,
                 SpWMLInfo(
-                    errorHint: 'ValueManager is not set. ' +
-                        ((info != null) ? info!.errorHint : "")));
+                    errorHint:
+                        'ValueManager is not set. ${(info != null) ? info!.errorHint : ""}'));
           }
         }
       }
