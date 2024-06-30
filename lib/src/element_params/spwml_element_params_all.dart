@@ -25,6 +25,7 @@ export 'sub/structure/span_params.dart';
 export 'sub/structure/stack_params.dart';
 export 'sub/structure/table_params.dart';
 export 'sub/structure/table_row_params.dart';
+export 'sub/structure/tooltip_params.dart';
 export 'sub/structure/wrap_params.dart';
 export 'sub/text/href_params.dart';
 export 'sub/text/ruby_text_params.dart';
