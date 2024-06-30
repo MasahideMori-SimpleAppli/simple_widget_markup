@@ -34,7 +34,8 @@ class CircleAvatarElement extends SingleChildElement {
       SpWMLFontStyle style,
       SpWMLInfo? info,
       BlockElementChild child,
-      this.elParams)
+      this.elParams,
+      {super.key})
       : super(serial, EnumSpWMLElementType.circleAvatar, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, child);
 

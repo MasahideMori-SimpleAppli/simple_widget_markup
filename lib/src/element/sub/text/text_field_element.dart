@@ -35,7 +35,8 @@ class TextFieldElement extends TextElement {
       SpWMLFontStyle style,
       SpWMLInfo? info,
       TextParamsWrapper textParams,
-      this.tfParams)
+      this.tfParams,
+      {super.key})
       : super(serial, EnumSpWMLElementType.textField, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, textParams);
 
@@ -225,8 +226,7 @@ class _TextFieldElementWidget extends StatefulWidget {
   final TextFieldElement parent;
   final TextFieldParamsWrapper tfParams;
 
-  const _TextFieldElementWidget(this.parent, this.tfParams, {Key? key})
-      : super(key: key);
+  const _TextFieldElementWidget(this.parent, this.tfParams);
 
   @override
   State<_TextFieldElementWidget> createState() =>

@@ -41,7 +41,8 @@ class RubyTextElement extends TextElement {
       SpWMLFontStyle style,
       SpWMLInfo? info,
       TextParamsWrapper textParams,
-      this.rubyParams)
+      this.rubyParams,
+      {super.key})
       : super(serial, EnumSpWMLElementType.ruby, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, textParams);
 

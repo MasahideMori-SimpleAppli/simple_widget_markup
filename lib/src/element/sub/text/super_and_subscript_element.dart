@@ -28,19 +28,18 @@ class SuperAndSubscriptElement extends TextElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   SuperAndSubscriptElement(
-      int serial,
-      EnumSpWMLElementType type,
-      Map<String, String> params,
-      SpWMLParamsWrapper spwmlParams,
-      int parentSerial,
-      int lineStart,
-      int lineEnd,
-      SpWMLFontStyle style,
-      SpWMLInfo? info,
-      TextParamsWrapper textParams,
-      this.elParams)
-      : super(serial, type, params, spwmlParams, parentSerial, lineStart,
-            lineEnd, style, info, textParams);
+      super.serial,
+      super.type,
+      super.params,
+      super.spwmlParams,
+      super.parentSerial,
+      super.lineStart,
+      super.lineEnd,
+      super.style,
+      super.info,
+      super.textParams,
+      this.elParams,
+      {super.key});
 
   /// Get this class name.
   @override

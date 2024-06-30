@@ -38,7 +38,8 @@ class VLineElement extends SpWMLElement {
       int lineEnd,
       SpWMLFontStyle style,
       SpWMLInfo? info,
-      this.elParams)
+      this.elParams,
+      {super.key})
       : super(serial, EnumSpWMLElementType.vline, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info);
 

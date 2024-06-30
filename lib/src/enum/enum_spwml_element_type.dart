@@ -19,6 +19,7 @@ enum EnumSpWMLElementType {
   popupMenuBtn,
   circleAvatar,
   badge,
+  tooltip,
   // common
   text,
   menu,

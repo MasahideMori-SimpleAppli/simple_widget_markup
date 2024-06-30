@@ -43,7 +43,8 @@ class ScrollElement extends SingleChildElement {
       SpWMLFontStyle style,
       SpWMLInfo? info,
       BlockElementChild child,
-      this.elParams)
+      this.elParams,
+      {super.key})
       : super(serial, EnumSpWMLElementType.scroll, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, child);
 

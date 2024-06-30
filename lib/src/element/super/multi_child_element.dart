@@ -1,8 +1,4 @@
 import '../../element_params/element_child.dart';
-import '../../element_params/spwml_info.dart';
-import '../../element_params/super/spwml_params.dart';
-import '../../enum/enum_spwml_element_type.dart';
-import '../../style/spwml_font_style.dart';
 import 'spwml_element.dart';
 
 ///
@@ -29,18 +25,17 @@ class MultiChildElement extends SpWMLElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   MultiChildElement(
-      int serial,
-      EnumSpWMLElementType type,
-      Map<String, String> params,
-      SpWMLParamsWrapper spwmlParams,
-      int parentSerial,
-      int lineStart,
-      int lineEnd,
-      SpWMLFontStyle style,
-      SpWMLInfo? info,
-      this.children)
-      : super(serial, type, params, spwmlParams, parentSerial, lineStart,
-            lineEnd, style, info);
+      super.serial,
+      super.type,
+      super.params,
+      super.spwmlParams,
+      super.parentSerial,
+      super.lineStart,
+      super.lineEnd,
+      super.style,
+      super.info,
+      this.children,
+      {super.key});
 
   /// Get this class name.
   @override

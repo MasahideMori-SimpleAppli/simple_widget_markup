@@ -41,7 +41,8 @@ class SpWMLElement extends StatelessWidget {
       this.lineStart,
       this.lineEnd,
       this.style,
-      this.info)
+      this.info,
+      {super.key})
       : params = _setParam(type, param, lineStart, lineEnd, info);
 
   /// Get this class name.
@@ -330,28 +331,35 @@ class SpWMLElement extends StatelessWidget {
   }
 
   /// Wrap if necessary.
+  /// Features such as containers and inks are disabled in the tooltip.
+  ///
   /// * [child] : The child widget.
   @protected
   Widget container(Widget child) {
-    return Container(
-      key: spwmlParams.p.containerParams!.key,
-      alignment: spwmlParams.p.containerParams!.alignment,
-      foregroundDecoration: spwmlParams.p.containerParams!.foregroundDecoration,
-      width: spwmlParams.p.containerParams!.width,
-      height: spwmlParams.p.containerParams!.height,
-      constraints: spwmlParams.p.containerParams!.constraints,
-      margin: spwmlParams.p.containerParams!.margin,
-      transform: spwmlParams.p.containerParams!.transform,
-      transformAlignment: spwmlParams.p.containerParams!.transformAlignment,
-      clipBehavior: spwmlParams.p.containerParams!.clipBehavior,
-      child: Ink(
-          color: spwmlParams.p.containerParams!.decoration == null
-              ? spwmlParams.p.containerParams!.color
-              : null,
-          decoration: spwmlParams.p.containerParams!.decoration,
-          child: Container(
-              padding: spwmlParams.p.containerParams!.padding, child: child)),
-    );
+    if (type == EnumSpWMLElementType.tooltip) {
+      return child;
+    } else {
+      return Container(
+        key: spwmlParams.p.containerParams!.key,
+        alignment: spwmlParams.p.containerParams!.alignment,
+        foregroundDecoration:
+            spwmlParams.p.containerParams!.foregroundDecoration,
+        width: spwmlParams.p.containerParams!.width,
+        height: spwmlParams.p.containerParams!.height,
+        constraints: spwmlParams.p.containerParams!.constraints,
+        margin: spwmlParams.p.containerParams!.margin,
+        transform: spwmlParams.p.containerParams!.transform,
+        transformAlignment: spwmlParams.p.containerParams!.transformAlignment,
+        clipBehavior: spwmlParams.p.containerParams!.clipBehavior,
+        child: Ink(
+            color: spwmlParams.p.containerParams!.decoration == null
+                ? spwmlParams.p.containerParams!.color
+                : null,
+            decoration: spwmlParams.p.containerParams!.decoration,
+            child: Container(
+                padding: spwmlParams.p.containerParams!.padding, child: child)),
+      );
+    }
   }
 
   /// If true, this widget need transform.

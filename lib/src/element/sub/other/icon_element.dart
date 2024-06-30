@@ -39,7 +39,8 @@ class IconElement extends SpWMLElement {
       int lineEnd,
       SpWMLFontStyle style,
       SpWMLInfo? info,
-      this.elParams)
+      this.elParams,
+      {super.key})
       : super(serial, EnumSpWMLElementType.icon, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info);
 

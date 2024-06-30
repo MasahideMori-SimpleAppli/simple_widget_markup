@@ -41,7 +41,8 @@ class WrapElement extends MultiChildElement {
       SpWMLFontStyle style,
       SpWMLInfo? info,
       StructureElementChildren children,
-      this.elParams)
+      this.elParams,
+      {super.key})
       : super(serial, EnumSpWMLElementType.wrap, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, children);
 

@@ -35,7 +35,8 @@ class CheckboxElement extends MultiChildElement {
       SpWMLFontStyle style,
       SpWMLInfo? info,
       StructureElementChildren children,
-      this.elParams)
+      this.elParams,
+      {super.key})
       : super(serial, EnumSpWMLElementType.checkbox, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, children);
 

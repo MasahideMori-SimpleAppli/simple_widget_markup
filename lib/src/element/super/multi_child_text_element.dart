@@ -41,7 +41,8 @@ class MultiChildTextElement extends TextElement {
       SpWMLFontStyle style,
       SpWMLInfo? info,
       this.children,
-      TextParamsWrapper textParams)
+      TextParamsWrapper textParams,
+      {super.key})
       : super(serial, type, params, spwmlParams, parentSerial, lineStart,
             lineEnd, style, info, textParams);
 

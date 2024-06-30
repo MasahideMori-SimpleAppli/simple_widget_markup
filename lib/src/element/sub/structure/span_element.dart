@@ -37,7 +37,8 @@ class SpanElement extends MultiChildTextElement {
       SpWMLInfo? info,
       StructureElementChildren children,
       TextParamsWrapper textParams,
-      this.elParams)
+      this.elParams,
+      {super.key})
       : super(
             serial,
             EnumSpWMLElementType.span,

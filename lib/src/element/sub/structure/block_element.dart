@@ -35,7 +35,8 @@ class BlockElement extends SingleChildElement {
       int lineEnd,
       SpWMLFontStyle style,
       SpWMLInfo? info,
-      BlockElementChild child)
+      BlockElementChild child,
+      {super.key})
       : super(serial, EnumSpWMLElementType.block, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, child);
 

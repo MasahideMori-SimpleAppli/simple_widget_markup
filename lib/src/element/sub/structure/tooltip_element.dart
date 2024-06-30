@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../../../simple_widget_markup.dart';
-import '../../../element_params/sub/structure/tooltip_params.dart';
 
 ///
 /// (en) The tooltip.
@@ -36,7 +35,8 @@ class TooltipElement extends SingleChildTextElement {
       SpWMLInfo? info,
       BlockElementChild child,
       TextParamsWrapper textParams,
-      this.elParams)
+      this.elParams,
+      {super.key})
       : super(serial, EnumSpWMLElementType.tooltip, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, child, textParams);
 

@@ -35,7 +35,8 @@ class ImgElement extends SpWMLElement {
       int lineEnd,
       SpWMLFontStyle style,
       SpWMLInfo? info,
-      this.elParams)
+      this.elParams,
+      {super.key})
       : super(serial, EnumSpWMLElementType.img, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info);
 

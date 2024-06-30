@@ -35,7 +35,8 @@ class BadgeElement extends SingleChildTextElement {
       SpWMLInfo? info,
       BlockElementChild child,
       TextParamsWrapper textParams,
-      this.elParams)
+      this.elParams,
+      {super.key})
       : super(serial, EnumSpWMLElementType.badge, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, child, textParams);
 

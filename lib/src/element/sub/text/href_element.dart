@@ -36,7 +36,8 @@ class HrefElement extends TextElement {
       SpWMLFontStyle style,
       SpWMLInfo? info,
       TextParamsWrapper textParams,
-      this.elParams)
+      this.elParams,
+      {super.key})
       : super(serial, EnumSpWMLElementType.href, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, textParams);
 

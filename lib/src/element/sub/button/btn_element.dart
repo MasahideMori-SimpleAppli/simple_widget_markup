@@ -47,7 +47,8 @@ class BtnElement extends SingleChildTextElement {
       SpWMLInfo? info,
       BlockElementChild child,
       TextParamsWrapper textParams,
-      this.elParams)
+      this.elParams,
+      {super.key})
       : super(serial, EnumSpWMLElementType.btn, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, child, textParams);
 

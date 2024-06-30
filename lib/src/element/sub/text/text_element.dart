@@ -25,18 +25,17 @@ class TextElement extends SpWMLElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   TextElement(
-      int serial,
-      EnumSpWMLElementType type,
-      Map<String, String> params,
-      SpWMLParamsWrapper spwmlParams,
-      int parentSerial,
-      int lineStart,
-      int lineEnd,
-      SpWMLFontStyle style,
-      SpWMLInfo? info,
-      this.textParams)
-      : super(serial, type, params, spwmlParams, parentSerial, lineStart,
-            lineEnd, style, info);
+      super.serial,
+      super.type,
+      super.params,
+      super.spwmlParams,
+      super.parentSerial,
+      super.lineStart,
+      super.lineEnd,
+      super.style,
+      super.info,
+      this.textParams,
+      {super.key});
 
   /// Get this class name.
   @override
