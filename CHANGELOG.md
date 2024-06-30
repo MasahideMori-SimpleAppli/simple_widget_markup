@@ -1,3 +1,7 @@
+## 30.2.0
+
+* Added TooltipElement.
+
 ## 30.1.1
 
 * Updates associated with base library updates.
