@@ -213,6 +213,19 @@ class UtilElement {
           info,
           StructureElementChildren(),
           StackParamsWrapper(StackParams()));
+    } else if (eType == EnumSpWMLElementType.tooltip) {
+      r = TooltipElement(
+          serial,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          BlockElementChild(),
+          TextParamsWrapper(TextParams()),
+          TooltipParamsWrapper(TooltipParams()));
     } else if (eType == EnumSpWMLElementType.wrap) {
       r = WrapElement(
           serial,
