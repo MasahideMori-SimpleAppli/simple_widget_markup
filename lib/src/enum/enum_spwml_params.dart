@@ -140,7 +140,10 @@ enum EnumSpWMLParams {
   // badge
   smallSize,
   offsetX,
+  // badge and tooltip
   offsetY,
+  // tooltip
+  triggerMode,
   // col and row
   mainAxisSize,
   // ユーザーのテキストのサイズ設定を反映するかどうかのフラグ。
@@ -501,6 +504,16 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           return MainAxisSize.max;
         } else if (v == "min") {
           return MainAxisSize.min;
+        } else {
+          throw Exception();
+        }
+      } else if (this == EnumSpWMLParams.triggerMode) {
+        if (v == "longPress") {
+          return TooltipTriggerMode.longPress;
+        } else if (v == "manual") {
+          return TooltipTriggerMode.manual;
+        } else if (v == "tap") {
+          return TooltipTriggerMode.tap;
         } else {
           throw Exception();
         }
