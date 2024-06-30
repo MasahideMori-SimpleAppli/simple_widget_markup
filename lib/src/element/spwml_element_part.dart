@@ -28,6 +28,7 @@ export 'sub/structure/span_element.dart';
 export 'sub/structure/stack_element.dart';
 export 'sub/structure/table_element.dart';
 export 'sub/structure/table_row_element.dart';
+export 'sub/structure/tooltip_element.dart';
 export 'sub/structure/wrap_element.dart';
 export 'sub/text/href_element.dart';
 export 'sub/text/ruby_text_element.dart';
