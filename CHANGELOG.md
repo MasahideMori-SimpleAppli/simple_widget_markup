@@ -1,3 +1,7 @@
+## 30.2.1
+
+* Fixed lints dependency.
+
 ## 30.2.0
 
 * Added TooltipElement.
