@@ -142,11 +142,14 @@ class ProgressIndicatorElement extends SpWMLElement {
   ///
   /// (ja) 状態を管理するマネージャクラスを設定します。
   /// * [m] : Manager class.
-  void setManager(ValueManager m) {
+  /// * [sid] : This element sid.
+  void setManager(ValueManager m, String sid) {
     if (elParams.p.indicatorType == EnumIndicatorType.circular) {
       elParams.p.circularProgressIndicatorParams!.manager = m;
+      elParams.p.circularProgressIndicatorParams!.manager!.getValue(sid, initialValue: null);
     } else {
       elParams.p.linearProgressIndicatorParams!.manager = m;
+      elParams.p.linearProgressIndicatorParams!.manager!.getValue(sid, initialValue: null);
     }
   }
 }

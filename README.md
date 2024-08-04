@@ -17,6 +17,11 @@ Below is detailed documentation.
 You can try how it works on the following sites.  
 [SpWML Editor](https://simple-widget-markup-editor.web.app/)
 
+The states of text fields, dropdowns, etc. are managed by the following manager classes,
+so no special operations are required.  
+If you want to send user input values to the server, you can serialize the manager classes.  
+[simple_managers](https://pub.dev/packages/simple_managers)
+
 ### Sample code
 ```dart
 import 'package:flutter/material.dart';

@@ -115,8 +115,10 @@ class SwitchBtnElement extends SpWMLElement {
   ///
   /// (ja) 状態を管理するマネージャクラスを設定します。
   /// * [m] : Manager class.
-  void setManager(FlagManager m) {
+  /// * [sid] : This element sid.
+  void setManager(FlagManager m, String sid) {
     elParams.p.manager = m;
+    elParams.p.manager!.getFlag(sid, initialValue: false);
   }
 
   /// (en) Enable/disable this button.

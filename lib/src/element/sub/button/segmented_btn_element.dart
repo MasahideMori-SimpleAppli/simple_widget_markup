@@ -102,8 +102,10 @@ class SegmentedBtnElement extends MultiChildElement {
   ///
   /// (ja) 状態を管理するマネージャクラスを設定します。
   /// * [m] : Manager class.
-  void setManager(MultiIndexManager m) {
+  /// * [sid] : This element sid.
+  void setManager(MultiIndexManager m, String sid) {
     elParams.p.manager = m;
+    elParams.p.manager!.getIndexSet(sid);
   }
 
   /// (en) Enable/disable this button.

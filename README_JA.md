@@ -16,6 +16,10 @@ SpWMLで出力したファイルの拡張子は簡単のために .spwml を使�
 以下のサイトでどのように動作するのか試すことが出来ます。  
 [SpWMLエディター](https://simple-widget-markup-editor.web.app/)
 
+テキストフィールドやドロップダウンなどの状態は、以下のマネージャークラスによって管理されるため特別な操作は不要です。  
+ユーザーの入力値をサーバーに送信したい場合は、マネージャークラスをシリアライズできます。  
+[simple_managers](https://pub.dev/packages/simple_managers)
+
 ### サンプルコード
 ```dart
 import 'package:flutter/material.dart';

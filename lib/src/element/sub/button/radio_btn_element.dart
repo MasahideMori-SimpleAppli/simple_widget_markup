@@ -127,8 +127,10 @@ class RadioBtnElement extends MultiChildElement {
   ///
   /// (ja) 状態を管理するマネージャクラスを設定します。
   /// * [m] : Manager class.
-  void setManager(IndexManager m) {
+  /// * [sid] : This element sid.
+  void setManager(IndexManager m, String sid) {
     elParams.p.manager = m;
+    elParams.p.manager!.getIndex(sid, initialValue: 0);
   }
 
   /// (en) Enable/disable this button.

@@ -1,3 +1,8 @@
+## 31.0.0
+
+* Updates associated with base library updates.
+* When the view is displayed, the values of each SID in the manager class are now properly initialized. This means that when serialized manager, if the screen has been displayed at least once, the SID name and its value are always saved.
+
 ## 30.2.1
 
 * Fixed lints dependency.

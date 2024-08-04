@@ -139,8 +139,11 @@ class CheckboxElement extends MultiChildElement {
   ///
   /// (ja) 状態を管理するマネージャクラスを設定します。
   /// * [m] : Manager class.
-  void setManager(MultiFlagManager m) {
+  /// * [sid] : This element sid.
+  void setManager(MultiFlagManager m, String sid) {
     elParams.p.manager = m;
+    // このエレメントはビルドした時に子ビューが確定し、初期化されるのでここでの初期化は不要。
+    // elParams.p.manager!.getFlags(sid, initialValues: null);
   }
 
   /// (en) Enable/disable this button.

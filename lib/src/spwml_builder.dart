@@ -317,7 +317,7 @@ class SpWMLBuilder {
         if (i.type == EnumSpWMLElementType.dropdownBtn) {
           DropdownBtnElement elm = i as DropdownBtnElement;
           if (im != null) {
-            elm.setManager(im);
+            elm.setManager(im, sid);
           } else {
             throw SpWMLException(
                 EnumSpWMLExceptionType.noManagerException,
@@ -330,7 +330,7 @@ class SpWMLBuilder {
         } else if (i.type == EnumSpWMLElementType.popupMenuBtn) {
           PopupMenuBtnElement elm = i as PopupMenuBtnElement;
           if (im != null) {
-            elm.setManager(im);
+            elm.setManager(im, sid);
           } else {
             throw SpWMLException(
                 EnumSpWMLExceptionType.noManagerException,
@@ -343,7 +343,7 @@ class SpWMLBuilder {
         } else if (i.type == EnumSpWMLElementType.radioBtn) {
           RadioBtnElement elm = i as RadioBtnElement;
           if (im != null) {
-            elm.setManager(im);
+            elm.setManager(im, sid);
           } else {
             throw SpWMLException(
                 EnumSpWMLExceptionType.noManagerException,
@@ -357,7 +357,7 @@ class SpWMLBuilder {
         if (i.type == EnumSpWMLElementType.switchBtn) {
           SwitchBtnElement elm = i as SwitchBtnElement;
           if (fm != null) {
-            elm.setManager(fm);
+            elm.setManager(fm, sid);
           } else {
             throw SpWMLException(
                 EnumSpWMLExceptionType.noManagerException,
@@ -371,7 +371,7 @@ class SpWMLBuilder {
         if (i.type == EnumSpWMLElementType.segmentedBtn) {
           SegmentedBtnElement elm = i as SegmentedBtnElement;
           if (mim != null) {
-            elm.setManager(mim);
+            elm.setManager(mim, sid);
           } else {
             throw SpWMLException(
                 EnumSpWMLExceptionType.noManagerException,
@@ -385,7 +385,7 @@ class SpWMLBuilder {
         if (i.type == EnumSpWMLElementType.checkbox) {
           CheckboxElement elm = i as CheckboxElement;
           if (mfm != null) {
-            elm.setManager(mfm);
+            elm.setManager(mfm, sid);
           } else {
             throw SpWMLException(
                 EnumSpWMLExceptionType.noManagerException,
@@ -399,7 +399,7 @@ class SpWMLBuilder {
         if (i.type == EnumSpWMLElementType.progressIndicator) {
           ProgressIndicatorElement elm = i as ProgressIndicatorElement;
           if (vm != null) {
-            elm.setManager(vm);
+            elm.setManager(vm, sid);
           } else {
             throw SpWMLException(
                 EnumSpWMLExceptionType.noManagerException,
@@ -412,7 +412,7 @@ class SpWMLBuilder {
         } else if (i.type == EnumSpWMLElementType.slider) {
           SliderElement elm = i as SliderElement;
           if (vm != null) {
-            elm.setManager(vm);
+            elm.setManager(vm, sid);
           } else {
             throw SpWMLException(
                 EnumSpWMLExceptionType.noManagerException,
