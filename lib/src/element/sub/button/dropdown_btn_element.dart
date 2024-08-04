@@ -173,7 +173,7 @@ class DropdownBtnElement extends MultiChildElement {
   /// * [sid] : This element sid.
   void setManager(IndexManager m, String sid) {
     elParams.p.manager = m;
-    elParams.p.manager!.getIndex(sid, initialValue: null);
+    elParams.p.manager!.getIndex(sid, initialValue: 0);
   }
 
   /// (en) Enable/disable this button.

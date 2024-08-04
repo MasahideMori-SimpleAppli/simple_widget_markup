@@ -1,3 +1,7 @@
+## 31.0.1
+
+* Fixed an issue where the initial value of the DropdownButtonElement was different from before.
+
 ## 31.0.0
 
 * Updates associated with base library updates.

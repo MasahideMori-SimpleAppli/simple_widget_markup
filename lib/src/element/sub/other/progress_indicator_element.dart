@@ -146,10 +146,12 @@ class ProgressIndicatorElement extends SpWMLElement {
   void setManager(ValueManager m, String sid) {
     if (elParams.p.indicatorType == EnumIndicatorType.circular) {
       elParams.p.circularProgressIndicatorParams!.manager = m;
-      elParams.p.circularProgressIndicatorParams!.manager!.getValue(sid, initialValue: null);
+      elParams.p.circularProgressIndicatorParams!.manager!
+          .getValue(sid, initialValue: null);
     } else {
       elParams.p.linearProgressIndicatorParams!.manager = m;
-      elParams.p.linearProgressIndicatorParams!.manager!.getValue(sid, initialValue: null);
+      elParams.p.linearProgressIndicatorParams!.manager!
+          .getValue(sid, initialValue: null);
     }
   }
 }
