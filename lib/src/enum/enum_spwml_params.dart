@@ -166,10 +166,12 @@ enum EnumSpWMLParams {
   minWidth,
   maxHeight,
   maxWidth,
-  // ボタンの有効無効フラグ
+  // ボタンの有効無効フラグ。テキストフィールドでも使用する。
   isEnabled,
   // ラベルの有効無効フラグ
   isLabelVisible,
+  // テキストフィールド専用の値。
+  readOnly,
 }
 
 /// 重複を避けて高速化するために、短縮系だけをまとめたもの。
@@ -461,7 +463,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.isIntValue ||
           this == EnumSpWMLParams.isEnabled ||
           this == EnumSpWMLParams.useTextScaler ||
-          this == EnumSpWMLParams.isLabelVisible) {
+          this == EnumSpWMLParams.isLabelVisible ||
+          this == EnumSpWMLParams.readOnly) {
         if (v == "true") {
           return true;
         } else if (v == "false") {

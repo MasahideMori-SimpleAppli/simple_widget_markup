@@ -50,6 +50,12 @@ class TextFieldElement extends TextElement {
   @override
   TextFieldElement initParams() {
     super.initParams();
+    tfParams.p.enabled = params.containsKey(EnumSpWMLParams.isEnabled)
+        ? params[EnumSpWMLParams.isEnabled]
+        : null;
+    tfParams.p.readOnly = params.containsKey(EnumSpWMLParams.readOnly)
+        ? params[EnumSpWMLParams.readOnly]
+        : false;
     tfParams.p.textAlign = params.containsKey(EnumSpWMLParams.textAlign)
         ? params[EnumSpWMLParams.textAlign]
         : TextAlign.left;

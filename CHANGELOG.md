@@ -1,3 +1,8 @@
+## 31.1,0
+
+* Updates associated with base library updates.
+* Added isEnabled and readOnly params to TextFieldElement.
+
 ## 31.0.1
 
 * Fixed an issue where the initial value of the DropdownButtonElement was different from before.
