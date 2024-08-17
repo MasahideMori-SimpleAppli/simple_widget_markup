@@ -1,4 +1,4 @@
-## 31.1,0
+## 31.1.0
 
 * Updates associated with base library updates.
 * Added isEnabled and readOnly params to TextFieldElement.
