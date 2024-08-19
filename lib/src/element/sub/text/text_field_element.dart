@@ -50,6 +50,14 @@ class TextFieldElement extends TextElement {
   @override
   TextFieldElement initParams() {
     super.initParams();
+    tfParams.p.keyboardType = params.containsKey(EnumSpWMLParams.keyboardType)
+        ? (params[EnumSpWMLParams.keyboardType] as EnumTextFieldKeyboardType)
+            .toTextInputType()
+        : null;
+    tfParams.p.inputFormatters = params.containsKey(EnumSpWMLParams.inputType)
+        ? (params[EnumSpWMLParams.inputType] as EnumTextFieldInputType)
+            .toTextInputFormatter()
+        : null;
     tfParams.p.enabled = params.containsKey(EnumSpWMLParams.isEnabled)
         ? params[EnumSpWMLParams.isEnabled]
         : null;

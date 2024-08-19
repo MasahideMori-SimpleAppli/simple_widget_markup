@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../../simple_widget_markup.dart';
 
 ///
@@ -172,6 +173,8 @@ enum EnumSpWMLParams {
   isLabelVisible,
   // テキストフィールド専用の値。
   readOnly,
+  keyboardType,
+  inputType,
 }
 
 /// 重複を避けて高速化するために、短縮系だけをまとめたもの。
@@ -349,6 +352,13 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
         // speed up code
         else if (this == EnumSpWMLParams.labelText) {
           return v;
+        }
+        // input type
+        else if (this == EnumSpWMLParams.keyboardType) {
+          return EXTEnumTextFieldKeyboardType.fromStr(
+              v, lineStart, lineEnd, info);
+        } else if (this == EnumSpWMLParams.inputType) {
+          return EXTEnumTextFieldInputType.fromStr(v, lineStart, lineEnd, info);
         }
       }
       // btn only

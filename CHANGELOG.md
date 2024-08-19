@@ -1,3 +1,7 @@
+## 31.2.0
+
+* Added keyboardType and inputType params to TextFieldElement.
+
 ## 31.1.0
 
 * Updates associated with base library updates.
