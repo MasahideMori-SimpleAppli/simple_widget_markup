@@ -4,9 +4,15 @@ import 'package:simple_managers/simple_managers.dart';
 import '../../../../simple_widget_markup.dart';
 
 ///
-/// (en) The segmentedBtn.
+/// (en) The segmentedBtn2.
+/// This is a flavor of segmentedBtn that differs in
+/// how it manages the selection.
+/// To use this class, you must set the SID for
+/// all child (immediate descendants only).
 ///
-/// (ja) segmentedBtnの実装。
+/// (ja) segmentedBtn2の実装。
+/// これは、選択内容の管理方法が異なる segmentedBtn の一種です。
+/// このクラスを使用するには、すべての小要素（直下のみ）にSIDを設定する必要があります。
 ///
 class SegmentedBtn2Element extends MultiChildElement {
   final SegmentedBtn2ParamsWrapper elParams;
