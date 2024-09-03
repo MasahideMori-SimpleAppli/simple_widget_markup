@@ -15,7 +15,9 @@ class SpWMLException implements Exception {
   /// Constructor
   /// * [type] : Exception type.
   /// * [lineStart] : Exception occurred line start.
+  /// In case of a runtime exception, the value will be -1.
   /// * [lineEnd] : Exception occurred line end.
+  /// In case of a runtime exception, the value will be -1.
   /// * [info] : A hint when an error occurs.
   /// It is convenient to set when nesting multiple SpWMLs.
   SpWMLException(this.type, this.lineStart, this.lineEnd, this.info);
@@ -44,7 +46,8 @@ enum EnumSpWMLExceptionType {
   elementException,
   tableParamException,
   sidDoesNotExistException,
-  noManagerException
+  noManagerException,
+  childrenSidNotExistException
 }
 
 extension EXTEnumSpWMLExceptionType on EnumSpWMLExceptionType {
@@ -72,6 +75,8 @@ extension EXTEnumSpWMLExceptionType on EnumSpWMLExceptionType {
         return 'Please set sid parameter.';
       case EnumSpWMLExceptionType.noManagerException:
         return 'Please set the required manager class.';
+      case EnumSpWMLExceptionType.childrenSidNotExistException:
+        return 'No SID is set for the child classes of this class.';
     }
   }
 }

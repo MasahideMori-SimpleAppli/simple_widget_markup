@@ -3,12 +3,18 @@ import 'package:simple_managers/simple_managers.dart';
 import '../../../../simple_widget_markup.dart';
 
 ///
-/// (en) The radioBtn.
+/// (en) The checkbox2.
+/// This is a flavor of checkbox that differs in
+/// how it manages the selection.
+/// To use this class, you must set the SID for
+/// all child (immediate descendants only).
 ///
-/// (ja) radioBtnの実装。
+/// (ja) checkbox2の実装。
+/// これは、選択内容の管理方法が異なる checkbox の一種です。
+/// このクラスを使用するには、すべての小要素（直下のみ）にSIDを設定する必要があります。
 ///
-class RadioBtnElement extends MultiChildElement {
-  final RadioBtnParamsWrapper elParams;
+class Checkbox2Element extends MultiChildElement {
+  final Checkbox2ParamsWrapper elParams;
 
   ///
   /// * [serial] : Array Index.
@@ -25,7 +31,7 @@ class RadioBtnElement extends MultiChildElement {
   /// Throws [SpWMLException] : ParamException.
   ///
   /// Throws [SpWMLException] : ParamValueException.
-  RadioBtnElement(
+  Checkbox2Element(
       int serial,
       Map<String, String> params,
       SpWMLParamsWrapper spwmlParams,
@@ -37,24 +43,24 @@ class RadioBtnElement extends MultiChildElement {
       StructureElementChildren children,
       this.elParams,
       {super.key})
-      : super(serial, EnumSpWMLElementType.radioBtn, params, spwmlParams,
+      : super(serial, EnumSpWMLElementType.checkbox2, params, spwmlParams,
             parentSerial, lineStart, lineEnd, style, info, children);
 
   /// Get this class name.
   @override
   String getClassName() {
-    return "RadioBtnElement";
+    return "Checkbox2Element";
   }
 
   /// Initialize the parameters.
   @override
-  RadioBtnElement initParams() {
+  Checkbox2Element initParams() {
     super.initParams();
     elParams.p.isEnabled = params.containsKey(EnumSpWMLParams.isEnabled)
         ? params[EnumSpWMLParams.isEnabled]
         : true;
     SelectableIconBtnParams enabled = SelectableIconBtnParams();
-    enabled.icon = const Icon(Icons.radio_button_checked_outlined);
+    enabled.icon = const Icon(Icons.check_box_outlined);
     enabled.iconSize = params.containsKey(EnumSpWMLParams.iconSize)
         ? params[EnumSpWMLParams.iconSize]!
         : 24;
@@ -66,7 +72,7 @@ class RadioBtnElement extends MultiChildElement {
         : null;
     elParams.p.enableParams = enabled;
     SelectableIconBtnParams disabled = SelectableIconBtnParams();
-    disabled.icon = const Icon(Icons.radio_button_off_outlined);
+    disabled.icon = const Icon(Icons.check_box_outline_blank);
     disabled.iconSize = params.containsKey(EnumSpWMLParams.iconSize)
         ? params[EnumSpWMLParams.iconSize]!
         : 24;
@@ -87,6 +93,7 @@ class RadioBtnElement extends MultiChildElement {
     if (params.containsKey(EnumSpWMLParams.isV3)) {
       elParams.p.enableParams!.isV3 = params[EnumSpWMLParams.isV3];
       elParams.p.disableParams!.isV3 = params[EnumSpWMLParams.isV3];
+      enabled.icon = const Icon(Icons.check_box);
     }
     // SIDが設定されていなければエラー。
     if (getSID() == null) {
@@ -99,14 +106,14 @@ class RadioBtnElement extends MultiChildElement {
   /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
-    return _RadioBtnElementWidget(getSID()!, children, elParams, getShape());
+    return _Checkbox2ElementWidget(getSID()!, children, elParams, getShape());
   }
 
-  /// (en)Set radio button callback.
+  /// (en)Set checkboxes callback.
   ///
-  /// (ja)ラジオボタンのコールバックを設定します。
-  /// * [callback] : The radio button callback.
-  void setCallback(void Function(int? selectedIndex)? callback) {
+  /// (ja)チェックボックスのコールバックを設定します。
+  /// * [callback] : The checkboxes callback.
+  void setCallback(void Function(Set<String>? checkValues)? callback) {
     elParams.p.callback = callback;
   }
 
@@ -114,11 +121,11 @@ class RadioBtnElement extends MultiChildElement {
   ///
   /// (ja) 値を設定します。マネージャークラスが未設定の場合は無効です。
   /// * [v] : value.
-  void setValue(int? v) {
+  void setValue(Set<String> v) {
     if (elParams.p.manager != null) {
       final String? sid = getSID();
       if (sid != null) {
-        elParams.p.manager!.setIndex(sid, v);
+        elParams.p.manager!.setSelectionSet(sid, v);
       }
     }
   }
@@ -128,9 +135,9 @@ class RadioBtnElement extends MultiChildElement {
   /// (ja) 状態を管理するマネージャクラスを設定します。
   /// * [m] : Manager class.
   /// * [sid] : This element sid.
-  void setManager(IndexManager m, String sid) {
+  void setManager(MultiSelectionManager m, String sid) {
     elParams.p.manager = m;
-    elParams.p.manager!.getIndex(sid, initialValue: 0);
+    elParams.p.manager!.getSelectionSet(sid);
   }
 
   /// (en) Enable/disable this button.
@@ -142,55 +149,63 @@ class RadioBtnElement extends MultiChildElement {
     elParams.p.isEnabled = isEnabled;
   }
 
-  /// (en) Specify the button you want to disable by index number.
-  /// If set to empty, all buttons will be enabled.
-  /// However, if disabled with setEnabled, all buttons will remain disabled.
+  /// (en) Specify the checkbox you want to disable by sid Set.
+  /// If set to empty, all checkbox will be enabled.
+  /// However, if disabled with setEnabled, all checkbox will remain disabled.
   ///
-  /// (ja) 無効にしたいボタンをインデックス番号で指定します。
-  /// 空を設定した場合は全てのボタンが有効化されます。
-  /// ただし、setEnabledで無効化された場合は全てのボタンが無効なままになります。
+  /// (ja) 無効にしたいチェックボックスをSIDのSetで指定します。
+  /// 空を設定した場合は全てのチェックボックスが有効化されます。
+  /// ただし、setEnabledで無効化された場合は全てのチェックボックスが無効なままになります。
   ///
-  /// * [indexes] : A list of indexes of buttons you want to disable.
-  void setDisabledIndexes(List<int> indexes) {
-    elParams.p.disabledIndexes = indexes;
+  /// * [sids] : A set of sids for the elements you want to disable.
+  void setDisabledSelections(Set<String> sids) {
+    elParams.p.disabledSelections = sids;
   }
 }
 
-class _RadioBtnElementWidget extends StatefulWidget {
+class _Checkbox2ElementWidget extends StatefulWidget {
   final String sid;
   final StructureElementChildren children;
-  final RadioBtnParamsWrapper elParams;
+  final Checkbox2ParamsWrapper elParams;
   final OutlinedBorder? shape;
 
-  const _RadioBtnElementWidget(
+  const _Checkbox2ElementWidget(
       this.sid, this.children, this.elParams, this.shape);
 
   @override
-  _RadioBtnElementWidgetState createState() => _RadioBtnElementWidgetState();
+  _Checkbox2ElementWidgetState createState() => _Checkbox2ElementWidgetState();
 }
 
-class _RadioBtnElementWidgetState extends State<_RadioBtnElementWidget> {
+class _Checkbox2ElementWidgetState extends State<_Checkbox2ElementWidget> {
   /// The onTap callback.
-  void _onTapCallback(int index) {
+  void _onTapCallback(String targetSID) {
     if (mounted) {
       setState(() {
-        widget.elParams.p.manager!.setIndex(widget.sid, index);
+        final Set<String> mySelection =
+            widget.elParams.p.manager!.getSelectionSet(widget.sid);
+        if (mySelection.contains(targetSID)) {
+          mySelection.remove(targetSID);
+        } else {
+          mySelection.add(targetSID);
+        }
         if (widget.elParams.p.callback != null) {
-          widget.elParams.p.callback!(index);
+          widget.elParams.p.callback!(
+              widget.elParams.p.manager!.getSelectionSet(widget.sid));
         }
       });
     }
   }
 
   /// Return wrapped widget.
-  Widget _getWrap(int index, Widget w) {
+  Widget _getWrap(String targetSID, Widget w) {
+    final bool isDisabledSelection =
+        widget.elParams.p.disabledSelections.contains(targetSID);
     if (widget.elParams.p.enableTapLabel) {
       return InkWell(
         key: widget.elParams.p.enableTapInkWellParams.key,
-        onTap: widget.elParams.p.isEnabled &&
-                !widget.elParams.p.disabledIndexes.contains(index)
+        onTap: widget.elParams.p.isEnabled && !isDisabledSelection
             ? () {
-                _onTapCallback(index);
+                _onTapCallback(targetSID);
               }
             : null,
         onDoubleTap: widget.elParams.p.enableTapInkWellParams.onDoubleTap,
@@ -235,7 +250,9 @@ class _RadioBtnElementWidgetState extends State<_RadioBtnElementWidget> {
     }
   }
 
-  Widget _getIconBtn(int index, SelectableIconBtnParams params) {
+  Widget _getIconBtn(String targetSID, SelectableIconBtnParams params) {
+    final bool isDisabled =
+        widget.elParams.p.disabledSelections.contains(targetSID);
     if (params.isV3) {
       final ColorScheme colors = Theme.of(context).colorScheme;
       return IconButton(
@@ -250,10 +267,9 @@ class _RadioBtnElementWidgetState extends State<_RadioBtnElementWidget> {
         highlightColor: params.highlightColor,
         splashColor: params.splashColor,
         disabledColor: params.disabledColor,
-        onPressed: widget.elParams.p.isEnabled &&
-                !widget.elParams.p.disabledIndexes.contains(index)
+        onPressed: widget.elParams.p.isEnabled && !isDisabled
             ? () {
-                _onTapCallback(index);
+                _onTapCallback(targetSID);
               }
             : null,
         mouseCursor: params.mouseCursor,
@@ -281,10 +297,9 @@ class _RadioBtnElementWidgetState extends State<_RadioBtnElementWidget> {
         highlightColor: params.highlightColor,
         splashColor: params.splashColor,
         disabledColor: params.disabledColor,
-        onPressed: widget.elParams.p.isEnabled &&
-                !widget.elParams.p.disabledIndexes.contains(index)
+        onPressed: widget.elParams.p.isEnabled && !isDisabled
             ? () {
-                _onTapCallback(index);
+                _onTapCallback(targetSID);
               }
             : null,
         mouseCursor: params.mouseCursor,
@@ -301,18 +316,19 @@ class _RadioBtnElementWidgetState extends State<_RadioBtnElementWidget> {
     }
   }
 
-  List<Widget> _getIconAndWidget(int index) {
-    final bool isSelected =
-        widget.elParams.p.manager!.getIndex(widget.sid) == index;
+  List<Widget> _getIconAndWidget(int index, String targetSID) {
+    final bool isSelected = widget.elParams.p.manager!
+        .getSelectionSet(widget.sid)
+        .contains(targetSID);
     if (widget.elParams.p.isPrefixIcon) {
       return [
-        _getIconBtn(index, _getParams(isSelected)),
+        _getIconBtn(targetSID, _getParams(isSelected)),
         widget.children.children[index]
       ];
     } else {
       return [
         Expanded(child: widget.children.children[index]),
-        _getIconBtn(index, _getParams(isSelected)),
+        _getIconBtn(targetSID, _getParams(isSelected))
       ];
     }
   }
@@ -320,12 +336,28 @@ class _RadioBtnElementWidgetState extends State<_RadioBtnElementWidget> {
   Widget _getLayout() {
     List<Widget> r = [];
     for (int i = 0; i < widget.children.children.length; i++) {
+      final Widget w = widget.children.children[i];
+      if (w is! SpWMLElement) {
+        throw SpWMLException(
+            EnumSpWMLExceptionType.childrenSidNotExistException,
+            -1,
+            -1,
+            SpWMLInfo(errorHint: 'checkbox2, sid=${widget.sid}'));
+      }
+      final String? targetSID = w.getSID();
+      if (targetSID == null) {
+        throw SpWMLException(
+            EnumSpWMLExceptionType.childrenSidNotExistException,
+            -1,
+            -1,
+            SpWMLInfo(errorHint: 'checkbox2, sid=${widget.sid}'));
+      }
       r.add(_getWrap(
-          i,
+          targetSID,
           Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: _getIconAndWidget(i))));
+              children: _getIconAndWidget(i, targetSID))));
     }
     return Column(
         mainAxisAlignment: MainAxisAlignment.start,

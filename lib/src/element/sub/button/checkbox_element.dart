@@ -242,152 +242,92 @@ class _CheckboxElementWidgetState extends State<_CheckboxElementWidget> {
     }
   }
 
-  Widget _getEnabledIconBtn(int index) {
-    if (widget.elParams.p.enableParams!.isV3) {
-      final ColorScheme colors = Theme.of(context).colorScheme;
-      return IconButton(
-        iconSize: widget.elParams.p.enableParams!.iconSize,
-        visualDensity: widget.elParams.p.enableParams!.visualDensity,
-        padding: widget.elParams.p.enableParams!.padding,
-        alignment: widget.elParams.p.enableParams!.alignment,
-        splashRadius: widget.elParams.p.enableParams!.splashRadius,
-        color: widget.elParams.p.enableParams!.color ?? colors.primary,
-        focusColor: widget.elParams.p.enableParams!.focusColor,
-        hoverColor: widget.elParams.p.enableParams!.hoverColor,
-        highlightColor: widget.elParams.p.enableParams!.highlightColor,
-        splashColor: widget.elParams.p.enableParams!.splashColor,
-        disabledColor: widget.elParams.p.enableParams!.disabledColor,
-        onPressed: widget.elParams.p.isEnabled &&
-                !widget.elParams.p.disabledIndexes.contains(index)
-            ? () {
-                _onTapCallback(index);
-              }
-            : null,
-        mouseCursor: widget.elParams.p.enableParams!.mouseCursor,
-        focusNode: widget.elParams.p.enableParams!.focusNode,
-        autofocus: widget.elParams.p.enableParams!.autofocus,
-        tooltip: widget.elParams.p.enableParams!.tooltip,
-        enableFeedback: widget.elParams.p.enableParams!.enableFeedback,
-        constraints: widget.elParams.p.enableParams!.constraints,
-        style: widget.elParams.p.enableParams!.style,
-        isSelected: widget.elParams.p.enableParams!.isSelected,
-        selectedIcon: widget.elParams.p.enableParams!.selectedIcon,
-        icon: widget.elParams.p.enableParams!.icon!,
-      );
+  SelectableIconBtnParams _getParams(bool isSelected) {
+    if (isSelected) {
+      return widget.elParams.p.enableParams!;
     } else {
-      return IconButton(
-        key: widget.elParams.p.enableParams!.key,
-        iconSize: widget.elParams.p.enableParams!.iconSize,
-        visualDensity: widget.elParams.p.enableParams!.visualDensity,
-        padding: widget.elParams.p.enableParams!.padding,
-        alignment: widget.elParams.p.enableParams!.alignment,
-        splashRadius: widget.elParams.p.enableParams!.splashRadius,
-        color: widget.elParams.p.enableParams!.color,
-        focusColor: widget.elParams.p.enableParams!.focusColor,
-        hoverColor: widget.elParams.p.enableParams!.hoverColor,
-        highlightColor: widget.elParams.p.enableParams!.highlightColor,
-        splashColor: widget.elParams.p.enableParams!.splashColor,
-        disabledColor: widget.elParams.p.enableParams!.disabledColor,
-        onPressed: widget.elParams.p.isEnabled &&
-                !widget.elParams.p.disabledIndexes.contains(index)
-            ? () {
-                _onTapCallback(index);
-              }
-            : null,
-        mouseCursor: widget.elParams.p.enableParams!.mouseCursor,
-        focusNode: widget.elParams.p.enableParams!.focusNode,
-        autofocus: widget.elParams.p.enableParams!.autofocus,
-        tooltip: widget.elParams.p.enableParams!.tooltip,
-        enableFeedback: widget.elParams.p.enableParams!.enableFeedback,
-        constraints: widget.elParams.p.enableParams!.constraints,
-        style: widget.elParams.p.enableParams!.style,
-        isSelected: widget.elParams.p.enableParams!.isSelected,
-        selectedIcon: widget.elParams.p.enableParams!.selectedIcon,
-        icon: widget.elParams.p.enableParams!.icon!,
-      );
+      return widget.elParams.p.disableParams!;
     }
   }
 
-  Widget _getDisableIconBtn(int index) {
-    if (widget.elParams.p.disableParams!.isV3) {
+  Widget _getIconBtn(int index, SelectableIconBtnParams params) {
+    if (params.isV3) {
       final ColorScheme colors = Theme.of(context).colorScheme;
       return IconButton(
-        iconSize: widget.elParams.p.disableParams!.iconSize,
-        visualDensity: widget.elParams.p.disableParams!.visualDensity,
-        padding: widget.elParams.p.disableParams!.padding,
-        alignment: widget.elParams.p.disableParams!.alignment,
-        splashRadius: widget.elParams.p.disableParams!.splashRadius,
-        color: widget.elParams.p.disableParams!.color ?? colors.primary,
-        focusColor: widget.elParams.p.disableParams!.focusColor,
-        hoverColor: widget.elParams.p.disableParams!.hoverColor,
-        highlightColor: widget.elParams.p.disableParams!.highlightColor,
-        splashColor: widget.elParams.p.disableParams!.splashColor,
-        disabledColor: widget.elParams.p.disableParams!.disabledColor,
+        iconSize: params.iconSize,
+        visualDensity: params.visualDensity,
+        padding: params.padding,
+        alignment: params.alignment,
+        splashRadius: params.splashRadius,
+        color: params.color ?? colors.primary,
+        focusColor: params.focusColor,
+        hoverColor: params.hoverColor,
+        highlightColor: params.highlightColor,
+        splashColor: params.splashColor,
+        disabledColor: params.disabledColor,
         onPressed: widget.elParams.p.isEnabled &&
                 !widget.elParams.p.disabledIndexes.contains(index)
             ? () {
                 _onTapCallback(index);
               }
             : null,
-        mouseCursor: widget.elParams.p.disableParams!.mouseCursor,
-        focusNode: widget.elParams.p.disableParams!.focusNode,
-        autofocus: widget.elParams.p.disableParams!.autofocus,
-        tooltip: widget.elParams.p.disableParams!.tooltip,
-        enableFeedback: widget.elParams.p.disableParams!.enableFeedback,
-        constraints: widget.elParams.p.disableParams!.constraints,
-        style: widget.elParams.p.disableParams!.style,
-        isSelected: widget.elParams.p.disableParams!.isSelected,
-        selectedIcon: widget.elParams.p.disableParams!.selectedIcon,
-        icon: widget.elParams.p.disableParams!.icon!,
+        mouseCursor: params.mouseCursor,
+        focusNode: params.focusNode,
+        autofocus: params.autofocus,
+        tooltip: params.tooltip,
+        enableFeedback: params.enableFeedback,
+        constraints: params.constraints,
+        style: params.style,
+        isSelected: params.isSelected,
+        selectedIcon: params.selectedIcon,
+        icon: params.icon!,
       );
     } else {
       return IconButton(
-        key: widget.elParams.p.disableParams!.key,
-        iconSize: widget.elParams.p.disableParams!.iconSize,
-        visualDensity: widget.elParams.p.disableParams!.visualDensity,
-        padding: widget.elParams.p.disableParams!.padding,
-        alignment: widget.elParams.p.disableParams!.alignment,
-        splashRadius: widget.elParams.p.disableParams!.splashRadius,
-        color: widget.elParams.p.disableParams!.color,
-        focusColor: widget.elParams.p.disableParams!.focusColor,
-        hoverColor: widget.elParams.p.disableParams!.hoverColor,
-        highlightColor: widget.elParams.p.disableParams!.highlightColor,
-        splashColor: widget.elParams.p.disableParams!.splashColor,
-        disabledColor: widget.elParams.p.disableParams!.disabledColor,
+        key: params.key,
+        iconSize: params.iconSize,
+        visualDensity: params.visualDensity,
+        padding: params.padding,
+        alignment: params.alignment,
+        splashRadius: params.splashRadius,
+        color: params.color,
+        focusColor: params.focusColor,
+        hoverColor: params.hoverColor,
+        highlightColor: params.highlightColor,
+        splashColor: params.splashColor,
+        disabledColor: params.disabledColor,
         onPressed: widget.elParams.p.isEnabled &&
                 !widget.elParams.p.disabledIndexes.contains(index)
             ? () {
                 _onTapCallback(index);
               }
             : null,
-        mouseCursor: widget.elParams.p.disableParams!.mouseCursor,
-        focusNode: widget.elParams.p.disableParams!.focusNode,
-        autofocus: widget.elParams.p.disableParams!.autofocus,
-        tooltip: widget.elParams.p.disableParams!.tooltip,
-        enableFeedback: widget.elParams.p.disableParams!.enableFeedback,
-        constraints: widget.elParams.p.disableParams!.constraints,
-        style: widget.elParams.p.disableParams!.style,
-        isSelected: widget.elParams.p.disableParams!.isSelected,
-        selectedIcon: widget.elParams.p.disableParams!.selectedIcon,
-        icon: widget.elParams.p.disableParams!.icon!,
+        mouseCursor: params.mouseCursor,
+        focusNode: params.focusNode,
+        autofocus: params.autofocus,
+        tooltip: params.tooltip,
+        enableFeedback: params.enableFeedback,
+        constraints: params.constraints,
+        style: params.style,
+        isSelected: params.isSelected,
+        selectedIcon: params.selectedIcon,
+        icon: params.icon!,
       );
     }
   }
 
   List<Widget> _getIconAndWidget(int index) {
+    final bool isSelected =
+        widget.elParams.p.manager!.getFlags(widget.sid)[index];
     if (widget.elParams.p.isPrefixIcon) {
       return [
-        widget.elParams.p.manager!.getFlags(widget.sid)[index]
-            ? _getEnabledIconBtn(index)
-            : _getDisableIconBtn(index),
+        _getIconBtn(index, _getParams(isSelected)),
         widget.children.children[index]
       ];
     } else {
       return [
         Expanded(child: widget.children.children[index]),
-        widget.elParams.p.manager!.getFlags(widget.sid)[index]
-            ? _getEnabledIconBtn(index)
-            : _getDisableIconBtn(index)
+        _getIconBtn(index, _getParams(isSelected))
       ];
     }
   }

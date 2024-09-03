@@ -1,30 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:simple_managers/simple_managers.dart';
 
+import '../../../../simple_widget_markup.dart';
+
 ///
 /// (en) A wrapper class for parameters used in classes with the same prefix name (XXXParamsWrapper of X).
 ///
 /// (ja) 接頭名(XXXParamsWrapper of X)が同じクラスで利用するパラメータ用ラッパークラス。
 ///
-class DropdownBtnParamsWrapper {
-  DropdownBtnParams p;
+class DropdownBtn2ParamsWrapper {
+  DropdownBtn2Params p;
 
   /// * [p] : The parameter set.
-  DropdownBtnParamsWrapper(this.p);
-}
-
-///
-/// (en) Parameter class used in DropdownBtnParams.
-///
-/// (ja) DropdownBtnParamsで利用するパラメータのクラス。
-///
-class DropdownMenuItemParams {
-  Key? key;
-  void Function()? onTap;
-  int? value; // non use
-  bool enabled = true;
-  AlignmentGeometry alignment = AlignmentDirectional.centerStart;
-  Widget? child;
+  DropdownBtn2ParamsWrapper(this.p);
 }
 
 ///
@@ -32,12 +20,12 @@ class DropdownMenuItemParams {
 ///
 /// (ja) 接頭名(XXXParams of X)が同じクラスで利用するパラメータを保持するためのクラス。
 ///
-class DropdownBtnParams {
+class DropdownBtn2Params {
   // dropdown button widget parameters
   Key? key;
-  List<DropdownMenuItem<int>>? items;
+  List<DropdownMenuItem<String>>? items;
   List<Widget> Function(BuildContext)? selectedItemBuilder;
-  int? value;
+  String? value; // non use
   Widget? hint;
   Widget? disabledHint;
   // cannot use this element
@@ -64,8 +52,7 @@ class DropdownBtnParams {
   EdgeInsetsGeometry? padding;
   // others
   List<DropdownMenuItemParams> dropdownMenuItemParams = [];
-  // Pre version, This is selectedIndex.
-  IndexManager? manager;
-  void Function(int index)? menuCallback;
+  SelectionManager? manager;
+  void Function(String sid)? menuCallback;
   bool isEnabled = true;
 }

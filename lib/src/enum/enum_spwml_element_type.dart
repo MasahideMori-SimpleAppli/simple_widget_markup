@@ -73,6 +73,12 @@ enum EnumSpWMLElementType {
   // super and subscript.
   superscript,
   subscript,
+  // flavors
+  dropdownBtn2,
+  popupMenuBtn2,
+  checkbox2,
+  radioBtn2,
+  segmentedBtn2,
 }
 
 /// 重複を避けて高速化するために、短縮系だけをまとめたもの。

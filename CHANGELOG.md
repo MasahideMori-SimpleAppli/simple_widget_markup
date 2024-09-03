@@ -1,3 +1,10 @@
+## 32.0.0
+
+* Added checkbox2, dropdownBtn2, popupMenu2, radioBtn2 and segmentedBtn2 types. These are the flavors that allow you to manage selections using the SID of the child view.
+* Added moneyWithDecimal inputType param to TextFieldElement.
+* Refactoring for CheckboxElement adn RadioBtnElement has been carried out.
+* SpWML and SpWMLBuilder now support SelectionManager and MultiSelectionManager.
+
 ## 31.2.0
 
 * Added keyboardType and inputType params to TextFieldElement.

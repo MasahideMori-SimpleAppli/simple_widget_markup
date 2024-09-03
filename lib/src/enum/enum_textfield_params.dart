@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:simple_widget_markup/src/element/sub/text/input_formatters/money_input_formatter.dart';
 
@@ -60,7 +59,13 @@ extension EXTEnumTextFieldMode on EnumTextFieldMode {
 ///
 /// (ja) このファイルではSpWMLで利用可能なテキストフィールドの入力タイプを定義しています。
 ///
-enum EnumTextFieldInputType { normal, intOnly, numOnly, money }
+enum EnumTextFieldInputType {
+  normal,
+  intOnly,
+  numOnly,
+  money,
+  moneyWithDecimal
+}
 
 /// EnumTextFieldInputType extension.
 extension EXTEnumTextFieldInputType on EnumTextFieldInputType {
@@ -87,6 +92,11 @@ extension EXTEnumTextFieldInputType on EnumTextFieldInputType {
       case EnumTextFieldInputType.money:
         return [
           FilteringTextInputFormatter.allow(RegExp(r'[\d,]')),
+          MoneyInputFormatter()
+        ];
+      case EnumTextFieldInputType.moneyWithDecimal:
+        return [
+          FilteringTextInputFormatter.allow(RegExp(r'^\d*([,]\d*)*(\.\d*)?$')),
           MoneyInputFormatter()
         ];
     }

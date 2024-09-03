@@ -6,11 +6,11 @@ import 'package:simple_managers/simple_managers.dart';
 ///
 /// (ja) 接頭名(XXXParamsWrapper of X)が同じクラスで利用するパラメータ用ラッパークラス。
 ///
-class PopupMenuBtnParamsWrapper {
-  PopupMenuBtnParams p;
+class PopupMenuBtn2ParamsWrapper {
+  PopupMenuBtn2Params p;
 
   /// * [p] : The parameter set.
-  PopupMenuBtnParamsWrapper(this.p);
+  PopupMenuBtn2ParamsWrapper(this.p);
 }
 
 ///
@@ -18,9 +18,9 @@ class PopupMenuBtnParamsWrapper {
 ///
 /// (ja) 接頭名(XXXParams of X)が同じクラスで利用するパラメータを保持するためのクラス。
 ///
-class PopupMenuItemParams {
+class PopupMenuItemParams2 {
   Key? key;
-  int? value; // non use
+  String? value; // non use
   void Function()? onTap;
   bool enabled = true;
   double height = kMinInteractiveDimension;
@@ -30,14 +30,13 @@ class PopupMenuItemParams {
   Widget? child;
 }
 
-class PopupMenuBtnParams {
+class PopupMenuBtn2Params {
   // popupmenu button parameters
   Key? key;
-  List<PopupMenuEntry<int>> Function(BuildContext)? itemBuilder;
-  // pre version, this is initialValue.
-  IndexManager? manager;
+  List<PopupMenuEntry<String>> Function(BuildContext)? itemBuilder;
+  SelectionManager? manager;
   void Function()? onOpened;
-  void Function(int)? onSelected;
+  void Function(String)? onSelected;
   void Function()? onCanceled;
   String? tooltip;
   double? elevation;
@@ -55,7 +54,7 @@ class PopupMenuBtnParams {
   PopupMenuPosition position = PopupMenuPosition.over;
   Clip clipBehavior = Clip.none;
   // others
-  List<PopupMenuItemParams> popupMenuItemParams = [];
-  void Function(int index)? menuCallback;
+  List<PopupMenuItemParams2> popupMenuItemParams = [];
+  void Function(String sid)? menuCallback;
   bool isEnabled = true;
 }

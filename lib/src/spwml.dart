@@ -25,8 +25,10 @@ class SpWML extends StatelessWidget {
   final TextFieldManager? tfm;
   final IndexManager? im;
   final FlagManager? fm;
+  final SelectionManager? sem;
   final MultiIndexManager? mim;
   final MultiFlagManager? mfm;
+  final MultiSelectionManager? msem;
   final ValueManager? vm;
   final StateManager? sm;
 
@@ -48,8 +50,10 @@ class SpWML extends StatelessWidget {
   /// * [tfm] : The manager for textfield.
   /// * [im] : The manager for dropdownBtn and popupMenuBtn and radioBtn.
   /// * [fm] : The manager for switchBtn.
+  /// * [sem] : The manager for dropdownBtn2 popupMenuBtn2 and radioBtn2.
   /// * [mim] : The manager for segmentedBtn.
   /// * [mfm] : The manager for checkbox.
+  /// * [msem] : The manager for segmentedBtn2 and checkbox2.
   /// * [vm] : The manager for progressIndicator and slider.
   /// * [sm] : The manager for all widget state.
   /// If this is not null, other managers will be disabled.
@@ -64,8 +68,10 @@ class SpWML extends StatelessWidget {
       this.tfm,
       this.im,
       this.fm,
+      this.sem,
       this.mim,
       this.mfm,
+      this.msem,
       this.vm,
       this.sm,
       GlobalKey? key})
@@ -92,7 +98,15 @@ class SpWML extends StatelessWidget {
     if (sm != null) {
       builder.setStateManager(sm!);
     } else {
-      builder.setManager(tfm: tfm, im: im, fm: fm, mim: mim, mfm: mfm, vm: vm);
+      builder.setManager(
+          tfm: tfm,
+          im: im,
+          fm: fm,
+          sem: sem,
+          mim: mim,
+          mfm: mfm,
+          msem: msem,
+          vm: vm);
     }
     return builder.build(context);
   }

@@ -250,6 +250,18 @@ class UtilElement {
           info,
           StructureElementChildren(),
           DropdownBtnParamsWrapper(DropdownBtnParams()));
+    } else if (eType == EnumSpWMLElementType.dropdownBtn2) {
+      r = DropdownBtn2Element(
+          serial,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          StructureElementChildren(),
+          DropdownBtn2ParamsWrapper(DropdownBtn2Params()));
     } else if (eType == EnumSpWMLElementType.popupMenuBtn) {
       r = PopupMenuBtnElement(
           serial,
@@ -262,6 +274,18 @@ class UtilElement {
           info,
           StructureElementChildren(),
           PopupMenuBtnParamsWrapper(PopupMenuBtnParams()));
+    } else if (eType == EnumSpWMLElementType.popupMenuBtn2) {
+      r = PopupMenuBtn2Element(
+          serial,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          StructureElementChildren(),
+          PopupMenuBtn2ParamsWrapper(PopupMenuBtn2Params()));
     } else if (eType == EnumSpWMLElementType.expTile) {
       r = ExpTileElement(
           serial,
@@ -287,6 +311,18 @@ class UtilElement {
           info,
           StructureElementChildren(),
           CheckboxParamsWrapper(CheckboxParams()));
+    } else if (eType == EnumSpWMLElementType.checkbox2) {
+      r = Checkbox2Element(
+          serial,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          StructureElementChildren(),
+          Checkbox2ParamsWrapper(Checkbox2Params()));
     } else if (eType == EnumSpWMLElementType.radioBtn) {
       r = RadioBtnElement(
           serial,
@@ -299,6 +335,18 @@ class UtilElement {
           info,
           StructureElementChildren(),
           RadioBtnParamsWrapper(RadioBtnParams()));
+    } else if (eType == EnumSpWMLElementType.radioBtn2) {
+      r = RadioBtn2Element(
+          serial,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          StructureElementChildren(),
+          RadioBtn2ParamsWrapper(RadioBtn2Params()));
     } else if (eType == EnumSpWMLElementType.scroll) {
       r = ScrollElement(
           serial,
@@ -365,6 +413,18 @@ class UtilElement {
           info,
           StructureElementChildren(),
           SegmentedBtnParamsWrapper(SegmentedBtnParams()));
+    } else if (eType == EnumSpWMLElementType.segmentedBtn2) {
+      r = SegmentedBtn2Element(
+          serial,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          StructureElementChildren(),
+          SegmentedBtn2ParamsWrapper(SegmentedBtn2Params()));
     } else if (eType == EnumSpWMLElementType.circleAvatar) {
       r = CircleAvatarElement(
           serial,
