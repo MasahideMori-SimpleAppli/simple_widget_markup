@@ -12,6 +12,7 @@ enum EnumSpWMLParams {
   mAll,
   pAll,
   sid,
+  tag,
   // 以下２つは対象に応じて動的にStrから変更
   hAlign,
   vAlign,
@@ -413,7 +414,7 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.activeColor ||
           this == EnumSpWMLParams.inactiveColor) {
         return UtilParams.convertColor(v, lineStart, lineEnd, info);
-      } else if (this == EnumSpWMLParams.sid) {
+      } else if (this == EnumSpWMLParams.sid || this == EnumSpWMLParams.tag) {
         return v;
       } else if (this == EnumSpWMLParams.axis) {
         if (v == "vertical") {

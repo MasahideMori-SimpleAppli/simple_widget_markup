@@ -6,12 +6,12 @@ import '../../../../simple_widget_markup.dart';
 /// (en) The dropDownBtn2.
 /// This is a flavor of dropDownBtn that differs in
 /// how it manages the selection.
-/// To use this class, you must set the SID for
+/// To use this class, you must set the tag for
 /// all child (immediate descendants only).
 ///
 /// (ja) dropDownBtn2の実装。
 /// これは、選択内容の管理方法が異なる dropDownBtn の一種です。
-/// このクラスを使用するには、すべての小要素（直下のみ）にSIDを設定する必要があります。
+/// このクラスを使用するには、すべての小要素（直下のみ）にtagを設定する必要があります。
 ///
 class DropdownBtn2Element extends MultiChildElement {
   final DropdownBtn2ParamsWrapper elParams;
@@ -112,15 +112,15 @@ class DropdownBtn2Element extends MultiChildElement {
         final int v = count;
         if (i is! SpWMLElement) {
           throw SpWMLException(
-              EnumSpWMLExceptionType.childrenSidNotExistException,
+              EnumSpWMLExceptionType.childrenTagNotExistException,
               -1,
               -1,
               SpWMLInfo(errorHint: 'dropdownBtn2, sid=$sid'));
         }
-        final String? targetSID = i.getSID();
-        if (targetSID == null) {
+        final String? targetTag = i.getTag();
+        if (targetTag == null) {
           throw SpWMLException(
-              EnumSpWMLExceptionType.childrenSidNotExistException,
+              EnumSpWMLExceptionType.childrenTagNotExistException,
               -1,
               -1,
               SpWMLInfo(errorHint: 'dropdownBtn2, sid=$sid'));
@@ -128,16 +128,16 @@ class DropdownBtn2Element extends MultiChildElement {
         menus.add(DropdownMenuItem(
           key: elParams.p.dropdownMenuItemParams[v].key,
           onTap: () {
-            elParams.p.manager!.setSelection(sid, targetSID);
+            elParams.p.manager!.setSelection(sid, targetTag);
             if (elParams.p.dropdownMenuItemParams[v].onTap == null) {
               if (elParams.p.menuCallback != null) {
-                elParams.p.menuCallback!(targetSID);
+                elParams.p.menuCallback!(targetTag);
               }
             } else {
               elParams.p.dropdownMenuItemParams[v].onTap!();
             }
           },
-          value: targetSID,
+          value: targetTag,
           enabled: elParams.p.dropdownMenuItemParams[v].enabled,
           alignment: elParams.p.dropdownMenuItemParams[v].alignment,
           child: i,
@@ -146,20 +146,27 @@ class DropdownBtn2Element extends MultiChildElement {
       }
     } else {
       for (final i in children.children) {
-        final String? targetSID = (i as SpWMLElement).getSID();
-        if (targetSID == null) {
+        if (i is! SpWMLElement) {
           throw SpWMLException(
-              EnumSpWMLExceptionType.childrenSidNotExistException,
+              EnumSpWMLExceptionType.childrenTagNotExistException,
+              -1,
+              -1,
+              SpWMLInfo(errorHint: 'dropdownBtn2, sid=$sid'));
+        }
+        final String? targetTag = i.getTag();
+        if (targetTag == null) {
+          throw SpWMLException(
+              EnumSpWMLExceptionType.childrenTagNotExistException,
               -1,
               -1,
               SpWMLInfo(errorHint: 'dropdownBtn2, sid=$sid'));
         }
         menus.add(DropdownMenuItem(
-            value: targetSID,
+            value: targetTag,
             onTap: () {
-              elParams.p.manager!.setSelection(sid, targetSID);
+              elParams.p.manager!.setSelection(sid, targetTag);
               if (elParams.p.menuCallback != null) {
-                elParams.p.menuCallback!(targetSID);
+                elParams.p.menuCallback!(targetTag);
               }
             },
             child: i));

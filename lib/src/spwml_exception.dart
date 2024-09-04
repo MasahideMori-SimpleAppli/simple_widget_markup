@@ -47,7 +47,7 @@ enum EnumSpWMLExceptionType {
   tableParamException,
   sidDoesNotExistException,
   noManagerException,
-  childrenSidNotExistException
+  childrenTagNotExistException
 }
 
 extension EXTEnumSpWMLExceptionType on EnumSpWMLExceptionType {
@@ -75,8 +75,8 @@ extension EXTEnumSpWMLExceptionType on EnumSpWMLExceptionType {
         return 'Please set sid parameter.';
       case EnumSpWMLExceptionType.noManagerException:
         return 'Please set the required manager class.';
-      case EnumSpWMLExceptionType.childrenSidNotExistException:
-        return 'No SID is set for the child classes of this class.';
+      case EnumSpWMLExceptionType.childrenTagNotExistException:
+        return 'No tag is set for the child classes of this class.';
     }
   }
 }

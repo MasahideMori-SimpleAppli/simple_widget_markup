@@ -6,12 +6,12 @@ import '../../../../simple_widget_markup.dart';
 /// (en) The radioBtn2.
 /// This is a flavor of radioBtn that differs in
 /// how it manages the selection.
-/// To use this class, you must set the SID for
+/// To use this class, you must set the tag for
 /// all child (immediate descendants only).
 ///
 /// (ja) radioBtn2の実装。
 /// これは、選択内容の管理方法が異なる radioBtn の一種です。
-/// このクラスを使用するには、すべての小要素（直下のみ）にSIDを設定する必要があります。
+/// このクラスを使用するには、すべての小要素（直下のみ）にtagを設定する必要があります。
 ///
 class RadioBtn2Element extends MultiChildElement {
   final RadioBtn2ParamsWrapper elParams;
@@ -177,26 +177,26 @@ class _RadioBtnElement2Widget extends StatefulWidget {
 
 class _RadioBtnElement2WidgetState extends State<_RadioBtnElement2Widget> {
   /// The onTap callback.
-  void _onTapCallback(String targetSID) {
+  void _onTapCallback(String targetTag) {
     if (mounted) {
       setState(() {
-        widget.elParams.p.manager!.setSelection(widget.sid, targetSID);
+        widget.elParams.p.manager!.setSelection(widget.sid, targetTag);
         if (widget.elParams.p.callback != null) {
-          widget.elParams.p.callback!(targetSID);
+          widget.elParams.p.callback!(targetTag);
         }
       });
     }
   }
 
   /// Return wrapped widget.
-  Widget _getWrap(String targetSID, Widget w) {
+  Widget _getWrap(String targetTag, Widget w) {
     if (widget.elParams.p.enableTapLabel) {
       return InkWell(
         key: widget.elParams.p.enableTapInkWellParams.key,
         onTap: widget.elParams.p.isEnabled &&
-                !widget.elParams.p.disabledSelections.contains(targetSID)
+                !widget.elParams.p.disabledSelections.contains(targetTag)
             ? () {
-                _onTapCallback(targetSID);
+                _onTapCallback(targetTag);
               }
             : null,
         onDoubleTap: widget.elParams.p.enableTapInkWellParams.onDoubleTap,
@@ -241,7 +241,7 @@ class _RadioBtnElement2WidgetState extends State<_RadioBtnElement2Widget> {
     }
   }
 
-  Widget _getIconBtn(String targetSID, SelectableIconBtnParams params) {
+  Widget _getIconBtn(String targetTag, SelectableIconBtnParams params) {
     if (params.isV3) {
       final ColorScheme colors = Theme.of(context).colorScheme;
       return IconButton(
@@ -257,9 +257,9 @@ class _RadioBtnElement2WidgetState extends State<_RadioBtnElement2Widget> {
         splashColor: params.splashColor,
         disabledColor: params.disabledColor,
         onPressed: widget.elParams.p.isEnabled &&
-                !widget.elParams.p.disabledSelections.contains(targetSID)
+                !widget.elParams.p.disabledSelections.contains(targetTag)
             ? () {
-                _onTapCallback(targetSID);
+                _onTapCallback(targetTag);
               }
             : null,
         mouseCursor: params.mouseCursor,
@@ -288,9 +288,9 @@ class _RadioBtnElement2WidgetState extends State<_RadioBtnElement2Widget> {
         splashColor: params.splashColor,
         disabledColor: params.disabledColor,
         onPressed: widget.elParams.p.isEnabled &&
-                !widget.elParams.p.disabledSelections.contains(targetSID)
+                !widget.elParams.p.disabledSelections.contains(targetTag)
             ? () {
-                _onTapCallback(targetSID);
+                _onTapCallback(targetTag);
               }
             : null,
         mouseCursor: params.mouseCursor,
@@ -307,18 +307,18 @@ class _RadioBtnElement2WidgetState extends State<_RadioBtnElement2Widget> {
     }
   }
 
-  List<Widget> _getIconAndWidget(int index, String targetSID) {
+  List<Widget> _getIconAndWidget(int index, String targetTag) {
     final bool isSelected =
-        widget.elParams.p.manager!.getSelection(widget.sid) == targetSID;
+        widget.elParams.p.manager!.getSelection(widget.sid) == targetTag;
     if (widget.elParams.p.isPrefixIcon) {
       return [
-        _getIconBtn(targetSID, _getParams(isSelected)),
+        _getIconBtn(targetTag, _getParams(isSelected)),
         widget.children.children[index]
       ];
     } else {
       return [
         Expanded(child: widget.children.children[index]),
-        _getIconBtn(targetSID, _getParams(isSelected)),
+        _getIconBtn(targetTag, _getParams(isSelected)),
       ];
     }
   }
@@ -329,25 +329,25 @@ class _RadioBtnElement2WidgetState extends State<_RadioBtnElement2Widget> {
       final Widget w = widget.children.children[i];
       if (w is! SpWMLElement) {
         throw SpWMLException(
-            EnumSpWMLExceptionType.childrenSidNotExistException,
+            EnumSpWMLExceptionType.childrenTagNotExistException,
             -1,
             -1,
             SpWMLInfo(errorHint: 'radioBtn2, sid=${widget.sid}'));
       }
-      final String? targetSID = w.getSID();
-      if (targetSID == null) {
+      final String? targetTag = w.getTag();
+      if (targetTag == null) {
         throw SpWMLException(
-            EnumSpWMLExceptionType.childrenSidNotExistException,
+            EnumSpWMLExceptionType.childrenTagNotExistException,
             -1,
             -1,
             SpWMLInfo(errorHint: 'radioBtn2, sid=${widget.sid}'));
       }
       r.add(_getWrap(
-          targetSID,
+          targetTag,
           Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: _getIconAndWidget(i, targetSID))));
+              children: _getIconAndWidget(i, targetTag))));
     }
     return Column(
         mainAxisAlignment: MainAxisAlignment.start,

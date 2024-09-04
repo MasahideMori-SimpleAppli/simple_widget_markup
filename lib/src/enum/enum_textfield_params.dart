@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:simple_widget_markup/src/element/sub/text/input_formatters/money_input_formatter.dart';
 
+import '../element/sub/text/input_formatters/decimal_input_formatter.dart';
 import '../element_params/spwml_info.dart';
 import '../spwml_exception.dart';
 
@@ -88,7 +89,10 @@ extension EXTEnumTextFieldInputType on EnumTextFieldInputType {
       case EnumTextFieldInputType.intOnly:
         return [FilteringTextInputFormatter.digitsOnly];
       case EnumTextFieldInputType.numOnly:
-        return [FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*'))];
+        return [
+          DecimalInputFormatter(),
+          FilteringTextInputFormatter.allow(RegExp(r'[\.\d]')),
+        ];
       case EnumTextFieldInputType.money:
         return [
           FilteringTextInputFormatter.allow(RegExp(r'[\d,]')),
@@ -96,7 +100,8 @@ extension EXTEnumTextFieldInputType on EnumTextFieldInputType {
         ];
       case EnumTextFieldInputType.moneyWithDecimal:
         return [
-          FilteringTextInputFormatter.allow(RegExp(r'^\d*([,]\d*)*(\.\d*)?$')),
+          DecimalInputFormatter(),
+          FilteringTextInputFormatter.allow(RegExp(r'[\.,\d]')),
           MoneyInputFormatter()
         ];
     }

@@ -330,6 +330,17 @@ class SpWMLElement extends StatelessWidget {
     }
   }
 
+  /// (en) Gets the Tag set for this element. Returns null if not set.
+  ///
+  /// (ja) このエレメントに設定されているTagを取得します。設定されていない場合はnullを返します。
+  String? getTag() {
+    if (params.containsKey(EnumSpWMLParams.tag)) {
+      return params[EnumSpWMLParams.tag];
+    } else {
+      return null;
+    }
+  }
+
   /// Wrap if necessary.
   /// Features such as containers and inks are disabled in the tooltip.
   ///

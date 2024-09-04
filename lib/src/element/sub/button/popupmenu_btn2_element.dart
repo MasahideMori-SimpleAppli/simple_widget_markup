@@ -6,12 +6,12 @@ import '../../../../simple_widget_markup.dart';
 /// (en) The popupMenuBtn2.
 /// This is a flavor of popupMenuBtn that differs in
 /// how it manages the selection.
-/// To use this class, you must set the SID for
+/// To use this class, you must set the tag for
 /// all child (immediate descendants only).
 ///
 /// (ja) popupMenuBtn2の実装。
 /// これは、選択内容の管理方法が異なる popupMenuBtn の一種です。
-/// このクラスを使用するには、すべての小要素（直下のみ）にSIDを設定する必要があります。
+/// このクラスを使用するには、すべての小要素（直下のみ）にtagを設定する必要があります。
 ///
 class PopupMenuBtn2Element extends MultiChildElement {
   final PopupMenuBtn2ParamsWrapper elParams;
@@ -96,28 +96,28 @@ class PopupMenuBtn2Element extends MultiChildElement {
         final int v = count;
         if (i is! SpWMLElement) {
           throw SpWMLException(
-              EnumSpWMLExceptionType.childrenSidNotExistException,
+              EnumSpWMLExceptionType.childrenTagNotExistException,
               -1,
               -1,
               SpWMLInfo(errorHint: 'popupMenuBtn2, sid=$sid'));
         }
-        final String? targetSID = i.getSID();
-        if (targetSID == null) {
+        final String? targetTag = i.getTag();
+        if (targetTag == null) {
           throw SpWMLException(
-              EnumSpWMLExceptionType.childrenSidNotExistException,
+              EnumSpWMLExceptionType.childrenTagNotExistException,
               -1,
               -1,
               SpWMLInfo(errorHint: 'popupMenuBtn2, sid=$sid'));
         }
         menus.add(PopupMenuItem(
           key: elParams.p.popupMenuItemParams[v].key,
-          value: targetSID,
+          value: targetTag,
           onTap: elParams.p.isEnabled
               ? () {
-                  elParams.p.manager!.setSelection(sid, targetSID);
+                  elParams.p.manager!.setSelection(sid, targetTag);
                   if (elParams.p.popupMenuItemParams[v].onTap == null) {
                     if (elParams.p.menuCallback != null) {
-                      elParams.p.menuCallback!(targetSID);
+                      elParams.p.menuCallback!(targetTag);
                     }
                   } else {
                     elParams.p.popupMenuItemParams[v].onTap!();
@@ -135,21 +135,28 @@ class PopupMenuBtn2Element extends MultiChildElement {
       }
     } else {
       for (final i in children.children) {
-        final String? targetSID = (i as SpWMLElement).getSID();
-        if (targetSID == null) {
+        if (i is! SpWMLElement) {
           throw SpWMLException(
-              EnumSpWMLExceptionType.childrenSidNotExistException,
+              EnumSpWMLExceptionType.childrenTagNotExistException,
+              -1,
+              -1,
+              SpWMLInfo(errorHint: 'popupMenuBtn2, sid=$sid'));
+        }
+        final String? targetTag = i.getTag();
+        if (targetTag == null) {
+          throw SpWMLException(
+              EnumSpWMLExceptionType.childrenTagNotExistException,
               -1,
               -1,
               SpWMLInfo(errorHint: 'popupMenuBtn2, sid=$sid'));
         }
         menus.add(PopupMenuItem(
-            value: targetSID,
+            value: targetTag,
             onTap: elParams.p.isEnabled
                 ? () {
-                    elParams.p.manager!.setSelection(sid, targetSID);
+                    elParams.p.manager!.setSelection(sid, targetTag);
                     if (elParams.p.menuCallback != null) {
-                      elParams.p.menuCallback!(targetSID);
+                      elParams.p.menuCallback!(targetTag);
                     }
                   }
                 : null,

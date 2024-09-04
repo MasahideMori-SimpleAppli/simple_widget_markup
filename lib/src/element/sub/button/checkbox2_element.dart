@@ -6,12 +6,12 @@ import '../../../../simple_widget_markup.dart';
 /// (en) The checkbox2.
 /// This is a flavor of checkbox that differs in
 /// how it manages the selection.
-/// To use this class, you must set the SID for
+/// To use this class, you must set the tag for
 /// all child (immediate descendants only).
 ///
 /// (ja) checkbox2の実装。
 /// これは、選択内容の管理方法が異なる checkbox の一種です。
-/// このクラスを使用するには、すべての小要素（直下のみ）にSIDを設定する必要があります。
+/// このクラスを使用するには、すべての小要素（直下のみ）にtagを設定する必要があります。
 ///
 class Checkbox2Element extends MultiChildElement {
   final Checkbox2ParamsWrapper elParams;
@@ -178,15 +178,15 @@ class _Checkbox2ElementWidget extends StatefulWidget {
 
 class _Checkbox2ElementWidgetState extends State<_Checkbox2ElementWidget> {
   /// The onTap callback.
-  void _onTapCallback(String targetSID) {
+  void _onTapCallback(String targetTag) {
     if (mounted) {
       setState(() {
         final Set<String> mySelection =
             widget.elParams.p.manager!.getSelectionSet(widget.sid);
-        if (mySelection.contains(targetSID)) {
-          mySelection.remove(targetSID);
+        if (mySelection.contains(targetTag)) {
+          mySelection.remove(targetTag);
         } else {
-          mySelection.add(targetSID);
+          mySelection.add(targetTag);
         }
         if (widget.elParams.p.callback != null) {
           widget.elParams.p.callback!(
@@ -197,15 +197,15 @@ class _Checkbox2ElementWidgetState extends State<_Checkbox2ElementWidget> {
   }
 
   /// Return wrapped widget.
-  Widget _getWrap(String targetSID, Widget w) {
+  Widget _getWrap(String targetTag, Widget w) {
     final bool isDisabledSelection =
-        widget.elParams.p.disabledSelections.contains(targetSID);
+        widget.elParams.p.disabledSelections.contains(targetTag);
     if (widget.elParams.p.enableTapLabel) {
       return InkWell(
         key: widget.elParams.p.enableTapInkWellParams.key,
         onTap: widget.elParams.p.isEnabled && !isDisabledSelection
             ? () {
-                _onTapCallback(targetSID);
+                _onTapCallback(targetTag);
               }
             : null,
         onDoubleTap: widget.elParams.p.enableTapInkWellParams.onDoubleTap,
@@ -250,9 +250,9 @@ class _Checkbox2ElementWidgetState extends State<_Checkbox2ElementWidget> {
     }
   }
 
-  Widget _getIconBtn(String targetSID, SelectableIconBtnParams params) {
+  Widget _getIconBtn(String targetTag, SelectableIconBtnParams params) {
     final bool isDisabled =
-        widget.elParams.p.disabledSelections.contains(targetSID);
+        widget.elParams.p.disabledSelections.contains(targetTag);
     if (params.isV3) {
       final ColorScheme colors = Theme.of(context).colorScheme;
       return IconButton(
@@ -269,7 +269,7 @@ class _Checkbox2ElementWidgetState extends State<_Checkbox2ElementWidget> {
         disabledColor: params.disabledColor,
         onPressed: widget.elParams.p.isEnabled && !isDisabled
             ? () {
-                _onTapCallback(targetSID);
+                _onTapCallback(targetTag);
               }
             : null,
         mouseCursor: params.mouseCursor,
@@ -299,7 +299,7 @@ class _Checkbox2ElementWidgetState extends State<_Checkbox2ElementWidget> {
         disabledColor: params.disabledColor,
         onPressed: widget.elParams.p.isEnabled && !isDisabled
             ? () {
-                _onTapCallback(targetSID);
+                _onTapCallback(targetTag);
               }
             : null,
         mouseCursor: params.mouseCursor,
@@ -316,19 +316,19 @@ class _Checkbox2ElementWidgetState extends State<_Checkbox2ElementWidget> {
     }
   }
 
-  List<Widget> _getIconAndWidget(int index, String targetSID) {
+  List<Widget> _getIconAndWidget(int index, String targetTag) {
     final bool isSelected = widget.elParams.p.manager!
         .getSelectionSet(widget.sid)
-        .contains(targetSID);
+        .contains(targetTag);
     if (widget.elParams.p.isPrefixIcon) {
       return [
-        _getIconBtn(targetSID, _getParams(isSelected)),
+        _getIconBtn(targetTag, _getParams(isSelected)),
         widget.children.children[index]
       ];
     } else {
       return [
         Expanded(child: widget.children.children[index]),
-        _getIconBtn(targetSID, _getParams(isSelected))
+        _getIconBtn(targetTag, _getParams(isSelected))
       ];
     }
   }
@@ -339,25 +339,25 @@ class _Checkbox2ElementWidgetState extends State<_Checkbox2ElementWidget> {
       final Widget w = widget.children.children[i];
       if (w is! SpWMLElement) {
         throw SpWMLException(
-            EnumSpWMLExceptionType.childrenSidNotExistException,
+            EnumSpWMLExceptionType.childrenTagNotExistException,
             -1,
             -1,
             SpWMLInfo(errorHint: 'checkbox2, sid=${widget.sid}'));
       }
-      final String? targetSID = w.getSID();
-      if (targetSID == null) {
+      final String? targetTag = w.getTag();
+      if (targetTag == null) {
         throw SpWMLException(
-            EnumSpWMLExceptionType.childrenSidNotExistException,
+            EnumSpWMLExceptionType.childrenTagNotExistException,
             -1,
             -1,
             SpWMLInfo(errorHint: 'checkbox2, sid=${widget.sid}'));
       }
       r.add(_getWrap(
-          targetSID,
+          targetTag,
           Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: _getIconAndWidget(i, targetSID))));
+              children: _getIconAndWidget(i, targetTag))));
     }
     return Column(
         mainAxisAlignment: MainAxisAlignment.start,

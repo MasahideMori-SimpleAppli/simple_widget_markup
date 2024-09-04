@@ -7,12 +7,12 @@ import '../../../../simple_widget_markup.dart';
 /// (en) The segmentedBtn2.
 /// This is a flavor of segmentedBtn that differs in
 /// how it manages the selection.
-/// To use this class, you must set the SID for
+/// To use this class, you must set the tag for
 /// all child (immediate descendants only).
 ///
 /// (ja) segmentedBtn2の実装。
 /// これは、選択内容の管理方法が異なる segmentedBtn の一種です。
-/// このクラスを使用するには、すべての小要素（直下のみ）にSIDを設定する必要があります。
+/// このクラスを使用するには、すべての小要素（直下のみ）にtagを設定する必要があります。
 ///
 class SegmentedBtn2Element extends MultiChildElement {
   final SegmentedBtn2ParamsWrapper elParams;
@@ -158,39 +158,39 @@ class _SegmentedBtn2ElementWidgetState
       final Widget w = widget.children.children[i];
       if (w is! SpWMLElement) {
         throw SpWMLException(
-            EnumSpWMLExceptionType.childrenSidNotExistException,
+            EnumSpWMLExceptionType.childrenTagNotExistException,
             -1,
             -1,
             SpWMLInfo(errorHint: 'segmentedBtn2, sid=${widget.sid}'));
       }
-      final String? targetSID = w.getSID();
-      if (targetSID == null) {
+      final String? targetTag = w.getTag();
+      if (targetTag == null) {
         throw SpWMLException(
-            EnumSpWMLExceptionType.childrenSidNotExistException,
+            EnumSpWMLExceptionType.childrenTagNotExistException,
             -1,
             -1,
             SpWMLInfo(errorHint: 'segmentedBtn2, sid=${widget.sid}'));
       }
       if (w is TextElement) {
         r.add(ButtonSegment(
-            value: targetSID, label: w.getNonSelectableTextWidget(context)));
+            value: targetTag, label: w.getNonSelectableTextWidget(context)));
       } else if (w is BtnElement) {
         if (w.elParams.p.isUseIcon) {
           r.add(ButtonSegment(
-              value: targetSID,
+              value: targetTag,
               label: w.getNonSelectableTextWidget(context),
               icon: w.getIcon(false)));
         } else {
           if (w.elParams.p.type == EnumBtnType.block) {
-            r.add(ButtonSegment(value: targetSID, label: w.child.child));
+            r.add(ButtonSegment(value: targetTag, label: w.child.child));
           } else {
             r.add(ButtonSegment(
-                value: targetSID,
+                value: targetTag,
                 label: w.getNonSelectableTextWidget(context)));
           }
         }
       } else {
-        r.add(ButtonSegment(value: targetSID, label: w));
+        r.add(ButtonSegment(value: targetTag, label: w));
       }
     }
     return r;
