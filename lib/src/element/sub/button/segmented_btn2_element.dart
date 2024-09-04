@@ -154,7 +154,7 @@ class _SegmentedBtn2ElementWidgetState
 
   List<ButtonSegment<String>> _getSegments() {
     List<ButtonSegment<String>> r = [];
-    for (int i = 0; i <= widget.children.children.length; i++) {
+    for (int i = 0; i < widget.children.children.length; i++) {
       final Widget w = widget.children.children[i];
       if (w is! SpWMLElement) {
         throw SpWMLException(
