@@ -24,7 +24,7 @@ class Checkbox2Params {
   SelectableIconBtnParams? enableParams;
   SelectableIconBtnParams? disableParams;
   MultiSelectionManager? manager;
-  void Function(Set<String>? checkValues)? callback;
+  void Function(Set<String> checkValues)? callback;
   // If true, enable tap of label.
   bool enableTapLabel = false;
   // If enableTapLabel is true, This value is enable.

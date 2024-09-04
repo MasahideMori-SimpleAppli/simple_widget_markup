@@ -113,19 +113,19 @@ class Checkbox2Element extends MultiChildElement {
   ///
   /// (ja)チェックボックスのコールバックを設定します。
   /// * [callback] : The checkboxes callback.
-  void setCallback(void Function(Set<String>? checkValues)? callback) {
+  void setCallback(void Function(Set<String> tags)? callback) {
     elParams.p.callback = callback;
   }
 
   /// (en) Sets the value. Disabled if the manager class is not set.
   ///
   /// (ja) 値を設定します。マネージャークラスが未設定の場合は無効です。
-  /// * [v] : value.
-  void setValue(Set<String> v) {
+  /// * [tags] : Tag set.
+  void setValue(Set<String> tags) {
     if (elParams.p.manager != null) {
       final String? sid = getSID();
       if (sid != null) {
-        elParams.p.manager!.setSelectionSet(sid, v);
+        elParams.p.manager!.setSelectionSet(sid, tags);
       }
     }
   }
@@ -149,17 +149,17 @@ class Checkbox2Element extends MultiChildElement {
     elParams.p.isEnabled = isEnabled;
   }
 
-  /// (en) Specify the checkbox you want to disable by sid Set.
+  /// (en) Specify the checkbox you want to disable by tag Set.
   /// If set to empty, all checkbox will be enabled.
   /// However, if disabled with setEnabled, all checkbox will remain disabled.
   ///
-  /// (ja) 無効にしたいチェックボックスをSIDのSetで指定します。
+  /// (ja) 無効にしたいチェックボックスをtagのSetで指定します。
   /// 空を設定した場合は全てのチェックボックスが有効化されます。
   /// ただし、setEnabledで無効化された場合は全てのチェックボックスが無効なままになります。
   ///
-  /// * [sids] : A set of sids for the elements you want to disable.
-  void setDisabledSelections(Set<String> sids) {
-    elParams.p.disabledSelections = sids;
+  /// * [tags] : A set of tags for the elements you want to disable.
+  void setDisabledSelections(Set<String> tags) {
+    elParams.p.disabledSelections = tags;
   }
 }
 

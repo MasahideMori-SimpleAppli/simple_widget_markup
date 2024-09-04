@@ -174,19 +174,19 @@ class PopupMenuBtn2Element extends MultiChildElement {
   ///
   /// (ja)ドロップダウンで展開されるメニューのコールバックを設定します。
   /// * [callback] : Menu callback.
-  void setCallback(void Function(String? sid)? callback) {
+  void setCallback(void Function(String? tag)? callback) {
     elParams.p.menuCallback = callback;
   }
 
   /// (en) Sets the value. Disabled if the manager class is not set.
   ///
   /// (ja) 値を設定します。マネージャークラスが未設定の場合は無効です。
-  /// * [v] : value.
-  void setValue(String? v) {
+  /// * [tag] : Tag name.
+  void setValue(String? tag) {
     if (elParams.p.manager != null) {
       final String? sid = getSID();
       if (sid != null) {
-        elParams.p.manager!.setSelection(sid, v);
+        elParams.p.manager!.setSelection(sid, tag);
       }
     }
   }

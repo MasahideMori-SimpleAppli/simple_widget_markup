@@ -87,19 +87,20 @@ class SegmentedBtn2Element extends MultiChildElement {
   ///
   /// (ja)コールバックを設定します。
   /// * [callback] : The callback.
-  void setCallback(void Function(Set<String>)? onSelectionChanged) {
+  void setCallback(void Function(Set<String> tags)? onSelectionChanged) {
     elParams.p.onSelectionChanged = onSelectionChanged;
   }
 
   /// (en) Sets the value. Disabled if the manager class is not set.
   ///
   /// (ja) 値を設定します。マネージャークラスが未設定の場合は無効です。
-  /// * [v] : value.
-  void setValue(Set<String> v) {
+  ///
+  /// * [tags] : Tag set.
+  void setValue(Set<String> tags) {
     if (elParams.p.manager != null) {
       final String? sid = getSID();
       if (sid != null) {
-        elParams.p.manager!.setSelectionSet(sid, v);
+        elParams.p.manager!.setSelectionSet(sid, tags);
       }
     }
   }
@@ -154,7 +155,7 @@ class _SegmentedBtn2ElementWidgetState
 
   List<ButtonSegment<String>> _getSegments() {
     List<ButtonSegment<String>> r = [];
-    for (int i = 0; i <= widget.children.children.length; i++) {
+    for (int i = 0; i < widget.children.children.length; i++) {
       final Widget w = widget.children.children[i];
       if (w is! SpWMLElement) {
         throw SpWMLException(

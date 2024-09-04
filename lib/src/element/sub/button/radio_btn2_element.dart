@@ -112,19 +112,19 @@ class RadioBtn2Element extends MultiChildElement {
   ///
   /// (ja)ラジオボタンのコールバックを設定します。
   /// * [callback] : The radio button callback.
-  void setCallback(void Function(String? sid)? callback) {
+  void setCallback(void Function(String? tag)? callback) {
     elParams.p.callback = callback;
   }
 
   /// (en) Sets the value. Disabled if the manager class is not set.
   ///
   /// (ja) 値を設定します。マネージャークラスが未設定の場合は無効です。
-  /// * [v] : value.
-  void setValue(String? v) {
+  /// * [tag] : Tag name.
+  void setValue(String? tag) {
     if (elParams.p.manager != null) {
       final String? sid = getSID();
       if (sid != null) {
-        elParams.p.manager!.setSelection(sid, v);
+        elParams.p.manager!.setSelection(sid, tag);
       }
     }
   }
@@ -148,17 +148,17 @@ class RadioBtn2Element extends MultiChildElement {
     elParams.p.isEnabled = isEnabled;
   }
 
-  /// (en) Specify the button you want to disable by sid Set.
+  /// (en) Specify the button you want to disable by tag Set.
   /// If set to empty, all buttons will be enabled.
   /// However, if disabled with setEnabled, all buttons will remain disabled.
   ///
-  /// (ja) 無効にしたいボタンをsidのSetで指定します。
+  /// (ja) 無効にしたいボタンをtagのSetで指定します。
   /// 空を設定した場合は全てのボタンが有効化されます。
   /// ただし、setEnabledで無効化された場合は全てのボタンが無効なままになります。
   ///
-  /// * [sids] : A set of sids for the elements you want to disable.
-  void setDisabledSelections(Set<String> sids) {
-    elParams.p.disabledSelections = sids;
+  /// * [tags] : A set of tags for the elements you want to disable.
+  void setDisabledSelections(Set<String> tags) {
+    elParams.p.disabledSelections = tags;
   }
 }
 
