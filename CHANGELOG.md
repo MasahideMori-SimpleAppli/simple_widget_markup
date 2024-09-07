@@ -8,6 +8,7 @@
 * Fixed bug in segmentedBtn2.
 
 ## 33.0.0
+
 * The specifications for checkbox2, dropdownBtn2, popupMenu2, radioBtn2, and segmentedBtn2 types have changed. From now on, you must set the tag for these children instead of the sid.
 * All SpWML elements can now have a tag parameter.
 * The performance of the numOnly and moneyWithDecimal inputTypes of TextFieldElement has been improved, making it easier for users to input data.
