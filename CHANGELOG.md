@@ -1,3 +1,8 @@
+## 33.1.0
+
+* Fixed cursor position bug of money and moneyWithDecimal inputType param in TextFieldElement.
+* Added intOnlyAllowNegative, numOnlyAllowNegative, moneyAllowNegative and moneyWithDecimalAllowNegative inputType params to TextFieldElement.
+
 ## 33.0.3
 
 * Updates associated with base library updates.
