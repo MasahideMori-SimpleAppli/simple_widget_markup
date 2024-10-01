@@ -187,6 +187,20 @@ class TextElement extends SpWMLElement {
     spwmlParams.p.text = text;
   }
 
+  /// (en) Overrides the font size for this element.
+  /// However, if you set TextStyle or StrutStyle,
+  /// note that the set TextStyle or StrutStyle will take precedence.
+  ///
+  /// (ja) このエレメントのフォントサイズを上書きします。
+  /// ただし、TextStyleやStrutStyleを上書きしている場合は
+  /// 上書きしたTextStyleやStrutStyleが優先されることに注意してください。
+  ///
+  /// * [fontSize] : The font size of px.
+  /// This value is before any device scaling is applied.
+  void setFontSize(double fontSize) {
+    params[EnumSpWMLParams.fontSize] = fontSize;
+  }
+
   /// get text strut style from parameters.
   StrutStyle? getStrutStyle(BuildContext context) {
     final double fontSize = params.containsKey(EnumSpWMLParams.fontSize)

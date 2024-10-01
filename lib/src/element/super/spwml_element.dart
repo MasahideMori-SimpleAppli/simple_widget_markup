@@ -89,8 +89,8 @@ class SpWMLElement extends StatelessWidget {
       spwmlParams.p.constrains = _getConstraints();
     }
     spwmlParams.p.containerParams ??= ContainerParams();
-    spwmlParams.p.containerParams!.margin = _getMargin();
-    spwmlParams.p.containerParams!.padding = _getPadding();
+    spwmlParams.p.containerParams!.margin = _getMarginFromSpWML();
+    spwmlParams.p.containerParams!.padding = _getPaddingFromSpWML();
     spwmlParams.p.containerParams!.width =
         params.containsKey(EnumSpWMLParams.width)
             ? params[EnumSpWMLParams.width]!
@@ -134,6 +134,53 @@ class SpWMLElement extends StatelessWidget {
     spwmlParams.p.containerParams!.color = c;
     // update decoration.
     spwmlParams.p.containerParams!.decoration = _getDecoration();
+  }
+
+  /// (en) Set element width.
+  ///
+  /// (ja) 幅を設定します。
+  ///
+  /// * [w] : This element width.
+  void setWidth(double w) {
+    params[EnumSpWMLParams.width] = w;
+    spwmlParams.p.containerParams!.width = w;
+  }
+
+  /// (en) Get element width.
+  /// If not set, null is returned.
+  /// Note that this does not return the widget's width,
+  /// but the width set on this element.
+  ///
+  /// (ja) 幅を取得します。
+  /// 未設定の場合はnullが返されます。
+  /// これはウィジェットの幅を返すのではなく、
+  /// この要素に設定された幅を返すことに注意してください。
+  ///
+  double? getWidth() {
+    return spwmlParams.p.containerParams!.width;
+  }
+
+  /// (en) Set element height.
+  ///
+  /// (ja) 高さを設定します。
+  ///
+  /// * [h] : This element height.
+  void setHeight(double h) {
+    params[EnumSpWMLParams.height] = h;
+    spwmlParams.p.containerParams!.height = h;
+  }
+
+  /// (en) Get element height.
+  /// If not set, null is returned.
+  /// Note that this does not return the widget's height,
+  /// but the height set on this element.
+  ///
+  /// (ja) 高さを取得します。
+  /// 未設定の場合はnullが返されます。
+  /// これはウィジェットの高さを返すのではなく、
+  /// この要素に設定された高さを返すことに注意してください。
+  double? getHeight() {
+    return spwmlParams.p.containerParams!.height;
   }
 
   /// Get element decoration. It disabled in btn card, radioBtn, checkbox. these return null.
@@ -241,8 +288,8 @@ class SpWMLElement extends StatelessWidget {
     }
   }
 
-  /// get margin from param.
-  EdgeInsets _getMargin() {
+  /// internal only. get margin from param.
+  EdgeInsets _getMarginFromSpWML() {
     final double left = params.containsKey(EnumSpWMLParams.mLeft)
         ? params[EnumSpWMLParams.mLeft]
         : (params.containsKey(EnumSpWMLParams.mAll)
@@ -262,8 +309,24 @@ class SpWMLElement extends StatelessWidget {
     return EdgeInsets.fromLTRB(left, top, right, bottom);
   }
 
-  /// get padding from param.
-  EdgeInsets _getPadding() {
+  /// (en) Set margin.
+  ///
+  /// (ja)マージンを設定します。
+  void setMargin(EdgeInsetsGeometry? margin) {
+    spwmlParams.p.containerParams!.margin = margin;
+  }
+
+  /// (en) Get margin.
+  /// If it doesn't exist, null is returned.
+  ///
+  /// (ja)マージンを取得します。
+  /// 存在しない場合はnullが返されます。
+  EdgeInsetsGeometry? getMargin() {
+    return spwmlParams.p.containerParams!.margin;
+  }
+
+  /// internal only. get padding from param.
+  EdgeInsets _getPaddingFromSpWML() {
     final double left = params.containsKey(EnumSpWMLParams.pLeft)
         ? params[EnumSpWMLParams.pLeft]
         : (params.containsKey(EnumSpWMLParams.pAll)
@@ -285,6 +348,22 @@ class SpWMLElement extends StatelessWidget {
             ? params[EnumSpWMLParams.pAll]
             : 0.0);
     return EdgeInsets.fromLTRB(left, top, right, bottom);
+  }
+
+  /// (en) Set padding.
+  ///
+  /// (ja)パディングを設定します。
+  void setPadding(EdgeInsetsGeometry? padding) {
+    spwmlParams.p.containerParams!.padding = padding;
+  }
+
+  /// (en) Get padding.
+  /// If it doesn't exist, null is returned.
+  ///
+  /// (ja) パディングを取得します。
+  /// 存在しない場合はnullが返されます。
+  EdgeInsetsGeometry? getPadding() {
+    return spwmlParams.p.containerParams!.padding;
   }
 
   /// If true, this widget is constrained.
@@ -339,6 +418,13 @@ class SpWMLElement extends StatelessWidget {
     } else {
       return null;
     }
+  }
+
+  /// (en) Sets the key for this element.
+  ///
+  /// (ja) この要素にキーを設定します。
+  void setElementKey(Key? key) {
+    spwmlParams.p.containerParams!.key = key;
   }
 
   /// Wrap if necessary.

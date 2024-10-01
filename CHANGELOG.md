@@ -1,3 +1,8 @@
+## 33.2.0
+
+* Added setFontSize method to TextElement.
+* Added setWidth, getWidth, setHeight, getHeight, setMargin, getMargin, setPadding, getPadding, setElementKey method to SpWMLElement.
+
 ## 33.1.0
 
 * Fixed cursor position bug of money and moneyWithDecimal inputType param in TextFieldElement.
