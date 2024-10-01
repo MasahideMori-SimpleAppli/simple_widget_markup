@@ -142,7 +142,6 @@ class SpWMLElement extends StatelessWidget {
   ///
   /// * [w] : This element width.
   void setWidth(double w) {
-    params[EnumSpWMLParams.width] = w;
     spwmlParams.p.containerParams!.width = w;
   }
 
@@ -166,7 +165,6 @@ class SpWMLElement extends StatelessWidget {
   ///
   /// * [h] : This element height.
   void setHeight(double h) {
-    params[EnumSpWMLParams.height] = h;
     spwmlParams.p.containerParams!.height = h;
   }
 
