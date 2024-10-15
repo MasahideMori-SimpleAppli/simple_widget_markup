@@ -1,3 +1,7 @@
+## 33.2.1
+
+* Added leadingDistribution and forceStrutHeight params to text type element.
+
 ## 33.2.0
 
 * Added setFontSize method to TextElement.

@@ -222,12 +222,19 @@ class TextElement extends SpWMLElement {
           leading: params.containsKey(EnumSpWMLParams.leading)
               ? params[EnumSpWMLParams.leading]
               : null,
+          leadingDistribution:
+              params.containsKey(EnumSpWMLParams.leadingDistribution)
+                  ? params[EnumSpWMLParams.leadingDistribution]
+                  : null,
           fontWeight: params.containsKey(EnumSpWMLParams.fontWeight)
               ? params[EnumSpWMLParams.fontWeight]
               : getDefFontWeight(),
           fontStyle: params.containsKey(EnumSpWMLParams.fontStyle)
               ? params[EnumSpWMLParams.fontStyle]
               : getDefFontStyle(),
+          forceStrutHeight: params.containsKey(EnumSpWMLParams.forceStrutHeight)
+              ? params[EnumSpWMLParams.forceStrutHeight]
+              : null,
         );
       }
     } else {

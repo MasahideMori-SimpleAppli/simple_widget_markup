@@ -22,6 +22,7 @@ enum EnumSpWMLParams {
   fontSize,
   fontWeight,
   fontStyle,
+  forceStrutHeight,
   letterSpacing,
   wordSpacing,
   textColor,
@@ -151,6 +152,7 @@ enum EnumSpWMLParams {
   useTextScaler,
   // テキストの行送り。
   leading,
+  leadingDistribution,
   // フルネーム系は利用頻度が低いので、解析の優先度を下げる。
   mLeft,
   mTop,
@@ -474,7 +476,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.isEnabled ||
           this == EnumSpWMLParams.useTextScaler ||
           this == EnumSpWMLParams.isLabelVisible ||
-          this == EnumSpWMLParams.readOnly) {
+          this == EnumSpWMLParams.readOnly ||
+          this == EnumSpWMLParams.forceStrutHeight) {
         if (v == "true") {
           return true;
         } else if (v == "false") {
@@ -529,6 +532,12 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           return TooltipTriggerMode.tap;
         } else {
           throw Exception();
+        }
+      } else if (this == EnumSpWMLParams.leadingDistribution) {
+        if (v == "even") {
+          return TextLeadingDistribution.even;
+        } else {
+          return TextLeadingDistribution.proportional;
         }
       } else {
         // 変換不要ならそのまま返す。
