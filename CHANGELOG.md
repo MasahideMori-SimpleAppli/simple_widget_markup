@@ -1,3 +1,7 @@
+## 33.2.2
+
+* Added an enumeration element named "dialog" to EnumWindowClass.
+
 ## 33.2.1
 
 * Added leadingDistribution and forceStrutHeight params to text type element.

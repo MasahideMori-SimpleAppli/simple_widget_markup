@@ -1,9 +1,11 @@
 /// (en) I created this enum with reference to:
 /// https://m3.material.io/foundations/layout/applying-layout/window-size-classes
 /// The any class was added for convenience when writing layout files.
+/// For convenience the additional elements dialog and any are also defined.
 ///
 /// (ja) マテリアル３準拠のウィンドウクラスの定義。
-enum EnumWindowClass { compact, medium, expanded, any }
+/// 利便性のための追加の要素としてdialogとanyも定義されている。
+enum EnumWindowClass { compact, medium, expanded, dialog, any }
 
 /// EnumWindowClass extension.
 extension EXTEnumWindowClass on EnumWindowClass {
