@@ -125,17 +125,42 @@ class ProgressIndicatorElement extends SpWMLElement {
   /// * [v] The progress value. null or the value between 0.0 and 1.0.
   /// If null, set loading animation.
   void setValue(double? v) {
-    if (elParams.p.indicatorType == EnumIndicatorType.circular) {
-      if (elParams.p.circularProgressIndicatorParams!.manager != null) {
-        elParams.p.circularProgressIndicatorParams!.manager!
-            .setValue(getSID()!, v);
-      }
-    } else {
-      if (elParams.p.linearProgressIndicatorParams!.manager != null) {
-        elParams.p.linearProgressIndicatorParams!.manager!
-            .setValue(getSID()!, v);
+    final String? sid = getSID();
+    if (sid != null) {
+      if (elParams.p.indicatorType == EnumIndicatorType.circular) {
+        if (elParams.p.circularProgressIndicatorParams!.manager != null) {
+          elParams.p.circularProgressIndicatorParams!.manager!.setValue(sid, v);
+        }
+      } else {
+        if (elParams.p.linearProgressIndicatorParams!.manager != null) {
+          elParams.p.linearProgressIndicatorParams!.manager!.setValue(sid, v);
+        }
       }
     }
+  }
+
+  /// (en) Get the value.
+  /// If the manager class has not been set or there is no value,
+  /// null is returned.
+  ///
+  /// (ja) 値を取得します。
+  /// マネージャークラスが未設定の場合や、値が無い場合はnullが返ります。
+  double? getValue() {
+    final String? sid = getSID();
+    if (sid != null) {
+      if (elParams.p.indicatorType == EnumIndicatorType.circular) {
+        if (elParams.p.circularProgressIndicatorParams!.manager != null) {
+          return elParams.p.circularProgressIndicatorParams!.manager!
+              .getValue(sid);
+        }
+      } else {
+        if (elParams.p.linearProgressIndicatorParams!.manager != null) {
+          return elParams.p.linearProgressIndicatorParams!.manager!
+              .getValue(sid);
+        }
+      }
+    }
+    return null;
   }
 
   /// (en) Sets the manager class that manages the state.

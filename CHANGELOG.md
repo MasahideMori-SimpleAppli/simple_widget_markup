@@ -1,3 +1,7 @@
+## 33.3.0
+
+* For clarity of API, both setValue and getValue are now available for classes that use manager classes.
+
 ## 33.2.2
 
 * Added an enumeration element named "dialog" to EnumWindowClass.

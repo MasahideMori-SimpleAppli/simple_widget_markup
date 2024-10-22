@@ -205,16 +205,17 @@ class TextFieldElement extends TextElement {
 
   /// Use TextFieldManager to apply setController and setFocusNode at the same time.
   /// * [manager] : TextFieldManager.
-  /// * [name] : A unique name for the controller and focus.
+  /// * [sid] : A unique name for the controller and focus.
+  /// Use the sid for the name.
   /// * [initialText] : Initial text for the controller in TextFieldManager.
   /// Applies only when first created.
   /// * [isAlwaysInitialize] : If true, always set initialText.
   /// If true and initialText is null, initialize by empty string
-  void setManager(TextFieldManager manager, String name,
+  void setManager(TextFieldManager manager, String sid,
       {String? initialText, bool isAlwaysInitialize = false}) {
-    setController(manager.getCtrl(name,
+    setController(manager.getCtrl(sid,
         initialText: initialText, isAlwaysInitialize: isAlwaysInitialize));
-    setFocusNode(manager.getFocus(name));
+    setFocusNode(manager.getFocus(sid));
   }
 
   /// Set the new text to this widget.
@@ -233,6 +234,24 @@ class TextFieldElement extends TextElement {
     } else {
       return null;
     }
+  }
+
+  /// (en) Sets the value. Disabled if the manager class is not set.
+  ///
+  /// (ja) 値を設定します。マネージャークラスが未設定の場合は無効です。
+  /// * [v] : value.
+  void setValue(String v) {
+    setText(v);
+  }
+
+  /// (en) Get the value.
+  /// If the manager class has not been set or there is no value,
+  /// null is returned.
+  ///
+  /// (ja) 値を取得します。
+  /// マネージャークラスが未設定の場合や、値が無い場合はnullが返ります。
+  String? getValue() {
+    return getText();
   }
 }
 

@@ -111,6 +111,22 @@ class SwitchBtnElement extends SpWMLElement {
     }
   }
 
+  /// (en) Get the value.
+  /// If the manager class has not been set or there is no value,
+  /// null is returned.
+  ///
+  /// (ja) 値を取得します。
+  /// マネージャークラスが未設定の場合や、値が無い場合はnullが返ります。
+  bool? getValue() {
+    if (elParams.p.manager != null) {
+      final String? sid = getSID();
+      if (sid != null) {
+        return elParams.p.manager!.getFlag(sid);
+      }
+    }
+    return null;
+  }
+
   /// (en) Sets the manager class that manages the state.
   ///
   /// (ja) 状態を管理するマネージャクラスを設定します。

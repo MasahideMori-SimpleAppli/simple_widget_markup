@@ -86,8 +86,27 @@ class SliderElement extends SpWMLElement {
   /// * [v] : The slider value.
   void setValue(double v) {
     if (elParams.p.manager != null) {
-      elParams.p.manager!.setValue(getSID()!, v);
+      final String? sid = getSID();
+      if (sid != null) {
+        elParams.p.manager!.setValue(sid, v);
+      }
     }
+  }
+
+  /// (en) Get the value.
+  /// If the manager class has not been set or there is no value,
+  /// null is returned.
+  ///
+  /// (ja) 値を取得します。
+  /// マネージャークラスが未設定の場合や、値が無い場合はnullが返ります。
+  double? getValue() {
+    if (elParams.p.manager != null) {
+      final String? sid = getSID();
+      if (sid != null) {
+        return elParams.p.manager!.getValue(sid);
+      }
+    }
+    return null;
   }
 
   /// (en) Set a callback when the slider value changes.
