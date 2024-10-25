@@ -70,7 +70,11 @@ class UtilParams {
         }
       } else {
         // primary
-        if (color.startsWith('red')) {
+        if (color.startsWith('blueGrey')) {
+          return Colors.blueGrey[_getShade(color, false)]!;
+        } else if (color.startsWith('blueGray')) {
+          return Colors.blueGrey[_getShade(color, false)]!;
+        } else if (color.startsWith('red')) {
           return Colors.red[_getShade(color, false)]!;
         } else if (color.startsWith('pink')) {
           return Colors.pink[_getShade(color, false)]!;
@@ -106,12 +110,8 @@ class UtilParams {
           return Colors.brown[_getShade(color, false)]!;
         } else if (color.startsWith('grey')) {
           return Colors.grey[_getShade(color, false)]!;
-        } else if (color.startsWith('blueGrey')) {
-          return Colors.blueGrey[_getShade(color, false)]!;
         } else if (color.startsWith('gray')) {
           return Colors.grey[_getShade(color, false)]!;
-        } else if (color.startsWith('blueGray')) {
-          return Colors.blueGrey[_getShade(color, false)]!;
         } else if (color.startsWith('transparent')) {
           return Colors.transparent;
         } else if (color.startsWith('white')) {

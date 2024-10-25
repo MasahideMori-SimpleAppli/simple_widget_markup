@@ -1,3 +1,7 @@
+## 33.3.1
+
+* Fixed a bug in color conversion where blueGrey was not recognized correctly.
+
 ## 33.3.0
 
 * For clarity of API, both setValue and getValue are now available for classes that use manager classes.
