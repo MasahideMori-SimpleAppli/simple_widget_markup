@@ -1,3 +1,7 @@
+## 34.0.1
+
+* Fixed a bug that prevented decimal points from being entered when min or max was enabled in the tf type.
+
 ## 34.0.0
 
 * The specification for TextField Element has been changed to use TextFieldManager rather than using TextEditingController and FocusNode directly.
