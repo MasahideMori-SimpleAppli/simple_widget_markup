@@ -130,8 +130,8 @@ enum EnumSpWMLParams {
   isMultiSelection,
   allowEmpty,
   // slider用
-  min,
-  max,
+  min, // これはテキストフィールドでも使用できる。
+  max, // これはテキストフィールドでも使用できる。
   activeColor,
   inactiveColor,
   divisions,

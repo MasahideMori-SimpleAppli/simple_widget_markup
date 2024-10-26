@@ -1,3 +1,12 @@
+## 34.0.0
+
+* The specification for TextField Element has been changed to use TextFieldManager rather than using TextEditingController and FocusNode directly.
+* Added getFocusNode, getController, setOnEditingComplete and setFocusCallback method to TextFieldElement.
+* Removed setController and setFocusNode method from TextFieldElement.
+* The specification of the setManager method of TextFieldElement has been changed.
+* As an experiment, I have added a formatter that allows you to set the value range when the input value of a text field is a number.
+* Added min and max parameters to tf type.
+
 ## 33.3.1
 
 * Fixed a bug in color conversion where blueGrey was not recognized correctly.

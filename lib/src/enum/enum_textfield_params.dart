@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:simple_widget_markup/src/element/sub/text/input_formatters/value_range_formatter.dart';
 
 import '../element/sub/text/input_formatters/decimal_input_formatter.dart';
 import '../element/sub/text/input_formatters/minus_input_formatter.dart';
@@ -87,43 +88,52 @@ extension EXTEnumTextFieldInputType on EnumTextFieldInputType {
   }
 
   /// Convert TextInputFormatter.
-  List<TextInputFormatter>? toTextInputFormatter() {
+  List<TextInputFormatter>? toTextInputFormatter(double? minV, double? maxV) {
     switch (this) {
       case EnumTextFieldInputType.normal:
         return null;
       case EnumTextFieldInputType.intOnly:
-        return [FilteringTextInputFormatter.digitsOnly];
+        return [
+          FilteringTextInputFormatter.digitsOnly,
+          ValueRangeFormatter(minV, maxV)
+        ];
       case EnumTextFieldInputType.intOnlyAllowNegative:
         return [
           FilteringTextInputFormatter.allow(RegExp(r'[-\d]')),
-          MinusInputFormatter()
+          MinusInputFormatter(),
+          ValueRangeFormatter(minV, maxV)
         ];
       case EnumTextFieldInputType.numOnly:
         return [
           FilteringTextInputFormatter.allow(RegExp(r'[.\d]')),
           DecimalInputFormatter(),
+          ValueRangeFormatter(minV, maxV)
         ];
       case EnumTextFieldInputType.numOnlyAllowNegative:
         return [
           FilteringTextInputFormatter.allow(RegExp(r'[-.\d]')),
           MinusInputFormatter(),
           DecimalInputFormatter(),
+          ValueRangeFormatter(minV, maxV)
         ];
       case EnumTextFieldInputType.money:
         return [
           FilteringTextInputFormatter.allow(RegExp(r'[\d,]')),
+          ValueRangeFormatter(minV, maxV),
           MoneyInputFormatter()
         ];
       case EnumTextFieldInputType.moneyAllowNegative:
         return [
           FilteringTextInputFormatter.allow(RegExp(r'[-\d,]')),
           MinusInputFormatter(),
+          ValueRangeFormatter(minV, maxV),
           MoneyInputFormatter()
         ];
       case EnumTextFieldInputType.moneyWithDecimal:
         return [
           FilteringTextInputFormatter.allow(RegExp(r'[.,\d]')),
           DecimalInputFormatter(),
+          ValueRangeFormatter(minV, maxV),
           MoneyInputFormatter()
         ];
       case EnumTextFieldInputType.moneyWithDecimalAllowNegative:
@@ -131,6 +141,7 @@ extension EXTEnumTextFieldInputType on EnumTextFieldInputType {
           FilteringTextInputFormatter.allow(RegExp(r'[-.,\d]')),
           MinusInputFormatter(),
           DecimalInputFormatter(),
+          ValueRangeFormatter(minV, maxV),
           MoneyInputFormatter()
         ];
     }

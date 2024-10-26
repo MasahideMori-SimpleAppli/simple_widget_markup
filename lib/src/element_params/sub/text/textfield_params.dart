@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:simple_managers/simple_managers.dart';
 
 import '../../../enum/enum_textfield_params.dart';
 
@@ -24,8 +25,7 @@ class TextFieldParamsWrapper {
 ///
 class TextFieldParams {
   Key? key;
-  TextEditingController? controller;
-  FocusNode? focusNode;
+  TextFieldManager? manager;
   InputDecoration decoration = const InputDecoration();
   TextInputType? keyboardType;
   TextInputAction? textInputAction;

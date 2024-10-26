@@ -54,9 +54,16 @@ class TextFieldElement extends TextElement {
         ? (params[EnumSpWMLParams.keyboardType] as EnumTextFieldKeyboardType)
             .toTextInputType()
         : null;
+    // 数値用の最大値または最小値が設定してあれば取得。
+    final double? minV = params.containsKey(EnumSpWMLParams.min)
+        ? (params[EnumSpWMLParams.min])
+        : null;
+    final double? maxV = params.containsKey(EnumSpWMLParams.max)
+        ? (params[EnumSpWMLParams.max])
+        : null;
     tfParams.p.inputFormatters = params.containsKey(EnumSpWMLParams.inputType)
         ? (params[EnumSpWMLParams.inputType] as EnumTextFieldInputType)
-            .toTextInputFormatter()
+            .toTextInputFormatter(minV, maxV)
         : null;
     tfParams.p.enabled = params.containsKey(EnumSpWMLParams.isEnabled)
         ? params[EnumSpWMLParams.isEnabled]
@@ -185,16 +192,37 @@ class TextFieldElement extends TextElement {
     tfParams.p.onSubmitted = onSubmitted;
   }
 
-  /// Set TextEditingController.
-  /// * [controller] : The controller.
-  void setController(TextEditingController? controller) {
-    tfParams.p.controller = controller;
+  /// (en) Sets the manager class that manages the state.
+  ///
+  /// (ja) 状態を管理するマネージャクラスを設定します。
+  /// * [m] : Manager class.
+  /// * [sid] : This element sid.
+  void setManager(TextFieldManager m, String sid) {
+    tfParams.p.manager = m;
+    tfParams.p.manager!.getText(sid);
+    tfParams.p.manager!.getFocus(sid);
   }
 
-  /// Set focusNode.
-  /// * [focusNode] : The focusNode.
-  void setFocusNode(FocusNode? focusNode) {
-    tfParams.p.focusNode = focusNode;
+  /// Get TextEditingController.
+  /// If the manager is not set, null is returned.
+  TextEditingController? getController() {
+    final String? sid = getSID();
+    if (sid == null || tfParams.p.manager == null) {
+      return null;
+    } else {
+      return tfParams.p.manager!.getCtrl(sid);
+    }
+  }
+
+  /// Get focusNode.
+  /// If the manager is not set, null is returned.
+  FocusNode? getFocusNode() {
+    final String? sid = getSID();
+    if (sid == null || tfParams.p.manager == null) {
+      return null;
+    } else {
+      return tfParams.p.manager!.getFocus(sid);
+    }
   }
 
   /// Set enabled flag.
@@ -203,37 +231,74 @@ class TextFieldElement extends TextElement {
     tfParams.p.enabled = enabled;
   }
 
-  /// Use TextFieldManager to apply setController and setFocusNode at the same time.
-  /// * [manager] : TextFieldManager.
-  /// * [sid] : A unique name for the controller and focus.
-  /// Use the sid for the name.
-  /// * [initialText] : Initial text for the controller in TextFieldManager.
-  /// Applies only when first created.
-  /// * [isAlwaysInitialize] : If true, always set initialText.
-  /// If true and initialText is null, initialize by empty string
-  void setManager(TextFieldManager manager, String sid,
-      {String? initialText, bool isAlwaysInitialize = false}) {
-    setController(manager.getCtrl(sid,
-        initialText: initialText, isAlwaysInitialize: isAlwaysInitialize));
-    setFocusNode(manager.getFocus(sid));
-  }
-
-  /// Set the new text to this widget.
-  /// Disabled if controller or manager is not set.
+  /// (en) Set the new text to this widget.
+  /// Disabled if manager is not set.
+  ///
+  /// (ja) テキスト内容を設定します。
+  /// マネージャークラスが未設定の場合は無効です。
   void setText(String text) {
-    if (tfParams.p.controller != null) {
-      tfParams.p.controller!.text = text;
+    final String? sid = getSID();
+    if (sid == null || tfParams.p.manager == null) {
+      return;
+    } else {
+      tfParams.p.manager!.setText(sid, text);
     }
   }
 
-  /// Gets the text set to this widget.
-  /// If the controller or manager is not set, null is returned.
+  /// (en) Gets the text set to this widget.
+  /// If the manager is not set, null is returned.
+  ///
+  /// (ja) テキスト内容を取得します。
+  /// マネージャークラスが未設定の場合はnullが返されます。
   String? getText() {
-    if (tfParams.p.controller != null) {
-      return tfParams.p.controller!.text;
-    } else {
+    final String? sid = getSID();
+    if (sid == null || tfParams.p.manager == null) {
       return null;
+    } else {
+      return tfParams.p.manager!.getText(sid);
     }
+  }
+
+  /// (en) Sets callbacks for when focus is gained and lost.
+  /// Invalid if manager class is not set.
+  ///
+  /// (ja) フォーカスがあたった時と外れた時のコールバックを設定します。
+  /// マネージャークラスが未設定の場合は無効です。
+  /// * [focusIn] : The callback for focus in.
+  /// * [focusOut] : The callback for focus out.
+  void setFocusCallback(void Function()? focusIn, void Function()? focusOut) {
+    final String? sid = getSID();
+    if (sid == null || tfParams.p.manager == null) {
+      return;
+    } else {
+      if (focusIn == null && focusOut == null) {
+        getFocusNode()!.dispose();
+        tfParams.p.manager!.getALLFocus()[sid] = FocusNode();
+      } else {
+        if (focusIn == null || focusOut == null) {
+          getFocusNode()!.dispose();
+          tfParams.p.manager!.getALLFocus()[sid] = FocusNode();
+        }
+        final FocusNode node = getFocusNode()!;
+        node.addListener(() {
+          if (node.hasFocus) {
+            if (focusIn != null) {
+              focusIn();
+            }
+          } else {
+            if (focusOut != null) {
+              focusOut();
+            }
+          }
+        });
+      }
+    }
+  }
+
+  /// Set the onEditingComplete callback.
+  /// * [callback] : The callback function.
+  void setOnEditingComplete(void Function() callback) {
+    tfParams.p.onEditingComplete = callback;
   }
 
   /// (en) Sets the value. Disabled if the manager class is not set.
@@ -316,8 +381,7 @@ class _TextFieldElementWidgetState extends State<_TextFieldElementWidget> {
           : widget.tfParams.p.suffixIconSize,
       onPressed: () {
         if (widget.tfParams.p.searchCallback != null) {
-          widget.tfParams.p
-              .searchCallback!(widget.tfParams.p.controller?.text ?? "");
+          widget.tfParams.p.searchCallback!(widget.parent.getValue() ?? "");
         }
       },
       splashRadius: widget.tfParams.p.suffixIconSplashRadius,
@@ -333,7 +397,7 @@ class _TextFieldElementWidgetState extends State<_TextFieldElementWidget> {
       onPressed: () {
         if (mounted) {
           setState(() {
-            widget.tfParams.p.controller?.clear();
+            widget.parent.getController()?.clear();
             if (widget.tfParams.p.clearCallback != null) {
               widget.tfParams.p.clearCallback!();
             }
@@ -391,8 +455,8 @@ class _TextFieldElementWidgetState extends State<_TextFieldElementWidget> {
   Widget build(BuildContext context) {
     return TextField(
       key: widget.tfParams.p.key,
-      controller: widget.tfParams.p.controller,
-      focusNode: widget.tfParams.p.focusNode,
+      controller: widget.parent.getController(),
+      focusNode: widget.parent.getFocusNode(),
       decoration: _getDecoration(),
       keyboardType: widget.tfParams.p.keyboardType,
       textInputAction: widget.tfParams.p.textInputAction,
