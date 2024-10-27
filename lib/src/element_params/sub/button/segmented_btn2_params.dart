@@ -25,7 +25,7 @@ class SegmentedBtn2Params {
   static const defEmptySelectionAllowed = true;
   Key? key;
   List<ButtonSegment<String>>? segments;
-  MultiSelectionManager? manager;
+  MultiTagSelectionManager? manager;
   // The set value is children indexes.
   void Function(Set<String>)? onSelectionChanged;
   bool multiSelectionEnabled = defMultiSelectionEnabled;

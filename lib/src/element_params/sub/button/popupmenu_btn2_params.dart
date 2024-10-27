@@ -34,7 +34,7 @@ class PopupMenuBtn2Params {
   // popupmenu button parameters
   Key? key;
   List<PopupMenuEntry<String>> Function(BuildContext)? itemBuilder;
-  SelectionManager? manager;
+  TagSelectionManager? manager;
   void Function()? onOpened;
   void Function(String)? onSelected;
   void Function()? onCanceled;

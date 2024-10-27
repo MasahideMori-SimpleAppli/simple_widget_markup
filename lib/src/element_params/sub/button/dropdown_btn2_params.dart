@@ -52,7 +52,7 @@ class DropdownBtn2Params {
   EdgeInsetsGeometry? padding;
   // others
   List<DropdownMenuItemParams> dropdownMenuItemParams = [];
-  SelectionManager? manager;
+  TagSelectionManager? manager;
   void Function(String sid)? menuCallback;
   bool isEnabled = true;
 }

@@ -283,10 +283,10 @@ class SpWMLBuilder {
   /// * [tfm] : The manager for textfield.
   /// * [im] : The manager for dropdownBtn, popupMenuBtn and radioBtn.
   /// * [fm] : The manager for switchBtn.
-  /// * [sem] : The manager for dropdownBtn2 popupMenuBtn2 and radioBtn2.
+  /// * [tsm] : The manager for dropdownBtn2 popupMenuBtn2 and radioBtn2.
   /// * [mim] : The manager for segmentedBtn.
   /// * [mfm] : The manager for checkbox.
-  /// * [msem] : The manager for segmentedBtn2 and checkbox2.
+  /// * [mtsm] : The manager for segmentedBtn2 and checkbox2.
   /// * [vm] : The manager for progressIndicator and slider.
   ///
   /// Throws : Throws noManagerException if the required manager is not set.
@@ -294,10 +294,10 @@ class SpWMLBuilder {
       {TextFieldManager? tfm,
       IndexManager? im,
       FlagManager? fm,
-      SelectionManager? sem,
+      TagSelectionManager? tsm,
       MultiIndexManager? mim,
       MultiFlagManager? mfm,
-      MultiSelectionManager? msem,
+      MultiTagSelectionManager? mtsm,
       ValueManager? vm}) {
     for (SpWMLElement i in _parsedWidgets) {
       final String? sid = i.getSID();
@@ -334,8 +334,8 @@ class SpWMLBuilder {
         }
         if (i.type == EnumSpWMLElementType.dropdownBtn2) {
           DropdownBtn2Element elm = i as DropdownBtn2Element;
-          if (sem != null) {
-            elm.setManager(sem, sid);
+          if (tsm != null) {
+            elm.setManager(tsm, sid);
           } else {
             throw SpWMLException(
                 EnumSpWMLExceptionType.noManagerException,
@@ -362,8 +362,8 @@ class SpWMLBuilder {
         }
         if (i.type == EnumSpWMLElementType.popupMenuBtn2) {
           PopupMenuBtn2Element elm = i as PopupMenuBtn2Element;
-          if (sem != null) {
-            elm.setManager(sem, sid);
+          if (tsm != null) {
+            elm.setManager(tsm, sid);
           } else {
             throw SpWMLException(
                 EnumSpWMLExceptionType.noManagerException,
@@ -390,8 +390,8 @@ class SpWMLBuilder {
         }
         if (i.type == EnumSpWMLElementType.radioBtn2) {
           RadioBtn2Element elm = i as RadioBtn2Element;
-          if (sem != null) {
-            elm.setManager(sem, sid);
+          if (tsm != null) {
+            elm.setManager(tsm, sid);
           } else {
             throw SpWMLException(
                 EnumSpWMLExceptionType.noManagerException,
@@ -432,8 +432,8 @@ class SpWMLBuilder {
         }
         if (i.type == EnumSpWMLElementType.segmentedBtn2) {
           SegmentedBtn2Element elm = i as SegmentedBtn2Element;
-          if (msem != null) {
-            elm.setManager(msem, sid);
+          if (mtsm != null) {
+            elm.setManager(mtsm, sid);
           } else {
             throw SpWMLException(
                 EnumSpWMLExceptionType.noManagerException,
@@ -460,8 +460,8 @@ class SpWMLBuilder {
         }
         if (i.type == EnumSpWMLElementType.checkbox2) {
           Checkbox2Element elm = i as Checkbox2Element;
-          if (msem != null) {
-            elm.setManager(msem, sid);
+          if (mtsm != null) {
+            elm.setManager(mtsm, sid);
           } else {
             throw SpWMLException(
                 EnumSpWMLExceptionType.noManagerException,
@@ -514,10 +514,10 @@ class SpWMLBuilder {
         tfm: sm.tfm,
         im: sm.im,
         fm: sm.fm,
-        sem: sm.sem,
+        tsm: sm.tsm,
         mim: sm.mim,
         mfm: sm.mfm,
-        msem: sm.msem,
+        mtsm: sm.mtsm,
         vm: sm.vm);
   }
 }

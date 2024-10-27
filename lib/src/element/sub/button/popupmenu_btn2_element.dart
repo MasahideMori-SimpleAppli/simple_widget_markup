@@ -212,7 +212,7 @@ class PopupMenuBtn2Element extends MultiChildElement {
   /// (ja) 状態を管理するマネージャクラスを設定します。
   /// * [m] : Manager class.
   /// * [sid] : This element sid.
-  void setManager(SelectionManager m, String sid) {
+  void setManager(TagSelectionManager m, String sid) {
     elParams.p.manager = m;
     elParams.p.manager!.getSelection(sid);
   }

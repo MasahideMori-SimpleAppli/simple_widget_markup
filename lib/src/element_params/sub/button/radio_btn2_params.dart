@@ -24,7 +24,7 @@ class RadioBtn2ParamsWrapper {
 class RadioBtn2Params {
   SelectableIconBtnParams? enableParams;
   SelectableIconBtnParams? disableParams;
-  SelectionManager? manager;
+  TagSelectionManager? manager;
   void Function(String sid)? callback = (String? sid) {};
   // If true, enable tap of label.
   bool enableTapLabel = false;

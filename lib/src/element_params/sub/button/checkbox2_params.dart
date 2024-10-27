@@ -23,7 +23,7 @@ class Checkbox2ParamsWrapper {
 class Checkbox2Params {
   SelectableIconBtnParams? enableParams;
   SelectableIconBtnParams? disableParams;
-  MultiSelectionManager? manager;
+  MultiTagSelectionManager? manager;
   void Function(Set<String> checkValues)? callback;
   // If true, enable tap of label.
   bool enableTapLabel = false;

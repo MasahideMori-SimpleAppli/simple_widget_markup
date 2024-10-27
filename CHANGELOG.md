@@ -1,3 +1,9 @@
+## 35.0.0
+
+* Updates associated with base library updates.
+* The names of some manager classes have changed in the base library, which has resulted in changes to the classes name used by some classes.
+* Please see the [simple_managers](https://pub.dev/packages/simple_managers) package for detailed changes.
+
 ## 34.0.1
 
 * Fixed a bug that prevented decimal points from being entered when min or max was enabled in the tf type.
