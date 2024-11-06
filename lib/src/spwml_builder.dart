@@ -317,8 +317,20 @@ class SpWMLBuilder {
                     errorHint:
                         'TextFieldManager is not set. ${(info != null) ? info!.errorHint : ""}'));
           }
-        }
-        if (i.type == EnumSpWMLElementType.dropdownBtn) {
+        } else if (i.type == EnumSpWMLElementType.colorPalette) {
+          ColorPaletteElement elm = i as ColorPaletteElement;
+          if (tfm != null) {
+            elm.setManager(tfm, sid);
+          } else {
+            throw SpWMLException(
+                EnumSpWMLExceptionType.noManagerException,
+                -1,
+                -1,
+                SpWMLInfo(
+                    errorHint:
+                        'TextFieldManager is not set. ${(info != null) ? info!.errorHint : ""}'));
+          }
+        } else if (i.type == EnumSpWMLElementType.dropdownBtn) {
           DropdownBtnElement elm = i as DropdownBtnElement;
           if (im != null) {
             elm.setManager(im, sid);
@@ -331,8 +343,7 @@ class SpWMLBuilder {
                     errorHint:
                         'IndexManager is not set. ${(info != null) ? info!.errorHint : ""}'));
           }
-        }
-        if (i.type == EnumSpWMLElementType.dropdownBtn2) {
+        } else if (i.type == EnumSpWMLElementType.dropdownBtn2) {
           DropdownBtn2Element elm = i as DropdownBtn2Element;
           if (tsm != null) {
             elm.setManager(tsm, sid);
@@ -345,8 +356,7 @@ class SpWMLBuilder {
                     errorHint:
                         'SelectionManager is not set. ${(info != null) ? info!.errorHint : ""}'));
           }
-        }
-        if (i.type == EnumSpWMLElementType.popupMenuBtn) {
+        } else if (i.type == EnumSpWMLElementType.popupMenuBtn) {
           PopupMenuBtnElement elm = i as PopupMenuBtnElement;
           if (im != null) {
             elm.setManager(im, sid);
@@ -359,8 +369,7 @@ class SpWMLBuilder {
                     errorHint:
                         'IndexManager is not set. ${(info != null) ? info!.errorHint : ""}'));
           }
-        }
-        if (i.type == EnumSpWMLElementType.popupMenuBtn2) {
+        } else if (i.type == EnumSpWMLElementType.popupMenuBtn2) {
           PopupMenuBtn2Element elm = i as PopupMenuBtn2Element;
           if (tsm != null) {
             elm.setManager(tsm, sid);
@@ -373,8 +382,7 @@ class SpWMLBuilder {
                     errorHint:
                         'SelectionManager is not set. ${(info != null) ? info!.errorHint : ""}'));
           }
-        }
-        if (i.type == EnumSpWMLElementType.radioBtn) {
+        } else if (i.type == EnumSpWMLElementType.radioBtn) {
           RadioBtnElement elm = i as RadioBtnElement;
           if (im != null) {
             elm.setManager(im, sid);
@@ -387,8 +395,7 @@ class SpWMLBuilder {
                     errorHint:
                         'IndexManager is not set. ${(info != null) ? info!.errorHint : ""}'));
           }
-        }
-        if (i.type == EnumSpWMLElementType.radioBtn2) {
+        } else if (i.type == EnumSpWMLElementType.radioBtn2) {
           RadioBtn2Element elm = i as RadioBtn2Element;
           if (tsm != null) {
             elm.setManager(tsm, sid);
@@ -401,8 +408,7 @@ class SpWMLBuilder {
                     errorHint:
                         'SelectionManager is not set. ${(info != null) ? info!.errorHint : ""}'));
           }
-        }
-        if (i.type == EnumSpWMLElementType.switchBtn) {
+        } else if (i.type == EnumSpWMLElementType.switchBtn) {
           SwitchBtnElement elm = i as SwitchBtnElement;
           if (fm != null) {
             elm.setManager(fm, sid);
@@ -415,8 +421,7 @@ class SpWMLBuilder {
                     errorHint:
                         'FlagManager is not set. ${(info != null) ? info!.errorHint : ""}'));
           }
-        }
-        if (i.type == EnumSpWMLElementType.segmentedBtn) {
+        } else if (i.type == EnumSpWMLElementType.segmentedBtn) {
           SegmentedBtnElement elm = i as SegmentedBtnElement;
           if (mim != null) {
             elm.setManager(mim, sid);
@@ -429,8 +434,7 @@ class SpWMLBuilder {
                     errorHint:
                         'MultiIndexManager is not set. ${(info != null) ? info!.errorHint : ""}'));
           }
-        }
-        if (i.type == EnumSpWMLElementType.segmentedBtn2) {
+        } else if (i.type == EnumSpWMLElementType.segmentedBtn2) {
           SegmentedBtn2Element elm = i as SegmentedBtn2Element;
           if (mtsm != null) {
             elm.setManager(mtsm, sid);
@@ -443,8 +447,7 @@ class SpWMLBuilder {
                     errorHint:
                         'MultiSelectionManager is not set. ${(info != null) ? info!.errorHint : ""}'));
           }
-        }
-        if (i.type == EnumSpWMLElementType.checkbox) {
+        } else if (i.type == EnumSpWMLElementType.checkbox) {
           CheckboxElement elm = i as CheckboxElement;
           if (mfm != null) {
             elm.setManager(mfm, sid);
@@ -457,8 +460,7 @@ class SpWMLBuilder {
                     errorHint:
                         'MultiFlagManager is not set. ${(info != null) ? info!.errorHint : ""}'));
           }
-        }
-        if (i.type == EnumSpWMLElementType.checkbox2) {
+        } else if (i.type == EnumSpWMLElementType.checkbox2) {
           Checkbox2Element elm = i as Checkbox2Element;
           if (mtsm != null) {
             elm.setManager(mtsm, sid);
@@ -471,8 +473,7 @@ class SpWMLBuilder {
                     errorHint:
                         'MultiSelectionManager is not set. ${(info != null) ? info!.errorHint : ""}'));
           }
-        }
-        if (i.type == EnumSpWMLElementType.progressIndicator) {
+        } else if (i.type == EnumSpWMLElementType.progressIndicator) {
           ProgressIndicatorElement elm = i as ProgressIndicatorElement;
           if (vm != null) {
             elm.setManager(vm, sid);
@@ -485,8 +486,7 @@ class SpWMLBuilder {
                     errorHint:
                         'ValueManager is not set. ${(info != null) ? info!.errorHint : ""}'));
           }
-        }
-        if (i.type == EnumSpWMLElementType.slider) {
+        } else if (i.type == EnumSpWMLElementType.slider) {
           SliderElement elm = i as SliderElement;
           if (vm != null) {
             elm.setManager(vm, sid);

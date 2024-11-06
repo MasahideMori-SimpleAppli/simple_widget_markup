@@ -15,6 +15,7 @@ export 'sub/button/radio_btn2_element.dart';
 export 'sub/button/segmented_btn_element.dart';
 export 'sub/button/segmented_btn2_element.dart';
 export 'sub/button/switch_btn_element.dart';
+export 'sub/other/color_palette_element.dart';
 export 'sub/other/icon_element.dart';
 export 'sub/other/img_element.dart';
 export 'sub/other/line_element.dart';

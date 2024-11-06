@@ -1,3 +1,7 @@
+## 35.1.0
+
+* Added colorPalette type.
+
 ## 35.0.0
 
 * Updates associated with base library updates.

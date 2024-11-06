@@ -184,6 +184,18 @@ class UtilParams {
     }
   }
 
+  /// (en) Returns the color converted to a hexadecimal #AARRGGBB string.
+  ///
+  /// (ja) Colorを16進数の#AARRGGBB形式のテキストに変換して返します。
+  ///
+  /// * [color] : The color you want to convert.
+  static String colorToHexString(Color color) {
+    return '#${color.alpha.toRadixString(16).padLeft(2, '0')}' // Alpha
+        '${color.red.toRadixString(16).padLeft(2, '0')}' // Red
+        '${color.green.toRadixString(16).padLeft(2, '0')}' // Green
+        '${color.blue.toRadixString(16).padLeft(2, '0')}'; // Blue
+  }
+
   ///
   /// * [s] : Alignment text.
   /// * [lineStart] : line info for the Error handling.

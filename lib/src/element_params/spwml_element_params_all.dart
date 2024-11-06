@@ -14,6 +14,7 @@ export 'sub/button/radio_btn2_params.dart';
 export 'sub/button/segmented_btn_params.dart';
 export 'sub/button/segmented_btn2_params.dart';
 export 'sub/button/switch_btn_params.dart';
+export 'sub/other/color_palette_element_params.dart';
 export 'sub/other/icon_element_params.dart';
 export 'sub/other/img_element_params.dart';
 export 'sub/other/line_element_params.dart';

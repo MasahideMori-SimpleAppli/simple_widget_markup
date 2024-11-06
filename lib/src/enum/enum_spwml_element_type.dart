@@ -70,6 +70,7 @@ enum EnumSpWMLElementType {
   tableRow,
   progressIndicator,
   slider,
+  colorPalette,
   // super and subscript.
   superscript,
   subscript,
