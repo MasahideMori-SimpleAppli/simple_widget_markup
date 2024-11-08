@@ -7,5 +7,7 @@ enum EnumColorPaletteType {
   // With ARGB editing fields.
   normal,
   // ColorTiles only.
-  simple
+  simple,
+  // ARGB editing fields only.
+  text
 }

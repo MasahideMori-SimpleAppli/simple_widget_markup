@@ -1,3 +1,8 @@
+## 36.0.1
+
+* Fixed an issue where the colorPalette type could not be changed from SpWML.
+* The text type has been added to the colorPalette.
+
 ## 36.0.0
 
 * You can now edit the color tiles in the colorPalette.

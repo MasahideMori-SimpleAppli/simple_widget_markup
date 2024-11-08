@@ -49,6 +49,9 @@ class ColorPaletteElement extends SpWMLElement {
   @override
   ColorPaletteElement initParams() {
     super.initParams();
+    elParams.p.type = params.containsKey(EnumSpWMLParams.type)
+        ? params[EnumSpWMLParams.type]
+        : EnumColorPaletteType.normal;
     elParams.p.hAlign = params.containsKey(EnumSpWMLParams.hAlign)
         ? params[EnumSpWMLParams.hAlign]
         : MainAxisAlignment.start;
@@ -281,6 +284,12 @@ class _ColorPaletteElementWidgetState
           );
         case EnumColorPaletteType.simple:
           palletWidget.addAll(_getColorTiles());
+          return Column(
+            mainAxisAlignment: widget.params.vAlign,
+            children: palletWidget,
+          );
+        case EnumColorPaletteType.text:
+          palletWidget.addAll(_getARGBEditField(tfm, c, sid));
           return Column(
             mainAxisAlignment: widget.params.vAlign,
             children: palletWidget,

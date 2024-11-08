@@ -360,6 +360,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
             return EnumColorPaletteType.normal;
           } else if (v == EnumColorPaletteType.simple.name) {
             return EnumColorPaletteType.simple;
+          } else if (v == EnumColorPaletteType.text.name) {
+            return EnumColorPaletteType.text;
           } else {
             throw Exception();
           }
