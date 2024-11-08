@@ -1,5 +1,6 @@
 export 'enum_btn_type.dart';
 export 'enum_clip_type.dart';
+export 'enum_color_palette_type.dart';
 export 'enum_font_style.dart';
 export 'enum_font_weight.dart';
 export 'enum_img_type.dart';

@@ -177,6 +177,11 @@ enum EnumSpWMLParams {
   readOnly,
   keyboardType,
   inputType,
+  // カラーパレット専用の値
+  cellWidth,
+  cellHeight,
+  cellMargin,
+  vMargin
 }
 
 /// 重複を避けて高速化するために、短縮系だけをまとめたもの。
@@ -277,7 +282,11 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.smallSize ||
           this == EnumSpWMLParams.offsetX ||
           this == EnumSpWMLParams.offsetY ||
-          this == EnumSpWMLParams.leading) {
+          this == EnumSpWMLParams.leading ||
+          this == EnumSpWMLParams.cellHeight ||
+          this == EnumSpWMLParams.cellWidth ||
+          this == EnumSpWMLParams.cellMargin ||
+          this == EnumSpWMLParams.vMargin) {
         return double.parse(v);
       }
       if (this == EnumSpWMLParams.weight || this == EnumSpWMLParams.hNum) {
@@ -306,6 +315,12 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           return UtilParams.convertWrapAlign(v, lineStart, lineEnd, info);
         } else if (this == EnumSpWMLParams.hAlign) {
           return UtilParams.convertWrapAlign(v, lineStart, lineEnd, info);
+        }
+      } else if (type == EnumSpWMLElementType.colorPalette) {
+        if (this == EnumSpWMLParams.vAlign) {
+          return UtilParams.convertMainAxisAlign(v, lineStart, lineEnd, info);
+        } else if (this == EnumSpWMLParams.hAlign) {
+          return UtilParams.convertMainAxisAlign(v, lineStart, lineEnd, info);
         }
       } else if (type == EnumSpWMLElementType.img) {
         if (this == EnumSpWMLParams.fit) {
@@ -336,6 +351,18 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           }
         } else if (this == EnumSpWMLParams.type) {
           return EXTEnumImgType.fromStr(v, lineStart, lineEnd, info);
+        }
+      }
+      // color palette only
+      else if (type == EnumSpWMLElementType.colorPalette) {
+        if (this == EnumSpWMLParams.type) {
+          if (v == EnumColorPaletteType.normal.name) {
+            return EnumColorPaletteType.normal;
+          } else if (v == EnumColorPaletteType.simple.name) {
+            return EnumColorPaletteType.simple;
+          } else {
+            throw Exception();
+          }
         }
       }
       // indicator only

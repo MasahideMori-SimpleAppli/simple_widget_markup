@@ -14,8 +14,8 @@ class SpWMLDialog extends StatefulWidget {
   final double? height;
   final Widget? cancelBtnText;
   final Widget? okBtnText;
-  final void Function(Function dialogClose)? cancelBtnCallback;
-  final void Function(Function dialogClose)? okBtnCallback;
+  final void Function(Function({dynamic v}) dialogClose)? cancelBtnCallback;
+  final void Function(Function({dynamic v}) dialogClose)? okBtnCallback;
 
   /// * [b] : Dialog content.
   /// * [title] : Dialog title. e.g. text widget.
@@ -51,8 +51,8 @@ class SpWMLDialogState extends State<SpWMLDialog> {
         child: widget.cancelBtnText ?? const Text('Cancel'),
         onPressed: () {
           if (widget.cancelBtnCallback != null) {
-            widget.cancelBtnCallback!(() {
-              Navigator.pop(context);
+            widget.cancelBtnCallback!(({dynamic v}) {
+              Navigator.of(context).pop(v);
             });
           }
         },
@@ -63,8 +63,8 @@ class SpWMLDialogState extends State<SpWMLDialog> {
         child: widget.okBtnText ?? const Text('OK'),
         onPressed: () {
           if (widget.okBtnCallback != null) {
-            widget.okBtnCallback!(() {
-              Navigator.pop(context);
+            widget.okBtnCallback!(({dynamic v}) {
+              Navigator.of(context).pop(v);
             });
           }
         },

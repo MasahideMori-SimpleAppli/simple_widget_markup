@@ -1,3 +1,10 @@
+## 36.0.0
+
+* You can now edit the color tiles in the colorPalette.
+* In addition to the existing "normal" color palette type, "simple" has been added.
+* Added alignment option to colorPalette.
+* For SpWMLDialog, option values can now be set in the callback.
+
 ## 35.1.0
 
 * Added colorPalette type.
