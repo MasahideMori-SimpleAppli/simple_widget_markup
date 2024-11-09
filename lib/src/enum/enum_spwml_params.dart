@@ -322,6 +322,17 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
         } else if (this == EnumSpWMLParams.hAlign) {
           return UtilParams.convertMainAxisAlign(v, lineStart, lineEnd, info);
         }
+        if (this == EnumSpWMLParams.type) {
+          if (v == EnumColorPaletteType.normal.name) {
+            return EnumColorPaletteType.normal;
+          } else if (v == EnumColorPaletteType.simple.name) {
+            return EnumColorPaletteType.simple;
+          } else if (v == EnumColorPaletteType.text.name) {
+            return EnumColorPaletteType.text;
+          } else {
+            throw Exception();
+          }
+        }
       } else if (type == EnumSpWMLElementType.img) {
         if (this == EnumSpWMLParams.fit) {
           if (v == "none") {
@@ -351,20 +362,6 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           }
         } else if (this == EnumSpWMLParams.type) {
           return EXTEnumImgType.fromStr(v, lineStart, lineEnd, info);
-        }
-      }
-      // color palette only
-      else if (type == EnumSpWMLElementType.colorPalette) {
-        if (this == EnumSpWMLParams.type) {
-          if (v == EnumColorPaletteType.normal.name) {
-            return EnumColorPaletteType.normal;
-          } else if (v == EnumColorPaletteType.simple.name) {
-            return EnumColorPaletteType.simple;
-          } else if (v == EnumColorPaletteType.text.name) {
-            return EnumColorPaletteType.text;
-          } else {
-            throw Exception();
-          }
         }
       }
       // indicator only
