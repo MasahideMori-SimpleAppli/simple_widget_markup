@@ -1,6 +1,8 @@
 ## 36.0.2
 
 * Fixed an issue where the colorPalette type could not be changed from SpWML. The previous fix was not applied due to a parsing order issue.
+* The circle and simpleCircle type has been added to the colorPalette.
+* Added cellBorderWidth and cellBorderColor params to colorPalette.
 
 ## 36.0.1
 

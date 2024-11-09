@@ -181,7 +181,9 @@ enum EnumSpWMLParams {
   cellWidth,
   cellHeight,
   cellMargin,
-  vMargin
+  vMargin,
+  cellBorderWidth,
+  cellBorderColor,
 }
 
 /// 重複を避けて高速化するために、短縮系だけをまとめたもの。
@@ -286,7 +288,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.cellHeight ||
           this == EnumSpWMLParams.cellWidth ||
           this == EnumSpWMLParams.cellMargin ||
-          this == EnumSpWMLParams.vMargin) {
+          this == EnumSpWMLParams.vMargin ||
+          this == EnumSpWMLParams.cellBorderWidth) {
         return double.parse(v);
       }
       if (this == EnumSpWMLParams.weight || this == EnumSpWMLParams.hNum) {
@@ -316,7 +319,9 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
         } else if (this == EnumSpWMLParams.hAlign) {
           return UtilParams.convertWrapAlign(v, lineStart, lineEnd, info);
         }
-      } else if (type == EnumSpWMLElementType.colorPalette) {
+      }
+      // colorPalette only
+      if (type == EnumSpWMLElementType.colorPalette) {
         if (this == EnumSpWMLParams.vAlign) {
           return UtilParams.convertMainAxisAlign(v, lineStart, lineEnd, info);
         } else if (this == EnumSpWMLParams.hAlign) {
@@ -329,11 +334,17 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
             return EnumColorPaletteType.simple;
           } else if (v == EnumColorPaletteType.text.name) {
             return EnumColorPaletteType.text;
+          } else if (v == EnumColorPaletteType.circle.name) {
+            return EnumColorPaletteType.circle;
+          } else if (v == EnumColorPaletteType.simpleCircle.name) {
+            return EnumColorPaletteType.simpleCircle;
           } else {
             throw Exception();
           }
         }
-      } else if (type == EnumSpWMLElementType.img) {
+      }
+      // img only
+      if (type == EnumSpWMLElementType.img) {
         if (this == EnumSpWMLParams.fit) {
           if (v == "none") {
             return BoxFit.none;
@@ -440,7 +451,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.indicatorColor ||
           this == EnumSpWMLParams.indicatorBGColor ||
           this == EnumSpWMLParams.activeColor ||
-          this == EnumSpWMLParams.inactiveColor) {
+          this == EnumSpWMLParams.inactiveColor ||
+          this == EnumSpWMLParams.cellBorderColor) {
         return UtilParams.convertColor(v, lineStart, lineEnd, info);
       } else if (this == EnumSpWMLParams.sid || this == EnumSpWMLParams.tag) {
         return v;

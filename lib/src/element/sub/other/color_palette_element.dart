@@ -73,6 +73,25 @@ class ColorPaletteElement extends SpWMLElement {
     elParams.p.defColor = params.containsKey(EnumSpWMLParams.color)
         ? params[EnumSpWMLParams.color]
         : Colors.black;
+    final double? cellBorderWidth =
+        params.containsKey(EnumSpWMLParams.cellBorderWidth)
+            ? params[EnumSpWMLParams.cellBorderWidth]
+            : null;
+    final Color? cellBorderColor =
+        params.containsKey(EnumSpWMLParams.cellBorderColor)
+            ? params[EnumSpWMLParams.cellBorderColor]
+            : null;
+    elParams.p.colorCellDecoration.copyWith(
+      border: Border.all(
+        color: cellBorderColor ?? Colors.black,
+        width: cellBorderWidth ?? 1.0,
+        style: BorderStyle.solid,
+      ),
+    );
+    if ((elParams.p.type == EnumColorPaletteType.circle ||
+        elParams.p.type == EnumColorPaletteType.simpleCircle)) {
+      elParams.p.colorCellDecoration.copyWith(shape: BoxShape.circle);
+    }
     // コンテンツテキストが存在する場合、カンマ区切りでカラーに変換。
     if (spwmlParams.p.text != "") {
       List<String> lines = UtilSpBMLLine.split(spwmlParams.p.text);
@@ -275,6 +294,7 @@ class _ColorPaletteElementWidgetState
       List<Widget> palletWidget = [];
       switch (widget.params.type) {
         case EnumColorPaletteType.normal:
+        case EnumColorPaletteType.circle:
           palletWidget.addAll(_getARGBEditField(tfm, c, sid));
           palletWidget.add(SizedBox(height: widget.params.vMargin));
           palletWidget.addAll(_getColorTiles());
@@ -283,6 +303,7 @@ class _ColorPaletteElementWidgetState
             children: palletWidget,
           );
         case EnumColorPaletteType.simple:
+        case EnumColorPaletteType.simpleCircle:
           palletWidget.addAll(_getColorTiles());
           return Column(
             mainAxisAlignment: widget.params.vAlign,

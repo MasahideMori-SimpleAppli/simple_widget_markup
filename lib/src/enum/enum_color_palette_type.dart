@@ -9,5 +9,8 @@ enum EnumColorPaletteType {
   // ColorTiles only.
   simple,
   // ARGB editing fields only.
-  text
+  text,
+  // cell shape is circle
+  circle,
+  simpleCircle
 }
