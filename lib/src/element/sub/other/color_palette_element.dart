@@ -81,7 +81,7 @@ class ColorPaletteElement extends SpWMLElement {
         params.containsKey(EnumSpWMLParams.cellBorderColor)
             ? params[EnumSpWMLParams.cellBorderColor]
             : null;
-    elParams.p.colorCellDecoration.copyWith(
+    elParams.p.colorCellDecoration = elParams.p.colorCellDecoration.copyWith(
       border: Border.all(
         color: cellBorderColor ?? Colors.black,
         width: cellBorderWidth ?? 1.0,
@@ -90,7 +90,8 @@ class ColorPaletteElement extends SpWMLElement {
     );
     if ((elParams.p.type == EnumColorPaletteType.circle ||
         elParams.p.type == EnumColorPaletteType.simpleCircle)) {
-      elParams.p.colorCellDecoration.copyWith(shape: BoxShape.circle);
+      elParams.p.colorCellDecoration =
+          elParams.p.colorCellDecoration.copyWith(shape: BoxShape.circle);
     }
     // コンテンツテキストが存在する場合、カンマ区切りでカラーに変換。
     if (spwmlParams.p.text != "") {

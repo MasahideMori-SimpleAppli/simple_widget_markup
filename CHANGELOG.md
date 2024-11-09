@@ -1,3 +1,7 @@
+## 36.0.3
+
+* Fixed an issue where new attributes on the color palette were not being properly applied.
+
 ## 36.0.2
 
 * Fixed an issue where the colorPalette type could not be changed from SpWML. The previous fix was not applied due to a parsing order issue.
