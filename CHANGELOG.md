@@ -1,3 +1,7 @@
+## 36.1.0
+
+* The scroll now has an alignCenter flag, which when set to true will center the scroll within its parent element.
+
 ## 36.0.3
 
 * Fixed an issue where new attributes on the color palette were not being properly applied.

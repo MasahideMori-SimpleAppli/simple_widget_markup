@@ -33,4 +33,5 @@ class ScrollParams {
   ScrollViewKeyboardDismissBehavior keyboardDismissBehavior =
       ScrollViewKeyboardDismissBehavior.manual;
   ScrollBehavior? scrollBehavior;
+  bool alignCenter = false;
 }

@@ -184,6 +184,8 @@ enum EnumSpWMLParams {
   vMargin,
   cellBorderWidth,
   cellBorderColor,
+  // スクロールエレメント専用のフラグ
+  alignCenter,
 }
 
 /// 重複を避けて高速化するために、短縮系だけをまとめたもの。
@@ -515,7 +517,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.useTextScaler ||
           this == EnumSpWMLParams.isLabelVisible ||
           this == EnumSpWMLParams.readOnly ||
-          this == EnumSpWMLParams.forceStrutHeight) {
+          this == EnumSpWMLParams.forceStrutHeight ||
+          this == EnumSpWMLParams.alignCenter) {
         if (v == "true") {
           return true;
         } else if (v == "false") {

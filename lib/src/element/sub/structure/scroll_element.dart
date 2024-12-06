@@ -73,6 +73,9 @@ class ScrollElement extends SingleChildElement {
       elParams.p.scrollBehavior = const MaterialScrollBehavior().copyWith(
           dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse});
     }
+    elParams.p.alignCenter = params.containsKey(EnumSpWMLParams.alignCenter)
+        ? params[EnumSpWMLParams.alignCenter]!
+        : false;
     return this;
   }
 
@@ -80,37 +83,73 @@ class ScrollElement extends SingleChildElement {
   @override
   Widget getWidget(BuildContext context) {
     if (elParams.p.scrollBehavior != null) {
-      return ScrollConfiguration(
-          behavior: elParams.p.scrollBehavior!,
-          child: SingleChildScrollView(
-            key: elParams.p.key,
-            scrollDirection: elParams.p.scrollDirection,
-            reverse: elParams.p.reverse,
-            padding: elParams.p.padding,
-            primary: elParams.p.primary,
-            physics: elParams.p.physics,
-            controller: elParams.p.controller,
-            dragStartBehavior: elParams.p.dragStartBehavior,
-            clipBehavior: elParams.p.clipBehavior,
-            restorationId: elParams.p.restorationId,
-            keyboardDismissBehavior: elParams.p.keyboardDismissBehavior,
-            child: child.getChild(),
-          ));
+      if (elParams.p.alignCenter) {
+        return Center(
+            child: ScrollConfiguration(
+                behavior: elParams.p.scrollBehavior!,
+                child: SingleChildScrollView(
+                    key: elParams.p.key,
+                    scrollDirection: elParams.p.scrollDirection,
+                    reverse: elParams.p.reverse,
+                    padding: elParams.p.padding,
+                    primary: elParams.p.primary,
+                    physics: elParams.p.physics,
+                    controller: elParams.p.controller,
+                    dragStartBehavior: elParams.p.dragStartBehavior,
+                    clipBehavior: elParams.p.clipBehavior,
+                    restorationId: elParams.p.restorationId,
+                    keyboardDismissBehavior: elParams.p.keyboardDismissBehavior,
+                    child: child.getChild())));
+      } else {
+        return ScrollConfiguration(
+            behavior: elParams.p.scrollBehavior!,
+            child: SingleChildScrollView(
+              key: elParams.p.key,
+              scrollDirection: elParams.p.scrollDirection,
+              reverse: elParams.p.reverse,
+              padding: elParams.p.padding,
+              primary: elParams.p.primary,
+              physics: elParams.p.physics,
+              controller: elParams.p.controller,
+              dragStartBehavior: elParams.p.dragStartBehavior,
+              clipBehavior: elParams.p.clipBehavior,
+              restorationId: elParams.p.restorationId,
+              keyboardDismissBehavior: elParams.p.keyboardDismissBehavior,
+              child: child.getChild(),
+            ));
+      }
     } else {
-      return SingleChildScrollView(
-        key: elParams.p.key,
-        scrollDirection: elParams.p.scrollDirection,
-        reverse: elParams.p.reverse,
-        padding: elParams.p.padding,
-        primary: elParams.p.primary,
-        physics: elParams.p.physics,
-        controller: elParams.p.controller,
-        dragStartBehavior: elParams.p.dragStartBehavior,
-        clipBehavior: elParams.p.clipBehavior,
-        restorationId: elParams.p.restorationId,
-        keyboardDismissBehavior: elParams.p.keyboardDismissBehavior,
-        child: child.getChild(),
-      );
+      if (elParams.p.alignCenter) {
+        return Center(
+            child: SingleChildScrollView(
+                key: elParams.p.key,
+                scrollDirection: elParams.p.scrollDirection,
+                reverse: elParams.p.reverse,
+                padding: elParams.p.padding,
+                primary: elParams.p.primary,
+                physics: elParams.p.physics,
+                controller: elParams.p.controller,
+                dragStartBehavior: elParams.p.dragStartBehavior,
+                clipBehavior: elParams.p.clipBehavior,
+                restorationId: elParams.p.restorationId,
+                keyboardDismissBehavior: elParams.p.keyboardDismissBehavior,
+                child: child.getChild()));
+      } else {
+        return SingleChildScrollView(
+          key: elParams.p.key,
+          scrollDirection: elParams.p.scrollDirection,
+          reverse: elParams.p.reverse,
+          padding: elParams.p.padding,
+          primary: elParams.p.primary,
+          physics: elParams.p.physics,
+          controller: elParams.p.controller,
+          dragStartBehavior: elParams.p.dragStartBehavior,
+          clipBehavior: elParams.p.clipBehavior,
+          restorationId: elParams.p.restorationId,
+          keyboardDismissBehavior: elParams.p.keyboardDismissBehavior,
+          child: child.getChild(),
+        );
+      }
     }
   }
 }
