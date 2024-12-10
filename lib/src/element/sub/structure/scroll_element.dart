@@ -79,77 +79,76 @@ class ScrollElement extends SingleChildElement {
     return this;
   }
 
+  /// (en) Sets the scroll controller.
+  /// This can be used to adjust the scroll position programmatically.
+  ///
+  /// (ja)スクロールコントローラーをセットします。
+  /// これはプログラムからスクロール位置を調整したい場合に利用できます。
+  ///
+  /// * [scCtrl] : The ScrollController.
+  void setScrollController(ScrollController scCtrl) {
+    elParams.p.controller = scCtrl;
+  }
+
+  /// (en) Sets the scroll controller and
+  /// changes it to a mode that always displays the scrollbar.
+  ///
+  /// (ja)スクロールコントローラーをセットし、常にスクロールバーを表示するモードに変更します。
+  ///
+  /// * [scCtrl] : The ScrollController.
+  void changeToAlwaysShownScrollBar(ScrollController scCtrl) {
+    elParams.p.controller = scCtrl;
+    elParams.p.isAlwaysShownScrollbar = true;
+  }
+
+  /// フラグに応じて、必要な場合はCenterでラップするメソッド。
+  Widget _wrapCenter(Widget child) {
+    if (elParams.p.alignCenter) {
+      return Center(child: child);
+    } else {
+      return child;
+    }
+  }
+
+  /// フラグに応じて、必要な場合はScrollConfigurationでラップするメソッド。
+  Widget _wrapScrollConfiguration(Widget child) {
+    if (elParams.p.scrollBehavior != null) {
+      return ScrollConfiguration(
+          behavior: elParams.p.scrollBehavior!, child: child);
+    } else {
+      return child;
+    }
+  }
+
+  /// フラグに応じて、必要な場合はScrollBarでラップし、常にバーを表示する設定を行うメソッド。
+  Widget _wrapScrollBar(Widget child) {
+    if (elParams.p.isAlwaysShownScrollbar && elParams.p.controller != null) {
+      return Scrollbar(
+          thumbVisibility: true,
+          controller: elParams.p.controller,
+          child: child);
+    } else {
+      return child;
+    }
+  }
+
   /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
-    if (elParams.p.scrollBehavior != null) {
-      if (elParams.p.alignCenter) {
-        return Center(
-            child: ScrollConfiguration(
-                behavior: elParams.p.scrollBehavior!,
-                child: SingleChildScrollView(
-                    key: elParams.p.key,
-                    scrollDirection: elParams.p.scrollDirection,
-                    reverse: elParams.p.reverse,
-                    padding: elParams.p.padding,
-                    primary: elParams.p.primary,
-                    physics: elParams.p.physics,
-                    controller: elParams.p.controller,
-                    dragStartBehavior: elParams.p.dragStartBehavior,
-                    clipBehavior: elParams.p.clipBehavior,
-                    restorationId: elParams.p.restorationId,
-                    keyboardDismissBehavior: elParams.p.keyboardDismissBehavior,
-                    child: child.getChild())));
-      } else {
-        return ScrollConfiguration(
-            behavior: elParams.p.scrollBehavior!,
-            child: SingleChildScrollView(
-              key: elParams.p.key,
-              scrollDirection: elParams.p.scrollDirection,
-              reverse: elParams.p.reverse,
-              padding: elParams.p.padding,
-              primary: elParams.p.primary,
-              physics: elParams.p.physics,
-              controller: elParams.p.controller,
-              dragStartBehavior: elParams.p.dragStartBehavior,
-              clipBehavior: elParams.p.clipBehavior,
-              restorationId: elParams.p.restorationId,
-              keyboardDismissBehavior: elParams.p.keyboardDismissBehavior,
-              child: child.getChild(),
-            ));
-      }
-    } else {
-      if (elParams.p.alignCenter) {
-        return Center(
-            child: SingleChildScrollView(
-                key: elParams.p.key,
-                scrollDirection: elParams.p.scrollDirection,
-                reverse: elParams.p.reverse,
-                padding: elParams.p.padding,
-                primary: elParams.p.primary,
-                physics: elParams.p.physics,
-                controller: elParams.p.controller,
-                dragStartBehavior: elParams.p.dragStartBehavior,
-                clipBehavior: elParams.p.clipBehavior,
-                restorationId: elParams.p.restorationId,
-                keyboardDismissBehavior: elParams.p.keyboardDismissBehavior,
-                child: child.getChild()));
-      } else {
-        return SingleChildScrollView(
-          key: elParams.p.key,
-          scrollDirection: elParams.p.scrollDirection,
-          reverse: elParams.p.reverse,
-          padding: elParams.p.padding,
-          primary: elParams.p.primary,
-          physics: elParams.p.physics,
-          controller: elParams.p.controller,
-          dragStartBehavior: elParams.p.dragStartBehavior,
-          clipBehavior: elParams.p.clipBehavior,
-          restorationId: elParams.p.restorationId,
-          keyboardDismissBehavior: elParams.p.keyboardDismissBehavior,
-          child: child.getChild(),
-        );
-      }
-    }
+    return _wrapCenter(
+        _wrapScrollConfiguration(_wrapScrollBar(SingleChildScrollView(
+      key: elParams.p.key,
+      scrollDirection: elParams.p.scrollDirection,
+      reverse: elParams.p.reverse,
+      padding: elParams.p.padding,
+      primary: elParams.p.primary,
+      physics: elParams.p.physics,
+      controller: elParams.p.controller,
+      dragStartBehavior: elParams.p.dragStartBehavior,
+      clipBehavior: elParams.p.clipBehavior,
+      restorationId: elParams.p.restorationId,
+      keyboardDismissBehavior: elParams.p.keyboardDismissBehavior,
+      child: child.getChild(),
+    ))));
   }
 }

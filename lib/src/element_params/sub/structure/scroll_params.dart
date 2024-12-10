@@ -34,4 +34,6 @@ class ScrollParams {
       ScrollViewKeyboardDismissBehavior.manual;
   ScrollBehavior? scrollBehavior;
   bool alignCenter = false;
+  // If you set this flag to true, you must set the ScrollController.
+  bool isAlwaysShownScrollbar = false;
 }

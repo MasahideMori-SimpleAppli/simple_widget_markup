@@ -1,3 +1,7 @@
+## 36.2.0
+
+* Added setScrollController and changeToAlwaysShownScrollBar method to ScrollElement.
+
 ## 36.1.0
 
 * The scroll now has an alignCenter flag, which when set to true will center the scroll within its parent element.
