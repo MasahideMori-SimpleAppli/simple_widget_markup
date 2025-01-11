@@ -190,10 +190,11 @@ class UtilParams {
   ///
   /// * [color] : The color you want to convert.
   static String colorToHexString(Color color) {
-    return '#${color.alpha.toRadixString(16).padLeft(2, '0')}' // Alpha
-        '${color.red.toRadixString(16).padLeft(2, '0')}' // Red
-        '${color.green.toRadixString(16).padLeft(2, '0')}' // Green
-        '${color.blue.toRadixString(16).padLeft(2, '0')}'; // Blue
+    return '#${(color.a * 255).round().toRadixString(16).padLeft(2, '0')}' // Alpha
+            '${(color.r * 255).round().toRadixString(16).padLeft(2, '0')}' // Red
+            '${(color.g * 255).round().toRadixString(16).padLeft(2, '0')}' // Green
+            '${(color.b * 255).round().toRadixString(16).padLeft(2, '0')}'
+        .toUpperCase(); // Blue
   }
 
   ///

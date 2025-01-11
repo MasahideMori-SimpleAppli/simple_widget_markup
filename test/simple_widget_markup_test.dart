@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:simple_widget_markup/simple_widget_markup.dart';
 
@@ -25,5 +26,12 @@ void main() {
                 .styleMap[EnumSpWMLElementType.h1]!
                 .fontWeight,
         true);
+  });
+
+  test('util_params test', () {
+    Color c1 = Color.fromARGB(255, 255, 255, 255);
+    Color c2 = Color.fromARGB(255, 0, 255, 128);
+    expect(UtilParams.colorToHexString(c1) == "#FFFFFFFF", true);
+    expect(UtilParams.colorToHexString(c2) == "#FF00FF80", true);
   });
 }

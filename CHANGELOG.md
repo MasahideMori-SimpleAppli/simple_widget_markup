@@ -1,3 +1,9 @@
+## 37.0.0
+
+* Updates associated with base library updates.
+* Modified to fit newer Flutter versions. This update changes how some colors are handled.
+* The UtilParams colorToHexString method has been changed to always return the value converted to uppercase.
+
 ## 36.2.0
 
 * Added setScrollController and changeToAlwaysShownScrollBar method to ScrollElement.
