@@ -1,4 +1,9 @@
+## 38.0.2
+
+* Downgrading intl to 0.19.0 due to localization compatibility issues.
+
 ## 38.0.0
+
 * Updated to accommodate Flutter 3.29.0.
 * The TextFieldElement's scribbleEnabled parameter has been removed and replaced with stylusHandwritingEnabled.
 
