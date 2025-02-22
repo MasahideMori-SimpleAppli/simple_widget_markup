@@ -1,4 +1,4 @@
-## 38.0.2
+## 38.0.1
 
 * Downgrading intl to 0.19.0 due to localization compatibility issues.
 
