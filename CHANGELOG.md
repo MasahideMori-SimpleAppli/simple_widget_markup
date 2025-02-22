@@ -1,5 +1,6 @@
 ## 38.0.0
 * Updated to accommodate Flutter 3.29.0.
+* The TextFieldElement's scribbleEnabled parameter has been removed and replaced with stylusHandwritingEnabled.
 
 ## 37.0.0
 

@@ -507,7 +507,7 @@ class _TextFieldElementWidgetState extends State<_TextFieldElementWidget> {
       autofillHints: widget.tfParams.p.autofillHints,
       clipBehavior: widget.tfParams.p.clipBehavior,
       restorationId: widget.tfParams.p.restorationId,
-      scribbleEnabled: widget.tfParams.p.scribbleEnabled,
+      stylusHandwritingEnabled: widget.tfParams.p.stylusHandwritingEnabled,
       enableIMEPersonalizedLearning:
           widget.tfParams.p.enableIMEPersonalizedLearning,
       contextMenuBuilder: widget.tfParams.p.contextMenuBuilder,

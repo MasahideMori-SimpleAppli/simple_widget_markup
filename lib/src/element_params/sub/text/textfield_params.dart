@@ -78,7 +78,7 @@ class TextFieldParams {
   Iterable<String>? autofillHints = const [];
   Clip clipBehavior = Clip.hardEdge;
   String? restorationId;
-  bool scribbleEnabled = true;
+  bool stylusHandwritingEnabled = EditableText.defaultStylusHandwritingEnabled;
   bool enableIMEPersonalizedLearning = true;
   Widget Function(BuildContext, EditableTextState)? contextMenuBuilder;
   SpellCheckConfiguration? spellCheckConfiguration;
