@@ -1,3 +1,6 @@
+## 38.0.0
+* Updated to accommodate Flutter 3.29.0.
+
 ## 37.0.0
 
 * Updates associated with base library updates.

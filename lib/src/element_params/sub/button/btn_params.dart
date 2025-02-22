@@ -91,7 +91,7 @@ class InkWellParams {
   double? radius;
   BorderRadius? borderRadius;
   ShapeBorder? customBorder;
-  bool? enableFeedback = true;
+  bool enableFeedback = true;
   bool excludeFromSemantics = false;
   FocusNode? focusNode;
   bool canRequestFocus = true;
