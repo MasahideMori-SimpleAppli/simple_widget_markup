@@ -1,3 +1,7 @@
+## 38.0.2
+
+* The initial value of heroTag in FAButtonParams has been changed to null.
+
 ## 38.0.1
 
 * Downgrading intl to 0.19.0 due to localization compatibility issues.

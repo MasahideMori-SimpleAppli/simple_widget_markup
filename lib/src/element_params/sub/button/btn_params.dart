@@ -101,18 +101,6 @@ class InkWellParams {
 }
 
 ///
-/// (en) FAParameter class used in BtnParams.
-///
-/// (ja) FABtnParamsで利用するパラメータのクラス。
-///
-class FAButtonDefaultHeroTag {
-  const FAButtonDefaultHeroTag();
-
-  @override
-  String toString() => 'DefFAButtonHeroTag';
-}
-
-///
 /// (en) Parameter class used in FABtnParams.
 ///
 /// (ja) FABtnParamsで利用するパラメータのクラス。
@@ -139,7 +127,7 @@ class FAButtonParams {
   Color? focusColor;
   Color? hoverColor;
   Color? splashColor;
-  Object? heroTag = const FAButtonDefaultHeroTag();
+  Object? heroTag;
   double? elevation;
   double? focusElevation;
   double? hoverElevation;
