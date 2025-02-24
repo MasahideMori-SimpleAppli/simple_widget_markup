@@ -1,3 +1,7 @@
+## 38.0.3
+
+* Fixed an issue where the ColorPaletteElement was not compatible with the new color specifications.
+
 ## 38.0.2
 
 * The initial value of heroTag in FAButtonParams has been changed to null.

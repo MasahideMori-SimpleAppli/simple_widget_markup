@@ -88,10 +88,10 @@ class ColorPaletteParams {
     if (manager == null) {
       return;
     } else {
-      manager!.setText("$sid:A", c.a.toString());
-      manager!.setText("$sid:R", c.r.toString());
-      manager!.setText("$sid:G", c.g.toString());
-      manager!.setText("$sid:B", c.b.toString());
+      manager!.setText("$sid:A", (c.a * 255).round().toString());
+      manager!.setText("$sid:R", (c.r * 255).round().toString());
+      manager!.setText("$sid:G", (c.g * 255).round().toString());
+      manager!.setText("$sid:B", (c.b * 255).round().toString());
     }
   }
 
@@ -107,9 +107,9 @@ class ColorPaletteParams {
   /// * [sid] : Serial ID.
   /// * [c] : The color.
   static void setColorToTFM(TextFieldManager manager, String sid, Color c) {
-    manager.setText("$sid:A", c.a.toString());
-    manager.setText("$sid:R", c.r.toString());
-    manager.setText("$sid:G", c.g.toString());
-    manager.setText("$sid:B", c.b.toString());
+    manager.setText("$sid:A", (c.a * 255).round().toString());
+    manager.setText("$sid:R", (c.r * 255).round().toString());
+    manager.setText("$sid:G", (c.g * 255).round().toString());
+    manager.setText("$sid:B", (c.b * 255).round().toString());
   }
 }
