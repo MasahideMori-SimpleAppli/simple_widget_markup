@@ -12,7 +12,7 @@ import '../enum/enum_text_decoration_style.dart';
 ///
 class SpWMLFontStyleParams {
   static const String className = 'SpWMLFontStyleParams';
-  static const String version = '1';
+  static const String version = '2';
 
   // margin top
   double? mT;
@@ -60,7 +60,7 @@ class SpWMLFontStyleParams {
       this.textDecoStyle,
       this.textDecoColor,
       this.textDecoThickness,
-      this.fontFamily = "Roboto",
+      this.fontFamily,
       this.lineHeight});
 
   SpWMLFontStyleParams deepCopy() {

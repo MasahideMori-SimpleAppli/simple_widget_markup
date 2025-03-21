@@ -1,3 +1,8 @@
+## 39.0.0
+
+* The default value of the fontFamily argument in the SpWMLFontStyleParams class has been changed to null. With this change, the default font family set in MaterialApp will always be used.
+* If you do not want to be affected by this change, you can override the style in SpWMLFontStyleManager and set the fontFamily to Roboto to get the same behavior as before.
+
 ## 38.0.3
 
 * Fixed an issue where the ColorPaletteElement was not compatible with the new color specifications.
