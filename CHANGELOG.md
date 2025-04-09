@@ -1,3 +1,8 @@
+## 39.0.1
+
+* The ParseErrorTextElement, which has the same functionality as TextElement, is now returned only when SpWMLParser fails to parse SpWML.
+* This change makes parsing errors easier to track down.
+
 ## 39.0.0
 
 * The default value of the fontFamily argument in the SpWMLFontStyleParams class has been changed to null. With this change, the default font family set in MaterialApp will always be used.

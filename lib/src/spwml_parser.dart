@@ -1,12 +1,5 @@
 import 'package:flutter/material.dart';
-import 'element/super/spwml_element.dart';
-import 'element_params/spwml_info.dart';
-import 'element_params/sub/text/text_params.dart';
-import 'element_params/super/spwml_params.dart';
-import 'enum/enum_spwml_element_type.dart';
-import 'element/sub/text/text_element.dart';
-import 'element/util_element.dart';
-import 'style/spwml_font_style.dart';
+import 'package:simple_widget_markup/simple_widget_markup.dart';
 import 'package:simple_block_markup_language/simple_block_markup_language.dart';
 
 ///
@@ -40,7 +33,7 @@ class SpWMLParser {
     } catch (e) {
       debugPrint(e.toString());
       r.clear();
-      r.add(TextElement(
+      r.add(ParseErrorTextElement(
               -1,
               EnumSpWMLElementType.text,
               const {},

@@ -37,6 +37,7 @@ export 'sub/structure/table_row_element.dart';
 export 'sub/structure/tooltip_element.dart';
 export 'sub/structure/wrap_element.dart';
 export 'sub/text/href_element.dart';
+export 'sub/text/parse_error_text_element.dart';
 export 'sub/text/ruby_text_element.dart';
 export 'sub/text/super_and_subscript_element.dart';
 export 'sub/text/text_element.dart';
