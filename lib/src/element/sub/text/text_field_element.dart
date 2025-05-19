@@ -448,6 +448,13 @@ class _TextFieldElementWidgetState extends State<_TextFieldElementWidget> {
           prefixIconColor: widget.tfParams.p.prefixIconColor,
           suffixIcon: _getClearIcon(false),
           suffixIconColor: widget.tfParams.p.suffixIconColor);
+    } else if (widget.tfParams.p.mode ==
+        EnumTextFieldMode.noSuggestAndAutofill) {
+      return widget.tfParams.p.decoration.copyWith(
+          prefixIcon: _getPrefixIcon(),
+          prefixIconColor: widget.tfParams.p.prefixIconColor,
+          suffixIcon: _getSuffixIcon(),
+          suffixIconColor: widget.tfParams.p.suffixIconColor);
     } else {
       // manual
       return widget.tfParams.p.decoration;
