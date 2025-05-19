@@ -139,22 +139,30 @@ class TextFieldElement extends TextElement {
         : null;
     // モードチェンジは最後に行う必要がある。
     if (params.containsKey(EnumSpWMLParams.mode)) {
-      if (params[EnumSpWMLParams.mode] == EnumTextFieldMode.password) {
-        tfParams.p.changePasswordMode(false);
-      } else if (params[EnumSpWMLParams.mode] ==
-          EnumTextFieldMode.passwordPrefix) {
-        tfParams.p.changePasswordMode(true);
-      } else if (params[EnumSpWMLParams.mode] == EnumTextFieldMode.search) {
-        tfParams.p.changeSearchMode(false);
-      } else if (params[EnumSpWMLParams.mode] ==
-          EnumTextFieldMode.searchPrefix) {
-        tfParams.p.changeSearchMode(true);
-      } else if (params[EnumSpWMLParams.mode] ==
-          EnumTextFieldMode.searchAndClear) {
-        tfParams.p.changeSearchAndClearMode();
-      } else if (params[EnumSpWMLParams.mode] ==
-          EnumTextFieldMode.noSuggestAndAutofill) {
-        tfParams.p.changeNoSuggestAndAutofillMode();
+      switch (params[EnumSpWMLParams.mode] as EnumTextFieldMode) {
+        case EnumTextFieldMode.normal:
+          tfParams.p.changeNormalMode();
+          break;
+        case EnumTextFieldMode.noSuggestAndAutofill:
+          tfParams.p.changeNoSuggestAndAutofillMode();
+          break;
+        case EnumTextFieldMode.password:
+          tfParams.p.changePasswordMode(false);
+          break;
+        case EnumTextFieldMode.passwordPrefix:
+          tfParams.p.changePasswordMode(true);
+          break;
+        case EnumTextFieldMode.search:
+          tfParams.p.changeSearchMode(false);
+          break;
+        case EnumTextFieldMode.searchPrefix:
+          tfParams.p.changeSearchMode(true);
+          break;
+        case EnumTextFieldMode.searchAndClear:
+          tfParams.p.changeSearchAndClearMode();
+          break;
+        case EnumTextFieldMode.manual:
+          break;
       }
     }
     // SIDが設定されていなければエラー。
@@ -412,52 +420,51 @@ class _TextFieldElementWidgetState extends State<_TextFieldElementWidget> {
   }
 
   InputDecoration? _getDecoration() {
-    if (widget.tfParams.p.mode == EnumTextFieldMode.normal) {
-      return widget.tfParams.p.decoration.copyWith(
-          prefixIcon: _getPrefixIcon(),
-          prefixIconColor: widget.tfParams.p.prefixIconColor,
-          suffixIcon: _getSuffixIcon(),
-          suffixIconColor: widget.tfParams.p.suffixIconColor);
-    } else if (widget.tfParams.p.mode == EnumTextFieldMode.password) {
-      return widget.tfParams.p.decoration.copyWith(
-          prefixIcon: _getPrefixIcon(),
-          prefixIconColor: widget.tfParams.p.prefixIconColor,
-          suffixIcon: _getPassWordIcon(false),
-          suffixIconColor: widget.tfParams.p.suffixIconColor);
-    } else if (widget.tfParams.p.mode == EnumTextFieldMode.passwordPrefix) {
-      return widget.tfParams.p.decoration.copyWith(
-          prefixIcon: _getPassWordIcon(true),
-          prefixIconColor: widget.tfParams.p.prefixIconColor,
-          suffixIcon: _getSuffixIcon(),
-          suffixIconColor: widget.tfParams.p.suffixIconColor);
-    } else if (widget.tfParams.p.mode == EnumTextFieldMode.search) {
-      return widget.tfParams.p.decoration.copyWith(
-          prefixIcon: _getPrefixIcon(),
-          prefixIconColor: widget.tfParams.p.prefixIconColor,
-          suffixIcon: _getSearchIcon(false),
-          suffixIconColor: widget.tfParams.p.suffixIconColor);
-    } else if (widget.tfParams.p.mode == EnumTextFieldMode.searchPrefix) {
-      return widget.tfParams.p.decoration.copyWith(
-          prefixIcon: _getSearchIcon(true),
-          prefixIconColor: widget.tfParams.p.prefixIconColor,
-          suffixIcon: _getSuffixIcon(),
-          suffixIconColor: widget.tfParams.p.suffixIconColor);
-    } else if (widget.tfParams.p.mode == EnumTextFieldMode.searchAndClear) {
-      return widget.tfParams.p.decoration.copyWith(
-          prefixIcon: _getSearchIcon(true),
-          prefixIconColor: widget.tfParams.p.prefixIconColor,
-          suffixIcon: _getClearIcon(false),
-          suffixIconColor: widget.tfParams.p.suffixIconColor);
-    } else if (widget.tfParams.p.mode ==
-        EnumTextFieldMode.noSuggestAndAutofill) {
-      return widget.tfParams.p.decoration.copyWith(
-          prefixIcon: _getPrefixIcon(),
-          prefixIconColor: widget.tfParams.p.prefixIconColor,
-          suffixIcon: _getSuffixIcon(),
-          suffixIconColor: widget.tfParams.p.suffixIconColor);
-    } else {
-      // manual
-      return widget.tfParams.p.decoration;
+    switch (widget.tfParams.p.mode) {
+      case EnumTextFieldMode.normal:
+        return widget.tfParams.p.decoration.copyWith(
+            prefixIcon: _getPrefixIcon(),
+            prefixIconColor: widget.tfParams.p.prefixIconColor,
+            suffixIcon: _getSuffixIcon(),
+            suffixIconColor: widget.tfParams.p.suffixIconColor);
+      case EnumTextFieldMode.noSuggestAndAutofill:
+        return widget.tfParams.p.decoration.copyWith(
+            prefixIcon: _getPrefixIcon(),
+            prefixIconColor: widget.tfParams.p.prefixIconColor,
+            suffixIcon: _getSuffixIcon(),
+            suffixIconColor: widget.tfParams.p.suffixIconColor);
+      case EnumTextFieldMode.password:
+        return widget.tfParams.p.decoration.copyWith(
+            prefixIcon: _getPrefixIcon(),
+            prefixIconColor: widget.tfParams.p.prefixIconColor,
+            suffixIcon: _getPassWordIcon(false),
+            suffixIconColor: widget.tfParams.p.suffixIconColor);
+      case EnumTextFieldMode.passwordPrefix:
+        return widget.tfParams.p.decoration.copyWith(
+            prefixIcon: _getPassWordIcon(true),
+            prefixIconColor: widget.tfParams.p.prefixIconColor,
+            suffixIcon: _getSuffixIcon(),
+            suffixIconColor: widget.tfParams.p.suffixIconColor);
+      case EnumTextFieldMode.search:
+        return widget.tfParams.p.decoration.copyWith(
+            prefixIcon: _getPrefixIcon(),
+            prefixIconColor: widget.tfParams.p.prefixIconColor,
+            suffixIcon: _getSearchIcon(false),
+            suffixIconColor: widget.tfParams.p.suffixIconColor);
+      case EnumTextFieldMode.searchPrefix:
+        return widget.tfParams.p.decoration.copyWith(
+            prefixIcon: _getSearchIcon(true),
+            prefixIconColor: widget.tfParams.p.prefixIconColor,
+            suffixIcon: _getSuffixIcon(),
+            suffixIconColor: widget.tfParams.p.suffixIconColor);
+      case EnumTextFieldMode.searchAndClear:
+        return widget.tfParams.p.decoration.copyWith(
+            prefixIcon: _getSearchIcon(true),
+            prefixIconColor: widget.tfParams.p.prefixIconColor,
+            suffixIcon: _getClearIcon(false),
+            suffixIconColor: widget.tfParams.p.suffixIconColor);
+      case EnumTextFieldMode.manual:
+        return widget.tfParams.p.decoration;
     }
   }
 
