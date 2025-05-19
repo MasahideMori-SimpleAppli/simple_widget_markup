@@ -1,3 +1,7 @@
+## 40.0.0
+* The TextFieldElement mode noSuggestAndAutofill has been added. This is the second most secure mode after password mode and is ideal for apps on shared devices.
+* The changePasswordMode of TextFieldParams has been changed so that autofillHints is always initialized with an empty array.
+
 ## 39.0.1
 
 * The ParseErrorTextElement, which has the same functionality as TextElement, is now returned only when SpWMLParser fails to parse SpWML.

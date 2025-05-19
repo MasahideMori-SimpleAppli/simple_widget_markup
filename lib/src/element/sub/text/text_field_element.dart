@@ -152,6 +152,9 @@ class TextFieldElement extends TextElement {
       } else if (params[EnumSpWMLParams.mode] ==
           EnumTextFieldMode.searchAndClear) {
         tfParams.p.changeSearchAndClearMode();
+      } else if (params[EnumSpWMLParams.mode] ==
+          EnumTextFieldMode.noSuggestAndAutofill) {
+        tfParams.p.changeNoSuggestAndAutofillMode();
       }
     }
     // SIDが設定されていなければエラー。

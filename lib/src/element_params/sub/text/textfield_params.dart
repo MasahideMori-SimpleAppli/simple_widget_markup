@@ -135,6 +135,15 @@ class TextFieldParams {
   }
 
   /// Change textField mode.
+  void changeNoSuggestAndAutofillMode() {
+    _mode = EnumTextFieldMode.noSuggestAndAutofill;
+    obscureText = false;
+    enableSuggestions = false;
+    autocorrect = false;
+    autofillHints = const [];
+  }
+
+  /// Change textField mode.
   void changePasswordMode(bool prefixIcon) {
     _mode = prefixIcon
         ? EnumTextFieldMode.passwordPrefix
@@ -143,6 +152,7 @@ class TextFieldParams {
     obscureText = true;
     enableSuggestions = false;
     autocorrect = false;
+    autofillHints = const [];
   }
 
   /// Change textField mode.
