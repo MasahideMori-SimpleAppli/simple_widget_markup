@@ -35,7 +35,8 @@ extension EXTEnumTextFieldType on EnumTextFieldType {
 ///
 enum EnumTextFieldMode {
   normal,
-  noSuggestAndAutofill,
+  noSuggestAndAutoCorrect,
+  noAutoCorrect,
   password,
   passwordPrefix,
   search,

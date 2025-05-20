@@ -143,8 +143,11 @@ class TextFieldElement extends TextElement {
         case EnumTextFieldMode.normal:
           tfParams.p.changeNormalMode();
           break;
-        case EnumTextFieldMode.noSuggestAndAutofill:
-          tfParams.p.changeNoSuggestAndAutofillMode();
+        case EnumTextFieldMode.noSuggestAndAutoCorrect:
+          tfParams.p.changeNoSuggestAndAutoCorrectMode();
+          break;
+        case EnumTextFieldMode.noAutoCorrect:
+          tfParams.p.changeNoAutoCorrectMode();
           break;
         case EnumTextFieldMode.password:
           tfParams.p.changePasswordMode(false);
@@ -427,7 +430,13 @@ class _TextFieldElementWidgetState extends State<_TextFieldElementWidget> {
             prefixIconColor: widget.tfParams.p.prefixIconColor,
             suffixIcon: _getSuffixIcon(),
             suffixIconColor: widget.tfParams.p.suffixIconColor);
-      case EnumTextFieldMode.noSuggestAndAutofill:
+      case EnumTextFieldMode.noSuggestAndAutoCorrect:
+        return widget.tfParams.p.decoration.copyWith(
+            prefixIcon: _getPrefixIcon(),
+            prefixIconColor: widget.tfParams.p.prefixIconColor,
+            suffixIcon: _getSuffixIcon(),
+            suffixIconColor: widget.tfParams.p.suffixIconColor);
+      case EnumTextFieldMode.noAutoCorrect:
         return widget.tfParams.p.decoration.copyWith(
             prefixIcon: _getPrefixIcon(),
             prefixIconColor: widget.tfParams.p.prefixIconColor,

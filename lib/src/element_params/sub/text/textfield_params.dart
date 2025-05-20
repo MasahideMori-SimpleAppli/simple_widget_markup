@@ -132,13 +132,23 @@ class TextFieldParams {
     obscureText = false;
     enableSuggestions = true;
     autocorrect = true;
+    autofillHints = const [];
   }
 
   /// Change textField mode.
-  void changeNoSuggestAndAutofillMode() {
-    _mode = EnumTextFieldMode.noSuggestAndAutofill;
+  void changeNoSuggestAndAutoCorrectMode() {
+    _mode = EnumTextFieldMode.noSuggestAndAutoCorrect;
     obscureText = false;
     enableSuggestions = false;
+    autocorrect = false;
+    autofillHints = const [];
+  }
+
+  /// Change textField mode.
+  void changeNoAutoCorrectMode() {
+    _mode = EnumTextFieldMode.noAutoCorrect;
+    obscureText = false;
+    enableSuggestions = true;
     autocorrect = false;
     autofillHints = const [];
   }
@@ -162,6 +172,7 @@ class TextFieldParams {
     obscureText = false;
     enableSuggestions = true;
     autocorrect = true;
+    autofillHints = const [];
   }
 
   /// Change textField mode.
@@ -170,6 +181,7 @@ class TextFieldParams {
     obscureText = false;
     enableSuggestions = true;
     autocorrect = true;
+    autofillHints = const [];
   }
 
   /// Change textField content padding.

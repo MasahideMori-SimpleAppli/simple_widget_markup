@@ -1,3 +1,8 @@
+## 41.0.0
+* When the input mode is changed using TextFieldParams's changeNormalMode, autofillHints is now always initialized to an empty array.
+* The noSuggestAndAutofill mode of TextFieldElement has been renamed to noSuggestAndAutoCorrect mode.
+* The noAutoCorrect mode has been added to TextFieldElement. Unlike the noSuggestAndAutoCorrect mode, this mode allows conversion using IME, such as for Japanese input.
+
 ## 40.0.0
 * The TextFieldElement mode noSuggestAndAutofill has been added. This is the second most secure mode after password mode and is ideal for apps on shared devices.
 * The changePasswordMode of TextFieldParams has been changed so that autofillHints is always initialized with an empty array.
