@@ -22,6 +22,7 @@ class TooltipParams {
   String? message;
   InlineSpan? richMessage;
   double? height;
+  BoxConstraints? constraints;
   EdgeInsetsGeometry? padding;
   EdgeInsetsGeometry? margin;
   double? verticalOffset;

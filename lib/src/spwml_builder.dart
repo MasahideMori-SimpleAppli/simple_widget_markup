@@ -29,7 +29,7 @@ class SpWMLBuilder {
   /// you can change the contents of the singleton SpWMLFontManager class.
   /// * [info] : This is information object. e.g. A hint when an error occurs.
   /// It is convenient to set when nesting multiple SpWMLs.
-  SpWMLBuilder(spWML,
+  SpWMLBuilder(String spWML,
       {this.mainAA = MainAxisAlignment.start,
       this.crossAA = CrossAxisAlignment.start,
       this.mainAS = MainAxisSize.max,

@@ -121,13 +121,16 @@ class TooltipElement extends SingleChildTextElement {
   /// Assemble and return the widget.
   @override
   Widget getWidget(BuildContext context) {
+    final double? minH =
+        elParams.p.height ?? spwmlParams.p.containerParams!.height;
     return Tooltip(
       key: elParams.p.key,
       message: elParams.p.richMessage == null
           ? (elParams.p.message ?? spwmlParams.p.text)
           : null,
       richMessage: elParams.p.richMessage,
-      height: elParams.p.height ?? spwmlParams.p.containerParams!.height,
+      constraints: elParams.p.constraints ??
+          (minH != null ? BoxConstraints(minHeight: minH) : null),
       padding: elParams.p.padding ?? spwmlParams.p.containerParams!.padding,
       margin: elParams.p.margin ?? spwmlParams.p.containerParams!.margin,
       verticalOffset: elParams.p.verticalOffset,
