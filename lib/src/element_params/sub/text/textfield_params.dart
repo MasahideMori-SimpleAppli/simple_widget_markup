@@ -25,8 +25,10 @@ class TextFieldParamsWrapper {
 ///
 class TextFieldParams {
   Key? key;
+  Object groupId = EditableText;
   TextFieldManager? manager;
   InputDecoration decoration = const InputDecoration();
+  UndoHistoryController? undoController;
   TextInputType? keyboardType;
   TextInputAction? textInputAction;
   TextCapitalization textCapitalization = TextCapitalization.none;
@@ -38,6 +40,7 @@ class TextFieldParams {
   bool readOnly = false;
   bool? showCursor;
   bool autofocus = false;
+  WidgetStatesController? statesController;
   String obscuringCharacter = '•';
   bool obscureText = false;
   bool autocorrect = true;
@@ -55,10 +58,13 @@ class TextFieldParams {
   void Function(String, Map)? onAppPrivateCommand;
   List<TextInputFormatter>? inputFormatters;
   bool? enabled;
+  bool? ignorePointers;
   double cursorWidth = 2.0;
   double? cursorHeight;
   Radius? cursorRadius;
+  bool? cursorOpacityAnimates;
   Color? cursorColor;
+  Color? cursorErrorColor;
   BoxHeightStyle selectionHeightStyle = BoxHeightStyle.tight;
   BoxWidthStyle selectionWidthStyle = BoxWidthStyle.tight;
   Brightness? keyboardAppearance;
@@ -67,7 +73,9 @@ class TextFieldParams {
   bool enableInteractiveSelection = true;
   TextSelectionControls? selectionControls;
   void Function()? onTap;
+  bool onTapAlwaysCalled = false;
   void Function(PointerDownEvent)? onTapOutside;
+  void Function(PointerUpEvent)? onTapUpOutside;
   MouseCursor? mouseCursor;
   Widget? Function(BuildContext,
       {required int currentLength,
@@ -76,11 +84,13 @@ class TextFieldParams {
   ScrollController? scrollController;
   ScrollPhysics? scrollPhysics;
   Iterable<String>? autofillHints = const [];
+  ContentInsertionConfiguration? contentInsertionConfiguration;
   Clip clipBehavior = Clip.hardEdge;
   String? restorationId;
   bool stylusHandwritingEnabled = EditableText.defaultStylusHandwritingEnabled;
   bool enableIMEPersonalizedLearning = true;
   Widget Function(BuildContext, EditableTextState)? contextMenuBuilder;
+  bool canRequestFocus = true;
   SpellCheckConfiguration? spellCheckConfiguration;
   TextMagnifierConfiguration? magnifierConfiguration;
 
@@ -142,6 +152,7 @@ class TextFieldParams {
     enableSuggestions = false;
     autocorrect = false;
     autofillHints = const [];
+    enableIMEPersonalizedLearning = false;
   }
 
   /// Change textField mode.
@@ -151,6 +162,7 @@ class TextFieldParams {
     enableSuggestions = true;
     autocorrect = false;
     autofillHints = const [];
+    enableIMEPersonalizedLearning = false;
   }
 
   /// Change textField mode.
@@ -158,11 +170,25 @@ class TextFieldParams {
     _mode = prefixIcon
         ? EnumTextFieldMode.passwordPrefix
         : EnumTextFieldMode.password;
+    keyboardType = TextInputType.visiblePassword;
     maxLines = 1;
     obscureText = true;
     enableSuggestions = false;
     autocorrect = false;
     autofillHints = const [];
+    enableIMEPersonalizedLearning = false;
+  }
+
+  /// Change textField mode.
+  void changeVisiblePasswordMode() {
+    _mode = EnumTextFieldMode.visiblePassword;
+    keyboardType = TextInputType.visiblePassword;
+    maxLines = 1;
+    obscureText = false;
+    enableSuggestions = false;
+    autocorrect = false;
+    autofillHints = const [];
+    enableIMEPersonalizedLearning = false;
   }
 
   /// Change textField mode.

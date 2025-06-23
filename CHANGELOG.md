@@ -1,3 +1,10 @@
+## 43.0.0
+
+* visiblePassword has been added as a parameter that can be used with TextFieldElement.
+* The keyboard type of TextInputType.visiblePassword has now been automatically set even in password mode of TextFieldElement.
+* In noSuggestAndAutoCorrect, noAutoCorrect, password, and passwordPrefix modes of TextFieldElement, the value of enableIMEPersonalizedLearning is now false. The newly added visiblePassword is also false.
+* A missing parameter has been added to TextFieldElementParams.
+
 ## 42.0.0
 
 * Due to a change in the Flutter specifications, constraints have been added to the parameters of TooltipElement, and the height parameter has been migrated.

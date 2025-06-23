@@ -155,6 +155,9 @@ class TextFieldElement extends TextElement {
         case EnumTextFieldMode.passwordPrefix:
           tfParams.p.changePasswordMode(true);
           break;
+        case EnumTextFieldMode.visiblePassword:
+          tfParams.p.changeVisiblePasswordMode();
+          break;
         case EnumTextFieldMode.search:
           tfParams.p.changeSearchMode(false);
           break;
@@ -454,6 +457,12 @@ class _TextFieldElementWidgetState extends State<_TextFieldElementWidget> {
             prefixIconColor: widget.tfParams.p.prefixIconColor,
             suffixIcon: _getSuffixIcon(),
             suffixIconColor: widget.tfParams.p.suffixIconColor);
+      case EnumTextFieldMode.visiblePassword:
+        return widget.tfParams.p.decoration.copyWith(
+            prefixIcon: _getPrefixIcon(),
+            prefixIconColor: widget.tfParams.p.prefixIconColor,
+            suffixIcon: _getSuffixIcon(),
+            suffixIconColor: widget.tfParams.p.suffixIconColor);
       case EnumTextFieldMode.search:
         return widget.tfParams.p.decoration.copyWith(
             prefixIcon: _getPrefixIcon(),
@@ -481,8 +490,10 @@ class _TextFieldElementWidgetState extends State<_TextFieldElementWidget> {
   Widget build(BuildContext context) {
     return TextField(
       key: widget.tfParams.p.key,
+      groupId: widget.tfParams.p.groupId,
       controller: widget.parent.getController(),
       focusNode: widget.parent.getFocusNode(),
+      undoController: widget.parent.tfParams.p.undoController,
       decoration: _getDecoration(),
       keyboardType: widget.tfParams.p.keyboardType,
       textInputAction: widget.tfParams.p.textInputAction,
@@ -496,6 +507,7 @@ class _TextFieldElementWidgetState extends State<_TextFieldElementWidget> {
       readOnly: widget.tfParams.p.readOnly,
       showCursor: widget.tfParams.p.showCursor,
       autofocus: widget.tfParams.p.autofocus,
+      statesController: widget.tfParams.p.statesController,
       obscuringCharacter: widget.tfParams.p.obscuringCharacter,
       obscureText: widget.tfParams.p.obscureText,
       autocorrect: widget.tfParams.p.autocorrect,
@@ -513,10 +525,13 @@ class _TextFieldElementWidgetState extends State<_TextFieldElementWidget> {
       onAppPrivateCommand: widget.tfParams.p.onAppPrivateCommand,
       inputFormatters: widget.tfParams.p.inputFormatters,
       enabled: widget.tfParams.p.enabled,
+      ignorePointers: widget.tfParams.p.ignorePointers,
       cursorWidth: widget.tfParams.p.cursorWidth,
       cursorHeight: widget.tfParams.p.cursorHeight,
       cursorRadius: widget.tfParams.p.cursorRadius,
+      cursorOpacityAnimates: widget.tfParams.p.cursorOpacityAnimates,
       cursorColor: widget.tfParams.p.cursorColor,
+      cursorErrorColor: widget.tfParams.p.cursorErrorColor,
       selectionHeightStyle: widget.tfParams.p.selectionHeightStyle,
       selectionWidthStyle: widget.tfParams.p.selectionWidthStyle,
       keyboardAppearance: widget.tfParams.p.keyboardAppearance,
@@ -525,18 +540,23 @@ class _TextFieldElementWidgetState extends State<_TextFieldElementWidget> {
       enableInteractiveSelection: widget.tfParams.p.enableInteractiveSelection,
       selectionControls: widget.tfParams.p.selectionControls,
       onTap: widget.tfParams.p.onTap,
+      onTapAlwaysCalled: widget.tfParams.p.onTapAlwaysCalled,
       onTapOutside: widget.tfParams.p.onTapOutside,
+      onTapUpOutside: widget.tfParams.p.onTapUpOutside,
       mouseCursor: widget.tfParams.p.mouseCursor,
       buildCounter: widget.tfParams.p.buildCounter,
       scrollController: widget.tfParams.p.scrollController,
       scrollPhysics: widget.tfParams.p.scrollPhysics,
       autofillHints: widget.tfParams.p.autofillHints,
+      contentInsertionConfiguration:
+          widget.tfParams.p.contentInsertionConfiguration,
       clipBehavior: widget.tfParams.p.clipBehavior,
       restorationId: widget.tfParams.p.restorationId,
       stylusHandwritingEnabled: widget.tfParams.p.stylusHandwritingEnabled,
       enableIMEPersonalizedLearning:
           widget.tfParams.p.enableIMEPersonalizedLearning,
       contextMenuBuilder: widget.tfParams.p.contextMenuBuilder,
+      canRequestFocus: widget.tfParams.p.canRequestFocus,
       spellCheckConfiguration: widget.tfParams.p.spellCheckConfiguration,
       magnifierConfiguration: widget.tfParams.p.magnifierConfiguration,
     );

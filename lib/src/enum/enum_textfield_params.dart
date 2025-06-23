@@ -39,6 +39,7 @@ enum EnumTextFieldMode {
   noAutoCorrect,
   password,
   passwordPrefix,
+  visiblePassword,
   search,
   searchPrefix,
   searchAndClear,
