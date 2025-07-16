@@ -15,7 +15,7 @@ class SpWMLBuilder {
   final EdgeInsets margin;
   final EdgeInsets padding;
   final SpWMLFontStyle style;
-  final GlobalKey? key;
+  final Key? key;
   final SpWMLInfo? info;
 
   /// Constructor

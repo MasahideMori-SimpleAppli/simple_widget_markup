@@ -74,9 +74,8 @@ class SpWML extends StatelessWidget {
       this.mtsm,
       this.vm,
       this.sm,
-      GlobalKey? key})
-      : style = spWMLStyle ?? SpWMLFontStyleManager().style,
-        super(key: key);
+      super.key})
+      : style = spWMLStyle ?? SpWMLFontStyleManager().style;
 
   /// (en)Build widget.
   ///

@@ -1,3 +1,7 @@
+## 43.0.1
+
+* The key specification for SpWML and SpWMLBuilder has been changed from GlobalKey to Key.
+
 ## 43.0.0
 
 * visiblePassword has been added as a parameter that can be used with TextFieldElement.
