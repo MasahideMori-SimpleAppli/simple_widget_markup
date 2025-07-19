@@ -1,3 +1,7 @@
+## 43.0.2
+
+* Updates associated with base library updates.
+
 ## 43.0.1
 
 * The key specification for SpWML and SpWMLBuilder has been changed from GlobalKey to Key.
