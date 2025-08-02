@@ -1,3 +1,7 @@
+## 43.0.3
+
+* Several variables have been added to ExpTileParams, a parameter of ExpTileElement.
+
 ## 43.0.2
 
 * Updates associated with base library updates.

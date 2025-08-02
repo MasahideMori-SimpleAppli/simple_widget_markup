@@ -25,6 +25,7 @@ class ExpTileParams {
   void Function(bool)? onExpansionChanged;
   List<Widget>? children;
   Widget? trailing;
+  bool showTrailingIcon = true;
   bool initiallyExpanded = false;
   bool maintainState = false;
   EdgeInsetsGeometry? tilePadding;
@@ -37,5 +38,16 @@ class ExpTileParams {
   Color? collapsedTextColor;
   Color? iconColor;
   Color? collapsedIconColor;
+  ShapeBorder? shape;
+  ShapeBorder? collapsedShape;
+  Clip? clipBehavior;
   ListTileControlAffinity? controlAffinity;
+  ExpansibleController? controller;
+  bool? dense;
+  VisualDensity? visualDensity;
+  double? minTileHeight;
+  bool? enableFeedback = true;
+  bool enabled = true;
+  AnimationStyle? expansionAnimationStyle;
+  bool internalAddSemanticForOnTap = false;
 }
