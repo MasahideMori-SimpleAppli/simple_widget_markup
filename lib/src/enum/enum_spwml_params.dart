@@ -188,6 +188,8 @@ enum EnumSpWMLParams {
   alignCenter,
   // スプリットエレメント専用のパラメータ
   barSize,
+  clampMin,
+  clampMax,
 }
 
 /// 重複を避けて高速化するために、短縮系だけをまとめたもの。
@@ -294,7 +296,9 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.cellMargin ||
           this == EnumSpWMLParams.vMargin ||
           this == EnumSpWMLParams.cellBorderWidth ||
-          this == EnumSpWMLParams.barSize) {
+          this == EnumSpWMLParams.barSize ||
+          this == EnumSpWMLParams.clampMin ||
+          this == EnumSpWMLParams.clampMax) {
         return double.parse(v);
       }
       if (this == EnumSpWMLParams.weight || this == EnumSpWMLParams.hNum) {

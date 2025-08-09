@@ -1,3 +1,7 @@
+## 43.1.1
+
+* Added clampMin and clampMax params to split.
+
 ## 43.1.0
 
 * Added SplitElement.

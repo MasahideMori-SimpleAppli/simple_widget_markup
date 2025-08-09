@@ -19,16 +19,19 @@ class SplitParamsWrapper {
 /// (ja) 接頭名(XXXParams of X)が同じクラスで利用するパラメータを保持するためのクラス。
 ///
 class SplitParams {
+  static const double defBarSize = 8;
+  static const double defClampMin = 0.1;
+  static const double defClampMax = 0.9;
   Key? key;
   // If horizontal, children is set the horizontal layout.
   Axis axis = Axis.horizontal;
   // The split ratio.
   double ratio = 0.5;
   SystemMouseCursor cursor = SystemMouseCursors.grab;
-  double barSize = 8;
+  double barSize = defBarSize;
   Color color = Colors.grey;
-  double clampMin = 0.1;
-  double clampMax = 0.9;
+  double clampMin = defClampMin;
+  double clampMax = defClampMax;
   // Bar drag callback
   void Function(double ratio) onChanged = (double ratio) {};
 }

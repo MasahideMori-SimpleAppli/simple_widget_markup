@@ -60,7 +60,13 @@ class SplitElement extends MultiChildElement {
         : Colors.grey;
     elParams.p.barSize = params.containsKey(EnumSpWMLParams.barSize)
         ? params[EnumSpWMLParams.barSize]!
-        : 8;
+        : SplitParams.defBarSize;
+    elParams.p.clampMin = params.containsKey(EnumSpWMLParams.clampMin)
+        ? params[EnumSpWMLParams.clampMin]!
+        : SplitParams.defClampMin;
+    elParams.p.clampMax = params.containsKey(EnumSpWMLParams.clampMax)
+        ? params[EnumSpWMLParams.clampMax]!
+        : SplitParams.defClampMax;
     return this;
   }
 
