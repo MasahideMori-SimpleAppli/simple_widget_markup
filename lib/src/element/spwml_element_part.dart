@@ -31,6 +31,7 @@ export 'sub/structure/exp_tile_element.dart';
 export 'sub/structure/row_element.dart';
 export 'sub/structure/scroll_element.dart';
 export 'sub/structure/span_element.dart';
+export 'sub/structure/split_element.dart';
 export 'sub/structure/stack_element.dart';
 export 'sub/structure/table_element.dart';
 export 'sub/structure/table_row_element.dart';

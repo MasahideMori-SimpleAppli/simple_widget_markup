@@ -186,6 +186,8 @@ enum EnumSpWMLParams {
   cellBorderColor,
   // スクロールエレメント専用のフラグ
   alignCenter,
+  // スプリットエレメント専用のパラメータ
+  barSize,
 }
 
 /// 重複を避けて高速化するために、短縮系だけをまとめたもの。
@@ -291,7 +293,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.cellWidth ||
           this == EnumSpWMLParams.cellMargin ||
           this == EnumSpWMLParams.vMargin ||
-          this == EnumSpWMLParams.cellBorderWidth) {
+          this == EnumSpWMLParams.cellBorderWidth ||
+          this == EnumSpWMLParams.barSize) {
         return double.parse(v);
       }
       if (this == EnumSpWMLParams.weight || this == EnumSpWMLParams.hNum) {

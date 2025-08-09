@@ -28,6 +28,7 @@ export 'sub/structure/exp_tile_params.dart';
 export 'sub/structure/row_col_params.dart';
 export 'sub/structure/scroll_params.dart';
 export 'sub/structure/span_params.dart';
+export 'sub/structure/split_params.dart';
 export 'sub/structure/stack_params.dart';
 export 'sub/structure/table_params.dart';
 export 'sub/structure/table_row_params.dart';

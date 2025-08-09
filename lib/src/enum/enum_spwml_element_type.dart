@@ -20,6 +20,7 @@ enum EnumSpWMLElementType {
   circleAvatar,
   badge,
   tooltip,
+  split,
   // common
   text,
   menu,

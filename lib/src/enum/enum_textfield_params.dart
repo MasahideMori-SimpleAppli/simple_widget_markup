@@ -1,9 +1,9 @@
 import 'package:flutter/services.dart';
-import 'package:simple_widget_markup/src/element/sub/text/input_formatters/value_range_formatter.dart';
 
 import '../element/sub/text/input_formatters/decimal_input_formatter.dart';
 import '../element/sub/text/input_formatters/minus_input_formatter.dart';
 import '../element/sub/text/input_formatters/money_input_formatter.dart';
+import '../element/sub/text/input_formatters/value_range_formatter.dart';
 import '../element_params/spwml_info.dart';
 import '../spwml_exception.dart';
 

@@ -1,3 +1,7 @@
+## 43.1.0
+
+* Added SplitElement.
+
 ## 43.0.3
 
 * Several variables have been added to ExpTileParams, a parameter of ExpTileElement.

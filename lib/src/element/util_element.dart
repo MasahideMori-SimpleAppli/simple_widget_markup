@@ -464,6 +464,18 @@ class UtilElement {
           style,
           info,
           ColorPaletteParamsWrapper(ColorPaletteParams()));
+    } else if (eType == EnumSpWMLElementType.split) {
+      r = SplitElement(
+          serial,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          StructureElementChildren(),
+          SplitParamsWrapper(SplitParams()));
     } else {
       // 存在しないタイプの場合は通常はfromStr時点で例外が発生している。
       // ここで発生する場合は処理の追加漏れ。

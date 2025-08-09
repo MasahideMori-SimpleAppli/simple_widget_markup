@@ -1,4 +1,4 @@
-import 'package:simple_widget_markup/simple_widget_markup.dart';
+import '../../../../simple_widget_markup.dart';
 
 ///
 /// (en) A variant of TextElement that is used only when parsing fails
