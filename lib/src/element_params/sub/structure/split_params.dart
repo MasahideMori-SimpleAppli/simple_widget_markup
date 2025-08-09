@@ -29,7 +29,6 @@ class SplitParams {
   Color color = Colors.grey;
   double clampMin = 0.1;
   double clampMax = 0.9;
-  List<Widget>? children;
   // Bar drag callback
   void Function(double ratio) onChanged = (double ratio) {};
 }
