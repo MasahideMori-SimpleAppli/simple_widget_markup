@@ -105,6 +105,14 @@ class SplitElement extends MultiChildElement {
     elParams.p.clampMax = max;
   }
 
+  /// (en) Sets a callback for when the center bar position changes.
+  ///
+  /// (ja) 中央のバーの位置が変化した時のコールバックを設定します。
+  /// * [onChanged] : callback.
+  void setOnChanged(void Function(double) onChanged) {
+    elParams.p.onChanged = onChanged;
+  }
+
   /// (en) Sets the manager class that manages the state.
   ///
   /// (ja) 状態を管理するマネージャクラスを設定します。

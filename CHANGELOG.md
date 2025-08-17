@@ -1,3 +1,7 @@
+## 44.1.0
+
+* Added setOnChanged method to SplitElement.
+
 ## 44.0.0
 
 * The spec has been changed so that SplitElement requires a ValueManager and a sid.
