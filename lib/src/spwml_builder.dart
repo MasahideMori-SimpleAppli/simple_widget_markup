@@ -287,7 +287,7 @@ class SpWMLBuilder {
   /// * [mim] : The manager for segmentedBtn.
   /// * [mfm] : The manager for checkbox.
   /// * [mtsm] : The manager for segmentedBtn2 and checkbox2.
-  /// * [vm] : The manager for progressIndicator and slider.
+  /// * [vm] : The manager for progressIndicator, slider, split.
   ///
   /// Throws : Throws noManagerException if the required manager is not set.
   void setManager(
@@ -488,6 +488,19 @@ class SpWMLBuilder {
           }
         } else if (i.type == EnumSpWMLElementType.slider) {
           SliderElement elm = i as SliderElement;
+          if (vm != null) {
+            elm.setManager(vm, sid);
+          } else {
+            throw SpWMLException(
+                EnumSpWMLExceptionType.noManagerException,
+                -1,
+                -1,
+                SpWMLInfo(
+                    errorHint:
+                        'ValueManager is not set. ${(info != null) ? info!.errorHint : ""}'));
+          }
+        } else if (i.type == EnumSpWMLElementType.split) {
+          SplitElement elm = i as SplitElement;
           if (vm != null) {
             elm.setManager(vm, sid);
           } else {

@@ -1,3 +1,8 @@
+## 44.0.0
+
+* The spec has been changed so that SplitElement requires a ValueManager and a sid.
+* With this change, the ratio parameter has been removed from SplitParams and the ratio is now managed by the manager on a SID basis.
+
 ## 43.1.1
 
 * Added clampMin and clampMax params to split.

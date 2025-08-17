@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_managers/simple_managers.dart';
 import '../../../../simple_widget_markup.dart';
 
 ///
@@ -67,6 +68,11 @@ class SplitElement extends MultiChildElement {
     elParams.p.clampMax = params.containsKey(EnumSpWMLParams.clampMax)
         ? params[EnumSpWMLParams.clampMax]!
         : SplitParams.defClampMax;
+    // SIDが設定されていなければエラー。
+    if (getSID() == null) {
+      throw SpWMLException(EnumSpWMLExceptionType.sidDoesNotExistException,
+          lineStart, lineEnd, info);
+    }
     return this;
   }
 
@@ -74,6 +80,7 @@ class SplitElement extends MultiChildElement {
   @override
   Widget getWidget(BuildContext context) {
     return _SplitElementWidget(
+      sid: getSID()!,
       elParams: elParams,
       children: children,
       key: elParams.p.key,
@@ -84,7 +91,10 @@ class SplitElement extends MultiChildElement {
   ///
   /// (ja) 左、または上側のウィジェットの比率を設定します。
   void setRatio(double ratio) {
-    elParams.p.ratio = ratio;
+    String? sid = getSID();
+    if (sid != null && elParams.p.manager != null) {
+      elParams.p.manager!.setValue(sid, ratio);
+    }
   }
 
   /// (en) Specifies the open/close range of the center bar.
@@ -94,14 +104,28 @@ class SplitElement extends MultiChildElement {
     elParams.p.clampMin = min;
     elParams.p.clampMax = max;
   }
+
+  /// (en) Sets the manager class that manages the state.
+  ///
+  /// (ja) 状態を管理するマネージャクラスを設定します。
+  /// * [m] : Manager class.
+  /// * [sid] : This element sid.
+  void setManager(ValueManager m, String sid) {
+    elParams.p.manager = m;
+    elParams.p.manager!.getValue(sid, initialValue: SplitParams.defSplitRatio);
+  }
 }
 
 class _SplitElementWidget extends StatefulWidget {
+  final String sid;
   final SplitParamsWrapper elParams;
   final StructureElementChildren children;
 
   const _SplitElementWidget(
-      {required this.elParams, required this.children, super.key});
+      {required this.sid,
+      required this.elParams,
+      required this.children,
+      super.key});
 
   @override
   State<_SplitElementWidget> createState() => _SplitElementWidgetState();
@@ -111,6 +135,8 @@ class _SplitElementWidgetState extends State<_SplitElementWidget> {
   @override
   Widget build(BuildContext context) {
     List<Widget> children = widget.children.getChildren();
+    final double ratio = widget.elParams.p.manager!.getValue(widget.sid) ??
+        SplitParams.defSplitRatio;
     if (children.length < 2) {
       if (children.isEmpty) {
         return Container(key: widget.key);
@@ -122,11 +148,11 @@ class _SplitElementWidgetState extends State<_SplitElementWidget> {
         return LayoutBuilder(builder: (context, constraints) {
           final double availableWidth =
               constraints.maxWidth - widget.elParams.p.barSize;
-          final double leftW = availableWidth * widget.elParams.p.ratio;
-          final double rightW = availableWidth * (1 - widget.elParams.p.ratio);
+          final double leftW = availableWidth * ratio;
+          final double rightW = availableWidth * (1 - ratio);
           return Row(key: widget.key, children: [
             SizedBox(width: leftW, child: children[0]),
-            _getSplitBarHorizontal(availableWidth),
+            _getSplitBarHorizontal(availableWidth, ratio),
             SizedBox(width: rightW, child: children[1])
           ]);
         });
@@ -134,12 +160,11 @@ class _SplitElementWidgetState extends State<_SplitElementWidget> {
         return LayoutBuilder(builder: (context, constraints) {
           final double availableHeight =
               constraints.maxHeight - widget.elParams.p.barSize;
-          final double topH = availableHeight * widget.elParams.p.ratio;
-          final double bottomH =
-              availableHeight * (1 - widget.elParams.p.ratio);
+          final double topH = availableHeight * ratio;
+          final double bottomH = availableHeight * (1 - ratio);
           return Column(key: widget.key, children: [
             SizedBox(height: topH, child: children[0]),
-            _getSplitBarVertical(availableHeight),
+            _getSplitBarVertical(availableHeight, ratio),
             SizedBox(height: bottomH, child: children[1])
           ]);
         });
@@ -148,17 +173,20 @@ class _SplitElementWidgetState extends State<_SplitElementWidget> {
   }
 
   /// 子ビューが水平方向に配置される場合。
-  Widget _getSplitBarHorizontal(double maxSize) {
+  Widget _getSplitBarHorizontal(double maxSize, double ratio) {
     return MouseRegion(
         cursor: widget.elParams.p.cursor,
         child: GestureDetector(
           behavior: HitTestBehavior.translucent,
           onHorizontalDragUpdate: (details) {
             setState(() {
-              widget.elParams.p.ratio += details.delta.dx / maxSize;
-              widget.elParams.p.ratio = widget.elParams.p.ratio.clamp(
+              ratio += details.delta.dx / maxSize;
+              ratio = ratio.clamp(
                   widget.elParams.p.clampMin, widget.elParams.p.clampMax);
-              widget.elParams.p.onChanged(widget.elParams.p.ratio);
+              if (widget.elParams.p.manager != null) {
+                widget.elParams.p.manager!.setValue(widget.sid, ratio);
+              }
+              widget.elParams.p.onChanged(ratio);
             });
           },
           child: Container(
@@ -168,17 +196,20 @@ class _SplitElementWidgetState extends State<_SplitElementWidget> {
         ));
   }
 
-  Widget _getSplitBarVertical(double maxSize) {
+  Widget _getSplitBarVertical(double maxSize, double ratio) {
     return MouseRegion(
         cursor: widget.elParams.p.cursor,
         child: GestureDetector(
           behavior: HitTestBehavior.translucent,
           onVerticalDragUpdate: (details) {
             setState(() {
-              widget.elParams.p.ratio += details.delta.dy / maxSize;
-              widget.elParams.p.ratio = widget.elParams.p.ratio.clamp(
+              ratio += details.delta.dy / maxSize;
+              ratio = ratio.clamp(
                   widget.elParams.p.clampMin, widget.elParams.p.clampMax);
-              widget.elParams.p.onChanged(widget.elParams.p.ratio);
+              if (widget.elParams.p.manager != null) {
+                widget.elParams.p.manager!.setValue(widget.sid, ratio);
+              }
+              widget.elParams.p.onChanged(ratio);
             });
           },
           child: Container(
