@@ -196,7 +196,7 @@ class _SplitElementWidgetState extends State<_SplitElementWidget> {
             }
           }
           if (leftW + rightW < availableWidth) {
-            rightW = availableWidth - leftW;
+            leftW = availableWidth - rightW;
           }
           return Row(key: widget.key, children: [
             SizedBox(width: leftW, child: children[0]),
