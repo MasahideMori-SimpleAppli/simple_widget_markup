@@ -1,3 +1,7 @@
+## 45.0.2
+
+* Fixed a bug that could cause a SplitElement's inner view size to overflow under certain conditions.
+
 ## 45.0.1
 
 * Bug fix of splitPane1MinPx and splitPane2MinPx params of SplitElement.

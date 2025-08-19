@@ -167,6 +167,41 @@ class _SplitElementWidget extends StatefulWidget {
 }
 
 class _SplitElementWidgetState extends State<_SplitElementWidget> {
+  /// ウィジェットのサイズ計算のための共通処理。
+  /// * [available]: 利用可能な全体のサイズ（幅 or 高さ）
+  /// * [ratio]: 分割比率（0.0～1.0）
+  /// * [min1]: 上/左の最小サイズ
+  /// * [min2]: 下/右の最小サイズ
+  ///
+  /// Returns : [size1, size2].
+  List<double> _adjustSplitSizes({
+    required double available,
+    required double ratio,
+    double? min1,
+    double? min2,
+  }) {
+    double size1 = available * ratio;
+    double size2 = available * (1 - ratio);
+    // 最小サイズを反映する。
+    if (min1 != null && size1 < min1) size1 = min1;
+    if (min2 != null && size2 < min2) size2 = min2;
+    final double sum = size1 + size2;
+    if (sum < available) {
+      // 隙間ができる場合は size1 を増やして埋める。
+      size1 = available - size2;
+    } else if (sum > available) {
+      // オーバーフローする場合は size1 を優先して size2 を削る。
+      size2 = available - size1;
+      if (size2 < 0) size2 = 0;
+    }
+    // もし全体が min1 未満なら、強制的に size1=available, size2=0
+    if (min1 != null && available < min1) {
+      size1 = available;
+      size2 = 0;
+    }
+    return [size1, size2];
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Widget> children = widget.children.getChildren();
@@ -183,21 +218,14 @@ class _SplitElementWidgetState extends State<_SplitElementWidget> {
         return LayoutBuilder(builder: (context, constraints) {
           final double availableWidth =
               constraints.maxWidth - widget.elParams.p.barSize;
-          double leftW = availableWidth * ratio;
-          double rightW = availableWidth * (1 - ratio);
-          if (widget.elParams.p.splitPane1MinPx != null) {
-            if (leftW < widget.elParams.p.splitPane1MinPx!) {
-              leftW = widget.elParams.p.splitPane1MinPx!;
-            }
-          }
-          if (widget.elParams.p.splitPane2MinPx != null) {
-            if (rightW < widget.elParams.p.splitPane2MinPx!) {
-              rightW = widget.elParams.p.splitPane2MinPx!;
-            }
-          }
-          if (leftW + rightW < availableWidth) {
-            leftW = availableWidth - rightW;
-          }
+          final sizes = _adjustSplitSizes(
+            available: availableWidth,
+            ratio: ratio,
+            min1: widget.elParams.p.splitPane1MinPx,
+            min2: widget.elParams.p.splitPane2MinPx,
+          );
+          final leftW = sizes[0];
+          final rightW = sizes[1];
           return Row(key: widget.key, children: [
             SizedBox(width: leftW, child: children[0]),
             _getSplitBarHorizontal(availableWidth, ratio),
@@ -208,21 +236,14 @@ class _SplitElementWidgetState extends State<_SplitElementWidget> {
         return LayoutBuilder(builder: (context, constraints) {
           final double availableHeight =
               constraints.maxHeight - widget.elParams.p.barSize;
-          double topH = availableHeight * ratio;
-          double bottomH = availableHeight * (1 - ratio);
-          if (widget.elParams.p.splitPane1MinPx != null) {
-            if (topH < widget.elParams.p.splitPane1MinPx!) {
-              topH = widget.elParams.p.splitPane1MinPx!;
-            }
-          }
-          if (widget.elParams.p.splitPane2MinPx != null) {
-            if (bottomH < widget.elParams.p.splitPane2MinPx!) {
-              bottomH = widget.elParams.p.splitPane2MinPx!;
-            }
-          }
-          if (topH + bottomH < availableHeight) {
-            topH = availableHeight - bottomH;
-          }
+          final sizes = _adjustSplitSizes(
+            available: availableHeight,
+            ratio: ratio,
+            min1: widget.elParams.p.splitPane1MinPx,
+            min2: widget.elParams.p.splitPane2MinPx,
+          );
+          final topH = sizes[0];
+          final bottomH = sizes[1];
           return Column(key: widget.key, children: [
             SizedBox(height: topH, child: children[0]),
             _getSplitBarVertical(availableHeight, ratio),
