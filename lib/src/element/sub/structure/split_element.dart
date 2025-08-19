@@ -168,6 +168,8 @@ class _SplitElementWidget extends StatefulWidget {
 
 class _SplitElementWidgetState extends State<_SplitElementWidget> {
   /// ウィジェットのサイズ計算のための共通処理。
+  /// 最小サイズはレイアウト方向を基準とし、size1がsize2よりも優先されます。
+  ///
   /// * [available]: 利用可能な全体のサイズ（幅 or 高さ）
   /// * [ratio]: 分割比率（0.0～1.0）
   /// * [min1]: 上/左の最小サイズ
@@ -181,24 +183,30 @@ class _SplitElementWidgetState extends State<_SplitElementWidget> {
     double? min2,
   }) {
     double size1 = available * ratio;
-    double size2 = available * (1 - ratio);
-    // 最小サイズを反映する。
-    if (min1 != null && size1 < min1) size1 = min1;
-    if (min2 != null && size2 < min2) size2 = min2;
-    final double sum = size1 + size2;
-    if (sum < available) {
-      // 隙間ができる場合は size1 を増やして埋める。
-      size1 = available - size2;
-    } else if (sum > available) {
-      // オーバーフローする場合は size1 を優先して size2 を削る。
-      size2 = available - size1;
-      if (size2 < 0) size2 = 0;
+    double size2 = available - size1;
+    // 条件分岐。基本的にsize1が優先されるよう計算する。
+    if (min1 != null && min2 != null) {
+      if (min2 > size2) {
+        size1 = available - min2;
+        size2 = min2;
+      }
+      if (min1 > size1) {
+        size1 = min1;
+        size2 = available - size1;
+      }
+    } else if (min1 != null && min2 == null) {
+      if (min1 > size1) {
+        size1 = min1;
+        size2 = available - size1;
+      }
+    } else if (min1 == null && min2 != null) {
+      if (min2 > size2) {
+        size1 = available - min2;
+        size2 = min2;
+      }
     }
-    // もし全体が min1 未満なら、強制的に size1=available, size2=0
-    if (min1 != null && available < min1) {
-      size1 = available;
-      size2 = 0;
-    }
+    if (size1 < 0) size1 = 0;
+    if (size2 < 0) size2 = 0;
     return [size1, size2];
   }
 

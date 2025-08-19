@@ -1,3 +1,7 @@
+## 45.0.4
+
+* Fixed a bug that caused the splitPane2MinPx value to be invalid in SplitElement.
+
 ## 45.0.3
 
 * Due to an issue that caused pub.dev score calculations to drop, the activeThumbColor of switchBtn has been temporarily fixed to be treated as an assignment to the activeColor argument.
