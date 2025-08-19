@@ -1,3 +1,7 @@
+## 45.0.1
+
+* Bug fix of splitPane1MinPx and splitPane2MinPx params of SplitElement.
+
 ## 45.0.0
 
 * Added setSplitPaneMinPx method to SplitElement.
@@ -11,7 +15,8 @@
 ## 44.0.0
 
 * The spec has been changed so that SplitElement requires a ValueManager and a sid.
-* With this change, the ratio parameter has been removed from SplitParams and the ratio is now managed by the manager on a SID basis.
+* With this change, the ratio parameter has been removed from SplitParams and the ratio is now
+  managed by the manager on a SID basis.
 
 ## 43.1.1
 
@@ -36,37 +41,49 @@
 ## 43.0.0
 
 * visiblePassword has been added as a parameter that can be used with TextFieldElement.
-* The keyboard type of TextInputType.visiblePassword has now been automatically set even in password mode of TextFieldElement.
-* In noSuggestAndAutoCorrect, noAutoCorrect, password, and passwordPrefix modes of TextFieldElement, the value of enableIMEPersonalizedLearning is now false. The newly added visiblePassword is also false.
+* The keyboard type of TextInputType.visiblePassword has now been automatically set even in password
+  mode of TextFieldElement.
+* In noSuggestAndAutoCorrect, noAutoCorrect, password, and passwordPrefix modes of TextFieldElement,
+  the value of enableIMEPersonalizedLearning is now false. The newly added visiblePassword is also
+  false.
 * A missing parameter has been added to TextFieldElementParams.
 
 ## 42.0.0
 
-* Due to a change in the Flutter specifications, constraints have been added to the parameters of TooltipElement, and the height parameter has been migrated.
+* Due to a change in the Flutter specifications, constraints have been added to the parameters of
+  TooltipElement, and the height parameter has been migrated.
 * Due to this change, the target SDK required by the package has also changed.
 * In addition, I have reorganized dependencies that are no longer necessary.
 * Other minor fixes have been made.
 
 ## 41.0.0
 
-* When the input mode is changed using TextFieldParams's changeNormalMode, autofillHints is now always initialized to an empty array.
-* The noSuggestAndAutofill mode of TextFieldElement has been renamed to noSuggestAndAutoCorrect mode.
-* The noAutoCorrect mode has been added to TextFieldElement. Unlike the noSuggestAndAutoCorrect mode, this mode allows conversion using IME, such as for Japanese input.
+* When the input mode is changed using TextFieldParams's changeNormalMode, autofillHints is now
+  always initialized to an empty array.
+* The noSuggestAndAutofill mode of TextFieldElement has been renamed to noSuggestAndAutoCorrect
+  mode.
+* The noAutoCorrect mode has been added to TextFieldElement. Unlike the noSuggestAndAutoCorrect
+  mode, this mode allows conversion using IME, such as for Japanese input.
 
 ## 40.0.0
 
-* The TextFieldElement mode noSuggestAndAutofill has been added. This is the second most secure mode after password mode and is ideal for apps on shared devices.
-* The changePasswordMode of TextFieldParams has been changed so that autofillHints is always initialized with an empty array.
+* The TextFieldElement mode noSuggestAndAutofill has been added. This is the second most secure mode
+  after password mode and is ideal for apps on shared devices.
+* The changePasswordMode of TextFieldParams has been changed so that autofillHints is always
+  initialized with an empty array.
 
 ## 39.0.1
 
-* The ParseErrorTextElement, which has the same functionality as TextElement, is now returned only when SpWMLParser fails to parse SpWML.
+* The ParseErrorTextElement, which has the same functionality as TextElement, is now returned only
+  when SpWMLParser fails to parse SpWML.
 * This change makes parsing errors easier to track down.
 
 ## 39.0.0
 
-* The default value of the fontFamily argument in the SpWMLFontStyleParams class has been changed to null. With this change, the default font family set in MaterialApp will always be used.
-* If you do not want to be affected by this change, you can override the style in SpWMLFontStyleManager and set the fontFamily to Roboto to get the same behavior as before.
+* The default value of the fontFamily argument in the SpWMLFontStyleParams class has been changed to
+  null. With this change, the default font family set in MaterialApp will always be used.
+* If you do not want to be affected by this change, you can override the style in
+  SpWMLFontStyleManager and set the fontFamily to Roboto to get the same behavior as before.
 
 ## 38.0.3
 
@@ -83,13 +100,15 @@
 ## 38.0.0
 
 * Updated to accommodate Flutter 3.29.0.
-* The TextFieldElement's scribbleEnabled parameter has been removed and replaced with stylusHandwritingEnabled.
+* The TextFieldElement's scribbleEnabled parameter has been removed and replaced with
+  stylusHandwritingEnabled.
 
 ## 37.0.0
 
 * Updates associated with base library updates.
 * Modified to fit newer Flutter versions. This update changes how some colors are handled.
-* The UtilParams colorToHexString method has been changed to always return the value converted to uppercase.
+* The UtilParams colorToHexString method has been changed to always return the value converted to
+  uppercase.
 
 ## 36.2.0
 
@@ -97,7 +116,8 @@
 
 ## 36.1.0
 
-* The scroll now has an alignCenter flag, which when set to true will center the scroll within its parent element.
+* The scroll now has an alignCenter flag, which when set to true will center the scroll within its
+  parent element.
 
 ## 36.0.3
 
@@ -105,7 +125,8 @@
 
 ## 36.0.2
 
-* Fixed an issue where the colorPalette type could not be changed from SpWML. The previous fix was not applied due to a parsing order issue.
+* Fixed an issue where the colorPalette type could not be changed from SpWML. The previous fix was
+  not applied due to a parsing order issue.
 * The circle and simpleCircle type has been added to the colorPalette.
 * Added cellBorderWidth and cellBorderColor params to colorPalette.
 
@@ -128,20 +149,26 @@
 ## 35.0.0
 
 * Updates associated with base library updates.
-* The names of some manager classes have changed in the base library, which has resulted in changes to the classes name used by some classes.
-* Please see the [simple_managers](https://pub.dev/packages/simple_managers) package for detailed changes.
+* The names of some manager classes have changed in the base library, which has resulted in changes
+  to the classes name used by some classes.
+* Please see the [simple_managers](https://pub.dev/packages/simple_managers) package for detailed
+  changes.
 
 ## 34.0.1
 
-* Fixed a bug that prevented decimal points from being entered when min or max was enabled in the tf type.
+* Fixed a bug that prevented decimal points from being entered when min or max was enabled in the tf
+  type.
 
 ## 34.0.0
 
-* The specification for TextField Element has been changed to use TextFieldManager rather than using TextEditingController and FocusNode directly.
-* Added getFocusNode, getController, setOnEditingComplete and setFocusCallback method to TextFieldElement.
+* The specification for TextField Element has been changed to use TextFieldManager rather than using
+  TextEditingController and FocusNode directly.
+* Added getFocusNode, getController, setOnEditingComplete and setFocusCallback method to
+  TextFieldElement.
 * Removed setController and setFocusNode method from TextFieldElement.
 * The specification of the setManager method of TextFieldElement has been changed.
-* As an experiment, I have added a formatter that allows you to set the value range when the input value of a text field is a number.
+* As an experiment, I have added a formatter that allows you to set the value range when the input
+  value of a text field is a number.
 * Added min and max parameters to tf type.
 
 ## 33.3.1
@@ -150,7 +177,8 @@
 
 ## 33.3.0
 
-* For clarity of API, both setValue and getValue are now available for classes that use manager classes.
+* For clarity of API, both setValue and getValue are now available for classes that use manager
+  classes.
 
 ## 33.2.2
 
@@ -163,12 +191,14 @@
 ## 33.2.0
 
 * Added setFontSize method to TextElement.
-* Added setWidth, getWidth, setHeight, getHeight, setMargin, getMargin, setPadding, getPadding, setElementKey method to SpWMLElement.
+* Added setWidth, getWidth, setHeight, getHeight, setMargin, getMargin, setPadding, getPadding,
+  setElementKey method to SpWMLElement.
 
 ## 33.1.0
 
 * Fixed cursor position bug of money and moneyWithDecimal inputType param in TextFieldElement.
-* Added intOnlyAllowNegative, numOnlyAllowNegative, moneyAllowNegative and moneyWithDecimalAllowNegative inputType params to TextFieldElement.
+* Added intOnlyAllowNegative, numOnlyAllowNegative, moneyAllowNegative and
+  moneyWithDecimalAllowNegative inputType params to TextFieldElement.
 
 ## 33.0.3
 
@@ -177,7 +207,8 @@
 ## 33.0.2
 
 * Fixed argument of setFunctions in checkbox2.
-* Fixed description and argument variable name for checkbox2, dropdownBtn2, popupMenu2, radioBtn2, and segmentedBtn2.
+* Fixed description and argument variable name for checkbox2, dropdownBtn2, popupMenu2, radioBtn2,
+  and segmentedBtn2.
 
 ## 33.0.1
 
@@ -185,13 +216,16 @@
 
 ## 33.0.0
 
-* The specifications for checkbox2, dropdownBtn2, popupMenu2, radioBtn2, and segmentedBtn2 types have changed. From now on, you must set the tag for these children instead of the sid.
+* The specifications for checkbox2, dropdownBtn2, popupMenu2, radioBtn2, and segmentedBtn2 types
+  have changed. From now on, you must set the tag for these children instead of the sid.
 * All SpWML elements can now have a tag parameter.
-* The performance of the numOnly and moneyWithDecimal inputTypes of TextFieldElement has been improved, making it easier for users to input data.
+* The performance of the numOnly and moneyWithDecimal inputTypes of TextFieldElement has been
+  improved, making it easier for users to input data.
 
 ## 32.0.0
 
-* Added checkbox2, dropdownBtn2, popupMenu2, radioBtn2 and segmentedBtn2 types. These are the flavors that allow you to manage selections using the SID of the child view.
+* Added checkbox2, dropdownBtn2, popupMenu2, radioBtn2 and segmentedBtn2 types. These are the
+  flavors that allow you to manage selections using the SID of the child view.
 * Added moneyWithDecimal inputType param to TextFieldElement.
 * Refactoring for CheckboxElement adn RadioBtnElement has been carried out.
 * SpWML and SpWMLBuilder now support SelectionManager and MultiSelectionManager.
@@ -212,7 +246,9 @@
 ## 31.0.0
 
 * Updates associated with base library updates.
-* When the view is displayed, the values of each SID in the manager class are now properly initialized. This means that when serialized manager, if the screen has been displayed at least once, the SID name and its value are always saved.
+* When the view is displayed, the values of each SID in the manager class are now properly
+  initialized. This means that when serialized manager, if the screen has been displayed at least
+  once, the SID name and its value are always saved.
 
 ## 30.2.1
 
@@ -232,7 +268,8 @@
 
 ## 30.0.0
 
-* In line with Flutter updates, MaterialState has been replaced with WidgetState. Properties are also changed in the same way.
+* In line with Flutter updates, MaterialState has been replaced with WidgetState. Properties are
+  also changed in the same way.
 
 ## 29.1.0
 
@@ -286,7 +323,8 @@
 
 * Updates associated with base library updates.
 * Appropriate manager class settings are now required when using SpWML widgets.
-* Error handling has been strengthened, making it easier to understand errors when the manager class is not set.
+* Error handling has been strengthened, making it easier to understand errors when the manager class
+  is not set.
 
 ## 24.1.1
 
@@ -294,14 +332,16 @@
 
 ## 24.1.0
 
-* Added EXTEnumWindowClass extension. This will return the appropriate Window class from the screen width.
+* Added EXTEnumWindowClass extension. This will return the appropriate Window class from the screen
+  width.
 * Adjusted some class descriptions.
 
 ## 24.0.0
 
 * The setEnabled method and isEnabled flag have been added to various button elements.
 * BtnElement's setDisabled method has been deprecated.
-* Variables in some classes have been changed to textScaler variables due to the deprecation of textScaleFactor in Flutter.
+* Variables in some classes have been changed to textScaler variables due to the deprecation of
+  textScaleFactor in Flutter.
 
 ## 23.0.0
 
@@ -322,7 +362,8 @@
 
 ## 22.0.0
 
-* ClipRRect's borderRadius no longer accepts null values, so fixed related arguments. ImgElement is affected by this.
+* ClipRRect's borderRadius no longer accepts null values, so fixed related arguments. ImgElement is
+  affected by this.
 
 ## 21.0.2
 
@@ -343,7 +384,6 @@
 
 * Fixed Change log format.
 * Added some documentation comments.
-
 
 ## 20.0.4
 

@@ -186,14 +186,17 @@ class _SplitElementWidgetState extends State<_SplitElementWidget> {
           double leftW = availableWidth * ratio;
           double rightW = availableWidth * (1 - ratio);
           if (widget.elParams.p.splitPane1MinPx != null) {
-            if (leftW > widget.elParams.p.splitPane1MinPx!) {
+            if (leftW < widget.elParams.p.splitPane1MinPx!) {
               leftW = widget.elParams.p.splitPane1MinPx!;
             }
           }
           if (widget.elParams.p.splitPane2MinPx != null) {
-            if (rightW > widget.elParams.p.splitPane2MinPx!) {
+            if (rightW < widget.elParams.p.splitPane2MinPx!) {
               rightW = widget.elParams.p.splitPane2MinPx!;
             }
+          }
+          if (leftW + rightW < availableWidth) {
+            rightW = availableWidth - leftW;
           }
           return Row(key: widget.key, children: [
             SizedBox(width: leftW, child: children[0]),
@@ -208,14 +211,17 @@ class _SplitElementWidgetState extends State<_SplitElementWidget> {
           double topH = availableHeight * ratio;
           double bottomH = availableHeight * (1 - ratio);
           if (widget.elParams.p.splitPane1MinPx != null) {
-            if (topH > widget.elParams.p.splitPane1MinPx!) {
+            if (topH < widget.elParams.p.splitPane1MinPx!) {
               topH = widget.elParams.p.splitPane1MinPx!;
             }
           }
           if (widget.elParams.p.splitPane2MinPx != null) {
-            if (bottomH > widget.elParams.p.splitPane2MinPx!) {
+            if (bottomH < widget.elParams.p.splitPane2MinPx!) {
               bottomH = widget.elParams.p.splitPane2MinPx!;
             }
+          }
+          if (topH + bottomH < availableHeight) {
+            topH = availableHeight - bottomH;
           }
           return Column(key: widget.key, children: [
             SizedBox(height: topH, child: children[0]),
