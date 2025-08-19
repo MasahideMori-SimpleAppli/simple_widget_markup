@@ -33,6 +33,8 @@ class SplitParams {
   Color color = Colors.grey;
   double clampMin = defClampMin;
   double clampMax = defClampMax;
+  double? splitPane1MinPx; // left or top
+  double? splitPane2MinPx; // right or bottom
   // Bar drag callback
   void Function(double ratio) onChanged = (double ratio) {};
 }

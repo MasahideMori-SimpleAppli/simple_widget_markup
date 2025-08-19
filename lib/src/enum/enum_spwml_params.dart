@@ -190,6 +190,8 @@ enum EnumSpWMLParams {
   barSize,
   clampMin,
   clampMax,
+  splitPane1MinPx,
+  splitPane2MinPx,
 }
 
 /// 重複を避けて高速化するために、短縮系だけをまとめたもの。
@@ -298,7 +300,9 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.cellBorderWidth ||
           this == EnumSpWMLParams.barSize ||
           this == EnumSpWMLParams.clampMin ||
-          this == EnumSpWMLParams.clampMax) {
+          this == EnumSpWMLParams.clampMax ||
+          this == EnumSpWMLParams.splitPane1MinPx ||
+          this == EnumSpWMLParams.splitPane2MinPx) {
         return double.parse(v);
       }
       if (this == EnumSpWMLParams.weight || this == EnumSpWMLParams.hNum) {

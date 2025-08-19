@@ -1,3 +1,9 @@
+## 45.0.0
+
+* Added setSplitPaneMinPx method to SplitElement.
+* Added splitPane1MinPx and splitPane2MinPx params to split block.
+* Replaced activeColor to activeThumbColor in SwitchBtnParams.
+
 ## 44.1.0
 
 * Added setOnChanged method to SplitElement.

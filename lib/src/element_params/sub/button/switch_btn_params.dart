@@ -24,7 +24,7 @@ class SwitchBtnParams {
   // pre version, This is value params.
   FlagManager? manager;
   void Function(bool)? onChanged = (bool b) {};
-  Color? activeColor;
+  Color? activeThumbColor;
   Color? activeTrackColor;
   Color? inactiveThumbColor;
   Color? inactiveTrackColor;

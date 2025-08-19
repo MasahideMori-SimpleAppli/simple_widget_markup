@@ -68,6 +68,14 @@ class SplitElement extends MultiChildElement {
     elParams.p.clampMax = params.containsKey(EnumSpWMLParams.clampMax)
         ? params[EnumSpWMLParams.clampMax]!
         : SplitParams.defClampMax;
+    elParams.p.splitPane1MinPx =
+        params.containsKey(EnumSpWMLParams.splitPane1MinPx)
+            ? params[EnumSpWMLParams.splitPane1MinPx]!
+            : null;
+    elParams.p.splitPane2MinPx =
+        params.containsKey(EnumSpWMLParams.splitPane2MinPx)
+            ? params[EnumSpWMLParams.splitPane2MinPx]!
+            : null;
     // SIDが設定されていなければエラー。
     if (getSID() == null) {
       throw SpWMLException(EnumSpWMLExceptionType.sidDoesNotExistException,
@@ -90,6 +98,8 @@ class SplitElement extends MultiChildElement {
   /// (en) Set a left or top widget ratio.
   ///
   /// (ja) 左、または上側のウィジェットの比率を設定します。
+  ///
+  /// * [ratio]: The split bar position (0.0 ~ 1.0).
   void setRatio(double ratio) {
     String? sid = getSID();
     if (sid != null && elParams.p.manager != null) {
@@ -100,9 +110,26 @@ class SplitElement extends MultiChildElement {
   /// (en) Specifies the open/close range of the center bar.
   ///
   /// (ja) 中央のバーの開閉範囲を指定します。
+  ///
+  /// * [min]: The ratio of minimum clamp (0.0 ~ 1.0).
+  /// * [min]: The ratio of maximum clamp (0.0 ~ 1.0).
   void setClamp(double min, double max) {
     elParams.p.clampMin = min;
     elParams.p.clampMax = max;
+  }
+
+  /// (en) Specify the minimum size of the left and right or top and
+  /// bottom areas.
+  ///
+  /// (ja) 左右または上下の領域の最小のサイズを指定します。
+  ///
+  /// * [splitPane1MinPx] : The minimum size of the left or top area (px).
+  /// Entering null will disable the correction.
+  /// * [splitPane2MinPx] : The minimum size of the right or bottom area (px).
+  /// Entering null will disable the correction.
+  void setSplitPaneMinPx(double? splitPane1MinPx, double? splitPane2MinPx) {
+    elParams.p.splitPane1MinPx = splitPane1MinPx;
+    elParams.p.splitPane2MinPx = splitPane2MinPx;
   }
 
   /// (en) Sets a callback for when the center bar position changes.
@@ -156,8 +183,18 @@ class _SplitElementWidgetState extends State<_SplitElementWidget> {
         return LayoutBuilder(builder: (context, constraints) {
           final double availableWidth =
               constraints.maxWidth - widget.elParams.p.barSize;
-          final double leftW = availableWidth * ratio;
-          final double rightW = availableWidth * (1 - ratio);
+          double leftW = availableWidth * ratio;
+          double rightW = availableWidth * (1 - ratio);
+          if (widget.elParams.p.splitPane1MinPx != null) {
+            if (leftW > widget.elParams.p.splitPane1MinPx!) {
+              leftW = widget.elParams.p.splitPane1MinPx!;
+            }
+          }
+          if (widget.elParams.p.splitPane2MinPx != null) {
+            if (rightW > widget.elParams.p.splitPane2MinPx!) {
+              rightW = widget.elParams.p.splitPane2MinPx!;
+            }
+          }
           return Row(key: widget.key, children: [
             SizedBox(width: leftW, child: children[0]),
             _getSplitBarHorizontal(availableWidth, ratio),
@@ -168,8 +205,18 @@ class _SplitElementWidgetState extends State<_SplitElementWidget> {
         return LayoutBuilder(builder: (context, constraints) {
           final double availableHeight =
               constraints.maxHeight - widget.elParams.p.barSize;
-          final double topH = availableHeight * ratio;
-          final double bottomH = availableHeight * (1 - ratio);
+          double topH = availableHeight * ratio;
+          double bottomH = availableHeight * (1 - ratio);
+          if (widget.elParams.p.splitPane1MinPx != null) {
+            if (topH > widget.elParams.p.splitPane1MinPx!) {
+              topH = widget.elParams.p.splitPane1MinPx!;
+            }
+          }
+          if (widget.elParams.p.splitPane2MinPx != null) {
+            if (bottomH > widget.elParams.p.splitPane2MinPx!) {
+              bottomH = widget.elParams.p.splitPane2MinPx!;
+            }
+          }
           return Column(key: widget.key, children: [
             SizedBox(height: topH, child: children[0]),
             _getSplitBarVertical(availableHeight, ratio),
