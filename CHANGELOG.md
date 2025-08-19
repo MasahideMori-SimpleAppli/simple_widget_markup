@@ -1,3 +1,7 @@
+## 45.0.3
+
+* Due to an issue that caused pub.dev score calculations to drop, the activeThumbColor of switchBtn has been temporarily fixed to be treated as an assignment to the activeColor argument.
+
 ## 45.0.2
 
 * Fixed a bug that could cause a SplitElement's inner view size to overflow under certain conditions.
