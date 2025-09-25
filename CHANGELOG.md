@@ -1,3 +1,9 @@
+## 45.1.0
+
+* The flexFit parameter has been added to the base class SpWMLElement, allowing you to choose the fitting method when wt is specified.
+* textAlign and rubyAlign now support start and end parameters.
+* Refactoring was performed.
+
 ## 45.0.4
 
 * Fixed a bug that caused the splitPane2MinPx value to be invalid in SplitElement.

@@ -192,6 +192,8 @@ enum EnumSpWMLParams {
   clampMax,
   splitPane1MinPx,
   splitPane2MinPx,
+  // flexFit
+  flexFit,
 }
 
 /// 重複を避けて高速化するために、短縮系だけをまとめたもの。
@@ -359,31 +361,9 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       // img only
       if (type == EnumSpWMLElementType.img) {
         if (this == EnumSpWMLParams.fit) {
-          if (v == "none") {
-            return BoxFit.none;
-          } else if (v == "contain") {
-            return BoxFit.contain;
-          } else if (v == "cover") {
-            return BoxFit.cover;
-          } else if (v == "fitHeight") {
-            return BoxFit.fitHeight;
-          } else if (v == "fitWidth") {
-            return BoxFit.fitWidth;
-          } else {
-            throw Exception();
-          }
+          return BoxFit.values.byName(v);
         } else if (this == EnumSpWMLParams.repeat) {
-          if (v == "noRepeat") {
-            return ImageRepeat.noRepeat;
-          } else if (v == "repeat") {
-            return ImageRepeat.repeat;
-          } else if (v == "repeatX") {
-            return ImageRepeat.repeatX;
-          } else if (v == "repeatY") {
-            return ImageRepeat.repeatY;
-          } else {
-            throw Exception();
-          }
+          return ImageRepeat.values.byName(v);
         } else if (this == EnumSpWMLParams.type) {
           return EXTEnumImgType.fromStr(v, lineStart, lineEnd, info);
         }
@@ -470,13 +450,7 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       } else if (this == EnumSpWMLParams.sid || this == EnumSpWMLParams.tag) {
         return v;
       } else if (this == EnumSpWMLParams.axis) {
-        if (v == "vertical") {
-          return Axis.vertical;
-        } else if (v == "horizontal") {
-          return Axis.horizontal;
-        } else {
-          throw Exception();
-        }
+        return Axis.values.byName(v);
       } else if (this == EnumSpWMLParams.iconNum ||
           this == EnumSpWMLParams.suffixIconNum ||
           this == EnumSpWMLParams.selectedIconNum) {
@@ -498,17 +472,7 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
         return EXTEnumTextDecorationStyle.toObjFromStr(v);
       } else if (this == EnumSpWMLParams.textAlign ||
           this == EnumSpWMLParams.rubyAlign) {
-        if (v == "left") {
-          return TextAlign.left;
-        } else if (v == "center") {
-          return TextAlign.center;
-        } else if (v == "right") {
-          return TextAlign.right;
-        } else if (v == "justify") {
-          return TextAlign.justify;
-        } else {
-          throw Exception();
-        }
+        return TextAlign.values.byName(v);
       } else if (this == EnumSpWMLParams.isSelectable ||
           this == EnumSpWMLParams.isPrimary ||
           this == EnumSpWMLParams.isExpanded ||
@@ -538,59 +502,21 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           throw Exception();
         }
       } else if (this == EnumSpWMLParams.borderShape) {
-        if (v == "rectangle") {
-          return BoxShape.rectangle;
-        } else if (v == "circle") {
-          return BoxShape.circle;
-        } else {
-          throw Exception();
-        }
+        return BoxShape.values.byName(v);
       } else if (this == EnumSpWMLParams.overflow) {
-        if (v == "clip") {
-          return TextOverflow.clip;
-        } else if (v == "ellipsis") {
-          return TextOverflow.ellipsis;
-        } else if (v == "fade") {
-          return TextOverflow.fade;
-        } else if (v == "visible") {
-          return TextOverflow.visible;
-        } else {
-          throw Exception();
-        }
+        return TextOverflow.values.byName(v);
       } else if (this == EnumSpWMLParams.baselineType) {
-        if (v == TextBaseline.alphabetic.name) {
-          return TextBaseline.alphabetic;
-        } else if (v == TextBaseline.ideographic.name) {
-          return TextBaseline.ideographic;
-        } else {
-          throw Exception();
-        }
+        return TextBaseline.values.byName(v);
       } else if (this == EnumSpWMLParams.scrollBehavior) {
         return EXTEnumScrollBehavior.toObjFromStr(v, lineStart, lineEnd, info);
       } else if (this == EnumSpWMLParams.mainAxisSize) {
-        if (v == "max") {
-          return MainAxisSize.max;
-        } else if (v == "min") {
-          return MainAxisSize.min;
-        } else {
-          throw Exception();
-        }
+        return MainAxisSize.values.byName(v);
       } else if (this == EnumSpWMLParams.triggerMode) {
-        if (v == "longPress") {
-          return TooltipTriggerMode.longPress;
-        } else if (v == "manual") {
-          return TooltipTriggerMode.manual;
-        } else if (v == "tap") {
-          return TooltipTriggerMode.tap;
-        } else {
-          throw Exception();
-        }
+        return TooltipTriggerMode.values.byName(v);
       } else if (this == EnumSpWMLParams.leadingDistribution) {
-        if (v == "even") {
-          return TextLeadingDistribution.even;
-        } else {
-          return TextLeadingDistribution.proportional;
-        }
+        return TextLeadingDistribution.values.byName(v);
+      } else if (this == EnumSpWMLParams.flexFit) {
+        return FlexFit.values.byName(v);
       } else {
         // 変換不要ならそのまま返す。
         return v;

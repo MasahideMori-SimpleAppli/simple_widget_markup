@@ -68,6 +68,7 @@ class SpWMLParams {
 
   // Expanded
   int? weight;
+  FlexFit flexFit;
 
   // Transform
   double? shiftX;
@@ -90,6 +91,7 @@ class SpWMLParams {
       {this.materialParams,
       this.containerParams,
       this.weight,
+      this.flexFit = FlexFit.tight,
       this.shiftX,
       this.shiftY,
       this.constrains,

@@ -72,6 +72,9 @@ class SpWMLElement extends StatelessWidget {
     spwmlParams.p.weight = params.containsKey(EnumSpWMLParams.weight)
         ? params[EnumSpWMLParams.weight]
         : null;
+    spwmlParams.p.flexFit = params.containsKey(EnumSpWMLParams.flexFit)
+        ? params[EnumSpWMLParams.flexFit]
+        : FlexFit.tight;
     spwmlParams.p.shiftX = params.containsKey(EnumSpWMLParams.shiftX)
         ? params[EnumSpWMLParams.shiftX]
         : null;
@@ -520,7 +523,10 @@ class SpWMLElement extends StatelessWidget {
   @protected
   Widget expand(Widget child) {
     if (spwmlParams.p.weight != null) {
-      return Expanded(flex: spwmlParams.p.weight!, child: child);
+      return Flexible(
+          flex: spwmlParams.p.weight!,
+          fit: spwmlParams.p.flexFit,
+          child: child);
     } else {
       return child;
     }

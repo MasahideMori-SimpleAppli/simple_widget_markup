@@ -176,7 +176,7 @@ class _SwitchBtnElementWidgetState extends State<_SwitchBtnElementWidget> {
                   }
                 }
               : null,
-      activeColor: widget.elParams.p.activeThumbColor,
+      activeThumbColor: widget.elParams.p.activeThumbColor,
       activeTrackColor: widget.elParams.p.activeTrackColor,
       inactiveThumbColor: widget.elParams.p.inactiveThumbColor,
       inactiveTrackColor: widget.elParams.p.inactiveTrackColor,
