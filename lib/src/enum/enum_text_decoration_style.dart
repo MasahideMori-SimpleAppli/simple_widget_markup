@@ -30,7 +30,11 @@ extension EXTEnumTextDecorationStyle on EnumTextDecorationStyle {
       return TextDecorationStyle.wavy;
     } else {
       throw SpWMLException(
-          EnumSpWMLExceptionType.paramValueException, lineStart, lineEnd, info);
+        EnumSpWMLExceptionType.paramValueException,
+        lineStart,
+        lineEnd,
+        info,
+      );
     }
   }
 

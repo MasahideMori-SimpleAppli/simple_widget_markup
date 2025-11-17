@@ -32,19 +32,29 @@ class RubyTextElement extends TextElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   RubyTextElement(
-      int serial,
-      Map<String, String> params,
-      SpWMLParamsWrapper spwmlParams,
-      int parentSerial,
-      int lineStart,
-      int lineEnd,
-      SpWMLFontStyle style,
-      SpWMLInfo? info,
-      TextParamsWrapper textParams,
-      this.rubyParams,
-      {super.key})
-      : super(serial, EnumSpWMLElementType.ruby, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, info, textParams);
+    int serial,
+    Map<String, String> params,
+    SpWMLParamsWrapper spwmlParams,
+    int parentSerial,
+    int lineStart,
+    int lineEnd,
+    SpWMLFontStyle style,
+    SpWMLInfo? info,
+    TextParamsWrapper textParams,
+    this.rubyParams, {
+    super.key,
+  }) : super(
+         serial,
+         EnumSpWMLElementType.ruby,
+         params,
+         spwmlParams,
+         parentSerial,
+         lineStart,
+         lineEnd,
+         style,
+         info,
+         textParams,
+       );
 
   /// Get this class name.
   @override
@@ -65,15 +75,15 @@ class RubyTextElement extends TextElement {
         : RubyTextParams.defSize;
     rubyParams.p.letterSpacing =
         params.containsKey(EnumSpWMLParams.rubyLetterSpacing)
-            ? params[EnumSpWMLParams.rubyLetterSpacing]
-            : getDefFontLetterSpacing();
+        ? params[EnumSpWMLParams.rubyLetterSpacing]
+        : getDefFontLetterSpacing();
     rubyParams.p.margin = params.containsKey(EnumSpWMLParams.rubyMargin)
         ? params[EnumSpWMLParams.rubyMargin]
         : RubyTextParams.defMargin;
     rubyParams.p.isSelectable =
         params.containsKey(EnumSpWMLParams.isRubySelectable)
-            ? params[EnumSpWMLParams.isRubySelectable]
-            : false;
+        ? params[EnumSpWMLParams.isRubySelectable]
+        : false;
     if (rubyParams.p.isSelectable) {
       rubyParams.p.selectableTextParams = SelectableTextParams();
     }
@@ -89,7 +99,7 @@ class RubyTextElement extends TextElement {
       children: [
         getRubyWidget(context),
         SizedBox(height: rubyParams.p.margin),
-        getTextWidget(context)
+        getTextWidget(context),
       ],
     );
   }
@@ -102,12 +112,14 @@ class RubyTextElement extends TextElement {
             key: rubyParams.p.selectableTextParams!.key,
             focusNode: rubyParams.p.selectableTextParams!.focusNode,
             style: rubyParams.p.selectableTextParams!.style ?? getRubyStyle(),
-            strutStyle: rubyParams.p.selectableTextParams!.strutStyle ??
+            strutStyle:
+                rubyParams.p.selectableTextParams!.strutStyle ??
                 getRubyStrutStyle(),
             textAlign:
                 rubyParams.p.selectableTextParams!.textAlign ?? getRubyAlign(),
             textDirection: rubyParams.p.selectableTextParams!.textDirection,
-            textScaler: rubyParams.p.selectableTextParams!.textScaler ??
+            textScaler:
+                rubyParams.p.selectableTextParams!.textScaler ??
                 MediaQuery.of(context).textScaler,
             showCursor: rubyParams.p.selectableTextParams!.showCursor,
             autofocus: rubyParams.p.selectableTextParams!.autofocus,
@@ -161,10 +173,11 @@ class RubyTextElement extends TextElement {
   /// get ruby text strut style from parameters.
   StrutStyle getRubyStrutStyle() {
     return StrutStyle(
-        fontSize: _rubyFontSize(),
-        height: params.containsKey(EnumSpWMLParams.rubyHeight)
-            ? params[EnumSpWMLParams.rubyHeight]
-            : 1.0);
+      fontSize: _rubyFontSize(),
+      height: params.containsKey(EnumSpWMLParams.rubyHeight)
+          ? params[EnumSpWMLParams.rubyHeight]
+          : 1.0,
+    );
   }
 
   /// get ruby text strut style from parameters.

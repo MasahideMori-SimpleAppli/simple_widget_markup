@@ -18,7 +18,11 @@ class UtilParams {
   ///
   /// Throws [SpWMLException] : If the parameter value is incorrect,
   static Color? convertColor(
-      String color, int lineStart, int lineEnd, SpWMLInfo? info) {
+    String color,
+    int lineStart,
+    int lineEnd,
+    SpWMLInfo? info,
+  ) {
     if (color == "null" || color == "nil") {
       return null;
     }
@@ -28,7 +32,8 @@ class UtilParams {
         c = 'FF$c';
       }
       return Color(
-          int.tryParse(c, radix: 16) ?? int.parse("FFFFFFFF", radix: 16));
+        int.tryParse(c, radix: 16) ?? int.parse("FFFFFFFF", radix: 16),
+      );
     } else {
       if (color.contains("Accent")) {
         // accent
@@ -65,8 +70,12 @@ class UtilParams {
         } else if (color.startsWith('deepOrangeAccent')) {
           return Colors.deepOrangeAccent[_getShade(color, true)]!;
         } else {
-          throw SpWMLException(EnumSpWMLExceptionType.paramValueException,
-              lineStart, lineEnd, info);
+          throw SpWMLException(
+            EnumSpWMLExceptionType.paramValueException,
+            lineStart,
+            lineEnd,
+            info,
+          );
         }
       } else {
         // primary
@@ -124,7 +133,11 @@ class UtilParams {
   }
 
   static Color _getWhiteVariation(
-      String color, int lineStart, int lineEnd, SpWMLInfo? info) {
+    String color,
+    int lineStart,
+    int lineEnd,
+    SpWMLInfo? info,
+  ) {
     if (color == 'white') {
       return Colors.white;
     } else if (color == 'white10') {
@@ -145,12 +158,20 @@ class UtilParams {
       return Colors.white70;
     } else {
       throw SpWMLException(
-          EnumSpWMLExceptionType.paramValueException, lineStart, lineEnd, info);
+        EnumSpWMLExceptionType.paramValueException,
+        lineStart,
+        lineEnd,
+        info,
+      );
     }
   }
 
   static Color _getBlackVariation(
-      String color, int lineStart, int lineEnd, SpWMLInfo? info) {
+    String color,
+    int lineStart,
+    int lineEnd,
+    SpWMLInfo? info,
+  ) {
     if (color == 'black') {
       return Colors.black;
     } else if (color == 'black12') {
@@ -167,7 +188,11 @@ class UtilParams {
       return Colors.black87;
     } else {
       throw SpWMLException(
-          EnumSpWMLExceptionType.paramValueException, lineStart, lineEnd, info);
+        EnumSpWMLExceptionType.paramValueException,
+        lineStart,
+        lineEnd,
+        info,
+      );
     }
   }
 
@@ -207,7 +232,11 @@ class UtilParams {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   static MainAxisAlignment convertMainAxisAlign(
-      String s, int lineStart, int lineEnd, SpWMLInfo? info) {
+    String s,
+    int lineStart,
+    int lineEnd,
+    SpWMLInfo? info,
+  ) {
     if (s == "left" || s == "start") {
       // Row
       return MainAxisAlignment.start;
@@ -231,7 +260,11 @@ class UtilParams {
       return MainAxisAlignment.spaceBetween;
     } else {
       throw SpWMLException(
-          EnumSpWMLExceptionType.paramValueException, lineStart, lineEnd, info);
+        EnumSpWMLExceptionType.paramValueException,
+        lineStart,
+        lineEnd,
+        info,
+      );
     }
   }
 
@@ -245,7 +278,11 @@ class UtilParams {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   static CrossAxisAlignment convertCrossAxisAlign(
-      String s, int lineStart, int lineEnd, SpWMLInfo? info) {
+    String s,
+    int lineStart,
+    int lineEnd,
+    SpWMLInfo? info,
+  ) {
     if (s == "left" || s == "start") {
       // Column
       return CrossAxisAlignment.start;
@@ -269,7 +306,11 @@ class UtilParams {
       return CrossAxisAlignment.stretch;
     } else {
       throw SpWMLException(
-          EnumSpWMLExceptionType.paramValueException, lineStart, lineEnd, info);
+        EnumSpWMLExceptionType.paramValueException,
+        lineStart,
+        lineEnd,
+        info,
+      );
     }
   }
 
@@ -283,7 +324,11 @@ class UtilParams {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   static WrapAlignment convertWrapAlign(
-      String s, int lineStart, int lineEnd, SpWMLInfo? info) {
+    String s,
+    int lineStart,
+    int lineEnd,
+    SpWMLInfo? info,
+  ) {
     if (s == "left" || s == "start") {
       return WrapAlignment.start;
     } else if (s == "center") {
@@ -296,7 +341,11 @@ class UtilParams {
       return WrapAlignment.end;
     } else {
       throw SpWMLException(
-          EnumSpWMLExceptionType.paramValueException, lineStart, lineEnd, info);
+        EnumSpWMLExceptionType.paramValueException,
+        lineStart,
+        lineEnd,
+        info,
+      );
     }
   }
 }

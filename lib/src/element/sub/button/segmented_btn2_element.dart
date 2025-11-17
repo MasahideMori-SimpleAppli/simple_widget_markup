@@ -33,19 +33,29 @@ class SegmentedBtn2Element extends MultiChildElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   SegmentedBtn2Element(
-      int serial,
-      Map<String, String> params,
-      SpWMLParamsWrapper spwmlParams,
-      int parentSerial,
-      int lineStart,
-      int lineEnd,
-      SpWMLFontStyle style,
-      SpWMLInfo? info,
-      StructureElementChildren children,
-      this.elParams,
-      {super.key})
-      : super(serial, EnumSpWMLElementType.segmentedBtn2, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, info, children);
+    int serial,
+    Map<String, String> params,
+    SpWMLParamsWrapper spwmlParams,
+    int parentSerial,
+    int lineStart,
+    int lineEnd,
+    SpWMLFontStyle style,
+    SpWMLInfo? info,
+    StructureElementChildren children,
+    this.elParams, {
+    super.key,
+  }) : super(
+         serial,
+         EnumSpWMLElementType.segmentedBtn2,
+         params,
+         spwmlParams,
+         parentSerial,
+         lineStart,
+         lineEnd,
+         style,
+         info,
+         children,
+       );
 
   /// Get this class name.
   @override
@@ -62,16 +72,20 @@ class SegmentedBtn2Element extends MultiChildElement {
         : true;
     elParams.p.multiSelectionEnabled =
         params.containsKey(EnumSpWMLParams.isMultiSelection)
-            ? params[EnumSpWMLParams.isMultiSelection]
-            : SegmentedBtnParams.defMultiSelectionEnabled;
+        ? params[EnumSpWMLParams.isMultiSelection]
+        : SegmentedBtnParams.defMultiSelectionEnabled;
     elParams.p.emptySelectionAllowed =
         params.containsKey(EnumSpWMLParams.allowEmpty)
-            ? params[EnumSpWMLParams.allowEmpty]
-            : SegmentedBtnParams.defEmptySelectionAllowed;
+        ? params[EnumSpWMLParams.allowEmpty]
+        : SegmentedBtnParams.defEmptySelectionAllowed;
     // SIDが設定されていなければエラー。
     if (getSID() == null) {
-      throw SpWMLException(EnumSpWMLExceptionType.sidDoesNotExistException,
-          lineStart, lineEnd, info);
+      throw SpWMLException(
+        EnumSpWMLExceptionType.sidDoesNotExistException,
+        lineStart,
+        lineEnd,
+        info,
+      );
     }
     return this;
   }
@@ -80,7 +94,11 @@ class SegmentedBtn2Element extends MultiChildElement {
   @override
   Widget getWidget(BuildContext context) {
     return _SegmentedBtn2ElementWidget(
-        getSID()!, children, elParams, getShape());
+      getSID()!,
+      children,
+      elParams,
+      getShape(),
+    );
   }
 
   /// (en)Set callback.
@@ -148,7 +166,11 @@ class _SegmentedBtn2ElementWidget extends StatefulWidget {
   final OutlinedBorder? shape;
 
   const _SegmentedBtn2ElementWidget(
-      this.sid, this.children, this.elParams, this.shape);
+    this.sid,
+    this.children,
+    this.elParams,
+    this.shape,
+  );
 
   @override
   _SegmentedBtn2ElementWidgetState createState() =>
@@ -175,35 +197,47 @@ class _SegmentedBtn2ElementWidgetState
       final Widget w = widget.children.children[i];
       if (w is! SpWMLElement) {
         throw SpWMLException(
-            EnumSpWMLExceptionType.childrenTagNotExistException,
-            -1,
-            -1,
-            SpWMLInfo(errorHint: 'segmentedBtn2, sid=${widget.sid}'));
+          EnumSpWMLExceptionType.childrenTagNotExistException,
+          -1,
+          -1,
+          SpWMLInfo(errorHint: 'segmentedBtn2, sid=${widget.sid}'),
+        );
       }
       final String? targetTag = w.getTag();
       if (targetTag == null) {
         throw SpWMLException(
-            EnumSpWMLExceptionType.childrenTagNotExistException,
-            -1,
-            -1,
-            SpWMLInfo(errorHint: 'segmentedBtn2, sid=${widget.sid}'));
+          EnumSpWMLExceptionType.childrenTagNotExistException,
+          -1,
+          -1,
+          SpWMLInfo(errorHint: 'segmentedBtn2, sid=${widget.sid}'),
+        );
       }
       if (w is TextElement) {
-        r.add(ButtonSegment(
-            value: targetTag, label: w.getNonSelectableTextWidget(context)));
+        r.add(
+          ButtonSegment(
+            value: targetTag,
+            label: w.getNonSelectableTextWidget(context),
+          ),
+        );
       } else if (w is BtnElement) {
         if (w.elParams.p.isUseIcon) {
-          r.add(ButtonSegment(
+          r.add(
+            ButtonSegment(
               value: targetTag,
               label: w.getNonSelectableTextWidget(context),
-              icon: w.getIcon(false)));
+              icon: w.getIcon(false),
+            ),
+          );
         } else {
           if (w.elParams.p.type == EnumBtnType.block) {
             r.add(ButtonSegment(value: targetTag, label: w.child.child));
           } else {
-            r.add(ButtonSegment(
+            r.add(
+              ButtonSegment(
                 value: targetTag,
-                label: w.getNonSelectableTextWidget(context)));
+                label: w.getNonSelectableTextWidget(context),
+              ),
+            );
           }
         }
       } else {

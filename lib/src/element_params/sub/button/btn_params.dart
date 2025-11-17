@@ -27,7 +27,7 @@ class NormalBtnParams {
   void Function(bool)? onFocusChange;
   ButtonStyle? style;
   FocusNode? focusNode;
-  bool? autofocus;
+  bool autofocus = false;
   Clip? clipBehavior;
   WidgetStatesController? statesController;
   Widget? icon;
@@ -110,7 +110,7 @@ class FAButtonExtendedParams {
   EdgeInsetsGeometry? extendedPadding;
   TextStyle? extendedTextStyle;
   Widget? icon;
-// Label parameter does not exist. Use child parameter of FAButtonParams.
+  // Label parameter does not exist. Use child parameter of FAButtonParams.
 }
 
 ///

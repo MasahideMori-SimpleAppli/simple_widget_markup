@@ -28,18 +28,19 @@ class SuperAndSubscriptElement extends TextElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   SuperAndSubscriptElement(
-      super.serial,
-      super.type,
-      super.params,
-      super.spwmlParams,
-      super.parentSerial,
-      super.lineStart,
-      super.lineEnd,
-      super.style,
-      super.info,
-      super.textParams,
-      this.elParams,
-      {super.key});
+    super.serial,
+    super.type,
+    super.params,
+    super.spwmlParams,
+    super.parentSerial,
+    super.lineStart,
+    super.lineEnd,
+    super.style,
+    super.info,
+    super.textParams,
+    this.elParams, {
+    super.key,
+  });
 
   /// Get this class name.
   @override
@@ -53,8 +54,8 @@ class SuperAndSubscriptElement extends TextElement {
     super.initParams();
     elParams.p.baselineCorrection =
         params.containsKey(EnumSpWMLParams.baselineCorrection)
-            ? params[EnumSpWMLParams.baselineCorrection]
-            : SuperAndSubscriptParams.defBaselineCorrection;
+        ? params[EnumSpWMLParams.baselineCorrection]
+        : SuperAndSubscriptParams.defBaselineCorrection;
     elParams.p.magnification = params.containsKey(EnumSpWMLParams.mag)
         ? params[EnumSpWMLParams.mag]
         : SuperAndSubscriptParams.defMag;
@@ -81,14 +82,17 @@ class SuperAndSubscriptElement extends TextElement {
   Offset getOffset(BuildContext context) {
     if (type == EnumSpWMLElementType.superscript) {
       return Offset(
-          0,
-          getFontSize(context)! -
-              (super.getFontSize(context) ?? 18) -
-              (getFontSize(context)! / 7) +
-              elParams.p.baselineCorrection);
+        0,
+        getFontSize(context)! -
+            (super.getFontSize(context) ?? 18) -
+            (getFontSize(context)! / 7) +
+            elParams.p.baselineCorrection,
+      );
     } else {
       return Offset(
-          0, getFontSize(context)! / 3 + elParams.p.baselineCorrection);
+        0,
+        getFontSize(context)! / 3 + elParams.p.baselineCorrection,
+      );
     }
   }
 
@@ -154,16 +158,18 @@ class SuperAndSubscriptElement extends TextElement {
   Offset getOffsetOfNonStrictMode(BuildContext context) {
     if (type == EnumSpWMLElementType.superscript) {
       return Offset(
-          0,
-          _amplifiedValue(getFontSize(context)!, 1.225) / 4 +
-              getFontSize(context)! / 2 +
-              (-1 * super.getFontSize(context)!) +
-              elParams.p.baselineCorrection);
+        0,
+        _amplifiedValue(getFontSize(context)!, 1.225) / 4 +
+            getFontSize(context)! / 2 +
+            (-1 * super.getFontSize(context)!) +
+            elParams.p.baselineCorrection,
+      );
     } else {
       return Offset(
-          0,
-          _amplifiedValue(getFontSize(context)!, 1.225) / 4 +
-              elParams.p.baselineCorrection);
+        0,
+        _amplifiedValue(getFontSize(context)!, 1.225) / 4 +
+            elParams.p.baselineCorrection,
+      );
     }
   }
 
@@ -171,55 +177,59 @@ class SuperAndSubscriptElement extends TextElement {
   @override
   Widget getTextWidget(BuildContext context) {
     return Transform.translate(
-        offset: getOffset(context), child: super.getTextWidget(context));
+      offset: getOffset(context),
+      child: super.getTextWidget(context),
+    );
   }
 
   /// Get text widget
   @override
   Widget getNonSelectableTextWidget(BuildContext context) {
     return Transform.translate(
-        offset: getOffset(context),
-        child: Text(
-          spwmlParams.p.text,
-          key: textParams.p.key,
-          style: textParams.p.style ?? getStyle(context),
-          strutStyle: textParams.p.strutStyle ?? getStrutStyle(context),
-          textAlign: textParams.p.textAlign ?? getTextAlign(),
-          textDirection: textParams.p.textDirection,
-          locale: textParams.p.locale,
-          softWrap: textParams.p.softWrap,
-          overflow: textParams.p.overflow,
-          textScaler:
-              textParams.p.textScaler ?? MediaQuery.of(context).textScaler,
-          maxLines: textParams.p.maxLines,
-          semanticsLabel: textParams.p.semanticsLabel,
-          textWidthBasis: textParams.p.textWidthBasis,
-          textHeightBehavior: textParams.p.textHeightBehavior,
-          selectionColor: textParams.p.selectionColor,
-        ));
+      offset: getOffset(context),
+      child: Text(
+        spwmlParams.p.text,
+        key: textParams.p.key,
+        style: textParams.p.style ?? getStyle(context),
+        strutStyle: textParams.p.strutStyle ?? getStrutStyle(context),
+        textAlign: textParams.p.textAlign ?? getTextAlign(),
+        textDirection: textParams.p.textDirection,
+        locale: textParams.p.locale,
+        softWrap: textParams.p.softWrap,
+        overflow: textParams.p.overflow,
+        textScaler:
+            textParams.p.textScaler ?? MediaQuery.of(context).textScaler,
+        maxLines: textParams.p.maxLines,
+        semanticsLabel: textParams.p.semanticsLabel,
+        textWidthBasis: textParams.p.textWidthBasis,
+        textHeightBehavior: textParams.p.textHeightBehavior,
+        selectionColor: textParams.p.selectionColor,
+      ),
+    );
   }
 
   Widget _getTextOfNonStrictMode(BuildContext context) {
     return Transform.translate(
-        offset: getOffsetOfNonStrictMode(context),
-        child: Text(
-          spwmlParams.p.text,
-          key: textParams.p.key,
-          style: textParams.p.style ?? getStyle(context),
-          strutStyle: textParams.p.strutStyle ?? getStrutStyle(context),
-          textAlign: textParams.p.textAlign ?? getTextAlign(),
-          textDirection: textParams.p.textDirection,
-          locale: textParams.p.locale,
-          softWrap: textParams.p.softWrap,
-          overflow: textParams.p.overflow,
-          textScaler:
-              textParams.p.textScaler ?? MediaQuery.of(context).textScaler,
-          maxLines: textParams.p.maxLines,
-          semanticsLabel: textParams.p.semanticsLabel,
-          textWidthBasis: textParams.p.textWidthBasis,
-          textHeightBehavior: textParams.p.textHeightBehavior,
-          selectionColor: textParams.p.selectionColor,
-        ));
+      offset: getOffsetOfNonStrictMode(context),
+      child: Text(
+        spwmlParams.p.text,
+        key: textParams.p.key,
+        style: textParams.p.style ?? getStyle(context),
+        strutStyle: textParams.p.strutStyle ?? getStrutStyle(context),
+        textAlign: textParams.p.textAlign ?? getTextAlign(),
+        textDirection: textParams.p.textDirection,
+        locale: textParams.p.locale,
+        softWrap: textParams.p.softWrap,
+        overflow: textParams.p.overflow,
+        textScaler:
+            textParams.p.textScaler ?? MediaQuery.of(context).textScaler,
+        maxLines: textParams.p.maxLines,
+        semanticsLabel: textParams.p.semanticsLabel,
+        textWidthBasis: textParams.p.textWidthBasis,
+        textHeightBehavior: textParams.p.textHeightBehavior,
+        selectionColor: textParams.p.selectionColor,
+      ),
+    );
   }
 
   /// (en) A dedicated function to be called in a span block.
@@ -232,8 +242,11 @@ class SuperAndSubscriptElement extends TextElement {
     if (spwmlParams.p.isGone) {
       return const SizedBox();
     } else {
-      return expand(transform(material(
-          constraints(container(getNonSelectableTextWidget(context))))));
+      return expand(
+        transform(
+          material(constraints(container(getNonSelectableTextWidget(context)))),
+        ),
+      );
     }
   }
 
@@ -253,8 +266,11 @@ class SuperAndSubscriptElement extends TextElement {
     if (spwmlParams.p.isGone) {
       return const SizedBox();
     } else {
-      return expand(transform(
-          material(constraints(container(_getTextOfNonStrictMode(context))))));
+      return expand(
+        transform(
+          material(constraints(container(_getTextOfNonStrictMode(context)))),
+        ),
+      );
     }
   }
 }

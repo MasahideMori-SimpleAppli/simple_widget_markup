@@ -32,19 +32,29 @@ class Checkbox2Element extends MultiChildElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   Checkbox2Element(
-      int serial,
-      Map<String, String> params,
-      SpWMLParamsWrapper spwmlParams,
-      int parentSerial,
-      int lineStart,
-      int lineEnd,
-      SpWMLFontStyle style,
-      SpWMLInfo? info,
-      StructureElementChildren children,
-      this.elParams,
-      {super.key})
-      : super(serial, EnumSpWMLElementType.checkbox2, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, info, children);
+    int serial,
+    Map<String, String> params,
+    SpWMLParamsWrapper spwmlParams,
+    int parentSerial,
+    int lineStart,
+    int lineEnd,
+    SpWMLFontStyle style,
+    SpWMLInfo? info,
+    StructureElementChildren children,
+    this.elParams, {
+    super.key,
+  }) : super(
+         serial,
+         EnumSpWMLElementType.checkbox2,
+         params,
+         spwmlParams,
+         parentSerial,
+         lineStart,
+         lineEnd,
+         style,
+         info,
+         children,
+       );
 
   /// Get this class name.
   @override
@@ -85,8 +95,8 @@ class Checkbox2Element extends MultiChildElement {
     elParams.p.disableParams = disabled;
     elParams.p.enableTapLabel =
         params.containsKey(EnumSpWMLParams.enableTapLabel)
-            ? params[EnumSpWMLParams.enableTapLabel]
-            : false;
+        ? params[EnumSpWMLParams.enableTapLabel]
+        : false;
     elParams.p.isPrefixIcon = params.containsKey(EnumSpWMLParams.isPrefixIcon)
         ? params[EnumSpWMLParams.isPrefixIcon]
         : true;
@@ -97,8 +107,12 @@ class Checkbox2Element extends MultiChildElement {
     }
     // SIDが設定されていなければエラー。
     if (getSID() == null) {
-      throw SpWMLException(EnumSpWMLExceptionType.sidDoesNotExistException,
-          lineStart, lineEnd, info);
+      throw SpWMLException(
+        EnumSpWMLExceptionType.sidDoesNotExistException,
+        lineStart,
+        lineEnd,
+        info,
+      );
     }
     return this;
   }
@@ -186,7 +200,11 @@ class _Checkbox2ElementWidget extends StatefulWidget {
   final OutlinedBorder? shape;
 
   const _Checkbox2ElementWidget(
-      this.sid, this.children, this.elParams, this.shape);
+    this.sid,
+    this.children,
+    this.elParams,
+    this.shape,
+  );
 
   @override
   _Checkbox2ElementWidgetState createState() => _Checkbox2ElementWidgetState();
@@ -197,8 +215,8 @@ class _Checkbox2ElementWidgetState extends State<_Checkbox2ElementWidget> {
   void _onTapCallback(String targetTag) {
     if (mounted) {
       setState(() {
-        final Set<String> mySelection =
-            widget.elParams.p.manager!.getSelectionSet(widget.sid);
+        final Set<String> mySelection = widget.elParams.p.manager!
+            .getSelectionSet(widget.sid);
         if (mySelection.contains(targetTag)) {
           mySelection.remove(targetTag);
         } else {
@@ -206,7 +224,8 @@ class _Checkbox2ElementWidgetState extends State<_Checkbox2ElementWidget> {
         }
         if (widget.elParams.p.callback != null) {
           widget.elParams.p.callback!(
-              widget.elParams.p.manager!.getSelectionSet(widget.sid));
+            widget.elParams.p.manager!.getSelectionSet(widget.sid),
+          );
         }
       });
     }
@@ -214,8 +233,8 @@ class _Checkbox2ElementWidgetState extends State<_Checkbox2ElementWidget> {
 
   /// Return wrapped widget.
   Widget _getWrap(String targetTag, Widget w) {
-    final bool isDisabledSelection =
-        widget.elParams.p.disabledSelections.contains(targetTag);
+    final bool isDisabledSelection = widget.elParams.p.disabledSelections
+        .contains(targetTag);
     if (widget.elParams.p.enableTapLabel) {
       return InkWell(
         key: widget.elParams.p.enableTapInkWellParams.key,
@@ -241,7 +260,8 @@ class _Checkbox2ElementWidgetState extends State<_Checkbox2ElementWidget> {
         splashFactory: widget.elParams.p.enableTapInkWellParams.splashFactory,
         radius: widget.elParams.p.enableTapInkWellParams.radius,
         borderRadius: widget.elParams.p.enableTapInkWellParams.borderRadius,
-        customBorder: widget.elParams.p.enableTapInkWellParams.customBorder ??
+        customBorder:
+            widget.elParams.p.enableTapInkWellParams.customBorder ??
             widget.shape,
         enableFeedback: widget.elParams.p.enableTapInkWellParams.enableFeedback,
         excludeFromSemantics:
@@ -267,8 +287,9 @@ class _Checkbox2ElementWidgetState extends State<_Checkbox2ElementWidget> {
   }
 
   Widget _getIconBtn(String targetTag, SelectableIconBtnParams params) {
-    final bool isDisabled =
-        widget.elParams.p.disabledSelections.contains(targetTag);
+    final bool isDisabled = widget.elParams.p.disabledSelections.contains(
+      targetTag,
+    );
     if (params.isV3) {
       final ColorScheme colors = Theme.of(context).colorScheme;
       return IconButton(
@@ -339,12 +360,12 @@ class _Checkbox2ElementWidgetState extends State<_Checkbox2ElementWidget> {
     if (widget.elParams.p.isPrefixIcon) {
       return [
         _getIconBtn(targetTag, _getParams(isSelected)),
-        widget.children.children[index]
+        widget.children.children[index],
       ];
     } else {
       return [
         Expanded(child: widget.children.children[index]),
-        _getIconBtn(targetTag, _getParams(isSelected))
+        _getIconBtn(targetTag, _getParams(isSelected)),
       ];
     }
   }
@@ -355,30 +376,37 @@ class _Checkbox2ElementWidgetState extends State<_Checkbox2ElementWidget> {
       final Widget w = widget.children.children[i];
       if (w is! SpWMLElement) {
         throw SpWMLException(
-            EnumSpWMLExceptionType.childrenTagNotExistException,
-            -1,
-            -1,
-            SpWMLInfo(errorHint: 'checkbox2, sid=${widget.sid}'));
+          EnumSpWMLExceptionType.childrenTagNotExistException,
+          -1,
+          -1,
+          SpWMLInfo(errorHint: 'checkbox2, sid=${widget.sid}'),
+        );
       }
       final String? targetTag = w.getTag();
       if (targetTag == null) {
         throw SpWMLException(
-            EnumSpWMLExceptionType.childrenTagNotExistException,
-            -1,
-            -1,
-            SpWMLInfo(errorHint: 'checkbox2, sid=${widget.sid}'));
+          EnumSpWMLExceptionType.childrenTagNotExistException,
+          -1,
+          -1,
+          SpWMLInfo(errorHint: 'checkbox2, sid=${widget.sid}'),
+        );
       }
-      r.add(_getWrap(
+      r.add(
+        _getWrap(
           targetTag,
           Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: _getIconAndWidget(i, targetTag))));
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: _getIconAndWidget(i, targetTag),
+          ),
+        ),
+      );
     }
     return Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: r);
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: r,
+    );
   }
 
   @override

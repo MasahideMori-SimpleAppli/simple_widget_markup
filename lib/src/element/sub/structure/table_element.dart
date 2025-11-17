@@ -34,19 +34,29 @@ class TableElement extends MultiChildElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   TableElement(
-      int serial,
-      Map<String, String> params,
-      SpWMLParamsWrapper spwmlParams,
-      int parentSerial,
-      int lineStart,
-      int lineEnd,
-      SpWMLFontStyle style,
-      SpWMLInfo? info,
-      StructureElementChildren children,
-      this.elParams,
-      {super.key})
-      : super(serial, EnumSpWMLElementType.table, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, info, children);
+    int serial,
+    Map<String, String> params,
+    SpWMLParamsWrapper spwmlParams,
+    int parentSerial,
+    int lineStart,
+    int lineEnd,
+    SpWMLFontStyle style,
+    SpWMLInfo? info,
+    StructureElementChildren children,
+    this.elParams, {
+    super.key,
+  }) : super(
+         serial,
+         EnumSpWMLElementType.table,
+         params,
+         spwmlParams,
+         parentSerial,
+         lineStart,
+         lineEnd,
+         style,
+         info,
+         children,
+       );
 
   /// Get this class name.
   @override
@@ -66,7 +76,11 @@ class TableElement extends MultiChildElement {
       }
     } else {
       throw SpWMLException(
-          EnumSpWMLExceptionType.tableParamException, lineStart, lineEnd, info);
+        EnumSpWMLExceptionType.tableParamException,
+        lineStart,
+        lineEnd,
+        info,
+      );
     }
     elParams.p.border = TableBorder.all(
       color: params.containsKey(EnumSpWMLParams.color)

@@ -12,5 +12,5 @@ enum EnumColorPaletteType {
   text,
   // cell shape is circle
   circle,
-  simpleCircle
+  simpleCircle,
 }

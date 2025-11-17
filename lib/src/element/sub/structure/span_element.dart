@@ -27,30 +27,31 @@ class SpanElement extends MultiChildTextElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   SpanElement(
-      int serial,
-      Map<String, String> params,
-      SpWMLParamsWrapper spwmlParams,
-      int parentSerial,
-      int lineStart,
-      int lineEnd,
-      SpWMLFontStyle style,
-      SpWMLInfo? info,
-      StructureElementChildren children,
-      TextParamsWrapper textParams,
-      this.elParams,
-      {super.key})
-      : super(
-            serial,
-            EnumSpWMLElementType.span,
-            params,
-            spwmlParams,
-            parentSerial,
-            lineStart,
-            lineEnd,
-            style,
-            info,
-            children,
-            textParams);
+    int serial,
+    Map<String, String> params,
+    SpWMLParamsWrapper spwmlParams,
+    int parentSerial,
+    int lineStart,
+    int lineEnd,
+    SpWMLFontStyle style,
+    SpWMLInfo? info,
+    StructureElementChildren children,
+    TextParamsWrapper textParams,
+    this.elParams, {
+    super.key,
+  }) : super(
+         serial,
+         EnumSpWMLElementType.span,
+         params,
+         spwmlParams,
+         parentSerial,
+         lineStart,
+         lineEnd,
+         style,
+         info,
+         children,
+         textParams,
+       );
 
   /// Get this class name.
   @override
@@ -72,8 +73,8 @@ class SpanElement extends MultiChildTextElement {
     }
     elParams.p.isLayoutStrictMode =
         params.containsKey(EnumSpWMLParams.isLayoutStrictMode)
-            ? params[EnumSpWMLParams.isLayoutStrictMode]
-            : false;
+        ? params[EnumSpWMLParams.isLayoutStrictMode]
+        : false;
     return this;
   }
 
@@ -81,11 +82,15 @@ class SpanElement extends MultiChildTextElement {
   ///
   /// (ja) 選択状態が変化した時のコールバックを設定します。
   void setOnSelectionChanged(
-      void Function(TextSelection, SelectionChangedCause?)?
-          onSelectionChanged) {
+    void Function(TextSelection, SelectionChangedCause?)? onSelectionChanged,
+  ) {
     elParams.p.selectableTextRichParams ??= SelectableTextRichParams();
-    elParams.p.selectableTextRichParams!.selectableTextParams
-        .onSelectionChanged = onSelectionChanged;
+    elParams
+            .p
+            .selectableTextRichParams!
+            .selectableTextParams
+            .onSelectionChanged =
+        onSelectionChanged;
   }
 
   /// (en)If set to true, all child blocks will be calculated as WidgetSpan.
@@ -104,73 +109,157 @@ class SpanElement extends MultiChildTextElement {
                 TextSpan(children: _convertChildren(context)),
             key: elParams.p.selectableTextRichParams!.selectableTextParams.key,
             focusNode: elParams
-                .p.selectableTextRichParams!.selectableTextParams.focusNode,
-            style: elParams
-                    .p.selectableTextRichParams!.selectableTextParams.style ??
+                .p
+                .selectableTextRichParams!
+                .selectableTextParams
+                .focusNode,
+            style:
+                elParams
+                    .p
+                    .selectableTextRichParams!
+                    .selectableTextParams
+                    .style ??
                 getStyle(context),
-            strutStyle: elParams.p.selectableTextRichParams!
-                    .selectableTextParams.strutStyle ??
+            strutStyle:
+                elParams
+                    .p
+                    .selectableTextRichParams!
+                    .selectableTextParams
+                    .strutStyle ??
                 getStrutStyle(context),
-            textAlign: elParams.p.selectableTextRichParams!.selectableTextParams
+            textAlign:
+                elParams
+                    .p
+                    .selectableTextRichParams!
+                    .selectableTextParams
                     .textAlign ??
                 getTextAlign(),
             textDirection: elParams
-                .p.selectableTextRichParams!.selectableTextParams.textDirection,
-            textScaler: elParams.p.selectableTextRichParams!
-                    .selectableTextParams.textScaler ??
+                .p
+                .selectableTextRichParams!
+                .selectableTextParams
+                .textDirection,
+            textScaler:
+                elParams
+                    .p
+                    .selectableTextRichParams!
+                    .selectableTextParams
+                    .textScaler ??
                 MediaQuery.of(context).textScaler,
             showCursor: elParams
-                .p.selectableTextRichParams!.selectableTextParams.showCursor,
+                .p
+                .selectableTextRichParams!
+                .selectableTextParams
+                .showCursor,
             autofocus: elParams
-                .p.selectableTextRichParams!.selectableTextParams.autofocus,
+                .p
+                .selectableTextRichParams!
+                .selectableTextParams
+                .autofocus,
             minLines: elParams
-                .p.selectableTextRichParams!.selectableTextParams.minLines,
+                .p
+                .selectableTextRichParams!
+                .selectableTextParams
+                .minLines,
             maxLines: elParams
-                .p.selectableTextRichParams!.selectableTextParams.maxLines,
+                .p
+                .selectableTextRichParams!
+                .selectableTextParams
+                .maxLines,
             cursorWidth: elParams
-                .p.selectableTextRichParams!.selectableTextParams.cursorWidth,
+                .p
+                .selectableTextRichParams!
+                .selectableTextParams
+                .cursorWidth,
             cursorHeight: elParams
-                .p.selectableTextRichParams!.selectableTextParams.cursorHeight,
+                .p
+                .selectableTextRichParams!
+                .selectableTextParams
+                .cursorHeight,
             cursorRadius: elParams
-                .p.selectableTextRichParams!.selectableTextParams.cursorRadius,
+                .p
+                .selectableTextRichParams!
+                .selectableTextParams
+                .cursorRadius,
             cursorColor: elParams
-                .p.selectableTextRichParams!.selectableTextParams.cursorColor,
-            selectionHeightStyle: elParams.p.selectableTextRichParams!
-                .selectableTextParams.selectionHeightStyle,
-            selectionWidthStyle: elParams.p.selectableTextRichParams!
-                .selectableTextParams.selectionWidthStyle,
-            dragStartBehavior: elParams.p.selectableTextRichParams!
-                .selectableTextParams.dragStartBehavior,
-            enableInteractiveSelection: elParams.p.selectableTextRichParams!
-                .selectableTextParams.enableInteractiveSelection,
-            selectionControls: elParams.p.selectableTextRichParams!
-                .selectableTextParams.selectionControls,
+                .p
+                .selectableTextRichParams!
+                .selectableTextParams
+                .cursorColor,
+            selectionHeightStyle: elParams
+                .p
+                .selectableTextRichParams!
+                .selectableTextParams
+                .selectionHeightStyle,
+            selectionWidthStyle: elParams
+                .p
+                .selectableTextRichParams!
+                .selectableTextParams
+                .selectionWidthStyle,
+            dragStartBehavior: elParams
+                .p
+                .selectableTextRichParams!
+                .selectableTextParams
+                .dragStartBehavior,
+            enableInteractiveSelection: elParams
+                .p
+                .selectableTextRichParams!
+                .selectableTextParams
+                .enableInteractiveSelection,
+            selectionControls: elParams
+                .p
+                .selectableTextRichParams!
+                .selectableTextParams
+                .selectionControls,
             onTap:
                 elParams.p.selectableTextRichParams!.selectableTextParams.onTap,
             scrollPhysics: elParams
-                .p.selectableTextRichParams!.selectableTextParams.scrollPhysics,
-            semanticsLabel: elParams.p.selectableTextRichParams!
-                .selectableTextParams.semanticsLabel,
-            textHeightBehavior: elParams.p.selectableTextRichParams!
-                .selectableTextParams.textHeightBehavior,
-            textWidthBasis: elParams.p.selectableTextRichParams!
-                .selectableTextParams.textWidthBasis,
-            contextMenuBuilder: elParams.p.selectableTextRichParams!
-                .selectableTextParams.contextMenuBuilder,
-            magnifierConfiguration: elParams.p.selectableTextRichParams!
-                .selectableTextParams.magnifierConfiguration,
-            onSelectionChanged: elParams.p.selectableTextRichParams!
-                .selectableTextParams.onSelectionChanged,
+                .p
+                .selectableTextRichParams!
+                .selectableTextParams
+                .scrollPhysics,
+            semanticsLabel: elParams
+                .p
+                .selectableTextRichParams!
+                .selectableTextParams
+                .semanticsLabel,
+            textHeightBehavior: elParams
+                .p
+                .selectableTextRichParams!
+                .selectableTextParams
+                .textHeightBehavior,
+            textWidthBasis: elParams
+                .p
+                .selectableTextRichParams!
+                .selectableTextParams
+                .textWidthBasis,
+            contextMenuBuilder: elParams
+                .p
+                .selectableTextRichParams!
+                .selectableTextParams
+                .contextMenuBuilder,
+            magnifierConfiguration: elParams
+                .p
+                .selectableTextRichParams!
+                .selectableTextParams
+                .magnifierConfiguration,
+            onSelectionChanged: elParams
+                .p
+                .selectableTextRichParams!
+                .selectableTextParams
+                .onSelectionChanged,
           )
         : RichText(
             key: elParams.p.richTextParams!.key,
-            text: elParams.p.richTextParams!.text ??
+            text:
+                elParams.p.richTextParams!.text ??
                 TextSpan(children: _convertChildren(context)),
             textAlign: elParams.p.richTextParams!.textAlign ?? getTextAlign(),
             textDirection: elParams.p.richTextParams!.textDirection,
             softWrap: elParams.p.richTextParams!.softWrap,
             overflow: elParams.p.richTextParams!.overflow,
-            textScaler: elParams.p.richTextParams!.textScaler ??
+            textScaler:
+                elParams.p.richTextParams!.textScaler ??
                 MediaQuery.of(context).textScaler,
             maxLines: elParams.p.richTextParams!.maxLines,
             locale: elParams.p.richTextParams!.locale,
@@ -197,22 +286,24 @@ class SpanElement extends MultiChildTextElement {
     } else {
       for (Widget i in children.children) {
         if (i is HrefElement) {
-          r.add(TextSpan(
+          r.add(
+            TextSpan(
               text: i.getDisplayText(),
               style: i.getStyle(context),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
                   i.onTapFunc(context);
-                }));
+                },
+            ),
+          );
         } else if (i is RubyTextElement) {
           r.add(WidgetSpan(child: i));
         } else if (i is SuperAndSubscriptElement) {
           r.add(WidgetSpan(child: i.getInSpanOfNonStrictMode(context)));
         } else if (i is TextElement) {
-          r.add(TextSpan(
-            text: i.spwmlParams.p.text,
-            style: i.getStyle(context),
-          ));
+          r.add(
+            TextSpan(text: i.spwmlParams.p.text, style: i.getStyle(context)),
+          );
         } else {
           r.add(WidgetSpan(child: i));
         }

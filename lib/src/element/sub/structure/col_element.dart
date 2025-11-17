@@ -32,19 +32,29 @@ class ColElement extends MultiChildElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   ColElement(
-      int serial,
-      Map<String, String> params,
-      SpWMLParamsWrapper spwmlParams,
-      int parentSerial,
-      int lineStart,
-      int lineEnd,
-      SpWMLFontStyle style,
-      SpWMLInfo? info,
-      StructureElementChildren children,
-      this.elParams,
-      {super.key})
-      : super(serial, EnumSpWMLElementType.col, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, info, children);
+    int serial,
+    Map<String, String> params,
+    SpWMLParamsWrapper spwmlParams,
+    int parentSerial,
+    int lineStart,
+    int lineEnd,
+    SpWMLFontStyle style,
+    SpWMLInfo? info,
+    StructureElementChildren children,
+    this.elParams, {
+    super.key,
+  }) : super(
+         serial,
+         EnumSpWMLElementType.col,
+         params,
+         spwmlParams,
+         parentSerial,
+         lineStart,
+         lineEnd,
+         style,
+         info,
+         children,
+       );
 
   /// Get this class name.
   @override

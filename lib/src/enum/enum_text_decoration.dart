@@ -28,7 +28,11 @@ extension EXTEnumTextDecoration on EnumTextDecoration {
       return TextDecoration.lineThrough;
     } else {
       throw SpWMLException(
-          EnumSpWMLExceptionType.paramValueException, lineStart, lineEnd, info);
+        EnumSpWMLExceptionType.paramValueException,
+        lineStart,
+        lineEnd,
+        info,
+      );
     }
   }
 

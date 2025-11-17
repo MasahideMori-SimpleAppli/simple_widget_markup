@@ -25,17 +25,18 @@ class MultiChildElement extends SpWMLElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   MultiChildElement(
-      super.serial,
-      super.type,
-      super.params,
-      super.spwmlParams,
-      super.parentSerial,
-      super.lineStart,
-      super.lineEnd,
-      super.style,
-      super.info,
-      this.children,
-      {super.key});
+    super.serial,
+    super.type,
+    super.params,
+    super.spwmlParams,
+    super.parentSerial,
+    super.lineStart,
+    super.lineEnd,
+    super.style,
+    super.info,
+    this.children, {
+    super.key,
+  });
 
   /// Get this class name.
   @override

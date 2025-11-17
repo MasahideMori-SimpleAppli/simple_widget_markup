@@ -215,10 +215,12 @@ enum _EnumSpWMLParamsShort {
   maxW,
   // 廃止パラメータも直接参照禁止なのでこちら。
   @Deprecated(
-      'Use fontFamily instead. This variable will be deprecated in the future.')
+    'Use fontFamily instead. This variable will be deprecated in the future.',
+  )
   fontName,
   @Deprecated(
-      'Use lineHeight instead. This variable will be deprecated in the future.')
+    'Use lineHeight instead. This variable will be deprecated in the future.',
+  )
   textHeight,
 }
 
@@ -233,8 +235,13 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
   /// Throws [SpWMLException] : If the parameter value is incorrect,
   ///
   /// Throws [Exception] : param value exception.
-  dynamic parseValue(EnumSpWMLElementType type, String v, int lineStart,
-      int lineEnd, SpWMLInfo? info) {
+  dynamic parseValue(
+    EnumSpWMLElementType type,
+    String v,
+    int lineStart,
+    int lineEnd,
+    SpWMLInfo? info,
+  ) {
     try {
       // Frequently used
       if (this == EnumSpWMLParams.height ||
@@ -388,7 +395,11 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
         // input type
         else if (this == EnumSpWMLParams.keyboardType) {
           return EXTEnumTextFieldKeyboardType.fromStr(
-              v, lineStart, lineEnd, info);
+            v,
+            lineStart,
+            lineEnd,
+            info,
+          );
         } else if (this == EnumSpWMLParams.inputType) {
           return EXTEnumTextFieldInputType.fromStr(v, lineStart, lineEnd, info);
         }
@@ -523,13 +534,21 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
       }
     } catch (e) {
       throw SpWMLException(
-          EnumSpWMLExceptionType.paramValueException, lineStart, lineEnd, info);
+        EnumSpWMLExceptionType.paramValueException,
+        lineStart,
+        lineEnd,
+        info,
+      );
     }
   }
 
   /// Throws [SpWMLException] : If the parameter is incorrect, Throws ParamException.
   static EnumSpWMLParams fromStr(
-      String s, int lineStart, int lineEnd, SpWMLInfo? info) {
+    String s,
+    int lineStart,
+    int lineEnd,
+    SpWMLInfo? info,
+  ) {
     // 省略系
     if (s == _EnumSpWMLParamsShort.h.name) {
       return EnumSpWMLParams.height;
@@ -576,7 +595,11 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           return EnumSpWMLParams.lineHeight;
         } else {
           throw SpWMLException(
-              EnumSpWMLExceptionType.paramException, lineStart, lineEnd, info);
+            EnumSpWMLExceptionType.paramException,
+            lineStart,
+            lineEnd,
+            info,
+          );
         }
       }
     }

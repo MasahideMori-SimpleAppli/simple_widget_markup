@@ -18,12 +18,20 @@ enum EnumTextFieldType { material, rounded }
 extension EXTEnumTextFieldType on EnumTextFieldType {
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
   static EnumTextFieldType fromStr(
-      String s, int lineStart, int lineEnd, SpWMLInfo? info) {
+    String s,
+    int lineStart,
+    int lineEnd,
+    SpWMLInfo? info,
+  ) {
     try {
       return EnumTextFieldType.values.byName(s);
     } catch (e) {
       throw SpWMLException(
-          EnumSpWMLExceptionType.typeException, lineStart, lineEnd, info);
+        EnumSpWMLExceptionType.typeException,
+        lineStart,
+        lineEnd,
+        info,
+      );
     }
   }
 }
@@ -43,19 +51,27 @@ enum EnumTextFieldMode {
   search,
   searchPrefix,
   searchAndClear,
-  manual
+  manual,
 }
 
 /// EnumTextFieldMode extension.
 extension EXTEnumTextFieldMode on EnumTextFieldMode {
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
   static EnumTextFieldMode fromStr(
-      String s, int lineStart, int lineEnd, SpWMLInfo? info) {
+    String s,
+    int lineStart,
+    int lineEnd,
+    SpWMLInfo? info,
+  ) {
     try {
       return EnumTextFieldMode.values.byName(s);
     } catch (e) {
       throw SpWMLException(
-          EnumSpWMLExceptionType.typeException, lineStart, lineEnd, info);
+        EnumSpWMLExceptionType.typeException,
+        lineStart,
+        lineEnd,
+        info,
+      );
     }
   }
 }
@@ -74,19 +90,27 @@ enum EnumTextFieldInputType {
   money,
   moneyAllowNegative,
   moneyWithDecimal,
-  moneyWithDecimalAllowNegative
+  moneyWithDecimalAllowNegative,
 }
 
 /// EnumTextFieldInputType extension.
 extension EXTEnumTextFieldInputType on EnumTextFieldInputType {
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
   static EnumTextFieldInputType fromStr(
-      String s, int lineStart, int lineEnd, SpWMLInfo? info) {
+    String s,
+    int lineStart,
+    int lineEnd,
+    SpWMLInfo? info,
+  ) {
     try {
       return EnumTextFieldInputType.values.byName(s);
     } catch (e) {
       throw SpWMLException(
-          EnumSpWMLExceptionType.typeException, lineStart, lineEnd, info);
+        EnumSpWMLExceptionType.typeException,
+        lineStart,
+        lineEnd,
+        info,
+      );
     }
   }
 
@@ -98,46 +122,46 @@ extension EXTEnumTextFieldInputType on EnumTextFieldInputType {
       case EnumTextFieldInputType.intOnly:
         return [
           FilteringTextInputFormatter.digitsOnly,
-          ValueRangeFormatter(minV, maxV)
+          ValueRangeFormatter(minV, maxV),
         ];
       case EnumTextFieldInputType.intOnlyAllowNegative:
         return [
           FilteringTextInputFormatter.allow(RegExp(r'[-\d]')),
           MinusInputFormatter(),
-          ValueRangeFormatter(minV, maxV)
+          ValueRangeFormatter(minV, maxV),
         ];
       case EnumTextFieldInputType.numOnly:
         return [
           FilteringTextInputFormatter.allow(RegExp(r'[.\d]')),
           DecimalInputFormatter(),
-          ValueRangeFormatter(minV, maxV)
+          ValueRangeFormatter(minV, maxV),
         ];
       case EnumTextFieldInputType.numOnlyAllowNegative:
         return [
           FilteringTextInputFormatter.allow(RegExp(r'[-.\d]')),
           MinusInputFormatter(),
           DecimalInputFormatter(),
-          ValueRangeFormatter(minV, maxV)
+          ValueRangeFormatter(minV, maxV),
         ];
       case EnumTextFieldInputType.money:
         return [
           FilteringTextInputFormatter.allow(RegExp(r'[\d,]')),
           ValueRangeFormatter(minV, maxV),
-          MoneyInputFormatter()
+          MoneyInputFormatter(),
         ];
       case EnumTextFieldInputType.moneyAllowNegative:
         return [
           FilteringTextInputFormatter.allow(RegExp(r'[-\d,]')),
           MinusInputFormatter(),
           ValueRangeFormatter(minV, maxV),
-          MoneyInputFormatter()
+          MoneyInputFormatter(),
         ];
       case EnumTextFieldInputType.moneyWithDecimal:
         return [
           FilteringTextInputFormatter.allow(RegExp(r'[.,\d]')),
           DecimalInputFormatter(),
           ValueRangeFormatter(minV, maxV),
-          MoneyInputFormatter()
+          MoneyInputFormatter(),
         ];
       case EnumTextFieldInputType.moneyWithDecimalAllowNegative:
         return [
@@ -145,7 +169,7 @@ extension EXTEnumTextFieldInputType on EnumTextFieldInputType {
           MinusInputFormatter(),
           DecimalInputFormatter(),
           ValueRangeFormatter(minV, maxV),
-          MoneyInputFormatter()
+          MoneyInputFormatter(),
         ];
     }
   }
@@ -174,20 +198,29 @@ enum EnumTextFieldKeyboardType {
 extension EXTEnumTextFieldKeyboardType on EnumTextFieldKeyboardType {
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
   static EnumTextFieldKeyboardType fromStr(
-      String s, int lineStart, int lineEnd, SpWMLInfo? info) {
+    String s,
+    int lineStart,
+    int lineEnd,
+    SpWMLInfo? info,
+  ) {
     try {
       return EnumTextFieldKeyboardType.values.byName(s);
     } catch (e) {
       throw SpWMLException(
-          EnumSpWMLExceptionType.typeException, lineStart, lineEnd, info);
+        EnumSpWMLExceptionType.typeException,
+        lineStart,
+        lineEnd,
+        info,
+      );
     }
   }
 
   /// Convert to TextInputType.
   TextInputType toTextInputType() {
     try {
-      return TextInputType
-          .values[EnumTextFieldKeyboardType.values.indexOf(this)];
+      return TextInputType.values[EnumTextFieldKeyboardType.values.indexOf(
+        this,
+      )];
     } catch (e) {
       return TextInputType.text;
     }

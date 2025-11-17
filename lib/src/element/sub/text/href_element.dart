@@ -27,19 +27,29 @@ class HrefElement extends TextElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   HrefElement(
-      int serial,
-      Map<String, String> params,
-      SpWMLParamsWrapper spwmlParams,
-      int parentSerial,
-      int lineStart,
-      int lineEnd,
-      SpWMLFontStyle style,
-      SpWMLInfo? info,
-      TextParamsWrapper textParams,
-      this.elParams,
-      {super.key})
-      : super(serial, EnumSpWMLElementType.href, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, info, textParams);
+    int serial,
+    Map<String, String> params,
+    SpWMLParamsWrapper spwmlParams,
+    int parentSerial,
+    int lineStart,
+    int lineEnd,
+    SpWMLFontStyle style,
+    SpWMLInfo? info,
+    TextParamsWrapper textParams,
+    this.elParams, {
+    super.key,
+  }) : super(
+         serial,
+         EnumSpWMLElementType.href,
+         params,
+         spwmlParams,
+         parentSerial,
+         lineStart,
+         lineEnd,
+         style,
+         info,
+         textParams,
+       );
 
   /// Get this class name.
   @override
@@ -127,10 +137,12 @@ class HrefElement extends TextElement {
       await launchUrl(uri);
     } else {
       if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(elParams.p.urlOpenErrorMsg),
-          duration: elParams.p.urlOpenErrorMsgDuration,
-        ));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(elParams.p.urlOpenErrorMsg),
+            duration: elParams.p.urlOpenErrorMsgDuration,
+          ),
+        );
       }
     }
   }

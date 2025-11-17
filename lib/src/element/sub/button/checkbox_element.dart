@@ -26,19 +26,29 @@ class CheckboxElement extends MultiChildElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   CheckboxElement(
-      int serial,
-      Map<String, String> params,
-      SpWMLParamsWrapper spwmlParams,
-      int parentSerial,
-      int lineStart,
-      int lineEnd,
-      SpWMLFontStyle style,
-      SpWMLInfo? info,
-      StructureElementChildren children,
-      this.elParams,
-      {super.key})
-      : super(serial, EnumSpWMLElementType.checkbox, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, info, children);
+    int serial,
+    Map<String, String> params,
+    SpWMLParamsWrapper spwmlParams,
+    int parentSerial,
+    int lineStart,
+    int lineEnd,
+    SpWMLFontStyle style,
+    SpWMLInfo? info,
+    StructureElementChildren children,
+    this.elParams, {
+    super.key,
+  }) : super(
+         serial,
+         EnumSpWMLElementType.checkbox,
+         params,
+         spwmlParams,
+         parentSerial,
+         lineStart,
+         lineEnd,
+         style,
+         info,
+         children,
+       );
 
   /// Get this class name.
   @override
@@ -79,8 +89,8 @@ class CheckboxElement extends MultiChildElement {
     elParams.p.disableParams = disabled;
     elParams.p.enableTapLabel =
         params.containsKey(EnumSpWMLParams.enableTapLabel)
-            ? params[EnumSpWMLParams.enableTapLabel]
-            : false;
+        ? params[EnumSpWMLParams.enableTapLabel]
+        : false;
     elParams.p.isPrefixIcon = params.containsKey(EnumSpWMLParams.isPrefixIcon)
         ? params[EnumSpWMLParams.isPrefixIcon]
         : true;
@@ -91,8 +101,12 @@ class CheckboxElement extends MultiChildElement {
     }
     // SIDが設定されていなければエラー。
     if (getSID() == null) {
-      throw SpWMLException(EnumSpWMLExceptionType.sidDoesNotExistException,
-          lineStart, lineEnd, info);
+      throw SpWMLException(
+        EnumSpWMLExceptionType.sidDoesNotExistException,
+        lineStart,
+        lineEnd,
+        info,
+      );
     }
     return this;
   }
@@ -192,7 +206,11 @@ class _CheckboxElementWidget extends StatefulWidget {
   final OutlinedBorder? shape;
 
   const _CheckboxElementWidget(
-      this.sid, this.children, this.elParams, this.shape);
+    this.sid,
+    this.children,
+    this.elParams,
+    this.shape,
+  );
 
   @override
   _CheckboxElementWidgetState createState() => _CheckboxElementWidgetState();
@@ -203,11 +221,15 @@ class _CheckboxElementWidgetState extends State<_CheckboxElementWidget> {
   void _onTapCallback(int index) {
     if (mounted) {
       setState(() {
-        widget.elParams.p.manager!.getFlags(widget.sid)[index] =
-            !widget.elParams.p.manager!.getFlags(widget.sid)[index];
+        widget.elParams.p.manager!.getFlags(widget.sid)[index] = !widget
+            .elParams
+            .p
+            .manager!
+            .getFlags(widget.sid)[index];
         if (widget.elParams.p.callback != null) {
-          widget.elParams.p
-              .callback!(widget.elParams.p.manager!.getFlags(widget.sid));
+          widget.elParams.p.callback!(
+            widget.elParams.p.manager!.getFlags(widget.sid),
+          );
         }
       });
     }
@@ -218,7 +240,8 @@ class _CheckboxElementWidgetState extends State<_CheckboxElementWidget> {
     if (widget.elParams.p.enableTapLabel) {
       return InkWell(
         key: widget.elParams.p.enableTapInkWellParams.key,
-        onTap: widget.elParams.p.isEnabled &&
+        onTap:
+            widget.elParams.p.isEnabled &&
                 !widget.elParams.p.disabledIndexes.contains(index)
             ? () {
                 _onTapCallback(index);
@@ -241,7 +264,8 @@ class _CheckboxElementWidgetState extends State<_CheckboxElementWidget> {
         splashFactory: widget.elParams.p.enableTapInkWellParams.splashFactory,
         radius: widget.elParams.p.enableTapInkWellParams.radius,
         borderRadius: widget.elParams.p.enableTapInkWellParams.borderRadius,
-        customBorder: widget.elParams.p.enableTapInkWellParams.customBorder ??
+        customBorder:
+            widget.elParams.p.enableTapInkWellParams.customBorder ??
             widget.shape,
         enableFeedback: widget.elParams.p.enableTapInkWellParams.enableFeedback,
         excludeFromSemantics:
@@ -281,7 +305,8 @@ class _CheckboxElementWidgetState extends State<_CheckboxElementWidget> {
         highlightColor: params.highlightColor,
         splashColor: params.splashColor,
         disabledColor: params.disabledColor,
-        onPressed: widget.elParams.p.isEnabled &&
+        onPressed:
+            widget.elParams.p.isEnabled &&
                 !widget.elParams.p.disabledIndexes.contains(index)
             ? () {
                 _onTapCallback(index);
@@ -312,7 +337,8 @@ class _CheckboxElementWidgetState extends State<_CheckboxElementWidget> {
         highlightColor: params.highlightColor,
         splashColor: params.splashColor,
         disabledColor: params.disabledColor,
-        onPressed: widget.elParams.p.isEnabled &&
+        onPressed:
+            widget.elParams.p.isEnabled &&
                 !widget.elParams.p.disabledIndexes.contains(index)
             ? () {
                 _onTapCallback(index);
@@ -333,17 +359,18 @@ class _CheckboxElementWidgetState extends State<_CheckboxElementWidget> {
   }
 
   List<Widget> _getIconAndWidget(int index) {
-    final bool isSelected =
-        widget.elParams.p.manager!.getFlags(widget.sid)[index];
+    final bool isSelected = widget.elParams.p.manager!.getFlags(
+      widget.sid,
+    )[index];
     if (widget.elParams.p.isPrefixIcon) {
       return [
         _getIconBtn(index, _getParams(isSelected)),
-        widget.children.children[index]
+        widget.children.children[index],
       ];
     } else {
       return [
         Expanded(child: widget.children.children[index]),
-        _getIconBtn(index, _getParams(isSelected))
+        _getIconBtn(index, _getParams(isSelected)),
       ];
     }
   }
@@ -351,17 +378,22 @@ class _CheckboxElementWidgetState extends State<_CheckboxElementWidget> {
   Widget _getLayout() {
     List<Widget> r = [];
     for (int i = 0; i < widget.children.children.length; i++) {
-      r.add(_getWrap(
+      r.add(
+        _getWrap(
           i,
           Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: _getIconAndWidget(i))));
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: _getIconAndWidget(i),
+          ),
+        ),
+      );
     }
     return Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: r);
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: r,
+    );
   }
 
   @override

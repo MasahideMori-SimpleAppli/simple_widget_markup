@@ -25,20 +25,31 @@ class BadgeElement extends SingleChildTextElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   BadgeElement(
-      int serial,
-      Map<String, String> params,
-      SpWMLParamsWrapper spwmlParams,
-      int parentSerial,
-      int lineStart,
-      int lineEnd,
-      SpWMLFontStyle style,
-      SpWMLInfo? info,
-      BlockElementChild child,
-      TextParamsWrapper textParams,
-      this.elParams,
-      {super.key})
-      : super(serial, EnumSpWMLElementType.badge, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, info, child, textParams);
+    int serial,
+    Map<String, String> params,
+    SpWMLParamsWrapper spwmlParams,
+    int parentSerial,
+    int lineStart,
+    int lineEnd,
+    SpWMLFontStyle style,
+    SpWMLInfo? info,
+    BlockElementChild child,
+    TextParamsWrapper textParams,
+    this.elParams, {
+    super.key,
+  }) : super(
+         serial,
+         EnumSpWMLElementType.badge,
+         params,
+         spwmlParams,
+         parentSerial,
+         lineStart,
+         lineEnd,
+         style,
+         info,
+         child,
+         textParams,
+       );
 
   /// Get this class name.
   @override
@@ -66,13 +77,14 @@ class BadgeElement extends SingleChildTextElement {
     final bool useOffsetY = params.containsKey(EnumSpWMLParams.offsetY);
     if (useOffsetX || useOffsetY) {
       elParams.p.offset = Offset(
-          useOffsetX ? params[EnumSpWMLParams.offsetX] : 0.0,
-          useOffsetY ? params[EnumSpWMLParams.offsetY] : 0.0);
+        useOffsetX ? params[EnumSpWMLParams.offsetX] : 0.0,
+        useOffsetY ? params[EnumSpWMLParams.offsetY] : 0.0,
+      );
     }
     elParams.p.isLabelVisible =
         params.containsKey(EnumSpWMLParams.isLabelVisible)
-            ? params[EnumSpWMLParams.isLabelVisible]
-            : true;
+        ? params[EnumSpWMLParams.isLabelVisible]
+        : true;
     return this;
   }
 

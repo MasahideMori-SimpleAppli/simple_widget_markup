@@ -57,25 +57,26 @@ class SpWML extends StatelessWidget {
   /// * [vm] : The manager for progressIndicator and slider.
   /// * [sm] : The manager for all widget state.
   /// If this is not null, other managers will be disabled.
-  SpWML(this.spWML,
-      {this.mainAA = MainAxisAlignment.start,
-      this.crossAA = CrossAxisAlignment.start,
-      this.mainAS = MainAxisSize.max,
-      this.margin = const EdgeInsets.all(0),
-      this.padding = const EdgeInsets.all(0),
-      SpWMLFontStyle? spWMLStyle,
-      this.info,
-      this.tfm,
-      this.im,
-      this.fm,
-      this.tsm,
-      this.mim,
-      this.mfm,
-      this.mtsm,
-      this.vm,
-      this.sm,
-      super.key})
-      : style = spWMLStyle ?? SpWMLFontStyleManager().style;
+  SpWML(
+    this.spWML, {
+    this.mainAA = MainAxisAlignment.start,
+    this.crossAA = CrossAxisAlignment.start,
+    this.mainAS = MainAxisSize.max,
+    this.margin = const EdgeInsets.all(0),
+    this.padding = const EdgeInsets.all(0),
+    SpWMLFontStyle? spWMLStyle,
+    this.info,
+    this.tfm,
+    this.im,
+    this.fm,
+    this.tsm,
+    this.mim,
+    this.mfm,
+    this.mtsm,
+    this.vm,
+    this.sm,
+    super.key,
+  }) : style = spWMLStyle ?? SpWMLFontStyleManager().style;
 
   /// (en)Build widget.
   ///
@@ -86,26 +87,29 @@ class SpWML extends StatelessWidget {
   /// Returns Widget.
   @override
   Widget build(BuildContext context) {
-    final builder = SpWMLBuilder(spWML,
-        mainAA: mainAA,
-        crossAA: crossAA,
-        mainAS: mainAS,
-        margin: margin,
-        padding: padding,
-        spWMLStyle: style,
-        info: info);
+    final builder = SpWMLBuilder(
+      spWML,
+      mainAA: mainAA,
+      crossAA: crossAA,
+      mainAS: mainAS,
+      margin: margin,
+      padding: padding,
+      spWMLStyle: style,
+      info: info,
+    );
     if (sm != null) {
       builder.setStateManager(sm!);
     } else {
       builder.setManager(
-          tfm: tfm,
-          im: im,
-          fm: fm,
-          tsm: tsm,
-          mim: mim,
-          mfm: mfm,
-          mtsm: mtsm,
-          vm: vm);
+        tfm: tfm,
+        im: im,
+        fm: fm,
+        tsm: tsm,
+        mim: mim,
+        mfm: mfm,
+        mtsm: mtsm,
+        vm: vm,
+      );
     }
     return builder.build(context);
   }

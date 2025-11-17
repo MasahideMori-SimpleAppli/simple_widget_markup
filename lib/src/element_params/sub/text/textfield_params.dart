@@ -77,10 +77,13 @@ class TextFieldParams {
   void Function(PointerDownEvent)? onTapOutside;
   void Function(PointerUpEvent)? onTapUpOutside;
   MouseCursor? mouseCursor;
-  Widget? Function(BuildContext,
-      {required int currentLength,
-      required bool isFocused,
-      required int? maxLength})? buildCounter;
+  Widget? Function(
+    BuildContext, {
+    required int currentLength,
+    required bool isFocused,
+    required int? maxLength,
+  })?
+  buildCounter;
   ScrollController? scrollController;
   ScrollPhysics? scrollPhysics;
   Iterable<String>? autofillHints = const [];
@@ -101,20 +104,24 @@ class TextFieldParams {
 
   /// Change textField design.
   void changeMaterialDesign() {
-    decoration =
-        decoration.copyWith(border: null, filled: false, fillColor: null);
+    decoration = decoration.copyWith(
+      border: null,
+      filled: false,
+      fillColor: null,
+    );
     _design = EnumTextFieldType.material;
   }
 
   /// Change textField design.
-  void changeRoundedDesign(
-      {double radius = 10, Color? fillColor = Colors.white70}) {
+  void changeRoundedDesign({
+    double radius = 10,
+    Color? fillColor = Colors.white70,
+  }) {
     decoration = decoration.copyWith(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(radius),
-        ),
-        filled: true,
-        fillColor: fillColor);
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(radius)),
+      filled: true,
+      fillColor: fillColor,
+    );
     _design = EnumTextFieldType.rounded;
   }
 
@@ -193,8 +200,9 @@ class TextFieldParams {
 
   /// Change textField mode.
   void changeSearchMode(bool prefixIcon) {
-    _mode =
-        prefixIcon ? EnumTextFieldMode.searchPrefix : EnumTextFieldMode.search;
+    _mode = prefixIcon
+        ? EnumTextFieldMode.searchPrefix
+        : EnumTextFieldMode.search;
     obscureText = false;
     enableSuggestions = true;
     autocorrect = true;
@@ -212,15 +220,24 @@ class TextFieldParams {
 
   /// Change textField content padding.
   /// If not all null, isDense will be set true.
-  void changeContentPadding(
-      {double? cpL, double? cpT, double? cpR, double? cpB}) {
+  void changeContentPadding({
+    double? cpL,
+    double? cpT,
+    double? cpR,
+    double? cpB,
+  }) {
     if (cpL == null && cpT == null && cpR == null && cpB == null) {
       return;
     } else {
       decoration = decoration.copyWith(
-          contentPadding:
-              EdgeInsets.fromLTRB(cpL ?? 0, cpT ?? 12, cpR ?? 0, cpB ?? 12),
-          isDense: true);
+        contentPadding: EdgeInsets.fromLTRB(
+          cpL ?? 0,
+          cpT ?? 12,
+          cpR ?? 0,
+          cpB ?? 12,
+        ),
+        isDense: true,
+      );
       _design = EnumTextFieldType.rounded;
     }
   }

@@ -30,18 +30,27 @@ class LineElement extends SpWMLElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   LineElement(
-      int serial,
-      Map<String, String> params,
-      SpWMLParamsWrapper spwmlParams,
-      int parentSerial,
-      int lineStart,
-      int lineEnd,
-      SpWMLFontStyle style,
-      SpWMLInfo? info,
-      this.elParams,
-      {super.key})
-      : super(serial, EnumSpWMLElementType.line, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, info);
+    int serial,
+    Map<String, String> params,
+    SpWMLParamsWrapper spwmlParams,
+    int parentSerial,
+    int lineStart,
+    int lineEnd,
+    SpWMLFontStyle style,
+    SpWMLInfo? info,
+    this.elParams, {
+    super.key,
+  }) : super(
+         serial,
+         EnumSpWMLElementType.line,
+         params,
+         spwmlParams,
+         parentSerial,
+         lineStart,
+         lineEnd,
+         style,
+         info,
+       );
 
   /// Get this class name.
   @override
@@ -66,11 +75,12 @@ class LineElement extends SpWMLElement {
   @override
   Widget getWidget(BuildContext context) {
     return Divider(
-        key: elParams.p.key,
-        height: elParams.p.height,
-        thickness: elParams.p.thickness,
-        indent: elParams.p.indent,
-        endIndent: elParams.p.endIndent,
-        color: elParams.p.color);
+      key: elParams.p.key,
+      height: elParams.p.height,
+      thickness: elParams.p.thickness,
+      indent: elParams.p.indent,
+      endIndent: elParams.p.endIndent,
+      color: elParams.p.color,
+    );
   }
 }

@@ -34,7 +34,9 @@ class MinusInputFormatter extends TextInputFormatter {
         // カーソル位置までのマイナス記号の数-1個分、カーソル位置を変える。
         // カーソル位置をマイナス記号の増減に応じて変更。
         String preIndexBeforeText = UtilInputFormatter.getIndexBeforeString(
-            oldValue.text, selectionIndex);
+          oldValue.text,
+          selectionIndex,
+        );
         final int preRangeMinusNum = preIndexBeforeText.split("-").length - 1;
         selectionIndex -= (preRangeMinusNum - 1);
         // カーソル位置を新しいテキストの範囲内に制限

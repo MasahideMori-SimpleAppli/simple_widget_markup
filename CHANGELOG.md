@@ -1,3 +1,8 @@
+## 46.0.0
+
+* Updated for Flutter 3.10.0.
+* The default values of BtnElement arguments have changed to match the new version of Flutter.
+
 ## 45.1.0
 
 * The flexFit parameter has been added to the base class SpWMLElement, allowing you to choose the fitting method when wt is specified.

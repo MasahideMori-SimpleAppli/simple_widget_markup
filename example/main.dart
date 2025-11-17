@@ -11,9 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
+      theme: ThemeData(primarySwatch: Colors.green),
       home: const MyHomePage(),
     );
   }
@@ -39,17 +37,19 @@ class _MyHomePageState extends State<MyHomePage> {
     BtnElement btnElement = builder.getElement("show_dialog") as BtnElement;
     btnElement.setCallback(() {
       showDialog(
-          context: context,
-          builder: (_) {
-            return AlertDialog(
-                title:
-                    SizedBox(height: 64, child: SpWML('(h2, mT:0)Good job!')),
-                content: SizedBox(
-                  height: 196,
-                  child: SpWML(
-                      "(h4, mT:0)Achievement\n(text)* You have mastered basic SpWML usage.\n* You learned how to access SpWML programmatically.\n(text)Please use SpWML for your wonderful work!\nThank you!"),
-                ));
-          });
+        context: context,
+        builder: (_) {
+          return AlertDialog(
+            title: SizedBox(height: 64, child: SpWML('(h2, mT:0)Good job!')),
+            content: SizedBox(
+              height: 196,
+              child: SpWML(
+                "(h4, mT:0)Achievement\n(text)* You have mastered basic SpWML usage.\n* You learned how to access SpWML programmatically.\n(text)Please use SpWML for your wonderful work!\nThank you!",
+              ),
+            ),
+          );
+        },
+      );
     });
     return Scaffold(body: SafeArea(child: builder.build(context)));
   }

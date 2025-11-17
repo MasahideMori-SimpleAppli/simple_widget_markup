@@ -31,18 +31,27 @@ class IconElement extends SpWMLElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   IconElement(
-      int serial,
-      Map<String, String> params,
-      SpWMLParamsWrapper spwmlParams,
-      int parentSerial,
-      int lineStart,
-      int lineEnd,
-      SpWMLFontStyle style,
-      SpWMLInfo? info,
-      this.elParams,
-      {super.key})
-      : super(serial, EnumSpWMLElementType.icon, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, info);
+    int serial,
+    Map<String, String> params,
+    SpWMLParamsWrapper spwmlParams,
+    int parentSerial,
+    int lineStart,
+    int lineEnd,
+    SpWMLFontStyle style,
+    SpWMLInfo? info,
+    this.elParams, {
+    super.key,
+  }) : super(
+         serial,
+         EnumSpWMLElementType.icon,
+         params,
+         spwmlParams,
+         parentSerial,
+         lineStart,
+         lineEnd,
+         style,
+         info,
+       );
 
   /// Get this class name.
   @override

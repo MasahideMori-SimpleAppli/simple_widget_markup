@@ -29,14 +29,17 @@ class SpWMLDialog extends StatefulWidget {
   /// if this is null and okBtnCallback is not null, auto set Text('OK').
   /// * [cancelBtnCallback] : Cancel button callback function. if this and cancelBtnText is null, not create cancel button.
   /// * [okBtnCallback] : OK button callback function. if this and okBtnText is null, not create ok button.
-  const SpWMLDialog(this.b, this.title,
-      {this.width,
-      this.height,
-      this.cancelBtnText,
-      this.okBtnText,
-      this.cancelBtnCallback,
-      this.okBtnCallback,
-      super.key});
+  const SpWMLDialog(
+    this.b,
+    this.title, {
+    this.width,
+    this.height,
+    this.cancelBtnText,
+    this.okBtnText,
+    this.cancelBtnCallback,
+    this.okBtnCallback,
+    super.key,
+  });
 
   @override
   SpWMLDialogState createState() => SpWMLDialogState();
@@ -47,28 +50,32 @@ class SpWMLDialogState extends State<SpWMLDialog> {
   List<Widget>? _getActions(BuildContext context) {
     List<Widget> r = [];
     if (widget.cancelBtnCallback != null || widget.cancelBtnText != null) {
-      r.add(TextButton(
-        child: widget.cancelBtnText ?? const Text('Cancel'),
-        onPressed: () {
-          if (widget.cancelBtnCallback != null) {
-            widget.cancelBtnCallback!(({dynamic v}) {
-              Navigator.of(context).pop(v);
-            });
-          }
-        },
-      ));
+      r.add(
+        TextButton(
+          child: widget.cancelBtnText ?? const Text('Cancel'),
+          onPressed: () {
+            if (widget.cancelBtnCallback != null) {
+              widget.cancelBtnCallback!(({dynamic v}) {
+                Navigator.of(context).pop(v);
+              });
+            }
+          },
+        ),
+      );
     }
     if (widget.okBtnCallback != null || widget.okBtnText != null) {
-      r.add(TextButton(
-        child: widget.okBtnText ?? const Text('OK'),
-        onPressed: () {
-          if (widget.okBtnCallback != null) {
-            widget.okBtnCallback!(({dynamic v}) {
-              Navigator.of(context).pop(v);
-            });
-          }
-        },
-      ));
+      r.add(
+        TextButton(
+          child: widget.okBtnText ?? const Text('OK'),
+          onPressed: () {
+            if (widget.okBtnCallback != null) {
+              widget.okBtnCallback!(({dynamic v}) {
+                Navigator.of(context).pop(v);
+              });
+            }
+          },
+        ),
+      );
     }
     if (r.isNotEmpty) {
       return r;
@@ -82,9 +89,10 @@ class SpWMLDialogState extends State<SpWMLDialog> {
     return AlertDialog(
       title: widget.title,
       content: SizedBox(
-          width: widget.width ?? MediaQuery.of(context).size.width * 0.8,
-          height: widget.height,
-          child: widget.b.build(context)),
+        width: widget.width ?? MediaQuery.of(context).size.width * 0.8,
+        height: widget.height,
+        child: widget.b.build(context),
+      ),
       actions: _getActions(context),
     );
   }

@@ -32,19 +32,29 @@ class CardElement extends SingleChildElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   CardElement(
-      int serial,
-      Map<String, String> params,
-      SpWMLParamsWrapper spwmlParams,
-      int parentSerial,
-      int lineStart,
-      int lineEnd,
-      SpWMLFontStyle style,
-      SpWMLInfo? info,
-      BlockElementChild child,
-      this.elParams,
-      {super.key})
-      : super(serial, EnumSpWMLElementType.card, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, info, child);
+    int serial,
+    Map<String, String> params,
+    SpWMLParamsWrapper spwmlParams,
+    int parentSerial,
+    int lineStart,
+    int lineEnd,
+    SpWMLFontStyle style,
+    SpWMLInfo? info,
+    BlockElementChild child,
+    this.elParams, {
+    super.key,
+  }) : super(
+         serial,
+         EnumSpWMLElementType.card,
+         params,
+         spwmlParams,
+         parentSerial,
+         lineStart,
+         lineEnd,
+         style,
+         info,
+         child,
+       );
 
   /// Get this class name.
   @override

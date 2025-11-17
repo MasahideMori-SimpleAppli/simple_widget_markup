@@ -32,19 +32,29 @@ class RadioBtn2Element extends MultiChildElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   RadioBtn2Element(
-      int serial,
-      Map<String, String> params,
-      SpWMLParamsWrapper spwmlParams,
-      int parentSerial,
-      int lineStart,
-      int lineEnd,
-      SpWMLFontStyle style,
-      SpWMLInfo? info,
-      StructureElementChildren children,
-      this.elParams,
-      {super.key})
-      : super(serial, EnumSpWMLElementType.radioBtn2, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, info, children);
+    int serial,
+    Map<String, String> params,
+    SpWMLParamsWrapper spwmlParams,
+    int parentSerial,
+    int lineStart,
+    int lineEnd,
+    SpWMLFontStyle style,
+    SpWMLInfo? info,
+    StructureElementChildren children,
+    this.elParams, {
+    super.key,
+  }) : super(
+         serial,
+         EnumSpWMLElementType.radioBtn2,
+         params,
+         spwmlParams,
+         parentSerial,
+         lineStart,
+         lineEnd,
+         style,
+         info,
+         children,
+       );
 
   /// Get this class name.
   @override
@@ -85,8 +95,8 @@ class RadioBtn2Element extends MultiChildElement {
     elParams.p.disableParams = disabled;
     elParams.p.enableTapLabel =
         params.containsKey(EnumSpWMLParams.enableTapLabel)
-            ? params[EnumSpWMLParams.enableTapLabel]
-            : false;
+        ? params[EnumSpWMLParams.enableTapLabel]
+        : false;
     elParams.p.isPrefixIcon = params.containsKey(EnumSpWMLParams.isPrefixIcon)
         ? params[EnumSpWMLParams.isPrefixIcon]
         : true;
@@ -96,8 +106,12 @@ class RadioBtn2Element extends MultiChildElement {
     }
     // SIDが設定されていなければエラー。
     if (getSID() == null) {
-      throw SpWMLException(EnumSpWMLExceptionType.sidDoesNotExistException,
-          lineStart, lineEnd, info);
+      throw SpWMLException(
+        EnumSpWMLExceptionType.sidDoesNotExistException,
+        lineStart,
+        lineEnd,
+        info,
+      );
     }
     return this;
   }
@@ -185,7 +199,11 @@ class _RadioBtnElement2Widget extends StatefulWidget {
   final OutlinedBorder? shape;
 
   const _RadioBtnElement2Widget(
-      this.sid, this.children, this.elParams, this.shape);
+    this.sid,
+    this.children,
+    this.elParams,
+    this.shape,
+  );
 
   @override
   _RadioBtnElement2WidgetState createState() => _RadioBtnElement2WidgetState();
@@ -209,7 +227,8 @@ class _RadioBtnElement2WidgetState extends State<_RadioBtnElement2Widget> {
     if (widget.elParams.p.enableTapLabel) {
       return InkWell(
         key: widget.elParams.p.enableTapInkWellParams.key,
-        onTap: widget.elParams.p.isEnabled &&
+        onTap:
+            widget.elParams.p.isEnabled &&
                 !widget.elParams.p.disabledSelections.contains(targetTag)
             ? () {
                 _onTapCallback(targetTag);
@@ -232,7 +251,8 @@ class _RadioBtnElement2WidgetState extends State<_RadioBtnElement2Widget> {
         splashFactory: widget.elParams.p.enableTapInkWellParams.splashFactory,
         radius: widget.elParams.p.enableTapInkWellParams.radius,
         borderRadius: widget.elParams.p.enableTapInkWellParams.borderRadius,
-        customBorder: widget.elParams.p.enableTapInkWellParams.customBorder ??
+        customBorder:
+            widget.elParams.p.enableTapInkWellParams.customBorder ??
             widget.shape,
         enableFeedback: widget.elParams.p.enableTapInkWellParams.enableFeedback,
         excludeFromSemantics:
@@ -272,7 +292,8 @@ class _RadioBtnElement2WidgetState extends State<_RadioBtnElement2Widget> {
         highlightColor: params.highlightColor,
         splashColor: params.splashColor,
         disabledColor: params.disabledColor,
-        onPressed: widget.elParams.p.isEnabled &&
+        onPressed:
+            widget.elParams.p.isEnabled &&
                 !widget.elParams.p.disabledSelections.contains(targetTag)
             ? () {
                 _onTapCallback(targetTag);
@@ -303,7 +324,8 @@ class _RadioBtnElement2WidgetState extends State<_RadioBtnElement2Widget> {
         highlightColor: params.highlightColor,
         splashColor: params.splashColor,
         disabledColor: params.disabledColor,
-        onPressed: widget.elParams.p.isEnabled &&
+        onPressed:
+            widget.elParams.p.isEnabled &&
                 !widget.elParams.p.disabledSelections.contains(targetTag)
             ? () {
                 _onTapCallback(targetTag);
@@ -329,7 +351,7 @@ class _RadioBtnElement2WidgetState extends State<_RadioBtnElement2Widget> {
     if (widget.elParams.p.isPrefixIcon) {
       return [
         _getIconBtn(targetTag, _getParams(isSelected)),
-        widget.children.children[index]
+        widget.children.children[index],
       ];
     } else {
       return [
@@ -345,30 +367,37 @@ class _RadioBtnElement2WidgetState extends State<_RadioBtnElement2Widget> {
       final Widget w = widget.children.children[i];
       if (w is! SpWMLElement) {
         throw SpWMLException(
-            EnumSpWMLExceptionType.childrenTagNotExistException,
-            -1,
-            -1,
-            SpWMLInfo(errorHint: 'radioBtn2, sid=${widget.sid}'));
+          EnumSpWMLExceptionType.childrenTagNotExistException,
+          -1,
+          -1,
+          SpWMLInfo(errorHint: 'radioBtn2, sid=${widget.sid}'),
+        );
       }
       final String? targetTag = w.getTag();
       if (targetTag == null) {
         throw SpWMLException(
-            EnumSpWMLExceptionType.childrenTagNotExistException,
-            -1,
-            -1,
-            SpWMLInfo(errorHint: 'radioBtn2, sid=${widget.sid}'));
+          EnumSpWMLExceptionType.childrenTagNotExistException,
+          -1,
+          -1,
+          SpWMLInfo(errorHint: 'radioBtn2, sid=${widget.sid}'),
+        );
       }
-      r.add(_getWrap(
+      r.add(
+        _getWrap(
           targetTag,
           Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: _getIconAndWidget(i, targetTag))));
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: _getIconAndWidget(i, targetTag),
+          ),
+        ),
+      );
     }
     return Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: r);
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: r,
+    );
   }
 
   @override

@@ -25,17 +25,18 @@ class SingleChildElement extends SpWMLElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   SingleChildElement(
-      super.serial,
-      super.type,
-      super.params,
-      super.spwmlParams,
-      super.parentSerial,
-      super.lineStart,
-      super.lineEnd,
-      super.style,
-      super.info,
-      this.child,
-      {super.key});
+    super.serial,
+    super.type,
+    super.params,
+    super.spwmlParams,
+    super.parentSerial,
+    super.lineStart,
+    super.lineEnd,
+    super.style,
+    super.info,
+    this.child, {
+    super.key,
+  });
 
   /// Get this class name.
   @override

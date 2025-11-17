@@ -27,18 +27,28 @@ class BlockElement extends SingleChildElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   BlockElement(
-      int serial,
-      Map<String, String> params,
-      SpWMLParamsWrapper spwmlParams,
-      int parentSerial,
-      int lineStart,
-      int lineEnd,
-      SpWMLFontStyle style,
-      SpWMLInfo? info,
-      BlockElementChild child,
-      {super.key})
-      : super(serial, EnumSpWMLElementType.block, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, info, child);
+    int serial,
+    Map<String, String> params,
+    SpWMLParamsWrapper spwmlParams,
+    int parentSerial,
+    int lineStart,
+    int lineEnd,
+    SpWMLFontStyle style,
+    SpWMLInfo? info,
+    BlockElementChild child, {
+    super.key,
+  }) : super(
+         serial,
+         EnumSpWMLElementType.block,
+         params,
+         spwmlParams,
+         parentSerial,
+         lineStart,
+         lineEnd,
+         style,
+         info,
+         child,
+       );
 
   /// Get this class name.
   @override

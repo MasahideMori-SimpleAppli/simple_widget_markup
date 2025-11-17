@@ -27,19 +27,29 @@ class SegmentedBtnElement extends MultiChildElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   SegmentedBtnElement(
-      int serial,
-      Map<String, String> params,
-      SpWMLParamsWrapper spwmlParams,
-      int parentSerial,
-      int lineStart,
-      int lineEnd,
-      SpWMLFontStyle style,
-      SpWMLInfo? info,
-      StructureElementChildren children,
-      this.elParams,
-      {super.key})
-      : super(serial, EnumSpWMLElementType.segmentedBtn, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, info, children);
+    int serial,
+    Map<String, String> params,
+    SpWMLParamsWrapper spwmlParams,
+    int parentSerial,
+    int lineStart,
+    int lineEnd,
+    SpWMLFontStyle style,
+    SpWMLInfo? info,
+    StructureElementChildren children,
+    this.elParams, {
+    super.key,
+  }) : super(
+         serial,
+         EnumSpWMLElementType.segmentedBtn,
+         params,
+         spwmlParams,
+         parentSerial,
+         lineStart,
+         lineEnd,
+         style,
+         info,
+         children,
+       );
 
   /// Get this class name.
   @override
@@ -56,16 +66,20 @@ class SegmentedBtnElement extends MultiChildElement {
         : true;
     elParams.p.multiSelectionEnabled =
         params.containsKey(EnumSpWMLParams.isMultiSelection)
-            ? params[EnumSpWMLParams.isMultiSelection]
-            : SegmentedBtnParams.defMultiSelectionEnabled;
+        ? params[EnumSpWMLParams.isMultiSelection]
+        : SegmentedBtnParams.defMultiSelectionEnabled;
     elParams.p.emptySelectionAllowed =
         params.containsKey(EnumSpWMLParams.allowEmpty)
-            ? params[EnumSpWMLParams.allowEmpty]
-            : SegmentedBtnParams.defEmptySelectionAllowed;
+        ? params[EnumSpWMLParams.allowEmpty]
+        : SegmentedBtnParams.defEmptySelectionAllowed;
     // SIDが設定されていなければエラー。
     if (getSID() == null) {
-      throw SpWMLException(EnumSpWMLExceptionType.sidDoesNotExistException,
-          lineStart, lineEnd, info);
+      throw SpWMLException(
+        EnumSpWMLExceptionType.sidDoesNotExistException,
+        lineStart,
+        lineEnd,
+        info,
+      );
     }
     return this;
   }
@@ -74,7 +88,11 @@ class SegmentedBtnElement extends MultiChildElement {
   @override
   Widget getWidget(BuildContext context) {
     return _SegmentedBtnElementWidget(
-        getSID()!, children, elParams, getShape());
+      getSID()!,
+      children,
+      elParams,
+      getShape(),
+    );
   }
 
   /// (en)Set callback.
@@ -141,7 +159,11 @@ class _SegmentedBtnElementWidget extends StatefulWidget {
   final OutlinedBorder? shape;
 
   const _SegmentedBtnElementWidget(
-      this.sid, this.children, this.elParams, this.shape);
+    this.sid,
+    this.children,
+    this.elParams,
+    this.shape,
+  );
 
   @override
   _SegmentedBtnElementWidgetState createState() =>
@@ -167,20 +189,31 @@ class _SegmentedBtnElementWidgetState
     int count = 0;
     for (Widget i in widget.children.children) {
       if (i is TextElement) {
-        r.add(ButtonSegment(
-            value: count, label: i.getNonSelectableTextWidget(context)));
+        r.add(
+          ButtonSegment(
+            value: count,
+            label: i.getNonSelectableTextWidget(context),
+          ),
+        );
       } else if (i is BtnElement) {
         if (i.elParams.p.isUseIcon) {
-          r.add(ButtonSegment(
+          r.add(
+            ButtonSegment(
               value: count,
               label: i.getNonSelectableTextWidget(context),
-              icon: i.getIcon(false)));
+              icon: i.getIcon(false),
+            ),
+          );
         } else {
           if (i.elParams.p.type == EnumBtnType.block) {
             r.add(ButtonSegment(value: count, label: i.child.child));
           } else {
-            r.add(ButtonSegment(
-                value: count, label: i.getNonSelectableTextWidget(context)));
+            r.add(
+              ButtonSegment(
+                value: count,
+                label: i.getNonSelectableTextWidget(context),
+              ),
+            );
           }
         }
       } else {

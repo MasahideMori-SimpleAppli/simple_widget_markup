@@ -32,19 +32,29 @@ class DropdownBtn2Element extends MultiChildElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   DropdownBtn2Element(
-      int serial,
-      Map<String, String> params,
-      SpWMLParamsWrapper spwmlParams,
-      int parentSerial,
-      int lineStart,
-      int lineEnd,
-      SpWMLFontStyle style,
-      SpWMLInfo? info,
-      StructureElementChildren children,
-      this.elParams,
-      {super.key})
-      : super(serial, EnumSpWMLElementType.dropdownBtn2, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, info, children);
+    int serial,
+    Map<String, String> params,
+    SpWMLParamsWrapper spwmlParams,
+    int parentSerial,
+    int lineStart,
+    int lineEnd,
+    SpWMLFontStyle style,
+    SpWMLInfo? info,
+    StructureElementChildren children,
+    this.elParams, {
+    super.key,
+  }) : super(
+         serial,
+         EnumSpWMLElementType.dropdownBtn2,
+         params,
+         spwmlParams,
+         parentSerial,
+         lineStart,
+         lineEnd,
+         style,
+         info,
+         children,
+       );
 
   /// Get this class name.
   @override
@@ -81,17 +91,22 @@ class DropdownBtn2Element extends MultiChildElement {
     if (params.containsKey(EnumSpWMLParams.underlineColor) ||
         params.containsKey(EnumSpWMLParams.underlineHeight)) {
       elParams.p.underline = Container(
-          color: params.containsKey(EnumSpWMLParams.underlineColor)
-              ? params[EnumSpWMLParams.underlineColor]
-              : Colors.black87,
-          height: params.containsKey(EnumSpWMLParams.underlineHeight)
-              ? params[EnumSpWMLParams.underlineHeight]
-              : 1.0);
+        color: params.containsKey(EnumSpWMLParams.underlineColor)
+            ? params[EnumSpWMLParams.underlineColor]
+            : Colors.black87,
+        height: params.containsKey(EnumSpWMLParams.underlineHeight)
+            ? params[EnumSpWMLParams.underlineHeight]
+            : 1.0,
+      );
     }
     // SIDが設定されていなければエラー。
     if (getSID() == null) {
-      throw SpWMLException(EnumSpWMLExceptionType.sidDoesNotExistException,
-          lineStart, lineEnd, info);
+      throw SpWMLException(
+        EnumSpWMLExceptionType.sidDoesNotExistException,
+        lineStart,
+        lineEnd,
+        info,
+      );
     }
     return this;
   }
@@ -112,56 +127,63 @@ class DropdownBtn2Element extends MultiChildElement {
         final int v = count;
         if (i is! SpWMLElement) {
           throw SpWMLException(
-              EnumSpWMLExceptionType.childrenTagNotExistException,
-              -1,
-              -1,
-              SpWMLInfo(errorHint: 'dropdownBtn2, sid=$sid'));
+            EnumSpWMLExceptionType.childrenTagNotExistException,
+            -1,
+            -1,
+            SpWMLInfo(errorHint: 'dropdownBtn2, sid=$sid'),
+          );
         }
         final String? targetTag = i.getTag();
         if (targetTag == null) {
           throw SpWMLException(
-              EnumSpWMLExceptionType.childrenTagNotExistException,
-              -1,
-              -1,
-              SpWMLInfo(errorHint: 'dropdownBtn2, sid=$sid'));
+            EnumSpWMLExceptionType.childrenTagNotExistException,
+            -1,
+            -1,
+            SpWMLInfo(errorHint: 'dropdownBtn2, sid=$sid'),
+          );
         }
-        menus.add(DropdownMenuItem(
-          key: elParams.p.dropdownMenuItemParams[v].key,
-          onTap: () {
-            elParams.p.manager!.setSelection(sid, targetTag);
-            if (elParams.p.dropdownMenuItemParams[v].onTap == null) {
-              if (elParams.p.menuCallback != null) {
-                elParams.p.menuCallback!(targetTag);
+        menus.add(
+          DropdownMenuItem(
+            key: elParams.p.dropdownMenuItemParams[v].key,
+            onTap: () {
+              elParams.p.manager!.setSelection(sid, targetTag);
+              if (elParams.p.dropdownMenuItemParams[v].onTap == null) {
+                if (elParams.p.menuCallback != null) {
+                  elParams.p.menuCallback!(targetTag);
+                }
+              } else {
+                elParams.p.dropdownMenuItemParams[v].onTap!();
               }
-            } else {
-              elParams.p.dropdownMenuItemParams[v].onTap!();
-            }
-          },
-          value: targetTag,
-          enabled: elParams.p.dropdownMenuItemParams[v].enabled,
-          alignment: elParams.p.dropdownMenuItemParams[v].alignment,
-          child: i,
-        ));
+            },
+            value: targetTag,
+            enabled: elParams.p.dropdownMenuItemParams[v].enabled,
+            alignment: elParams.p.dropdownMenuItemParams[v].alignment,
+            child: i,
+          ),
+        );
         count += 1;
       }
     } else {
       for (final i in children.children) {
         if (i is! SpWMLElement) {
           throw SpWMLException(
-              EnumSpWMLExceptionType.childrenTagNotExistException,
-              -1,
-              -1,
-              SpWMLInfo(errorHint: 'dropdownBtn2, sid=$sid'));
+            EnumSpWMLExceptionType.childrenTagNotExistException,
+            -1,
+            -1,
+            SpWMLInfo(errorHint: 'dropdownBtn2, sid=$sid'),
+          );
         }
         final String? targetTag = i.getTag();
         if (targetTag == null) {
           throw SpWMLException(
-              EnumSpWMLExceptionType.childrenTagNotExistException,
-              -1,
-              -1,
-              SpWMLInfo(errorHint: 'dropdownBtn2, sid=$sid'));
+            EnumSpWMLExceptionType.childrenTagNotExistException,
+            -1,
+            -1,
+            SpWMLInfo(errorHint: 'dropdownBtn2, sid=$sid'),
+          );
         }
-        menus.add(DropdownMenuItem(
+        menus.add(
+          DropdownMenuItem(
             value: targetTag,
             onTap: () {
               elParams.p.manager!.setSelection(sid, targetTag);
@@ -169,14 +191,12 @@ class DropdownBtn2Element extends MultiChildElement {
                 elParams.p.menuCallback!(targetTag);
               }
             },
-            child: i));
+            child: i,
+          ),
+        );
       }
     }
-    return _DropDownElement2Widget(
-      getSID()!,
-      menus,
-      elParams,
-    );
+    return _DropDownElement2Widget(getSID()!, menus, elParams);
   }
 
   /// (en)Set menus callback.
@@ -280,11 +300,8 @@ class _DropDownElement2WidgetState extends State<_DropDownElement2Widget> {
       padding: widget.elParams.p.padding,
       onChanged: widget.elParams.p.isEnabled
           ? (String? v) => {
-                if (mounted)
-                  {
-                    setState(() {}),
-                  }
-              }
+              if (mounted) {setState(() {})},
+            }
           : null,
     );
   }

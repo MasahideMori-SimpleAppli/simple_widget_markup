@@ -10,22 +10,25 @@ void main() {
     resumed.styleMap[EnumSpWMLElementType.h1]!.fontWeight =
         EnumFontWeight.light;
     expect(
-        manager.style.styleMap[EnumSpWMLElementType.h1]!.fontWeight !=
-            EnumFontWeight.light,
-        true);
+      manager.style.styleMap[EnumSpWMLElementType.h1]!.fontWeight !=
+          EnumFontWeight.light,
+      true,
+    );
     manager.changeStyle(resumed);
     expect(
-        manager.style.styleMap[EnumSpWMLElementType.h1]!.fontWeight ==
-            EnumFontWeight.light,
-        true);
+      manager.style.styleMap[EnumSpWMLElementType.h1]!.fontWeight ==
+          EnumFontWeight.light,
+      true,
+    );
     // deep copy check
     expect(
-        manager.style.styleMap[EnumSpWMLElementType.h1]!.fontWeight ==
-            manager.style
-                .deepCopy()
-                .styleMap[EnumSpWMLElementType.h1]!
-                .fontWeight,
-        true);
+      manager.style.styleMap[EnumSpWMLElementType.h1]!.fontWeight ==
+          manager.style
+              .deepCopy()
+              .styleMap[EnumSpWMLElementType.h1]!
+              .fontWeight,
+      true,
+    );
   });
 
   test('util_params test', () {

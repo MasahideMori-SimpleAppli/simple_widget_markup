@@ -26,18 +26,27 @@ class ColorPaletteElement extends SpWMLElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   ColorPaletteElement(
-      int serial,
-      Map<String, String> params,
-      SpWMLParamsWrapper spwmlParams,
-      int parentSerial,
-      int lineStart,
-      int lineEnd,
-      SpWMLFontStyle style,
-      SpWMLInfo? info,
-      this.elParams,
-      {super.key})
-      : super(serial, EnumSpWMLElementType.colorPalette, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, info);
+    int serial,
+    Map<String, String> params,
+    SpWMLParamsWrapper spwmlParams,
+    int parentSerial,
+    int lineStart,
+    int lineEnd,
+    SpWMLFontStyle style,
+    SpWMLInfo? info,
+    this.elParams, {
+    super.key,
+  }) : super(
+         serial,
+         EnumSpWMLElementType.colorPalette,
+         params,
+         spwmlParams,
+         parentSerial,
+         lineStart,
+         lineEnd,
+         style,
+         info,
+       );
 
   /// Get this class name.
   @override
@@ -75,12 +84,12 @@ class ColorPaletteElement extends SpWMLElement {
         : Colors.black;
     final double? cellBorderWidth =
         params.containsKey(EnumSpWMLParams.cellBorderWidth)
-            ? params[EnumSpWMLParams.cellBorderWidth]
-            : null;
+        ? params[EnumSpWMLParams.cellBorderWidth]
+        : null;
     final Color? cellBorderColor =
         params.containsKey(EnumSpWMLParams.cellBorderColor)
-            ? params[EnumSpWMLParams.cellBorderColor]
-            : null;
+        ? params[EnumSpWMLParams.cellBorderColor]
+        : null;
     elParams.p.colorCellDecoration = elParams.p.colorCellDecoration.copyWith(
       border: Border.all(
         color: cellBorderColor ?? Colors.black,
@@ -90,8 +99,9 @@ class ColorPaletteElement extends SpWMLElement {
     );
     if ((elParams.p.type == EnumColorPaletteType.circle ||
         elParams.p.type == EnumColorPaletteType.simpleCircle)) {
-      elParams.p.colorCellDecoration =
-          elParams.p.colorCellDecoration.copyWith(shape: BoxShape.circle);
+      elParams.p.colorCellDecoration = elParams.p.colorCellDecoration.copyWith(
+        shape: BoxShape.circle,
+      );
     }
     // コンテンツテキストが存在する場合、カンマ区切りでカラーに変換。
     if (spwmlParams.p.text != "") {
@@ -103,8 +113,10 @@ class ColorPaletteElement extends SpWMLElement {
           if (j != "") {
             String t = j.replaceAll(" ", ""); // 半角スペース除去
             t = t.replaceAll("　", ""); // 全角スペース除去
-            c.add(UtilParams.convertColor(t, lineStart, lineEnd, info) ??
-                Colors.transparent);
+            c.add(
+              UtilParams.convertColor(t, lineStart, lineEnd, info) ??
+                  Colors.transparent,
+            );
           }
         }
         tiles.add(c);
@@ -113,8 +125,12 @@ class ColorPaletteElement extends SpWMLElement {
     }
     // SIDが設定されていなければエラー。
     if (getSID() == null) {
-      throw SpWMLException(EnumSpWMLExceptionType.sidDoesNotExistException,
-          lineStart, lineEnd, info);
+      throw SpWMLException(
+        EnumSpWMLExceptionType.sidDoesNotExistException,
+        lineStart,
+        lineEnd,
+        info,
+      );
     }
     return this;
   }
@@ -155,12 +171,14 @@ class ColorPaletteElement extends SpWMLElement {
       return;
     } else {
       final Color? c = UtilParams.convertColor(
-          v,
-          -1,
-          -1,
-          SpWMLInfo(
-              errorHint:
-                  "${getClassName()}: The specified color format is invalid."));
+        v,
+        -1,
+        -1,
+        SpWMLInfo(
+          errorHint:
+              "${getClassName()}: The specified color format is invalid.",
+        ),
+      );
       if (c != null) {
         setColor(c);
       }
@@ -323,13 +341,20 @@ class _ColorPaletteElementWidgetState
   List<Widget> _getColorTiles() {
     List<Widget> r = [];
     for (List<Color> i in widget.params.colorTiles) {
-      r.add(Container(
-        margin: EdgeInsets.fromLTRB(
-            0, r.isEmpty ? 0 : widget.params.cellMargin, 0, 0),
-        child: Row(
+      r.add(
+        Container(
+          margin: EdgeInsets.fromLTRB(
+            0,
+            r.isEmpty ? 0 : widget.params.cellMargin,
+            0,
+            0,
+          ),
+          child: Row(
             mainAxisAlignment: widget.params.hAlign,
-            children: _getColorBtns(i)),
-      ));
+            children: _getColorBtns(i),
+          ),
+        ),
+      );
     }
     return r;
   }
@@ -341,80 +366,90 @@ class _ColorPaletteElementWidgetState
         mainAxisAlignment: widget.params.hAlign,
         children: [
           Container(
-              width: 56,
-              height: 30,
-              margin: const EdgeInsets.fromLTRB(0, 20, 12, 0),
-              decoration: BoxDecoration(
-                  color: c,
-                  border: Border.all(
-                    color: Colors.black,
-                    width: 1.0,
-                    // solid only
-                    style: BorderStyle.solid,
-                  ),
-                  shape: BoxShape.rectangle)),
+            width: 56,
+            height: 30,
+            margin: const EdgeInsets.fromLTRB(0, 20, 12, 0),
+            decoration: BoxDecoration(
+              color: c,
+              border: Border.all(
+                color: Colors.black,
+                width: 1.0,
+                // solid only
+                style: BorderStyle.solid,
+              ),
+              shape: BoxShape.rectangle,
+            ),
+          ),
           Container(
-              margin: const EdgeInsets.fromLTRB(0, 0, 8, 0),
-              width: 48,
-              child: TextField(
-                controller: tfm.getCtrl("$sid:A"),
-                focusNode: tfm.getFocus("$sid:A"),
-                maxLines: 1,
-                keyboardType: TextInputType.number,
-                inputFormatters: EnumTextFieldInputType.intOnly
-                    .toTextInputFormatter(null, 255),
-                style: const TextStyle(fontSize: 14),
-                decoration: const InputDecoration(
-                    contentPadding: EdgeInsets.fromLTRB(0, 12, 0, 8),
-                    labelText: "A"),
-              )),
+            margin: const EdgeInsets.fromLTRB(0, 0, 8, 0),
+            width: 48,
+            child: TextField(
+              controller: tfm.getCtrl("$sid:A"),
+              focusNode: tfm.getFocus("$sid:A"),
+              maxLines: 1,
+              keyboardType: TextInputType.number,
+              inputFormatters: EnumTextFieldInputType.intOnly
+                  .toTextInputFormatter(null, 255),
+              style: const TextStyle(fontSize: 14),
+              decoration: const InputDecoration(
+                contentPadding: EdgeInsets.fromLTRB(0, 12, 0, 8),
+                labelText: "A",
+              ),
+            ),
+          ),
           Container(
-              margin: const EdgeInsets.fromLTRB(0, 0, 8, 0),
-              width: 48,
-              child: TextField(
-                controller: tfm.getCtrl("$sid:R"),
-                focusNode: tfm.getFocus("$sid:R"),
-                maxLines: 1,
-                keyboardType: TextInputType.number,
-                inputFormatters: EnumTextFieldInputType.intOnly
-                    .toTextInputFormatter(null, 255),
-                style: const TextStyle(fontSize: 14),
-                decoration: const InputDecoration(
-                    contentPadding: EdgeInsets.fromLTRB(0, 12, 0, 8),
-                    labelText: "R"),
-              )),
+            margin: const EdgeInsets.fromLTRB(0, 0, 8, 0),
+            width: 48,
+            child: TextField(
+              controller: tfm.getCtrl("$sid:R"),
+              focusNode: tfm.getFocus("$sid:R"),
+              maxLines: 1,
+              keyboardType: TextInputType.number,
+              inputFormatters: EnumTextFieldInputType.intOnly
+                  .toTextInputFormatter(null, 255),
+              style: const TextStyle(fontSize: 14),
+              decoration: const InputDecoration(
+                contentPadding: EdgeInsets.fromLTRB(0, 12, 0, 8),
+                labelText: "R",
+              ),
+            ),
+          ),
           Container(
-              margin: const EdgeInsets.fromLTRB(0, 0, 8, 0),
-              width: 48,
-              child: TextField(
-                controller: tfm.getCtrl("$sid:G"),
-                focusNode: tfm.getFocus("$sid:G"),
-                maxLines: 1,
-                keyboardType: TextInputType.number,
-                inputFormatters: EnumTextFieldInputType.intOnly
-                    .toTextInputFormatter(null, 255),
-                style: const TextStyle(fontSize: 14),
-                decoration: const InputDecoration(
-                    contentPadding: EdgeInsets.fromLTRB(0, 12, 0, 8),
-                    labelText: "G"),
-              )),
+            margin: const EdgeInsets.fromLTRB(0, 0, 8, 0),
+            width: 48,
+            child: TextField(
+              controller: tfm.getCtrl("$sid:G"),
+              focusNode: tfm.getFocus("$sid:G"),
+              maxLines: 1,
+              keyboardType: TextInputType.number,
+              inputFormatters: EnumTextFieldInputType.intOnly
+                  .toTextInputFormatter(null, 255),
+              style: const TextStyle(fontSize: 14),
+              decoration: const InputDecoration(
+                contentPadding: EdgeInsets.fromLTRB(0, 12, 0, 8),
+                labelText: "G",
+              ),
+            ),
+          ),
           Container(
-              margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-              width: 48,
-              child: TextField(
-                controller: tfm.getCtrl("$sid:B"),
-                focusNode: tfm.getFocus("$sid:B"),
-                maxLines: 1,
-                keyboardType: TextInputType.number,
-                inputFormatters: EnumTextFieldInputType.intOnly
-                    .toTextInputFormatter(null, 255),
-                style: const TextStyle(fontSize: 14),
-                decoration: const InputDecoration(
-                    contentPadding: EdgeInsets.fromLTRB(0, 12, 0, 8),
-                    labelText: "B"),
-              )),
+            margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+            width: 48,
+            child: TextField(
+              controller: tfm.getCtrl("$sid:B"),
+              focusNode: tfm.getFocus("$sid:B"),
+              maxLines: 1,
+              keyboardType: TextInputType.number,
+              inputFormatters: EnumTextFieldInputType.intOnly
+                  .toTextInputFormatter(null, 255),
+              style: const TextStyle(fontSize: 14),
+              decoration: const InputDecoration(
+                contentPadding: EdgeInsets.fromLTRB(0, 12, 0, 8),
+                labelText: "B",
+              ),
+            ),
+          ),
         ],
-      )
+      ),
     ];
   }
 

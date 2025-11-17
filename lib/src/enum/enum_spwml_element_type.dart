@@ -84,16 +84,17 @@ enum EnumSpWMLElementType {
 }
 
 /// 重複を避けて高速化するために、短縮系だけをまとめたもの。
-enum _EnumSpWMLElementTypeShort {
-  tf,
-  tr,
-}
+enum _EnumSpWMLElementTypeShort { tf, tr }
 
 /// EnumSpWMLElementType extension.
 extension EXTEnumSpWMLElementType on EnumSpWMLElementType {
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
   static EnumSpWMLElementType fromStr(
-      String s, int lineStart, int lineEnd, SpWMLInfo? info) {
+    String s,
+    int lineStart,
+    int lineEnd,
+    SpWMLInfo? info,
+  ) {
     // 短縮系だけ先にチェック。後は自動チェック。
     if (s == _EnumSpWMLElementTypeShort.tf.name) {
       return EnumSpWMLElementType.textField;
@@ -105,7 +106,11 @@ extension EXTEnumSpWMLElementType on EnumSpWMLElementType {
         return EnumSpWMLElementType.values.byName(s);
       } catch (e) {
         throw SpWMLException(
-            EnumSpWMLExceptionType.typeException, lineStart, lineEnd, info);
+          EnumSpWMLExceptionType.typeException,
+          lineStart,
+          lineEnd,
+          info,
+        );
       }
     }
   }

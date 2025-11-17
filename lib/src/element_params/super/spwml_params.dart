@@ -87,14 +87,16 @@ class SpWMLParams {
   bool useMaterial;
 
   /// The SpWMLElement Parameters.
-  SpWMLParams(this.text,
-      {this.materialParams,
-      this.containerParams,
-      this.weight,
-      this.flexFit = FlexFit.tight,
-      this.shiftX,
-      this.shiftY,
-      this.constrains,
-      this.isGone = false,
-      this.useMaterial = false});
+  SpWMLParams(
+    this.text, {
+    this.materialParams,
+    this.containerParams,
+    this.weight,
+    this.flexFit = FlexFit.tight,
+    this.shiftX,
+    this.shiftY,
+    this.constrains,
+    this.isGone = false,
+    this.useMaterial = false,
+  });
 }

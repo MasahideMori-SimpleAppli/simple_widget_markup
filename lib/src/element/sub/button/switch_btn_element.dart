@@ -26,18 +26,27 @@ class SwitchBtnElement extends SpWMLElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   SwitchBtnElement(
-      int serial,
-      Map<String, String> params,
-      SpWMLParamsWrapper spwmlParams,
-      int parentSerial,
-      int lineStart,
-      int lineEnd,
-      SpWMLFontStyle style,
-      SpWMLInfo? info,
-      this.elParams,
-      {super.key})
-      : super(serial, EnumSpWMLElementType.switchBtn, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, info);
+    int serial,
+    Map<String, String> params,
+    SpWMLParamsWrapper spwmlParams,
+    int parentSerial,
+    int lineStart,
+    int lineEnd,
+    SpWMLFontStyle style,
+    SpWMLInfo? info,
+    this.elParams, {
+    super.key,
+  }) : super(
+         serial,
+         EnumSpWMLElementType.switchBtn,
+         params,
+         spwmlParams,
+         parentSerial,
+         lineStart,
+         lineEnd,
+         style,
+         info,
+       );
 
   /// Get this class name.
   @override
@@ -62,8 +71,12 @@ class SwitchBtnElement extends SpWMLElement {
     }
     // SIDが設定されていなければエラー。
     if (getSID() == null) {
-      throw SpWMLException(EnumSpWMLExceptionType.sidDoesNotExistException,
-          lineStart, lineEnd, info);
+      throw SpWMLException(
+        EnumSpWMLExceptionType.sidDoesNotExistException,
+        lineStart,
+        lineEnd,
+        info,
+      );
     }
     return this;
   }
@@ -88,14 +101,14 @@ class SwitchBtnElement extends SpWMLElement {
   /// * [selected] : The icon for selected state.
   /// * [nonSelected] : The icon for non-selected state.
   void setSwitchIcon(IconData? selected, IconData? nonSelected) {
-    elParams.p.thumbIcon = WidgetStateProperty.resolveWith<Icon?>(
-      (Set<WidgetState> states) {
-        if (states.contains(WidgetState.selected)) {
-          return Icon(selected);
-        }
-        return Icon(nonSelected);
-      },
-    );
+    elParams.p.thumbIcon = WidgetStateProperty.resolveWith<Icon?>((
+      Set<WidgetState> states,
+    ) {
+      if (states.contains(WidgetState.selected)) {
+        return Icon(selected);
+      }
+      return Icon(nonSelected);
+    });
   }
 
   /// (en) Sets the switch value. Disabled if the manager class is not set.
@@ -165,17 +178,17 @@ class _SwitchBtnElementWidgetState extends State<_SwitchBtnElementWidget> {
       value: widget.elParams.p.manager!.getFlag(widget.sid),
       onChanged:
           widget.elParams.p.onChanged != null && widget.elParams.p.isEnabled
-              ? (bool b) {
-                  if (mounted) {
-                    setState(() {
-                      widget.elParams.p.manager!.setFlag(widget.sid, b);
-                      if (widget.elParams.p.onChanged != null) {
-                        widget.elParams.p.onChanged!(b);
-                      }
-                    });
+          ? (bool b) {
+              if (mounted) {
+                setState(() {
+                  widget.elParams.p.manager!.setFlag(widget.sid, b);
+                  if (widget.elParams.p.onChanged != null) {
+                    widget.elParams.p.onChanged!(b);
                   }
-                }
-              : null,
+                });
+              }
+            }
+          : null,
       activeThumbColor: widget.elParams.p.activeThumbColor,
       activeTrackColor: widget.elParams.p.activeTrackColor,
       inactiveThumbColor: widget.elParams.p.inactiveThumbColor,

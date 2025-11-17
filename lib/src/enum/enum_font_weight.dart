@@ -23,7 +23,7 @@ enum EnumFontWeight {
   regular,
   medium,
   bold,
-  black
+  black,
 }
 
 /// EnumFontWeight extension.
@@ -60,7 +60,11 @@ extension EXTEnumFontWeight on EnumFontWeight {
       return FontWeight.w900;
     } else {
       throw SpWMLException(
-          EnumSpWMLExceptionType.paramValueException, lineStart, lineEnd, info);
+        EnumSpWMLExceptionType.paramValueException,
+        lineStart,
+        lineEnd,
+        info,
+      );
     }
   }
 

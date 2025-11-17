@@ -47,7 +47,7 @@ enum EnumSpWMLExceptionType {
   tableParamException,
   sidDoesNotExistException,
   noManagerException,
-  childrenTagNotExistException
+  childrenTagNotExistException,
 }
 
 extension EXTEnumSpWMLExceptionType on EnumSpWMLExceptionType {

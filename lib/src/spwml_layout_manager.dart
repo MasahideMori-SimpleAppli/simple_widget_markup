@@ -86,8 +86,11 @@ class SpWMLLayoutManager {
   /// The callback will be fired after the current rendering is finished.
   /// * [errorCallback] : The callback in case loading fails.
   /// The callback will be fired after the current rendering is finished.
-  String? getAssets(String path, void Function() setStateCallback,
-      void Function(dynamic error) errorCallback) {
+  String? getAssets(
+    String path,
+    void Function() setStateCallback,
+    void Function(dynamic error) errorCallback,
+  ) {
     if (_buffLayouts.containsKey(path)) {
       return _buffLayouts[path];
     } else {
@@ -119,9 +122,10 @@ class SpWMLLayoutManager {
   /// This is fired only once when an asset fails to load.
   /// And the asset loading will stop at that point.
   List<String>? getMultiAssets(
-      List<String> paths,
-      void Function() setStateCallback,
-      void Function(dynamic error) errorCallback) {
+    List<String> paths,
+    void Function() setStateCallback,
+    void Function(dynamic error) errorCallback,
+  ) {
     bool isAllContained = true;
     for (String i in paths) {
       if (!_buffLayouts.containsKey(i)) {
@@ -175,10 +179,11 @@ class SpWMLLayoutManager {
   /// * [errorCallback] : The callback in case loading fails.
   /// The callback will be fired after the current rendering is finished.
   String? getResource(
-      String url,
-      Future<String> Function(String url) getDataFunction,
-      void Function() setStateCallback,
-      void Function(dynamic error) errorCallback) {
+    String url,
+    Future<String> Function(String url) getDataFunction,
+    void Function() setStateCallback,
+    void Function(dynamic error) errorCallback,
+  ) {
     if (_buffLayouts.containsKey(url)) {
       return _buffLayouts[url];
     } else {
@@ -211,10 +216,11 @@ class SpWMLLayoutManager {
   /// This is fired only once when an asset fails to load.
   /// And the asset loading will stop at that point.
   List<String>? getMultiResource(
-      List<String> urls,
-      Future<List<String>> Function(List<String> urls) getDataFunction,
-      void Function() setStateCallback,
-      void Function(dynamic error) errorCallback) {
+    List<String> urls,
+    Future<List<String>> Function(List<String> urls) getDataFunction,
+    void Function() setStateCallback,
+    void Function(dynamic error) errorCallback,
+  ) {
     bool isAllContained = true;
     for (String i in urls) {
       if (!_buffLayouts.containsKey(i)) {

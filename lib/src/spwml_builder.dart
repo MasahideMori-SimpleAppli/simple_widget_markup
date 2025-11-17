@@ -29,18 +29,22 @@ class SpWMLBuilder {
   /// you can change the contents of the singleton SpWMLFontManager class.
   /// * [info] : This is information object. e.g. A hint when an error occurs.
   /// It is convenient to set when nesting multiple SpWMLs.
-  SpWMLBuilder(String spWML,
-      {this.mainAA = MainAxisAlignment.start,
-      this.crossAA = CrossAxisAlignment.start,
-      this.mainAS = MainAxisSize.max,
-      this.margin = const EdgeInsets.all(0),
-      this.padding = const EdgeInsets.all(0),
-      SpWMLFontStyle? spWMLStyle,
-      this.info,
-      this.key})
-      : _parsedWidgets = SpWMLParser.run(
-            spWML, spWMLStyle ?? SpWMLFontStyleManager().style, info),
-        style = spWMLStyle ?? SpWMLFontStyleManager().style;
+  SpWMLBuilder(
+    String spWML, {
+    this.mainAA = MainAxisAlignment.start,
+    this.crossAA = CrossAxisAlignment.start,
+    this.mainAS = MainAxisSize.max,
+    this.margin = const EdgeInsets.all(0),
+    this.padding = const EdgeInsets.all(0),
+    SpWMLFontStyle? spWMLStyle,
+    this.info,
+    this.key,
+  }) : _parsedWidgets = SpWMLParser.run(
+         spWML,
+         spWMLStyle ?? SpWMLFontStyleManager().style,
+         info,
+       ),
+       style = spWMLStyle ?? SpWMLFontStyleManager().style;
 
   /// (en)Replaces the contents of the specified SID with a widget.
   ///
@@ -78,7 +82,11 @@ class SpWMLBuilder {
             break;
           } else {
             throw SpWMLException(
-                EnumSpWMLExceptionType.replaceException, -1, -1, info);
+              EnumSpWMLExceptionType.replaceException,
+              -1,
+              -1,
+              info,
+            );
           }
         }
       }
@@ -128,7 +136,11 @@ class SpWMLBuilder {
             break;
           } else {
             throw SpWMLException(
-                EnumSpWMLExceptionType.replaceException, -1, -1, info);
+              EnumSpWMLExceptionType.replaceException,
+              -1,
+              -1,
+              info,
+            );
           }
         }
       }
@@ -208,26 +220,26 @@ class SpWMLBuilder {
         for (SpWMLElement j in _parsedWidgets) {
           if (i.serial == j.parentSerial && i.serial != -1) {
             final String eStr = SpWMLException(
-                    EnumSpWMLExceptionType.levelException,
-                    j.lineStart,
-                    j.lineEnd,
-                    info)
-                .toString();
+              EnumSpWMLExceptionType.levelException,
+              j.lineStart,
+              j.lineEnd,
+              info,
+            ).toString();
             debugPrint(eStr);
             r.clear();
             return [
               TextElement(
-                      -1,
-                      EnumSpWMLElementType.text,
-                      const {},
-                      SpWMLParamsWrapper(SpWMLParams(eStr)),
-                      -1,
-                      j.lineStart,
-                      j.lineEnd,
-                      style,
-                      info,
-                      TextParamsWrapper(TextParams()))
-                  .initParams()
+                -1,
+                EnumSpWMLElementType.text,
+                const {},
+                SpWMLParamsWrapper(SpWMLParams(eStr)),
+                -1,
+                j.lineStart,
+                j.lineEnd,
+                style,
+                info,
+                TextParamsWrapper(TextParams()),
+              ).initParams(),
             ];
           }
         }
@@ -249,15 +261,16 @@ class SpWMLBuilder {
   /// Returns Widget.
   Widget build(BuildContext context) {
     return Container(
-        key: key,
-        margin: margin,
-        padding: padding,
-        child: Column(
-          mainAxisAlignment: mainAA,
-          crossAxisAlignment: crossAA,
-          mainAxisSize: mainAS,
-          children: _getStructuralWidget(context),
-        ));
+      key: key,
+      margin: margin,
+      padding: padding,
+      child: Column(
+        mainAxisAlignment: mainAA,
+        crossAxisAlignment: crossAA,
+        mainAxisSize: mainAS,
+        children: _getStructuralWidget(context),
+      ),
+    );
   }
 
   /// (en)Builds without wrapping in containers and columns.
@@ -290,15 +303,16 @@ class SpWMLBuilder {
   /// * [vm] : The manager for progressIndicator, slider, split.
   ///
   /// Throws : Throws noManagerException if the required manager is not set.
-  void setManager(
-      {TextFieldManager? tfm,
-      IndexManager? im,
-      FlagManager? fm,
-      TagSelectionManager? tsm,
-      MultiIndexManager? mim,
-      MultiFlagManager? mfm,
-      MultiTagSelectionManager? mtsm,
-      ValueManager? vm}) {
+  void setManager({
+    TextFieldManager? tfm,
+    IndexManager? im,
+    FlagManager? fm,
+    TagSelectionManager? tsm,
+    MultiIndexManager? mim,
+    MultiFlagManager? mfm,
+    MultiTagSelectionManager? mtsm,
+    ValueManager? vm,
+  }) {
     for (SpWMLElement i in _parsedWidgets) {
       final String? sid = i.getSID();
       if (sid == null) {
@@ -310,12 +324,14 @@ class SpWMLBuilder {
             elm.setManager(tfm, sid);
           } else {
             throw SpWMLException(
-                EnumSpWMLExceptionType.noManagerException,
-                -1,
-                -1,
-                SpWMLInfo(
-                    errorHint:
-                        'TextFieldManager is not set. ${(info != null) ? info!.errorHint : ""}'));
+              EnumSpWMLExceptionType.noManagerException,
+              -1,
+              -1,
+              SpWMLInfo(
+                errorHint:
+                    'TextFieldManager is not set. ${(info != null) ? info!.errorHint : ""}',
+              ),
+            );
           }
         } else if (i.type == EnumSpWMLElementType.colorPalette) {
           ColorPaletteElement elm = i as ColorPaletteElement;
@@ -323,12 +339,14 @@ class SpWMLBuilder {
             elm.setManager(tfm, sid);
           } else {
             throw SpWMLException(
-                EnumSpWMLExceptionType.noManagerException,
-                -1,
-                -1,
-                SpWMLInfo(
-                    errorHint:
-                        'TextFieldManager is not set. ${(info != null) ? info!.errorHint : ""}'));
+              EnumSpWMLExceptionType.noManagerException,
+              -1,
+              -1,
+              SpWMLInfo(
+                errorHint:
+                    'TextFieldManager is not set. ${(info != null) ? info!.errorHint : ""}',
+              ),
+            );
           }
         } else if (i.type == EnumSpWMLElementType.dropdownBtn) {
           DropdownBtnElement elm = i as DropdownBtnElement;
@@ -336,12 +354,14 @@ class SpWMLBuilder {
             elm.setManager(im, sid);
           } else {
             throw SpWMLException(
-                EnumSpWMLExceptionType.noManagerException,
-                -1,
-                -1,
-                SpWMLInfo(
-                    errorHint:
-                        'IndexManager is not set. ${(info != null) ? info!.errorHint : ""}'));
+              EnumSpWMLExceptionType.noManagerException,
+              -1,
+              -1,
+              SpWMLInfo(
+                errorHint:
+                    'IndexManager is not set. ${(info != null) ? info!.errorHint : ""}',
+              ),
+            );
           }
         } else if (i.type == EnumSpWMLElementType.dropdownBtn2) {
           DropdownBtn2Element elm = i as DropdownBtn2Element;
@@ -349,12 +369,14 @@ class SpWMLBuilder {
             elm.setManager(tsm, sid);
           } else {
             throw SpWMLException(
-                EnumSpWMLExceptionType.noManagerException,
-                -1,
-                -1,
-                SpWMLInfo(
-                    errorHint:
-                        'SelectionManager is not set. ${(info != null) ? info!.errorHint : ""}'));
+              EnumSpWMLExceptionType.noManagerException,
+              -1,
+              -1,
+              SpWMLInfo(
+                errorHint:
+                    'SelectionManager is not set. ${(info != null) ? info!.errorHint : ""}',
+              ),
+            );
           }
         } else if (i.type == EnumSpWMLElementType.popupMenuBtn) {
           PopupMenuBtnElement elm = i as PopupMenuBtnElement;
@@ -362,12 +384,14 @@ class SpWMLBuilder {
             elm.setManager(im, sid);
           } else {
             throw SpWMLException(
-                EnumSpWMLExceptionType.noManagerException,
-                -1,
-                -1,
-                SpWMLInfo(
-                    errorHint:
-                        'IndexManager is not set. ${(info != null) ? info!.errorHint : ""}'));
+              EnumSpWMLExceptionType.noManagerException,
+              -1,
+              -1,
+              SpWMLInfo(
+                errorHint:
+                    'IndexManager is not set. ${(info != null) ? info!.errorHint : ""}',
+              ),
+            );
           }
         } else if (i.type == EnumSpWMLElementType.popupMenuBtn2) {
           PopupMenuBtn2Element elm = i as PopupMenuBtn2Element;
@@ -375,12 +399,14 @@ class SpWMLBuilder {
             elm.setManager(tsm, sid);
           } else {
             throw SpWMLException(
-                EnumSpWMLExceptionType.noManagerException,
-                -1,
-                -1,
-                SpWMLInfo(
-                    errorHint:
-                        'SelectionManager is not set. ${(info != null) ? info!.errorHint : ""}'));
+              EnumSpWMLExceptionType.noManagerException,
+              -1,
+              -1,
+              SpWMLInfo(
+                errorHint:
+                    'SelectionManager is not set. ${(info != null) ? info!.errorHint : ""}',
+              ),
+            );
           }
         } else if (i.type == EnumSpWMLElementType.radioBtn) {
           RadioBtnElement elm = i as RadioBtnElement;
@@ -388,12 +414,14 @@ class SpWMLBuilder {
             elm.setManager(im, sid);
           } else {
             throw SpWMLException(
-                EnumSpWMLExceptionType.noManagerException,
-                -1,
-                -1,
-                SpWMLInfo(
-                    errorHint:
-                        'IndexManager is not set. ${(info != null) ? info!.errorHint : ""}'));
+              EnumSpWMLExceptionType.noManagerException,
+              -1,
+              -1,
+              SpWMLInfo(
+                errorHint:
+                    'IndexManager is not set. ${(info != null) ? info!.errorHint : ""}',
+              ),
+            );
           }
         } else if (i.type == EnumSpWMLElementType.radioBtn2) {
           RadioBtn2Element elm = i as RadioBtn2Element;
@@ -401,12 +429,14 @@ class SpWMLBuilder {
             elm.setManager(tsm, sid);
           } else {
             throw SpWMLException(
-                EnumSpWMLExceptionType.noManagerException,
-                -1,
-                -1,
-                SpWMLInfo(
-                    errorHint:
-                        'SelectionManager is not set. ${(info != null) ? info!.errorHint : ""}'));
+              EnumSpWMLExceptionType.noManagerException,
+              -1,
+              -1,
+              SpWMLInfo(
+                errorHint:
+                    'SelectionManager is not set. ${(info != null) ? info!.errorHint : ""}',
+              ),
+            );
           }
         } else if (i.type == EnumSpWMLElementType.switchBtn) {
           SwitchBtnElement elm = i as SwitchBtnElement;
@@ -414,12 +444,14 @@ class SpWMLBuilder {
             elm.setManager(fm, sid);
           } else {
             throw SpWMLException(
-                EnumSpWMLExceptionType.noManagerException,
-                -1,
-                -1,
-                SpWMLInfo(
-                    errorHint:
-                        'FlagManager is not set. ${(info != null) ? info!.errorHint : ""}'));
+              EnumSpWMLExceptionType.noManagerException,
+              -1,
+              -1,
+              SpWMLInfo(
+                errorHint:
+                    'FlagManager is not set. ${(info != null) ? info!.errorHint : ""}',
+              ),
+            );
           }
         } else if (i.type == EnumSpWMLElementType.segmentedBtn) {
           SegmentedBtnElement elm = i as SegmentedBtnElement;
@@ -427,12 +459,14 @@ class SpWMLBuilder {
             elm.setManager(mim, sid);
           } else {
             throw SpWMLException(
-                EnumSpWMLExceptionType.noManagerException,
-                -1,
-                -1,
-                SpWMLInfo(
-                    errorHint:
-                        'MultiIndexManager is not set. ${(info != null) ? info!.errorHint : ""}'));
+              EnumSpWMLExceptionType.noManagerException,
+              -1,
+              -1,
+              SpWMLInfo(
+                errorHint:
+                    'MultiIndexManager is not set. ${(info != null) ? info!.errorHint : ""}',
+              ),
+            );
           }
         } else if (i.type == EnumSpWMLElementType.segmentedBtn2) {
           SegmentedBtn2Element elm = i as SegmentedBtn2Element;
@@ -440,12 +474,14 @@ class SpWMLBuilder {
             elm.setManager(mtsm, sid);
           } else {
             throw SpWMLException(
-                EnumSpWMLExceptionType.noManagerException,
-                -1,
-                -1,
-                SpWMLInfo(
-                    errorHint:
-                        'MultiSelectionManager is not set. ${(info != null) ? info!.errorHint : ""}'));
+              EnumSpWMLExceptionType.noManagerException,
+              -1,
+              -1,
+              SpWMLInfo(
+                errorHint:
+                    'MultiSelectionManager is not set. ${(info != null) ? info!.errorHint : ""}',
+              ),
+            );
           }
         } else if (i.type == EnumSpWMLElementType.checkbox) {
           CheckboxElement elm = i as CheckboxElement;
@@ -453,12 +489,14 @@ class SpWMLBuilder {
             elm.setManager(mfm, sid);
           } else {
             throw SpWMLException(
-                EnumSpWMLExceptionType.noManagerException,
-                -1,
-                -1,
-                SpWMLInfo(
-                    errorHint:
-                        'MultiFlagManager is not set. ${(info != null) ? info!.errorHint : ""}'));
+              EnumSpWMLExceptionType.noManagerException,
+              -1,
+              -1,
+              SpWMLInfo(
+                errorHint:
+                    'MultiFlagManager is not set. ${(info != null) ? info!.errorHint : ""}',
+              ),
+            );
           }
         } else if (i.type == EnumSpWMLElementType.checkbox2) {
           Checkbox2Element elm = i as Checkbox2Element;
@@ -466,12 +504,14 @@ class SpWMLBuilder {
             elm.setManager(mtsm, sid);
           } else {
             throw SpWMLException(
-                EnumSpWMLExceptionType.noManagerException,
-                -1,
-                -1,
-                SpWMLInfo(
-                    errorHint:
-                        'MultiSelectionManager is not set. ${(info != null) ? info!.errorHint : ""}'));
+              EnumSpWMLExceptionType.noManagerException,
+              -1,
+              -1,
+              SpWMLInfo(
+                errorHint:
+                    'MultiSelectionManager is not set. ${(info != null) ? info!.errorHint : ""}',
+              ),
+            );
           }
         } else if (i.type == EnumSpWMLElementType.progressIndicator) {
           ProgressIndicatorElement elm = i as ProgressIndicatorElement;
@@ -479,12 +519,14 @@ class SpWMLBuilder {
             elm.setManager(vm, sid);
           } else {
             throw SpWMLException(
-                EnumSpWMLExceptionType.noManagerException,
-                -1,
-                -1,
-                SpWMLInfo(
-                    errorHint:
-                        'ValueManager is not set. ${(info != null) ? info!.errorHint : ""}'));
+              EnumSpWMLExceptionType.noManagerException,
+              -1,
+              -1,
+              SpWMLInfo(
+                errorHint:
+                    'ValueManager is not set. ${(info != null) ? info!.errorHint : ""}',
+              ),
+            );
           }
         } else if (i.type == EnumSpWMLElementType.slider) {
           SliderElement elm = i as SliderElement;
@@ -492,12 +534,14 @@ class SpWMLBuilder {
             elm.setManager(vm, sid);
           } else {
             throw SpWMLException(
-                EnumSpWMLExceptionType.noManagerException,
-                -1,
-                -1,
-                SpWMLInfo(
-                    errorHint:
-                        'ValueManager is not set. ${(info != null) ? info!.errorHint : ""}'));
+              EnumSpWMLExceptionType.noManagerException,
+              -1,
+              -1,
+              SpWMLInfo(
+                errorHint:
+                    'ValueManager is not set. ${(info != null) ? info!.errorHint : ""}',
+              ),
+            );
           }
         } else if (i.type == EnumSpWMLElementType.split) {
           SplitElement elm = i as SplitElement;
@@ -505,12 +549,14 @@ class SpWMLBuilder {
             elm.setManager(vm, sid);
           } else {
             throw SpWMLException(
-                EnumSpWMLExceptionType.noManagerException,
-                -1,
-                -1,
-                SpWMLInfo(
-                    errorHint:
-                        'ValueManager is not set. ${(info != null) ? info!.errorHint : ""}'));
+              EnumSpWMLExceptionType.noManagerException,
+              -1,
+              -1,
+              SpWMLInfo(
+                errorHint:
+                    'ValueManager is not set. ${(info != null) ? info!.errorHint : ""}',
+              ),
+            );
           }
         }
       }
@@ -524,13 +570,14 @@ class SpWMLBuilder {
   /// * [sm] : The manager for all widget state.
   void setStateManager(StateManager sm) {
     setManager(
-        tfm: sm.tfm,
-        im: sm.im,
-        fm: sm.fm,
-        tsm: sm.tsm,
-        mim: sm.mim,
-        mfm: sm.mfm,
-        mtsm: sm.mtsm,
-        vm: sm.vm);
+      tfm: sm.tfm,
+      im: sm.im,
+      fm: sm.fm,
+      tsm: sm.tsm,
+      mim: sm.mim,
+      mfm: sm.mfm,
+      mtsm: sm.mtsm,
+      vm: sm.vm,
+    );
   }
 }

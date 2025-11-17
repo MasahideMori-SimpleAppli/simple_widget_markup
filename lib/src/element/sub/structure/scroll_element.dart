@@ -34,19 +34,29 @@ class ScrollElement extends SingleChildElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   ScrollElement(
-      int serial,
-      Map<String, String> params,
-      SpWMLParamsWrapper spwmlParams,
-      int parentSerial,
-      int lineStart,
-      int lineEnd,
-      SpWMLFontStyle style,
-      SpWMLInfo? info,
-      BlockElementChild child,
-      this.elParams,
-      {super.key})
-      : super(serial, EnumSpWMLElementType.scroll, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, info, child);
+    int serial,
+    Map<String, String> params,
+    SpWMLParamsWrapper spwmlParams,
+    int parentSerial,
+    int lineStart,
+    int lineEnd,
+    SpWMLFontStyle style,
+    SpWMLInfo? info,
+    BlockElementChild child,
+    this.elParams, {
+    super.key,
+  }) : super(
+         serial,
+         EnumSpWMLElementType.scroll,
+         params,
+         spwmlParams,
+         parentSerial,
+         lineStart,
+         lineEnd,
+         style,
+         info,
+         child,
+       );
 
   /// Get this class name.
   @override
@@ -66,12 +76,13 @@ class ScrollElement extends SingleChildElement {
         : Axis.vertical;
     elParams.p.scrollBehavior =
         params.containsKey(EnumSpWMLParams.scrollBehavior)
-            ? params[EnumSpWMLParams.scrollBehavior]!
-            : null;
+        ? params[EnumSpWMLParams.scrollBehavior]!
+        : null;
     if (elParams.p.scrollDirection == Axis.horizontal &&
         elParams.p.scrollBehavior == null) {
       elParams.p.scrollBehavior = const MaterialScrollBehavior().copyWith(
-          dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse});
+        dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse},
+      );
     }
     elParams.p.alignCenter = params.containsKey(EnumSpWMLParams.alignCenter)
         ? params[EnumSpWMLParams.alignCenter]!
@@ -114,7 +125,9 @@ class ScrollElement extends SingleChildElement {
   Widget _wrapScrollConfiguration(Widget child) {
     if (elParams.p.scrollBehavior != null) {
       return ScrollConfiguration(
-          behavior: elParams.p.scrollBehavior!, child: child);
+        behavior: elParams.p.scrollBehavior!,
+        child: child,
+      );
     } else {
       return child;
     }
@@ -124,9 +137,10 @@ class ScrollElement extends SingleChildElement {
   Widget _wrapScrollBar(Widget child) {
     if (elParams.p.isAlwaysShownScrollbar && elParams.p.controller != null) {
       return Scrollbar(
-          thumbVisibility: true,
-          controller: elParams.p.controller,
-          child: child);
+        thumbVisibility: true,
+        controller: elParams.p.controller,
+        child: child,
+      );
     } else {
       return child;
     }
@@ -136,19 +150,24 @@ class ScrollElement extends SingleChildElement {
   @override
   Widget getWidget(BuildContext context) {
     return _wrapCenter(
-        _wrapScrollConfiguration(_wrapScrollBar(SingleChildScrollView(
-      key: elParams.p.key,
-      scrollDirection: elParams.p.scrollDirection,
-      reverse: elParams.p.reverse,
-      padding: elParams.p.padding,
-      primary: elParams.p.primary,
-      physics: elParams.p.physics,
-      controller: elParams.p.controller,
-      dragStartBehavior: elParams.p.dragStartBehavior,
-      clipBehavior: elParams.p.clipBehavior,
-      restorationId: elParams.p.restorationId,
-      keyboardDismissBehavior: elParams.p.keyboardDismissBehavior,
-      child: child.getChild(),
-    ))));
+      _wrapScrollConfiguration(
+        _wrapScrollBar(
+          SingleChildScrollView(
+            key: elParams.p.key,
+            scrollDirection: elParams.p.scrollDirection,
+            reverse: elParams.p.reverse,
+            padding: elParams.p.padding,
+            primary: elParams.p.primary,
+            physics: elParams.p.physics,
+            controller: elParams.p.controller,
+            dragStartBehavior: elParams.p.dragStartBehavior,
+            clipBehavior: elParams.p.clipBehavior,
+            restorationId: elParams.p.restorationId,
+            keyboardDismissBehavior: elParams.p.keyboardDismissBehavior,
+            child: child.getChild(),
+          ),
+        ),
+      ),
+    );
   }
 }

@@ -55,11 +55,15 @@ class MoneyInputFormatter extends TextInputFormatter {
     }
 
     // カーソル位置をカンマの増減に応じて変更。
-    String preIndexBeforeText =
-        UtilInputFormatter.getIndexBeforeString(oldValue.text, selectionIndex);
+    String preIndexBeforeText = UtilInputFormatter.getIndexBeforeString(
+      oldValue.text,
+      selectionIndex,
+    );
     final int preRangeCommaNum = preIndexBeforeText.split(",").length - 1;
     String newIndexBeforeText = UtilInputFormatter.getIndexBeforeString(
-        newFormattedText, selectionIndex);
+      newFormattedText,
+      selectionIndex,
+    );
     final int newRangeCommaNum = newIndexBeforeText.split(",").length - 1;
     if (oldValue.text.length < newValue.text.length) {
       final int shift = preRangeCommaNum - newRangeCommaNum;

@@ -31,20 +31,30 @@ class MultiChildTextElement extends TextElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   MultiChildTextElement(
-      int serial,
-      EnumSpWMLElementType type,
-      Map<String, String> params,
-      SpWMLParamsWrapper spwmlParams,
-      int parentSerial,
-      int lineStart,
-      int lineEnd,
-      SpWMLFontStyle style,
-      SpWMLInfo? info,
-      this.children,
-      TextParamsWrapper textParams,
-      {super.key})
-      : super(serial, type, params, spwmlParams, parentSerial, lineStart,
-            lineEnd, style, info, textParams);
+    int serial,
+    EnumSpWMLElementType type,
+    Map<String, String> params,
+    SpWMLParamsWrapper spwmlParams,
+    int parentSerial,
+    int lineStart,
+    int lineEnd,
+    SpWMLFontStyle style,
+    SpWMLInfo? info,
+    this.children,
+    TextParamsWrapper textParams, {
+    super.key,
+  }) : super(
+         serial,
+         type,
+         params,
+         spwmlParams,
+         parentSerial,
+         lineStart,
+         lineEnd,
+         style,
+         info,
+         textParams,
+       );
 
   /// Get this class name.
   @override

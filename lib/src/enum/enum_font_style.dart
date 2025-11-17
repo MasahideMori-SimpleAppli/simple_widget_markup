@@ -26,7 +26,11 @@ extension EXTEnumFontStyle on EnumFontStyle {
       return FontStyle.italic;
     } else {
       throw SpWMLException(
-          EnumSpWMLExceptionType.paramValueException, lineStart, lineEnd, info);
+        EnumSpWMLExceptionType.paramValueException,
+        lineStart,
+        lineEnd,
+        info,
+      );
     }
   }
 

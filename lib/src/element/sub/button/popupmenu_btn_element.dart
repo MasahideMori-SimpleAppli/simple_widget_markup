@@ -26,19 +26,29 @@ class PopupMenuBtnElement extends MultiChildElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   PopupMenuBtnElement(
-      int serial,
-      Map<String, String> params,
-      SpWMLParamsWrapper spwmlParams,
-      int parentSerial,
-      int lineStart,
-      int lineEnd,
-      SpWMLFontStyle style,
-      SpWMLInfo? info,
-      StructureElementChildren children,
-      this.elParams,
-      {super.key})
-      : super(serial, EnumSpWMLElementType.popupMenuBtn, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, info, children);
+    int serial,
+    Map<String, String> params,
+    SpWMLParamsWrapper spwmlParams,
+    int parentSerial,
+    int lineStart,
+    int lineEnd,
+    SpWMLFontStyle style,
+    SpWMLInfo? info,
+    StructureElementChildren children,
+    this.elParams, {
+    super.key,
+  }) : super(
+         serial,
+         EnumSpWMLElementType.popupMenuBtn,
+         params,
+         spwmlParams,
+         parentSerial,
+         lineStart,
+         lineEnd,
+         style,
+         info,
+         children,
+       );
 
   /// Get this class name.
   @override
@@ -68,8 +78,12 @@ class PopupMenuBtnElement extends MultiChildElement {
         : null;
     // SIDが設定されていなければエラー。
     if (getSID() == null) {
-      throw SpWMLException(EnumSpWMLExceptionType.sidDoesNotExistException,
-          lineStart, lineEnd, info);
+      throw SpWMLException(
+        EnumSpWMLExceptionType.sidDoesNotExistException,
+        lineStart,
+        lineEnd,
+        info,
+      );
     }
     return this;
   }
@@ -88,34 +102,37 @@ class PopupMenuBtnElement extends MultiChildElement {
     if (elParams.p.popupMenuItemParams.length == children.children.length) {
       for (final i in children.children) {
         final int v = count;
-        menus.add(PopupMenuItem(
-          key: elParams.p.popupMenuItemParams[v].key,
-          value: v,
-          onTap: elParams.p.isEnabled
-              ? () {
-                  elParams.p.manager!.setIndex(sid, v);
-                  if (elParams.p.popupMenuItemParams[v].onTap == null) {
-                    if (elParams.p.menuCallback != null) {
-                      elParams.p.menuCallback!(v);
+        menus.add(
+          PopupMenuItem(
+            key: elParams.p.popupMenuItemParams[v].key,
+            value: v,
+            onTap: elParams.p.isEnabled
+                ? () {
+                    elParams.p.manager!.setIndex(sid, v);
+                    if (elParams.p.popupMenuItemParams[v].onTap == null) {
+                      if (elParams.p.menuCallback != null) {
+                        elParams.p.menuCallback!(v);
+                      }
+                    } else {
+                      elParams.p.popupMenuItemParams[v].onTap!();
                     }
-                  } else {
-                    elParams.p.popupMenuItemParams[v].onTap!();
                   }
-                }
-              : null,
-          enabled: elParams.p.popupMenuItemParams[v].enabled,
-          height: elParams.p.popupMenuItemParams[v].height,
-          padding: elParams.p.popupMenuItemParams[v].padding,
-          textStyle: elParams.p.popupMenuItemParams[v].textStyle,
-          mouseCursor: elParams.p.popupMenuItemParams[v].mouseCursor,
-          child: i,
-        ));
+                : null,
+            enabled: elParams.p.popupMenuItemParams[v].enabled,
+            height: elParams.p.popupMenuItemParams[v].height,
+            padding: elParams.p.popupMenuItemParams[v].padding,
+            textStyle: elParams.p.popupMenuItemParams[v].textStyle,
+            mouseCursor: elParams.p.popupMenuItemParams[v].mouseCursor,
+            child: i,
+          ),
+        );
         count += 1;
       }
     } else {
       for (final i in children.children) {
         final int v = count;
-        menus.add(PopupMenuItem(
+        menus.add(
+          PopupMenuItem(
             value: v,
             onTap: elParams.p.isEnabled
                 ? () {
@@ -125,15 +142,13 @@ class PopupMenuBtnElement extends MultiChildElement {
                     }
                   }
                 : null,
-            child: i));
+            child: i,
+          ),
+        );
         count += 1;
       }
     }
-    return _PopupMenuElementWidget(
-      getSID()!,
-      menus,
-      elParams,
-    );
+    return _PopupMenuElementWidget(getSID()!, menus, elParams);
   }
 
   /// (en)Set menus callback.
@@ -209,14 +224,16 @@ class _PopupMenuElementWidgetState extends State<_PopupMenuElementWidget> {
   Widget build(BuildContext context) {
     return PopupMenuButton<int>(
       key: widget.elParams.p.key,
-      itemBuilder: widget.elParams.p.itemBuilder ??
+      itemBuilder:
+          widget.elParams.p.itemBuilder ??
           (BuildContext context) {
             return widget.menus;
           },
       initialValue: widget.elParams.p.manager!.getIndex(widget.sid),
       onOpened: widget.elParams.p.onOpened,
-      onSelected:
-          widget.elParams.p.isEnabled ? widget.elParams.p.onSelected : null,
+      onSelected: widget.elParams.p.isEnabled
+          ? widget.elParams.p.onSelected
+          : null,
       onCanceled: widget.elParams.p.onCanceled,
       tooltip: widget.elParams.p.tooltip,
       elevation: widget.elParams.p.elevation,

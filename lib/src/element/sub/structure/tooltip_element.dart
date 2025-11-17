@@ -25,20 +25,31 @@ class TooltipElement extends SingleChildTextElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   TooltipElement(
-      int serial,
-      Map<String, String> params,
-      SpWMLParamsWrapper spwmlParams,
-      int parentSerial,
-      int lineStart,
-      int lineEnd,
-      SpWMLFontStyle style,
-      SpWMLInfo? info,
-      BlockElementChild child,
-      TextParamsWrapper textParams,
-      this.elParams,
-      {super.key})
-      : super(serial, EnumSpWMLElementType.tooltip, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, info, child, textParams);
+    int serial,
+    Map<String, String> params,
+    SpWMLParamsWrapper spwmlParams,
+    int parentSerial,
+    int lineStart,
+    int lineEnd,
+    SpWMLFontStyle style,
+    SpWMLInfo? info,
+    BlockElementChild child,
+    TextParamsWrapper textParams,
+    this.elParams, {
+    super.key,
+  }) : super(
+         serial,
+         EnumSpWMLElementType.tooltip,
+         params,
+         spwmlParams,
+         parentSerial,
+         lineStart,
+         lineEnd,
+         style,
+         info,
+         child,
+         textParams,
+       );
 
   /// Get this class name.
   @override
@@ -111,8 +122,7 @@ class TooltipElement extends SingleChildTextElement {
   void ensureVisible() {
     if (elParams.p.key != null) {
       if (elParams.p.key is GlobalKey<TooltipState>) {
-        (elParams.p.key as GlobalKey<TooltipState>)
-            .currentState
+        (elParams.p.key as GlobalKey<TooltipState>).currentState
             ?.ensureTooltipVisible();
       }
     }
@@ -129,7 +139,8 @@ class TooltipElement extends SingleChildTextElement {
           ? (elParams.p.message ?? spwmlParams.p.text)
           : null,
       richMessage: elParams.p.richMessage,
-      constraints: elParams.p.constraints ??
+      constraints:
+          elParams.p.constraints ??
           (minH != null ? BoxConstraints(minHeight: minH) : null),
       padding: elParams.p.padding ?? spwmlParams.p.containerParams!.padding,
       margin: elParams.p.margin ?? spwmlParams.p.containerParams!.margin,

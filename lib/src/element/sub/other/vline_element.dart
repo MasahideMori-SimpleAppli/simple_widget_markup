@@ -30,18 +30,27 @@ class VLineElement extends SpWMLElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   VLineElement(
-      int serial,
-      Map<String, String> params,
-      SpWMLParamsWrapper spwmlParams,
-      int parentSerial,
-      int lineStart,
-      int lineEnd,
-      SpWMLFontStyle style,
-      SpWMLInfo? info,
-      this.elParams,
-      {super.key})
-      : super(serial, EnumSpWMLElementType.vline, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, info);
+    int serial,
+    Map<String, String> params,
+    SpWMLParamsWrapper spwmlParams,
+    int parentSerial,
+    int lineStart,
+    int lineEnd,
+    SpWMLFontStyle style,
+    SpWMLInfo? info,
+    this.elParams, {
+    super.key,
+  }) : super(
+         serial,
+         EnumSpWMLElementType.vline,
+         params,
+         spwmlParams,
+         parentSerial,
+         lineStart,
+         lineEnd,
+         style,
+         info,
+       );
 
   /// Get this class name.
   @override
@@ -66,11 +75,12 @@ class VLineElement extends SpWMLElement {
   @override
   Widget getWidget(BuildContext context) {
     return VerticalDivider(
-        key: elParams.p.key,
-        width: elParams.p.width,
-        thickness: elParams.p.thickness,
-        indent: elParams.p.indent,
-        endIndent: elParams.p.endIndent,
-        color: elParams.p.color);
+      key: elParams.p.key,
+      width: elParams.p.width,
+      thickness: elParams.p.thickness,
+      indent: elParams.p.indent,
+      endIndent: elParams.p.endIndent,
+      color: elParams.p.color,
+    );
   }
 }

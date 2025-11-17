@@ -26,19 +26,29 @@ class DropdownBtnElement extends MultiChildElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   DropdownBtnElement(
-      int serial,
-      Map<String, String> params,
-      SpWMLParamsWrapper spwmlParams,
-      int parentSerial,
-      int lineStart,
-      int lineEnd,
-      SpWMLFontStyle style,
-      SpWMLInfo? info,
-      StructureElementChildren children,
-      this.elParams,
-      {super.key})
-      : super(serial, EnumSpWMLElementType.dropdownBtn, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, info, children);
+    int serial,
+    Map<String, String> params,
+    SpWMLParamsWrapper spwmlParams,
+    int parentSerial,
+    int lineStart,
+    int lineEnd,
+    SpWMLFontStyle style,
+    SpWMLInfo? info,
+    StructureElementChildren children,
+    this.elParams, {
+    super.key,
+  }) : super(
+         serial,
+         EnumSpWMLElementType.dropdownBtn,
+         params,
+         spwmlParams,
+         parentSerial,
+         lineStart,
+         lineEnd,
+         style,
+         info,
+         children,
+       );
 
   /// Get this class name.
   @override
@@ -75,17 +85,22 @@ class DropdownBtnElement extends MultiChildElement {
     if (params.containsKey(EnumSpWMLParams.underlineColor) ||
         params.containsKey(EnumSpWMLParams.underlineHeight)) {
       elParams.p.underline = Container(
-          color: params.containsKey(EnumSpWMLParams.underlineColor)
-              ? params[EnumSpWMLParams.underlineColor]
-              : Colors.black87,
-          height: params.containsKey(EnumSpWMLParams.underlineHeight)
-              ? params[EnumSpWMLParams.underlineHeight]
-              : 1.0);
+        color: params.containsKey(EnumSpWMLParams.underlineColor)
+            ? params[EnumSpWMLParams.underlineColor]
+            : Colors.black87,
+        height: params.containsKey(EnumSpWMLParams.underlineHeight)
+            ? params[EnumSpWMLParams.underlineHeight]
+            : 1.0,
+      );
     }
     // SIDが設定されていなければエラー。
     if (getSID() == null) {
-      throw SpWMLException(EnumSpWMLExceptionType.sidDoesNotExistException,
-          lineStart, lineEnd, info);
+      throw SpWMLException(
+        EnumSpWMLExceptionType.sidDoesNotExistException,
+        lineStart,
+        lineEnd,
+        info,
+      );
     }
     return this;
   }
@@ -104,29 +119,32 @@ class DropdownBtnElement extends MultiChildElement {
     if (elParams.p.dropdownMenuItemParams.length == children.children.length) {
       for (final i in children.children) {
         final int v = count;
-        menus.add(DropdownMenuItem(
-          key: elParams.p.dropdownMenuItemParams[v].key,
-          onTap: () {
-            elParams.p.manager!.setIndex(sid, v);
-            if (elParams.p.dropdownMenuItemParams[v].onTap == null) {
-              if (elParams.p.menuCallback != null) {
-                elParams.p.menuCallback!(v);
+        menus.add(
+          DropdownMenuItem(
+            key: elParams.p.dropdownMenuItemParams[v].key,
+            onTap: () {
+              elParams.p.manager!.setIndex(sid, v);
+              if (elParams.p.dropdownMenuItemParams[v].onTap == null) {
+                if (elParams.p.menuCallback != null) {
+                  elParams.p.menuCallback!(v);
+                }
+              } else {
+                elParams.p.dropdownMenuItemParams[v].onTap!();
               }
-            } else {
-              elParams.p.dropdownMenuItemParams[v].onTap!();
-            }
-          },
-          value: v,
-          enabled: elParams.p.dropdownMenuItemParams[v].enabled,
-          alignment: elParams.p.dropdownMenuItemParams[v].alignment,
-          child: i,
-        ));
+            },
+            value: v,
+            enabled: elParams.p.dropdownMenuItemParams[v].enabled,
+            alignment: elParams.p.dropdownMenuItemParams[v].alignment,
+            child: i,
+          ),
+        );
         count += 1;
       }
     } else {
       for (final i in children.children) {
         final int v = count;
-        menus.add(DropdownMenuItem(
+        menus.add(
+          DropdownMenuItem(
             value: v,
             onTap: () {
               elParams.p.manager!.setIndex(sid, v);
@@ -134,15 +152,13 @@ class DropdownBtnElement extends MultiChildElement {
                 elParams.p.menuCallback!(v);
               }
             },
-            child: i));
+            child: i,
+          ),
+        );
         count += 1;
       }
     }
-    return _DropDownElementWidget(
-      getSID()!,
-      menus,
-      elParams,
-    );
+    return _DropDownElementWidget(getSID()!, menus, elParams);
   }
 
   /// (en)Set menus callback.
@@ -245,11 +261,8 @@ class _DropDownElementWidgetState extends State<_DropDownElementWidget> {
       padding: widget.elParams.p.padding,
       onChanged: widget.elParams.p.isEnabled
           ? (int? v) => {
-                if (mounted)
-                  {
-                    setState(() {}),
-                  }
-              }
+              if (mounted) {setState(() {})},
+            }
           : null,
     );
   }

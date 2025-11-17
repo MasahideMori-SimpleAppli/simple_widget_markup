@@ -29,19 +29,29 @@ class SplitElement extends MultiChildElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   SplitElement(
-      int serial,
-      Map<String, String> params,
-      SpWMLParamsWrapper spwmlParams,
-      int parentSerial,
-      int lineStart,
-      int lineEnd,
-      SpWMLFontStyle style,
-      SpWMLInfo? info,
-      StructureElementChildren children,
-      this.elParams,
-      {super.key})
-      : super(serial, EnumSpWMLElementType.split, params, spwmlParams,
-            parentSerial, lineStart, lineEnd, style, info, children);
+    int serial,
+    Map<String, String> params,
+    SpWMLParamsWrapper spwmlParams,
+    int parentSerial,
+    int lineStart,
+    int lineEnd,
+    SpWMLFontStyle style,
+    SpWMLInfo? info,
+    StructureElementChildren children,
+    this.elParams, {
+    super.key,
+  }) : super(
+         serial,
+         EnumSpWMLElementType.split,
+         params,
+         spwmlParams,
+         parentSerial,
+         lineStart,
+         lineEnd,
+         style,
+         info,
+         children,
+       );
 
   /// Get this class name.
   @override
@@ -70,16 +80,20 @@ class SplitElement extends MultiChildElement {
         : SplitParams.defClampMax;
     elParams.p.splitPane1MinPx =
         params.containsKey(EnumSpWMLParams.splitPane1MinPx)
-            ? params[EnumSpWMLParams.splitPane1MinPx]!
-            : null;
+        ? params[EnumSpWMLParams.splitPane1MinPx]!
+        : null;
     elParams.p.splitPane2MinPx =
         params.containsKey(EnumSpWMLParams.splitPane2MinPx)
-            ? params[EnumSpWMLParams.splitPane2MinPx]!
-            : null;
+        ? params[EnumSpWMLParams.splitPane2MinPx]!
+        : null;
     // SIDが設定されていなければエラー。
     if (getSID() == null) {
-      throw SpWMLException(EnumSpWMLExceptionType.sidDoesNotExistException,
-          lineStart, lineEnd, info);
+      throw SpWMLException(
+        EnumSpWMLExceptionType.sidDoesNotExistException,
+        lineStart,
+        lineEnd,
+        info,
+      );
     }
     return this;
   }
@@ -156,11 +170,12 @@ class _SplitElementWidget extends StatefulWidget {
   final SplitParamsWrapper elParams;
   final StructureElementChildren children;
 
-  const _SplitElementWidget(
-      {required this.sid,
-      required this.elParams,
-      required this.children,
-      super.key});
+  const _SplitElementWidget({
+    required this.sid,
+    required this.elParams,
+    required this.children,
+    super.key,
+  });
 
   @override
   State<_SplitElementWidget> createState() => _SplitElementWidgetState();
@@ -213,7 +228,8 @@ class _SplitElementWidgetState extends State<_SplitElementWidget> {
   @override
   Widget build(BuildContext context) {
     List<Widget> children = widget.children.getChildren();
-    final double ratio = widget.elParams.p.manager!.getValue(widget.sid) ??
+    final double ratio =
+        widget.elParams.p.manager!.getValue(widget.sid) ??
         SplitParams.defSplitRatio;
     if (children.length < 2) {
       if (children.isEmpty) {
@@ -223,41 +239,51 @@ class _SplitElementWidgetState extends State<_SplitElementWidget> {
       }
     } else {
       if (widget.elParams.p.axis == Axis.horizontal) {
-        return LayoutBuilder(builder: (context, constraints) {
-          final double availableWidth =
-              constraints.maxWidth - widget.elParams.p.barSize;
-          final sizes = _adjustSplitSizes(
-            available: availableWidth,
-            ratio: ratio,
-            min1: widget.elParams.p.splitPane1MinPx,
-            min2: widget.elParams.p.splitPane2MinPx,
-          );
-          final leftW = sizes[0];
-          final rightW = sizes[1];
-          return Row(key: widget.key, children: [
-            SizedBox(width: leftW, child: children[0]),
-            _getSplitBarHorizontal(availableWidth, ratio),
-            SizedBox(width: rightW, child: children[1])
-          ]);
-        });
+        return LayoutBuilder(
+          builder: (context, constraints) {
+            final double availableWidth =
+                constraints.maxWidth - widget.elParams.p.barSize;
+            final sizes = _adjustSplitSizes(
+              available: availableWidth,
+              ratio: ratio,
+              min1: widget.elParams.p.splitPane1MinPx,
+              min2: widget.elParams.p.splitPane2MinPx,
+            );
+            final leftW = sizes[0];
+            final rightW = sizes[1];
+            return Row(
+              key: widget.key,
+              children: [
+                SizedBox(width: leftW, child: children[0]),
+                _getSplitBarHorizontal(availableWidth, ratio),
+                SizedBox(width: rightW, child: children[1]),
+              ],
+            );
+          },
+        );
       } else {
-        return LayoutBuilder(builder: (context, constraints) {
-          final double availableHeight =
-              constraints.maxHeight - widget.elParams.p.barSize;
-          final sizes = _adjustSplitSizes(
-            available: availableHeight,
-            ratio: ratio,
-            min1: widget.elParams.p.splitPane1MinPx,
-            min2: widget.elParams.p.splitPane2MinPx,
-          );
-          final topH = sizes[0];
-          final bottomH = sizes[1];
-          return Column(key: widget.key, children: [
-            SizedBox(height: topH, child: children[0]),
-            _getSplitBarVertical(availableHeight, ratio),
-            SizedBox(height: bottomH, child: children[1])
-          ]);
-        });
+        return LayoutBuilder(
+          builder: (context, constraints) {
+            final double availableHeight =
+                constraints.maxHeight - widget.elParams.p.barSize;
+            final sizes = _adjustSplitSizes(
+              available: availableHeight,
+              ratio: ratio,
+              min1: widget.elParams.p.splitPane1MinPx,
+              min2: widget.elParams.p.splitPane2MinPx,
+            );
+            final topH = sizes[0];
+            final bottomH = sizes[1];
+            return Column(
+              key: widget.key,
+              children: [
+                SizedBox(height: topH, child: children[0]),
+                _getSplitBarVertical(availableHeight, ratio),
+                SizedBox(height: bottomH, child: children[1]),
+              ],
+            );
+          },
+        );
       }
     }
   }
@@ -265,47 +291,53 @@ class _SplitElementWidgetState extends State<_SplitElementWidget> {
   /// 子ビューが水平方向に配置される場合。
   Widget _getSplitBarHorizontal(double maxSize, double ratio) {
     return MouseRegion(
-        cursor: widget.elParams.p.cursor,
-        child: GestureDetector(
-          behavior: HitTestBehavior.translucent,
-          onHorizontalDragUpdate: (details) {
-            setState(() {
-              ratio += details.delta.dx / maxSize;
-              ratio = ratio.clamp(
-                  widget.elParams.p.clampMin, widget.elParams.p.clampMax);
-              if (widget.elParams.p.manager != null) {
-                widget.elParams.p.manager!.setValue(widget.sid, ratio);
-              }
-              widget.elParams.p.onChanged(ratio);
-            });
-          },
-          child: Container(
-            width: widget.elParams.p.barSize,
-            color: widget.elParams.p.color,
-          ),
-        ));
+      cursor: widget.elParams.p.cursor,
+      child: GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onHorizontalDragUpdate: (details) {
+          setState(() {
+            ratio += details.delta.dx / maxSize;
+            ratio = ratio.clamp(
+              widget.elParams.p.clampMin,
+              widget.elParams.p.clampMax,
+            );
+            if (widget.elParams.p.manager != null) {
+              widget.elParams.p.manager!.setValue(widget.sid, ratio);
+            }
+            widget.elParams.p.onChanged(ratio);
+          });
+        },
+        child: Container(
+          width: widget.elParams.p.barSize,
+          color: widget.elParams.p.color,
+        ),
+      ),
+    );
   }
 
   Widget _getSplitBarVertical(double maxSize, double ratio) {
     return MouseRegion(
-        cursor: widget.elParams.p.cursor,
-        child: GestureDetector(
-          behavior: HitTestBehavior.translucent,
-          onVerticalDragUpdate: (details) {
-            setState(() {
-              ratio += details.delta.dy / maxSize;
-              ratio = ratio.clamp(
-                  widget.elParams.p.clampMin, widget.elParams.p.clampMax);
-              if (widget.elParams.p.manager != null) {
-                widget.elParams.p.manager!.setValue(widget.sid, ratio);
-              }
-              widget.elParams.p.onChanged(ratio);
-            });
-          },
-          child: Container(
-            height: widget.elParams.p.barSize,
-            color: widget.elParams.p.color,
-          ),
-        ));
+      cursor: widget.elParams.p.cursor,
+      child: GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onVerticalDragUpdate: (details) {
+          setState(() {
+            ratio += details.delta.dy / maxSize;
+            ratio = ratio.clamp(
+              widget.elParams.p.clampMin,
+              widget.elParams.p.clampMax,
+            );
+            if (widget.elParams.p.manager != null) {
+              widget.elParams.p.manager!.setValue(widget.sid, ratio);
+            }
+            widget.elParams.p.onChanged(ratio);
+          });
+        },
+        child: Container(
+          height: widget.elParams.p.barSize,
+          color: widget.elParams.p.color,
+        ),
+      ),
+    );
   }
 }

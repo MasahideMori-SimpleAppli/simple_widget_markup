@@ -9,5 +9,5 @@ enum EnumOrientation {
   // 横
   horizontal,
   // 縦横両対応
-  any
+  any,
 }

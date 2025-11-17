@@ -25,17 +25,18 @@ class TextElement extends SpWMLElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   TextElement(
-      super.serial,
-      super.type,
-      super.params,
-      super.spwmlParams,
-      super.parentSerial,
-      super.lineStart,
-      super.lineEnd,
-      super.style,
-      super.info,
-      this.textParams,
-      {super.key});
+    super.serial,
+    super.type,
+    super.params,
+    super.spwmlParams,
+    super.parentSerial,
+    super.lineStart,
+    super.lineEnd,
+    super.style,
+    super.info,
+    this.textParams, {
+    super.key,
+  });
 
   /// Get this class name.
   @override
@@ -50,14 +51,14 @@ class TextElement extends SpWMLElement {
     textParams.p.isSelectable = params.containsKey(EnumSpWMLParams.isSelectable)
         ? params[EnumSpWMLParams.isSelectable]
         : type == EnumSpWMLElementType.menu
-            ? false
-            : true;
+        ? false
+        : true;
     if (textParams.p.isSelectable) {
       textParams.p.selectableTextParams = SelectableTextParams();
       textParams.p.selectableTextParams!.maxLines =
           params.containsKey(EnumSpWMLParams.maxLines)
-              ? params[EnumSpWMLParams.maxLines]
-              : null;
+          ? params[EnumSpWMLParams.maxLines]
+          : null;
     } else {
       textParams.p.overflow = params.containsKey(EnumSpWMLParams.overflow)
           ? params[EnumSpWMLParams.overflow]
@@ -68,8 +69,8 @@ class TextElement extends SpWMLElement {
     }
     textParams.p.useTextScaler =
         params.containsKey(EnumSpWMLParams.useTextScaler)
-            ? params[EnumSpWMLParams.useTextScaler]
-            : false;
+        ? params[EnumSpWMLParams.useTextScaler]
+        : false;
     return this;
   }
 
@@ -88,12 +89,14 @@ class TextElement extends SpWMLElement {
             focusNode: textParams.p.selectableTextParams!.focusNode,
             style:
                 textParams.p.selectableTextParams!.style ?? getStyle(context),
-            strutStyle: textParams.p.selectableTextParams!.strutStyle ??
+            strutStyle:
+                textParams.p.selectableTextParams!.strutStyle ??
                 getStrutStyle(context),
             textAlign:
                 textParams.p.selectableTextParams!.textAlign ?? getTextAlign(),
             textDirection: textParams.p.selectableTextParams!.textDirection,
-            textScaler: textParams.p.selectableTextParams!.textScaler ??
+            textScaler:
+                textParams.p.selectableTextParams!.textScaler ??
                 MediaQuery.of(context).textScaler,
             showCursor: textParams.p.selectableTextParams!.showCursor,
             autofocus: textParams.p.selectableTextParams!.autofocus,
@@ -166,8 +169,11 @@ class TextElement extends SpWMLElement {
     if (spwmlParams.p.isGone) {
       return const SizedBox();
     } else {
-      return expand(transform(material(
-          constraints(container(getNonSelectableTextWidget(context))))));
+      return expand(
+        transform(
+          material(constraints(container(getNonSelectableTextWidget(context)))),
+        ),
+      );
     }
   }
 
@@ -224,8 +230,8 @@ class TextElement extends SpWMLElement {
               : null,
           leadingDistribution:
               params.containsKey(EnumSpWMLParams.leadingDistribution)
-                  ? params[EnumSpWMLParams.leadingDistribution]
-                  : null,
+              ? params[EnumSpWMLParams.leadingDistribution]
+              : null,
           fontWeight: params.containsKey(EnumSpWMLParams.fontWeight)
               ? params[EnumSpWMLParams.fontWeight]
               : getDefFontWeight(),
@@ -275,7 +281,11 @@ class TextElement extends SpWMLElement {
     if (style.styleMap.containsKey(type)) {
       if (style.styleMap[type]!.textColor != null) {
         return UtilParams.convertColor(
-            style.styleMap[type]!.textColor!, lineStart, lineEnd, info);
+          style.styleMap[type]!.textColor!,
+          lineStart,
+          lineEnd,
+          info,
+        );
       }
     }
     return null;
@@ -286,7 +296,11 @@ class TextElement extends SpWMLElement {
     if (style.styleMap.containsKey(type)) {
       if (style.styleMap[type]!.textBGColor != null) {
         return UtilParams.convertColor(
-            style.styleMap[type]!.textBGColor!, lineStart, lineEnd, info);
+          style.styleMap[type]!.textBGColor!,
+          lineStart,
+          lineEnd,
+          info,
+        );
       }
     }
     return null;
@@ -306,8 +320,11 @@ class TextElement extends SpWMLElement {
       if (style.styleMap[type]!.fontWeight == null) {
         return null;
       } else {
-        return style.styleMap[type]!.fontWeight!
-            .toObj(lineStart, lineEnd, info);
+        return style.styleMap[type]!.fontWeight!.toObj(
+          lineStart,
+          lineEnd,
+          info,
+        );
       }
     }
     return null;
@@ -359,8 +376,11 @@ class TextElement extends SpWMLElement {
       if (style.styleMap[type]!.textDecoStyle == null) {
         return null;
       } else {
-        return style.styleMap[type]!.textDecoStyle!
-            .toObj(lineStart, lineEnd, info);
+        return style.styleMap[type]!.textDecoStyle!.toObj(
+          lineStart,
+          lineEnd,
+          info,
+        );
       }
     }
     return null;
@@ -373,7 +393,11 @@ class TextElement extends SpWMLElement {
         return null;
       } else {
         return UtilParams.convertColor(
-            style.styleMap[type]!.textDecoColor!, lineStart, lineEnd, info);
+          style.styleMap[type]!.textDecoColor!,
+          lineStart,
+          lineEnd,
+          info,
+        );
       }
     }
     return null;

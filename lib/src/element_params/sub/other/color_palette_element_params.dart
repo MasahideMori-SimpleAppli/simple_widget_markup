@@ -71,7 +71,7 @@ class ColorPaletteParams {
       Colors.brown,
       Colors.grey,
       Colors.blueGrey,
-    ]
+    ],
   ];
   void Function(Color c)? colorChangeCallback;
 

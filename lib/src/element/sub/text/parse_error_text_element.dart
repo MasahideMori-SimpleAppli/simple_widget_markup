@@ -8,15 +8,16 @@ import '../../../../simple_widget_markup.dart';
 ///
 class ParseErrorTextElement extends TextElement {
   ParseErrorTextElement(
-      super.serial,
-      super.type,
-      super.params,
-      super.spwmlParams,
-      super.parentSerial,
-      super.lineStart,
-      super.lineEnd,
-      super.style,
-      super.info,
-      super.textParams,
-      {super.key});
+    super.serial,
+    super.type,
+    super.params,
+    super.spwmlParams,
+    super.parentSerial,
+    super.lineStart,
+    super.lineEnd,
+    super.style,
+    super.info,
+    super.textParams, {
+    super.key,
+  });
 }

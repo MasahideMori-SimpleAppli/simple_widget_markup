@@ -20,19 +20,27 @@ enum EnumBtnType {
   faSmall,
   faExtended,
   fa,
-  faLarge
+  faLarge,
 }
 
 /// EnumBtnType extension.
 extension EXTEnumBtnType on EnumBtnType {
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
   static EnumBtnType fromStr(
-      String s, int lineStart, int lineEnd, SpWMLInfo? info) {
+    String s,
+    int lineStart,
+    int lineEnd,
+    SpWMLInfo? info,
+  ) {
     try {
       return EnumBtnType.values.byName(s);
     } catch (e) {
       throw SpWMLException(
-          EnumSpWMLExceptionType.typeException, lineStart, lineEnd, info);
+        EnumSpWMLExceptionType.typeException,
+        lineStart,
+        lineEnd,
+        info,
+      );
     }
   }
 }

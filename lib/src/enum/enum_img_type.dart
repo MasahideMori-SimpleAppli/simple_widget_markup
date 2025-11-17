@@ -12,12 +12,20 @@ enum EnumImgType { network, asset, memory }
 extension EXTEnumImgType on EnumImgType {
   /// Throws [SpWMLException] : If the type is incorrect, Throws TypeException.
   static EnumImgType fromStr(
-      String s, int lineStart, int lineEnd, SpWMLInfo? info) {
+    String s,
+    int lineStart,
+    int lineEnd,
+    SpWMLInfo? info,
+  ) {
     try {
       return EnumImgType.values.byName(s);
     } catch (e) {
       throw SpWMLException(
-          EnumSpWMLExceptionType.typeException, lineStart, lineEnd, info);
+        EnumSpWMLExceptionType.typeException,
+        lineStart,
+        lineEnd,
+        info,
+      );
     }
   }
 }

@@ -33,30 +33,39 @@ class SpWMLElement extends StatelessWidget {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   SpWMLElement(
-      this.serial,
-      this.type,
-      Map<String, String> param,
-      this.spwmlParams,
-      this.parentSerial,
-      this.lineStart,
-      this.lineEnd,
-      this.style,
-      this.info,
-      {super.key})
-      : params = _setParam(type, param, lineStart, lineEnd, info);
+    this.serial,
+    this.type,
+    Map<String, String> param,
+    this.spwmlParams,
+    this.parentSerial,
+    this.lineStart,
+    this.lineEnd,
+    this.style,
+    this.info, {
+    super.key,
+  }) : params = _setParam(type, param, lineStart, lineEnd, info);
 
   /// Get this class name.
   String getClassName() {
     return "SpWMLElement";
   }
 
-  static Map<EnumSpWMLParams, dynamic> _setParam(EnumSpWMLElementType type,
-      Map<String, String> param, int lineStart, int lineEnd, SpWMLInfo? info) {
+  static Map<EnumSpWMLParams, dynamic> _setParam(
+    EnumSpWMLElementType type,
+    Map<String, String> param,
+    int lineStart,
+    int lineEnd,
+    SpWMLInfo? info,
+  ) {
     Map<EnumSpWMLParams, dynamic> mParam = {};
     for (String i in param.keys) {
       // 変換される時点（パース時）で値の検査も行う。
-      EnumSpWMLParams t =
-          EXTEnumSpWMLParams.fromStr(i, lineStart, lineEnd, info);
+      EnumSpWMLParams t = EXTEnumSpWMLParams.fromStr(
+        i,
+        lineStart,
+        lineEnd,
+        info,
+      );
       if (t == EnumSpWMLParams.alt) {
         mParam[t] = param[i]!;
       } else {
@@ -85,8 +94,8 @@ class SpWMLElement extends StatelessWidget {
       spwmlParams.p.materialParams ??= MaterialParams();
       spwmlParams.p.materialParams!.elevation =
           params.containsKey(EnumSpWMLParams.elevation)
-              ? params[EnumSpWMLParams.elevation]
-              : 0.0;
+          ? params[EnumSpWMLParams.elevation]
+          : 0.0;
     }
     if (_isEnableConstrains()) {
       spwmlParams.p.constrains = _getConstraints();
@@ -96,16 +105,16 @@ class SpWMLElement extends StatelessWidget {
     spwmlParams.p.containerParams!.padding = _getPaddingFromSpWML();
     spwmlParams.p.containerParams!.width =
         params.containsKey(EnumSpWMLParams.width)
-            ? params[EnumSpWMLParams.width]!
-            : null;
+        ? params[EnumSpWMLParams.width]!
+        : null;
     spwmlParams.p.containerParams!.height =
         params.containsKey(EnumSpWMLParams.height)
-            ? params[EnumSpWMLParams.height]!
-            : null;
+        ? params[EnumSpWMLParams.height]!
+        : null;
     spwmlParams.p.containerParams!.color =
         params.containsKey(EnumSpWMLParams.bgColor)
-            ? params[EnumSpWMLParams.bgColor]!
-            : null;
+        ? params[EnumSpWMLParams.bgColor]!
+        : null;
     // Decoration
     spwmlParams.p.containerParams!.decoration = _getDecoration();
     // Visibility
@@ -191,21 +200,22 @@ class SpWMLElement extends StatelessWidget {
         type != EnumSpWMLElementType.radioBtn &&
         type != EnumSpWMLElementType.checkbox) {
       return BoxDecoration(
-          color: spwmlParams.p.containerParams!.color,
-          border: Border.all(
-            color: params.containsKey(EnumSpWMLParams.borderColor)
-                ? params[EnumSpWMLParams.borderColor]
-                : Colors.transparent,
-            width: params.containsKey(EnumSpWMLParams.borderWidth)
-                ? params[EnumSpWMLParams.borderWidth]
-                : 0.0,
-            // solid only
-            style: BorderStyle.solid,
-          ),
-          borderRadius: _getBorderRadius(),
-          shape: params.containsKey(EnumSpWMLParams.borderShape)
-              ? params[EnumSpWMLParams.borderShape]
-              : BoxShape.rectangle);
+        color: spwmlParams.p.containerParams!.color,
+        border: Border.all(
+          color: params.containsKey(EnumSpWMLParams.borderColor)
+              ? params[EnumSpWMLParams.borderColor]
+              : Colors.transparent,
+          width: params.containsKey(EnumSpWMLParams.borderWidth)
+              ? params[EnumSpWMLParams.borderWidth]
+              : 0.0,
+          // solid only
+          style: BorderStyle.solid,
+        ),
+        borderRadius: _getBorderRadius(),
+        shape: params.containsKey(EnumSpWMLParams.borderShape)
+            ? params[EnumSpWMLParams.borderShape]
+            : BoxShape.rectangle,
+      );
     } else {
       return null;
     }
@@ -219,23 +229,27 @@ class SpWMLElement extends StatelessWidget {
         params.containsKey(EnumSpWMLParams.rBL) ||
         params.containsKey(EnumSpWMLParams.rBR)) {
       return BorderRadius.only(
-          topLeft: params.containsKey(EnumSpWMLParams.rTL)
-              ? Radius.circular(params[EnumSpWMLParams.rTL])
-              : Radius.zero,
-          topRight: params.containsKey(EnumSpWMLParams.rTR)
-              ? Radius.circular(params[EnumSpWMLParams.rTR])
-              : Radius.zero,
-          bottomLeft: params.containsKey(EnumSpWMLParams.rBL)
-              ? Radius.circular(params[EnumSpWMLParams.rBL])
-              : Radius.zero,
-          bottomRight: params.containsKey(EnumSpWMLParams.rBR)
-              ? Radius.circular(params[EnumSpWMLParams.rBR])
-              : Radius.zero);
+        topLeft: params.containsKey(EnumSpWMLParams.rTL)
+            ? Radius.circular(params[EnumSpWMLParams.rTL])
+            : Radius.zero,
+        topRight: params.containsKey(EnumSpWMLParams.rTR)
+            ? Radius.circular(params[EnumSpWMLParams.rTR])
+            : Radius.zero,
+        bottomLeft: params.containsKey(EnumSpWMLParams.rBL)
+            ? Radius.circular(params[EnumSpWMLParams.rBL])
+            : Radius.zero,
+        bottomRight: params.containsKey(EnumSpWMLParams.rBR)
+            ? Radius.circular(params[EnumSpWMLParams.rBR])
+            : Radius.zero,
+      );
     } else if (params.containsKey(EnumSpWMLParams.ellipticalX) &&
         params.containsKey(EnumSpWMLParams.ellipticalY)) {
-      return BorderRadius.all(Radius.elliptical(
+      return BorderRadius.all(
+        Radius.elliptical(
           params[EnumSpWMLParams.ellipticalX],
-          params[EnumSpWMLParams.ellipticalY]));
+          params[EnumSpWMLParams.ellipticalY],
+        ),
+      );
     } else {
       return null;
     }
@@ -249,9 +263,11 @@ class SpWMLElement extends StatelessWidget {
     return isUseWidth || isUseColor
         ? BorderSide(
             width: isUseWidth ? params[EnumSpWMLParams.borderWidth]! : 1.0,
-            color:
-                isUseColor ? params[EnumSpWMLParams.borderColor] : Colors.black,
-            style: BorderStyle.solid)
+            color: isUseColor
+                ? params[EnumSpWMLParams.borderColor]
+                : Colors.black,
+            style: BorderStyle.solid,
+          )
         : null;
   }
 
@@ -278,14 +294,14 @@ class SpWMLElement extends StatelessWidget {
       return params.containsKey(EnumSpWMLParams.mTop)
           ? params[EnumSpWMLParams.mTop]
           : (params.containsKey(EnumSpWMLParams.mAll)
-              ? params[EnumSpWMLParams.mAll]
-              : style.styleMap[type]!.mT ?? 0.0);
+                ? params[EnumSpWMLParams.mAll]
+                : style.styleMap[type]!.mT ?? 0.0);
     } else {
       return params.containsKey(EnumSpWMLParams.mTop)
           ? params[EnumSpWMLParams.mTop]
           : (params.containsKey(EnumSpWMLParams.mAll)
-              ? params[EnumSpWMLParams.mAll]
-              : 0.0);
+                ? params[EnumSpWMLParams.mAll]
+                : 0.0);
     }
   }
 
@@ -294,19 +310,19 @@ class SpWMLElement extends StatelessWidget {
     final double left = params.containsKey(EnumSpWMLParams.mLeft)
         ? params[EnumSpWMLParams.mLeft]
         : (params.containsKey(EnumSpWMLParams.mAll)
-            ? params[EnumSpWMLParams.mAll]
-            : 0.0);
+              ? params[EnumSpWMLParams.mAll]
+              : 0.0);
     final double top = _getMarginTop();
     final double right = params.containsKey(EnumSpWMLParams.mRight)
         ? params[EnumSpWMLParams.mRight]
         : (params.containsKey(EnumSpWMLParams.mAll)
-            ? params[EnumSpWMLParams.mAll]
-            : 0.0);
+              ? params[EnumSpWMLParams.mAll]
+              : 0.0);
     final double bottom = params.containsKey(EnumSpWMLParams.mBottom)
         ? params[EnumSpWMLParams.mBottom]
         : (params.containsKey(EnumSpWMLParams.mAll)
-            ? params[EnumSpWMLParams.mAll]
-            : 0.0);
+              ? params[EnumSpWMLParams.mAll]
+              : 0.0);
     return EdgeInsets.fromLTRB(left, top, right, bottom);
   }
 
@@ -331,23 +347,23 @@ class SpWMLElement extends StatelessWidget {
     final double left = params.containsKey(EnumSpWMLParams.pLeft)
         ? params[EnumSpWMLParams.pLeft]
         : (params.containsKey(EnumSpWMLParams.pAll)
-            ? params[EnumSpWMLParams.pAll]
-            : 0.0);
+              ? params[EnumSpWMLParams.pAll]
+              : 0.0);
     final double top = params.containsKey(EnumSpWMLParams.pTop)
         ? params[EnumSpWMLParams.pTop]
         : (params.containsKey(EnumSpWMLParams.pAll)
-            ? params[EnumSpWMLParams.pAll]
-            : 0.0);
+              ? params[EnumSpWMLParams.pAll]
+              : 0.0);
     final double right = params.containsKey(EnumSpWMLParams.pRight)
         ? params[EnumSpWMLParams.pRight]
         : (params.containsKey(EnumSpWMLParams.pAll)
-            ? params[EnumSpWMLParams.pAll]
-            : 0.0);
+              ? params[EnumSpWMLParams.pAll]
+              : 0.0);
     final double bottom = params.containsKey(EnumSpWMLParams.pBottom)
         ? params[EnumSpWMLParams.pBottom]
         : (params.containsKey(EnumSpWMLParams.pAll)
-            ? params[EnumSpWMLParams.pAll]
-            : 0.0);
+              ? params[EnumSpWMLParams.pAll]
+              : 0.0);
     return EdgeInsets.fromLTRB(left, top, right, bottom);
   }
 
@@ -390,7 +406,11 @@ class SpWMLElement extends StatelessWidget {
         ? params[EnumSpWMLParams.maxWidth]
         : double.infinity;
     return BoxConstraints(
-        minHeight: minH, minWidth: minW, maxHeight: maxH, maxWidth: maxW);
+      minHeight: minH,
+      minWidth: minW,
+      maxHeight: maxH,
+      maxWidth: maxW,
+    );
   }
 
   /// get this element widget.
@@ -450,12 +470,15 @@ class SpWMLElement extends StatelessWidget {
         transformAlignment: spwmlParams.p.containerParams!.transformAlignment,
         clipBehavior: spwmlParams.p.containerParams!.clipBehavior,
         child: Ink(
-            color: spwmlParams.p.containerParams!.decoration == null
-                ? spwmlParams.p.containerParams!.color
-                : null,
-            decoration: spwmlParams.p.containerParams!.decoration,
-            child: Container(
-                padding: spwmlParams.p.containerParams!.padding, child: child)),
+          color: spwmlParams.p.containerParams!.decoration == null
+              ? spwmlParams.p.containerParams!.color
+              : null,
+          decoration: spwmlParams.p.containerParams!.decoration,
+          child: Container(
+            padding: spwmlParams.p.containerParams!.padding,
+            child: child,
+          ),
+        ),
       );
     }
   }
@@ -471,12 +494,13 @@ class SpWMLElement extends StatelessWidget {
   Widget transform(Widget child) {
     if (_isEnableTransform()) {
       return Transform(
-          transform: Matrix4.translationValues(
-            spwmlParams.p.shiftX ?? 0.0,
-            spwmlParams.p.shiftY ?? 0.0,
-            0.0,
-          ),
-          child: child);
+        transform: Matrix4.translationValues(
+          spwmlParams.p.shiftX ?? 0.0,
+          spwmlParams.p.shiftY ?? 0.0,
+          0.0,
+        ),
+        child: child,
+      );
     } else {
       return child;
     }
@@ -488,7 +512,9 @@ class SpWMLElement extends StatelessWidget {
   Widget constraints(Widget child) {
     if (spwmlParams.p.constrains != null) {
       return ConstrainedBox(
-          constraints: spwmlParams.p.constrains!, child: child);
+        constraints: spwmlParams.p.constrains!,
+        child: child,
+      );
     } else {
       return child;
     }
@@ -500,19 +526,20 @@ class SpWMLElement extends StatelessWidget {
   Widget material(Widget child) {
     if (spwmlParams.p.materialParams != null) {
       return Material(
-          key: spwmlParams.p.materialParams!.key,
-          type: spwmlParams.p.materialParams!.type,
-          elevation: spwmlParams.p.materialParams!.elevation,
-          color: spwmlParams.p.materialParams!.color,
-          shadowColor: spwmlParams.p.materialParams!.shadowColor,
-          surfaceTintColor: spwmlParams.p.materialParams!.surfaceTintColor,
-          textStyle: spwmlParams.p.materialParams!.textStyle,
-          borderRadius: spwmlParams.p.materialParams!.borderRadius,
-          shape: spwmlParams.p.materialParams!.shape,
-          borderOnForeground: spwmlParams.p.materialParams!.borderOnForeground,
-          clipBehavior: spwmlParams.p.materialParams!.clipBehavior,
-          animationDuration: spwmlParams.p.materialParams!.animationDuration,
-          child: child);
+        key: spwmlParams.p.materialParams!.key,
+        type: spwmlParams.p.materialParams!.type,
+        elevation: spwmlParams.p.materialParams!.elevation,
+        color: spwmlParams.p.materialParams!.color,
+        shadowColor: spwmlParams.p.materialParams!.shadowColor,
+        surfaceTintColor: spwmlParams.p.materialParams!.surfaceTintColor,
+        textStyle: spwmlParams.p.materialParams!.textStyle,
+        borderRadius: spwmlParams.p.materialParams!.borderRadius,
+        shape: spwmlParams.p.materialParams!.shape,
+        borderOnForeground: spwmlParams.p.materialParams!.borderOnForeground,
+        clipBehavior: spwmlParams.p.materialParams!.clipBehavior,
+        animationDuration: spwmlParams.p.materialParams!.animationDuration,
+        child: child,
+      );
     } else {
       return child;
     }
@@ -524,9 +551,10 @@ class SpWMLElement extends StatelessWidget {
   Widget expand(Widget child) {
     if (spwmlParams.p.weight != null) {
       return Flexible(
-          flex: spwmlParams.p.weight!,
-          fit: spwmlParams.p.flexFit,
-          child: child);
+        flex: spwmlParams.p.weight!,
+        fit: spwmlParams.p.flexFit,
+        child: child,
+      );
     } else {
       return child;
     }
@@ -539,7 +567,8 @@ class SpWMLElement extends StatelessWidget {
       return const SizedBox();
     } else {
       return expand(
-          transform(material(constraints(container(getWidget(context))))));
+        transform(material(constraints(container(getWidget(context))))),
+      );
     }
   }
 }

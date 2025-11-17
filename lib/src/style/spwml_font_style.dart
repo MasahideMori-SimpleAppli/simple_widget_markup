@@ -22,10 +22,11 @@ class SpWMLFontStyle {
   /// * [useV2MaterialStyle] : If true, load SpWMLFontStyle of material version2 style and material version3 style.
   /// If false, load default SpWMLFontStyle and material version3 style.
   /// * [isBtnColorModeV3] : If true, set button color null.
-  SpWMLFontStyle(
-      {Map<EnumSpWMLElementType, SpWMLFontStyleParams>? overrideMap,
-      this.useV2MaterialStyle = false,
-      this.isBtnColorModeV3 = false}) {
+  SpWMLFontStyle({
+    Map<EnumSpWMLElementType, SpWMLFontStyleParams>? overrideMap,
+    this.useV2MaterialStyle = false,
+    this.isBtnColorModeV3 = false,
+  }) {
     styleMap = _loadDefaultMap();
     if (overrideMap != null) {
       for (EnumSpWMLElementType i in overrideMap.keys) {
@@ -42,8 +43,11 @@ class SpWMLFontStyle {
   /// * [useV2MaterialStyle] : If true, load SpWMLFontStyle of material version2 style and material version3 style.
   /// If false, load default SpWMLFontStyle and material version3 style.
   /// * [isBtnColorModeV3] : If true, set button color null.
-  SpWMLFontStyle.copy(this.styleMap,
-      {this.useV2MaterialStyle = false, this.isBtnColorModeV3 = false});
+  SpWMLFontStyle.copy(
+    this.styleMap, {
+    this.useV2MaterialStyle = false,
+    this.isBtnColorModeV3 = false,
+  });
 
   /// Loads the default styleMap.
   Map<EnumSpWMLElementType, SpWMLFontStyleParams> _loadDefaultMap() {
@@ -59,50 +63,85 @@ class SpWMLFontStyle {
     // The definition conforms to Google's Material Design 3.
     // https://m3.material.io/styles/typography/type-scale-tokens
     r[EnumSpWMLElementType.displayL] = SpWMLFontStyleParams(
-        lineHeight: 64 / 57, fontSize: 57, letterSpacing: -0.25);
+      lineHeight: 64 / 57,
+      fontSize: 57,
+      letterSpacing: -0.25,
+    );
     r[EnumSpWMLElementType.displayM] = SpWMLFontStyleParams(
-        lineHeight: 52 / 45, fontSize: 45, letterSpacing: 0);
+      lineHeight: 52 / 45,
+      fontSize: 45,
+      letterSpacing: 0,
+    );
     r[EnumSpWMLElementType.displayS] = SpWMLFontStyleParams(
-        lineHeight: 44 / 36, fontSize: 36, letterSpacing: 0);
+      lineHeight: 44 / 36,
+      fontSize: 36,
+      letterSpacing: 0,
+    );
     r[EnumSpWMLElementType.headlineL] = SpWMLFontStyleParams(
-        lineHeight: 40 / 32, fontSize: 32, letterSpacing: 0);
+      lineHeight: 40 / 32,
+      fontSize: 32,
+      letterSpacing: 0,
+    );
     r[EnumSpWMLElementType.headlineM] = SpWMLFontStyleParams(
-        lineHeight: 36 / 28, fontSize: 28, letterSpacing: 0);
+      lineHeight: 36 / 28,
+      fontSize: 28,
+      letterSpacing: 0,
+    );
     r[EnumSpWMLElementType.headlineS] = SpWMLFontStyleParams(
-        lineHeight: 32 / 24, fontSize: 24, letterSpacing: 0);
+      lineHeight: 32 / 24,
+      fontSize: 24,
+      letterSpacing: 0,
+    );
     r[EnumSpWMLElementType.titleL] = SpWMLFontStyleParams(
-        lineHeight: 28 / 22, fontSize: 22, letterSpacing: 0);
+      lineHeight: 28 / 22,
+      fontSize: 22,
+      letterSpacing: 0,
+    );
     r[EnumSpWMLElementType.titleM] = SpWMLFontStyleParams(
-        lineHeight: 24 / 16,
-        fontSize: 16,
-        letterSpacing: 0.15,
-        fontWeight: EnumFontWeight.w500);
+      lineHeight: 24 / 16,
+      fontSize: 16,
+      letterSpacing: 0.15,
+      fontWeight: EnumFontWeight.w500,
+    );
     r[EnumSpWMLElementType.titleS] = SpWMLFontStyleParams(
-        lineHeight: 20 / 14,
-        fontSize: 14,
-        letterSpacing: 0.1,
-        fontWeight: EnumFontWeight.w500);
+      lineHeight: 20 / 14,
+      fontSize: 14,
+      letterSpacing: 0.1,
+      fontWeight: EnumFontWeight.w500,
+    );
     r[EnumSpWMLElementType.labelL] = SpWMLFontStyleParams(
-        lineHeight: 20 / 14,
-        fontSize: 14,
-        letterSpacing: 0.1,
-        fontWeight: EnumFontWeight.w500);
+      lineHeight: 20 / 14,
+      fontSize: 14,
+      letterSpacing: 0.1,
+      fontWeight: EnumFontWeight.w500,
+    );
     r[EnumSpWMLElementType.labelM] = SpWMLFontStyleParams(
-        lineHeight: 16 / 12,
-        fontSize: 12,
-        letterSpacing: 0.5,
-        fontWeight: EnumFontWeight.w500);
+      lineHeight: 16 / 12,
+      fontSize: 12,
+      letterSpacing: 0.5,
+      fontWeight: EnumFontWeight.w500,
+    );
     r[EnumSpWMLElementType.labelS] = SpWMLFontStyleParams(
-        lineHeight: 16 / 11,
-        fontSize: 11,
-        letterSpacing: 0.5,
-        fontWeight: EnumFontWeight.w500);
+      lineHeight: 16 / 11,
+      fontSize: 11,
+      letterSpacing: 0.5,
+      fontWeight: EnumFontWeight.w500,
+    );
     r[EnumSpWMLElementType.bodyL] = SpWMLFontStyleParams(
-        lineHeight: 24 / 16, fontSize: 16, letterSpacing: 0.5);
+      lineHeight: 24 / 16,
+      fontSize: 16,
+      letterSpacing: 0.5,
+    );
     r[EnumSpWMLElementType.bodyM] = SpWMLFontStyleParams(
-        lineHeight: 20 / 14, fontSize: 14, letterSpacing: 0.25);
+      lineHeight: 20 / 14,
+      fontSize: 14,
+      letterSpacing: 0.25,
+    );
     r[EnumSpWMLElementType.bodyS] = SpWMLFontStyleParams(
-        lineHeight: 16 / 12, fontSize: 12, letterSpacing: 0.4);
+      lineHeight: 16 / 12,
+      fontSize: 12,
+      letterSpacing: 0.4,
+    );
     return r;
   }
 
@@ -133,7 +172,8 @@ class SpWMLFontStyle {
     if (!src.containsKey('version')) {
       // 互換モードで読込
       return SpWMLFontStyle(
-          overrideMap: UtilSpWMLFontStyleV2.convertFromV2(src));
+        overrideMap: UtilSpWMLFontStyleV2.convertFromV2(src),
+      );
     } else {
       Map<EnumSpWMLElementType, SpWMLFontStyleParams> resumeMap = {};
       for (String i in src['styleMap'].keys) {

@@ -26,18 +26,27 @@ class ProgressIndicatorElement extends SpWMLElement {
   ///
   /// Throws [SpWMLException] : ParamValueException.
   ProgressIndicatorElement(
-      int serial,
-      Map<String, String> params,
-      SpWMLParamsWrapper spwmlParams,
-      int parentSerial,
-      int lineStart,
-      int lineEnd,
-      SpWMLFontStyle style,
-      SpWMLInfo? info,
-      this.elParams,
-      {super.key})
-      : super(serial, EnumSpWMLElementType.progressIndicator, params,
-            spwmlParams, parentSerial, lineStart, lineEnd, style, info);
+    int serial,
+    Map<String, String> params,
+    SpWMLParamsWrapper spwmlParams,
+    int parentSerial,
+    int lineStart,
+    int lineEnd,
+    SpWMLFontStyle style,
+    SpWMLInfo? info,
+    this.elParams, {
+    super.key,
+  }) : super(
+         serial,
+         EnumSpWMLElementType.progressIndicator,
+         params,
+         spwmlParams,
+         parentSerial,
+         lineStart,
+         lineEnd,
+         style,
+         info,
+       );
 
   /// Get this class name.
   @override
@@ -57,28 +66,32 @@ class ProgressIndicatorElement extends SpWMLElement {
           CircularProgressIndicatorParams();
       elParams.p.circularProgressIndicatorParams!.color =
           params.containsKey(EnumSpWMLParams.indicatorColor)
-              ? params[EnumSpWMLParams.indicatorColor]
-              : null;
+          ? params[EnumSpWMLParams.indicatorColor]
+          : null;
       elParams.p.circularProgressIndicatorParams!.backgroundColor =
           params.containsKey(EnumSpWMLParams.indicatorBGColor)
-              ? params[EnumSpWMLParams.indicatorBGColor]
-              : null;
+          ? params[EnumSpWMLParams.indicatorBGColor]
+          : null;
     } else {
       elParams.p.linearProgressIndicatorParams =
           LinearProgressIndicatorParams();
       elParams.p.linearProgressIndicatorParams!.color =
           params.containsKey(EnumSpWMLParams.indicatorColor)
-              ? params[EnumSpWMLParams.indicatorColor]
-              : null;
+          ? params[EnumSpWMLParams.indicatorColor]
+          : null;
       elParams.p.linearProgressIndicatorParams!.backgroundColor =
           params.containsKey(EnumSpWMLParams.indicatorBGColor)
-              ? params[EnumSpWMLParams.indicatorBGColor]
-              : null;
+          ? params[EnumSpWMLParams.indicatorBGColor]
+          : null;
     }
     // SIDが設定されていなければエラー。
     if (getSID() == null) {
-      throw SpWMLException(EnumSpWMLExceptionType.sidDoesNotExistException,
-          lineStart, lineEnd, info);
+      throw SpWMLException(
+        EnumSpWMLExceptionType.sidDoesNotExistException,
+        lineStart,
+        lineEnd,
+        info,
+      );
     }
     return this;
   }
@@ -88,32 +101,36 @@ class ProgressIndicatorElement extends SpWMLElement {
   Widget getWidget(BuildContext context) {
     if (elParams.p.indicatorType == EnumIndicatorType.circular) {
       return CircularProgressIndicator(
-          key: elParams.p.circularProgressIndicatorParams!.key,
-          value: elParams.p.circularProgressIndicatorParams!.manager!
-              .getValue(getSID()!),
-          backgroundColor:
-              elParams.p.circularProgressIndicatorParams!.backgroundColor,
-          color: elParams.p.circularProgressIndicatorParams!.color,
-          valueColor: elParams.p.circularProgressIndicatorParams!.valueColor,
-          strokeWidth: elParams.p.circularProgressIndicatorParams!.strokeWidth,
-          semanticsLabel:
-              elParams.p.circularProgressIndicatorParams!.semanticsLabel,
-          semanticsValue:
-              elParams.p.circularProgressIndicatorParams!.semanticsValue);
+        key: elParams.p.circularProgressIndicatorParams!.key,
+        value: elParams.p.circularProgressIndicatorParams!.manager!.getValue(
+          getSID()!,
+        ),
+        backgroundColor:
+            elParams.p.circularProgressIndicatorParams!.backgroundColor,
+        color: elParams.p.circularProgressIndicatorParams!.color,
+        valueColor: elParams.p.circularProgressIndicatorParams!.valueColor,
+        strokeWidth: elParams.p.circularProgressIndicatorParams!.strokeWidth,
+        semanticsLabel:
+            elParams.p.circularProgressIndicatorParams!.semanticsLabel,
+        semanticsValue:
+            elParams.p.circularProgressIndicatorParams!.semanticsValue,
+      );
     } else {
       return LinearProgressIndicator(
-          key: elParams.p.linearProgressIndicatorParams!.key,
-          value: elParams.p.linearProgressIndicatorParams!.manager!
-              .getValue(getSID()!),
-          backgroundColor:
-              elParams.p.linearProgressIndicatorParams!.backgroundColor,
-          color: elParams.p.linearProgressIndicatorParams!.color,
-          valueColor: elParams.p.linearProgressIndicatorParams!.valueColor,
-          minHeight: elParams.p.linearProgressIndicatorParams!.minHeight,
-          semanticsLabel:
-              elParams.p.linearProgressIndicatorParams!.semanticsLabel,
-          semanticsValue:
-              elParams.p.linearProgressIndicatorParams!.semanticsValue);
+        key: elParams.p.linearProgressIndicatorParams!.key,
+        value: elParams.p.linearProgressIndicatorParams!.manager!.getValue(
+          getSID()!,
+        ),
+        backgroundColor:
+            elParams.p.linearProgressIndicatorParams!.backgroundColor,
+        color: elParams.p.linearProgressIndicatorParams!.color,
+        valueColor: elParams.p.linearProgressIndicatorParams!.valueColor,
+        minHeight: elParams.p.linearProgressIndicatorParams!.minHeight,
+        semanticsLabel:
+            elParams.p.linearProgressIndicatorParams!.semanticsLabel,
+        semanticsValue:
+            elParams.p.linearProgressIndicatorParams!.semanticsValue,
+      );
     }
   }
 
@@ -150,13 +167,15 @@ class ProgressIndicatorElement extends SpWMLElement {
     if (sid != null) {
       if (elParams.p.indicatorType == EnumIndicatorType.circular) {
         if (elParams.p.circularProgressIndicatorParams!.manager != null) {
-          return elParams.p.circularProgressIndicatorParams!.manager!
-              .getValue(sid);
+          return elParams.p.circularProgressIndicatorParams!.manager!.getValue(
+            sid,
+          );
         }
       } else {
         if (elParams.p.linearProgressIndicatorParams!.manager != null) {
-          return elParams.p.linearProgressIndicatorParams!.manager!
-              .getValue(sid);
+          return elParams.p.linearProgressIndicatorParams!.manager!.getValue(
+            sid,
+          );
         }
       }
     }
@@ -171,12 +190,16 @@ class ProgressIndicatorElement extends SpWMLElement {
   void setManager(ValueManager m, String sid) {
     if (elParams.p.indicatorType == EnumIndicatorType.circular) {
       elParams.p.circularProgressIndicatorParams!.manager = m;
-      elParams.p.circularProgressIndicatorParams!.manager!
-          .getValue(sid, initialValue: null);
+      elParams.p.circularProgressIndicatorParams!.manager!.getValue(
+        sid,
+        initialValue: null,
+      );
     } else {
       elParams.p.linearProgressIndicatorParams!.manager = m;
-      elParams.p.linearProgressIndicatorParams!.manager!
-          .getValue(sid, initialValue: null);
+      elParams.p.linearProgressIndicatorParams!.manager!.getValue(
+        sid,
+        initialValue: null,
+      );
     }
   }
 }
