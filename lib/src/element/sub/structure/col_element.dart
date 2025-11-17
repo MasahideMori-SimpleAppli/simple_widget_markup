@@ -44,17 +44,17 @@ class ColElement extends MultiChildElement {
     this.elParams, {
     super.key,
   }) : super(
-         serial,
-         EnumSpWMLElementType.col,
-         params,
-         spwmlParams,
-         parentSerial,
-         lineStart,
-         lineEnd,
-         style,
-         info,
-         children,
-       );
+          serial,
+          EnumSpWMLElementType.col,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          children,
+        );
 
   /// Get this class name.
   @override

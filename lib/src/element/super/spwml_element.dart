@@ -94,8 +94,8 @@ class SpWMLElement extends StatelessWidget {
       spwmlParams.p.materialParams ??= MaterialParams();
       spwmlParams.p.materialParams!.elevation =
           params.containsKey(EnumSpWMLParams.elevation)
-          ? params[EnumSpWMLParams.elevation]
-          : 0.0;
+              ? params[EnumSpWMLParams.elevation]
+              : 0.0;
     }
     if (_isEnableConstrains()) {
       spwmlParams.p.constrains = _getConstraints();
@@ -105,16 +105,16 @@ class SpWMLElement extends StatelessWidget {
     spwmlParams.p.containerParams!.padding = _getPaddingFromSpWML();
     spwmlParams.p.containerParams!.width =
         params.containsKey(EnumSpWMLParams.width)
-        ? params[EnumSpWMLParams.width]!
-        : null;
+            ? params[EnumSpWMLParams.width]!
+            : null;
     spwmlParams.p.containerParams!.height =
         params.containsKey(EnumSpWMLParams.height)
-        ? params[EnumSpWMLParams.height]!
-        : null;
+            ? params[EnumSpWMLParams.height]!
+            : null;
     spwmlParams.p.containerParams!.color =
         params.containsKey(EnumSpWMLParams.bgColor)
-        ? params[EnumSpWMLParams.bgColor]!
-        : null;
+            ? params[EnumSpWMLParams.bgColor]!
+            : null;
     // Decoration
     spwmlParams.p.containerParams!.decoration = _getDecoration();
     // Visibility
@@ -263,9 +263,8 @@ class SpWMLElement extends StatelessWidget {
     return isUseWidth || isUseColor
         ? BorderSide(
             width: isUseWidth ? params[EnumSpWMLParams.borderWidth]! : 1.0,
-            color: isUseColor
-                ? params[EnumSpWMLParams.borderColor]
-                : Colors.black,
+            color:
+                isUseColor ? params[EnumSpWMLParams.borderColor] : Colors.black,
             style: BorderStyle.solid,
           )
         : null;
@@ -294,14 +293,14 @@ class SpWMLElement extends StatelessWidget {
       return params.containsKey(EnumSpWMLParams.mTop)
           ? params[EnumSpWMLParams.mTop]
           : (params.containsKey(EnumSpWMLParams.mAll)
-                ? params[EnumSpWMLParams.mAll]
-                : style.styleMap[type]!.mT ?? 0.0);
+              ? params[EnumSpWMLParams.mAll]
+              : style.styleMap[type]!.mT ?? 0.0);
     } else {
       return params.containsKey(EnumSpWMLParams.mTop)
           ? params[EnumSpWMLParams.mTop]
           : (params.containsKey(EnumSpWMLParams.mAll)
-                ? params[EnumSpWMLParams.mAll]
-                : 0.0);
+              ? params[EnumSpWMLParams.mAll]
+              : 0.0);
     }
   }
 
@@ -310,19 +309,19 @@ class SpWMLElement extends StatelessWidget {
     final double left = params.containsKey(EnumSpWMLParams.mLeft)
         ? params[EnumSpWMLParams.mLeft]
         : (params.containsKey(EnumSpWMLParams.mAll)
-              ? params[EnumSpWMLParams.mAll]
-              : 0.0);
+            ? params[EnumSpWMLParams.mAll]
+            : 0.0);
     final double top = _getMarginTop();
     final double right = params.containsKey(EnumSpWMLParams.mRight)
         ? params[EnumSpWMLParams.mRight]
         : (params.containsKey(EnumSpWMLParams.mAll)
-              ? params[EnumSpWMLParams.mAll]
-              : 0.0);
+            ? params[EnumSpWMLParams.mAll]
+            : 0.0);
     final double bottom = params.containsKey(EnumSpWMLParams.mBottom)
         ? params[EnumSpWMLParams.mBottom]
         : (params.containsKey(EnumSpWMLParams.mAll)
-              ? params[EnumSpWMLParams.mAll]
-              : 0.0);
+            ? params[EnumSpWMLParams.mAll]
+            : 0.0);
     return EdgeInsets.fromLTRB(left, top, right, bottom);
   }
 
@@ -347,23 +346,23 @@ class SpWMLElement extends StatelessWidget {
     final double left = params.containsKey(EnumSpWMLParams.pLeft)
         ? params[EnumSpWMLParams.pLeft]
         : (params.containsKey(EnumSpWMLParams.pAll)
-              ? params[EnumSpWMLParams.pAll]
-              : 0.0);
+            ? params[EnumSpWMLParams.pAll]
+            : 0.0);
     final double top = params.containsKey(EnumSpWMLParams.pTop)
         ? params[EnumSpWMLParams.pTop]
         : (params.containsKey(EnumSpWMLParams.pAll)
-              ? params[EnumSpWMLParams.pAll]
-              : 0.0);
+            ? params[EnumSpWMLParams.pAll]
+            : 0.0);
     final double right = params.containsKey(EnumSpWMLParams.pRight)
         ? params[EnumSpWMLParams.pRight]
         : (params.containsKey(EnumSpWMLParams.pAll)
-              ? params[EnumSpWMLParams.pAll]
-              : 0.0);
+            ? params[EnumSpWMLParams.pAll]
+            : 0.0);
     final double bottom = params.containsKey(EnumSpWMLParams.pBottom)
         ? params[EnumSpWMLParams.pBottom]
         : (params.containsKey(EnumSpWMLParams.pAll)
-              ? params[EnumSpWMLParams.pAll]
-              : 0.0);
+            ? params[EnumSpWMLParams.pAll]
+            : 0.0);
     return EdgeInsets.fromLTRB(left, top, right, bottom);
   }
 

@@ -46,18 +46,18 @@ class ExpTileElement extends MultiChildTextElement {
     this.elParams, {
     super.key,
   }) : super(
-         serial,
-         EnumSpWMLElementType.expTile,
-         params,
-         spwmlParams,
-         parentSerial,
-         lineStart,
-         lineEnd,
-         style,
-         info,
-         children,
-         textParams,
-       );
+          serial,
+          EnumSpWMLElementType.expTile,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          children,
+          textParams,
+        );
 
   /// Get this class name.
   @override
@@ -90,8 +90,7 @@ class ExpTileElement extends MultiChildTextElement {
     return ExpansionTile(
       key: elParams.p.key,
       leading: elParams.p.leading,
-      title:
-          elParams.p.title ??
+      title: elParams.p.title ??
           Text(
             spwmlParams.p.text,
             textScaler: MediaQuery.of(context).textScaler,

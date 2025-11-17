@@ -42,16 +42,16 @@ class IconElement extends SpWMLElement {
     this.elParams, {
     super.key,
   }) : super(
-         serial,
-         EnumSpWMLElementType.icon,
-         params,
-         spwmlParams,
-         parentSerial,
-         lineStart,
-         lineEnd,
-         style,
-         info,
-       );
+          serial,
+          EnumSpWMLElementType.icon,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+        );
 
   /// Get this class name.
   @override

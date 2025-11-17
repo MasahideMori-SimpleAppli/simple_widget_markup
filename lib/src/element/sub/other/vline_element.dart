@@ -41,16 +41,16 @@ class VLineElement extends SpWMLElement {
     this.elParams, {
     super.key,
   }) : super(
-         serial,
-         EnumSpWMLElementType.vline,
-         params,
-         spwmlParams,
-         parentSerial,
-         lineStart,
-         lineEnd,
-         style,
-         info,
-       );
+          serial,
+          EnumSpWMLElementType.vline,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+        );
 
   /// Get this class name.
   @override

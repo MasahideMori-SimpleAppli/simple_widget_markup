@@ -38,17 +38,17 @@ class BlockElement extends SingleChildElement {
     BlockElementChild child, {
     super.key,
   }) : super(
-         serial,
-         EnumSpWMLElementType.block,
-         params,
-         spwmlParams,
-         parentSerial,
-         lineStart,
-         lineEnd,
-         style,
-         info,
-         child,
-       );
+          serial,
+          EnumSpWMLElementType.block,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          child,
+        );
 
   /// Get this class name.
   @override

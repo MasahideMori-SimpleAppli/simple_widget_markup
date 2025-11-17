@@ -39,17 +39,17 @@ class SegmentedBtnElement extends MultiChildElement {
     this.elParams, {
     super.key,
   }) : super(
-         serial,
-         EnumSpWMLElementType.segmentedBtn,
-         params,
-         spwmlParams,
-         parentSerial,
-         lineStart,
-         lineEnd,
-         style,
-         info,
-         children,
-       );
+          serial,
+          EnumSpWMLElementType.segmentedBtn,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          children,
+        );
 
   /// Get this class name.
   @override
@@ -66,12 +66,12 @@ class SegmentedBtnElement extends MultiChildElement {
         : true;
     elParams.p.multiSelectionEnabled =
         params.containsKey(EnumSpWMLParams.isMultiSelection)
-        ? params[EnumSpWMLParams.isMultiSelection]
-        : SegmentedBtnParams.defMultiSelectionEnabled;
+            ? params[EnumSpWMLParams.isMultiSelection]
+            : SegmentedBtnParams.defMultiSelectionEnabled;
     elParams.p.emptySelectionAllowed =
         params.containsKey(EnumSpWMLParams.allowEmpty)
-        ? params[EnumSpWMLParams.allowEmpty]
-        : SegmentedBtnParams.defEmptySelectionAllowed;
+            ? params[EnumSpWMLParams.allowEmpty]
+            : SegmentedBtnParams.defEmptySelectionAllowed;
     // SIDが設定されていなければエラー。
     if (getSID() == null) {
       throw SpWMLException(

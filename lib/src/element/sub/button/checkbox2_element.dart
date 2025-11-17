@@ -44,17 +44,17 @@ class Checkbox2Element extends MultiChildElement {
     this.elParams, {
     super.key,
   }) : super(
-         serial,
-         EnumSpWMLElementType.checkbox2,
-         params,
-         spwmlParams,
-         parentSerial,
-         lineStart,
-         lineEnd,
-         style,
-         info,
-         children,
-       );
+          serial,
+          EnumSpWMLElementType.checkbox2,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          children,
+        );
 
   /// Get this class name.
   @override
@@ -95,8 +95,8 @@ class Checkbox2Element extends MultiChildElement {
     elParams.p.disableParams = disabled;
     elParams.p.enableTapLabel =
         params.containsKey(EnumSpWMLParams.enableTapLabel)
-        ? params[EnumSpWMLParams.enableTapLabel]
-        : false;
+            ? params[EnumSpWMLParams.enableTapLabel]
+            : false;
     elParams.p.isPrefixIcon = params.containsKey(EnumSpWMLParams.isPrefixIcon)
         ? params[EnumSpWMLParams.isPrefixIcon]
         : true;
@@ -215,8 +215,8 @@ class _Checkbox2ElementWidgetState extends State<_Checkbox2ElementWidget> {
   void _onTapCallback(String targetTag) {
     if (mounted) {
       setState(() {
-        final Set<String> mySelection = widget.elParams.p.manager!
-            .getSelectionSet(widget.sid);
+        final Set<String> mySelection =
+            widget.elParams.p.manager!.getSelectionSet(widget.sid);
         if (mySelection.contains(targetTag)) {
           mySelection.remove(targetTag);
         } else {
@@ -233,8 +233,8 @@ class _Checkbox2ElementWidgetState extends State<_Checkbox2ElementWidget> {
 
   /// Return wrapped widget.
   Widget _getWrap(String targetTag, Widget w) {
-    final bool isDisabledSelection = widget.elParams.p.disabledSelections
-        .contains(targetTag);
+    final bool isDisabledSelection =
+        widget.elParams.p.disabledSelections.contains(targetTag);
     if (widget.elParams.p.enableTapLabel) {
       return InkWell(
         key: widget.elParams.p.enableTapInkWellParams.key,
@@ -260,8 +260,7 @@ class _Checkbox2ElementWidgetState extends State<_Checkbox2ElementWidget> {
         splashFactory: widget.elParams.p.enableTapInkWellParams.splashFactory,
         radius: widget.elParams.p.enableTapInkWellParams.radius,
         borderRadius: widget.elParams.p.enableTapInkWellParams.borderRadius,
-        customBorder:
-            widget.elParams.p.enableTapInkWellParams.customBorder ??
+        customBorder: widget.elParams.p.enableTapInkWellParams.customBorder ??
             widget.shape,
         enableFeedback: widget.elParams.p.enableTapInkWellParams.enableFeedback,
         excludeFromSemantics:

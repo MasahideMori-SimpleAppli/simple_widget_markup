@@ -37,16 +37,16 @@ class SwitchBtnElement extends SpWMLElement {
     this.elParams, {
     super.key,
   }) : super(
-         serial,
-         EnumSpWMLElementType.switchBtn,
-         params,
-         spwmlParams,
-         parentSerial,
-         lineStart,
-         lineEnd,
-         style,
-         info,
-       );
+          serial,
+          EnumSpWMLElementType.switchBtn,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+        );
 
   /// Get this class name.
   @override
@@ -178,17 +178,17 @@ class _SwitchBtnElementWidgetState extends State<_SwitchBtnElementWidget> {
       value: widget.elParams.p.manager!.getFlag(widget.sid),
       onChanged:
           widget.elParams.p.onChanged != null && widget.elParams.p.isEnabled
-          ? (bool b) {
-              if (mounted) {
-                setState(() {
-                  widget.elParams.p.manager!.setFlag(widget.sid, b);
-                  if (widget.elParams.p.onChanged != null) {
-                    widget.elParams.p.onChanged!(b);
+              ? (bool b) {
+                  if (mounted) {
+                    setState(() {
+                      widget.elParams.p.manager!.setFlag(widget.sid, b);
+                      if (widget.elParams.p.onChanged != null) {
+                        widget.elParams.p.onChanged!(b);
+                      }
+                    });
                   }
-                });
-              }
-            }
-          : null,
+                }
+              : null,
       activeThumbColor: widget.elParams.p.activeThumbColor,
       activeTrackColor: widget.elParams.p.activeTrackColor,
       inactiveThumbColor: widget.elParams.p.inactiveThumbColor,

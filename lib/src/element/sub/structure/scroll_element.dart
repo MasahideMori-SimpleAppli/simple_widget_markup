@@ -46,17 +46,17 @@ class ScrollElement extends SingleChildElement {
     this.elParams, {
     super.key,
   }) : super(
-         serial,
-         EnumSpWMLElementType.scroll,
-         params,
-         spwmlParams,
-         parentSerial,
-         lineStart,
-         lineEnd,
-         style,
-         info,
-         child,
-       );
+          serial,
+          EnumSpWMLElementType.scroll,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          child,
+        );
 
   /// Get this class name.
   @override
@@ -76,8 +76,8 @@ class ScrollElement extends SingleChildElement {
         : Axis.vertical;
     elParams.p.scrollBehavior =
         params.containsKey(EnumSpWMLParams.scrollBehavior)
-        ? params[EnumSpWMLParams.scrollBehavior]!
-        : null;
+            ? params[EnumSpWMLParams.scrollBehavior]!
+            : null;
     if (elParams.p.scrollDirection == Axis.horizontal &&
         elParams.p.scrollBehavior == null) {
       elParams.p.scrollBehavior = const MaterialScrollBehavior().copyWith(

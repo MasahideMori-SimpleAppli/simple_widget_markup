@@ -38,17 +38,17 @@ class TextFieldElement extends TextElement {
     this.tfParams, {
     super.key,
   }) : super(
-         serial,
-         EnumSpWMLElementType.textField,
-         params,
-         spwmlParams,
-         parentSerial,
-         lineStart,
-         lineEnd,
-         style,
-         info,
-         textParams,
-       );
+          serial,
+          EnumSpWMLElementType.textField,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          textParams,
+        );
 
   /// Get this class name.
   @override
@@ -62,7 +62,7 @@ class TextFieldElement extends TextElement {
     super.initParams();
     tfParams.p.keyboardType = params.containsKey(EnumSpWMLParams.keyboardType)
         ? (params[EnumSpWMLParams.keyboardType] as EnumTextFieldKeyboardType)
-              .toTextInputType()
+            .toTextInputType()
         : null;
     // 数値用の最大値または最小値が設定してあれば取得。
     final double? minV = params.containsKey(EnumSpWMLParams.min)
@@ -73,7 +73,7 @@ class TextFieldElement extends TextElement {
         : null;
     tfParams.p.inputFormatters = params.containsKey(EnumSpWMLParams.inputType)
         ? (params[EnumSpWMLParams.inputType] as EnumTextFieldInputType)
-              .toTextInputFormatter(minV, maxV)
+            .toTextInputFormatter(minV, maxV)
         : null;
     tfParams.p.enabled = params.containsKey(EnumSpWMLParams.isEnabled)
         ? params[EnumSpWMLParams.isEnabled]

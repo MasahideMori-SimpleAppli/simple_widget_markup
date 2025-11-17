@@ -43,17 +43,17 @@ class StackElement extends MultiChildElement {
     this.elParams, {
     super.key,
   }) : super(
-         serial,
-         EnumSpWMLElementType.stack,
-         params,
-         spwmlParams,
-         parentSerial,
-         lineStart,
-         lineEnd,
-         style,
-         info,
-         children,
-       );
+          serial,
+          EnumSpWMLElementType.stack,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          children,
+        );
 
   /// Get this class name.
   @override

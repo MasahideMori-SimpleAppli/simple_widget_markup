@@ -44,17 +44,17 @@ class SingleChildTextElement extends TextElement {
     TextParamsWrapper textParams, {
     super.key,
   }) : super(
-         serial,
-         type,
-         params,
-         spwmlParams,
-         parentSerial,
-         lineStart,
-         lineEnd,
-         style,
-         info,
-         textParams,
-       );
+          serial,
+          type,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          textParams,
+        );
 
   /// Get this class name.
   @override

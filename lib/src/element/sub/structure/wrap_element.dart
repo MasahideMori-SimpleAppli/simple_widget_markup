@@ -44,17 +44,17 @@ class WrapElement extends MultiChildElement {
     this.elParams, {
     super.key,
   }) : super(
-         serial,
-         EnumSpWMLElementType.wrap,
-         params,
-         spwmlParams,
-         parentSerial,
-         lineStart,
-         lineEnd,
-         style,
-         info,
-         children,
-       );
+          serial,
+          EnumSpWMLElementType.wrap,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          children,
+        );
 
   /// Get this class name.
   @override

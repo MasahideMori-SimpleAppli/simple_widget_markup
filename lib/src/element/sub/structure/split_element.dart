@@ -41,17 +41,17 @@ class SplitElement extends MultiChildElement {
     this.elParams, {
     super.key,
   }) : super(
-         serial,
-         EnumSpWMLElementType.split,
-         params,
-         spwmlParams,
-         parentSerial,
-         lineStart,
-         lineEnd,
-         style,
-         info,
-         children,
-       );
+          serial,
+          EnumSpWMLElementType.split,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          children,
+        );
 
   /// Get this class name.
   @override
@@ -80,12 +80,12 @@ class SplitElement extends MultiChildElement {
         : SplitParams.defClampMax;
     elParams.p.splitPane1MinPx =
         params.containsKey(EnumSpWMLParams.splitPane1MinPx)
-        ? params[EnumSpWMLParams.splitPane1MinPx]!
-        : null;
+            ? params[EnumSpWMLParams.splitPane1MinPx]!
+            : null;
     elParams.p.splitPane2MinPx =
         params.containsKey(EnumSpWMLParams.splitPane2MinPx)
-        ? params[EnumSpWMLParams.splitPane2MinPx]!
-        : null;
+            ? params[EnumSpWMLParams.splitPane2MinPx]!
+            : null;
     // SIDが設定されていなければエラー。
     if (getSID() == null) {
       throw SpWMLException(
@@ -228,8 +228,7 @@ class _SplitElementWidgetState extends State<_SplitElementWidget> {
   @override
   Widget build(BuildContext context) {
     List<Widget> children = widget.children.getChildren();
-    final double ratio =
-        widget.elParams.p.manager!.getValue(widget.sid) ??
+    final double ratio = widget.elParams.p.manager!.getValue(widget.sid) ??
         SplitParams.defSplitRatio;
     if (children.length < 2) {
       if (children.isEmpty) {

@@ -36,16 +36,16 @@ class SliderElement extends SpWMLElement {
     this.elParams, {
     super.key,
   }) : super(
-         serial,
-         EnumSpWMLElementType.slider,
-         params,
-         spwmlParams,
-         parentSerial,
-         lineStart,
-         lineEnd,
-         style,
-         info,
-       );
+          serial,
+          EnumSpWMLElementType.slider,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+        );
 
   /// Get this class name.
   @override
@@ -172,8 +172,7 @@ class _SliderElementWidgetState extends State<_SliderElementWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final double value =
-        widget.elParams.p.manager!.getValue(widget.sid) ??
+    final double value = widget.elParams.p.manager!.getValue(widget.sid) ??
         widget.elParams.p.min;
     return Slider(
       key: widget.elParams.p.key,
@@ -184,12 +183,11 @@ class _SliderElementWidgetState extends State<_SliderElementWidget> {
       min: widget.elParams.p.min,
       max: widget.elParams.p.max,
       divisions: widget.elParams.p.divisions,
-      label:
-          widget.elParams.p.label ??
+      label: widget.elParams.p.label ??
           (widget.elParams.p.useAutoLabel
               ? (widget.elParams.p.isIntValue
-                    ? value.toInt().toString()
-                    : value.toString())
+                  ? value.toInt().toString()
+                  : value.toString())
               : null),
       activeColor: widget.elParams.p.activeColor,
       inactiveColor: widget.elParams.p.inactiveColor,

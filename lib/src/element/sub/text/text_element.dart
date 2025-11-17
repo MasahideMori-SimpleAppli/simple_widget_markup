@@ -51,14 +51,14 @@ class TextElement extends SpWMLElement {
     textParams.p.isSelectable = params.containsKey(EnumSpWMLParams.isSelectable)
         ? params[EnumSpWMLParams.isSelectable]
         : type == EnumSpWMLElementType.menu
-        ? false
-        : true;
+            ? false
+            : true;
     if (textParams.p.isSelectable) {
       textParams.p.selectableTextParams = SelectableTextParams();
       textParams.p.selectableTextParams!.maxLines =
           params.containsKey(EnumSpWMLParams.maxLines)
-          ? params[EnumSpWMLParams.maxLines]
-          : null;
+              ? params[EnumSpWMLParams.maxLines]
+              : null;
     } else {
       textParams.p.overflow = params.containsKey(EnumSpWMLParams.overflow)
           ? params[EnumSpWMLParams.overflow]
@@ -69,8 +69,8 @@ class TextElement extends SpWMLElement {
     }
     textParams.p.useTextScaler =
         params.containsKey(EnumSpWMLParams.useTextScaler)
-        ? params[EnumSpWMLParams.useTextScaler]
-        : false;
+            ? params[EnumSpWMLParams.useTextScaler]
+            : false;
     return this;
   }
 
@@ -89,14 +89,12 @@ class TextElement extends SpWMLElement {
             focusNode: textParams.p.selectableTextParams!.focusNode,
             style:
                 textParams.p.selectableTextParams!.style ?? getStyle(context),
-            strutStyle:
-                textParams.p.selectableTextParams!.strutStyle ??
+            strutStyle: textParams.p.selectableTextParams!.strutStyle ??
                 getStrutStyle(context),
             textAlign:
                 textParams.p.selectableTextParams!.textAlign ?? getTextAlign(),
             textDirection: textParams.p.selectableTextParams!.textDirection,
-            textScaler:
-                textParams.p.selectableTextParams!.textScaler ??
+            textScaler: textParams.p.selectableTextParams!.textScaler ??
                 MediaQuery.of(context).textScaler,
             showCursor: textParams.p.selectableTextParams!.showCursor,
             autofocus: textParams.p.selectableTextParams!.autofocus,
@@ -230,8 +228,8 @@ class TextElement extends SpWMLElement {
               : null,
           leadingDistribution:
               params.containsKey(EnumSpWMLParams.leadingDistribution)
-              ? params[EnumSpWMLParams.leadingDistribution]
-              : null,
+                  ? params[EnumSpWMLParams.leadingDistribution]
+                  : null,
           fontWeight: params.containsKey(EnumSpWMLParams.fontWeight)
               ? params[EnumSpWMLParams.fontWeight]
               : getDefFontWeight(),

@@ -44,17 +44,17 @@ class DropdownBtn2Element extends MultiChildElement {
     this.elParams, {
     super.key,
   }) : super(
-         serial,
-         EnumSpWMLElementType.dropdownBtn2,
-         params,
-         spwmlParams,
-         parentSerial,
-         lineStart,
-         lineEnd,
-         style,
-         info,
-         children,
-       );
+          serial,
+          EnumSpWMLElementType.dropdownBtn2,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          children,
+        );
 
   /// Get this class name.
   @override
@@ -300,8 +300,8 @@ class _DropDownElement2WidgetState extends State<_DropDownElement2Widget> {
       padding: widget.elParams.p.padding,
       onChanged: widget.elParams.p.isEnabled
           ? (String? v) => {
-              if (mounted) {setState(() {})},
-            }
+                if (mounted) {setState(() {})},
+              }
           : null,
     );
   }

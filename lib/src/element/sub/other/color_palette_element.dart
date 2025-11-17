@@ -37,16 +37,16 @@ class ColorPaletteElement extends SpWMLElement {
     this.elParams, {
     super.key,
   }) : super(
-         serial,
-         EnumSpWMLElementType.colorPalette,
-         params,
-         spwmlParams,
-         parentSerial,
-         lineStart,
-         lineEnd,
-         style,
-         info,
-       );
+          serial,
+          EnumSpWMLElementType.colorPalette,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+        );
 
   /// Get this class name.
   @override
@@ -84,12 +84,12 @@ class ColorPaletteElement extends SpWMLElement {
         : Colors.black;
     final double? cellBorderWidth =
         params.containsKey(EnumSpWMLParams.cellBorderWidth)
-        ? params[EnumSpWMLParams.cellBorderWidth]
-        : null;
+            ? params[EnumSpWMLParams.cellBorderWidth]
+            : null;
     final Color? cellBorderColor =
         params.containsKey(EnumSpWMLParams.cellBorderColor)
-        ? params[EnumSpWMLParams.cellBorderColor]
-        : null;
+            ? params[EnumSpWMLParams.cellBorderColor]
+            : null;
     elParams.p.colorCellDecoration = elParams.p.colorCellDecoration.copyWith(
       border: Border.all(
         color: cellBorderColor ?? Colors.black,

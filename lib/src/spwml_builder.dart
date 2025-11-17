@@ -39,12 +39,12 @@ class SpWMLBuilder {
     SpWMLFontStyle? spWMLStyle,
     this.info,
     this.key,
-  }) : _parsedWidgets = SpWMLParser.run(
-         spWML,
-         spWMLStyle ?? SpWMLFontStyleManager().style,
-         info,
-       ),
-       style = spWMLStyle ?? SpWMLFontStyleManager().style;
+  })  : _parsedWidgets = SpWMLParser.run(
+          spWML,
+          spWMLStyle ?? SpWMLFontStyleManager().style,
+          info,
+        ),
+        style = spWMLStyle ?? SpWMLFontStyleManager().style;
 
   /// (en)Replaces the contents of the specified SID with a widget.
   ///

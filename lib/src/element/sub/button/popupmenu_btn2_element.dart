@@ -44,17 +44,17 @@ class PopupMenuBtn2Element extends MultiChildElement {
     this.elParams, {
     super.key,
   }) : super(
-         serial,
-         EnumSpWMLElementType.popupMenuBtn2,
-         params,
-         spwmlParams,
-         parentSerial,
-         lineStart,
-         lineEnd,
-         style,
-         info,
-         children,
-       );
+          serial,
+          EnumSpWMLElementType.popupMenuBtn2,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          children,
+        );
 
   /// Get this class name.
   @override
@@ -263,16 +263,14 @@ class _PopupMenuElement2WidgetState extends State<_PopupMenuElement2Widget> {
   Widget build(BuildContext context) {
     return PopupMenuButton<String>(
       key: widget.elParams.p.key,
-      itemBuilder:
-          widget.elParams.p.itemBuilder ??
+      itemBuilder: widget.elParams.p.itemBuilder ??
           (BuildContext context) {
             return widget.menus;
           },
       initialValue: widget.elParams.p.manager!.getSelection(widget.sid),
       onOpened: widget.elParams.p.onOpened,
-      onSelected: widget.elParams.p.isEnabled
-          ? widget.elParams.p.onSelected
-          : null,
+      onSelected:
+          widget.elParams.p.isEnabled ? widget.elParams.p.onSelected : null,
       onCanceled: widget.elParams.p.onCanceled,
       tooltip: widget.elParams.p.tooltip,
       elevation: widget.elParams.p.elevation,

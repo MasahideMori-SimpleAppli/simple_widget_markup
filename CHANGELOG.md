@@ -1,3 +1,7 @@
+## 46.0.1
+
+* To address issues occurring in Flutter 3.10.x, I have made adjustments to ensure compatibility and work with older versions.
+
 ## 46.0.0
 
 * Updated for Flutter 3.10.0.

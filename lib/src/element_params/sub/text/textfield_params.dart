@@ -82,8 +82,7 @@ class TextFieldParams {
     required int currentLength,
     required bool isFocused,
     required int? maxLength,
-  })?
-  buildCounter;
+  })? buildCounter;
   ScrollController? scrollController;
   ScrollPhysics? scrollPhysics;
   Iterable<String>? autofillHints = const [];
@@ -200,9 +199,8 @@ class TextFieldParams {
 
   /// Change textField mode.
   void changeSearchMode(bool prefixIcon) {
-    _mode = prefixIcon
-        ? EnumTextFieldMode.searchPrefix
-        : EnumTextFieldMode.search;
+    _mode =
+        prefixIcon ? EnumTextFieldMode.searchPrefix : EnumTextFieldMode.search;
     obscureText = false;
     enableSuggestions = true;
     autocorrect = true;

@@ -39,17 +39,17 @@ class HrefElement extends TextElement {
     this.elParams, {
     super.key,
   }) : super(
-         serial,
-         EnumSpWMLElementType.href,
-         params,
-         spwmlParams,
-         parentSerial,
-         lineStart,
-         lineEnd,
-         style,
-         info,
-         textParams,
-       );
+          serial,
+          EnumSpWMLElementType.href,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          textParams,
+        );
 
   /// Get this class name.
   @override

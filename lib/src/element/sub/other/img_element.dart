@@ -38,16 +38,16 @@ class ImgElement extends SpWMLElement {
     this.elParams, {
     super.key,
   }) : super(
-         serial,
-         EnumSpWMLElementType.img,
-         params,
-         spwmlParams,
-         parentSerial,
-         lineStart,
-         lineEnd,
-         style,
-         info,
-       );
+          serial,
+          EnumSpWMLElementType.img,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+        );
 
   /// Get this class name.
   @override
@@ -70,12 +70,12 @@ class ImgElement extends SpWMLElement {
         : ImageRepeat.noRepeat;
     elParams.p.clipParams.clipType =
         params.containsKey(EnumSpWMLParams.clipType)
-        ? params[EnumSpWMLParams.clipType]!
-        : EnumClipType.none;
+            ? params[EnumSpWMLParams.clipType]!
+            : EnumClipType.none;
     elParams.p.clipParams.borderRadius =
         params.containsKey(EnumSpWMLParams.clipRadius)
-        ? params[EnumSpWMLParams.clipRadius]!
-        : BorderRadius.circular(8.0);
+            ? params[EnumSpWMLParams.clipRadius]!
+            : BorderRadius.circular(8.0);
     return this;
   }
 

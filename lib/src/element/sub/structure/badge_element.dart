@@ -38,18 +38,18 @@ class BadgeElement extends SingleChildTextElement {
     this.elParams, {
     super.key,
   }) : super(
-         serial,
-         EnumSpWMLElementType.badge,
-         params,
-         spwmlParams,
-         parentSerial,
-         lineStart,
-         lineEnd,
-         style,
-         info,
-         child,
-         textParams,
-       );
+          serial,
+          EnumSpWMLElementType.badge,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          child,
+          textParams,
+        );
 
   /// Get this class name.
   @override
@@ -83,8 +83,8 @@ class BadgeElement extends SingleChildTextElement {
     }
     elParams.p.isLabelVisible =
         params.containsKey(EnumSpWMLParams.isLabelVisible)
-        ? params[EnumSpWMLParams.isLabelVisible]
-        : true;
+            ? params[EnumSpWMLParams.isLabelVisible]
+            : true;
     return this;
   }
 

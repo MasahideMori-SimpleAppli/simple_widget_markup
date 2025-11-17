@@ -54,8 +54,8 @@ class SuperAndSubscriptElement extends TextElement {
     super.initParams();
     elParams.p.baselineCorrection =
         params.containsKey(EnumSpWMLParams.baselineCorrection)
-        ? params[EnumSpWMLParams.baselineCorrection]
-        : SuperAndSubscriptParams.defBaselineCorrection;
+            ? params[EnumSpWMLParams.baselineCorrection]
+            : SuperAndSubscriptParams.defBaselineCorrection;
     elParams.p.magnification = params.containsKey(EnumSpWMLParams.mag)
         ? params[EnumSpWMLParams.mag]
         : SuperAndSubscriptParams.defMag;

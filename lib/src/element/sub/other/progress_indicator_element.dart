@@ -37,16 +37,16 @@ class ProgressIndicatorElement extends SpWMLElement {
     this.elParams, {
     super.key,
   }) : super(
-         serial,
-         EnumSpWMLElementType.progressIndicator,
-         params,
-         spwmlParams,
-         parentSerial,
-         lineStart,
-         lineEnd,
-         style,
-         info,
-       );
+          serial,
+          EnumSpWMLElementType.progressIndicator,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+        );
 
   /// Get this class name.
   @override
@@ -66,23 +66,23 @@ class ProgressIndicatorElement extends SpWMLElement {
           CircularProgressIndicatorParams();
       elParams.p.circularProgressIndicatorParams!.color =
           params.containsKey(EnumSpWMLParams.indicatorColor)
-          ? params[EnumSpWMLParams.indicatorColor]
-          : null;
+              ? params[EnumSpWMLParams.indicatorColor]
+              : null;
       elParams.p.circularProgressIndicatorParams!.backgroundColor =
           params.containsKey(EnumSpWMLParams.indicatorBGColor)
-          ? params[EnumSpWMLParams.indicatorBGColor]
-          : null;
+              ? params[EnumSpWMLParams.indicatorBGColor]
+              : null;
     } else {
       elParams.p.linearProgressIndicatorParams =
           LinearProgressIndicatorParams();
       elParams.p.linearProgressIndicatorParams!.color =
           params.containsKey(EnumSpWMLParams.indicatorColor)
-          ? params[EnumSpWMLParams.indicatorColor]
-          : null;
+              ? params[EnumSpWMLParams.indicatorColor]
+              : null;
       elParams.p.linearProgressIndicatorParams!.backgroundColor =
           params.containsKey(EnumSpWMLParams.indicatorBGColor)
-          ? params[EnumSpWMLParams.indicatorBGColor]
-          : null;
+              ? params[EnumSpWMLParams.indicatorBGColor]
+              : null;
     }
     // SIDが設定されていなければエラー。
     if (getSID() == null) {

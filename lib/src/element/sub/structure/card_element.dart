@@ -44,17 +44,17 @@ class CardElement extends SingleChildElement {
     this.elParams, {
     super.key,
   }) : super(
-         serial,
-         EnumSpWMLElementType.card,
-         params,
-         spwmlParams,
-         parentSerial,
-         lineStart,
-         lineEnd,
-         style,
-         info,
-         child,
-       );
+          serial,
+          EnumSpWMLElementType.card,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          child,
+        );
 
   /// Get this class name.
   @override

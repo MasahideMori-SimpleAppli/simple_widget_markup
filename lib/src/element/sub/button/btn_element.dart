@@ -50,18 +50,18 @@ class BtnElement extends SingleChildTextElement {
     this.elParams, {
     super.key,
   }) : super(
-         serial,
-         EnumSpWMLElementType.btn,
-         params,
-         spwmlParams,
-         parentSerial,
-         lineStart,
-         lineEnd,
-         style,
-         info,
-         child,
-         textParams,
-       );
+          serial,
+          EnumSpWMLElementType.btn,
+          params,
+          spwmlParams,
+          parentSerial,
+          lineStart,
+          lineEnd,
+          style,
+          info,
+          child,
+          textParams,
+        );
 
   /// Get this class name.
   @override
@@ -240,7 +240,7 @@ class BtnElement extends SingleChildTextElement {
           icon: elParams.p.normalBtnParams!.icon!,
           label: child.child == null
               ? (elParams.p.normalBtnParams!.label ??
-                    getNonSelectableTextWidget(context))
+                  getNonSelectableTextWidget(context))
               : child.child!,
         );
       } else {
@@ -259,7 +259,7 @@ class BtnElement extends SingleChildTextElement {
           statesController: elParams.p.normalBtnParams!.statesController,
           child: child.child == null
               ? (elParams.p.normalBtnParams!.label ??
-                    getNonSelectableTextWidget(context))
+                  getNonSelectableTextWidget(context))
               : child.child!,
         );
       }
@@ -279,7 +279,7 @@ class BtnElement extends SingleChildTextElement {
           icon: elParams.p.normalBtnParams!.icon!,
           label: child.child == null
               ? (elParams.p.normalBtnParams!.label ??
-                    getNonSelectableTextWidget(context))
+                  getNonSelectableTextWidget(context))
               : child.child!,
         );
       } else {
@@ -296,7 +296,7 @@ class BtnElement extends SingleChildTextElement {
           statesController: elParams.p.normalBtnParams!.statesController,
           child: child.child == null
               ? (elParams.p.normalBtnParams!.label ??
-                    getNonSelectableTextWidget(context))
+                  getNonSelectableTextWidget(context))
               : child.child!,
         );
       }
@@ -318,7 +318,7 @@ class BtnElement extends SingleChildTextElement {
           icon: elParams.p.normalBtnParams!.icon!,
           label: child.child == null
               ? (elParams.p.normalBtnParams!.label ??
-                    getNonSelectableTextWidget(context))
+                  getNonSelectableTextWidget(context))
               : child.child!,
         );
       } else {
@@ -337,7 +337,7 @@ class BtnElement extends SingleChildTextElement {
           statesController: elParams.p.normalBtnParams!.statesController,
           child: child.child == null
               ? (elParams.p.normalBtnParams!.label ??
-                    getNonSelectableTextWidget(context))
+                  getNonSelectableTextWidget(context))
               : child.child!,
         );
       }
@@ -359,7 +359,7 @@ class BtnElement extends SingleChildTextElement {
           icon: elParams.p.normalBtnParams!.icon!,
           label: child.child == null
               ? (elParams.p.normalBtnParams!.label ??
-                    getNonSelectableTextWidget(context))
+                  getNonSelectableTextWidget(context))
               : child.child!,
         );
       } else {
@@ -378,7 +378,7 @@ class BtnElement extends SingleChildTextElement {
           statesController: elParams.p.normalBtnParams!.statesController,
           child: child.child == null
               ? (elParams.p.normalBtnParams!.label ??
-                    getNonSelectableTextWidget(context))
+                  getNonSelectableTextWidget(context))
               : child.child!,
         );
       }
@@ -400,7 +400,7 @@ class BtnElement extends SingleChildTextElement {
           icon: elParams.p.normalBtnParams!.icon!,
           label: child.child == null
               ? (elParams.p.normalBtnParams!.label ??
-                    getNonSelectableTextWidget(context))
+                  getNonSelectableTextWidget(context))
               : child.child!,
         );
       } else {
@@ -419,7 +419,7 @@ class BtnElement extends SingleChildTextElement {
           statesController: elParams.p.normalBtnParams!.statesController,
           child: child.child == null
               ? (elParams.p.normalBtnParams!.label ??
-                    getNonSelectableTextWidget(context))
+                  getNonSelectableTextWidget(context))
               : child.child!,
         );
       }
@@ -437,9 +437,8 @@ class BtnElement extends SingleChildTextElement {
         highlightColor: elParams.p.iconBtnParams!.highlightColor,
         splashColor: elParams.p.iconBtnParams!.splashColor,
         disabledColor: elParams.p.iconBtnParams!.disabledColor,
-        onPressed: elParams.p.isEnabled
-            ? elParams.p.iconBtnParams!.onPressed
-            : null,
+        onPressed:
+            elParams.p.isEnabled ? elParams.p.iconBtnParams!.onPressed : null,
         mouseCursor: elParams.p.iconBtnParams!.mouseCursor,
         focusNode: elParams.p.iconBtnParams!.focusNode,
         autofocus: elParams.p.iconBtnParams!.autofocus,
@@ -465,9 +464,8 @@ class BtnElement extends SingleChildTextElement {
         highlightColor: elParams.p.iconBtnParams!.highlightColor,
         splashColor: elParams.p.iconBtnParams!.splashColor,
         disabledColor: elParams.p.iconBtnParams!.disabledColor,
-        onPressed: elParams.p.isEnabled
-            ? elParams.p.iconBtnParams!.onPressed
-            : null,
+        onPressed:
+            elParams.p.isEnabled ? elParams.p.iconBtnParams!.onPressed : null,
         mouseCursor: elParams.p.iconBtnParams!.mouseCursor,
         focusNode: elParams.p.iconBtnParams!.focusNode,
         autofocus: elParams.p.iconBtnParams!.autofocus,
@@ -493,9 +491,8 @@ class BtnElement extends SingleChildTextElement {
         highlightColor: elParams.p.iconBtnParams!.highlightColor,
         splashColor: elParams.p.iconBtnParams!.splashColor,
         disabledColor: elParams.p.iconBtnParams!.disabledColor,
-        onPressed: elParams.p.isEnabled
-            ? elParams.p.iconBtnParams!.onPressed
-            : null,
+        onPressed:
+            elParams.p.isEnabled ? elParams.p.iconBtnParams!.onPressed : null,
         mouseCursor: elParams.p.iconBtnParams!.mouseCursor,
         focusNode: elParams.p.iconBtnParams!.focusNode,
         autofocus: elParams.p.iconBtnParams!.autofocus,
@@ -521,9 +518,8 @@ class BtnElement extends SingleChildTextElement {
         highlightColor: elParams.p.iconBtnParams!.highlightColor,
         splashColor: elParams.p.iconBtnParams!.splashColor,
         disabledColor: elParams.p.iconBtnParams!.disabledColor,
-        onPressed: elParams.p.isEnabled
-            ? elParams.p.iconBtnParams!.onPressed
-            : null,
+        onPressed:
+            elParams.p.isEnabled ? elParams.p.iconBtnParams!.onPressed : null,
         mouseCursor: elParams.p.iconBtnParams!.mouseCursor,
         focusNode: elParams.p.iconBtnParams!.focusNode,
         autofocus: elParams.p.iconBtnParams!.autofocus,
@@ -550,9 +546,8 @@ class BtnElement extends SingleChildTextElement {
         hoverElevation: elParams.p.faButtonParams!.hoverElevation,
         highlightElevation: elParams.p.faButtonParams!.highlightElevation,
         disabledElevation: elParams.p.faButtonParams!.disabledElevation,
-        onPressed: elParams.p.isEnabled
-            ? elParams.p.faButtonParams!.onPressed
-            : null,
+        onPressed:
+            elParams.p.isEnabled ? elParams.p.faButtonParams!.onPressed : null,
         mouseCursor: elParams.p.faButtonParams!.mouseCursor,
         shape: elParams.p.faButtonParams!.shape,
         clipBehavior: elParams.p.faButtonParams!.clipBehavior,
@@ -577,9 +572,8 @@ class BtnElement extends SingleChildTextElement {
         hoverElevation: elParams.p.faButtonParams!.hoverElevation,
         highlightElevation: elParams.p.faButtonParams!.highlightElevation,
         disabledElevation: elParams.p.faButtonParams!.disabledElevation,
-        onPressed: elParams.p.isEnabled
-            ? elParams.p.faButtonParams!.onPressed
-            : null,
+        onPressed:
+            elParams.p.isEnabled ? elParams.p.faButtonParams!.onPressed : null,
         mouseCursor: elParams.p.faButtonParams!.mouseCursor,
         shape: elParams.p.faButtonParams!.shape,
         clipBehavior: elParams.p.faButtonParams!.clipBehavior,
@@ -594,11 +588,11 @@ class BtnElement extends SingleChildTextElement {
             elParams.p.faButtonParams!.fabExtParams.extendedPadding,
         extendedTextStyle:
             elParams.p.faButtonParams!.fabExtParams.extendedTextStyle ??
-            getStyle(context),
+                getStyle(context),
         icon: elParams.p.faButtonParams!.fabExtParams.icon,
         label: child.child == null
             ? (elParams.p.faButtonParams!.child ??
-                  getNonSelectableTextWidget(context))
+                getNonSelectableTextWidget(context))
             : child.child!,
       );
     } else if (elParams.p.type == EnumBtnType.fa) {
@@ -616,9 +610,8 @@ class BtnElement extends SingleChildTextElement {
         hoverElevation: elParams.p.faButtonParams!.hoverElevation,
         highlightElevation: elParams.p.faButtonParams!.highlightElevation,
         disabledElevation: elParams.p.faButtonParams!.disabledElevation,
-        onPressed: elParams.p.isEnabled
-            ? elParams.p.faButtonParams!.onPressed
-            : null,
+        onPressed:
+            elParams.p.isEnabled ? elParams.p.faButtonParams!.onPressed : null,
         mouseCursor: elParams.p.faButtonParams!.mouseCursor,
         mini: false,
         shape: elParams.p.faButtonParams!.shape,
@@ -645,9 +638,8 @@ class BtnElement extends SingleChildTextElement {
         hoverElevation: elParams.p.faButtonParams!.hoverElevation,
         highlightElevation: elParams.p.faButtonParams!.highlightElevation,
         disabledElevation: elParams.p.faButtonParams!.disabledElevation,
-        onPressed: elParams.p.isEnabled
-            ? elParams.p.faButtonParams!.onPressed
-            : null,
+        onPressed:
+            elParams.p.isEnabled ? elParams.p.faButtonParams!.onPressed : null,
         mouseCursor: elParams.p.faButtonParams!.mouseCursor,
         shape: elParams.p.faButtonParams!.shape,
         clipBehavior: elParams.p.faButtonParams!.clipBehavior,
