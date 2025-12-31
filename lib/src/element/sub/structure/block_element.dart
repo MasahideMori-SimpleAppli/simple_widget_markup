@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../element_params/element_child.dart';
-import '../../../element_params/spwml_info.dart';
-import '../../../element_params/super/spwml_params.dart';
-import '../../../enum/enum_spwml_element_type.dart';
-import '../../../style/spwml_font_style.dart';
-import '../../super/single_child_element.dart';
+import 'package:simple_widget_markup/simple_widget_markup.dart';
 
 ///
 /// (en) The block.

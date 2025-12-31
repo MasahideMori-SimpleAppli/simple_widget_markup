@@ -1,5 +1,4 @@
-import '../../element_params/element_child.dart';
-import 'spwml_element.dart';
+import 'package:simple_widget_markup/simple_widget_markup.dart';
 
 ///
 /// (en) Superclass for elements with multiple children.

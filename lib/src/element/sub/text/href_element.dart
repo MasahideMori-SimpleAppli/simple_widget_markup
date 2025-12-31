@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../../simple_widget_markup.dart';
+import 'package:simple_widget_markup/simple_widget_markup.dart';
 
 ///
 /// (en) The href.

@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import '../../simple_widget_markup.dart';
+import 'package:simple_widget_markup/simple_widget_markup.dart';
 
 /// (en) Definitions of text decoration styles available in SpWML.
 ///

@@ -1,7 +1,4 @@
-import '../enum/enum_font_style.dart';
-import '../enum/enum_font_weight.dart';
-import '../enum/enum_text_decoration.dart';
-import '../enum/enum_text_decoration_style.dart';
+import 'package:simple_widget_markup/simple_widget_markup.dart';
 
 /// (en) Font settings assigned to individual elements for SpWML font style version 3.
 /// (ja) SpWMLのフォントスタイルバージョン３に関して、個別の要素に割り当てられるフォントの設定です。

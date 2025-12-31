@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../enum/enum_btn_type.dart';
+import 'package:simple_widget_markup/simple_widget_markup.dart';
 
 ///
 /// (en) A wrapper class for parameters used in classes with the same prefix name (XXXParamsWrapper of X).

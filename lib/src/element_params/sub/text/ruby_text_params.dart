@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'text_params.dart';
+import 'package:simple_widget_markup/simple_widget_markup.dart';
 
 ///
 /// (en) A wrapper class for parameters used in classes with the same prefix name (XXXParamsWrapper of X).

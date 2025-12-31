@@ -1,4 +1,4 @@
-import '../../../simple_widget_markup.dart';
+import 'package:simple_widget_markup/simple_widget_markup.dart';
 
 /// (en) A utility for compatibility with SpWML font style version 2.
 /// (ja) SpWMLのフォントスタイルバージョン２との互換性のためのユーティリティです。

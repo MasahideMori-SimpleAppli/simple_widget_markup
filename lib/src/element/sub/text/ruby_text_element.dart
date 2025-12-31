@@ -1,12 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../element_params/spwml_info.dart';
-import 'text_element.dart';
-import '../../../element_params/sub/text/ruby_text_params.dart';
-import '../../../element_params/sub/text/text_params.dart';
-import '../../../element_params/super/spwml_params.dart';
-import '../../../enum/enum_spwml_element_type.dart';
-import '../../../enum/enum_spwml_params.dart';
-import '../../../style/spwml_font_style.dart';
+import 'package:simple_widget_markup/simple_widget_markup.dart';
 
 ///
 /// (en) The ruby text.

@@ -1,11 +1,10 @@
 import 'package:flutter/services.dart';
 
-import '../element/sub/text/input_formatters/decimal_input_formatter.dart';
-import '../element/sub/text/input_formatters/minus_input_formatter.dart';
-import '../element/sub/text/input_formatters/money_input_formatter.dart';
-import '../element/sub/text/input_formatters/value_range_formatter.dart';
-import '../element_params/spwml_info.dart';
-import '../spwml_exception.dart';
+import 'package:simple_widget_markup/simple_widget_markup.dart';
+import 'package:simple_widget_markup/src/element/sub/text/input_formatters/decimal_input_formatter.dart';
+import 'package:simple_widget_markup/src/element/sub/text/input_formatters/minus_input_formatter.dart';
+import 'package:simple_widget_markup/src/element/sub/text/input_formatters/money_input_formatter.dart';
+import 'package:simple_widget_markup/src/element/sub/text/input_formatters/value_range_formatter.dart';
 
 ///
 /// (en) This file defines the types of text fields available in SpWML.

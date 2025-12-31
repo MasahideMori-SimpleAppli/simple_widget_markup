@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_managers/simple_managers.dart';
-import 'checkbox_params.dart';
-
-import 'btn_params.dart';
+import 'package:simple_widget_markup/simple_widget_markup.dart';
 
 ///
 /// (en) A wrapper class for parameters used in classes with the same prefix name (XXXParamsWrapper of X).

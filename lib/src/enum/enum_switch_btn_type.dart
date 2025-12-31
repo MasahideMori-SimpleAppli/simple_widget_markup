@@ -1,4 +1,4 @@
-import '../../simple_widget_markup.dart';
+import 'package:simple_widget_markup/simple_widget_markup.dart';
 
 /// (en) The switch btn state.
 ///

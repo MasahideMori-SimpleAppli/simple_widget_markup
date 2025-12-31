@@ -1,16 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../element_params/element_child.dart';
-import '../../../element_params/spwml_info.dart';
-import '../../../element_params/sub/button/btn_params.dart';
-import '../../../element_params/sub/text/text_params.dart';
-import '../../../element_params/super/spwml_params.dart';
-import '../../../enum/enum_btn_type.dart';
-import '../../../enum/enum_spwml_params.dart';
-import '../../../enum/enum_spwml_element_type.dart';
-import '../../../spwml_exception.dart';
-import '../../../style/spwml_font_style.dart';
-import '../../super/single_child_text_element.dart';
+import 'package:simple_widget_markup/simple_widget_markup.dart';
 
 ///
 /// (en) The btn.

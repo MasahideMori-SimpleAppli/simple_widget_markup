@@ -1,4 +1,4 @@
-import '../../simple_widget_markup.dart';
+import 'package:simple_widget_markup/simple_widget_markup.dart';
 
 /// (en) Font settings assigned to individual elements for SpWML font style version 3.
 /// (ja) SpWMLのフォントスタイルバージョン３に関して、個別の要素に割り当てられるフォントの設定です。

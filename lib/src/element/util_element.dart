@@ -1,8 +1,4 @@
-import 'spwml_element_part.dart';
-import '../element_params/spwml_element_params_all.dart';
-import '../enum/enum_spwml_element_type.dart';
-import '../style/spwml_font_style.dart';
-import '../spwml_exception.dart';
+import 'package:simple_widget_markup/simple_widget_markup.dart';
 
 ///
 /// (en)Utility for generating SpWML elements.

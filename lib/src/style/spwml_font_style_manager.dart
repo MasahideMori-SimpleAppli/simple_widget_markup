@@ -1,4 +1,4 @@
-import '../../simple_widget_markup.dart';
+import 'package:simple_widget_markup/simple_widget_markup.dart';
 
 ///
 /// (en) A manager class for setting default values for font styles that works as a singleton.

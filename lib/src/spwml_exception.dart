@@ -1,4 +1,4 @@
-import 'element_params/spwml_info.dart';
+import 'package:simple_widget_markup/simple_widget_markup.dart';
 
 ///
 /// (en)An exception class for SpWML.

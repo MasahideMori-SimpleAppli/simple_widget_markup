@@ -1,5 +1,4 @@
-import '../element_params/spwml_info.dart';
-import '../spwml_exception.dart';
+import 'package:simple_widget_markup/simple_widget_markup.dart';
 
 ///
 /// (en) Definition of Clipping type.

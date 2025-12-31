@@ -1,3 +1,8 @@
+## 46.0.2
+
+* Minor internal refactoring without API changes. 
+* Update internal dependencies (no functional changes).
+
 ## 46.0.1
 
 * To address issues occurring in Flutter 3.10.x, I have made adjustments to ensure compatibility and work with older versions.
