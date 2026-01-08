@@ -1,3 +1,7 @@
+## 46.0.3
+
+* Update internal dependencies (no functional changes).
+
 ## 46.0.2
 
 * Minor internal refactoring without API changes. 
