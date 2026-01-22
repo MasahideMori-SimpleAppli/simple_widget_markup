@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:simple_widget_markup/simple_widget_markup.dart';
+import 'package:simple_widget_markup/src/enum/enum_window_class_adaptive.dart';
 
 ///
 /// (en)A manager class for managing SpWML layout files with a singleton.
@@ -305,5 +306,17 @@ class SpWMLLayoutManager {
   /// (reference) https://developer.android.com/guide/topics/large-screens/support-different-screen-sizes?hl=ja#window_size_classes
   static EnumWindowClass getWindowClass(BuildContext context) {
     return EXTEnumWindowClass.getWindowClass(getScreenWidth(context));
+  }
+
+  /// (en) Returns the window class. Classes are determined by width.
+  /// This returns the new classification from 2025 onwards,
+  /// which adds large and extra large.
+  ///
+  /// (ja) ウィンドウクラスを返します。クラスは幅を基準として判定されます。
+  /// こちらはlargeとextraLargeが追加された2025年以降の新しい分類を返します。
+  ///
+  /// (reference) https://developer.android.com/guide/topics/large-screens/support-different-screen-sizes?hl=ja#window_size_classes
+  static EnumWindowClassAdaptive getWindowClassAdaptive(BuildContext context) {
+    return EXTEnumWindowClassAdaptive.getWindowClass(getScreenWidth(context));
   }
 }

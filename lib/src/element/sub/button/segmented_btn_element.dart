@@ -72,6 +72,9 @@ class SegmentedBtnElement extends MultiChildElement {
         params.containsKey(EnumSpWMLParams.allowEmpty)
             ? params[EnumSpWMLParams.allowEmpty]
             : SegmentedBtnParams.defEmptySelectionAllowed;
+    elParams.p.direction = params.containsKey(EnumSpWMLParams.axis)
+        ? params[EnumSpWMLParams.axis]
+        : Axis.horizontal;
     // SIDが設定されていなければエラー。
     if (getSID() == null) {
       throw SpWMLException(
@@ -236,6 +239,7 @@ class _SegmentedBtnElementWidgetState
       style: widget.elParams.p.style,
       showSelectedIcon: widget.elParams.p.showSelectedIcon,
       selectedIcon: widget.elParams.p.selectedIcon,
+      direction: widget.elParams.p.direction,
     );
   }
 }

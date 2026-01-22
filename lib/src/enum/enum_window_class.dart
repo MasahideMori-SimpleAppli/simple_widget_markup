@@ -1,19 +1,20 @@
-/// (en) I created this enum with reference to:
+/// I created this enum with reference to:
 /// https://m3.material.io/foundations/layout/applying-layout/window-size-classes
-/// The any class was added for convenience when writing layout files.
+///
+/// (en) Material 3 compliant window class definition.
+/// Additional elements dialog and any are defined for convenience.
 /// For convenience the additional elements dialog and any are also defined.
 ///
 /// (ja) マテリアル３準拠のウィンドウクラスの定義。
-/// 利便性のための追加の要素としてdialogとanyも定義されている。
+/// 利便性のための追加の要素としてdialogとanyも定義されています。
 enum EnumWindowClass { compact, medium, expanded, dialog, any }
 
 /// EnumWindowClass extension.
 extension EXTEnumWindowClass on EnumWindowClass {
-  /// (en) Returns the appropriate window class based on the specified screen size.
-  /// However, "EnumWindowClass.any" is not considered here.
-  /// The return value is selected from other classes.
+  /// (en) Returns the appropriate window class for the screen width,
+  /// excluding dialog and any.
   ///
-  /// (ja) EnumWindowClass.anyを除く、画面幅に対して適切なウィンドウクラスを返します。
+  /// (ja) dialogとanyを除く、画面幅に対して適切なウィンドウクラスを返します。
   ///
   /// * [width] : The screen width.
   static EnumWindowClass getWindowClass(double width) {

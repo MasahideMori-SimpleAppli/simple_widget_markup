@@ -1,3 +1,12 @@
+## 46.1.0
+
+* Added `EnumWindowClassAdaptive`, an extended version of `EnumWindowClass`
+  that includes `large` and `extraLarge` sizes and narrows the range of `expanded`.
+* Added `getWindowClassAdaptive` to `SpWMLLayoutManager`.
+* Added the `direction` parameter to `SegmentedBtnElement` and `SegmentedBtn2Element`.
+  When `axis` is specified in the `segmentedBtn` or `segmentedBtn2` markup,
+  it is internally mapped to the Flutter `direction` property.
+
 ## 46.0.3
 
 * Update internal dependencies (no functional changes).

@@ -34,4 +34,5 @@ class SegmentedBtn2Params {
   bool showSelectedIcon = true;
   Widget? selectedIcon;
   bool isEnabled = true;
+  Axis direction = Axis.horizontal;
 }
