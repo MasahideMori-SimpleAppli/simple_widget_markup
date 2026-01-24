@@ -137,9 +137,15 @@ Please rewrite _getSpWMLWidget in Sample code as follows.
 ```
 
 ## Support
-If you need paid support for any reason, please contact my company.  
-This package is developed by me personally, but may be supported via the company.  
-[SimpleAppli Inc.](https://simpleappli.com/en/index_en.html)
+This package is developed and maintained by me personally as an open-source project.  
+For bug reports and feature requests, please use GitHub Issues.
+
+If you need **paid support, consulting, or custom development**  
+(e.g. priority support, design advice, or implementation help),
+please contact my company:
+
+**SimpleAppli Inc.**  
+https://simpleappli.com/en/index_en.html
 
 ## Format name
 Simple Widget Markup Language
@@ -162,6 +168,12 @@ The C part will be changed at the time of version upgrade.
 ## License
 This software is released under the MIT License, see LICENSE file.
 
-## Copyright notice
-The “Dart” name and “Flutter” name are trademarks of Google LLC.  
-*The developer of this package is not Google LLC.
+---
+
+## Trademarks
+
+- “Dart” and “Flutter” are trademarks of Google LLC.  
+  *This package is not developed or endorsed by Google LLC.*
+
+- GitHub and the GitHub logo are trademarks of GitHub, Inc.  
+  *This package is not affiliated with GitHub, Inc.*

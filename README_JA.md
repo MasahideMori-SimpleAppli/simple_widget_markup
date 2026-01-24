@@ -134,9 +134,15 @@ toDictでMapに出来、それをfromDictで復元することができます。
 ```
 
 ## サポート
-もし何らかの理由で有償のサポートが必要な場合は私の会社に問い合わせてください。  
-このパッケージは私が個人で開発していますが、会社経由でサポートできる場合があります。  
-[合同会社シンプルアプリ](https://simpleappli.com/index.html)
+このパッケージは、オープンソースプロジェクトとして私が個人的に開発・保守しています。
+バグ報告や機能リクエストについては、GitHub Issues をご利用ください。
+
+**有料サポート、コンサルティング、カスタム開発**
+（例：優先サポート、設計アドバイス、実装支援）が必要な場合は、
+下記までご連絡ください。
+
+**SimpleAppli Inc.**
+https://simpleappli.com/index.html
 
 ## フォーマット名
 Simple Widget Markup Language
@@ -159,6 +165,10 @@ text/x.spwml
 ## ライセンス
 このソフトウェアはMITライセンスの元配布されます。LICENSEファイルの内容をご覧ください。
 
-## 著作権表示
-The “Dart” name and “Flutter” name are trademarks of Google LLC.  
-*The developer of this package is not Google LLC.
+## Trademarks
+
+- “Dart” and “Flutter” are trademarks of Google LLC.  
+  *This package is not developed or endorsed by Google LLC.*
+
+- GitHub and the GitHub logo are trademarks of GitHub, Inc.  
+  *This package is not affiliated with GitHub, Inc.*
