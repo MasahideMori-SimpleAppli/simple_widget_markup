@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:simple_widget_markup/simple_widget_markup.dart';
-import 'package:simple_widget_markup/src/enum/enum_window_class_adaptive.dart';
 
 ///
 /// (en)A manager class for managing SpWML layout files with a singleton.

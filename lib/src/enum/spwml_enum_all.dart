@@ -14,3 +14,4 @@ export 'enum_text_decoration.dart';
 export 'enum_text_decoration_style.dart';
 export 'enum_textfield_params.dart';
 export 'enum_window_class.dart';
+export 'enum_window_class_adaptive.dart';

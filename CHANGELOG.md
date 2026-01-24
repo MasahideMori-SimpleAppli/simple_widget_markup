@@ -1,3 +1,7 @@
+## 46.1.1
+
+* Fixed an issue where the `EnumWindowClassAdaptive` class was not public.
+
 ## 46.1.0
 
 * Added `EnumWindowClassAdaptive`, an extended version of `EnumWindowClass`
