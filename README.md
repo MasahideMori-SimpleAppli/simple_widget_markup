@@ -168,8 +168,6 @@ The C part will be changed at the time of version upgrade.
 ## License
 This software is released under the MIT License, see LICENSE file.
 
----
-
 ## Trademarks
 
 - “Dart” and “Flutter” are trademarks of Google LLC.  
