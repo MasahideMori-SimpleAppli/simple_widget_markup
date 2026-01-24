@@ -1,3 +1,7 @@
+## 46.1.2
+
+* Fix readme.
+
 ## 46.1.1
 
 * Fixed an issue where the `EnumWindowClassAdaptive` class was not public.
