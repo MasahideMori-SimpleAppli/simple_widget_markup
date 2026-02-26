@@ -1,3 +1,7 @@
+## 46.2.0
+
+* Added `getFontSizeFromTextScaler`, `getStyleFromTextScaler`, and `getStrutStyleFromTextScaler` to `TextElement`.
+
 ## 46.1.2
 
 * Fix readme.

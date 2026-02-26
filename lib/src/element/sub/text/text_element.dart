@@ -468,4 +468,110 @@ class TextElement extends SpWMLElement {
       height: getLineHeight(),
     );
   }
+
+  /// get font size.
+  double? getFontSizeFromTextScaler(TextScaler scaler) {
+    final double fontSize = params.containsKey(EnumSpWMLParams.fontSize)
+        ? params[EnumSpWMLParams.fontSize]
+        : getDefFontSize();
+    final TextScaler tScaler =
+        textParams.p.useTextScaler ? scaler : TextScaler.noScaling;
+    return tScaler.scale(fontSize);
+  }
+
+  /// get text style from parameters.
+  TextStyle getStyleFromTextScaler(TextScaler scaler) {
+    return TextStyle(
+      color: params.containsKey(EnumSpWMLParams.textColor)
+          ? params[EnumSpWMLParams.textColor]
+          : getDefTextColor(),
+      backgroundColor: params.containsKey(EnumSpWMLParams.textBGColor)
+          ? params[EnumSpWMLParams.textBGColor]
+          : getDefTextBGColor(),
+      fontSize: getFontSizeFromTextScaler(scaler),
+      fontWeight: params.containsKey(EnumSpWMLParams.fontWeight)
+          ? params[EnumSpWMLParams.fontWeight]
+          : getDefFontWeight(),
+      fontStyle: params.containsKey(EnumSpWMLParams.fontStyle)
+          ? params[EnumSpWMLParams.fontStyle]
+          : getDefFontStyle(),
+      letterSpacing: params.containsKey(EnumSpWMLParams.letterSpacing)
+          ? params[EnumSpWMLParams.letterSpacing]
+          : getDefFontLetterSpacing(),
+      wordSpacing: params.containsKey(EnumSpWMLParams.wordSpacing)
+          ? params[EnumSpWMLParams.wordSpacing]
+          : getDefWordSpacing(),
+      decoration: params.containsKey(EnumSpWMLParams.textDeco)
+          ? params[EnumSpWMLParams.textDeco]
+          : getDefTextDeco(),
+      decorationStyle: params.containsKey(EnumSpWMLParams.textDecoStyle)
+          ? params[EnumSpWMLParams.textDecoStyle]
+          : getDefDecorationStyle(),
+      decorationColor: params.containsKey(EnumSpWMLParams.textDecoColor)
+          ? params[EnumSpWMLParams.textDecoColor]
+          : getDefTextDecoColor(),
+      decorationThickness: params.containsKey(EnumSpWMLParams.textDecoThickness)
+          ? params[EnumSpWMLParams.textDecoThickness]
+          : getDefTextDecoThickness(),
+      fontFamily: params.containsKey(EnumSpWMLParams.fontFamily)
+          ? params[EnumSpWMLParams.fontFamily]
+          : getDefFontFamily(),
+      height: getLineHeight(),
+    );
+  }
+
+  /// get text strut style from parameters.
+  StrutStyle? getStrutStyleFromTextScaler(TextScaler scaler) {
+    final double fontSize = params.containsKey(EnumSpWMLParams.fontSize)
+        ? params[EnumSpWMLParams.fontSize]
+        : getDefFontSize();
+    final TextScaler tScaler =
+        textParams.p.useTextScaler ? scaler : TextScaler.noScaling;
+    if (type == EnumSpWMLElementType.textField) {
+      if (SpWMLFontStyleManager().useMaterial3) {
+        return null;
+      } else {
+        return StrutStyle(
+          fontFamily: params.containsKey(EnumSpWMLParams.fontFamily)
+              ? params[EnumSpWMLParams.fontFamily]
+              : getDefFontFamily(),
+          fontSize: tScaler.scale(fontSize),
+          height: getLineHeight(),
+          leading: params.containsKey(EnumSpWMLParams.leading)
+              ? params[EnumSpWMLParams.leading]
+              : null,
+          leadingDistribution:
+              params.containsKey(EnumSpWMLParams.leadingDistribution)
+                  ? params[EnumSpWMLParams.leadingDistribution]
+                  : null,
+          fontWeight: params.containsKey(EnumSpWMLParams.fontWeight)
+              ? params[EnumSpWMLParams.fontWeight]
+              : getDefFontWeight(),
+          fontStyle: params.containsKey(EnumSpWMLParams.fontStyle)
+              ? params[EnumSpWMLParams.fontStyle]
+              : getDefFontStyle(),
+          forceStrutHeight: params.containsKey(EnumSpWMLParams.forceStrutHeight)
+              ? params[EnumSpWMLParams.forceStrutHeight]
+              : null,
+        );
+      }
+    } else {
+      return StrutStyle(
+        fontFamily: params.containsKey(EnumSpWMLParams.fontFamily)
+            ? params[EnumSpWMLParams.fontFamily]
+            : getDefFontFamily(),
+        fontSize: tScaler.scale(fontSize),
+        height: getLineHeight(),
+        leading: params.containsKey(EnumSpWMLParams.leading)
+            ? params[EnumSpWMLParams.leading]
+            : null,
+        fontWeight: params.containsKey(EnumSpWMLParams.fontWeight)
+            ? params[EnumSpWMLParams.fontWeight]
+            : getDefFontWeight(),
+        fontStyle: params.containsKey(EnumSpWMLParams.fontStyle)
+            ? params[EnumSpWMLParams.fontStyle]
+            : getDefFontStyle(),
+      );
+    }
+  }
 }
