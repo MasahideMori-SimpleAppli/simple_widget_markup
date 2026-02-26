@@ -1,3 +1,7 @@
+## 46.3.0
+
+* Added `getNonResizedStyleFromTextScaler` to `SuperAndSubscriptElement`.
+
 ## 46.2.0
 
 * Added `getFontSizeFromTextScaler`, `getStyleFromTextScaler`, and `getStrutStyleFromTextScaler` to `TextElement`.
