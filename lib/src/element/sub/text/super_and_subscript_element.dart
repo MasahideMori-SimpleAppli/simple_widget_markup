@@ -145,7 +145,7 @@ class SuperAndSubscriptElement extends TextElement {
   }
 
   /// Get super.getFontSizeFromTextScaler method based style.
-  TextStyle getNonResizedStyleFromTextScaler(TextScaler scaler){
+  TextStyle getNonResizedStyleFromTextScaler(TextScaler scaler) {
     return TextStyle(
       color: params.containsKey(EnumSpWMLParams.textColor)
           ? params[EnumSpWMLParams.textColor]
