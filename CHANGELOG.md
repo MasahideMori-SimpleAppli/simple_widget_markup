@@ -1,3 +1,8 @@
+## 46.5.2
+
+* Enhanced `SpWMLView` and `SpWMLViewScope`.
+  * Added `sm` (StateManager) to `SpWMLViewScope` to allow easier serialization and state access from the `onSetup` callback.
+
 ## 46.5.1
 
 * Refactored `SpWMLElement` internal structure to improve extensibility.

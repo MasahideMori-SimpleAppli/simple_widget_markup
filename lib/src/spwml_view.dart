@@ -36,14 +36,18 @@ typedef SpWMLViewLoadAssetsErrorCallback = void Function(
 class SpWMLViewScope {
   final void Function(bool) setIsProcessing;
   final void Function(VoidCallback) setState;
+  final StateManager sm;
 
   /// * [setIsProcessing] : Calling this method with true will overlap the
   /// loading indicator. Calling it with false will remove the overlap.
   /// * [setState] : This is a function that calls the setState method of
   /// SpWMLView.
+  /// * [sm] : A reference to the StateManager used within the view.
+  /// This can be used when you want to serialize the view.
   SpWMLViewScope({
     required this.setIsProcessing,
     required this.setState,
+    required this.sm,
   });
 }
 
@@ -176,11 +180,11 @@ class _SpWMLViewState extends State<SpWMLView> {
         context,
         builder,
         SpWMLViewScope(
-          setIsProcessing: _setIsProcessing,
-          setState: (fn) {
-            if (mounted) setState(fn);
-          },
-        ),
+            setIsProcessing: _setIsProcessing,
+            setState: (fn) {
+              if (mounted) setState(fn);
+            },
+            sm: _sm),
       );
     }
 
