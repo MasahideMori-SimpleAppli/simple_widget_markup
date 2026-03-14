@@ -1,3 +1,12 @@
+## 46.4.0
+
+* Added `SpWMLView`: A high-level StatefulWidget that simplifies SpWML integration.
+  * Integrated `StateManager` lifecycle management (auto-init and dispose).
+  * Supported asynchronous asset loading via `pathBuilder` and `SpWMLLayoutManager`.
+  * Added `onInit` and `onSetup` callbacks for cleaner initialization and element configuration.
+  * Added built-in processing UI (loading overlay) support via `SpWMLViewScope`.
+  * Added `onLoadAssetsError` for custom error handling during asset loading.
+
 ## 46.3.0
 
 * Added `getNonResizedStyleFromTextScaler` to `SuperAndSubscriptElement`.
