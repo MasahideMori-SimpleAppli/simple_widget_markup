@@ -1,3 +1,9 @@
+## 46.5.1
+
+* Refactored `SpWMLElement` internal structure to improve extensibility.
+  * Moved `materialPadding` into `MaterialParams` to allow direct access from external callbacks (e.g., `onSetup`).
+  * Enhanced the `material` wrapper to ensure safer parameter handling and more consistent widget rebuilding.
+
 ## 46.5.0
 
 * Improved `elevation` support for `SpWMLElement`.

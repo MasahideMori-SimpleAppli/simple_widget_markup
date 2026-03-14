@@ -97,12 +97,15 @@ class SpWMLElement extends StatelessWidget {
               ? params[EnumSpWMLParams.elevation]
               : 0.0;
       // 影の色も設定できるように
-      if (params.containsKey(EnumSpWMLParams.shadowColor)) {
-        spwmlParams.p.materialParams!.shadowColor =
-            params.containsKey(EnumSpWMLParams.shadowColor)
-                ? params[EnumSpWMLParams.shadowColor]
-                : null;
-      }
+      spwmlParams.p.materialParams!.shadowColor =
+          params.containsKey(EnumSpWMLParams.shadowColor)
+              ? params[EnumSpWMLParams.shadowColor]
+              : null;
+      // 専用Padding設定
+      spwmlParams.p.materialParams!.materialPadding =
+          params.containsKey(EnumSpWMLParams.materialPadding)
+              ? params[EnumSpWMLParams.materialPadding]
+              : null;
     }
     if (_isEnableConstrains()) {
       spwmlParams.p.constrains = _getConstraints();
@@ -530,9 +533,8 @@ class SpWMLElement extends StatelessWidget {
   /// * [child] : The child widget.
   @protected
   Widget material(Widget child) {
-    if (spwmlParams.p.materialParams == null) {
-      return child;
-    }
+    final mParams = spwmlParams.p.materialParams;
+    if (mParams == null) return child;
     // Materialウィジェットを先に定義
     final materialWidget = Material(
       key: spwmlParams.p.materialParams!.key,
@@ -549,14 +551,9 @@ class SpWMLElement extends StatelessWidget {
       animationDuration: spwmlParams.p.materialParams!.animationDuration,
       child: child,
     );
-    // パディングの有無を判定
-    final EdgeInsets? mPadding =
-        params.containsKey(EnumSpWMLParams.materialPadding)
-            ? params[EnumSpWMLParams.materialPadding]
-            : null;
     // パディングがある場合のみラップして返す
-    if (mPadding != null) {
-      return Padding(padding: mPadding, child: materialWidget);
+    if (mParams.materialPadding != null) {
+      return Padding(padding: mParams.materialPadding!, child: materialWidget);
     }
     return materialWidget;
   }

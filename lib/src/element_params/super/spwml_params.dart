@@ -30,6 +30,7 @@ class MaterialParams {
   bool borderOnForeground = true;
   Clip clipBehavior = Clip.none;
   Duration animationDuration = kThemeChangeDuration;
+  EdgeInsets? materialPadding;
   Widget? child;
 }
 
