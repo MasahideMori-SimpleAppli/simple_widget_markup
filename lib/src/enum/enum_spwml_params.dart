@@ -194,6 +194,9 @@ enum EnumSpWMLParams {
   splitPane2MinPx,
   // flexFit
   flexFit,
+  // elevationの正常化のための追加パラメータ
+  shadowColor,
+  materialPadding,
 }
 
 /// 重複を避けて高速化するために、短縮系だけをまとめたもの。
@@ -456,7 +459,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
           this == EnumSpWMLParams.indicatorBGColor ||
           this == EnumSpWMLParams.activeColor ||
           this == EnumSpWMLParams.inactiveColor ||
-          this == EnumSpWMLParams.cellBorderColor) {
+          this == EnumSpWMLParams.cellBorderColor ||
+          this == EnumSpWMLParams.shadowColor) {
         return UtilParams.convertColor(v, lineStart, lineEnd, info);
       } else if (this == EnumSpWMLParams.sid || this == EnumSpWMLParams.tag) {
         return v;
@@ -528,6 +532,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
         return TextLeadingDistribution.values.byName(v);
       } else if (this == EnumSpWMLParams.flexFit) {
         return FlexFit.values.byName(v);
+      } else if (this == EnumSpWMLParams.materialPadding) {
+        return EdgeInsets.all(double.parse(v));
       } else {
         // 変換不要ならそのまま返す。
         return v;

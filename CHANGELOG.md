@@ -1,3 +1,10 @@
+## 46.5.0
+
+* Improved `elevation` support for `SpWMLElement`.
+  * Added `materialPadding` parameter to provide necessary spacing for shadows, preventing clipping when elements are at the edge of their parent.
+  * Added `shadowColor` parameter to allow customization of elevation shadows.
+  * Optimized widget tree by only injecting a `Padding` widget when `materialPadding` is explicitly specified.
+
 ## 46.4.0
 
 * Added `SpWMLView`: A high-level StatefulWidget that simplifies SpWML integration.
