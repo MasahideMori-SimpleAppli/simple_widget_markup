@@ -1,3 +1,7 @@
+## 46.5.3
+
+* Fixed an issue where `SpWMLView` and related classes were not exported in the main package file.
+
 ## 46.5.2
 
 * Enhanced `SpWMLView` and `SpWMLViewScope`.
