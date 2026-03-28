@@ -1,3 +1,10 @@
+## 46.6.0
+
+* Added new methods to `BtnElement` to support UI customization and state representation during the build process.
+  * Added `setChild(Widget widget)`: Allows replacing the button's internal child widget (e.g., text) with any custom widget.
+  * Added `setLoading()`: A convenience method to replace the child with a `CircularProgressIndicator` and set the button to a disabled state.
+  * Note: Since these elements are stateless, these methods must be called during the build process to take effect.
+
 ## 46.5.3
 
 * Fixed an issue where `SpWMLView` and related classes were not exported in the main package file.

@@ -706,6 +706,41 @@ class BtnElement extends SingleChildTextElement {
     elParams.p.isEnabled = isEnabled;
   }
 
+  /// (en) This replaces the child widget of this button with any widget.
+  /// For example, it can replace the text portion of a button with an indicator.
+  /// Note that this class is stateless, so it will not have any effect unless
+  /// it is replaced during the build process.
+  ///
+  /// (ja)このボタンの子ウィジェットを任意のウィジェットに差し替えます。
+  /// 例えば、ボタンのテキスト部分をインジケーターに差し替えるなどの効果があります。
+  /// 注：このクラスはステートレスのため、ビルド中に差し替えないと効果はありません。
+  ///
+  /// * [widget] : The widget to be replaced.
+  void setChild(Widget widget) {
+    child.child = widget;
+  }
+
+  /// (en) Replaces the child widget of this button with a
+  /// CircularProgressIndicator.
+  /// For a normal button, a loading indicator will be displayed in
+  /// the text area.
+  /// The button will be disabled and cannot be pressed.
+  /// Note: This class is stateless and will have no effect unless set during
+  /// the build process.
+  /// Manage the isLoading flag in the parent widget and set that flag as
+  /// an argument to this method.
+  ///
+  /// (ja)このボタンの子ウィジェットをCircularProgressIndicatorに差し替えます。
+  /// 通常のボタンではテキスト部分がローディング表示になり、
+  /// ボタンが無効化されて押せなくなります。
+  /// 注：このクラスはステートレスのため、ビルド中に設定しないと効果がありません。
+  /// 親ウィジェットでフラグ管理し、そのフラグをこのメソッド引数に設定してください。
+  ///
+  void setLoading() {
+    setChild(CircularProgressIndicator());
+    setEnabled(false);
+  }
+
   /// (en) Sets the color of this button.
   /// block type buttons have no effect.
   ///
