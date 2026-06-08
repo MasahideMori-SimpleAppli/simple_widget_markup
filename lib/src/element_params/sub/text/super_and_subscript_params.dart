@@ -18,7 +18,7 @@ class SuperAndSubscriptParamsWrapper {
 /// (ja) 接頭名(XXXParams of X)が同じクラスで利用するパラメータを保持するためのクラス。
 ///
 class SuperAndSubscriptParams {
-  static const double defMag = 0.6;
+  static const double defMag = 0.7;
   static const double defBaselineCorrection = 0;
   Key? key;
   // このテキストのサイズに大しての倍率。これをかけたサイズに縮小されます。

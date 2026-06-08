@@ -94,15 +94,15 @@ class SuperAndSubscriptElement extends TextElement {
     if (type == EnumSpWMLElementType.superscript) {
       return Offset(
         0,
-        getFontSize(context)! -
-            (super.getFontSize(context) ?? 18) -
+        2 * getFontSize(context)! -
+            2 * (super.getFontSize(context) ?? 18) -
             (getFontSize(context)! / 7) +
             elParams.p.baselineCorrection,
       );
     } else {
       return Offset(
         0,
-        getFontSize(context)! / 3 + elParams.p.baselineCorrection,
+        getFontSize(context)! / 4 + elParams.p.baselineCorrection,
       );
     }
   }
@@ -211,8 +211,8 @@ class SuperAndSubscriptElement extends TextElement {
     if (type == EnumSpWMLElementType.superscript) {
       return Offset(
         0,
-        _amplifiedValue(getFontSize(context)!, 1.225) / 4 +
-            getFontSize(context)! / 2 +
+        _amplifiedValue(getFontSize(context)!, 1.225) / 4 -
+            getFontSize(context)! / 8 +
             (-1 * super.getFontSize(context)!) +
             elParams.p.baselineCorrection,
       );

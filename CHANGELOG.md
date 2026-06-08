@@ -1,3 +1,22 @@
+## 46.6.2
+
+* Adjusted the default rendering of `SuperAndSubscriptElement` for better visual balance.
+  * Changed the default `magnification` from `0.6` to `0.7`, so superscripts and subscripts
+    are no longer shrunk too much.
+  * Raised the superscript offset so it no longer sits too low (its top now aligns roughly
+    with the cap height of the surrounding text). Applied to both layout modes:
+    * Non-strict mode (`getOffsetOfNonStrictMode`): the downward `fontSize / 2` term was
+      replaced with an upward `fontSize / 8` term.
+    * Strict mode (`getOffset`): the lift term was increased from `fontSize - baseFontSize`
+      to `2 * (fontSize - baseFontSize)`.
+  * Reduced the subscript downward offset in strict layout mode from `fontSize / 3` to
+    `fontSize / 4`.
+  * These only affect default values; `mag` and `baselineCorrection` can still be set per
+    element for fine-tuning.
+* Suppressed the `non_const_argument_for_const_parameter` analyzer warning for the dynamic
+  `IconData` created in `EnumSpWMLParams` (its `codePoint` is parsed from markup at runtime,
+  so it cannot be const). No behavior change.
+
 ## 46.6.1
 
 * Fixed a bug where `SuperAndSubscriptElement` was not reduced in size when rendered

@@ -472,6 +472,8 @@ extension EXTEnumSpWMLParams on EnumSpWMLParams {
         if (v.startsWith('0x')) {
           v = v.replaceFirst('0x', '');
         }
+        // codePoint is parsed from markup at runtime, so it cannot be const.
+        // ignore: non_const_argument_for_const_parameter
         return IconData(int.parse(v, radix: 16), fontFamily: "MaterialIcons");
       } else if (this == EnumSpWMLParams.fontWeight ||
           this == EnumSpWMLParams.rubyFontWeight) {
