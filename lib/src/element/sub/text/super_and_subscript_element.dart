@@ -78,6 +78,17 @@ class SuperAndSubscriptElement extends TextElement {
     }
   }
 
+  /// change small size. (TextScaler version)
+  @override
+  double? getFontSizeFromTextScaler(TextScaler scaler) {
+    final double? fontSize = super.getFontSizeFromTextScaler(scaler);
+    if (fontSize == null) {
+      return _getDefFontSizeNonNull() * elParams.p.magnification;
+    } else {
+      return fontSize * elParams.p.magnification;
+    }
+  }
+
   /// calculate and return the script offset.
   Offset getOffset(BuildContext context) {
     if (type == EnumSpWMLElementType.superscript) {

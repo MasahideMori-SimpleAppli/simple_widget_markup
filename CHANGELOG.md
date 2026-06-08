@@ -1,3 +1,13 @@
+## 46.6.1
+
+* Fixed a bug where `SuperAndSubscriptElement` was not reduced in size when rendered
+  through the `TextScaler`-based API.
+  * `getFontSizeFromTextScaler` now applies `magnification`, mirroring the existing
+    `BuildContext`-based `getFontSize` behavior.
+  * Previously, superscripts and subscripts were drawn at full size when laid out via
+    `getStyleFromTextScaler` / `getFontSizeFromTextScaler` (e.g. custom canvas rendering
+    that relies on `TextScaler`), while the `BuildContext` path was unaffected.
+
 ## 46.6.0
 
 * Added new methods to `BtnElement` to support UI customization and state representation during the build process.
